@@ -1,6 +1,9 @@
 import React from "react";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
 import classNames from "classnames";
+import { useEditor, useEditorState, EditorContent, type Editor } from "@tiptap/react";
+import StarterKit from "@tiptap/starter-kit";
+import { Placeholder } from "@tiptap/extensions";
 import { FieldTemplate } from "../FieldTemplate";
 import { Input } from "../Input/Input";
 import { Button } from "../Button/Button";
@@ -27,19 +30,8 @@ import {
   DialogClose,
 } from "../../overlay/Dialog/Dialog";
 import { FieldIntent, FieldVariant, FieldWidth } from "../../../types/tokens";
-import {
-  createLink,
-  getActiveFormats,
-  getEditorRange,
-  removeAllFormatting,
-  removeLink,
-  setBlock,
-  toggleInline,
-  toggleList,
-} from "./commands";
+import { isSafeLinkUrl } from "./safeUrl";
 import styles from "./rich-text-editor.module.scss";
-
-// ---- Inline SVG toolbar icons ----
 
 // ---- Types ----
 
@@ -94,14 +86,16 @@ export type RichTextEditorLabels = {
   linkPrompt?: string;
   linkApply?: string;
   linkCancel?: string;
+  /** Error shown in the link dialog when the URL is not allowed (only http, https, mailto and relative URLs are). */
+  linkInvalid?: string;
 };
 
 export type RichTextEditorProps = {
-  /** HTML content (controlled) */
+  /** HTML content (controlled). An empty editor is reported as "". */
   value?: string;
   /** Initial HTML content (uncontrolled) */
   defaultValue?: string;
-  /** Callback when the content changes */
+  /** Callback when the content changes. Receives HTML that only contains the tags and attributes the editor's schema allows. */
   onChange?: (value: string) => void;
   /** Placeholder shown when the editor is empty */
   placeholder?: string;
@@ -139,6 +133,37 @@ export type RichTextEditorProps = {
   "aria-labelledby"?: string;
 };
 
+type FormatKey = Exclude<RichTextEditorToolbarItem, "separator" | "link" | "unlink" | "removeFormat"> | "link";
+
+// ---- Editor extensions ----
+// 無害化はスキーマが担う（T278）: 入力（初期値・制御値・貼り付け）は ProseMirror のスキーマに通して組み立て直すので、
+// ここで許可していないタグ・属性（script / style / on* / img など）は出力に残らない。スキーマの外に残る危険は
+// リンクの URL だけなので、isAllowedUri で http / https / mailto / 相対に絞る。
+const createExtensions = (placeholder: string) => [
+  StarterKit.configure({
+    heading: { levels: [1, 2, 3] },
+    // ツールバーに無い構造は持たない（出力に出せるものを、利用者がツールバーで作れるものに揃える）
+    blockquote: false,
+    code: false,
+    codeBlock: false,
+    horizontalRule: false,
+    // 見出し・リストで終わる文書の末尾に空の <p></p> を足す拡張。出力に余計な段落が混ざるので外す
+    trailingNode: false,
+    link: {
+      openOnClick: false,
+      autolink: false,
+      linkOnPaste: false,
+      isAllowedUri: (url) => isSafeLinkUrl(url),
+      // 出力は <a href> だけにする（以前の自前実装と同じ）。target を付けないので rel も要らない
+      HTMLAttributes: { target: null, rel: null },
+    },
+  }),
+  Placeholder.configure({ placeholder }),
+];
+
+/** 空の文書は "" として返す（Tiptap の getHTML は空でも "<p></p>" を返す）。 */
+const toValue = (editor: Editor) => (editor.isEmpty ? "" : editor.getHTML());
+
 // ---- Toolbar button component ----
 
 type ToolbarButtonProps = {
@@ -146,30 +171,37 @@ type ToolbarButtonProps = {
   active?: boolean;
   disabled?: boolean;
   title: string;
+  tabIndex: number;
+  onFocus: () => void;
+  buttonRef: (el: HTMLButtonElement | null) => void;
   children: React.ReactNode;
 };
 
-const ToolbarButton = React.memo(({ onClick, active, disabled, title, children }: ToolbarButtonProps) => (
-  <button
-    type="button"
-    className={classNames(styles.toolbarBtn, active && styles.active)}
-    onClick={onClick}
-    disabled={disabled}
-    title={title}
-    aria-label={title}
-    aria-pressed={active}
-    tabIndex={-1}
-  >
-    {children}
-  </button>
-));
+const ToolbarButton = React.memo(
+  ({ onClick, active, disabled, title, tabIndex, onFocus, buttonRef, children }: ToolbarButtonProps) => (
+    <button
+      ref={buttonRef}
+      type="button"
+      className={classNames(styles.toolbarBtn, active && styles.active)}
+      onClick={onClick}
+      onFocus={onFocus}
+      disabled={disabled}
+      title={title}
+      aria-label={title}
+      aria-pressed={active}
+      tabIndex={tabIndex}
+    >
+      {children}
+    </button>
+  ),
+);
 
 ToolbarButton.displayName = "ToolbarButton";
 
 // ---- Main component ----
 
 /**
- * WYSIWYG editor component for rich text input.
+ * WYSIWYG editor component for rich text input, built on Tiptap (import from `wimui/form/rich-text-editor`).
  */
 export const RichTextEditor = ({
   value,
@@ -211,19 +243,15 @@ export const RichTextEditor = ({
     linkPrompt = t("a11y.rte_link_prompt"),
     linkApply = t("a11y.rte_link_apply"),
     linkCancel = t("a11y.rte_link_cancel"),
+    linkInvalid = t("a11y.rte_link_invalid"),
   } = labels;
-
-  const editorRef = React.useRef<HTMLDivElement>(null);
-  const isComposingRef = React.useRef(false);
-  const lastValueRef = React.useRef<string>(value ?? defaultValue);
-  const [activeFormats, setActiveFormats] = React.useState<Set<string>>(new Set());
 
   const generatedId = React.useId();
   const id = customId || `wim-rte-${generatedId}`;
   const errorId = error ? `${id}-error` : undefined;
   const labelId = label ? `${id}-label` : undefined;
 
-  const isDisabled = disabled;
+  const isDisabled = !!disabled;
   const currentIntent = error ? "danger" : intent;
 
   const isSemanticWidth =
@@ -231,316 +259,207 @@ export const RichTextEditor = ({
   const effectiveHasCustomWidth = width !== undefined && !isSemanticWidth && !fullWidth;
   const effectiveSemanticWidth = isSemanticWidth && !fullWidth ? width : undefined;
 
-  const widthClassName = effectiveSemanticWidth 
+  const widthClassName = effectiveSemanticWidth
     ? styles[`width${effectiveSemanticWidth.charAt(0).toUpperCase()}${effectiveSemanticWidth.slice(1)}`]
     : undefined;
 
-  const initialContentRef = React.useRef(value !== undefined ? value : defaultValue);
+  // 最後に onChange へ渡した値。制御値がこれと同じなら文書を置き換えない（キャレットを保つ）
+  const lastValueRef = React.useRef<string>(value ?? defaultValue);
+  const onChangeRef = React.useRef(onChange);
+  React.useEffect(() => {
+    onChangeRef.current = onChange;
+  }, [onChange]);
 
-  const updateActiveFormats = React.useCallback(() => {
-    if (!editorRef.current) return;
-    setActiveFormats(getActiveFormats(editorRef.current));
-  }, []);
+  // 編集領域の属性（ProseMirror が描く contenteditable の要素に載る）
+  const contentAttributes = React.useMemo(() => {
+    const attrs: Record<string, string> = {
+      id,
+      class: styles.content,
+      role: "textbox",
+      "aria-multiline": "true",
+      style: `min-height: ${typeof minHeight === "number" ? `${minHeight}px` : minHeight}`,
+      tabindex: isDisabled ? "-1" : "0",
+    };
+    // label / aria-labelledby / aria-label いずれも無い利用で名無しにならないよう内蔵ラベル（axe: aria-input-field-name）
+    const resolvedAriaLabel = ariaLabel ?? (label || ariaLabelledby ? undefined : t("a11y.rte_editor"));
+    const resolvedLabelledby = ariaLabelledby ?? (label ? labelId : undefined);
+    if (resolvedAriaLabel) attrs["aria-label"] = resolvedAriaLabel;
+    if (resolvedLabelledby) attrs["aria-labelledby"] = resolvedLabelledby;
+    if (currentIntent === "danger") attrs["aria-invalid"] = "true";
+    if (errorId) attrs["aria-describedby"] = errorId;
+    if (required) attrs["aria-required"] = "true";
+    if (isDisabled) attrs["aria-disabled"] = "true";
+    if (placeholder) attrs["aria-placeholder"] = placeholder;
+    return attrs;
+  }, [id, minHeight, isDisabled, ariaLabel, label, ariaLabelledby, labelId, currentIntent, errorId, required, placeholder, t]);
 
-  // ---- Undo/Redo 履歴 ----
-  // execCommand と違い手動 DOM 変更はネイティブ undo スタックに乗らないため、
-  // 履歴を内部で一元管理する。入力はデバウンスで、コマンドは実行前に記録し、
-  // Ctrl+Z / Ctrl+Y と beforeinput の historyUndo / historyRedo を横取りする。
-  // stack と index を別 ref に分け、更新は常に「新しい配列/値の再代入」だけにする
-  // （react-hooks/immutability が ref 由来のエイリアス変更を誤検知するため）
-  const historyStackRef = React.useRef<string[]>([]);
-  const historyIndexRef = React.useRef(-1);
-  const historyTimerRef = React.useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
-  const HISTORY_LIMIT = 100;
-
-  const pushHistory = React.useCallback((html: string) => {
-    const stack = historyStackRef.current;
-    const index = historyIndexRef.current;
-    if (stack[index] === html) return;
-    let next = [...stack.slice(0, index + 1), html];
-    if (next.length > HISTORY_LIMIT) next = next.slice(1);
-    historyStackRef.current = next;
-    historyIndexRef.current = next.length - 1;
-  }, []);
-
-  const flushPendingHistory = React.useCallback(() => {
-    if (historyTimerRef.current !== undefined) {
-      clearTimeout(historyTimerRef.current);
-      historyTimerRef.current = undefined;
-      pushHistory(lastValueRef.current);
-    }
-  }, [pushHistory]);
-
-  const applyHistory = React.useCallback(
-    (direction: -1 | 1) => {
-      flushPendingHistory();
-      const stack = historyStackRef.current;
-      const nextIndex = historyIndexRef.current + direction;
-      if (nextIndex < 0 || nextIndex >= stack.length || !editorRef.current) return;
-      historyIndexRef.current = nextIndex;
-      const html = stack[nextIndex];
-      editorRef.current.innerHTML = html;
+  const editor = useEditor({
+    extensions: createExtensions(placeholder ?? ""),
+    content: value ?? defaultValue,
+    editable: !isDisabled,
+    // SSR では描かず、マウント後に作る（Tiptap の推奨。ハイドレーションの不一致を避ける）
+    immediatelyRender: false,
+    editorProps: { attributes: contentAttributes },
+    onUpdate: ({ editor: ed }) => {
+      const html = toValue(ed);
+      if (html === lastValueRef.current) return;
       lastValueRef.current = html;
-      onChange?.(html);
-      // キャレットは末尾へ（選択座標までは復元しないライトな履歴）
-      const range = document.createRange();
-      range.selectNodeContents(editorRef.current);
-      range.collapse(false);
-      const selection = window.getSelection();
-      selection?.removeAllRanges();
-      selection?.addRange(range);
-      updateActiveFormats();
+      onChangeRef.current?.(html);
     },
-    [flushPendingHistory, onChange, updateActiveFormats],
-  );
+  });
 
-  /** ツールバーコマンド共通処理: 実行前スナップショット → 実行 → 通知 */
-  const runCommand = React.useCallback(
-    (command: (editor: HTMLElement) => void) => {
-      if (isDisabled || !editorRef.current) return;
-      const editor = editorRef.current;
-      // focus() は環境によって選択をリセットするため、退避してから復元する
-      const preserved = getEditorRange(editor)?.cloneRange() ?? null;
-      editor.focus();
-      if (preserved) {
-        const selection = window.getSelection();
-        selection?.removeAllRanges();
-        selection?.addRange(preserved);
-      }
-      flushPendingHistory();
-      pushHistory(editor.innerHTML);
+  // 属性・編集可否は作り直さずに反映する
+  React.useEffect(() => {
+    if (!editor || editor.isDestroyed) return;
+    editor.setOptions({ editorProps: { attributes: contentAttributes } });
+  }, [editor, contentAttributes]);
+
+  React.useEffect(() => {
+    if (!editor || editor.isDestroyed) return;
+    editor.setEditable(!isDisabled, false);
+  }, [editor, isDisabled]);
+
+  // placeholder の変更は拡張の設定を書き換え、空の遷移を流して装飾を描き直す（エディタは作り直さない）
+  React.useEffect(() => {
+    if (!editor || editor.isDestroyed) return;
+    const extension = editor.extensionManager.extensions.find((ext) => ext.name === "placeholder");
+    if (!extension || extension.options.placeholder === (placeholder ?? "")) return;
+    extension.options.placeholder = placeholder ?? "";
+    editor.view.dispatch(editor.state.tr);
+  }, [editor, placeholder]);
+
+  // Sync controlled value → document (skip if same to preserve the caret)
+  React.useEffect(() => {
+    if (!editor || editor.isDestroyed || value === undefined) return;
+    if (value === lastValueRef.current || value === toValue(editor)) return;
+    editor.commands.setContent(value, { emitUpdate: false });
+    lastValueRef.current = value;
+  }, [editor, value]);
+
+  const activeFormats = useEditorState({
+    editor,
+    selector: ({ editor: ed }): Record<FormatKey, boolean> => ({
+      bold: !!ed?.isActive("bold"),
+      italic: !!ed?.isActive("italic"),
+      underline: !!ed?.isActive("underline"),
+      strikethrough: !!ed?.isActive("strike"),
+      h1: !!ed?.isActive("heading", { level: 1 }),
+      h2: !!ed?.isActive("heading", { level: 2 }),
+      h3: !!ed?.isActive("heading", { level: 3 }),
+      ul: !!ed?.isActive("bulletList"),
+      ol: !!ed?.isActive("orderedList"),
+      link: !!ed?.isActive("link"),
+    }),
+  });
+
+  const run = React.useCallback(
+    (command: (ed: Editor) => void) => {
+      if (isDisabled || !editor) return;
       command(editor);
-      updateActiveFormats();
-      const html = editor.innerHTML;
-      lastValueRef.current = html;
-      pushHistory(html);
-      onChange?.(html);
     },
-    [isDisabled, flushPendingHistory, pushHistory, onChange, updateActiveFormats],
+    [editor, isDisabled],
   );
 
+  /**
+   * 書式の解除。選択があればその範囲、無ければ文書全体（以前の自前実装と同じ）。
+   * リンクは残す（execCommand の removeFormat と同じ扱い）。
+   */
   const handleRemoveFormat = React.useCallback(() => {
-    runCommand((editor) => removeAllFormatting(editor));
-  }, [runCommand]);
+    run((ed) => {
+      const { from, to, empty } = ed.state.selection;
+      const chain = ed.chain().focus();
+      if (empty) chain.selectAll();
+      chain.unsetBold().unsetItalic().unsetUnderline().unsetStrike().clearNodes();
+      if (empty) chain.setTextSelection({ from, to });
+      chain.run();
+    });
+  }, [run]);
 
   // ---- リンクダイアログ（window.prompt はブラウザモーダルで UX/a11y 難のため置換） ----
   const [linkDialogOpen, setLinkDialogOpen] = React.useState(false);
   const [linkUrl, setLinkUrl] = React.useState("https://");
-  const savedRangeRef = React.useRef<Range | null>(null);
+  const [linkError, setLinkError] = React.useState<string | undefined>(undefined);
 
   const handleInsertLink = React.useCallback(() => {
-    if (isDisabled || !editorRef.current) return;
-    editorRef.current.focus();
-    const range = getEditorRange(editorRef.current);
-    savedRangeRef.current = range ? range.cloneRange() : null;
-    const selectedText = range?.toString() ?? "";
-    setLinkUrl(selectedText.startsWith("http") ? selectedText : "https://");
+    if (isDisabled || !editor) return;
+    const { from, to } = editor.state.selection;
+    const selectedText = editor.state.doc.textBetween(from, to, " ");
+    const currentHref = editor.getAttributes("link").href as string | undefined;
+    setLinkUrl(currentHref ?? (selectedText.startsWith("http") ? selectedText : "https://"));
+    setLinkError(undefined);
     setLinkDialogOpen(true);
-  }, [isDisabled]);
+  }, [editor, isDisabled]);
 
   const handleApplyLink = React.useCallback(() => {
     const url = linkUrl.trim();
+    if (!url) {
+      setLinkDialogOpen(false);
+      return;
+    }
+    if (!isSafeLinkUrl(url)) {
+      setLinkError(linkInvalid);
+      return;
+    }
     setLinkDialogOpen(false);
-    if (!url || !editorRef.current) return;
-    // ダイアログ操作で失われた選択を復元してから適用する
-    // （保存済み選択が無ければ末尾キャレットで挿入）
-    const selection = window.getSelection();
-    selection?.removeAllRanges();
-    if (savedRangeRef.current) {
-      selection?.addRange(savedRangeRef.current);
-    } else {
-      const range = document.createRange();
-      range.selectNodeContents(editorRef.current);
-      range.collapse(false);
-      selection?.addRange(range);
-    }
-    runCommand((editor) => createLink(editor, url));
-  }, [linkUrl, runCommand]);
-
-  const handleInput = React.useCallback(() => {
-    if (isComposingRef.current) return;
-    const html = editorRef.current?.innerHTML ?? "";
-    if (html !== lastValueRef.current) {
-      lastValueRef.current = html;
-      onChange?.(html);
-      // タイピングはデバウンスして履歴に積む
-      if (historyTimerRef.current !== undefined) clearTimeout(historyTimerRef.current);
-      historyTimerRef.current = setTimeout(() => {
-        historyTimerRef.current = undefined;
-        pushHistory(lastValueRef.current);
-      }, 400);
-    }
-    updateActiveFormats();
-  }, [onChange, pushHistory, updateActiveFormats]);
-
-  const handleBeforeInput = React.useCallback(
-    (e: React.FormEvent<HTMLDivElement>) => {
-      const inputType = (e.nativeEvent as InputEvent).inputType;
-      if (inputType === "historyUndo") {
-        e.preventDefault();
-        applyHistory(-1);
-      } else if (inputType === "historyRedo") {
-        e.preventDefault();
-        applyHistory(1);
+    run((ed) => {
+      // エディタの選択はダイアログを開いている間も ProseMirror が保持している
+      if (ed.state.selection.empty && !ed.isActive("link")) {
+        ed.chain().focus().insertContent({ type: "text", text: url, marks: [{ type: "link", attrs: { href: url } }] }).run();
+      } else {
+        ed.chain().focus().extendMarkRange("link").setLink({ href: url }).run();
       }
-    },
-    [applyHistory],
+    });
+  }, [linkUrl, linkInvalid, run]);
+
+  // ---- ツールバー: roving tabindex（Tab で 1 回だけ止まり、矢印キーで項目を移る。WAI-ARIA toolbar） ----
+  const buttonRefs = React.useRef<(HTMLButtonElement | null)[]>([]);
+  const [focusIndex, setFocusIndex] = React.useState(0);
+  const buttonItems = React.useMemo(() => toolbar.filter((item) => item !== "separator"), [toolbar]);
+  // ツールバーの並び（区切りを含む）の位置 → ボタンだけを数えた番号
+  const buttonIndexAt = React.useMemo(
+    () =>
+      toolbar.map((item, index) =>
+        item === "separator" ? -1 : toolbar.slice(0, index).filter((prev) => prev !== "separator").length,
+      ),
+    [toolbar],
   );
 
-  const handleKeyDown = React.useCallback(
+  const handleToolbarKeyDown = React.useCallback(
     (e: React.KeyboardEvent<HTMLDivElement>) => {
-      const mod = e.ctrlKey || e.metaKey;
-      if (!mod) return;
-      const key = e.key.toLowerCase();
-      if (key === "z") {
-        e.preventDefault();
-        applyHistory(e.shiftKey ? 1 : -1);
-      } else if (key === "y") {
-        e.preventDefault();
-        applyHistory(1);
-      }
+      const count = buttonItems.length;
+      if (count === 0) return;
+      let next: number | undefined;
+      if (e.key === "ArrowRight") next = (focusIndex + 1) % count;
+      else if (e.key === "ArrowLeft") next = (focusIndex - 1 + count) % count;
+      else if (e.key === "Home") next = 0;
+      else if (e.key === "End") next = count - 1;
+      if (next === undefined) return;
+      e.preventDefault();
+      setFocusIndex(next);
+      buttonRefs.current[next]?.focus();
     },
-    [applyHistory],
+    [buttonItems.length, focusIndex],
   );
 
-  const handleKeyUp = React.useCallback(() => {
-    updateActiveFormats();
-  }, [updateActiveFormats]);
-
-  const handleMouseUp = React.useCallback(() => {
-    updateActiveFormats();
-  }, [updateActiveFormats]);
-
-  const handleCompositionStart = React.useCallback(() => {
-    isComposingRef.current = true;
-  }, []);
-
-  const handleCompositionEnd = React.useCallback(() => {
-    isComposingRef.current = false;
-    handleInput();
-  }, [handleInput]);
-
-  // Prevent contentEditable from handling toolbar button focus loss
+  // Prevent the editor from losing its selection when a toolbar button is pressed with the mouse
   const handleToolbarMouseDown = React.useCallback((e: React.MouseEvent) => {
     e.preventDefault();
   }, []);
 
-  // Set initial content imperatively on mount (avoids dangerouslySetInnerHTML reset on re-render)
-  // 注: ref を参照する effect は、その ref を変更するコールバック定義より
-  // 後に置く必要がある（react-hooks/immutability）
-  React.useEffect(() => {
-    if (editorRef.current) {
-      editorRef.current.innerHTML = initialContentRef.current;
-      lastValueRef.current = initialContentRef.current;
-      historyStackRef.current = [initialContentRef.current];
-      historyIndexRef.current = 0;
-    }
-  }, []);
-
-  // Sync controlled value → DOM (skip if same to preserve cursor)
-  React.useEffect(() => {
-    if (value !== undefined && editorRef.current) {
-      if (editorRef.current.innerHTML !== value) {
-        editorRef.current.innerHTML = value;
-        lastValueRef.current = value;
-      }
-    }
-  }, [value]);
-
-  const renderToolbarItem = React.useCallback((item: RichTextEditorToolbarItem, index: number) => {
-    if (item === "separator") {
-      return <span key={`sep-${index}`} className={styles.toolbarSep} aria-hidden="true" />;
-    }
-
-    const itemProps = {
-      disabled: isDisabled,
-      active: activeFormats.has(item),
-    };
-
-    switch (item) {
-      case "bold":
-        return (
-          <ToolbarButton key="bold" {...itemProps} title={bold} onClick={() => runCommand((ed) => toggleInline(ed, "bold"))}>
-            <Icon component={BoldIcon} size="sm" />
-          </ToolbarButton>
-        );
-      case "italic":
-        return (
-          <ToolbarButton key="italic" {...itemProps} title={italic} onClick={() => runCommand((ed) => toggleInline(ed, "italic"))}>
-            <Icon component={ItalicIcon} size="sm" />
-          </ToolbarButton>
-        );
-      case "underline":
-        return (
-          <ToolbarButton key="underline" {...itemProps} title={underline} onClick={() => runCommand((ed) => toggleInline(ed, "underline"))}>
-            <Icon component={UnderlineIcon} size="sm" />
-          </ToolbarButton>
-        );
-      case "strikethrough":
-        return (
-          <ToolbarButton key="strikethrough" {...itemProps} title={strikethrough} onClick={() => runCommand((ed) => toggleInline(ed, "strikethrough"))}>
-            <Icon component={StrikethroughIcon} size="sm" />
-          </ToolbarButton>
-        );
-      case "h1":
-        return (
-          <ToolbarButton key="h1" {...itemProps} active={activeFormats.has("h1")} title={h1} onClick={() => runCommand((ed) => setBlock(ed, "h1"))}>
-            <span aria-hidden="true">H1</span>
-          </ToolbarButton>
-        );
-      case "h2":
-        return (
-          <ToolbarButton key="h2" {...itemProps} active={activeFormats.has("h2")} title={h2} onClick={() => runCommand((ed) => setBlock(ed, "h2"))}>
-            <span aria-hidden="true">H2</span>
-          </ToolbarButton>
-        );
-      case "h3":
-        return (
-          <ToolbarButton key="h3" {...itemProps} active={activeFormats.has("h3")} title={h3} onClick={() => runCommand((ed) => setBlock(ed, "h3"))}>
-            <span aria-hidden="true">H3</span>
-          </ToolbarButton>
-        );
-      case "ul":
-        return (
-          <ToolbarButton key="ul" {...itemProps} title={ul} onClick={() => runCommand((ed) => toggleList(ed, "ul"))}>
-            <Icon component={ListIcon} size="sm" />
-          </ToolbarButton>
-        );
-      case "ol":
-        return (
-          <ToolbarButton key="ol" {...itemProps} title={ol} onClick={() => runCommand((ed) => toggleList(ed, "ol"))}>
-            <Icon component={ListOrderedIcon} size="sm" />
-          </ToolbarButton>
-        );
-      case "link":
-        return (
-          <ToolbarButton key="link" {...itemProps} title={link} onClick={handleInsertLink}>
-            <Icon component={LinkIcon} size="sm" />
-          </ToolbarButton>
-        );
-      case "unlink":
-        return (
-          <ToolbarButton key="unlink" {...itemProps} title={unlink} onClick={() => runCommand((ed) => removeLink(ed))}>
-            <Icon component={UnlinkIcon} size="sm" />
-          </ToolbarButton>
-        );
-      case "removeFormat":
-        return (
-          <ToolbarButton key="removeFormat" {...itemProps} title={removeFormat} onClick={handleRemoveFormat}>
-            <Icon component={EraserIcon} size="sm" />
-          </ToolbarButton>
-        );
-      default:
-        return null;
-    }
-  }, [
-    activeFormats,
-    isDisabled,
-    bold, italic, underline, strikethrough, h1, h2, h3, ul, ol, link, unlink, removeFormat,
-    runCommand,
-    handleInsertLink,
-    handleRemoveFormat,
-  ]);
+  const commands: Record<Exclude<RichTextEditorToolbarItem, "separator">, { title: string; icon: React.ReactNode; onClick: () => void }> = {
+    bold: { title: bold, icon: <Icon component={BoldIcon} size="sm" />, onClick: () => run((ed) => ed.chain().focus().toggleBold().run()) },
+    italic: { title: italic, icon: <Icon component={ItalicIcon} size="sm" />, onClick: () => run((ed) => ed.chain().focus().toggleItalic().run()) },
+    underline: { title: underline, icon: <Icon component={UnderlineIcon} size="sm" />, onClick: () => run((ed) => ed.chain().focus().toggleUnderline().run()) },
+    strikethrough: { title: strikethrough, icon: <Icon component={StrikethroughIcon} size="sm" />, onClick: () => run((ed) => ed.chain().focus().toggleStrike().run()) },
+    h1: { title: h1, icon: <span aria-hidden="true">H1</span>, onClick: () => run((ed) => ed.chain().focus().toggleHeading({ level: 1 }).run()) },
+    h2: { title: h2, icon: <span aria-hidden="true">H2</span>, onClick: () => run((ed) => ed.chain().focus().toggleHeading({ level: 2 }).run()) },
+    h3: { title: h3, icon: <span aria-hidden="true">H3</span>, onClick: () => run((ed) => ed.chain().focus().toggleHeading({ level: 3 }).run()) },
+    ul: { title: ul, icon: <Icon component={ListIcon} size="sm" />, onClick: () => run((ed) => ed.chain().focus().toggleBulletList().run()) },
+    ol: { title: ol, icon: <Icon component={ListOrderedIcon} size="sm" />, onClick: () => run((ed) => ed.chain().focus().toggleOrderedList().run()) },
+    link: { title: link, icon: <Icon component={LinkIcon} size="sm" />, onClick: handleInsertLink },
+    unlink: { title: unlink, icon: <Icon component={UnlinkIcon} size="sm" />, onClick: () => run((ed) => ed.chain().focus().extendMarkRange("link").unsetLink().run()) },
+    removeFormat: { title: removeFormat, icon: <Icon component={EraserIcon} size="sm" />, onClick: handleRemoveFormat },
+  };
 
   return (
     <FieldTemplate
@@ -553,7 +472,7 @@ export const RichTextEditor = ({
       className={className}
     >
       <div
-        className={classNames("wim-rich-text-editor", 
+        className={classNames("wim-rich-text-editor",
           styles.root,
           styles[currentIntent],
           isDisabled && styles.disabled,
@@ -578,40 +497,38 @@ export const RichTextEditor = ({
           aria-label={toolbarAriaLabel}
           aria-controls={id}
           onMouseDown={handleToolbarMouseDown}
+          onKeyDown={handleToolbarKeyDown}
         >
-          {toolbar.map((item, index) => renderToolbarItem(item, index))}
+          {toolbar.map((item, index) => {
+            if (item === "separator") {
+              return <span key={`sep-${index}`} className={styles.toolbarSep} aria-hidden="true" />;
+            }
+            const current = buttonIndexAt[index];
+            const command = commands[item];
+            const active = item === "link" || item === "unlink" || item === "removeFormat"
+              ? undefined
+              : activeFormats?.[item] ?? false;
+            return (
+              <ToolbarButton
+                key={`${item}-${index}`}
+                buttonRef={(el) => {
+                  buttonRefs.current[current] = el;
+                }}
+                tabIndex={current === Math.min(focusIndex, buttonItems.length - 1) ? 0 : -1}
+                onFocus={() => setFocusIndex(current)}
+                disabled={isDisabled}
+                active={active}
+                title={command.title}
+                onClick={command.onClick}
+              >
+                {command.icon}
+              </ToolbarButton>
+            );
+          })}
         </div>
 
         {/* Editor */}
-        <div
-          ref={editorRef}
-          id={id}
-          className={styles.content}
-          contentEditable={!isDisabled}
-          suppressContentEditableWarning
-          role="textbox"
-          aria-multiline
-          // label / aria-labelledby / aria-label いずれも無い利用で名無しに
-          // ならないよう内蔵ラベル（axe: aria-input-field-name）
-          aria-label={ariaLabel ?? (label || ariaLabelledby ? undefined : t("a11y.rte_editor"))}
-          aria-labelledby={ariaLabelledby ?? (label ? labelId : undefined)}
-          aria-invalid={currentIntent === "danger"}
-          aria-describedby={errorId}
-          aria-required={required}
-          aria-disabled={isDisabled}
-          aria-placeholder={placeholder}
-          data-placeholder={placeholder}
-          tabIndex={isDisabled ? -1 : 0}
-
-          style={{ minHeight: typeof minHeight === "number" ? `${minHeight}px` : minHeight, outline: "none" }}
-          onInput={handleInput}
-          onBeforeInput={handleBeforeInput}
-          onKeyDown={handleKeyDown}
-          onKeyUp={handleKeyUp}
-          onMouseUp={handleMouseUp}
-          onCompositionStart={handleCompositionStart}
-          onCompositionEnd={handleCompositionEnd}
-        />
+        <EditorContent editor={editor} className={styles.contentHost} />
 
         {/* リンク挿入ダイアログ（window.prompt はブラウザモーダルで UX/a11y 難のため不使用） */}
         <Dialog open={linkDialogOpen} onOpenChange={setLinkDialogOpen}>
@@ -629,7 +546,11 @@ export const RichTextEditor = ({
                 label={linkPrompt}
                 type="url"
                 value={linkUrl}
-                onChange={(e) => setLinkUrl(e.target.value)}
+                error={linkError}
+                onChange={(e) => {
+                  setLinkUrl(e.target.value);
+                  setLinkError(undefined);
+                }}
                 fullWidth
               />
               <DialogFooter>

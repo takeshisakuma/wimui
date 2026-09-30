@@ -296,10 +296,11 @@ Only for intentional API changes, update the snapshot with `npm run check:api:up
 
 Only when you use the components below, import from the corresponding subpath and add the peer. If you don't use them, you don't need them.
 
-Each peer-dependent component has its **own subpath** whose name documents its peer, so the category barrels (`wimui/data-display`, `wimui/ai`) stay peer-free.
+Each peer-dependent component has its **own subpath** whose name documents its peer, so the category barrels (`wimui/form`, `wimui/data-display`, `wimui/ai`) stay peer-free.
 
 | Component | import | Required packages |
 |---|---|---|
+| RichTextEditor | `wimui/form/rich-text-editor` | `@tiptap/core` `@tiptap/pm` `@tiptap/react` `@tiptap/starter-kit` `@tiptap/extensions` (`^3`) |
 | AreaChart, BarChart, etc. | `wimui/charts` | `recharts` |
 | Markdown | `wimui/data-display/markdown` | `react-markdown` `remark-gfm` |
 | QRCode | `wimui/data-display/qr-code` | `qrcode.react` |

@@ -24,7 +24,7 @@ export * from "./components/form/PasswordInput/PasswordInput";
 export { PhoneInput, type PhoneInputProps } from "./components/form/PhoneInput/PhoneInput";
 export * from "./components/form/Radio/Radio";
 export * from "./components/form/RadioGroup/RadioGroup";
-export * from "./components/form/RichTextEditor/RichTextEditor";
+// RichTextEditor は Tiptap（optional peer）に乗るので wimui/form/rich-text-editor から公開する（T278）。
 export * from "./components/form/RangeSlider/RangeSlider";
 export * from "./components/form/Rating/Rating";
 export * from "./components/form/SearchInput/SearchInput";

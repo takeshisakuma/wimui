@@ -63,6 +63,11 @@ const optionalPeers = [
   "music-metadata",
   "qrcode.react",
   "diff",
+  "@tiptap/core",
+  "@tiptap/pm",
+  "@tiptap/react",
+  "@tiptap/starter-kit",
+  "@tiptap/extensions",
 ];
 const peers = profile === "full" ? [...barePeers, ...optionalPeers] : barePeers;
 
@@ -98,12 +103,14 @@ async function runTreeshake(consumer) {
     "remark-gfm",
     "@fullcalendar",
     "@xyflow",
+    "@tiptap",
     "music-metadata",
     "qrcode.react",
     "AreaChart",
     "ScheduleView",
     "MarkdownRenderer",
     "NodeGraph",
+    "RichTextEditor",
   ];
   console.log(`\n[smoke] === tree-shaking (esbuild, Button-only) ===`);
   let result;

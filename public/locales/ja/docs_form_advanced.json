@@ -221,7 +221,7 @@
     "rating_scenario_survey": "サービスの使いやすさを5段階で回答。",
     "rating_size_desc": "small, medium, large の3つのサイズをサポートしています。",
     "rating_title": "スター評価",
-    "richTextEditor_a11y_desc": "エディタ領域にはrole='textbox'とaria-multilineが付与されます。各ツールバーボタンにはaria-labelとaria-pressedが設定されます。ツールバー自体はrole='toolbar'を持ちます。キーボードユーザーはTabでエディタにフォーカスし、Ctrl+B / Ctrl+I / Ctrl+Uで一般的なショートカットを使用できます。",
+    "richTextEditor_a11y_desc": "編集領域は role='textbox' と aria-multiline を持ち、label（無ければ aria-label / aria-labelledby、それも無ければ内蔵の名前）で名前が付きます。ツールバーは role='toolbar' で roving tabindex を持ち、各ボタンは aria-label と aria-pressed を持ちます。リンクのダイアログは、取り除かれてしまう URL を黙って受け付けず、エラーを出します。",
     "richTextEditor_anatomy_editor": "エディタ領域：ユーザーがタイプし、書式をリアルタイムで確認できるcontentEditable領域。",
     "richTextEditor_anatomy_editor_label": "Editor Area",
     "richTextEditor_anatomy_toolbar": "ツールバー：書式操作ボタン（太字・斜体・見出し・リスト・リンクなど）の行。",
@@ -242,7 +242,7 @@
     "richTextEditor_title": "書式付きHTMLコンテンツのためのWYSIWYGエディタ",
     "richTextEditor_toolbar_desc": "toolbarプロップはアイテムキーと'separator'文字列の配列を受け取り、表示するボタンとその順序を完全にカスタマイズできます。",
     "richTextEditor_variant_desc": "RichTextEditorは、他のフォーム入力と視覚的な一貫性を保つため、同じvariantとstatusプロップをサポートします。",
-    "richtexteditor_keyboard_desc": "Tab キーでエディターエリアにフォーカスします。編集には標準キーボードショートカットが使えます（Ctrl+B 太字、Ctrl+I 斜体など）。エディター内で Tab キーを押すとツールバーにフォーカスが移動します。矢印キーでツールバーボタンをナビゲートします。",
+    "richtexteditor_keyboard_desc": "ツールバーは Tab で 1 回だけ止まります。Tab でツールバーへ入り、矢印キーと Home / End でボタンを移り、次の Tab で編集領域へ進みます。編集領域では Ctrl+B / Ctrl+I / Ctrl+U で太字・斜体・下線を切り替え、Ctrl+Z / Ctrl+Y（または Ctrl+Shift+Z）で元に戻す・やり直すができます。日本語の変換は確定した時点で 1 回の入力として入り、変換を確定する Enter で段落は増えません。",
     "signaturePad_desc": "手書き署名入力",
     "signaturepad_a11y_desc": "描画面は canvas で、それ自体には読める内容がありません。そこで role=\"img\" と名前を与えます ── フィールドのラベルがあれば aria-labelledby でそれを指し、無ければ canvas 用のラベルから aria-label を付けます。エラー文言は aria-describedby で結線します。role=\"img\" は意図的な選択です。署名そのものはキーボードから入力できないため、支援技術に対して「操作する部品」ではなく「説明のついた絵」であることを伝えます。",
     "signaturepad_anatomy_content": "コンテンツ：メインコンテンツまたは子要素がレンダリングされるプライマリエリア。",
@@ -345,6 +345,12 @@
     "treeselect_long_desc": "TreeSelect（ツリー選択）は、ツリー形式の選択肢から1つまたは複数を選択するためのコンポーネントです。",
     "treeselect_multi_desc": "複数選択モードでは、チェックボックスを使用して複数のノードを選択できます。",
     "treeselect_scenario_1": "多数の部門を持つ大企業内での部署選択。",
-    "treeselect_scenario_2": "階層化されたディレクトリツリー内の特定のファイルにタスクを割り当てる。"
+    "treeselect_scenario_2": "階層化されたディレクトリツリー内の特定のファイルにタスクを割り当てる。",
+    "richtexteditor_install_title": "導入",
+    "richtexteditor_install_desc": "RichTextEditor は Tiptap の上に作られているので、wimui/form/rich-text-editor から import します（wimui / wimui/form には含まれません）。wimui と一緒に Tiptap のパッケージを入れてください:",
+    "richtexteditor_sanitize_title": "エディタが無害化する範囲",
+    "richtexteditor_sanitize_schema": "入力（defaultValue・value・貼り付けた HTML）はすべてエディタのスキーマに通して組み立て直します。残るのは段落・見出し（h1〜h3）・太字・斜体・下線・取り消し線・リスト・改行・リンクだけで、script / style / iframe / img・イベントハンドラの属性（on*）・それ以外のタグや属性は取り除かれます。",
+    "richtexteditor_sanitize_links": "リンクの URL は http: / https: / mailto: と相対 URL に限ります。javascript: / data: などほかのスキームはリンクから取り除かれ、リンクのダイアログではエラーを出して受け付けません。",
+    "richtexteditor_sanitize_boundary": "保証するのは onChange が返す HTML までです。保存した HTML を後で別の場所に描く（別の画面で dangerouslySetInnerHTML に渡すなど）ときは、そこでもう一度無害化してください。保存された文字列は、エディタを離れた後に書き換えられている可能性があります。"
   }
 }

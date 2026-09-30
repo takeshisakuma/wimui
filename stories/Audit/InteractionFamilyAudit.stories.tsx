@@ -6,13 +6,13 @@ import {
   Dropzone,
   SignaturePad,
   ImageCropper,
-  RichTextEditor,
   ContextMenu,
   InteractiveArea,
   Stack,
   Text,
   Box,
 } from "../../src";
+import { RichTextEditor } from "../../src/form/rich-text-editor";
 
 const meta: Meta = {
   title: "Audit/InteractionFamily",

@@ -33,6 +33,11 @@
       "import": "./dist/form.js",
       "require": "./dist/form.cjs"
     },
+    "./form/rich-text-editor": {
+      "types": "./dist/form/rich-text-editor.d.ts",
+      "import": "./dist/form/rich-text-editor.js",
+      "require": "./dist/form/rich-text-editor.cjs"
+    },
     "./rhf": {
       "types": "./dist/rhf.d.ts",
       "import": "./dist/rhf.js",
@@ -199,6 +204,23 @@
       ],
       "gzip": true,
       "limit": "95 kB"
+    },
+    {
+      "name": "wimui/form/rich-text-editor (gzip, Tiptap は peer)",
+      "path": "dist/form/rich-text-editor.js",
+      "import": "*",
+      "ignore": [
+        "react",
+        "react-dom",
+        "react/jsx-runtime",
+        "@tiptap/core",
+        "@tiptap/pm",
+        "@tiptap/react",
+        "@tiptap/starter-kit",
+        "@tiptap/extensions"
+      ],
+      "gzip": true,
+      "limit": "26 kB"
     },
     {
       "name": "wimui/layout 全部 (gzip)",
@@ -498,6 +520,11 @@
     "@testing-library/jest-dom": "^7.0.1",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.4",
+    "@tiptap/core": "3.31.3",
+    "@tiptap/extensions": "3.31.3",
+    "@tiptap/pm": "3.31.3",
+    "@tiptap/react": "3.31.3",
+    "@tiptap/starter-kit": "3.31.3",
     "@types/node": "26.6.3",
     "@types/prop-types": "^15.7.15",
     "@types/react": "^19.2.14",
@@ -566,6 +593,11 @@
     "@fullcalendar/react": "^6.0.0",
     "@fullcalendar/timegrid": "^6.0.0",
     "@hookform/resolvers": "^5.1.0",
+    "@tiptap/core": "^3.0.0",
+    "@tiptap/extensions": "^3.0.0",
+    "@tiptap/pm": "^3.0.0",
+    "@tiptap/react": "^3.0.0",
+    "@tiptap/starter-kit": "^3.0.0",
     "@xyflow/react": ">=12.0.0",
     "diff": ">=9.0.0",
     "music-metadata": ">=11.0.0",
@@ -622,6 +654,21 @@
       "optional": true
     },
     "@fullcalendar/timegrid": {
+      "optional": true
+    },
+    "@tiptap/core": {
+      "optional": true
+    },
+    "@tiptap/extensions": {
+      "optional": true
+    },
+    "@tiptap/pm": {
+      "optional": true
+    },
+    "@tiptap/react": {
+      "optional": true
+    },
+    "@tiptap/starter-kit": {
       "optional": true
     }
   },

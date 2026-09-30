@@ -27,7 +27,6 @@ import {
   QueryBuilder,
   RadioGroup,
   RangeSlider,
-  RichTextEditor,
   SegmentedControl,
   SignaturePad,
   Slider,
@@ -41,6 +40,7 @@ import {
   Title,
   ToggleGroup,
 } from "wimui";
+import { RichTextEditor } from "wimui/form/rich-text-editor";
 import type { QueryGroup } from "wimui";
 
 /**

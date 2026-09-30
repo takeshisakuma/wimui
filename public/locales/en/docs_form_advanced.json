@@ -260,7 +260,7 @@
     "rating_scenario_survey": "Answering the ease of use of a service on a 5-point scale.",
     "rating_size_desc": "Supports three sizes: small, medium, and large.",
     "rating_title": "Star Rating",
-    "richTextEditor_a11y_desc": "The editor area carries role='textbox' and aria-multiline. Each toolbar button has an aria-label and aria-pressed. The toolbar itself has role='toolbar'. Keyboard users can Tab into the editor and use Ctrl+B / Ctrl+I / Ctrl+U for common shortcuts.",
+    "richTextEditor_a11y_desc": "The editor area carries role='textbox' and aria-multiline, and is named by the label (or aria-label / aria-labelledby, with a built-in name as the last fallback). The toolbar has role='toolbar' with a roving tabindex, and each button has an aria-label and aria-pressed. The link dialog shows an error instead of accepting a URL it would drop.",
     "richTextEditor_anatomy_editor": "A contentEditable region where users type and see live-formatted text.",
     "richTextEditor_anatomy_editor_label": "Editor Area",
     "richTextEditor_anatomy_toolbar": "A row of formatting action buttons (bold, italic, headings, lists, link, etc.).",
@@ -344,7 +344,13 @@
     "cascader_keyboard_desc": "Tab focuses the cascader. Arrow keys navigate options at each level. Right arrow expands a submenu; Left arrow collapses it. Enter selects the focused option. Escape closes the dropdown.",
     "fileupload_keyboard_desc": "Tab focuses the upload area. Enter or Space opens the file picker. Keyboard activation is supported as an alternative to drag-and-drop.",
     "rating_keyboard_desc": "Tab focuses the rating component. Arrow Left decreases the rating; Arrow Right increases it. Home sets the minimum; End sets the maximum. Enter or Space confirms the selection.",
-    "richtexteditor_keyboard_desc": "Tab focuses the editor area. Standard keyboard shortcuts apply for editing (Ctrl+B bold, Ctrl+I italic, etc.). Tab moves focus to the toolbar when inside the editor. Arrow keys navigate toolbar buttons.",
-    "signaturepad_keyboard_desc": "This component is primarily designed for mouse and touch interaction. The clear button is reachable via Tab and activated with Enter or Space."
+    "richtexteditor_keyboard_desc": "The toolbar is a single Tab stop: Tab moves to the toolbar, the arrow keys and Home / End move between its buttons, and the next Tab moves to the editor area. Inside the editor, Ctrl+B / Ctrl+I / Ctrl+U toggle bold, italic and underline, and Ctrl+Z / Ctrl+Y (or Ctrl+Shift+Z) undo and redo. Japanese IME input is committed as one step, and the Enter that confirms a conversion does not start a new paragraph.",
+    "signaturepad_keyboard_desc": "This component is primarily designed for mouse and touch interaction. The clear button is reachable via Tab and activated with Enter or Space.",
+    "richtexteditor_install_title": "Installation",
+    "richtexteditor_install_desc": "RichTextEditor is built on Tiptap, so it is imported from wimui/form/rich-text-editor (it is not in wimui or wimui/form). Install the Tiptap packages next to wimui:",
+    "richtexteditor_sanitize_title": "What the editor sanitizes",
+    "richtexteditor_sanitize_schema": "Every input (defaultValue, value and pasted HTML) is rebuilt through the editor's schema. Only paragraphs, headings (h1 to h3), bold, italic, underline, strikethrough, lists, line breaks and links survive. script, style, iframe, img, event-handler attributes (on*) and any other tag or attribute are dropped.",
+    "richtexteditor_sanitize_links": "Link URLs are limited to http:, https:, mailto: and relative URLs. javascript:, data: and every other scheme are removed from links, and the link dialog refuses them with an error.",
+    "richtexteditor_sanitize_boundary": "The guarantee covers the HTML that onChange returns. If you store it and render it somewhere else later (for example with dangerouslySetInnerHTML on another page), sanitize it again there: the stored string can be changed after it leaves the editor."
   }
 }

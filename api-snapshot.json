@@ -16,6 +16,7 @@
     "./data-display/schedule-view => types:./dist/data-display/schedule-view.d.ts; import:./dist/data-display/schedule-view.js; require:./dist/data-display/schedule-view.cjs",
     "./feedback => types:./dist/feedback.d.ts; import:./dist/feedback.js; require:./dist/feedback.cjs",
     "./form => types:./dist/form.d.ts; import:./dist/form.js; require:./dist/form.cjs",
+    "./form/rich-text-editor => types:./dist/form/rich-text-editor.d.ts; import:./dist/form/rich-text-editor.js; require:./dist/form/rich-text-editor.cjs",
     "./icons => types:./dist/icons.d.ts; import:./dist/icons.js; require:./dist/icons.cjs",
     "./layout => types:./dist/layout.d.ts; import:./dist/layout.js; require:./dist/layout.cjs",
     "./llms-full.txt => ./dist/llms-full.txt",
@@ -590,10 +591,6 @@
       "ResultHttpStatus (type)",
       "ResultIntent (type)",
       "ResultProps (type)",
-      "RichTextEditor (value)",
-      "RichTextEditorLabels (type)",
-      "RichTextEditorProps (type)",
-      "RichTextEditorToolbarItem (type)",
       "ScrollArea (value)",
       "ScrollProgress (value)",
       "ScrollProgressProps (type)",
@@ -1070,10 +1067,6 @@
       "RangeSlider (value)",
       "Rating (value)",
       "RatingLabels (type)",
-      "RichTextEditor (value)",
-      "RichTextEditorLabels (type)",
-      "RichTextEditorProps (type)",
-      "RichTextEditorToolbarItem (type)",
       "SearchInput (value)",
       "SegmentedControl (value)",
       "Select (value)",
@@ -1111,6 +1104,12 @@
       "TreeSelect (value)",
       "TreeSelectNode (type)",
       "TreeSelectProps (type)"
+    ],
+    "./form/rich-text-editor": [
+      "RichTextEditor (value)",
+      "RichTextEditorLabels (type)",
+      "RichTextEditorProps (type)",
+      "RichTextEditorToolbarItem (type)"
     ],
     "./rhf": [
       "checkedFieldProps (value)",
