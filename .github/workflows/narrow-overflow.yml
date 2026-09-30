@@ -55,7 +55,7 @@ concurrency:
 jobs:
   measure:
     name: Narrow overflow (390px)
-    runs-on: ubuntu-24.04 # T281: 描画を測るので OS を固定（ubuntu-latest は 2026-10〜11 に 26.04 へ移る）
+    runs-on: ubuntu-26.04 # T281: 描画を測るので OS を固定（latest の段階移行で OS が混ざらないよう、版は明示して意図して上げる）
     timeout-minutes: 45
 
     steps:
