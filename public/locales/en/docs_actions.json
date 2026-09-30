@@ -147,6 +147,8 @@
     "buttongroup_design_intent": "Grouped buttons present a set of parallel actions or related options. By visually joining them, you communicate to the user that they are a single logical group.",
     "buttongroup_joined": "Joined Mode",
     "buttongroup_joined_desc": "Setting the joined property to true joins the buttons without gaps.\nIn this mode, the rounded corners of intermediate buttons are removed for a unified design.",
+    "buttongroup_justify": "Alignment",
+    "buttongroup_justify_desc": "By default (justify=\"start\") the group is only as wide as its buttons and sits at the start of the row, so it lines up with the content around it. Use center or end when the row has a reason to push the buttons (a dialog footer usually uses end). stretch grows every button to share the full row.",
     "buttongroup_long_desc": "The ButtonGroup component is used to group and display multiple buttons.",
     "buttongroup_override": "Priority Override",
     "buttongroup_override_desc": "By specifying the priority property, you can unify the priority of all buttons in the group.\nEspecially when using joined mode, mixed priorities can break the design.",

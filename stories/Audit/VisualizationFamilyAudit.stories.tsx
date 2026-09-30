@@ -264,6 +264,14 @@ export const Overview: StoryObj = {
               <Sparkline data={[8, 3, 9, 2, 7, 4, 10, 5]} color="var(--wim-color-info)" width={140} height={32} />
             </Stack>
           </ComponentGroup>
+          {/* T283: width を渡さない既定（width="100%"）は ResponsiveContainer が置き場を測る別の経路。上の 2 組は 140px 固定なのでこの経路を通らない */}
+          <ComponentGroup label={`${t("audit:label_sparkline")} — ${t("audit:sfx_default_width")}`}>
+            <Stack gap="lg" style={{ width: "100%" }}>
+              <Sparkline data={[4, 6, 5, 8, 7, 10, 9, 12]} type="line" height={32} />
+              <Sparkline data={[4, 6, 5, 8, 7, 10, 9, 12]} type="area" height={32} />
+              <Sparkline data={[4, 6, 5, 8, 7, 10, 9, 12]} type="bar" height={32} />
+            </Stack>
+          </ComponentGroup>
         </ComparisonGrid>
 
       </AuditPage>

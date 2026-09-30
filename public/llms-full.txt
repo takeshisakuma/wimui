@@ -4,7 +4,7 @@
 
 ## What this is
 
-**wimui** v0.41.0 — a React 19 component library: 227 documented components across 10 categories, with design tokens, dark mode, i18n (en/ja/pt-BR) and WAI-ARIA compliant a11y. Peer deps: react ^19, react-dom ^19 (plus optional peers for specific components — see package.json).
+**wimui** v0.42.0 — a React 19 component library: 227 documented components across 10 categories, with design tokens, dark mode, i18n (en/ja/pt-BR) and WAI-ARIA compliant a11y. Peer deps: react ^19, react-dom ^19 (plus optional peers for specific components — see package.json).
 
 ## Install & required setup
 
@@ -949,6 +949,7 @@ Useful for using the button styles with Link components (e.g. from React Router 
     - `className: string` — Additional class names
     - `joined: boolean` = false — Whether to join the buttons into a single connected unit
     - `variant: "solid" | "outline" | "ghost"` — Variant applied to all child buttons
+    - `justify: "start" | "center" | "end" | "stretch"` = "start" — Where the buttons sit on the row. `start` keeps the group as wide as its buttons, so it lines up with other content; `center` / `end` / `stretch` take the full row (`stretch` grows every button to share it).
     - `asChild: boolean` = false — Whether to render as a child element.
 - **Cascader** — Hierarchical selection (aka Column View, Miller Columns)
     - `options: CascaderOption[]` = [] — Hierarchical options to select from
