@@ -35,7 +35,7 @@ import {
 } from "../../overlay/Dialog/Dialog";
 import { FieldIntent, FieldVariant, FieldWidth } from "../../../types/tokens";
 import { isSafeImageUrl, isSafeLinkUrl } from "./safeUrl";
-import { Underline, createMarkdownExtensions, markdownToHtml } from "./markdown";
+import { createMarkdownExtensions, markdownToHtml } from "./markdown";
 import styles from "./rich-text-editor.module.scss";
 
 // ---- Types ----
@@ -121,8 +121,9 @@ export type RichTextEditorProps = {
    */
   onChange?: (value: string) => void;
   /**
-   * Format of `value`, `defaultValue` and `onChange`. `"markdown"` reads and writes Markdown (underline is written as `<u>…</u>`,
-   * since Markdown has no syntax for it). Read when the editor is created; changing it later does not convert the content.
+   * Format of `value`, `defaultValue` and `onChange`. With `"markdown"`, the editor reads and writes Markdown and has no underline
+   * (Markdown has no syntax for it): the underline button is hidden and underlined input keeps only its text. Read when the
+   * editor is created; changing it later does not convert the content.
    */
   format?: "html" | "markdown";
   /** Placeholder shown when the editor is empty */
@@ -183,7 +184,12 @@ const SafeImage = Image.extend({
   },
 });
 
-const createExtensions = (placeholder: string, initialMarkdown: string | undefined) => [
+/**
+ * format="markdown" では下線をスキーマに持たせない。Markdown に下線の記法は無く、`<u>` で書くと生の HTML を描かない表示
+ * （wimui の Markdown を含む）でタグが文字のまま出るため（実測）。スキーマに無ければ、貼り付けた `<u>`・Mod-U・入力の
+ * `<u>` / `++`（Tiptap の下線の記法。`C++ and C++` が壊れる）もすべて本文だけになる。
+ */
+const createExtensions = (placeholder: string, format: RichTextEditorFormat, initialMarkdown: string | undefined) => [
   StarterKit.configure({
     heading: { levels: [1, 2, 3] },
     // ツールバーに無い構造は持たない（出力に出せるものを、利用者がツールバーで作れるものに揃える）
@@ -193,8 +199,7 @@ const createExtensions = (placeholder: string, initialMarkdown: string | undefin
     horizontalRule: false,
     // 見出し・リストで終わる文書の末尾に空の <p></p> を足す拡張。出力に余計な段落が混ざるので外す
     trailingNode: false,
-    // 同じ名前の下線に差し替える（Markdown の `++` を下線として読まないため。markdown.ts）
-    underline: false,
+    ...(format === "markdown" ? { underline: false as const } : {}),
     link: {
       openOnClick: false,
       autolink: false,
@@ -207,9 +212,11 @@ const createExtensions = (placeholder: string, initialMarkdown: string | undefin
   // 画像は src が許可リストに合うものだけスキーマに入れる（合わない img は読み込み時に落ちる）。
   // ブロックとして置く（段落の中に埋めない）── 文の途中の画像は、読み上げでも折り返しでも扱いにくい。
   SafeImage.configure({ inline: false, allowBase64: false }),
-  Underline,
   Placeholder.configure({ placeholder }),
-  ...createMarkdownExtensions(initialMarkdown),
+  // Markdown の拡張は format="markdown" のときだけ載せる。@tiptap/markdown は記法（下線の `++` など）を marked の
+  // モジュール共有のインスタンスに足すため、HTML の形式のエディタが載せると同じページの Markdown の形式のエディタで
+  // `C++ and C++` が下線として読まれる（単体テストで再現）。
+  ...(format === "markdown" ? createMarkdownExtensions(initialMarkdown) : []),
 ];
 
 type RichTextEditorFormat = NonNullable<RichTextEditorProps["format"]>;
@@ -280,7 +287,7 @@ export const RichTextEditor = ({
   layout,
   className,
   id: customId,
-  toolbar = DEFAULT_TOOLBAR,
+  toolbar: toolbarProp = DEFAULT_TOOLBAR,
   labels = {},
   "aria-label": ariaLabel,
   "aria-labelledby": ariaLabelledby,
@@ -430,7 +437,7 @@ export const RichTextEditor = ({
   const initialContent = value ?? defaultValue;
 
   const editor = useEditor({
-    extensions: createExtensions(placeholder ?? "", initialFormat === "markdown" ? initialContent : undefined),
+    extensions: createExtensions(placeholder ?? "", initialFormat, initialFormat === "markdown" ? initialContent : undefined),
     // Markdown の初期値は拡張が作成時に読む（markdown.ts の InitialMarkdown）
     content: initialFormat === "markdown" ? "" : initialContent,
     editable: !isDisabled,
@@ -486,7 +493,7 @@ export const RichTextEditor = ({
     selector: ({ editor: ed }): Record<FormatKey, boolean> => ({
       bold: !!ed?.isActive("bold"),
       italic: !!ed?.isActive("italic"),
-      underline: !!ed?.isActive("underline"),
+      underline: !!ed?.schema.marks.underline && ed.isActive("underline"),
       strikethrough: !!ed?.isActive("strike"),
       h1: !!ed?.isActive("heading", { level: 1 }),
       h2: !!ed?.isActive("heading", { level: 2 }),
@@ -514,7 +521,9 @@ export const RichTextEditor = ({
       const { from, to, empty } = ed.state.selection;
       const chain = ed.chain().focus();
       if (empty) chain.selectAll();
-      chain.unsetBold().unsetItalic().unsetUnderline().unsetStrike().clearNodes();
+      chain.unsetBold().unsetItalic().unsetStrike().clearNodes();
+      // format="markdown" では下線がスキーマに無い（createExtensions）
+      if (ed.schema.marks.underline) chain.unsetUnderline();
       if (empty) chain.setTextSelection({ from, to });
       chain.run();
     });
@@ -611,6 +620,13 @@ export const RichTextEditor = ({
   // ---- ツールバー: roving tabindex（Tab で 1 回だけ止まり、矢印キーで項目を移る。WAI-ARIA toolbar） ----
   const buttonRefs = React.useRef<(HTMLButtonElement | null)[]>([]);
   const [focusIndex, setFocusIndex] = React.useState(0);
+  // format="markdown" では下線のボタンを出さない（下線がスキーマに無い）。外した後に端や連続で残る区切りも除く
+  const toolbar = React.useMemo(() => {
+    const items = initialFormat === "markdown" ? toolbarProp.filter((item) => item !== "underline") : toolbarProp;
+    return items.filter(
+      (item, i) => item !== "separator" || (i > 0 && i < items.length - 1 && items[i - 1] !== "separator"),
+    );
+  }, [toolbarProp, initialFormat]);
   const buttonItems = React.useMemo(() => toolbar.filter((item) => item !== "separator"), [toolbar]);
   // ツールバーの並び（区切りを含む）の位置 → ボタンだけを数えた番号
   const buttonIndexAt = React.useMemo(

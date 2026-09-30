@@ -1,6 +1,5 @@
 import {
   Extension,
-  Mark,
   getHTMLFromFragment,
   type Editor,
   type JSONContent,
@@ -8,54 +7,6 @@ import {
 import { Node as PMNode, type Schema } from "@tiptap/pm/model";
 // 名前付きで読む（extension-image と同じ理由: CJS の出力では default の相互運用が崩れる）
 import { Markdown } from "@tiptap/markdown";
-
-// ---- 下線 ----
-// StarterKit の Underline をこの定義に差し替える。HTML の読み書きは同じで、Markdown だけが違う:
-// - 読み: Tiptap 既定の `++下線++` を下線として読まない。`C++ と C++` の間が下線になるため（実測）。
-// - 書き: `++…++` は Tiptap だけの記法で、ほかの Markdown の表示では `++` がそのまま出る。
-//   CommonMark が許す生の HTML `<u>…</u>` で書く。生の HTML を描かない表示（wimui の Markdown を含む）ではタグが文字のまま出る（実測）。
-declare module "@tiptap/core" {
-  interface Commands<ReturnType> {
-    wimUnderline: {
-      setUnderline: () => ReturnType;
-      toggleUnderline: () => ReturnType;
-      unsetUnderline: () => ReturnType;
-    };
-  }
-}
-
-export const Underline = Mark.create({
-  name: "underline",
-  parseHTML() {
-    return [
-      { tag: "u" },
-      {
-        style: "text-decoration",
-        consuming: false,
-        getAttrs: (style) => ((style as string).includes("underline") ? {} : false),
-      },
-    ];
-  },
-  renderHTML() {
-    return ["u", 0];
-  },
-  renderMarkdown(node, helpers) {
-    return `<u>${helpers.renderChildren(node)}</u>`;
-  },
-  addCommands() {
-    return {
-      setUnderline: () => ({ commands }) => commands.setMark(this.name),
-      toggleUnderline: () => ({ commands }) => commands.toggleMark(this.name),
-      unsetUnderline: () => ({ commands }) => commands.unsetMark(this.name),
-    };
-  },
-  addKeyboardShortcuts() {
-    return {
-      "Mod-u": () => this.editor.commands.toggleUnderline(),
-      "Mod-U": () => this.editor.commands.toggleUnderline(),
-    };
-  },
-});
 
 // ---- スキーマに無い Markdown の構造 ----
 // ツールバーで作れない構造（コード・表）はスキーマに無い。@tiptap/markdown は受け皿の無いトークンを
@@ -106,7 +57,7 @@ const TableAsParagraphs = Extension.create({
 // ---- 読み込み ----
 
 /**
- * スキーマに無い型（タスクリストなど）は中身だけ残し、無い装飾は外す。ツールバーに無い見出しの段（h4〜h6）は段落にする
+ * スキーマに無い型（タスクリストなど）は中身だけ残し、無い装飾（format="markdown" の下線など）は外す。ツールバーに無い見出しの段（h4〜h6）は段落にする
  * （HTML の `<h4>` が段落になるのと同じ。そのまま渡すと Tiptap は h1 として描く）。
  */
 const fitToSchema = (node: JSONContent, schema: Schema): JSONContent[] => {

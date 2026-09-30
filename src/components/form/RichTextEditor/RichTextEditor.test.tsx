@@ -396,26 +396,50 @@ describe("RichTextEditor", () => {
       render(
         <RichTextEditor
           format="markdown"
-          defaultValue={"# Title\n\n**b** *i* ~~s~~ <u>u</u> [link](https://ok.example)\n\n- a\n- b\n\n1. c"}
+          defaultValue={"# Title\n\n**b** *i* ~~s~~ [link](https://ok.example)\n\n- a\n- b\n\n1. c"}
         />,
       );
       expect((await findEditor()).innerHTML).toBe(
-        '<h1>Title</h1><p><strong>b</strong> <em>i</em> <s>s</s> <u>u</u> <a href="https://ok.example">link</a></p>' +
+        '<h1>Title</h1><p><strong>b</strong> <em>i</em> <s>s</s> <a href="https://ok.example">link</a></p>' +
           "<ul><li><p>a</p></li><li><p>b</p></li></ul><ol><li><p>c</p></li></ol>",
       );
     });
 
-    it("reports Markdown on change, and writes underline as <u>", async () => {
+    it("reports Markdown on change", async () => {
       const onChange = vi.fn();
-      render(<RichTextEditor format="markdown" defaultValue="<u>under</u> and **bold**" toolbar={["h2"]} onChange={onChange} />);
+      render(<RichTextEditor format="markdown" defaultValue="plain and **bold**" toolbar={["h2"]} onChange={onChange} />);
       await findEditor();
       fireEvent.click(screen.getByRole("button", { name: /heading 2/i }));
-      await waitFor(() => expect(onChange).toHaveBeenLastCalledWith("## <u>under</u> and **bold**"));
+      await waitFor(() => expect(onChange).toHaveBeenLastCalledWith("## plain and **bold**"));
+    });
+
+    // Markdown に下線の記法は無い。<u> で書くと、生の HTML を描かない表示（wimui の Markdown を含む）でタグが文字のまま出る
+    it("has no underline: keeps only the text of <u> and ++, and hides the underline button", async () => {
+      const onChange = vi.fn();
+      render(
+        <RichTextEditor
+          format="markdown"
+          defaultValue="<u>under</u> and ++plus++ and C++"
+          toolbar={["underline", "separator", "bold", "separator", "underline", "h1"]}
+          onChange={onChange}
+        />,
+      );
+      expect((await findEditor()).innerHTML).toBe("<p>under and ++plus++ and C++</p>");
+      // 下線を外した後に端に残る区切りも出さない
+      expect(screen.getAllByRole("button").map((b) => b.getAttribute("aria-label"))).toEqual([
+        expect.stringMatching(/bold/i),
+        expect.stringMatching(/heading 1/i),
+      ]);
+      expect(document.querySelectorAll(`.${styles.toolbarSep}`)).toHaveLength(1);
+      fireEvent.click(screen.getByRole("button", { name: /heading 1/i }));
+      await waitFor(() => expect(onChange).toHaveBeenCalled());
+      expect(onChange.mock.lastCall?.[0]).toMatch(/^# under and /);
+      expect(onChange.mock.lastCall?.[0]).not.toContain("<u>");
     });
 
     it("round-trips its own output", async () => {
       const markdown =
-        "# T\n\n**b** *i* ~~s~~ <u>u</u> [l](https://ok.example) a\\*b\n\n![A chart](https://ok.example/a.png)\n\n- a\n- b\n\n1. c";
+        "# T\n\n**b** *i* ~~s~~ [l](https://ok.example) a\\*b\n\n![A chart](https://ok.example/a.png)\n\n- a\n- b\n\n1. c";
       const onChange = vi.fn();
       render(<RichTextEditor format="markdown" defaultValue={markdown} toolbar={["h1"]} onChange={onChange} />);
       await findEditor();
@@ -429,6 +453,19 @@ describe("RichTextEditor", () => {
     it("does not read ++ as underline (C++ stays text)", async () => {
       render(<RichTextEditor format="markdown" defaultValue="C++ and C++" />);
       expect((await findEditor()).innerHTML).toBe("<p>C++ and C++</p>");
+    });
+
+    // @tiptap/markdown は記法を marked の共有インスタンスに足す。HTML の形式のエディタ（下線あり）が先に作られても、
+    // 同じページの Markdown の形式のエディタが `++` を下線として読まないこと
+    it("is not affected by an HTML editor on the same page", async () => {
+      render(
+        <>
+          <RichTextEditor aria-label="html" defaultValue="<p><u>u</u></p>" />
+          <RichTextEditor aria-label="md" format="markdown" defaultValue="C++ and C++" />
+        </>,
+      );
+      expect((await screen.findByRole("textbox", { name: "html" })).innerHTML).toBe("<p><u>u</u></p>");
+      expect((await screen.findByRole("textbox", { name: "md" })).innerHTML).toBe("<p>C++ and C++</p>");
     });
 
     it("keeps the text of structures the editor has no toolbar for", async () => {
