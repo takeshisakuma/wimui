@@ -150,6 +150,8 @@
     "buttongroup_design_intent": "Botões agrupados apresentam um conjunto de ações paralelas ou opções relacionadas. Ao uni-los visualmente, você comunica ao usuário que eles são um único grupo lógico.",
     "buttongroup_joined": "Modo Unido (Joined)",
     "buttongroup_joined_desc": "Definir a propriedade `joined` como true une os botões sem espaçamento entre eles. Os cantos arredondados intermediários são removidos para um design unificado.",
+    "buttongroup_justify": "Alinhamento",
+    "buttongroup_justify_desc": "Por padrão (justify=\"start\"), o grupo tem apenas a largura dos botões e fica no início da linha, alinhado ao conteúdo ao redor. Use center ou end quando a linha tiver um motivo para deslocar os botões (o rodapé de um diálogo geralmente usa end). stretch estica todos os botões para dividir a linha inteira.",
     "buttongroup_keyboard_desc": "Tab foca o contêiner do grupo de botões. Cada botão dentro do grupo pode ser focado individualmente.",
     "buttongroup_long_desc": "O componente ButtonGroup é usado para agrupar e exibir vários botões.",
     "buttongroup_override": "Priorização Forçada (Priority Override)",

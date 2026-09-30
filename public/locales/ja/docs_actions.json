@@ -149,6 +149,8 @@
     "buttongroup_design_intent": "グループ化されたボタンは、一連の並列したアクションや関連するオプションを提示します。視覚的に結合することで、それらが一つの論理的なグループであることをユーザーに伝えます。",
     "buttongroup_joined": "結合モード",
     "buttongroup_joined_desc": "joinedプロパティをtrueに設定すると、ボタンが隙間なく結合されます。\nこのモードでは、中間のボタンの角丸が削除され、一体感のあるデザインになります。",
+    "buttongroup_justify": "揃え",
+    "buttongroup_justify_desc": "既定（justify=\"start\"）では、グループの幅はボタンの幅だけで、行の先頭に置かれるので周りの内容と揃います。行の中で寄せる理由があるときに center か end を使います（ダイアログのフッターはふつう end）。stretch はすべてのボタンを伸ばして行を分け合います。",
     "buttongroup_keyboard_desc": "Tab キーでボタングループのコンテナにフォーカスします。グループ内の各ボタンは個別にフォーカス可能です。",
     "buttongroup_long_desc": "ButtonGroupコンポーネントは、複数のボタンをグループ化して表示するために使用します。",
     "buttongroup_override": "優先度の強制 (Priority Override)",
