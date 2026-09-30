@@ -533,6 +533,7 @@
   "sfx_circle_radius_full": "círculo (radius-full)",
   "sfx_collapsed": "recolhido",
   "sfx_default": "padrão",
+  "sfx_default_width": "largura padrão (preenche o contêiner)",
   "sfx_expanded": "expandido",
   "sfx_fallbacks": "fallbacks",
   "sfx_icon": "Ícone",

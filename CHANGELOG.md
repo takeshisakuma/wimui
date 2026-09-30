@@ -1,5 +1,24 @@
 # wimui
 
+## 0.42.0
+
+### Minor Changes
+
+- 8493b92: `ButtonGroup` を素で置いたときの揃えを、中央から左寄せに変えました。あわせて、寄せ方を選ぶ `justify` prop（`start` / `center` / `end` / `stretch`）を追加しました。
+
+  - これまでの既定は `width: 100%` と `justify-content: center` で、ほかのボタンと同じ横並びに置いても 1 行を丸ごと占めて次の行へ落ち、ボタンがその中央に寄っていました。
+  - 既定の `justify="start"` では、グループの幅がボタンの幅だけになり、行の先頭に置かれます。
+  - `center` / `end` / `stretch` のときは行を丸ごと取ります。`stretch` はすべてのボタンを伸ばして行を分け合います。
+  - **これまでの見た目（行いっぱいで中央寄せ）を保つには `justify="center"` を渡してください。**
+  - `joined` を狭い幅で縦に積むときは、これまでどおり行を丸ごと取ります。
+
+### Patch Changes
+
+- a846bc1: `Popover` の開いた中身（`role="dialog"`）に、既定で読み上げの名前が付くようにしました。これまでは `PopoverContent` に `aria-label` / `aria-labelledby` を渡さない限り名前が無く、axe の `aria-dialog-name`（serious）に当たっていました。
+
+  - 名前を渡さないときは、トリガーの文字が名前になります（`aria-labelledby` がトリガーを指します）。トリガーに `id` を渡している場合（`asChild` の子に付けた `id` を含む）は、その `id` をそのまま使います。
+  - `aria-label` か `aria-labelledby` を渡したときは、渡した名前が優先されます（`Popconfirm` はこれまでどおりタイトルが名前になります）。
+
 ## 0.41.0
 
 ### Minor Changes
