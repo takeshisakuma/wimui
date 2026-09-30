@@ -1517,8 +1517,9 @@ so the unit does not have to be repeated in the label.
     - `defaultValue: string` = "" — Initial content (uncontrolled), in the format given by `format`
     - `onChange: (value: string) => void` — Callback when the content changes, in the format given by `format`. The content only contains what the editor's schema
 allows, whichever format is used.
-    - `format: "html" | "markdown"` = "html" — Format of `value`, `defaultValue` and `onChange`. `"markdown"` reads and writes Markdown (underline is written as `<u>…</u>`,
-since Markdown has no syntax for it). Read when the editor is created; changing it later does not convert the content.
+    - `format: "html" | "markdown"` = "html" — Format of `value`, `defaultValue` and `onChange`. With `"markdown"`, the editor reads and writes Markdown and has no underline
+(Markdown has no syntax for it): the underline button is hidden and underlined input keeps only its text. Read when the
+editor is created; changing it later does not convert the content.
     - `placeholder: string` — Placeholder shown when the editor is empty
     - `disabled: boolean` — Whether the editor is disabled
     - `intent: FieldIntent` = "default" — Semantic intent of the field (e.g. error state)

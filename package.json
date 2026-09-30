@@ -219,7 +219,8 @@
         "@tiptap/starter-kit",
         "@tiptap/extensions",
         "@tiptap/extension-image",
-        "@tiptap/markdown"
+        "@tiptap/markdown",
+        "marked"
       ],
       "gzip": true,
       "limit": "26 kB"
@@ -558,6 +559,7 @@
     "i18next-http-backend": "4.0.2",
     "jsdom": "^30.0.0",
     "lint-staged": "17.6.0",
+    "marked": "17.0.6",
     "music-metadata": "^11.14.0",
     "playwright": "^1.59.0",
     "prettier": "3.9.9",
@@ -606,6 +608,7 @@
     "@tiptap/starter-kit": "^3.0.0",
     "@xyflow/react": ">=12.0.0",
     "diff": ">=9.0.0",
+    "marked": "^17.0.0",
     "music-metadata": ">=11.0.0",
     "qrcode.react": ">=4.0.0",
     "react": "^19.0.0",
@@ -681,6 +684,9 @@
       "optional": true
     },
     "@tiptap/markdown": {
+      "optional": true
+    },
+    "marked": {
       "optional": true
     }
   },

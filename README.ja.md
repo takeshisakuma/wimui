@@ -302,7 +302,7 @@ peer 依存コンポーネントは**コンポーネント別の専用サブパ�
 
 | コンポーネント | import | 必要なパッケージ |
 |---|---|---|
-| RichTextEditor | `wimui/form/rich-text-editor` | `@tiptap/core` `@tiptap/pm` `@tiptap/react` `@tiptap/starter-kit` `@tiptap/extensions` `@tiptap/extension-image` `@tiptap/markdown` (`^3`) |
+| RichTextEditor | `wimui/form/rich-text-editor` | `@tiptap/core` `@tiptap/pm` `@tiptap/react` `@tiptap/starter-kit` `@tiptap/extensions` `@tiptap/extension-image` `@tiptap/markdown` (`^3`) `marked` (`^17`) |
 | AreaChart, BarChart 等 | `wimui/charts` | `recharts` |
 | Markdown | `wimui/data-display/markdown` | `react-markdown` `remark-gfm` |
 | QRCode | `wimui/data-display/qr-code` | `qrcode.react` |
