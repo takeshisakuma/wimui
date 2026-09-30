@@ -32,6 +32,9 @@ type PopoverContextValue = {
   ) => Record<string, unknown>;
   close: () => void;
   variant: "default" | "glass";
+  /** The trigger's id. PopoverContent names its dialog with it unless given a name. */
+  triggerId: string;
+  setTriggerId: (id: string) => void;
 };
 
 // Context to share state between components
@@ -94,6 +97,10 @@ export const Popover = ({
   });
 
   const close = () => onOpenChangeInternal(false);
+  // role="dialog" needs an accessible name (axe aria-dialog-name). The trigger's
+  // text ("Set dimensions") usually names its content, so it is the default name.
+  const generatedId = React.useId();
+  const [triggerId, setTriggerId] = React.useState(`wim-popover-trigger-${generatedId}`);
 
   return (
     <PopoverContext.Provider
@@ -107,6 +114,8 @@ export const Popover = ({
         getFloatingProps,
         close,
         variant,
+        triggerId,
+        setTriggerId,
       }}
     >
       <div className={classNames("wim-popover", styles.root, className)}>{children}</div>
@@ -140,6 +149,16 @@ export const PopoverTrigger = React.forwardRef<
     childrenRef ?? null,
   ]);
 
+  // An id the caller gave (on the trigger or the asChild element) wins.
+  const childId = asChild && React.isValidElement(children)
+    ? (children.props as { id?: string }).id
+    : undefined;
+  const id = props.id ?? childId ?? context.triggerId;
+  const { setTriggerId } = context;
+  React.useLayoutEffect(() => {
+    setTriggerId(id);
+  }, [id, setTriggerId]);
+
   if (asChild && React.isValidElement(children)) {
     const childProps = children.props as Record<string, unknown>;
     // eslint-disable-next-line react-hooks/refs
@@ -147,6 +166,7 @@ export const PopoverTrigger = React.forwardRef<
       ref,
       ...props,
       ...(childProps as React.HTMLProps<Element>),
+      id,
       className: classNames(
         className,
         childProps.className as string | undefined,
@@ -164,9 +184,10 @@ export const PopoverTrigger = React.forwardRef<
       type="button"
       className={classNames(styles.trigger, className)}
       data-state={context.open ? "open" : "closed"}
-      {...(context.getReferenceProps(
-        props,
-      ) as React.ButtonHTMLAttributes<HTMLButtonElement>)}
+      {...(context.getReferenceProps({
+        ...props,
+        id,
+      }) as React.ButtonHTMLAttributes<HTMLButtonElement>)}
     >
       {children}
     </button>
@@ -194,7 +215,11 @@ export const PopoverContent = React.forwardRef<
     throw new Error("Popover components must be wrapped in <Popover />");
   }
 
-  const { open, refs, floatingStyles, getFloatingProps, context: floatingContext } = context;
+  const { open, refs, floatingStyles, getFloatingProps, context: floatingContext, triggerId } = context;
+  // A name the caller gave wins; otherwise the trigger names the dialog.
+  // Resolved after spreading props so an explicit `aria-labelledby={undefined}` cannot erase it.
+  const hasName = props["aria-label"] != null || props["aria-labelledby"] != null;
+  const labelledBy = hasName ? props["aria-labelledby"] : triggerId;
   const ref = useMergeRefs([refs.setFloating, propRef]);
 
   return (
@@ -214,6 +239,7 @@ export const PopoverContent = React.forwardRef<
             )}
             role="dialog"
             {...(getFloatingProps(props) as React.HTMLAttributes<HTMLDivElement>)}
+            aria-labelledby={labelledBy}
           >
             {children}
           </div>

@@ -76,7 +76,10 @@ export const Default: Story = {
   },
 };
 
-/** 開いた状態で既定と glass を並べる（T280: 面そのものがどのストーリーにも写っていなかった）。 */
+/**
+ * 開いた状態で既定と glass を並べる（T280: 面そのものがどのストーリーにも写っていなかった）。
+ * 名前の 2 経路も a11y に載せる（T282）: 既定は名前を渡さずトリガーの文字が名前になり、glass は見出しを渡して渡した名前が勝つ。
+ */
 export const Variants: Story = {
   render: function Render() {
     const { t } = useTranslation(ALL_NAMESPACES);
@@ -88,7 +91,7 @@ export const Variants: Story = {
             <PopoverTrigger asChild>
               <Button variant="outline">{t(variant === "glass" ? "story.overlay_variant_glass" : "common.default")}</Button>
             </PopoverTrigger>
-            <PopoverContent side="bottom" aria-labelledby={`${headingId}${variant}`}>
+            <PopoverContent side="bottom" aria-labelledby={variant === "glass" ? `${headingId}${variant}` : undefined}>
               <div style={{ display: "flex", flexDirection: "column", gap: "var(--wim-spacing-xs)" }}>
                 <h4 id={`${headingId}${variant}`} style={{ margin: 0 }}>{t("story.popover_dimensions")}</h4>
                 <p style={{ margin: 0, color: "var(--wim-color-text-secondary)" }}>{t("story.popover_set_dim")}</p>
