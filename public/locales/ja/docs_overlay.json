@@ -443,6 +443,7 @@
     "popconfirm_title": "削除などの重要なアクションの前に表示される簡潔な確認ダイアログ",
     "popconfirm_usage_desc": "ボタンをクリックすると確認ダイアログがポップアップされ、ユーザーに実行前の確認を求めます。",
     "popover_a11y_focus": "ポップオーバーが開いた際は最初の入力項目にフォーカスを移動させ、Tabキーでの移動をポップオーバー内に閉じ込めることが望ましいです。",
+    "popover_a11y_name": "開いた中身は role=\"dialog\" で、既定ではトリガーの文字が名前になります（aria-labelledby がトリガーを指す）。中の見出しのほうが名前にふさわしいときは、PopoverContent に aria-label か aria-labelledby を渡してください。渡した名前が優先されます。",
     "popover_anatomy_arrow": "どの要素から派生したポップオーバーかを視覚的に指し示します（任意）。",
     "popover_anatomy_arrow_label": "アロー",
     "popover_anatomy_content": "フォーム、リスト、リッチテキストなどを格納する浮かび上がるコンテナ。",
