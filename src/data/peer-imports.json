@@ -1,7 +1,7 @@
 {
   "RichTextEditor": {
     "packagePath": "wimui/form/rich-text-editor",
-    "peers": ["@tiptap/react", "@tiptap/pm", "@tiptap/core", "@tiptap/starter-kit", "@tiptap/extensions", "@tiptap/extension-image"]
+    "peers": ["@tiptap/react", "@tiptap/pm", "@tiptap/core", "@tiptap/starter-kit", "@tiptap/extensions", "@tiptap/extension-image", "@tiptap/markdown"]
   },
   "Markdown": {
     "packagePath": "wimui/data-display/markdown",

@@ -218,7 +218,8 @@
         "@tiptap/react",
         "@tiptap/starter-kit",
         "@tiptap/extensions",
-        "@tiptap/extension-image"
+        "@tiptap/extension-image",
+        "@tiptap/markdown"
       ],
       "gzip": true,
       "limit": "26 kB"
@@ -524,6 +525,7 @@
     "@tiptap/core": "3.31.3",
     "@tiptap/extension-image": "3.31.3",
     "@tiptap/extensions": "3.31.3",
+    "@tiptap/markdown": "3.31.3",
     "@tiptap/pm": "3.31.3",
     "@tiptap/react": "3.31.3",
     "@tiptap/starter-kit": "3.31.3",
@@ -598,6 +600,7 @@
     "@tiptap/core": "^3.0.0",
     "@tiptap/extension-image": "^3.0.0",
     "@tiptap/extensions": "^3.0.0",
+    "@tiptap/markdown": "^3.0.0",
     "@tiptap/pm": "^3.0.0",
     "@tiptap/react": "^3.0.0",
     "@tiptap/starter-kit": "^3.0.0",
@@ -675,6 +678,9 @@
       "optional": true
     },
     "@tiptap/extension-image": {
+      "optional": true
+    },
+    "@tiptap/markdown": {
       "optional": true
     }
   },

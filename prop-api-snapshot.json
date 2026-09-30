@@ -8267,6 +8267,13 @@
       "required": false,
       "type": "string"
     },
+    "RichTextEditor.format": {
+      "required": false,
+      "values": [
+        "html",
+        "markdown"
+      ]
+    },
     "RichTextEditor.fullWidth": {
       "required": false,
       "type": "boolean"

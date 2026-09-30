@@ -354,6 +354,10 @@
     "richtexteditor_sanitize_boundary": "保証するのは onChange が返す HTML までです。保存した HTML を後で別の場所に描く（別の画面で dangerouslySetInnerHTML に渡すなど）ときは、そこでもう一度無害化してください。保存された文字列は、エディタを離れた後に書き換えられている可能性があります。",
     "richtexteditor_images_title": "画像",
     "richtexteditor_images_desc": "ツールバーに \"image\" を足すと、URL と代替テキストで画像を挿入できます。画像のボタンは既定のツールバーには入っていません。",
-    "richtexteditor_images_upload": "エディタはファイルをアップロードしません。ファイルを利用者の保存先に上げて URL を返す onImageUpload(file) を渡すと、画像のダイアログに「ファイルを選ぶ」が出て、エディタに貼り付け・ドロップした画像ファイルもアップロードして挿入されます。エディタが持つのは返ってきた URL だけで、http: / https: / 相対 URL 以外は受け付けません（blob: や data: の URL を返さないでください）。"
+    "richtexteditor_images_upload": "エディタはファイルをアップロードしません。ファイルを利用者の保存先に上げて URL を返す onImageUpload(file) を渡すと、画像のダイアログに「ファイルを選ぶ」が出て、エディタに貼り付け・ドロップした画像ファイルもアップロードして挿入されます。エディタが持つのは返ってきた URL だけで、http: / https: / 相対 URL 以外は受け付けません（blob: や data: の URL を返さないでください）。",
+    "richtexteditor_markdown_title": "Markdown",
+    "richtexteditor_markdown_desc": "format=\"markdown\" にすると、value・defaultValue・onChange が HTML ではなく Markdown になります。エディタそのものは変わりません。出力に出るのはツールバーで作れるものだけで、Markdown に記法の無い下線は <u>…</u> で書きます（生の HTML を描かない表示では、下線の無い本文として残ります）。",
+    "richtexteditor_markdown_input": "Markdown の入力も HTML と同じスキーマと URL の規則を通ります。危険なリンク・画像の URL と、スキーマが許さない生の HTML は取り除かれます。ツールバーで作れない構造（コード・表・引用・h4 以下の見出し・タスクリスト）は、本文を普通の段落として残します。++文字++ は下線として読まないので、C++ のような文字列は書いたとおりに残ります。",
+    "richtexteditor_markdown_fixed": "format はエディタを作るときに読みます。後から変えても中身は変換されません。形式を切り替えるときは、新しいエディタをマウントしてください（key を変えるなど）。"
   }
 }

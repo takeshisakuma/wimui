@@ -189,3 +189,33 @@ export const WithImages: Story = {
     );
   },
 };
+
+/**
+ * Markdown（T278）。`format="markdown"` で value / onChange が Markdown になる。エディタそのものは同じで、
+ * 出力に出るのはツールバーで作れるものだけ（下線は `<u>…</u>`）。
+ */
+export const MarkdownFormat: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    const [value, setValue] = React.useState(
+      `## ${t("story.rte_markdown_heading")}\n\n- ${t("story.rte_markdown_item1")}\n- **${t("story.rte_markdown_item2")}**`,
+    );
+    return (
+      <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+        <RichTextEditor
+          {...args}
+          format="markdown"
+          label={t("story.rte_markdown_label")}
+          value={value}
+          onChange={setValue}
+        />
+        <div>
+          <strong>{t("story.rte_markdown_output_label")}</strong>
+          <pre style={{ fontSize: "0.75rem", whiteSpace: "pre-wrap", wordBreak: "break-all", padding: "8px", background: "var(--wim-color-surface-variant)", borderRadius: "4px" }}>
+            {value}
+          </pre>
+        </div>
+      </div>
+    );
+  },
+};

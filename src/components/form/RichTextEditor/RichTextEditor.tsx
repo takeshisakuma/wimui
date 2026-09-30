@@ -34,6 +34,7 @@ import {
 } from "../../overlay/Dialog/Dialog";
 import { FieldIntent, FieldVariant, FieldWidth } from "../../../types/tokens";
 import { isSafeImageUrl, isSafeLinkUrl } from "./safeUrl";
+import { Underline, createMarkdownExtensions, markdownToHtml } from "./markdown";
 import styles from "./rich-text-editor.module.scss";
 
 // ---- Types ----
@@ -109,12 +110,20 @@ export type RichTextEditorLabels = {
 };
 
 export type RichTextEditorProps = {
-  /** HTML content (controlled). An empty editor is reported as "". */
+  /** Content (controlled), in the format given by `format`. An empty editor is reported as "". */
   value?: string;
-  /** Initial HTML content (uncontrolled) */
+  /** Initial content (uncontrolled), in the format given by `format` */
   defaultValue?: string;
-  /** Callback when the content changes. Receives HTML that only contains the tags and attributes the editor's schema allows. */
+  /**
+   * Callback when the content changes, in the format given by `format`. The content only contains what the editor's schema
+   * allows, whichever format is used.
+   */
   onChange?: (value: string) => void;
+  /**
+   * Format of `value`, `defaultValue` and `onChange`. `"markdown"` reads and writes Markdown (underline is written as `<u>…</u>`,
+   * since Markdown has no syntax for it). Read when the editor is created; changing it later does not convert the content.
+   */
+  format?: "html" | "markdown";
   /** Placeholder shown when the editor is empty */
   placeholder?: string;
   /** Whether the editor is disabled */
@@ -173,7 +182,7 @@ const SafeImage = Image.extend({
   },
 });
 
-const createExtensions = (placeholder: string) => [
+const createExtensions = (placeholder: string, initialMarkdown: string | undefined) => [
   StarterKit.configure({
     heading: { levels: [1, 2, 3] },
     // ツールバーに無い構造は持たない（出力に出せるものを、利用者がツールバーで作れるものに揃える）
@@ -183,6 +192,8 @@ const createExtensions = (placeholder: string) => [
     horizontalRule: false,
     // 見出し・リストで終わる文書の末尾に空の <p></p> を足す拡張。出力に余計な段落が混ざるので外す
     trailingNode: false,
+    // 同じ名前の下線に差し替える（Markdown の `++` を下線として読まないため。markdown.ts）
+    underline: false,
     link: {
       openOnClick: false,
       autolink: false,
@@ -195,11 +206,22 @@ const createExtensions = (placeholder: string) => [
   // 画像は src が許可リストに合うものだけスキーマに入れる（合わない img は読み込み時に落ちる）。
   // ブロックとして置く（段落の中に埋めない）── 文の途中の画像は、読み上げでも折り返しでも扱いにくい。
   SafeImage.configure({ inline: false, allowBase64: false }),
+  Underline,
   Placeholder.configure({ placeholder }),
+  ...createMarkdownExtensions(initialMarkdown),
 ];
 
+type RichTextEditorFormat = NonNullable<RichTextEditorProps["format"]>;
+
 /** 空の文書は "" として返す（Tiptap の getHTML は空でも "<p></p>" を返す）。 */
-const toValue = (editor: Editor) => (editor.isEmpty ? "" : editor.getHTML());
+const toValue = (editor: Editor, format: RichTextEditorFormat) => {
+  if (editor.isEmpty) return "";
+  return format === "markdown" ? editor.getMarkdown() : editor.getHTML();
+};
+
+/** 値をエディタに渡せる形にする（Markdown もスキーマの規則を通すため HTML を経る。markdown.ts）。 */
+const toContent = (editor: Editor, value: string, format: RichTextEditorFormat) =>
+  format === "markdown" ? markdownToHtml(editor, value) : value;
 
 // ---- Toolbar button component ----
 
@@ -262,6 +284,7 @@ export const RichTextEditor = ({
   "aria-label": ariaLabel,
   "aria-labelledby": ariaLabelledby,
   onImageUpload,
+  format = "html",
 }: RichTextEditorProps) => {
   const { t } = useWimTranslation("components");
   const {
@@ -401,18 +424,23 @@ export const RichTextEditor = ({
     [contentAttributes, handlePaste, handleDrop],
   );
 
+  // 作成時の形式を使い続ける（作成後に変わっても読み直さない。props の説明に書いた契約）
+  const [initialFormat] = React.useState(format);
+  const initialContent = value ?? defaultValue;
+
   const editor = useEditor({
-    extensions: createExtensions(placeholder ?? ""),
-    content: value ?? defaultValue,
+    extensions: createExtensions(placeholder ?? "", initialFormat === "markdown" ? initialContent : undefined),
+    // Markdown の初期値は拡張が作成時に読む（markdown.ts の InitialMarkdown）
+    content: initialFormat === "markdown" ? "" : initialContent,
     editable: !isDisabled,
     // SSR では描かず、マウント後に作る（Tiptap の推奨。ハイドレーションの不一致を避ける）
     immediatelyRender: false,
     editorProps,
     onUpdate: ({ editor: ed }) => {
-      const html = toValue(ed);
-      if (html === lastValueRef.current) return;
-      lastValueRef.current = html;
-      onChangeRef.current?.(html);
+      const next = toValue(ed, initialFormat);
+      if (next === lastValueRef.current) return;
+      lastValueRef.current = next;
+      onChangeRef.current?.(next);
     },
   });
 
@@ -443,10 +471,10 @@ export const RichTextEditor = ({
   // Sync controlled value → document (skip if same to preserve the caret)
   React.useEffect(() => {
     if (!editor || editor.isDestroyed || value === undefined) return;
-    if (value === lastValueRef.current || value === toValue(editor)) return;
-    editor.commands.setContent(value, { emitUpdate: false });
+    if (value === lastValueRef.current || value === toValue(editor, initialFormat)) return;
+    editor.commands.setContent(toContent(editor, value, initialFormat), { emitUpdate: false });
     lastValueRef.current = value;
-  }, [editor, value]);
+  }, [editor, value, initialFormat]);
 
   const activeFormats = useEditorState({
     editor,

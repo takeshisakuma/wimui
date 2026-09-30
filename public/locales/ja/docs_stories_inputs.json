@@ -245,6 +245,11 @@
     "transfer_short_desc": "短い説明",
     "transfer_short_title": "短いタイトル",
     "signaturepad_wide_field": "署名（幅いっぱいの欄の中）",
-    "rating_wide_field": "評価（幅いっぱいの欄の中）"
+    "rating_wide_field": "評価（幅いっぱいの欄の中）",
+    "rte_markdown_label": "リリースノート",
+    "rte_markdown_heading": "変わったこと",
+    "rte_markdown_item1": "画像を埋め込めるようになった",
+    "rte_markdown_item2": "本文を Markdown で保存できるようになった",
+    "rte_markdown_output_label": "Markdown 出力:"
   }
 }

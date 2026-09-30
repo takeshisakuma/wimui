@@ -93,6 +93,19 @@ import { Docgen } from "../../Docgen";
 />
 ```
 
+## <T k="doc.richtexteditor_markdown_title" />
+
+<p><T k="doc.richtexteditor_markdown_desc" /></p>
+<p><T k="doc.richtexteditor_markdown_input" /></p>
+<p><T k="doc.richtexteditor_markdown_fixed" /></p>
+
+<Canvas of={RichTextEditorStories.MarkdownFormat} />
+
+```tsx
+const [markdown, setMarkdown] = useState("## Notes\n\n- first item");
+<RichTextEditor format="markdown" value={markdown} onChange={setMarkdown} />;
+```
+
 ## <T k="doc.richtexteditor_controlled" />
 
 <Canvas of={RichTextEditorStories.Controlled} />
@@ -164,7 +177,7 @@ import { Docgen } from "../../Docgen";
 <p><T k="doc.richtexteditor_install_desc" /></p>
 
 ```bash
-npm install @tiptap/core @tiptap/pm @tiptap/react @tiptap/starter-kit @tiptap/extensions @tiptap/extension-image
+npm install @tiptap/core @tiptap/pm @tiptap/react @tiptap/starter-kit @tiptap/extensions @tiptap/extension-image @tiptap/markdown
 ```
 
 ## <T k="doc.basic_usage" />
