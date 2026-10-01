@@ -7,6 +7,7 @@ const STORIES = [
   "components-data-structures-pivottable--default",
   "components-data-structures-pivottable--totals",
   "components-data-structures-pivottable--nested-columns",
+  "components-data-structures-pivottable--collapsed",
 ];
 
 test.describe("PivotTable", () => {
@@ -31,7 +32,8 @@ test.describe("PivotTable", () => {
             - columnheader "Jun"
         - rowgroup:
           - row "Drinks 2,430 2,261 2,613 2,672 3,035 3,172":
-            - rowheader "Drinks"
+            - rowheader "Drinks":
+              - button "Drinks" [expanded]
             - cell "2,430"
             - cell "2,261"
             - cell "2,613"
@@ -103,4 +105,21 @@ test.describe("PivotTable", () => {
       expect(result.mismatches).toEqual([]);
     });
   }
+
+  test("collapses and expands a row group from the keyboard, keeping focus on its button", async ({ page }) => {
+    await page.goto(STORY_URL(STORIES[0]));
+    await page.waitForLoadState("networkidle");
+    const drinks = page.getByRole("button", { name: "Drinks" });
+    await page.keyboard.press("Tab");
+    await expect(drinks).toBeFocused();
+    await page.keyboard.press("Enter");
+    await expect(drinks).toHaveAttribute("aria-expanded", "false");
+    await expect(page.getByRole("rowheader", { name: "Drip coffee" })).toHaveCount(0);
+    // 小計の行は残る
+    await expect(page.getByRole("row", { name: /^Drinks 2,430/ })).toBeVisible();
+    await expect(drinks).toBeFocused();
+    await page.keyboard.press("Space");
+    await expect(drinks).toHaveAttribute("aria-expanded", "true");
+    await expect(page.getByRole("rowheader", { name: "Drip coffee" })).toBeVisible();
+  });
 });

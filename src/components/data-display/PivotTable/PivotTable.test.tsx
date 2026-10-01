@@ -1,6 +1,6 @@
 import React from "react";
 import { describe, it, expect, vi } from "vitest";
-import { render, screen, within } from "@testing-library/react";
+import { render, screen, within, fireEvent } from "@testing-library/react";
 import { PivotTable, type PivotTableAxisNode } from "./PivotTable";
 
 vi.mock("react-i18next", () => ({
@@ -178,6 +178,95 @@ describe("PivotTable", () => {
     );
     const ids = Array.from(container.querySelectorAll("[id]")).map((el) => el.id);
     expect(new Set(ids).size).toBe(ids.length);
+  });
+
+  describe("collapsing row groups", () => {
+    const headings = () => screen.getAllByRole("rowheader").map((h) => h.textContent);
+    const toggleOf = (name: string) => screen.getByRole("button", { name });
+
+    it("expands every group by default and marks the button as expanded", () => {
+      render(<PivotTable rows={ROWS} columns={COLUMNS} getValue={getValue} />);
+      expect(headings()).toEqual(["Drinks", "Latte", "Tea", "Gift cards"]);
+      expect(toggleOf("Drinks")).toHaveAttribute("aria-expanded", "true");
+    });
+
+    it("gives a button only to rows that have children", () => {
+      render(<PivotTable rows={ROWS} columns={COLUMNS} getValue={getValue} />);
+      expect(screen.getAllByRole("button")).toHaveLength(1);
+      expect(within(screen.getByRole("rowheader", { name: "Latte" })).queryByRole("button")).toBeNull();
+    });
+
+    it("collapses a group to its subtotal row on click and expands it again", () => {
+      render(<PivotTable rows={ROWS} columns={COLUMNS} getValue={getValue} />);
+      fireEvent.click(toggleOf("Drinks"));
+      expect(headings()).toEqual(["Drinks", "Gift cards"]);
+      expect(toggleOf("Drinks")).toHaveAttribute("aria-expanded", "false");
+      // 小計の行は残る
+      expect(screen.getByText("drinks/jan")).toBeInTheDocument();
+      expect(screen.queryByText("latte/jan")).toBeNull();
+      fireEvent.click(toggleOf("Drinks"));
+      expect(headings()).toEqual(["Drinks", "Latte", "Tea", "Gift cards"]);
+    });
+
+    it("keeps the heading name plain so cells do not announce the button", () => {
+      render(<PivotTable rows={ROWS} columns={COLUMNS} getValue={getValue} />);
+      expect(headersOf(screen.getByText("tea/feb"))).toEqual(["Drinks", "Tea", "Q1", "Feb"]);
+    });
+
+    it("keeps the headers of the rows after a collapsed group pointing at the right headings", () => {
+      render(<PivotTable rows={ROWS} columns={COLUMNS} getValue={getValue} defaultExpandedValues={[]} />);
+      expect(headersOf(screen.getByText("gift/apr"))).toEqual(["Gift cards", "Q2", "Apr"]);
+    });
+
+    it("starts from defaultExpandedValues", () => {
+      render(<PivotTable rows={ROWS} columns={COLUMNS} getValue={getValue} defaultExpandedValues={[]} />);
+      expect(headings()).toEqual(["Drinks", "Gift cards"]);
+    });
+
+    it("reports the new list without changing anything when controlled", () => {
+      const onExpandedChange = vi.fn();
+      render(
+        <PivotTable
+          rows={ROWS}
+          columns={COLUMNS}
+          getValue={getValue}
+          expandedValues={["drinks"]}
+          onExpandedChange={onExpandedChange}
+        />,
+      );
+      fireEvent.click(toggleOf("Drinks"));
+      expect(onExpandedChange).toHaveBeenCalledWith([]);
+      // 親が値を変えるまでは開いたまま
+      expect(headings()).toEqual(["Drinks", "Latte", "Tea", "Gift cards"]);
+    });
+
+    it("follows expandedValues when the parent changes it", () => {
+      const { rerender } = render(
+        <PivotTable rows={ROWS} columns={COLUMNS} getValue={getValue} expandedValues={["drinks"]} />,
+      );
+      rerender(<PivotTable rows={ROWS} columns={COLUMNS} getValue={getValue} expandedValues={[]} />);
+      expect(headings()).toEqual(["Drinks", "Gift cards"]);
+    });
+
+    it("reports the added key when a collapsed group is expanded", () => {
+      const onExpandedChange = vi.fn();
+      render(
+        <PivotTable
+          rows={ROWS}
+          columns={COLUMNS}
+          getValue={getValue}
+          defaultExpandedValues={[]}
+          onExpandedChange={onExpandedChange}
+        />,
+      );
+      fireEvent.click(toggleOf("Drinks"));
+      expect(onExpandedChange).toHaveBeenCalledWith(["drinks"]);
+    });
+
+    it("has no buttons when the row axis is flat", () => {
+      render(<PivotTable rows={[{ key: "a", label: "A" }]} columns={COLUMNS} getValue={getValue} />);
+      expect(screen.queryByRole("button")).toBeNull();
+    });
   });
 
   describe("sideways scrolling", () => {

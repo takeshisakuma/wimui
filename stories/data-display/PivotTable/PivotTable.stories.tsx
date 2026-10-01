@@ -133,6 +133,27 @@ export const Totals: Story = {
   },
 };
 
+/** 最初に開くグループを選ぶ。畳んだグループは自分の行（小計）だけを残す。 */
+export const Collapsed: Story = {
+  render: function Render(args) {
+    const { t, rows, columns, getValue } = useStationPivot();
+    return (
+      <PivotTable
+        {...args}
+        rows={rows}
+        columns={columns}
+        getValue={getValue}
+        rowAxisLabel={t("story.pivottable_product")}
+        caption={t("story.pivottable_caption")}
+        defaultExpandedValues={["food"]}
+      />
+    );
+  },
+  args: {
+    totalRow: true,
+  },
+};
+
 /** 列を 3 段にする（店舗 → 四半期 → 月）。枝ごとに深さも列の数も揃っていなくてよい。 */
 export const NestedColumns: Story = {
   render: function Render(args) {

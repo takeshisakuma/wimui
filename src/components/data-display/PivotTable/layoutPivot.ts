@@ -49,6 +49,8 @@ export type PivotRow<T extends PivotAxisInput = PivotAxisInput> = {
   node: T;
   depth: number;
   hasChildren: boolean;
+  /** 子の行が出ているか（グループでない行は常に `false`）。 */
+  expanded: boolean;
   /** 祖先の行の番号（返り値の配列の中の位置。根から順）。 */
   ancestors: number[];
 };
@@ -140,15 +142,22 @@ export function layoutPivotColumns<T extends PivotAxisInput>(
   return { headerRows, columns, depth, groupSpans };
 }
 
-/** 行の軸の木を、深さ優先で 1 行ずつに並べる（アウトライン形式: グループも 1 行を持つ）。 */
-export function layoutPivotRows<T extends PivotAxisInput>(nodes: T[]): PivotRow<T>[] {
+/**
+ * 行の軸の木を、深さ優先で 1 行ずつに並べる（アウトライン形式: グループも 1 行を持つ）。
+ * 折りたたまれたグループは自分の行だけを出し、配下の行は出さない。
+ */
+export function layoutPivotRows<T extends PivotAxisInput>(
+  nodes: T[],
+  isExpanded: (key: string) => boolean = () => true,
+): PivotRow<T>[] {
   const rows: PivotRow<T>[] = [];
   const walk = (list: T[], depth: number, ancestors: number[]) => {
     for (const node of list) {
       const index = rows.length;
       const hasChildren = isGroup(node);
-      rows.push({ key: node.key, node, depth, hasChildren, ancestors });
-      if (hasChildren) walk(node.children as T[], depth + 1, [...ancestors, index]);
+      const expanded = hasChildren && isExpanded(node.key);
+      rows.push({ key: node.key, node, depth, hasChildren, expanded, ancestors });
+      if (expanded) walk(node.children as T[], depth + 1, [...ancestors, index]);
     }
   };
   walk(nodes, 0, []);

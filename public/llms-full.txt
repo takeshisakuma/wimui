@@ -2499,6 +2499,10 @@ for that group's subtotal and `null` asks for the grand total of that axis. Retu
 `null` or `undefined` for an empty cell.
     - `rowAxisLabel: React.ReactNode` — Heading of the row axis, shown in the top-left corner.
     - `caption: React.ReactNode` — Visible title of the table, also its accessible name.
+    - `expandedValues: string[]` — Keys of the expanded row groups (controlled). A group that is not listed shows only
+its own row, which carries its subtotal.
+    - `defaultExpandedValues: string[]` — Row groups expanded on first render (uncontrolled). Defaults to every group.
+    - `onExpandedChange: (values: string[]) => void` — Called with the new list of expanded row groups when a group is expanded or collapsed.
     - `columnSubtotals: boolean` = false — Adds a subtotal column after the columns of each column group.
     - `totalRow: boolean` = false — Adds a grand total row at the bottom.
     - `totalColumn: boolean` = false — Adds a grand total column at the right edge.

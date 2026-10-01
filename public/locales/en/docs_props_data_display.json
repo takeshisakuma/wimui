@@ -412,6 +412,9 @@
     "pivotTable_prop_columnSubtotals": "Adds a subtotal column after the columns of each column group.",
     "pivotTable_prop_totalRow": "Adds a grand total row at the bottom.",
     "pivotTable_prop_totalColumn": "Adds a grand total column at the right edge.",
-    "pivotTable_prop_labels": "Text of the total headings, for when the built-in translations do not fit."
+    "pivotTable_prop_labels": "Text of the total headings, for when the built-in translations do not fit.",
+    "pivotTable_prop_expandedValues": "Keys of the expanded row groups (controlled). A group that is not listed shows only\nits own row, which carries its subtotal.",
+    "pivotTable_prop_defaultExpandedValues": "Row groups expanded on first render (uncontrolled). Defaults to every group.",
+    "pivotTable_prop_onExpandedChange": "Called with the new list of expanded row groups when a group is expanded or collapsed."
   }
 }

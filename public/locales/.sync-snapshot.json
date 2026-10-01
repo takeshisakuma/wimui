@@ -4442,7 +4442,11 @@
       "pivottable_nested": "Nested column groups",
       "pivottable_nested_desc": "Column groups can nest, and the branches do not need the same depth or the same number of columns. Here the second shop opened in April, so it has one quarter where the first has two.",
       "pivottable_responsive": "The table keeps all its columns and scrolls sideways inside its own box when it is wider than its container; the page itself does not scroll. Rows are not turned into cards on narrow screens, because a value only means something next to its row and column headings.",
-      "pivottable_keyboard": "The table has no controls of its own. While it fits its container it adds no tab stop. When it is wider than its container, the scrolling area becomes a tab stop so that it can be scrolled sideways with the arrow keys, and it is announced with the name of the table. The table navigation commands of a screen reader work as in any HTML table."
+      "pivottable_keyboard": "Tab moves through the buttons of the row groups; Enter or Space collapses or expands the group. While the table fits its container it adds no other tab stop. When it is wider than its container, the scrolling area also becomes a tab stop so that it can be scrolled sideways with the arrow keys, and it is announced with the name of the table. The table navigation commands of a screen reader work as in any HTML table.",
+      "pivottable_collapse": "Collapsing row groups",
+      "pivottable_collapse_desc": "Every row group has a button in its heading. Collapsing a group hides its rows and keeps the group's own row, so the subtotal stays in view. All groups start expanded; pass defaultExpandedValues to choose which ones open first, or expandedValues with onExpandedChange to control them.",
+      "pivottable_a11y_toggle": "The button of a row group is named by the group label and reports aria-expanded. Because the label itself is the button, the heading still reads as the plain label when a cell announces it.",
+      "pivottable_best_label": "Keep the labels of row groups to plain text or icons. They are drawn inside a button, so a link or another control there would be a control inside a control."
     }
   },
   "docs_feedback": {
@@ -14522,7 +14526,10 @@
       "pivotTable_prop_columnSubtotals": "Adds a subtotal column after the columns of each column group.",
       "pivotTable_prop_totalRow": "Adds a grand total row at the bottom.",
       "pivotTable_prop_totalColumn": "Adds a grand total column at the right edge.",
-      "pivotTable_prop_labels": "Text of the total headings, for when the built-in translations do not fit."
+      "pivotTable_prop_labels": "Text of the total headings, for when the built-in translations do not fit.",
+      "pivotTable_prop_expandedValues": "Keys of the expanded row groups (controlled). A group that is not listed shows only\nits own row, which carries its subtotal.",
+      "pivotTable_prop_defaultExpandedValues": "Row groups expanded on first render (uncontrolled). Defaults to every group.",
+      "pivotTable_prop_onExpandedChange": "Called with the new list of expanded row groups when a group is expanded or collapsed."
     }
   },
   "docs_props_feedback": {
