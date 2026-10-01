@@ -49,6 +49,22 @@ export type PivotTableProps = Omit<React.ComponentPropsWithoutRef<"table">, "chi
   defaultExpandedValues?: string[];
   /** Called with the new list of expanded row groups when a group is expanded or collapsed. */
   onExpandedChange?: (values: string[]) => void;
+  /**
+   * Maximum height of the table (a number is px). Past it the table scrolls vertically
+   * inside its own box.
+   */
+  maxHeight?: string | number;
+  /**
+   * Keeps the column headings in view while the table scrolls vertically. Every heading
+   * level stays, stacked in order. Only has an effect together with `maxHeight`.
+   */
+  stickyHeader?: boolean;
+  /**
+   * Keeps the row headings in view while the table scrolls sideways. The column is only
+   * pinned while it takes at most half of the visible width; in a narrower container it
+   * scrolls with the rest, so that the values stay readable.
+   */
+  stickyRowHeaders?: boolean;
   /** Adds a subtotal column after the columns of each column group. */
   columnSubtotals?: boolean;
   /** Adds a grand total row at the bottom. */
@@ -99,6 +115,9 @@ export const PivotTable = React.forwardRef<HTMLTableElement, PivotTableProps>(
       expandedValues: controlledExpanded,
       defaultExpandedValues,
       onExpandedChange,
+      maxHeight,
+      stickyHeader = false,
+      stickyRowHeaders = false,
       columnSubtotals = false,
       totalRow = false,
       totalColumn = false,
@@ -147,7 +166,7 @@ export const PivotTable = React.forwardRef<HTMLTableElement, PivotTableProps>(
     );
 
     /*
-     * 表が器より広いときは横にスクロールする。スクロールできる領域はキーボードでも辿れなければ
+     * 表が器より広いとき（`maxHeight` を渡したときは高いときも）は器の中でスクロールする。スクロールできる領域はキーボードでも辿れなければ
      * ならない（WCAG 2.1.1・axe の `scrollable-region-focusable`）ので、**はみ出しているときだけ**
      * タブ位置にする（Barcode と同じ形）。収まっているあいだは余計なタブ停止を増やさない。
      * 器の幅でも表の幅（データ）でも変わるので、両方を見張る。
@@ -155,12 +174,21 @@ export const PivotTable = React.forwardRef<HTMLTableElement, PivotTableProps>(
     const scrollerRef = React.useRef<HTMLDivElement>(null);
     const tableRef = React.useRef<HTMLTableElement>(null);
     const [scrollable, setScrollable] = React.useState(false);
+    // 行見出しの列を固定してよい幅か。列が器の半分を超えるときは固定しない（下の measure を参照）
+    const [rowHeadersFit, setRowHeadersFit] = React.useState(true);
 
     React.useLayoutEffect(() => {
       const scroller = scrollerRef.current;
       const table = tableRef.current;
       if (!scroller || !table || typeof ResizeObserver === "undefined") return;
-      const measure = () => setScrollable(scroller.scrollWidth > scroller.clientWidth);
+      const measure = () => {
+        setScrollable(scroller.scrollWidth > scroller.clientWidth || scroller.scrollHeight > scroller.clientHeight);
+        // 固定した列は、値を見る幅を削る。狭い器で長い見出しを固定すると値がほとんど見えなくなる
+        // （実測: 390px の画面で見出しの列が 323px を取り、値に残るのは 35px）。列が器の半分を
+        // 超えるあいだは固定をやめ、見出しごと横に流す。
+        const headingColumn = table.rows[0]?.cells[0];
+        setRowHeadersFit(!headingColumn || headingColumn.offsetWidth <= scroller.clientWidth / 2);
+      };
       measure();
       const observer = new ResizeObserver(measure);
       observer.observe(scroller);
@@ -169,6 +197,42 @@ export const PivotTable = React.forwardRef<HTMLTableElement, PivotTableProps>(
     }, []);
 
     const mergedRef = useMergedRef(ref, tableRef);
+    const stickLeft = stickyRowHeaders && rowHeadersFit;
+
+    /*
+     * 見出しの固定は、段ごとに `top` を持つ。全段に同じ `top` を当てると、Table の
+     * `stickyHeader` のように全段が同じ位置に重なる。段の高さは文字の折り返しや密度で変わるので、
+     * 決め打ちにせず実際の行を測る（上の段までの高さの合計が、その段の `top`）。
+     */
+    const headerRowRefs = React.useRef<(HTMLTableRowElement | null)[]>([]);
+    const [headerTops, setHeaderTops] = useState<number[]>([]);
+    const headerDepth = columnLayout.depth;
+
+    React.useLayoutEffect(() => {
+      if (!stickyHeader) return;
+      const rowsEls = headerRowRefs.current.slice(0, headerDepth);
+      const measure = () => {
+        let top = 0;
+        const next = rowsEls.map((row) => {
+          const current = top;
+          top += row?.getBoundingClientRect().height ?? 0;
+          return current;
+        });
+        setHeaderTops((prev) => (prev.length === next.length && prev.every((v, i) => v === next[i]) ? prev : next));
+      };
+      measure();
+      if (typeof ResizeObserver === "undefined") return;
+      const observer = new ResizeObserver(measure);
+      rowsEls.forEach((row) => row && observer.observe(row));
+      return () => observer.disconnect();
+    }, [stickyHeader, headerDepth]);
+
+    // 段の高さは端数を持つ（実測 38.39px）。そのまま積むと段と段の間に 1px 未満の隙間ができ、下を
+    // 流れる中身が覗く。`top` は切り捨て、重なった分は上の段を手前にして隠す。角はどの段よりも手前。
+    const stickyTop = (level: number, corner = false): React.CSSProperties | undefined =>
+      stickyHeader
+        ? { top: Math.floor(headerTops[level] ?? 0), zIndex: 10 + headerDepth - level + (corner ? 1 : 0) }
+        : undefined;
 
     // タブ位置になった領域には、表と同じ名前を付ける（名前の無い領域にはしない）
     const captionId = `${idBase}caption`;
@@ -184,6 +248,7 @@ export const PivotTable = React.forwardRef<HTMLTableElement, PivotTableProps>(
       <div
         ref={scrollerRef}
         className={localStyles.scroller}
+        style={maxHeight !== undefined ? { maxHeight } : undefined}
         tabIndex={scrollable ? 0 : undefined}
         {...(scrollable && regionName ? { role: "region", ...regionName } : null)}
       >
@@ -200,22 +265,43 @@ export const PivotTable = React.forwardRef<HTMLTableElement, PivotTableProps>(
           ))}
           <Table.Header>
             {columnLayout.headerRows.map((cells, level) => (
-              <tr key={level}>
+              <tr
+                key={level}
+                ref={(el) => {
+                  headerRowRefs.current[level] = el;
+                }}
+              >
                 {level === 0 &&
                   (hasCorner ? (
                     <th
                       id={cornerId}
                       scope="col"
                       rowSpan={columnLayout.depth}
-                      className={classNames(localStyles.columnHeader, localStyles.corner, localStyles.bottom)}
+                      className={classNames(
+                        localStyles.columnHeader,
+                        localStyles.corner,
+                        localStyles.bottom,
+                        stickyHeader && localStyles.stickyTop,
+                        stickLeft && localStyles.stickyLeft,
+                      )}
+                      style={stickyTop(0, true)}
                     >
                       {rowAxisLabel}
                     </th>
                   ) : (
                     // 中身の無い見出しセルは置かない（空の `th` は読み上げで「見出し、空」になる）
-                    <td rowSpan={columnLayout.depth} className={classNames(localStyles.columnHeader, localStyles.bottom)} />
+                    <td
+                      rowSpan={columnLayout.depth}
+                      className={classNames(
+                        localStyles.columnHeader,
+                        localStyles.bottom,
+                        stickyHeader && localStyles.stickyTop,
+                        stickLeft && localStyles.stickyLeft,
+                      )}
+                      style={stickyTop(0, true)}
+                    />
                   ))}
-                {cells.map((cell) => (
+                {cells.map((cell, cellIndex) => (
                   <th
                     key={cell.id}
                     id={columnHeaderId(cell.id)}
@@ -227,8 +313,11 @@ export const PivotTable = React.forwardRef<HTMLTableElement, PivotTableProps>(
                       localStyles.columnHeader,
                       cell.kind === "group" && localStyles.group,
                       cell.reachesBottom && localStyles.bottom,
-                      cell.startsGroup && localStyles.groupStart,
+                      // 行見出しの列を固定するときは、先頭の列の左の線を固定した列の側が描く
+                      cell.startsGroup && !(stickLeft && cellIndex === 0) && localStyles.groupStart,
+                      stickyHeader && localStyles.stickyTop,
                     )}
+                    style={stickyTop(level)}
                   >
                     {cell.kind === "group" || cell.kind === "leaf" ? cell.node?.label : totalLabel}
                   </th>
@@ -246,7 +335,7 @@ export const PivotTable = React.forwardRef<HTMLTableElement, PivotTableProps>(
                     id={rowHeaderId(index)}
                     scope="row"
                     headers={ancestorPath || undefined}
-                    className={localStyles.rowHeader}
+                    className={classNames(localStyles.rowHeader, stickLeft && localStyles.stickyLeft)}
                     style={{ "--wim-pivot-table-depth": row.depth } as React.CSSProperties}
                   >
                     {row.hasChildren ? (
@@ -275,7 +364,7 @@ export const PivotTable = React.forwardRef<HTMLTableElement, PivotTableProps>(
                       className={classNames(
                         localStyles.value,
                         column.kind !== "leaf" && localStyles.aggregate,
-                        column.startsGroup && localStyles.groupStart,
+                        column.startsGroup && !(stickLeft && c === 0) && localStyles.groupStart,
                       )}
                     >
                       {getValue(row.key, column.key)}
@@ -292,7 +381,7 @@ export const PivotTable = React.forwardRef<HTMLTableElement, PivotTableProps>(
                   id={totalRowId}
                   scope="row"
                   headers={hasCorner ? cornerId : undefined}
-                  className={localStyles.rowHeader}
+                  className={classNames(localStyles.rowHeader, stickLeft && localStyles.stickyLeft)}
                 >
                   <span className={classNames(hasRowGroups && localStyles.leafLabel)}>{totalLabel}</span>
                 </th>
@@ -300,7 +389,10 @@ export const PivotTable = React.forwardRef<HTMLTableElement, PivotTableProps>(
                   <Table.Cell
                     key={c}
                     headers={`${totalRowId} ${columnPaths[c]}`}
-                    className={classNames(localStyles.value, column.startsGroup && localStyles.groupStart)}
+                    className={classNames(
+                      localStyles.value,
+                      column.startsGroup && !(stickLeft && c === 0) && localStyles.groupStart,
+                    )}
                   >
                     {getValue(null, column.key)}
                   </Table.Cell>

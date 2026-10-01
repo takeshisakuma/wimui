@@ -8,6 +8,7 @@ const STORIES = [
   "components-data-structures-pivottable--totals",
   "components-data-structures-pivottable--nested-columns",
   "components-data-structures-pivottable--collapsed",
+  "components-data-structures-pivottable--sticky-headers",
 ];
 
 test.describe("PivotTable", () => {
@@ -121,5 +122,60 @@ test.describe("PivotTable", () => {
     await page.keyboard.press("Space");
     await expect(drinks).toHaveAttribute("aria-expanded", "true");
     await expect(page.getByRole("rowheader", { name: "Drip coffee" })).toBeVisible();
+  });
+
+  test("keeps every heading level in view, stacked without a gap, while scrolling vertically", async ({ page }) => {
+    await page.setViewportSize({ width: 1100, height: 700 });
+    await page.goto(STORY_URL("components-data-structures-pivottable--sticky-headers"));
+    await page.waitForLoadState("networkidle");
+    const read = (scrollTop: number) =>
+      page.evaluate((y) => {
+        const table = document.querySelector("table.wim-pivot-table")!;
+        const box = table.parentElement!;
+        box.scrollTop = y;
+        const boxTop = box.getBoundingClientRect().top;
+        const levels = Array.from(table.querySelectorAll("thead tr")).map((tr) => {
+          const rect = tr.querySelector("th:not([id$=corner])")!.getBoundingClientRect();
+          return { top: rect.top - boxTop, bottom: rect.bottom - boxTop };
+        });
+        return { levels, max: box.scrollHeight - box.clientHeight };
+      }, scrollTop);
+    const { max } = await read(0);
+    // 0 件のスクロール量で緑になるのを防ぐ（表が枠より高いこと）
+    expect(max).toBeGreaterThan(100);
+    const positions = new Set<string>();
+    for (let y = 60; y <= max; y += 7) {
+      const { levels } = await read(y);
+      expect(levels.length).toBe(2);
+      // 最上段は枠の上端に、次の段はその真下に（重なりも隙間も 1px 未満）
+      expect(Math.abs(levels[0].top)).toBeLessThan(1);
+      expect(Math.abs(levels[1].top - levels[0].bottom)).toBeLessThan(1);
+      positions.add(levels.map((l) => l.top.toFixed(2)).join("/"));
+    }
+    // スクロール中、見出しは 1 画素も動かない
+    expect([...positions]).toHaveLength(1);
+  });
+
+  test("pins the row headings on a wide screen and lets them scroll away on a narrow one", async ({ page }) => {
+    const leftAfterScroll = async (width: number) => {
+      await page.setViewportSize({ width, height: 700 });
+      await page.goto(STORY_URL("components-data-structures-pivottable--sticky-headers"));
+      await page.waitForLoadState("networkidle");
+      return page.evaluate(() => {
+        const table = document.querySelector("table.wim-pivot-table")!;
+        const box = table.parentElement!;
+        const before = table.querySelector("tbody th")!.getBoundingClientRect().left;
+        box.scrollLeft = 80;
+        return { moved: before - table.querySelector("tbody th")!.getBoundingClientRect().left, scrolled: box.scrollLeft };
+      });
+    };
+    // 幅 800px: 表ははみ出し、見出しの列は半分以下 → 固定される
+    const wide = await leftAfterScroll(800);
+    expect(wide.scrolled).toBe(80);
+    expect(wide.moved).toBe(0);
+    // 幅 390px: 見出しの列が半分を超える → 一緒に流れる
+    const narrow = await leftAfterScroll(390);
+    expect(narrow.scrolled).toBe(80);
+    expect(narrow.moved).toBe(80);
   });
 });

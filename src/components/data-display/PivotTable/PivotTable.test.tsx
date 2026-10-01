@@ -41,6 +41,54 @@ const headersOf = (cell: HTMLElement) =>
     .filter(Boolean)
     .map((id) => document.getElementById(id)?.textContent);
 
+type Layout = {
+  scrollWidth?: number;
+  clientWidth?: number;
+  scrollHeight?: number;
+  clientHeight?: number;
+  /** 行見出しの列の幅（どの要素にも同じ値を返す）。 */
+  offsetWidth?: number;
+  /** 見出しの行（`tr`）の高さ。 */
+  rowHeight?: number;
+};
+
+/**
+ * jsdom は配置をしないので、寸法を差し替えて「はみ出している / 収まっている」を作る。
+ * 差し替えは必ず元へ戻す ── 元の定義が `HTMLElement.prototype` に無い（`Element.prototype` に
+ * ある）ときは、足したものを消す。戻さないと、後ろのテストが差し替えた寸法のまま走る。
+ */
+const withLayout = (layout: Layout, run: () => void) => {
+  const keys = ["scrollWidth", "clientWidth", "scrollHeight", "clientHeight", "offsetWidth"] as const;
+  const originals = keys.map((key) => Object.getOwnPropertyDescriptor(HTMLElement.prototype, key));
+  keys.forEach((key) => {
+    const value = layout[key];
+    if (value !== undefined) Object.defineProperty(HTMLElement.prototype, key, { configurable: true, get: () => value });
+  });
+  const originalRect = HTMLTableRowElement.prototype.getBoundingClientRect;
+  if (layout.rowHeight !== undefined) {
+    const height = layout.rowHeight;
+    HTMLTableRowElement.prototype.getBoundingClientRect = () => ({ height }) as DOMRect;
+  }
+  vi.stubGlobal(
+    "ResizeObserver",
+    class {
+      observe() {}
+      disconnect() {}
+    },
+  );
+  try {
+    run();
+  } finally {
+    vi.unstubAllGlobals();
+    HTMLTableRowElement.prototype.getBoundingClientRect = originalRect;
+    keys.forEach((key, i) => {
+      const original = originals[i];
+      if (original) Object.defineProperty(HTMLElement.prototype, key, original);
+      else delete (HTMLElement.prototype as unknown as Record<string, unknown>)[key];
+    });
+  }
+};
+
 describe("PivotTable", () => {
   it("renders a table with one row per row node", () => {
     render(<PivotTable rows={ROWS} columns={COLUMNS} getValue={getValue} aria-label="Sales" />);
@@ -270,29 +318,8 @@ describe("PivotTable", () => {
   });
 
   describe("sideways scrolling", () => {
-    // jsdom は配置をしないので、器と中身の幅を差し替えて「はみ出している / 収まっている」を作る
-    const withWidths = (scrollWidth: number, clientWidth: number, run: () => void) => {
-      const original = {
-        scroll: Object.getOwnPropertyDescriptor(HTMLElement.prototype, "scrollWidth"),
-        client: Object.getOwnPropertyDescriptor(HTMLElement.prototype, "clientWidth"),
-      };
-      Object.defineProperty(HTMLElement.prototype, "scrollWidth", { configurable: true, get: () => scrollWidth });
-      Object.defineProperty(HTMLElement.prototype, "clientWidth", { configurable: true, get: () => clientWidth });
-      vi.stubGlobal(
-        "ResizeObserver",
-        class {
-          observe() {}
-          disconnect() {}
-        },
-      );
-      try {
-        run();
-      } finally {
-        vi.unstubAllGlobals();
-        if (original.scroll) Object.defineProperty(HTMLElement.prototype, "scrollWidth", original.scroll);
-        if (original.client) Object.defineProperty(HTMLElement.prototype, "clientWidth", original.client);
-      }
-    };
+    const withWidths = (scrollWidth: number, clientWidth: number, run: () => void) =>
+      withLayout({ scrollWidth, clientWidth }, run);
     const scrollerOf = (container: HTMLElement) => container.querySelector("table")!.parentElement!;
 
     it("adds no tab stop while the table fits", () => {
@@ -328,6 +355,126 @@ describe("PivotTable", () => {
       withWidths(800, 300, () => {
         const { container } = render(<PivotTable rows={ROWS} columns={COLUMNS} getValue={getValue} />);
         expect(scrollerOf(container)).not.toHaveAttribute("role");
+      });
+    });
+  });
+
+  it("restores the layout stubs after each use", () => {
+    withLayout({ scrollWidth: 800, clientWidth: 300 }, () => {});
+    expect(document.createElement("div").scrollWidth).toBe(0);
+    expect(Object.getOwnPropertyDescriptor(HTMLElement.prototype, "scrollWidth")).toBeUndefined();
+  });
+
+  describe("pinned headings", () => {
+    const scrollerOf = (container: HTMLElement) => container.querySelector("table")!.parentElement!;
+    const pinnedLeft = (el: Element) => el.className.split(" ").includes("stickyLeft");
+    const pinnedTop = (el: Element) => el.className.split(" ").includes("stickyTop");
+
+    it("limits the height of the scroller, reading a number as px", () => {
+      const { container } = render(<PivotTable rows={ROWS} columns={COLUMNS} getValue={getValue} maxHeight={320} />);
+      expect(scrollerOf(container)).toHaveStyle({ maxHeight: "320px" });
+    });
+
+    it("does not limit the height by default", () => {
+      const { container } = render(<PivotTable rows={ROWS} columns={COLUMNS} getValue={getValue} />);
+      expect(scrollerOf(container).style.maxHeight).toBe("");
+    });
+
+    it("becomes a tab stop when it overflows vertically", () => {
+      withLayout({ scrollHeight: 500, clientHeight: 320, scrollWidth: 300, clientWidth: 300 }, () => {
+        const { container } = render(<PivotTable rows={ROWS} columns={COLUMNS} getValue={getValue} maxHeight={320} />);
+        expect(scrollerOf(container)).toHaveAttribute("tabindex", "0");
+      });
+    });
+
+    it("leaves the headings unpinned by default", () => {
+      const { container } = render(<PivotTable rows={ROWS} columns={COLUMNS} getValue={getValue} rowAxisLabel="Product" />);
+      container.querySelectorAll("th").forEach((th) => {
+        expect(pinnedTop(th)).toBe(false);
+        expect(pinnedLeft(th)).toBe(false);
+        expect(th.style.top).toBe("");
+      });
+    });
+
+    it("stacks the heading levels: each level sits below the measured rows above it", () => {
+      withLayout({ rowHeight: 38.39 }, () => {
+        render(<PivotTable rows={ROWS} columns={COLUMNS} getValue={getValue} rowAxisLabel="Product" stickyHeader />);
+        const q1 = screen.getByRole("columnheader", { name: "Q1" });
+        const jan = screen.getByRole("columnheader", { name: "Jan" });
+        expect(pinnedTop(q1)).toBe(true);
+        expect(q1.style.top).toBe("0px");
+        // 上の段の高さ（端数は切り捨て）
+        expect(jan.style.top).toBe("38px");
+      });
+    });
+
+    it("puts upper heading levels in front of lower ones and the corner in front of all", () => {
+      withLayout({ rowHeight: 40 }, () => {
+        render(<PivotTable rows={ROWS} columns={COLUMNS} getValue={getValue} rowAxisLabel="Product" stickyHeader />);
+        const z = (name: string) => Number(screen.getByRole("columnheader", { name }).style.zIndex);
+        expect(z("Q1")).toBeGreaterThan(z("Jan"));
+        expect(z("Product")).toBeGreaterThan(z("Q1"));
+      });
+    });
+
+    it("pins the empty corner cell too", () => {
+      withLayout({ rowHeight: 40 }, () => {
+        const { container } = render(<PivotTable rows={ROWS} columns={COLUMNS} getValue={getValue} stickyHeader />);
+        const corner = container.querySelector("thead td")!;
+        expect(pinnedTop(corner)).toBe(true);
+      });
+    });
+
+    it("pins the row headings, the corner and the total heading with stickyRowHeaders", () => {
+      const { container } = render(
+        <PivotTable rows={ROWS} columns={COLUMNS} getValue={getValue} rowAxisLabel="Product" totalRow stickyRowHeaders />,
+      );
+      screen.getAllByRole("rowheader").forEach((th) => expect(pinnedLeft(th)).toBe(true));
+      expect(pinnedLeft(screen.getByRole("columnheader", { name: "Product" }))).toBe(true);
+      expect(pinnedLeft(container.querySelector("tfoot th")!)).toBe(true);
+      // 列見出しは横には固定しない
+      expect(pinnedLeft(screen.getByRole("columnheader", { name: "Jan" }))).toBe(false);
+    });
+
+    it("hands the line of the first value column over to the pinned column", () => {
+      const hasGroupLine = (text: string) => screen.getByText(text).className.split(" ").includes("groupStart");
+      const { unmount } = render(<PivotTable rows={ROWS} columns={COLUMNS} getValue={getValue} />);
+      expect(hasGroupLine("latte/jan")).toBe(true);
+      expect(hasGroupLine("latte/apr")).toBe(true);
+      unmount();
+      render(<PivotTable rows={ROWS} columns={COLUMNS} getValue={getValue} stickyRowHeaders />);
+      expect(hasGroupLine("latte/jan")).toBe(false);
+      // 2 つ目のグループの線はそのまま
+      expect(hasGroupLine("latte/apr")).toBe(true);
+    });
+
+    it("hands over the line in the heading rows too: the first heading of every level", () => {
+      const hasGroupLine = (name: string) =>
+        screen.getByRole("columnheader", { name }).className.split(" ").includes("groupStart");
+      const { unmount } = render(<PivotTable rows={ROWS} columns={COLUMNS} getValue={getValue} />);
+      expect(hasGroupLine("Q1")).toBe(true);
+      expect(hasGroupLine("Jan")).toBe(true);
+      unmount();
+      render(<PivotTable rows={ROWS} columns={COLUMNS} getValue={getValue} stickyRowHeaders />);
+      expect(hasGroupLine("Q1")).toBe(false);
+      expect(hasGroupLine("Jan")).toBe(false);
+      expect(hasGroupLine("Q2")).toBe(true);
+      expect(hasGroupLine("Apr")).toBe(true);
+    });
+
+    it("stops pinning the row headings while they take more than half of the visible width", () => {
+      withLayout({ offsetWidth: 323, clientWidth: 358 }, () => {
+        render(<PivotTable rows={ROWS} columns={COLUMNS} getValue={getValue} stickyRowHeaders />);
+        screen.getAllByRole("rowheader").forEach((th) => expect(pinnedLeft(th)).toBe(false));
+        // 固定をやめたら、先頭の列の線は元へ戻る
+        expect(screen.getByText("latte/jan").className.split(" ")).toContain("groupStart");
+      });
+    });
+
+    it("keeps pinning the row headings while they take half of the visible width or less", () => {
+      withLayout({ offsetWidth: 300, clientWidth: 600 }, () => {
+        render(<PivotTable rows={ROWS} columns={COLUMNS} getValue={getValue} stickyRowHeaders />);
+        screen.getAllByRole("rowheader").forEach((th) => expect(pinnedLeft(th)).toBe(true));
       });
     });
   });

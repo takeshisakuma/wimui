@@ -415,6 +415,9 @@
     "pivotTable_prop_labels": "Texto dos cabeçalhos de total, para quando as traduções internas não servem.",
     "pivotTable_prop_expandedValues": "Chaves dos grupos de linhas expandidos (controlado). Um grupo que não está na lista mostra apenas a própria linha, que traz o seu subtotal.",
     "pivotTable_prop_defaultExpandedValues": "Grupos de linhas expandidos na primeira renderização (não controlado). Por padrão, todos os grupos.",
-    "pivotTable_prop_onExpandedChange": "Chamado com a nova lista de grupos de linhas expandidos quando um grupo é expandido ou recolhido."
+    "pivotTable_prop_onExpandedChange": "Chamado com a nova lista de grupos de linhas expandidos quando um grupo é expandido ou recolhido.",
+    "pivotTable_prop_maxHeight": "Altura máxima da tabela (um número é em px). Acima dela, a tabela rola verticalmente dentro da própria caixa.",
+    "pivotTable_prop_stickyHeader": "Mantém os cabeçalhos de coluna visíveis enquanto a tabela rola verticalmente. Todos os níveis permanecem, empilhados em ordem. Só tem efeito junto com `maxHeight`.",
+    "pivotTable_prop_stickyRowHeaders": "Mantém os cabeçalhos de linha visíveis enquanto a tabela rola para os lados. A coluna só fica fixa enquanto ocupa no máximo metade da largura visível; em um contêiner mais estreito, ela rola com o restante, para que os valores continuem legíveis."
   }
 }

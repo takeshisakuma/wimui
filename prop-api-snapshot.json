@@ -7504,6 +7504,10 @@
         }
       }
     },
+    "PivotTable.maxHeight": {
+      "required": false,
+      "type": "string | number"
+    },
     "PivotTable.onExpandedChange": {
       "required": false,
       "type": "(values: string[]) => void"
@@ -7529,6 +7533,14 @@
           "type": "React.ReactNode"
         }
       }
+    },
+    "PivotTable.stickyHeader": {
+      "required": false,
+      "type": "boolean"
+    },
+    "PivotTable.stickyRowHeaders": {
+      "required": false,
+      "type": "boolean"
     },
     "PivotTable.totalColumn": {
       "required": false,
