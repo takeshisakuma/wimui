@@ -7,7 +7,28 @@ import {
   DataGrid,
   List,
   ListItem,
+  PivotTable,
+  type PivotTableAxisNode,
 } from "../../src";
+
+// 行/列のキーを「/」でつないだ表。小計（グループのキー）と総計（all）も持つ
+const PIVOT_UNITS: Record<string, number> = {
+  "drip/jan": 1284,
+  "drip/feb": 1192,
+  "drip/q1": 2476,
+  "latte/jan": 932,
+  "latte/feb": 871,
+  "latte/q1": 1803,
+  "drinks/jan": 2216,
+  "drinks/feb": 2063,
+  "drinks/q1": 4279,
+  "gift/jan": 37,
+  "gift/feb": 12,
+  "gift/q1": 49,
+  "all/jan": 2253,
+  "all/feb": 2075,
+  "all/q1": 4328,
+};
 
 const meta: Meta = {
   title: "Audit/TableFamily",
@@ -22,7 +43,10 @@ import { AuditPage, ComparisonGrid, ComponentGroup } from "./AuditUtils";
 
 export const Overview: StoryObj = {
   render: () => {
-    const { t } = useTranslation([...ALL_NAMESPACES, "audit"]);
+    const { t, i18n } = useTranslation([...ALL_NAMESPACES, "audit"]);
+    const monthName = (month: number) =>
+      new Intl.DateTimeFormat(i18n.language, { month: "short" }).format(new Date(2026, month, 1));
+    const units = new Intl.NumberFormat(i18n.language);
 
     const columns = [
       { key: "name", title: "Name", sortable: true },
@@ -34,6 +58,28 @@ export const Overview: StoryObj = {
       { id: "1", name: "Priya Nair", age: 30, email: "priya@example.com" },
       { id: "2", name: "Hana Ito", age: 25, email: "hana@example.com" },
       { id: "3", name: "Marcus Bell", age: 40, email: "marcus@example.com" },
+    ];
+
+    const pivotRows: PivotTableAxisNode[] = [
+      {
+        key: "drinks",
+        label: t("story.pivottable_drinks"),
+        children: [
+          { key: "drip", label: t("story.pivottable_drip") },
+          { key: "latte", label: t("story.pivottable_latte") },
+        ],
+      },
+      { key: "gift", label: t("story.pivottable_gift") },
+    ];
+    const pivotColumns: PivotTableAxisNode[] = [
+      {
+        key: "q1",
+        label: t("story.pivottable_q1"),
+        children: [
+          { key: "jan", label: monthName(0) },
+          { key: "feb", label: monthName(1) },
+        ],
+      },
     ];
 
     const [data, setData] = React.useState(initialData);
@@ -127,6 +173,23 @@ export const Overview: StoryObj = {
               stickyHeader
               bordered
               striped
+            />
+          </ComponentGroup>
+        </ComparisonGrid>
+
+        {/* PivotTable: 同じ家族の表と、罫線・余白・見出しの帯が揃っているかを見る */}
+        <ComparisonGrid title={t("audit:label_pivottable")}>
+          <ComponentGroup label={t("audit:label_pivottable")}>
+            <PivotTable
+              rows={pivotRows}
+              columns={pivotColumns}
+              getValue={(row, column) => {
+                const value = PIVOT_UNITS[`${row ?? "all"}/${column ?? "all"}`];
+                return value === undefined ? null : units.format(value);
+              }}
+              rowAxisLabel={t("story.pivottable_product")}
+              columnSubtotals
+              totalRow
             />
           </ComponentGroup>
         </ComparisonGrid>

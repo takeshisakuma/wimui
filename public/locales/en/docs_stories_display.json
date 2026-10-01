@@ -448,6 +448,24 @@
     "treediagram_role_operations": "Head of Operations",
     "treediagram_role_support": "Customer Support",
     "treediagram_role_finance": "Accountant",
-    "treediagram_selected": "Selected: {{name}}, {{role}}"
+    "treediagram_selected": "Selected: {{name}}, {{role}}",
+    "pivottable_caption": "Units sold, January to June 2026",
+    "pivottable_caption_shops": "Units sold by shop, January to June 2026",
+    "pivottable_product": "Product",
+    "pivottable_category": "Category",
+    "pivottable_q1": "Q1",
+    "pivottable_q2": "Q2",
+    "pivottable_drinks": "Drinks",
+    "pivottable_drip": "Drip coffee",
+    "pivottable_latte": "Café latte",
+    "pivottable_coldbrew": "Cold brew",
+    "pivottable_matcha": "Matcha latte",
+    "pivottable_food": "Food",
+    "pivottable_croissant": "Butter croissant",
+    "pivottable_sandwich": "Egg salad sandwich",
+    "pivottable_tart": "Seasonal fruit tart (weekends only)",
+    "pivottable_gift": "Gift cards",
+    "pivottable_shop_station": "Station shop",
+    "pivottable_shop_riverside": "Riverside shop"
   }
 }

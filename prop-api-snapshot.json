@@ -7456,6 +7456,76 @@
       "required": false,
       "type": "string | number"
     },
+    "PivotTable.caption": {
+      "required": false,
+      "type": "React.ReactNode"
+    },
+    "PivotTable.columnSubtotals": {
+      "required": false,
+      "type": "boolean"
+    },
+    "PivotTable.columns": {
+      "required": true,
+      "type": "PivotTableAxisNode[]",
+      "shape": {
+        "children": {
+          "required": false,
+          "type": "PivotTableAxisNode[]"
+        },
+        "key": {
+          "required": true,
+          "type": "string"
+        },
+        "label": {
+          "required": true,
+          "type": "React.ReactNode"
+        }
+      }
+    },
+    "PivotTable.getValue": {
+      "required": true,
+      "type": "(rowKey: string | null, columnKey: string | null) => React.ReactNode"
+    },
+    "PivotTable.labels": {
+      "required": false,
+      "type": "{ /** Heading of the grand total row / column and of each subtotal column. */ total?: string; }",
+      "shape": {
+        "total": {
+          "required": false,
+          "type": "string"
+        }
+      }
+    },
+    "PivotTable.rowAxisLabel": {
+      "required": false,
+      "type": "React.ReactNode"
+    },
+    "PivotTable.rows": {
+      "required": true,
+      "type": "PivotTableAxisNode[]",
+      "shape": {
+        "children": {
+          "required": false,
+          "type": "PivotTableAxisNode[]"
+        },
+        "key": {
+          "required": true,
+          "type": "string"
+        },
+        "label": {
+          "required": true,
+          "type": "React.ReactNode"
+        }
+      }
+    },
+    "PivotTable.totalColumn": {
+      "required": false,
+      "type": "boolean"
+    },
+    "PivotTable.totalRow": {
+      "required": false,
+      "type": "boolean"
+    },
     "Popconfirm.cancelText": {
       "required": false,
       "type": "ReactNode"

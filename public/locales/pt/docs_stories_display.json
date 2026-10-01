@@ -448,6 +448,24 @@
     "treediagram_role_operations": "Chefe de operações",
     "treediagram_role_support": "Suporte ao cliente",
     "treediagram_role_finance": "Contadora",
-    "treediagram_selected": "Selecionado: {{name}}, {{role}}"
+    "treediagram_selected": "Selecionado: {{name}}, {{role}}",
+    "pivottable_caption": "Unidades vendidas, de janeiro a junho de 2026",
+    "pivottable_caption_shops": "Unidades vendidas por loja, de janeiro a junho de 2026",
+    "pivottable_product": "Produto",
+    "pivottable_category": "Categoria",
+    "pivottable_q1": "1º trimestre",
+    "pivottable_q2": "2º trimestre",
+    "pivottable_drinks": "Bebidas",
+    "pivottable_drip": "Café coado",
+    "pivottable_latte": "Café com leite",
+    "pivottable_coldbrew": "Cold brew",
+    "pivottable_matcha": "Matcha latte",
+    "pivottable_food": "Comidas",
+    "pivottable_croissant": "Croissant de manteiga",
+    "pivottable_sandwich": "Sanduíche de salada de ovo",
+    "pivottable_tart": "Torta de frutas da estação (só nos fins de semana)",
+    "pivottable_gift": "Cartões-presente",
+    "pivottable_shop_station": "Loja da estação",
+    "pivottable_shop_riverside": "Loja da beira-rio"
   }
 }

@@ -129,6 +129,9 @@
     "tree_usage": "Estruturas de diretório como um gerenciador de arquivos, organogramas, árvores de categorias em várias camadas.",
     "usecase": "Casos de Uso",
     "vertical_list": "Coluna Única Vertical",
-    "row_column_annotation": "(Linha/Coluna)"
+    "row_column_annotation": "(Linha/Coluna)",
+    "pivot_structure": "Tabulação cruzada (duas hierarquias)",
+    "pivot_features": "Cabeçalhos de linha e de coluna em vários níveis, com subtotais e totais gerais. Desenha dados agregados; não ordena, filtra nem edita.",
+    "pivot_usage": "Relatórios que comparam totais em duas dimensões, como vendas por produto e mês."
   }
 }

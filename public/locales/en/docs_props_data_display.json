@@ -403,6 +403,15 @@
     "treeDiagram_prop_renderNode": "Replaces the default card (label, description, avatar). The card frame stays.",
     "treeDiagram_prop_nodeWidth": "Card width in px. Every card has the same size so the layout is decided before\nanything is measured; long text is truncated and read in full by assistive technology.",
     "treeDiagram_prop_nodeHeight": "Card height in px.",
-    "treeDiagram_prop_labels": "Accessible names of the collapse / expand button, for when the built-in translations do not fit."
+    "treeDiagram_prop_labels": "Accessible names of the collapse / expand button, for when the built-in translations do not fit.",
+    "pivotTable_prop_rows": "The row axis as a tree. Groups are drawn as an outline: one indented row per node.",
+    "pivotTable_prop_columns": "The column axis as a tree. Groups become headings that span their columns.",
+    "pivotTable_prop_getValue": "Returns the content of one cell. The component does not aggregate: a group key asks\nfor that group's subtotal and `null` asks for the grand total of that axis. Return\n`null` or `undefined` for an empty cell.",
+    "pivotTable_prop_rowAxisLabel": "Heading of the row axis, shown in the top-left corner.",
+    "pivotTable_prop_caption": "Visible title of the table, also its accessible name.",
+    "pivotTable_prop_columnSubtotals": "Adds a subtotal column after the columns of each column group.",
+    "pivotTable_prop_totalRow": "Adds a grand total row at the bottom.",
+    "pivotTable_prop_totalColumn": "Adds a grand total column at the right edge.",
+    "pivotTable_prop_labels": "Text of the total headings, for when the built-in translations do not fit."
   }
 }

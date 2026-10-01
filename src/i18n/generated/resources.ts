@@ -249,6 +249,9 @@ export const wimResources: WimResources = {
         "aria": "Tree diagram",
         "collapse": "Collapse {{label}}",
         "expand": "Expand {{label}}"
+      },
+      "pivottable": {
+        "total": "Total"
       }
     },
     "data-display": {
@@ -598,6 +601,9 @@ export const wimResources: WimResources = {
         "aria": "ツリー図",
         "collapse": "{{label}} を折りたたむ",
         "expand": "{{label}} を展開"
+      },
+      "pivottable": {
+        "total": "合計"
       }
     },
     "data-display": {
@@ -947,6 +953,9 @@ export const wimResources: WimResources = {
         "aria": "Diagrama de árvore",
         "collapse": "Recolher {{label}}",
         "expand": "Expandir {{label}}"
+      },
+      "pivottable": {
+        "total": "Total"
       }
     },
     "data-display": {
