@@ -41,6 +41,24 @@ export function useVideoPlayer({
   const internalContainerRef = React.useRef<HTMLDivElement>(null);
   const containerRef = externalContainerRef ?? internalContainerRef;
 
+  // 遅らせて動かす処理（タップの判定・画質や曲の切り替え後の再生）は、アンマウントで全部止める。
+  // 止めないと、消えたコンポーネントの state を更新しにいく。
+  const timersRef = React.useRef(new Set<ReturnType<typeof setTimeout>>());
+  const later = useCallback((run: () => void, ms: number) => {
+    const id = setTimeout(() => {
+      timersRef.current.delete(id);
+      run();
+    }, ms);
+    timersRef.current.add(id);
+  }, []);
+  useEffect(() => {
+    const timers = timersRef.current;
+    return () => {
+      timers.forEach(clearTimeout);
+      timers.clear();
+    };
+  }, []);
+
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -175,7 +193,7 @@ export function useVideoPlayer({
     const time = videoRef.current.currentTime;
     const wasPlaying = !videoRef.current.paused;
     setCurrentQualityIndex(index);
-    setTimeout(() => {
+    later(() => {
       if (videoRef.current) {
         videoRef.current.currentTime = time;
         if (wasPlaying) videoRef.current.play();
@@ -188,9 +206,9 @@ export function useVideoPlayer({
     setCurrentPlayIndex(index);
     if (videoRef.current) {
       videoRef.current.currentTime = 0;
-      setTimeout(() => videoRef.current?.play(), 100);
+      later(() => videoRef.current?.play(), 100);
     }
-  }, []);
+  }, [later]);
 
   const handleTimeUpdate = () => {
     if (videoRef.current) {
@@ -236,7 +254,7 @@ export function useVideoPlayer({
     ) {
       setCurrentPlayIndex((prev) => prev + 1);
       if (videoRef.current) {
-        setTimeout(() => {
+        later(() => {
           videoRef.current?.play();
         }, 100);
       }
@@ -277,14 +295,11 @@ export function useVideoPlayer({
         skip(-10);
         setSkipIndicator({ show: true, direction: "backward" });
       }
-      setTimeout(
-        () => setSkipIndicator({ show: false, direction: "forward" }),
-        600,
-      );
+      later(() => setSkipIndicator({ show: false, direction: "forward" }), 600);
       setLastTapInfo(null);
     } else {
       setLastTapInfo({ time: currentTimeMs, x: xPos });
-      setTimeout(() => {
+      later(() => {
         if (Date.now() - currentTimeMs >= 290) {
           togglePlay();
         }
