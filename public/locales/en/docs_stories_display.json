@@ -466,6 +466,8 @@
     "pivottable_tart": "Seasonal fruit tart (weekends only)",
     "pivottable_gift": "Gift cards",
     "pivottable_shop_station": "Station shop",
-    "pivottable_shop_riverside": "Riverside shop"
+    "pivottable_shop_riverside": "Riverside shop",
+    "pivottable_caption_daily": "Units sold per day by shop, May and June 2026",
+    "pivottable_shop_day": "Shop and day"
   }
 }

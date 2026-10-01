@@ -355,6 +355,10 @@
     "pivottable_best_label": "Keep the labels of row groups to plain text or icons. They are drawn inside a button, so a link or another control there would be a control inside a control.",
     "pivottable_sticky": "Pinned headings",
     "pivottable_sticky_desc": "maxHeight limits the height and lets the table scroll inside its own box. stickyHeader then keeps every level of column headings in view, stacked in order, and stickyRowHeaders keeps the row headings in view while the table scrolls sideways. The row heading column is only pinned while it takes at most half of the visible width; in a narrower container it scrolls with the values, because a pinned column that wide would leave almost no room to read them.",
-    "pivottable_best_sticky": "Pin headings only when the table really scrolls: stickyHeader needs maxHeight, and a table that fits on the page gains nothing from either option."
+    "pivottable_best_sticky": "Pin headings only when the table really scrolls: stickyHeader needs maxHeight, and a table that fits on the page gains nothing from either option.",
+    "pivottable_virtual": "Many rows",
+    "pivottable_virtual_desc": "With virtualized the table renders only the rows in view and a few around them, and keeps the scroll height with empty spacer rows. This table has 992 rows and 11 columns; about 20 rows are in the page at a time. Use it together with maxHeight. Rows must all have the same height, so keep labels and values on one line.",
+    "pivottable_a11y_virtual": "With virtualized, the table reports the full number of rows (aria-rowcount) and the position of each rendered row (aria-rowindex). A group row that has scrolled away is no longer in the page, so the rows under it carry the group names inside their own heading, hidden from sight, and a screen reader still announces the full row path. The row that has keyboard focus stays rendered while it is out of view, so focus is not lost by scrolling.",
+    "pivottable_best_virtual": "Turn on virtualized for hundreds of rows, not for a few dozen. Column widths follow the rows that are rendered: a column widens the first time a longer value scrolls into view and then stays that wide."
   }
 }

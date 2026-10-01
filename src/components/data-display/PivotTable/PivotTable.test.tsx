@@ -1,6 +1,6 @@
 import React from "react";
 import { describe, it, expect, vi } from "vitest";
-import { render, screen, within, fireEvent } from "@testing-library/react";
+import { render, screen, within, fireEvent, act } from "@testing-library/react";
 import { PivotTable, type PivotTableAxisNode } from "./PivotTable";
 
 vi.mock("react-i18next", () => ({
@@ -50,6 +50,10 @@ type Layout = {
   offsetWidth?: number;
   /** 見出しの行（`tr`）の高さ。 */
   rowHeight?: number;
+  /** 本文（`tbody`）の上端の位置。スクロールすると上へ動く（実物と同じ）。 */
+  bodyTop?: () => number;
+  /** 見出しのセルの幅。列幅を測る処理に返す。 */
+  cellWidth?: () => number;
 };
 
 /**
@@ -69,6 +73,16 @@ const withLayout = (layout: Layout, run: () => void) => {
     const height = layout.rowHeight;
     HTMLTableRowElement.prototype.getBoundingClientRect = () => ({ height }) as DOMRect;
   }
+  const originalSectionRect = HTMLTableSectionElement.prototype.getBoundingClientRect;
+  if (layout.bodyTop) {
+    const bodyTop = layout.bodyTop;
+    HTMLTableSectionElement.prototype.getBoundingClientRect = () => ({ top: bodyTop() }) as DOMRect;
+  }
+  const originalCellRect = HTMLTableCellElement.prototype.getBoundingClientRect;
+  if (layout.cellWidth) {
+    const cellWidth = layout.cellWidth;
+    HTMLTableCellElement.prototype.getBoundingClientRect = () => ({ width: cellWidth() }) as DOMRect;
+  }
   vi.stubGlobal(
     "ResizeObserver",
     class {
@@ -81,6 +95,8 @@ const withLayout = (layout: Layout, run: () => void) => {
   } finally {
     vi.unstubAllGlobals();
     HTMLTableRowElement.prototype.getBoundingClientRect = originalRect;
+    HTMLTableSectionElement.prototype.getBoundingClientRect = originalSectionRect;
+    HTMLTableCellElement.prototype.getBoundingClientRect = originalCellRect;
     keys.forEach((key, i) => {
       const original = originals[i];
       if (original) Object.defineProperty(HTMLElement.prototype, key, original);
@@ -475,6 +491,205 @@ describe("PivotTable", () => {
       withLayout({ offsetWidth: 300, clientWidth: 600 }, () => {
         render(<PivotTable rows={ROWS} columns={COLUMNS} getValue={getValue} stickyRowHeaders />);
         screen.getAllByRole("rowheader").forEach((th) => expect(pinnedLeft(th)).toBe(true));
+      });
+    });
+  });
+
+  describe("virtualized rows", () => {
+    // 3 グループ × 40 行（グループの行を入れて 123 行）
+    const MANY: PivotTableAxisNode[] = ["a", "b", "c"].map((group) => ({
+      key: group,
+      label: `Group ${group}`,
+      children: Array.from({ length: 40 }, (_, i) => ({ key: `${group}${i}`, label: `Row ${group}${i}` })),
+    }));
+    const scrollerOf = (container: HTMLElement) => container.querySelector("table")!.parentElement!;
+    const renderedIndices = (container: HTMLElement) =>
+      Array.from(container.querySelectorAll<HTMLElement>("tbody tr[data-row-index]")).map((tr) => Number(tr.dataset.rowIndex));
+    const gapsOf = (container: HTMLElement) =>
+      Array.from(container.querySelectorAll<HTMLElement>('tbody tr[aria-hidden="true"] td')).map((td) => td.style.height);
+
+    // 行 40px・見えている高さ 320px（8 行）。本文の上端はスクロールした分だけ上へ動く
+    const inViewport = (run: (scrollTo: (container: HTMLElement, top: number) => void) => void, extra: Layout = {}) => {
+      let scrollTop = 0;
+      withLayout({ rowHeight: 40, clientHeight: 320, bodyTop: () => -scrollTop, ...extra }, () => {
+        run((container, top) => {
+          scrollTop = top;
+          const scroller = scrollerOf(container);
+          scroller.scrollTop = top;
+          fireEvent.scroll(scroller);
+        });
+      });
+    };
+
+    it("renders every row and adds no row bookkeeping when it is off", () => {
+      const { container } = render(<PivotTable rows={MANY} columns={COLUMNS} getValue={getValue} maxHeight={320} />);
+      expect(container.querySelectorAll("tbody tr")).toHaveLength(123);
+      expect(container.querySelector("table")).not.toHaveAttribute("aria-rowcount");
+      expect(container.querySelector("tbody tr")).not.toHaveAttribute("aria-rowindex");
+      expect(container.querySelector('tbody tr[aria-hidden="true"]')).toBeNull();
+      expect(container.querySelector<HTMLElement>("thead th")!.style.minWidth).toBe("");
+    });
+
+    it("renders only the rows in view plus the overscan, and one spacer for the rest", () => {
+      inViewport(() => {
+        const { container } = render(
+          <PivotTable rows={MANY} columns={COLUMNS} getValue={getValue} maxHeight={320} virtualized />,
+        );
+        // 見えている 8 行 ＋ 下の余分 8 行
+        expect(renderedIndices(container)).toEqual(Array.from({ length: 16 }, (_, i) => i));
+        expect(gapsOf(container)).toEqual([`${(123 - 16) * 40}px`]);
+      });
+    });
+
+    it("moves the window when the scroller scrolls, keeping the total height", () => {
+      inViewport((scrollTo) => {
+        const { container } = render(
+          <PivotTable rows={MANY} columns={COLUMNS} getValue={getValue} maxHeight={320} virtualized />,
+        );
+        scrollTo(container, 2000);
+        const indices = renderedIndices(container);
+        // 50 行目から見える。上下に 8 行ずつ余分
+        expect(indices[0]).toBe(42);
+        expect(indices[indices.length - 1]).toBe(65);
+        const gaps = gapsOf(container).map((h) => parseFloat(h));
+        expect(gaps).toEqual([42 * 40, (123 - 66) * 40]);
+        expect(gaps[0] + gaps[1] + indices.length * 40).toBe(123 * 40);
+      });
+    });
+
+    it("sizes the spacer by the measured row height, not by the estimate", () => {
+      withLayout({ rowHeight: 50, clientHeight: 300, bodyTop: () => 0 }, () => {
+        const { container } = render(
+          <PivotTable rows={MANY} columns={COLUMNS} getValue={getValue} maxHeight={300} virtualized />,
+        );
+        // 300 / 50 = 6 行 ＋ 余分 8 行
+        expect(renderedIndices(container)).toHaveLength(14);
+        expect(gapsOf(container)).toEqual([`${(123 - 14) * 50}px`]);
+      });
+    });
+
+    it("counts the rows that are not rendered: aria-rowcount and aria-rowindex", () => {
+      inViewport((scrollTo) => {
+        const { container } = render(
+          <PivotTable rows={MANY} columns={COLUMNS} getValue={getValue} maxHeight={320} virtualized totalRow />,
+        );
+        // 見出し 2 段 ＋ 123 行 ＋ 総計
+        expect(container.querySelector("table")).toHaveAttribute("aria-rowcount", "126");
+        expect(Array.from(container.querySelectorAll("thead tr")).map((tr) => tr.getAttribute("aria-rowindex"))).toEqual(["1", "2"]);
+        scrollTo(container, 2000);
+        expect(container.querySelector("tbody tr[data-row-index]")).toHaveAttribute("aria-rowindex", "45");
+        expect(container.querySelector("tfoot tr")).toHaveAttribute("aria-rowindex", "126");
+      });
+    });
+
+    it("never points headers at a heading that is not rendered", () => {
+      inViewport((scrollTo) => {
+        const { container } = render(
+          <PivotTable rows={MANY} columns={COLUMNS} getValue={getValue} maxHeight={320} virtualized rowAxisLabel="Product" />,
+        );
+        scrollTo(container, 2000);
+        const refs = Array.from(container.querySelectorAll("[headers]")).flatMap((cell) =>
+          cell.getAttribute("headers")!.split(" ").filter(Boolean),
+        );
+        expect(refs.length).toBeGreaterThan(50);
+        refs.forEach((id) => expect(document.getElementById(id)).not.toBeNull());
+        // グループ b の行（42 行目〜）: 祖先（41 行目の「Group b」）は描かれていない
+        expect(headersOf(screen.getByText("b5/feb"))).toEqual(["Group b, Row b5", "Q1", "Feb"]);
+      });
+    });
+
+    it("carries the names of the ancestors inside the row heading instead", () => {
+      inViewport(() => {
+        render(<PivotTable rows={MANY} columns={COLUMNS} getValue={getValue} maxHeight={320} virtualized />);
+        // 名前の計算は、隠した要素の末尾の空白を落とす。区切りの読点が入っていることを見る
+        expect(screen.getByRole("rowheader", { name: /^Group a,\s*Row a0$/ })).toBeInTheDocument();
+        // グループの行は祖先を持たないので、名前はそのまま。ボタンの名前にも祖先は混ざらない
+        expect(screen.getByRole("rowheader", { name: "Group a" })).toBeInTheDocument();
+        expect(screen.getByRole("button", { name: "Group a" })).toBeInTheDocument();
+      });
+    });
+
+    it("keeps the row that has focus rendered after it scrolls out of the window", () => {
+      inViewport((scrollTo) => {
+        const { container } = render(
+          <PivotTable rows={MANY} columns={COLUMNS} getValue={getValue} maxHeight={320} virtualized />,
+        );
+        const button = screen.getByRole("button", { name: "Group a" });
+        act(() => button.focus());
+        scrollTo(container, 2000);
+        const indices = renderedIndices(container);
+        expect(indices[0]).toBe(0);
+        expect(indices[1]).toBe(42);
+        expect(button).toBeInTheDocument();
+        expect(document.activeElement).toBe(button);
+        // 上の空白は 2 つに割れる（0 行目の前は無し・0 行目と窓の間）
+        expect(gapsOf(container).map((h) => parseFloat(h))).toEqual([41 * 40, (123 - 66) * 40]);
+        // フォーカスが外れたら、もう描かない
+        act(() => button.blur());
+        expect(renderedIndices(container)[0]).toBe(42);
+      });
+    });
+
+    it("recomputes the window when a group is collapsed", () => {
+      inViewport(() => {
+        const { container } = render(
+          <PivotTable rows={MANY} columns={COLUMNS} getValue={getValue} maxHeight={320} virtualized />,
+        );
+        fireEvent.click(screen.getByRole("button", { name: "Group a" }));
+        // 123 − 40 行。先頭の 16 行を描く: グループ a、グループ b とその配下
+        expect(gapsOf(container)).toEqual([`${(83 - 16) * 40}px`]);
+        expect(screen.getByRole("rowheader", { name: "Group b" })).toBeInTheDocument();
+      });
+    });
+
+    it("remembers the widest width of each column and never narrows it", () => {
+      let width = 100;
+      inViewport(
+        (scrollTo) => {
+          const { container } = render(
+            <PivotTable rows={MANY} columns={COLUMNS} getValue={getValue} maxHeight={320} virtualized rowAxisLabel="Product" />,
+          );
+          const jan = screen.getByRole("columnheader", { name: "Jan" });
+          const corner = screen.getByRole("columnheader", { name: "Product" });
+          expect(jan.style.minWidth).toBe("100px");
+          expect(corner.style.minWidth).toBe("100px");
+          // まとめた見出しは列を 1 つに決められないので、幅を持たない
+          expect(screen.getByRole("columnheader", { name: "Q1" }).style.minWidth).toBe("");
+          width = 80;
+          scrollTo(container, 400);
+          expect(jan.style.minWidth).toBe("100px");
+          width = 131.5;
+          scrollTo(container, 800);
+          expect(jan.style.minWidth).toBe("131.5px");
+        },
+        { cellWidth: () => width, clientWidth: 900 },
+      );
+    });
+
+    it("forgets the remembered widths when the scroller changes width", () => {
+      let width = 140;
+      let clientWidth = 900;
+      let scrollTop = 0;
+      const original = Object.getOwnPropertyDescriptor(HTMLElement.prototype, "clientWidth");
+      withLayout({ rowHeight: 40, clientHeight: 320, bodyTop: () => -scrollTop, cellWidth: () => width }, () => {
+        Object.defineProperty(HTMLElement.prototype, "clientWidth", { configurable: true, get: () => clientWidth });
+        try {
+          const { container } = render(
+            <PivotTable rows={MANY} columns={COLUMNS} getValue={getValue} maxHeight={320} virtualized />,
+          );
+          const jan = screen.getByRole("columnheader", { name: "Jan" });
+          expect(jan.style.minWidth).toBe("140px");
+          clientWidth = 500;
+          width = 90;
+          scrollTop = 400;
+          const scroller = scrollerOf(container);
+          scroller.scrollTop = 400;
+          fireEvent.scroll(scroller);
+          expect(jan.style.minWidth).toBe("90px");
+        } finally {
+          if (original) Object.defineProperty(HTMLElement.prototype, "clientWidth", original);
+          else delete (HTMLElement.prototype as unknown as Record<string, unknown>).clientWidth;
+        }
       });
     });
   });

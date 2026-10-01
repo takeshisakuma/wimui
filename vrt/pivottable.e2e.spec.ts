@@ -178,4 +178,71 @@ test.describe("PivotTable", () => {
     expect(narrow.scrolled).toBe(80);
     expect(narrow.moved).toBe(80);
   });
+
+  test("virtualized: renders a window of rows, keeps the scroll length and never points at a missing heading", async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 800 });
+    await page.goto(STORY_URL("components-data-structures-pivottable--virtualized"));
+    await page.waitForLoadState("networkidle");
+    const read = (scrollTop: number | null) =>
+      page.evaluate(async (y) => {
+        const table = document.querySelector("table.wim-pivot-table")!;
+        const box = table.parentElement!;
+        if (y !== null) box.scrollTop = y;
+        await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
+        const rows = Array.from(table.querySelectorAll<HTMLElement>("tbody tr[data-row-index]"));
+        const missing: string[] = [];
+        table.querySelectorAll("[headers]").forEach((cell) => {
+          for (const id of cell.getAttribute("headers")!.split(" ")) if (id && !document.getElementById(id)) missing.push(id);
+        });
+        // 見えている範囲（固定した見出しの下〜枠の下端）に、行が途切れなく描かれているか
+        const headerBottom = Math.max(...Array.from(table.querySelectorAll("thead th")).map((th) => th.getBoundingClientRect().bottom));
+        const boxBottom = box.getBoundingClientRect().bottom;
+        const visible = rows.filter((tr) => tr.getBoundingClientRect().bottom > headerBottom && tr.getBoundingClientRect().top < boxBottom);
+        return {
+          rendered: rows.length,
+          first: Number(rows[0].dataset.rowIndex),
+          firstRowIndex: rows[0].getAttribute("aria-rowindex"),
+          rowCount: table.getAttribute("aria-rowcount"),
+          missing: missing.length,
+          gapAbove: visible[0].getBoundingClientRect().top - headerBottom,
+          scrollHeight: box.scrollHeight,
+          max: box.scrollHeight - box.clientHeight,
+        };
+      }, scrollTop);
+
+    const start = await read(null);
+    // 992 行 ＋ 見出し 2 段 ＋ 総計
+    expect(start.rowCount).toBe("995");
+    expect(start.first).toBe(0);
+    expect(start.firstRowIndex).toBe("3");
+    expect(start.rendered).toBeLessThan(40);
+    // 全行ぶんの長さがある（1 行 30px としても 992 行で約 3 万 px）
+    expect(start.scrollHeight).toBeGreaterThan(30_000);
+
+    for (const y of [1234, start.max / 2, start.max]) {
+      const at = await read(y);
+      expect(at.rendered).toBeLessThan(40);
+      expect(at.missing).toBe(0);
+      // 見出しのすぐ下に空白が見えていない
+      expect(at.gapAbove).toBeLessThanOrEqual(0.5);
+      expect(at.scrollHeight).toBe(start.scrollHeight);
+      expect(at.first).toBeGreaterThan(0);
+    }
+  });
+
+  test("virtualized: the focused row stays in the page after scrolling away", async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 800 });
+    await page.goto(STORY_URL("components-data-structures-pivottable--virtualized"));
+    await page.waitForLoadState("networkidle");
+    const first = page.getByRole("button", { name: "Kichijoji" });
+    await first.focus();
+    await page.evaluate(async () => {
+      const box = document.querySelector("table.wim-pivot-table")!.parentElement!;
+      box.scrollTop = box.scrollHeight;
+      await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
+    });
+    await expect(first).toBeFocused();
+    // 末尾の行が描かれていて、祖先の名前を見出しの中に持つ
+    await expect(page.getByRole("rowheader", { name: /^Kuramae,.*Jun 30$/ })).toBeVisible();
+  });
 });

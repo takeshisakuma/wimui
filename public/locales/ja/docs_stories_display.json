@@ -466,6 +466,8 @@
     "pivottable_tart": "季節のフルーツタルト（週末のみ）",
     "pivottable_gift": "ギフトカード",
     "pivottable_shop_station": "駅前店",
-    "pivottable_shop_riverside": "川沿い店"
+    "pivottable_shop_riverside": "川沿い店",
+    "pivottable_caption_daily": "店舗別・日別の販売数（2026 年 5 月〜 6 月）",
+    "pivottable_shop_day": "店舗と日付"
   }
 }

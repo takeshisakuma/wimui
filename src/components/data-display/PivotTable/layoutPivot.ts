@@ -163,3 +163,62 @@ export function layoutPivotRows<T extends PivotAxisInput>(
   walk(nodes, 0, []);
   return rows;
 }
+
+/** 仮想化したときに描く行の並び。`gap` は、描かない行を 1 つの空の行でまとめた分。 */
+export type PivotRowSegment = { kind: "rows"; from: number; to: number } | { kind: "gap"; count: number };
+
+export type PivotRowWindowInput = {
+  rowCount: number;
+  /** 1 行の高さ（全行が同じ高さの前提）。0 以下なら全部描く。 */
+  rowHeight: number;
+  /** スクロールの器の `scrollTop`。 */
+  scrollTop: number;
+  /** スクロールの器の見えている高さ。 */
+  viewportHeight: number;
+  /** 器の中身の先頭から、最初の行までの距離（caption と見出しの高さ）。 */
+  bodyOffset: number;
+  /** 見えている範囲の上下に、余分に描いておく行の数。 */
+  overscan: number;
+  /** 範囲の外でも描いたままにする行（フォーカスを持つ行）。 */
+  keep?: number | null;
+};
+
+/**
+ * 見えている行（と上下の余分）だけを描くための並びを返す。描かない行は `gap` にまとめ、
+ * 行の総数ぶんの高さが保たれるようにする。`keep` の行は、範囲の外にあっても 1 行だけ描く。
+ */
+export function pivotRowWindow(input: PivotRowWindowInput): PivotRowSegment[] {
+  const { rowCount, rowHeight, scrollTop, viewportHeight, bodyOffset, overscan, keep } = input;
+  if (rowCount <= 0) return [];
+  if (rowHeight <= 0) return [{ kind: "rows", from: 0, to: rowCount }];
+
+  const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);
+  const top = scrollTop - bodyOffset;
+  // 見えている範囲に 1 行も掛からないとき（表より下まで行き過ぎたスクロール量）でも、空の範囲には
+  // しない。最後の行は必ず描く。
+  const start = clamp(Math.floor(top / rowHeight) - overscan, 0, rowCount - 1);
+  const end = clamp(Math.ceil((top + viewportHeight) / rowHeight) + overscan, start + 1, rowCount);
+
+  const segments: PivotRowSegment[] = [];
+  const gap = (count: number) => {
+    if (count > 0) segments.push({ kind: "gap", count });
+  };
+  const kept = keep !== null && keep !== undefined && keep >= 0 && keep < rowCount ? keep : null;
+
+  if (kept !== null && kept < start) {
+    gap(kept);
+    segments.push({ kind: "rows", from: kept, to: kept + 1 });
+    gap(start - kept - 1);
+  } else {
+    gap(start);
+  }
+  segments.push({ kind: "rows", from: start, to: end });
+  if (kept !== null && kept >= end) {
+    gap(kept - end);
+    segments.push({ kind: "rows", from: kept, to: kept + 1 });
+    gap(rowCount - kept - 1);
+  } else {
+    gap(rowCount - end);
+  }
+  return segments;
+}

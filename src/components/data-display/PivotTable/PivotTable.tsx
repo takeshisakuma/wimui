@@ -4,8 +4,9 @@ import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { ChevronRightIcon } from "@/icon";
 import { useMergedRef } from "../../../hooks/useMergedRef";
 import { Icon } from "../../media/Icon/Icon";
+import { VisuallyHidden } from "../../layout/VisuallyHidden/VisuallyHidden";
 import { Table } from "../Table/Table";
-import { layoutPivotColumns, layoutPivotRows } from "./layoutPivot";
+import { layoutPivotColumns, layoutPivotRows, pivotRowWindow } from "./layoutPivot";
 import localStyles from "./pivot-table.module.scss";
 
 export type PivotTableAxisNode = {
@@ -65,6 +66,12 @@ export type PivotTableProps = Omit<React.ComponentPropsWithoutRef<"table">, "chi
    * scrolls with the rest, so that the values stay readable.
    */
   stickyRowHeaders?: boolean;
+  /**
+   * Renders only the rows in view (plus a few around them) and keeps the scroll height
+   * with empty spacer rows. Use it for tables with hundreds of rows, together with
+   * `maxHeight`. Rows must all have the same height, so keep labels and values on one line.
+   */
+  virtualized?: boolean;
   /** Adds a subtotal column after the columns of each column group. */
   columnSubtotals?: boolean;
   /** Adds a grand total row at the bottom. */
@@ -74,6 +81,13 @@ export type PivotTableProps = Omit<React.ComponentPropsWithoutRef<"table">, "chi
   /** Text of the total headings, for when the built-in translations do not fit. */
   labels?: PivotTableLabels;
 };
+
+// 行の高さを測る前の 1 回目の描画で使う見積もり。測ったらその値に置き換わる。
+const ROW_HEIGHT_ESTIMATE = 40; /* Exception: Structural Logic — 仮想化の最初の描画で使う行の高さの見積もり（描画後に実測で置き換える） */
+// 見えている範囲の上下に余分に描く行の数。速いスクロールで空白が見えないための余裕。
+const OVERSCAN_ROWS = 8;
+// 器の高さを測る前の 1 回目の描画で描く行の数（全行を描いてから減らすことをしない）。
+const INITIAL_ROWS = 30;
 
 const collectGroupKeys = (nodes: PivotTableAxisNode[], out: string[] = []): string[] => {
   for (const node of nodes) {
@@ -118,6 +132,7 @@ export const PivotTable = React.forwardRef<HTMLTableElement, PivotTableProps>(
       maxHeight,
       stickyHeader = false,
       stickyRowHeaders = false,
+      virtualized = false,
       columnSubtotals = false,
       totalRow = false,
       totalColumn = false,
@@ -227,6 +242,107 @@ export const PivotTable = React.forwardRef<HTMLTableElement, PivotTableProps>(
       return () => observer.disconnect();
     }, [stickyHeader, headerDepth]);
 
+    /*
+     * 行の仮想化。見えている行と上下の余分だけを描き、描かない行は空の行 1 つにまとめて高さを保つ。
+     * 表のまま（`tr` / `td`）なので、見出しと値の対応は崩れない。
+     */
+    const bodyRef = React.useRef<HTMLTableSectionElement>(null);
+    const [rowHeight, setRowHeight] = useState(0);
+    const [view, setView] = useState<{ scrollTop: number; height: number; bodyOffset: number } | null>(null);
+    // フォーカスを持つ行。窓の外へ出ても描いたままにする（消すとフォーカスがページの先頭へ戻る）
+    const [focusedRowKey, setFocusedRowKey] = useState<string | null>(null);
+    // 列の幅は、描かれている行の中身で決まる。見えている行だけを描くと、桁の多い値が現れるたびに
+    // 列が動く。一度広がった幅は覚えておき、狭くは戻さない。
+    const [columnWidths, setColumnWidths] = useState<number[]>([]);
+    const lastClientWidth = React.useRef(0);
+
+    const measureView = useCallback(() => {
+      const scroller = scrollerRef.current;
+      const body = bodyRef.current;
+      const table = tableRef.current;
+      if (!scroller || !body || !table) return;
+      const firstRow = body.querySelector<HTMLTableRowElement>("tr[data-row-index]");
+      const measuredRow = firstRow?.getBoundingClientRect().height ?? 0;
+      if (measuredRow > 0) setRowHeight((prev) => (Math.abs(prev - measuredRow) < 0.01 ? prev : measuredRow));
+      const next = {
+        scrollTop: scroller.scrollTop,
+        height: scroller.clientHeight,
+        bodyOffset: body.getBoundingClientRect().top - scroller.getBoundingClientRect().top + scroller.scrollTop,
+      };
+      setView((prev) =>
+        prev && prev.scrollTop === next.scrollTop && prev.height === next.height && prev.bodyOffset === next.bodyOffset
+          ? prev
+          : next,
+      );
+      // 列の幅: 見出しの最下段のセル（列ごとに 1 つ）と角のセルを測る
+      const widths = Array.from(table.querySelectorAll<HTMLElement>("thead [data-column-index]")).reduce<number[]>(
+        (out, cell) => {
+          out[Number(cell.dataset.columnIndex)] = cell.getBoundingClientRect().width;
+          return out;
+        },
+        [],
+      );
+      // 器の幅が変わったら覚えた幅は捨てる（広い器で伸びた幅を、狭い器に持ち込まない）
+      const reset = lastClientWidth.current !== scroller.clientWidth;
+      lastClientWidth.current = scroller.clientWidth;
+      setColumnWidths((prev) => {
+        const base = reset ? [] : prev;
+        // 端数のまま覚える（丸めると、切り捨てなら 1px 未満だけ縮み、切り上げなら表が器からはみ出す）。
+        // 測り直しの誤差で更新が続かないよう、0.01px を超えて広がったときだけ更新する
+        const merged = widths.map((w, i) => ((w || 0) > (base[i] ?? 0) + 0.01 ? w : (base[i] ?? 0)));
+        return merged.length === prev.length && merged.every((w, i) => w === prev[i]) ? prev : merged;
+      });
+    }, []);
+
+    const rowCount = rowLayout.length;
+    const leafColumnCount = columnLayout.columns.length;
+    React.useLayoutEffect(() => {
+      if (!virtualized) return;
+      measureView();
+      if (typeof ResizeObserver === "undefined") return;
+      const observer = new ResizeObserver(measureView);
+      if (scrollerRef.current) observer.observe(scrollerRef.current);
+      return () => observer.disconnect();
+      // 行や列の数が変わったら測り直す
+    }, [virtualized, measureView, rowCount, leafColumnCount]);
+
+    const rowIndexByKey = useMemo(() => new Map(rowLayout.map((row, index) => [row.key, index])), [rowLayout]);
+    const segments = useMemo(() => {
+      if (!virtualized) return null;
+      if (!view) {
+        // 1 回目の描画: まだ器を測っていない。先頭の数十行だけ描く
+        const first = Math.min(rowCount, INITIAL_ROWS);
+        return pivotRowWindow({
+          rowCount,
+          rowHeight: ROW_HEIGHT_ESTIMATE,
+          scrollTop: 0,
+          viewportHeight: first * ROW_HEIGHT_ESTIMATE,
+          bodyOffset: 0,
+          overscan: 0,
+        });
+      }
+      return pivotRowWindow({
+        rowCount,
+        rowHeight: rowHeight || ROW_HEIGHT_ESTIMATE,
+        scrollTop: view.scrollTop,
+        viewportHeight: view.height,
+        bodyOffset: view.bodyOffset,
+        overscan: OVERSCAN_ROWS,
+        keep: focusedRowKey === null ? null : (rowIndexByKey.get(focusedRowKey) ?? null),
+      });
+    }, [virtualized, view, rowCount, rowHeight, focusedRowKey, rowIndexByKey]);
+
+    // 値の列の番号 → その列の見出しの最下段のセルの id（列幅を測る・下限を渡すため）
+    const columnIndexByHeaderId = useMemo(
+      () => new Map(columnLayout.columns.map((column, index) => [column.headerIds[column.headerIds.length - 1], index])),
+      [columnLayout],
+    );
+    // 角のセルが 0 番、値の列は 1 番から
+    const columnWidthProps = (index: number | undefined) =>
+      virtualized && index !== undefined
+        ? { "data-column-index": index, style: columnWidths[index] ? { minWidth: columnWidths[index] } : undefined }
+        : null;
+
     // 段の高さは端数を持つ（実測 38.39px）。そのまま積むと段と段の間に 1px 未満の隙間ができ、下を
     // 流れる中身が覗く。`top` は切り捨て、重なった分は上の段を手前にして隠す。角はどの段よりも手前。
     const stickyTop = (level: number, corner = false): React.CSSProperties | undefined =>
@@ -244,15 +360,90 @@ export const PivotTable = React.forwardRef<HTMLTableElement, PivotTableProps>(
           ? { "aria-labelledby": props["aria-labelledby"] }
           : null;
 
+    const renderRow = (row: (typeof rowLayout)[number], index: number) => {
+      // 仮想化しているときは、祖先の行が描かれているとは限らない。存在しない id を `headers` に
+      // 書かないよう、祖先は指さず、代わりに祖先の名前を見出しセルの中に（見えない形で）入れる。
+      const rowPath = virtualized
+        ? rowHeaderId(index)
+        : [...row.ancestors.map(rowHeaderId), rowHeaderId(index)].join(" ");
+      const ancestorPath = [
+        ...(hasCorner ? [cornerId] : []),
+        ...(virtualized ? [] : row.ancestors.map(rowHeaderId)),
+      ].join(" ");
+      return (
+        <Table.Row
+          key={row.key}
+          className={classNames(row.hasChildren && localStyles.groupRow)}
+          data-row-index={virtualized ? index : undefined}
+          data-row-key={virtualized ? row.key : undefined}
+          aria-rowindex={virtualized ? headerDepth + index + 1 : undefined}
+        >
+          <th
+            id={rowHeaderId(index)}
+            scope="row"
+            headers={ancestorPath || undefined}
+            className={classNames(localStyles.rowHeader, stickLeft && localStyles.stickyLeft)}
+            style={{ "--wim-pivot-table-depth": row.depth } as React.CSSProperties}
+          >
+            {virtualized && row.ancestors.length > 0 && (
+              <VisuallyHidden>
+                {row.ancestors.map((ancestor) => (
+                  <React.Fragment key={ancestor}>
+                    {rowLayout[ancestor].node.label}
+                    {", "}
+                  </React.Fragment>
+                ))}
+              </VisuallyHidden>
+            )}
+            {row.hasChildren ? (
+              <button
+                type="button"
+                className={localStyles.toggle}
+                aria-expanded={row.expanded}
+                onClick={() => toggle(row.key)}
+              >
+                <span className={classNames(localStyles.chevron, row.expanded && localStyles.open)} aria-hidden="true">
+                  <Icon component={ChevronRightIcon} size="sm" />
+                </span>
+                {row.node.label}
+              </button>
+            ) : (
+              <span className={classNames(hasRowGroups && localStyles.leafLabel)}>{row.node.label}</span>
+            )}
+          </th>
+          {columnLayout.columns.map((column, c) => (
+            <Table.Cell
+              key={c}
+              headers={`${rowPath} ${columnPaths[c]}`}
+              className={classNames(
+                localStyles.value,
+                column.kind !== "leaf" && localStyles.aggregate,
+                column.startsGroup && !(stickLeft && c === 0) && localStyles.groupStart,
+              )}
+            >
+              {getValue(row.key, column.key)}
+            </Table.Cell>
+          ))}
+        </Table.Row>
+      );
+    };
+
     return (
       <div
         ref={scrollerRef}
         className={localStyles.scroller}
         style={maxHeight !== undefined ? { maxHeight } : undefined}
         tabIndex={scrollable ? 0 : undefined}
+        onScroll={virtualized ? measureView : undefined}
         {...(scrollable && regionName ? { role: "region", ...regionName } : null)}
       >
-        <table ref={mergedRef} className={classNames("wim-pivot-table", localStyles.root, className)} {...props}>
+        <table
+          ref={mergedRef}
+          className={classNames("wim-pivot-table", localStyles.root, className)}
+          // 描いていない行も数に入れる（見出しの段 ＋ 行 ＋ 総計の行）
+          aria-rowcount={virtualized ? headerDepth + rowCount + (totalRow ? 1 : 0) : undefined}
+          {...props}
+        >
           {caption && (
             <caption id={captionId} className={localStyles.caption}>
               {caption}
@@ -267,6 +458,7 @@ export const PivotTable = React.forwardRef<HTMLTableElement, PivotTableProps>(
             {columnLayout.headerRows.map((cells, level) => (
               <tr
                 key={level}
+                aria-rowindex={virtualized ? level + 1 : undefined}
                 ref={(el) => {
                   headerRowRefs.current[level] = el;
                 }}
@@ -284,7 +476,8 @@ export const PivotTable = React.forwardRef<HTMLTableElement, PivotTableProps>(
                         stickyHeader && localStyles.stickyTop,
                         stickLeft && localStyles.stickyLeft,
                       )}
-                      style={stickyTop(0, true)}
+                      {...columnWidthProps(0)}
+                      style={{ ...stickyTop(0, true), ...columnWidthProps(0)?.style }}
                     >
                       {rowAxisLabel}
                     </th>
@@ -298,7 +491,8 @@ export const PivotTable = React.forwardRef<HTMLTableElement, PivotTableProps>(
                         stickyHeader && localStyles.stickyTop,
                         stickLeft && localStyles.stickyLeft,
                       )}
-                      style={stickyTop(0, true)}
+                      {...columnWidthProps(0)}
+                      style={{ ...stickyTop(0, true), ...columnWidthProps(0)?.style }}
                     />
                   ))}
                 {cells.map((cell, cellIndex) => (
@@ -317,7 +511,13 @@ export const PivotTable = React.forwardRef<HTMLTableElement, PivotTableProps>(
                       cell.startsGroup && !(stickLeft && cellIndex === 0) && localStyles.groupStart,
                       stickyHeader && localStyles.stickyTop,
                     )}
-                    style={stickyTop(level)}
+                    {...(cell.reachesBottom ? columnWidthProps((columnIndexByHeaderId.get(cell.id) ?? -1) + 1) : null)}
+                    style={{
+                      ...stickyTop(level),
+                      ...(cell.reachesBottom
+                        ? columnWidthProps((columnIndexByHeaderId.get(cell.id) ?? -1) + 1)?.style
+                        : null),
+                    }}
                   >
                     {cell.kind === "group" || cell.kind === "leaf" ? cell.node?.label : totalLabel}
                   </th>
@@ -325,58 +525,44 @@ export const PivotTable = React.forwardRef<HTMLTableElement, PivotTableProps>(
               </tr>
             ))}
           </Table.Header>
-          <Table.Body>
-            {rowLayout.map((row, index) => {
-              const rowPath = [...row.ancestors.map(rowHeaderId), rowHeaderId(index)].join(" ");
-              const ancestorPath = [...(hasCorner ? [cornerId] : []), ...row.ancestors.map(rowHeaderId)].join(" ");
-              return (
-                <Table.Row key={row.key} className={classNames(row.hasChildren && localStyles.groupRow)}>
-                  <th
-                    id={rowHeaderId(index)}
-                    scope="row"
-                    headers={ancestorPath || undefined}
-                    className={classNames(localStyles.rowHeader, stickLeft && localStyles.stickyLeft)}
-                    style={{ "--wim-pivot-table-depth": row.depth } as React.CSSProperties}
-                  >
-                    {row.hasChildren ? (
-                      <button
-                        type="button"
-                        className={localStyles.toggle}
-                        aria-expanded={row.expanded}
-                        onClick={() => toggle(row.key)}
-                      >
-                        <span
-                          className={classNames(localStyles.chevron, row.expanded && localStyles.open)}
-                          aria-hidden="true"
-                        >
-                          <Icon component={ChevronRightIcon} size="sm" />
-                        </span>
-                        {row.node.label}
-                      </button>
-                    ) : (
-                      <span className={classNames(hasRowGroups && localStyles.leafLabel)}>{row.node.label}</span>
-                    )}
-                  </th>
-                  {columnLayout.columns.map((column, c) => (
-                    <Table.Cell
-                      key={c}
-                      headers={`${rowPath} ${columnPaths[c]}`}
-                      className={classNames(
-                        localStyles.value,
-                        column.kind !== "leaf" && localStyles.aggregate,
-                        column.startsGroup && !(stickLeft && c === 0) && localStyles.groupStart,
-                      )}
-                    >
-                      {getValue(row.key, column.key)}
-                    </Table.Cell>
-                  ))}
-                </Table.Row>
-              );
-            })}
+          <Table.Body
+            ref={bodyRef}
+            onFocus={
+              virtualized
+                ? (e) => {
+                    const key = (e.target as HTMLElement).closest("tr")?.dataset.rowKey;
+                    if (key !== undefined) setFocusedRowKey(key);
+                  }
+                : undefined
+            }
+            onBlur={
+              virtualized
+                ? (e) => {
+                    if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setFocusedRowKey(null);
+                  }
+                : undefined
+            }
+          >
+            {(segments ?? [{ kind: "rows" as const, from: 0, to: rowCount }]).map((segment, segmentIndex) =>
+              segment.kind === "gap" ? (
+                // 描かない行のぶんの高さ。読み上げにも数にも入れない
+                <tr key={`gap-${segmentIndex}`} aria-hidden="true" className={localStyles.gap}>
+                  <td
+                    colSpan={leafColumnCount + 1}
+                    style={{ height: segment.count * (rowHeight || ROW_HEIGHT_ESTIMATE) }}
+                  />
+                </tr>
+              ) : (
+                rowLayout.slice(segment.from, segment.to).map((row, offset) => renderRow(row, segment.from + offset))
+              ),
+            )}
           </Table.Body>
           {totalRow && (
             <Table.Footer>
-              <Table.Row className={localStyles.totalRow}>
+              <Table.Row
+                className={localStyles.totalRow}
+                aria-rowindex={virtualized ? headerDepth + rowCount + 1 : undefined}
+              >
                 <th
                   id={totalRowId}
                   scope="row"
