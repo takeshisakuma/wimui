@@ -415,6 +415,9 @@
     "pivotTable_prop_labels": "Text of the total headings, for when the built-in translations do not fit.",
     "pivotTable_prop_expandedValues": "Keys of the expanded row groups (controlled). A group that is not listed shows only\nits own row, which carries its subtotal.",
     "pivotTable_prop_defaultExpandedValues": "Row groups expanded on first render (uncontrolled). Defaults to every group.",
-    "pivotTable_prop_onExpandedChange": "Called with the new list of expanded row groups when a group is expanded or collapsed."
+    "pivotTable_prop_onExpandedChange": "Called with the new list of expanded row groups when a group is expanded or collapsed.",
+    "pivotTable_prop_maxHeight": "Maximum height of the table (a number is px). Past it the table scrolls vertically\ninside its own box.",
+    "pivotTable_prop_stickyHeader": "Keeps the column headings in view while the table scrolls vertically. Every heading\nlevel stays, stacked in order. Only has an effect together with `maxHeight`.",
+    "pivotTable_prop_stickyRowHeaders": "Keeps the row headings in view while the table scrolls sideways. The column is only\npinned while it takes at most half of the visible width; in a narrower container it\nscrolls with the rest, so that the values stay readable."
   }
 }

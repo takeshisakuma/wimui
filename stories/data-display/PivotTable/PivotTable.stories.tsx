@@ -154,6 +154,30 @@ export const Collapsed: Story = {
   },
 };
 
+/** 高さを限り、列見出し（全段）と行見出しの列を残したままスクロールする。 */
+export const StickyHeaders: Story = {
+  render: function Render(args) {
+    const { t, rows, columns, getValue } = useStationPivot();
+    return (
+      <PivotTable
+        {...args}
+        rows={rows}
+        columns={columns}
+        getValue={getValue}
+        rowAxisLabel={t("story.pivottable_product")}
+        caption={t("story.pivottable_caption")}
+      />
+    );
+  },
+  args: {
+    maxHeight: 320,
+    stickyHeader: true,
+    stickyRowHeaders: true,
+    columnSubtotals: true,
+    totalColumn: true,
+  },
+};
+
 /** 列を 3 段にする（店舗 → 四半期 → 月）。枝ごとに深さも列の数も揃っていなくてよい。 */
 export const NestedColumns: Story = {
   render: function Render(args) {

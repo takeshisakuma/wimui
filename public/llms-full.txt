@@ -2503,6 +2503,13 @@ for that group's subtotal and `null` asks for the grand total of that axis. Retu
 its own row, which carries its subtotal.
     - `defaultExpandedValues: string[]` — Row groups expanded on first render (uncontrolled). Defaults to every group.
     - `onExpandedChange: (values: string[]) => void` — Called with the new list of expanded row groups when a group is expanded or collapsed.
+    - `maxHeight: string | number` — Maximum height of the table (a number is px). Past it the table scrolls vertically
+inside its own box.
+    - `stickyHeader: boolean` = false — Keeps the column headings in view while the table scrolls vertically. Every heading
+level stays, stacked in order. Only has an effect together with `maxHeight`.
+    - `stickyRowHeaders: boolean` = false — Keeps the row headings in view while the table scrolls sideways. The column is only
+pinned while it takes at most half of the visible width; in a narrower container it
+scrolls with the rest, so that the values stay readable.
     - `columnSubtotals: boolean` = false — Adds a subtotal column after the columns of each column group.
     - `totalRow: boolean` = false — Adds a grand total row at the bottom.
     - `totalColumn: boolean` = false — Adds a grand total column at the right edge.

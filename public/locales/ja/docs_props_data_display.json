@@ -415,6 +415,9 @@
     "pivotTable_prop_labels": "合計の見出しの文言です。内蔵の翻訳が合わないときに使います。",
     "pivotTable_prop_expandedValues": "開いている行のグループのキーです（制御）。ここに無いグループは、小計を持つ自分の行だけを表示します。",
     "pivotTable_prop_defaultExpandedValues": "最初の描画で開いておく行のグループです（非制御）。既定ではすべてのグループが開きます。",
-    "pivotTable_prop_onExpandedChange": "グループを開いた・折りたたんだときに、開いている行のグループの新しい一覧を渡して呼ばれます。"
+    "pivotTable_prop_onExpandedChange": "グループを開いた・折りたたんだときに、開いている行のグループの新しい一覧を渡して呼ばれます。",
+    "pivotTable_prop_maxHeight": "表の高さの上限です（数値は px）。これを超えると、表は自分の枠の中で縦にスクロールします。",
+    "pivotTable_prop_stickyHeader": "縦にスクロールしても列見出しを残します。見出しは全段が順に積まれたまま残ります。`maxHeight` と一緒に指定したときだけ効きます。",
+    "pivotTable_prop_stickyRowHeaders": "横にスクロールしても行見出しを残します。列を固定するのは、見えている幅の半分以下に収まっているあいだだけです。それより狭い置き場では、値が読めるように、ほかの列と一緒に流れます。"
   }
 }

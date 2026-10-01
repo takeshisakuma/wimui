@@ -14,8 +14,11 @@
     /* flex の中で 0 まで縮まないための下限（置き場がそれより狭いときは置き場に合わせる）。 */
     min-width: min(var(--wim-width-sm), 100%);
     max-width: 100%;
-    overflow-x: auto;
+    overflow: auto;
     background-color: var(--wim-color-surface);
+
+    /* 固定した見出しの重ね順（下の 1〜3）を、この器の中だけの話にする。 */
+    isolation: isolate;
   }
 
   .root {
@@ -24,7 +27,13 @@
     /* 値は桁で見比べるので、数字の幅を揃える。 */
     font-variant-numeric: tabular-nums;
     color: var(--wim-color-text-primary);
-    border-collapse: collapse;
+
+    /* 線は全部セルが自分で持つ（separate）。collapse だと線は表の側に描かれ、固定したセルと一緒に
+       動かない ── 実測で、固定した見出しの中の縦線が 2px 欠け、固定した列の行の線に、下を流れる列の
+       縦線の色が出た（T234 と同じ「境界の画素に背面が透ける」）。線は片側（下と左）だけに引くので、
+       separate でも 2 本重ならない。 */
+    border-spacing: 0;
+    border-collapse: separate;
   }
 
   .caption {
@@ -52,14 +61,12 @@
     /* まとめた見出し。掛かっている列の幅ぶんの細い線で、どの列をまとめているかを示す。 */
     &.group {
       text-align: center;
-      box-shadow: inset 0 calc(var(--wim-border-width-thin) * -1) 0 0 var(--wim-color-border);
+      border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border);
     }
 
-    /* 見出しの最下段に届くセル。本文との境界は Table と同じ「帯」で描く（T241 と同じ理由:
-       border は `collapse` の共有辺で細る）。 */
+    /* 見出しの最下段に届くセル。本文との境界は太い線。 */
     &.bottom {
-      border-bottom: var(--wim-border-width-thick) solid transparent;
-      box-shadow: inset 0 calc(var(--wim-border-width-thick) * -1) 0 0 var(--wim-color-border);
+      border-bottom: var(--wim-border-width-thick) solid var(--wim-color-border);
     }
   }
 
@@ -78,6 +85,7 @@
     vertical-align: middle;
     text-align: left;
     white-space: nowrap;
+    border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border);
   }
 
   /* グループの行の開閉ボタン。山形と見出しの文字を 1 つのボタンにする ── 山形だけを
@@ -140,6 +148,7 @@
   .value {
     text-align: right;
     white-space: nowrap;
+    border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border);
   }
 
   /* グループの行は小計なので、明細の行より一段強くする。 */
@@ -165,5 +174,25 @@
     .value {
       font-weight: var(--wim-font-weight-semibold);
     }
+  }
+
+  /* ── 見出しの固定 ─────────────────────────────────────────
+     重ね順は器の中だけで比べる（`.scroller` が isolation を持つ）: 行見出しの列 1 ＜ 列見出し（上の段ほど
+     手前）＜ 角。列見出しと角の値は、段の数で決まるので部品がインラインで渡す。
+     固定したセルは下を通る中身を隠すので、必ず不透明な地色を持つ。 */
+
+  /* 列見出し（縦スクロールで残る）。段ごとの `top` は部品が実測してインラインで渡す。 */
+  .stickyTop {
+    position: sticky;
+    background-color: var(--wim-color-surface);
+  }
+
+  /* 行見出しの列（横スクロールで残る）。右端の線は自分で持つ ── 隣の列の線は一緒に流れていく。 */
+  .stickyLeft {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    background-color: var(--wim-table-row-bg, var(--wim-color-surface));
+    border-right: var(--wim-border-width-thin) solid var(--wim-color-border-secondary);
   }
 }
