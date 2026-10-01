@@ -986,3 +986,71 @@ describe("useVideoPlayer - handleTimeUpdate with playlist trackId", () => {
     expect(localStorage.getItem("wimui-video-resume-vid1-0")).toBe("10");
   });
 });
+
+// アンマウントしたあとに残ったタイマーが発火すると、消えたコンポーネントの state を更新しにいく。
+// 単体テストでは、ファイルの終わり際に残ったタイマーが jsdom の片付けのあとで発火し、
+// 「window is not defined」でテスト全体を落とした（テストは全部通っているのに exit 1）。
+describe("useVideoPlayer - timers after unmount", () => {
+  const tap = { currentTarget: { getBoundingClientRect: () => ({ left: 0, width: 400 }) }, clientX: 300 } as unknown as React.MouseEvent<HTMLVideoElement>;
+
+  const setup = async (options: Partial<Parameters<typeof useVideoPlayer>[0]> = {}) => {
+    const hook = renderHook(() => useVideoPlayer({ ...baseOptions, customControls: true, ...options }));
+    const videoEl = makeVideoEl();
+    await act(async () => {
+      (hook.result.current.videoRef as React.MutableRefObject<HTMLVideoElement | null>).current = videoEl;
+    });
+    return { ...hook, videoEl };
+  };
+
+  afterEach(() => {
+    vi.useRealTimers();
+  });
+
+  it("leaves no timer behind after a single tap", async () => {
+    vi.useFakeTimers();
+    const { result, unmount, videoEl } = await setup();
+    act(() => { result.current.handleVideoClick(tap); });
+    expect(vi.getTimerCount()).toBeGreaterThan(0);
+    unmount();
+    expect(vi.getTimerCount()).toBe(0);
+    vi.advanceTimersByTime(1000);
+    expect(videoEl.play).not.toHaveBeenCalled();
+  });
+
+  it("leaves no timer behind after a double tap", async () => {
+    vi.useFakeTimers();
+    const { result, unmount } = await setup();
+    act(() => { result.current.handleVideoClick(tap); });
+    act(() => { result.current.handleVideoClick(tap); });
+    unmount();
+    expect(vi.getTimerCount()).toBe(0);
+  });
+
+  it("leaves no timer behind after a quality change or a playlist jump", async () => {
+    vi.useFakeTimers();
+    const qualities = [{ label: "720p", src: "a.mp4" }, { label: "1080p", src: "b.mp4" }];
+    const first = await setup({ qualities });
+    act(() => { first.result.current.handleQualityChange(1); });
+    first.unmount();
+    expect(vi.getTimerCount()).toBe(0);
+
+    const playlist = [{ src: "p1.mp4" }, { src: "p2.mp4" }];
+    const second = await setup({ playlist, autoPlayNext: true });
+    act(() => { second.result.current.playPlaylistItem(1); });
+    second.unmount();
+    expect(vi.getTimerCount()).toBe(0);
+
+    const third = await setup({ playlist, autoPlayNext: true });
+    act(() => { third.result.current.handleEnded(); });
+    third.unmount();
+    expect(vi.getTimerCount()).toBe(0);
+  });
+
+  it("still toggles play 300ms after a single tap while mounted", async () => {
+    vi.useFakeTimers();
+    const { result, videoEl } = await setup();
+    act(() => { result.current.handleVideoClick(tap); });
+    act(() => { vi.advanceTimersByTime(300); });
+    expect(videoEl.play).toHaveBeenCalledTimes(1);
+  });
+});
