@@ -4,7 +4,7 @@
 
 ## What this is
 
-**wimui** v0.43.0 — a React 19 component library: 227 documented components across 10 categories, with design tokens, dark mode, i18n (en/ja/pt-BR) and WAI-ARIA compliant a11y. Peer deps: react ^19, react-dom ^19 (plus optional peers for specific components — see package.json).
+**wimui** v0.43.0 — a React 19 component library: 228 documented components across 10 categories, with design tokens, dark mode, i18n (en/ja/pt-BR) and WAI-ARIA compliant a11y. Peer deps: react ^19, react-dom ^19 (plus optional peers for specific components — see package.json).
 
 ## Install & required setup
 
@@ -2491,6 +2491,18 @@ When omitted, both Backspace and Delete work.
     - `defaultEdgeOptions: DefaultEdgeOptions` — Default options applied to new edges
     - `className: string` — Additional CSS class
     - `aria-label: string` = "Node graph" — Accessible label for the graph region
+- **PivotTable** — Draws aggregated data as a table with multi-level row and column headings, subtotals and grand totals. (aka Pivot, Cross Tab, Crosstab)
+    - `rows: PivotTableAxisNode[]` (required) — The row axis as a tree. Groups are drawn as an outline: one indented row per node.
+    - `columns: PivotTableAxisNode[]` (required) — The column axis as a tree. Groups become headings that span their columns.
+    - `getValue: (rowKey: string | null, columnKey: string | null) => React.ReactNode` (required) — Returns the content of one cell. The component does not aggregate: a group key asks
+for that group's subtotal and `null` asks for the grand total of that axis. Return
+`null` or `undefined` for an empty cell.
+    - `rowAxisLabel: React.ReactNode` — Heading of the row axis, shown in the top-left corner.
+    - `caption: React.ReactNode` — Visible title of the table, also its accessible name.
+    - `columnSubtotals: boolean` = false — Adds a subtotal column after the columns of each column group.
+    - `totalRow: boolean` = false — Adds a grand total row at the bottom.
+    - `totalColumn: boolean` = false — Adds a grand total column at the right edge.
+    - `labels: { /** Heading of the grand total row / column and of each subtotal column. */ total?: string; }` — Text of the total headings, for when the built-in translations do not fit.
 - **Presence** — Shows whether a person is online, away, busy, or offline.
     - `status: "online" | "away" | "busy" | "offline"` (required) — Availability of the person or resource.
     - `label: string` — Text for the status. Defaults to the localized name of `status`.

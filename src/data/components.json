@@ -492,6 +492,17 @@
         "mobile": true
       },
       {
+        "name": "PivotTable",
+        "descKey": "doc.pivotTable_desc",
+        "pc": true,
+        "mobile": true,
+        "aliases": [
+          "Pivot",
+          "Cross Tab",
+          "Crosstab"
+        ]
+      },
+      {
         "name": "QueryBuilder",
         "descKey": "doc.queryBuilder_desc",
         "pc": true,

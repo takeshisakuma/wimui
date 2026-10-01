@@ -403,6 +403,15 @@
     "treeDiagram_prop_renderNode": "Substitui o conteúdo padrão do cartão (rótulo, descrição, avatar). A moldura do cartão permanece.",
     "treeDiagram_prop_nodeWidth": "Largura do cartão em px. Todos os cartões têm o mesmo tamanho para que o layout seja decidido antes de qualquer medição; textos longos são truncados e lidos por completo pela tecnologia assistiva.",
     "treeDiagram_prop_nodeHeight": "Altura do cartão em px.",
-    "treeDiagram_prop_labels": "Nomes acessíveis do botão de recolher / expandir, para quando as traduções embutidas não servirem."
+    "treeDiagram_prop_labels": "Nomes acessíveis do botão de recolher / expandir, para quando as traduções embutidas não servirem.",
+    "pivotTable_prop_rows": "O eixo das linhas como uma árvore. Os grupos são desenhados como uma estrutura de tópicos: uma linha recuada por nó.",
+    "pivotTable_prop_columns": "O eixo das colunas como uma árvore. Os grupos se tornam cabeçalhos que se estendem sobre as suas colunas.",
+    "pivotTable_prop_getValue": "Retorna o conteúdo de uma célula. O componente não agrega: a chave de um grupo pede o subtotal desse grupo e `null` pede o total geral desse eixo. Retorne `null` ou `undefined` para uma célula vazia.",
+    "pivotTable_prop_rowAxisLabel": "Cabeçalho do eixo das linhas, mostrado no canto superior esquerdo.",
+    "pivotTable_prop_caption": "Título visível da tabela, que também é o seu nome acessível.",
+    "pivotTable_prop_columnSubtotals": "Adiciona uma coluna de subtotal depois das colunas de cada grupo de colunas.",
+    "pivotTable_prop_totalRow": "Adiciona uma linha de total geral na parte inferior.",
+    "pivotTable_prop_totalColumn": "Adiciona uma coluna de total geral na borda direita.",
+    "pivotTable_prop_labels": "Texto dos cabeçalhos de total, para quando as traduções internas não servem."
   }
 }

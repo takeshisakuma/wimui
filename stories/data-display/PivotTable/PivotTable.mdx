@@ -1,0 +1,100 @@
+import { Meta, Canvas, Controls, Title } from "@storybook/blocks";
+import * as PivotTableStories from "./PivotTable.stories";
+import { T } from "../../T";
+import { Docgen } from "../../Docgen";
+
+<Meta of={PivotTableStories} />
+
+<Title />
+
+<T k="docs_data_heavy:doc.pivottable_desc" />
+
+<Docgen componentName="PivotTable" section="import" />
+
+<Canvas of={PivotTableStories.Default} />
+<Controls of={PivotTableStories.Default} />
+
+## <T k="common:doc.design_intent_title" />
+
+<T k="docs_data_heavy:doc.pivottable_design_intent" />
+
+## <T k="common:doc.choice_matrix_title" />
+
+<table>
+  <thead>
+    <tr><th><T k="common:doc.usage" /></th><th><T k="common:doc.recommendation" /></th></tr>
+  </thead>
+  <tbody>
+    <tr><td><T k="docs_data_heavy:doc.pivottable_choice_cross" /></td><td>PivotTable</td></tr>
+    <tr><td><T k="docs_data_heavy:doc.pivottable_choice_flat" /></td><td>Table</td></tr>
+    <tr><td><T k="docs_data_heavy:doc.pivottable_choice_records" /></td><td>DataGrid</td></tr>
+    <tr><td><T k="docs_data_heavy:doc.pivottable_choice_trend" /></td><td>LineChart / BarChart</td></tr>
+  </tbody>
+</table>
+
+<Docgen componentName="PivotTable" section="anatomy" />
+
+## <T k="common:doc.a11y_spec_title" />
+
+<ul>
+  <li><T k="docs_data_heavy:doc.pivottable_a11y_headers" /></li>
+  <li><T k="docs_data_heavy:doc.pivottable_a11y_scope" /></li>
+  <li><T k="docs_data_heavy:doc.pivottable_a11y_name" /></li>
+</ul>
+
+## <T k="common:doc.real_world_scenarios_title" />
+
+<table>
+  <thead>
+    <tr>
+      <th><T k="common:doc.scenario" /></th>
+      <th><T k="common:doc.summary" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="docs_data_heavy:doc.pivottable_scenario_sales" /></strong></td>
+      <td><T k="docs_data_heavy:doc.pivottable_scenario_sales_desc" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="docs_data_heavy:doc.pivottable_scenario_survey" /></strong></td>
+      <td><T k="docs_data_heavy:doc.pivottable_scenario_survey_desc" /></td>
+    </tr>
+  </tbody>
+</table>
+
+## <T k="common:doc.best_practices_title" />
+
+<ul>
+  <li><T k="docs_data_heavy:doc.pivottable_best_format" /></li>
+  <li><T k="docs_data_heavy:doc.pivottable_best_empty" /></li>
+  <li><T k="docs_data_heavy:doc.pivottable_best_keys" /></li>
+</ul>
+
+<Docgen componentName="PivotTable" section="props" />
+
+## <T k="docs_data_heavy:doc.pivottable_totals" />
+
+<T k="docs_data_heavy:doc.pivottable_totals_desc" />
+
+<Canvas of={PivotTableStories.Totals} />
+
+## <T k="docs_data_heavy:doc.pivottable_nested" />
+
+<T k="docs_data_heavy:doc.pivottable_nested_desc" />
+
+<Canvas of={PivotTableStories.NestedColumns} />
+
+<Docgen componentName="PivotTable" section="tokens" />
+
+## <T k="common:doc.responsive_title" />
+
+<T k="docs_data_heavy:doc.pivottable_responsive" />
+
+## <T k="common:doc.keyboard_nav_title" />
+
+<T k="docs_data_heavy:doc.pivottable_keyboard" />
+
+<Docgen componentName="PivotTable" section="i18n" />
+
+<Docgen componentName="PivotTable" section="test" />

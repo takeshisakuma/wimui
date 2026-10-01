@@ -129,6 +129,9 @@
     "tree_usage": "Directory structures like a file manager, organizational charts, category trees across multiple tiers.",
     "usecase": "Use Cases",
     "vertical_list": "Vertical Single Column",
-    "row_column_annotation": "(Row/Column)"
+    "row_column_annotation": "(Row/Column)",
+    "pivot_structure": "Cross-tabulation (two hierarchies)",
+    "pivot_features": "Multi-level row and column headings with subtotals and grand totals. It draws aggregated data; it does not sort, filter or edit.",
+    "pivot_usage": "Reports that compare totals across two dimensions, such as sales by product and month."
   }
 }

@@ -213,7 +213,8 @@
     "presence_desc": "Mostra se uma pessoa está online, ausente, ocupada ou offline.",
     "barcode_desc": "Desenha um código de barras Code 128 ou EAN-13 legível por leitores.",
     "comment_desc": "Mostra um comentário de uma discussão, com suas ações e respostas aninhadas.",
-    "treeDiagram_desc": "Organiza uma árvore, como um organograma, apenas a partir dos dados, com os pais centralizados sobre os filhos e subárvores recolhíveis."
+    "treeDiagram_desc": "Organiza uma árvore, como um organograma, apenas a partir dos dados, com os pais centralizados sobre os filhos e subárvores recolhíveis.",
+    "pivotTable_desc": "Desenha dados agregados como uma tabela com cabeçalhos de linha e de coluna em vários níveis, subtotais e totais gerais."
   },
   "effects": {
     "common_vars": "Variáveis Comuns"
@@ -667,5 +668,8 @@
     "aria": "Diagrama de árvore",
     "collapse": "Recolher {{label}}",
     "expand": "Expandir {{label}}"
+  },
+  "pivottable": {
+    "total": "Total"
   }
 }

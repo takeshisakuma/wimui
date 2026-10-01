@@ -1,0 +1,112 @@
+@layer component {
+  /* 横スクロールの器。Table の器（`.scope` / `.container`）は使わない ── あちらは
+     `container-type: inline-size` を持つので、幅が中身で決まる置き場（shrink-to-fit）では
+     中身の幅が 0 と数えられ、下限の 180px まで潰れる（実測: 848px の表が 180px の箱に入った）。
+     Table はカード表示の切り替えにコンテナクエリが要るが、この部品は切り替えない。 */
+  .scroller {
+    /* 1 列の grid にして、列の下限を 0 にする。器の幅の出し方が「狭いほうは 0・広いほうは
+       表の幅」になるので、shrink-to-fit の置き場では「表の幅と置き場の狭いほう」に収まる
+       （実測: 置き場 1280px で 848px、390px で 358px ＋内側のスクロール）。ただの block だと
+       表の最小幅がそのまま外へ伝わり、390px でページが 490px 横にはみ出した。 */
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+
+    /* flex の中で 0 まで縮まないための下限（置き場がそれより狭いときは置き場に合わせる）。 */
+    min-width: min(var(--wim-width-sm), 100%);
+    max-width: 100%;
+    overflow-x: auto;
+    background-color: var(--wim-color-surface);
+  }
+
+  .root {
+    width: 100%;
+
+    /* 値は桁で見比べるので、数字の幅を揃える。 */
+    font-variant-numeric: tabular-nums;
+    color: var(--wim-color-text-primary);
+    border-collapse: collapse;
+  }
+
+  .caption {
+    padding: var(--wim-table-cell-padding-y) var(--wim-table-cell-padding-x);
+    font-size: var(--wim-font-size-sm);
+    color: var(--wim-color-text-secondary);
+    text-align: left;
+    caption-side: top;
+  }
+
+  .columnHeader {
+    /* 段をまたぐセル（`rowSpan`）の文字は下の段の位置に来る。axe は後ろにある `tr` を手前の
+       要素として数えるので、そのままだと「他の要素に覆われていて背景を決められない」になる
+       （実測: 角のセルに `color-contrast` の incomplete。`tr` の地色の有無では変わらず、セルを
+       positioned にすると消える）。描画は変わらない。 */
+    position: relative;
+    padding: var(--wim-table-cell-padding-y) var(--wim-table-cell-padding-x);
+    font-weight: var(--wim-font-weight-semibold);
+    vertical-align: bottom;
+
+    /* 値（右揃え）の真上に置く。 */
+    text-align: right;
+    white-space: nowrap;
+
+    /* まとめた見出し。掛かっている列の幅ぶんの細い線で、どの列をまとめているかを示す。 */
+    &.group {
+      text-align: center;
+      box-shadow: inset 0 calc(var(--wim-border-width-thin) * -1) 0 0 var(--wim-color-border);
+    }
+
+    /* 見出しの最下段に届くセル。本文との境界は Table と同じ「帯」で描く（T241 と同じ理由:
+       border は `collapse` の共有辺で細る）。 */
+    &.bottom {
+      border-bottom: var(--wim-border-width-thick) solid transparent;
+      box-shadow: inset 0 calc(var(--wim-border-width-thick) * -1) 0 0 var(--wim-color-border);
+    }
+  }
+
+  .corner {
+    text-align: left;
+  }
+
+  .rowHeader {
+    padding: var(--wim-table-cell-padding-y) var(--wim-table-cell-padding-x);
+
+    /* アウトライン形式: 階層は 1 列の中の字下げで表す。 */
+    padding-left: calc(
+      var(--wim-table-cell-padding-x) + var(--wim-pivot-table-depth, 0) * var(--wim-spacing-2xl)
+    );
+    font-weight: var(--wim-font-weight-normal);
+    vertical-align: middle;
+    text-align: left;
+    white-space: nowrap;
+  }
+
+  .value {
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  /* グループの行は小計なので、明細の行より一段強くする。 */
+  .groupRow {
+    .rowHeader,
+    .value {
+      font-weight: var(--wim-font-weight-medium);
+    }
+  }
+
+  /* 小計・総計の列。 */
+  .aggregate {
+    font-weight: var(--wim-font-weight-medium);
+  }
+
+  /* 最上位のグループの境目。見出しから本文まで 1 本の線で通す。 */
+  .groupStart {
+    border-left: var(--wim-border-width-thin) solid var(--wim-color-border-secondary);
+  }
+
+  .totalRow {
+    .rowHeader,
+    .value {
+      font-weight: var(--wim-font-weight-semibold);
+    }
+  }
+}

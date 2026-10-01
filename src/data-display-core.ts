@@ -24,6 +24,7 @@ export * from "./components/data-display/Tag/Tag";
 export * from "./components/data-display/Timeline/Timeline";
 export * from "./components/data-display/TreeView/TreeView";
 export * from "./components/data-display/TreeDiagram/TreeDiagram";
+export * from "./components/data-display/PivotTable/PivotTable";
 export * from "./components/data-display/VirtualList/VirtualList";
 export * from "./components/data-display/FAQSection/FAQSection";
 export * from "./components/data-display/InfiniteScroll/InfiniteScroll";

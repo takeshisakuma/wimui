@@ -448,6 +448,24 @@
     "treediagram_role_operations": "業務部長",
     "treediagram_role_support": "カスタマーサポート",
     "treediagram_role_finance": "経理",
-    "treediagram_selected": "選択中: {{name}}（{{role}}）"
+    "treediagram_selected": "選択中: {{name}}（{{role}}）",
+    "pivottable_caption": "販売数（2026 年 1 月〜 6 月）",
+    "pivottable_caption_shops": "店舗別の販売数（2026 年 1 月〜 6 月）",
+    "pivottable_product": "商品",
+    "pivottable_category": "カテゴリ",
+    "pivottable_q1": "第1四半期",
+    "pivottable_q2": "第2四半期",
+    "pivottable_drinks": "ドリンク",
+    "pivottable_drip": "ドリップコーヒー",
+    "pivottable_latte": "カフェラテ",
+    "pivottable_coldbrew": "水出しコーヒー",
+    "pivottable_matcha": "抹茶ラテ",
+    "pivottable_food": "フード",
+    "pivottable_croissant": "バタークロワッサン",
+    "pivottable_sandwich": "たまごサンド",
+    "pivottable_tart": "季節のフルーツタルト（週末のみ）",
+    "pivottable_gift": "ギフトカード",
+    "pivottable_shop_station": "駅前店",
+    "pivottable_shop_riverside": "川沿い店"
   }
 }
