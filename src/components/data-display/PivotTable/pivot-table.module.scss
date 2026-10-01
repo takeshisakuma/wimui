@@ -80,6 +80,63 @@
     white-space: nowrap;
   }
 
+  /* グループの行の開閉ボタン。山形と見出しの文字を 1 つのボタンにする ── 山形だけを
+     ボタンにすると、ボタンの名前（「○○を閉じる」）が見出しセルの中身に混ざり、`headers` で
+     その見出しを読むセルすべてに付いて回る。文字ごと包めば、名前は見出しの文字のままになる。 */
+  .toggle {
+    /* inline の箱にしない。inline だと行の箱（strut）と揃え直されて行が伸びる（実測: 明細の行
+       39.4px に対して、baseline 揃えで 42px・middle 揃えでも 41.7px）。block の flex にして、
+       幅だけ中身に合わせる（セルの余白まで押せる範囲にしない）。 */
+    display: flex;
+    gap: var(--wim-spacing-xs);
+    align-items: center;
+    width: fit-content;
+
+    /* 当たり判定の下限（WCAG 2.5.8）。 */
+    min-height: var(--wim-tap-target-min);
+    padding: 0;
+    font: inherit;
+    color: inherit;
+    text-align: left;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    border-radius: var(--wim-radius-component);
+
+    &:hover .chevron {
+      color: var(--wim-color-text-primary);
+    }
+
+    &:focus-visible {
+      outline: var(--wim-focus-outline-width) solid var(--wim-color-focus-outline);
+      outline-offset: var(--wim-focus-outline-offset);
+    }
+  }
+
+  .chevron {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: var(--wim-spacing-3xl);
+    color: var(--wim-color-text-tertiary);
+    transition: transform var(--wim-duration-fast) var(--wim-easing-standard);
+
+    &.open {
+      transform: rotate(90deg);
+    }
+  }
+
+  /* 開閉ボタンを持たない行の文字。山形の幅と間隔ぶん下げて、ボタンの文字の位置に揃える。 */
+  .leafLabel {
+    display: flex;
+    align-items: center;
+
+    /* ボタンと同じ高さの箱にして、グループの行と明細の行の高さを揃える。 */
+    min-height: var(--wim-tap-target-min);
+    padding-left: calc(var(--wim-spacing-3xl) + var(--wim-spacing-xs));
+  }
+
   .value {
     text-align: right;
     white-space: nowrap;

@@ -7482,6 +7482,14 @@
         }
       }
     },
+    "PivotTable.defaultExpandedValues": {
+      "required": false,
+      "type": "string[]"
+    },
+    "PivotTable.expandedValues": {
+      "required": false,
+      "type": "string[]"
+    },
     "PivotTable.getValue": {
       "required": true,
       "type": "(rowKey: string | null, columnKey: string | null) => React.ReactNode"
@@ -7495,6 +7503,10 @@
           "type": "string"
         }
       }
+    },
+    "PivotTable.onExpandedChange": {
+      "required": false,
+      "type": "(values: string[]) => void"
     },
     "PivotTable.rowAxisLabel": {
       "required": false,

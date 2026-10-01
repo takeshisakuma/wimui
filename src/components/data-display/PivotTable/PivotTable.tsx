@@ -1,7 +1,9 @@
-import React, { useMemo } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import classNames from "classnames";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { ChevronRightIcon } from "@/icon";
 import { useMergedRef } from "../../../hooks/useMergedRef";
+import { Icon } from "../../media/Icon/Icon";
 import { Table } from "../Table/Table";
 import { layoutPivotColumns, layoutPivotRows } from "./layoutPivot";
 import localStyles from "./pivot-table.module.scss";
@@ -9,7 +11,10 @@ import localStyles from "./pivot-table.module.scss";
 export type PivotTableAxisNode = {
   /** Unique within its axis. Passed back to `getValue`. */
   key: string;
-  /** Heading shown for this row or column. */
+  /**
+   * Heading shown for this row or column. On the row axis the label of a group is drawn
+   * inside its expand / collapse button, so it must not contain links or other controls.
+   */
   label: React.ReactNode;
   /** Nested headings. A node with children is a group; its own value is the subtotal. */
   children?: PivotTableAxisNode[];
@@ -35,6 +40,15 @@ export type PivotTableProps = Omit<React.ComponentPropsWithoutRef<"table">, "chi
   rowAxisLabel?: React.ReactNode;
   /** Visible title of the table, also its accessible name. */
   caption?: React.ReactNode;
+  /**
+   * Keys of the expanded row groups (controlled). A group that is not listed shows only
+   * its own row, which carries its subtotal.
+   */
+  expandedValues?: string[];
+  /** Row groups expanded on first render (uncontrolled). Defaults to every group. */
+  defaultExpandedValues?: string[];
+  /** Called with the new list of expanded row groups when a group is expanded or collapsed. */
+  onExpandedChange?: (values: string[]) => void;
   /** Adds a subtotal column after the columns of each column group. */
   columnSubtotals?: boolean;
   /** Adds a grand total row at the bottom. */
@@ -45,10 +59,24 @@ export type PivotTableProps = Omit<React.ComponentPropsWithoutRef<"table">, "chi
   labels?: PivotTableLabels;
 };
 
+const collectGroupKeys = (nodes: PivotTableAxisNode[], out: string[] = []): string[] => {
+  for (const node of nodes) {
+    if (node.children?.length) {
+      out.push(node.key);
+      collectGroupKeys(node.children, out);
+    }
+  }
+  return out;
+};
+
 /**
  * PivotTable — draws already aggregated data as a table with multi-level row and column
  * headings, subtotals and grand totals. It only draws: grouping and summing stay with the
  * caller, who answers `getValue(rowKey, columnKey)` for every cell.
+ *
+ * Row groups can be collapsed to their subtotal row with the button in their heading
+ * (Enter or Space). The button is named by the group label, so the heading still reads as
+ * the plain label when a cell announces it.
  *
  * Every cell lists the headings it belongs to in its `headers` attribute, so a screen
  * reader announces the full row path and column path of a value.
@@ -68,6 +96,9 @@ export const PivotTable = React.forwardRef<HTMLTableElement, PivotTableProps>(
       getValue,
       rowAxisLabel,
       caption,
+      expandedValues: controlledExpanded,
+      defaultExpandedValues,
+      onExpandedChange,
       columnSubtotals = false,
       totalRow = false,
       totalColumn = false,
@@ -85,7 +116,23 @@ export const PivotTable = React.forwardRef<HTMLTableElement, PivotTableProps>(
       () => layoutPivotColumns(columns, { subtotals: columnSubtotals, total: totalColumn }),
       [columns, columnSubtotals, totalColumn],
     );
-    const rowLayout = useMemo(() => layoutPivotRows(rows), [rows]);
+    const [uncontrolledExpanded, setUncontrolledExpanded] = useState<string[]>(
+      () => defaultExpandedValues ?? collectGroupKeys(rows),
+    );
+    const expanded = controlledExpanded ?? uncontrolledExpanded;
+    const expandedSet = useMemo(() => new Set(expanded), [expanded]);
+    const toggle = useCallback(
+      (key: string) => {
+        const next = expandedSet.has(key) ? expanded.filter((v) => v !== key) : [...expanded, key];
+        if (controlledExpanded === undefined) setUncontrolledExpanded(next);
+        onExpandedChange?.(next);
+      },
+      [expanded, expandedSet, controlledExpanded, onExpandedChange],
+    );
+
+    const rowLayout = useMemo(() => layoutPivotRows(rows, (key) => expandedSet.has(key)), [rows, expandedSet]);
+    // 開閉ボタンを持つ行が 1 つでもあれば、持たない行の文字をボタンの文字の位置に揃える
+    const hasRowGroups = useMemo(() => collectGroupKeys(rows).length > 0, [rows]);
 
     const hasCorner = rowAxisLabel !== undefined && rowAxisLabel !== null && rowAxisLabel !== false;
     const cornerId = `${idBase}corner`;
@@ -202,7 +249,24 @@ export const PivotTable = React.forwardRef<HTMLTableElement, PivotTableProps>(
                     className={localStyles.rowHeader}
                     style={{ "--wim-pivot-table-depth": row.depth } as React.CSSProperties}
                   >
-                    {row.node.label}
+                    {row.hasChildren ? (
+                      <button
+                        type="button"
+                        className={localStyles.toggle}
+                        aria-expanded={row.expanded}
+                        onClick={() => toggle(row.key)}
+                      >
+                        <span
+                          className={classNames(localStyles.chevron, row.expanded && localStyles.open)}
+                          aria-hidden="true"
+                        >
+                          <Icon component={ChevronRightIcon} size="sm" />
+                        </span>
+                        {row.node.label}
+                      </button>
+                    ) : (
+                      <span className={classNames(hasRowGroups && localStyles.leafLabel)}>{row.node.label}</span>
+                    )}
                   </th>
                   {columnLayout.columns.map((column, c) => (
                     <Table.Cell
@@ -230,7 +294,7 @@ export const PivotTable = React.forwardRef<HTMLTableElement, PivotTableProps>(
                   headers={hasCorner ? cornerId : undefined}
                   className={localStyles.rowHeader}
                 >
-                  {totalLabel}
+                  <span className={classNames(hasRowGroups && localStyles.leafLabel)}>{totalLabel}</span>
                 </th>
                 {columnLayout.columns.map((column, c) => (
                   <Table.Cell

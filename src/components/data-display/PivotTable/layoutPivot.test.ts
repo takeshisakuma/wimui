@@ -154,6 +154,29 @@ describe("layoutPivotRows", () => {
     ]);
   });
 
+  it("hides the rows under a collapsed group but keeps the group row", () => {
+    const axis = [group("drinks", leaf("latte"), group("tea", leaf("matcha"))), leaf("gift")];
+    const rows = layoutPivotRows(axis, (key) => key !== "drinks");
+    expect(rows.map((r) => [r.key, r.expanded])).toEqual([
+      ["drinks", false],
+      ["gift", false],
+    ]);
+  });
+
+  it("collapses a nested group on its own and renumbers the ancestors of the rows after it", () => {
+    const axis = [group("drinks", group("tea", leaf("matcha")), leaf("latte"))];
+    const rows = layoutPivotRows(axis, (key) => key !== "tea");
+    expect(rows.map((r) => [r.key, r.expanded, r.ancestors])).toEqual([
+      ["drinks", true, []],
+      ["tea", false, [0]],
+      ["latte", false, [0]],
+    ]);
+  });
+
+  it("never reports a leaf as expanded", () => {
+    expect(layoutPivotRows([leaf("gift")], () => true)[0].expanded).toBe(false);
+  });
+
   it("returns no rows for an empty axis", () => {
     expect(layoutPivotRows([])).toEqual([]);
   });

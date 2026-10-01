@@ -412,6 +412,9 @@
     "pivotTable_prop_columnSubtotals": "列のグループごとに、その列の後ろへ小計の列を足します。",
     "pivotTable_prop_totalRow": "一番下に総計の行を足します。",
     "pivotTable_prop_totalColumn": "右端に総計の列を足します。",
-    "pivotTable_prop_labels": "合計の見出しの文言です。内蔵の翻訳が合わないときに使います。"
+    "pivotTable_prop_labels": "合計の見出しの文言です。内蔵の翻訳が合わないときに使います。",
+    "pivotTable_prop_expandedValues": "開いている行のグループのキーです（制御）。ここに無いグループは、小計を持つ自分の行だけを表示します。",
+    "pivotTable_prop_defaultExpandedValues": "最初の描画で開いておく行のグループです（非制御）。既定ではすべてのグループが開きます。",
+    "pivotTable_prop_onExpandedChange": "グループを開いた・折りたたんだときに、開いている行のグループの新しい一覧を渡して呼ばれます。"
   }
 }
