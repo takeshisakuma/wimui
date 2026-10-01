@@ -7550,6 +7550,10 @@
       "required": false,
       "type": "boolean"
     },
+    "PivotTable.virtualized": {
+      "required": false,
+      "type": "boolean"
+    },
     "Popconfirm.cancelText": {
       "required": false,
       "type": "ReactNode"

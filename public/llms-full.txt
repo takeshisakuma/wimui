@@ -2510,6 +2510,9 @@ level stays, stacked in order. Only has an effect together with `maxHeight`.
     - `stickyRowHeaders: boolean` = false — Keeps the row headings in view while the table scrolls sideways. The column is only
 pinned while it takes at most half of the visible width; in a narrower container it
 scrolls with the rest, so that the values stay readable.
+    - `virtualized: boolean` = false — Renders only the rows in view (plus a few around them) and keeps the scroll height
+with empty spacer rows. Use it for tables with hundreds of rows, together with
+`maxHeight`. Rows must all have the same height, so keep labels and values on one line.
     - `columnSubtotals: boolean` = false — Adds a subtotal column after the columns of each column group.
     - `totalRow: boolean` = false — Adds a grand total row at the bottom.
     - `totalColumn: boolean` = false — Adds a grand total column at the right edge.

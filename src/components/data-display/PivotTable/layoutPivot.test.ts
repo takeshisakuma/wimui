@@ -1,5 +1,12 @@
 import { describe, it, expect } from "vitest";
-import { layoutPivotColumns, layoutPivotRows, type PivotAxisInput, type PivotColumnLayout } from "./layoutPivot";
+import {
+  layoutPivotColumns,
+  layoutPivotRows,
+  pivotRowWindow,
+  type PivotAxisInput,
+  type PivotColumnLayout,
+  type PivotRowSegment,
+} from "./layoutPivot";
 
 const leaf = (key: string): PivotAxisInput => ({ key });
 const group = (key: string, ...children: PivotAxisInput[]): PivotAxisInput => ({ key, children });
@@ -179,5 +186,99 @@ describe("layoutPivotRows", () => {
 
   it("returns no rows for an empty axis", () => {
     expect(layoutPivotRows([])).toEqual([]);
+  });
+});
+
+describe("pivotRowWindow", () => {
+  const base = { rowCount: 1000, rowHeight: 40, scrollTop: 0, viewportHeight: 320, bodyOffset: 0, overscan: 2 };
+  /** 描く行の番号を並べる。 */
+  const rendered = (segments: PivotRowSegment[]) =>
+    segments.flatMap((s) => (s.kind === "rows" ? Array.from({ length: s.to - s.from }, (_, i) => s.from + i) : []));
+  /** gap も含めて、全部で何行ぶんの高さになるか。 */
+  const total = (segments: PivotRowSegment[]) =>
+    segments.reduce((sum, s) => sum + (s.kind === "rows" ? s.to - s.from : s.count), 0);
+
+  it("renders the rows in view plus the overscan and one gap for the rest", () => {
+    expect(pivotRowWindow(base)).toEqual([
+      { kind: "rows", from: 0, to: 10 },
+      { kind: "gap", count: 990 },
+    ]);
+  });
+
+  it("moves the window with the scroll position", () => {
+    expect(pivotRowWindow({ ...base, scrollTop: 4000 })).toEqual([
+      { kind: "gap", count: 98 },
+      { kind: "rows", from: 98, to: 110 },
+      { kind: "gap", count: 890 },
+    ]);
+  });
+
+  it("subtracts what sits above the first row (caption and headings)", () => {
+    const segments = pivotRowWindow({ ...base, scrollTop: 4000, bodyOffset: 120 });
+    expect(rendered(segments)[0]).toBe(95);
+  });
+
+  it("stops at the last row", () => {
+    const segments = pivotRowWindow({ ...base, scrollTop: 39_800 });
+    expect(segments[segments.length - 1]).toEqual({ kind: "rows", from: 993, to: 1000 });
+  });
+
+  it("always accounts for every row, whatever the scroll position", () => {
+    for (const scrollTop of [0, 1, 39, 40, 41, 12_345, 39_680, 40_000, 99_999, -500]) {
+      for (const keep of [null, 0, 500, 999]) {
+        const segments = pivotRowWindow({ ...base, scrollTop, keep });
+        expect(total(segments)).toBe(1000);
+        const rows = rendered(segments);
+        expect(new Set(rows).size).toBe(rows.length);
+        expect([...rows].sort((a, b) => a - b)).toEqual(rows);
+        expect(rows.length).toBeGreaterThan(0);
+      }
+    }
+  });
+
+  it("keeps one row rendered above the window", () => {
+    expect(pivotRowWindow({ ...base, scrollTop: 4000, keep: 3 })).toEqual([
+      { kind: "gap", count: 3 },
+      { kind: "rows", from: 3, to: 4 },
+      { kind: "gap", count: 94 },
+      { kind: "rows", from: 98, to: 110 },
+      { kind: "gap", count: 890 },
+    ]);
+  });
+
+  it("keeps one row rendered below the window", () => {
+    expect(pivotRowWindow({ ...base, keep: 500 })).toEqual([
+      { kind: "rows", from: 0, to: 10 },
+      { kind: "gap", count: 490 },
+      { kind: "rows", from: 500, to: 501 },
+      { kind: "gap", count: 499 },
+    ]);
+  });
+
+  it("adds nothing for a kept row that is already in the window or next to it", () => {
+    expect(rendered(pivotRowWindow({ ...base, keep: 4 }))).toEqual(rendered(pivotRowWindow(base)));
+    // 窓のすぐ下の行: 間の gap は 0 行なので出さない
+    expect(pivotRowWindow({ ...base, keep: 10 })).toEqual([
+      { kind: "rows", from: 0, to: 10 },
+      { kind: "rows", from: 10, to: 11 },
+      { kind: "gap", count: 989 },
+    ]);
+  });
+
+  it("ignores a kept row that does not exist", () => {
+    expect(pivotRowWindow({ ...base, keep: 5000 })).toEqual(pivotRowWindow(base));
+    expect(pivotRowWindow({ ...base, keep: -1 })).toEqual(pivotRowWindow(base));
+  });
+
+  it("renders everything while the row height is unknown", () => {
+    expect(pivotRowWindow({ ...base, rowHeight: 0 })).toEqual([{ kind: "rows", from: 0, to: 1000 }]);
+  });
+
+  it("returns nothing for an empty axis", () => {
+    expect(pivotRowWindow({ ...base, rowCount: 0 })).toEqual([]);
+  });
+
+  it("renders all rows when they fit in the window", () => {
+    expect(pivotRowWindow({ ...base, rowCount: 5 })).toEqual([{ kind: "rows", from: 0, to: 5 }]);
   });
 });

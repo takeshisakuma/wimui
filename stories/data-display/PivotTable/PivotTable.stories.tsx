@@ -178,6 +178,113 @@ export const StickyHeaders: Story = {
   },
 };
 
+// ── 行の多い表（仮想化）────────────────────────────────────
+// 16 店舗 × 61 日（5 月 1 日〜 6 月 30 日）。値は決まった計算で作る（毎回同じ表になる）。
+const SHOPS = [
+  "Kichijoji", "Porto Alegre", "Leith", "Nakameguro", "Lapa", "Kreuzberg", "Shimokitazawa", "Belém",
+  "Hackney", "Koenji", "Pinheiros", "Ancoats", "Yanaka", "Ipanema", "Digbeth", "Kuramae",
+];
+const DAYS = 61;
+const DAILY_PRODUCTS = ["drip", "latte", "coldbrew", "matcha", "croissant", "sandwich", "tart", "gift"];
+// 1 日あたりのおおよその数（駅前店の月の数を 30 で割った程度）
+const DAILY_BASE = [42, 33, 19, 9, 22, 13, 3, 1];
+
+/** 店舗 × 日 × 商品の販売数。週末は多く、店舗ごとに規模が違う。 */
+const dailyUnits = (() => {
+  let seed = 20260501;
+  const random = () => {
+    seed = (seed * 1664525 + 1013904223) % 4294967296;
+    return seed / 4294967296;
+  };
+  return SHOPS.map(() => {
+    const scale = 0.55 + random() * 0.9;
+    return Array.from({ length: DAYS }, (__, day) => {
+      // 2026-05-01 は金曜日。土日は 3 割増し
+      const weekday = (5 + day) % 7;
+      const weekend = weekday === 6 || weekday === 0 ? 1.3 : 1;
+      return DAILY_BASE.map((base, product) => {
+        // フルーツタルトは週末だけ
+        if (product === 6 && weekend === 1) return 0;
+        return Math.round(base * scale * weekend * (0.75 + random() * 0.5));
+      });
+    });
+  });
+})();
+
+const useDailyPivot = () => {
+  const { t, i18n } = useTranslation(ALL_NAMESPACES);
+  return React.useMemo(() => {
+    const dayName = new Intl.DateTimeFormat(i18n.language, { month: "short", day: "numeric", weekday: "short" });
+    const number = new Intl.NumberFormat(i18n.language);
+    const rows: PivotTableAxisNode[] = SHOPS.map((name, shop) => ({
+      key: `s${shop}`,
+      label: name,
+      children: Array.from({ length: DAYS }, (_, day) => ({
+        key: `s${shop}/d${day}`,
+        label: dayName.format(new Date(2026, 4, 1 + day)),
+      })),
+    }));
+    const product = (key: string): PivotTableAxisNode => ({ key, label: t(`story.pivottable_${key}`) });
+    const columns: PivotTableAxisNode[] = [
+      { key: "drinks", label: t("story.pivottable_drinks"), children: PRODUCTS.drinks.map(product) },
+      { key: "food", label: t("story.pivottable_food"), children: PRODUCTS.food.map(product) },
+      product("gift"),
+    ];
+    // 集計は利用者の責任。行はキーから店舗と日を、列はキーから商品の集まりを引く
+    const cache = new Map<string, React.ReactNode>();
+    const getValue = (rowKey: string | null, columnKey: string | null) => {
+      const id = `${rowKey}|${columnKey}`;
+      if (cache.has(id)) return cache.get(id);
+      const [shopPart, dayPart] = rowKey === null ? [] : rowKey.split("/");
+      const shops = shopPart === undefined ? SHOPS.map((_, i) => i) : [Number(shopPart.slice(1))];
+      const days = dayPart === undefined ? Array.from({ length: DAYS }, (_, i) => i) : [Number(dayPart.slice(1))];
+      const products = (columnKey === null ? DAILY_PRODUCTS : (PRODUCTS[columnKey] ?? [columnKey])).map((key) =>
+        DAILY_PRODUCTS.indexOf(key),
+      );
+      let total = 0;
+      for (const shop of shops) for (const day of days) for (const p of products) total += dailyUnits[shop][day][p];
+      // 明細の 0 は「その日は売っていない」ので空にする（タルトの平日）
+      const value = total === 0 && dayPart !== undefined ? null : number.format(total);
+      cache.set(id, value);
+      return value;
+    };
+    return { rows, columns, getValue };
+  }, [t, i18n.language]);
+};
+
+/**
+ * 992 行 × 11 列（約 1 万セル）。`virtualized` で見えている行だけを描く。
+ * 高さの制限（`maxHeight`）と組で使う。
+ */
+export const Virtualized: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    const { rows, columns, getValue } = useDailyPivot();
+    return (
+      <PivotTable
+        {...args}
+        rows={rows}
+        columns={columns}
+        getValue={getValue}
+        rowAxisLabel={t("story.pivottable_shop_day")}
+        caption={t("story.pivottable_caption_daily")}
+      />
+    );
+  },
+  args: {
+    virtualized: true,
+    maxHeight: 480,
+    stickyHeader: true,
+    stickyRowHeaders: true,
+    columnSubtotals: true,
+    totalColumn: true,
+    totalRow: true,
+  },
+  argTypes: {
+    virtualized: { control: "boolean" },
+  },
+};
+
 /** 列を 3 段にする（店舗 → 四半期 → 月）。枝ごとに深さも列の数も揃っていなくてよい。 */
 export const NestedColumns: Story = {
   render: function Render(args) {

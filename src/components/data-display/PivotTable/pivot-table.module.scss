@@ -75,6 +75,8 @@
   }
 
   .rowHeader {
+    /* 仮想化したときに入る、見えない祖先の名前（絶対配置）の基準にする。 */
+    position: relative;
     padding: var(--wim-table-cell-padding-y) var(--wim-table-cell-padding-x);
 
     /* アウトライン形式: 階層は 1 列の中の字下げで表す。 */
@@ -174,6 +176,12 @@
     .value {
       font-weight: var(--wim-font-weight-semibold);
     }
+  }
+
+  /* 仮想化で描かない行のぶんの高さを持つ、空の行。線も余白も持たない。 */
+  .gap td {
+    padding: 0;
+    border: 0;
   }
 
   /* ── 見出しの固定 ─────────────────────────────────────────

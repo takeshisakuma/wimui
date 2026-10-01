@@ -466,6 +466,8 @@
     "pivottable_tart": "Torta de frutas da estação (só nos fins de semana)",
     "pivottable_gift": "Cartões-presente",
     "pivottable_shop_station": "Loja da estação",
-    "pivottable_shop_riverside": "Loja da beira-rio"
+    "pivottable_shop_riverside": "Loja da beira-rio",
+    "pivottable_caption_daily": "Unidades vendidas por dia e por loja, maio e junho de 2026",
+    "pivottable_shop_day": "Loja e dia"
   }
 }
