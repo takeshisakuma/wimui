@@ -243,23 +243,34 @@ test.describe("PivotTable", () => {
         const table = document.querySelector("table.wim-pivot-table")!;
         const box = table.parentElement!;
         if (y !== null) box.scrollTop = y;
-        await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
-        const rows = Array.from(table.querySelectorAll<HTMLElement>("tbody tr[data-row-index]"));
+        const frame = () => new Promise((r) => requestAnimationFrame(r));
+        const headerBottom = Math.max(...Array.from(table.querySelectorAll("thead th")).map((th) => th.getBoundingClientRect().bottom));
+        const boxBottom = box.getBoundingClientRect().bottom;
+        const renderedRows = () => Array.from(table.querySelectorAll<HTMLElement>("tbody tr[data-row-index]"));
+        // 見えている範囲（固定した見出しの下〜枠の下端）に掛かっている行
+        const inView = (list: HTMLElement[]) =>
+          list.filter((tr) => tr.getBoundingClientRect().bottom > headerBottom && tr.getBoundingClientRect().top < boxBottom);
+        // 一気に何千 px も飛ぶと、窓が追いつくまで見える範囲に行が 1 本も無いフレームがある
+        // （決め打ちの 2 フレーム待ちでは、CI で追いつく前に測って落ちた）。行が現れるまで待ち、
+        // 現れたらもう 1 フレーム置いてから測る。現れなければ、下の `visibleRows` の検査で落とす。
+        const deadline = performance.now() + 5000;
+        await frame();
+        while (inView(renderedRows()).length === 0 && performance.now() < deadline) await frame();
+        await frame();
+        const rows = renderedRows();
         const missing: string[] = [];
         table.querySelectorAll("[headers]").forEach((cell) => {
           for (const id of cell.getAttribute("headers")!.split(" ")) if (id && !document.getElementById(id)) missing.push(id);
         });
-        // 見えている範囲（固定した見出しの下〜枠の下端）に、行が途切れなく描かれているか
-        const headerBottom = Math.max(...Array.from(table.querySelectorAll("thead th")).map((th) => th.getBoundingClientRect().bottom));
-        const boxBottom = box.getBoundingClientRect().bottom;
-        const visible = rows.filter((tr) => tr.getBoundingClientRect().bottom > headerBottom && tr.getBoundingClientRect().top < boxBottom);
+        const visible = inView(rows);
         return {
           rendered: rows.length,
+          visibleRows: visible.length,
           first: Number(rows[0].dataset.rowIndex),
           firstRowIndex: rows[0].getAttribute("aria-rowindex"),
           rowCount: table.getAttribute("aria-rowcount"),
           missing: missing.length,
-          gapAbove: visible[0].getBoundingClientRect().top - headerBottom,
+          gapAbove: visible.length ? visible[0].getBoundingClientRect().top - headerBottom : null,
           scrollHeight: box.scrollHeight,
           max: box.scrollHeight - box.clientHeight,
         };
@@ -278,6 +289,8 @@ test.describe("PivotTable", () => {
       const at = await read(y);
       expect(at.rendered).toBeLessThan(40);
       expect(at.missing).toBe(0);
+      // 窓がスクロールに追いついている
+      expect(at.visibleRows).toBeGreaterThan(0);
       // 見出しのすぐ下に空白が見えていない
       expect(at.gapAbove).toBeLessThanOrEqual(0.5);
       expect(at.scrollHeight).toBe(start.scrollHeight);

@@ -8,9 +8,8 @@
 // 直接叩き、評価時間（1.5 秒）とナビゲーションの時刻（200ms 後）を固定して、
 // 必ず重なるようにしてある。
 //
-// 注意: このスペックは **CI では走らない**。CI が回すのは `a11y.spec.ts` /
-// `host-matrix.spec.ts` / `vrt.spec.ts` の 3 本だけで、`*.e2e.spec.ts` は
-// `npm run test:vrt`（ローカル全量）でのみ実行される。既存の e2e 群と同じ条件。
+// CI では `e2e.yml` が回す（CI-13・2026-10-02 から。それまでは、どのワークフローからも
+// 呼ばれていなかった）。
 import { test, expect } from "@playwright/test";
 import type { Page } from "@playwright/test";
 
@@ -19,14 +18,28 @@ import { evaluateAcrossNavigation } from "./story-ready";
 const URL =
   "/iframe.html?id=components-media-audio--premium-features&viewMode=story&globals=theme:light;locale:en";
 
+/**
+ * **競合を仕掛ける 2 本は、自分ではナビゲートしないページでやる**（スクリプトを持たない静的ファイル）。
+ *
+ * もとはストーリーのページでやっていた。Storybook は読み込みのあとに自分でもう 1 度ナビゲート
+ * するので、評価に重なるナビゲーションが最大 3 回になる（最初の読み込みの書き換え・仕掛けた
+ * `goto`・その書き換え。実測: 12 / 210 / 400 / 520ms の 4 回のうち後ろの 3 回）。再試行 2 回では
+ * 3 回目を越えられず、「修正」のテストは時間の当たり方しだいで落ちる ── CI で初めて流した回に
+ * 実際に落ちた。「2 回目が済むまで待ってから仕掛ける」も試したが、**2 回目が来ない読み込みが
+ * あった**（10 回中 1 回）ので、回数を当てにする作りにはできない。
+ *
+ * 静的ファイルなら、ナビゲーションは仕掛けた 1 回だけになる。
+ */
+const PLAIN_URL = "/locales/en/common.json";
+
 /** 評価中に必ずナビゲーションを起こす。評価は 1.5 秒、ナビは 200ms 後。 */
 const raceNavigation = (page: Page) =>
-  page.waitForTimeout(200).then(() => page.goto(URL, { waitUntil: "domcontentloaded" }));
+  page.waitForTimeout(200).then(() => page.goto(PLAIN_URL, { waitUntil: "domcontentloaded" }));
 
 const slowEval = () => new Promise<string>((r) => setTimeout(() => r("done"), 1500));
 
 test("対照: 再試行を 0 にすると、評価中のナビゲーションで落ちる", async ({ page }) => {
-  await page.goto(URL, { waitUntil: "domcontentloaded" });
+  await page.goto(PLAIN_URL, { waitUntil: "domcontentloaded" });
 
   let message = "";
   await Promise.all([
@@ -40,7 +53,7 @@ test("対照: 再試行を 0 にすると、評価中のナビゲーションで
 });
 
 test("修正: 再試行ありなら同じ状況でも値が返る", async ({ page }) => {
-  await page.goto(URL, { waitUntil: "domcontentloaded" });
+  await page.goto(PLAIN_URL, { waitUntil: "domcontentloaded" });
 
   let value = "";
   await Promise.all([
