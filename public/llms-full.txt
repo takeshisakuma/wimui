@@ -2496,13 +2496,19 @@ When omitted, both Backspace and Delete work.
     - `columns: PivotTableAxisNode[]` (required) — The column axis as a tree. Groups become headings that span their columns.
     - `getValue: (rowKey: string | null, columnKey: string | null) => React.ReactNode` (required) — Returns the content of one cell. The component does not aggregate: a group key asks
 for that group's subtotal and `null` asks for the grand total of that axis. Return
-`null` or `undefined` for an empty cell.
+`null` or `undefined` for an empty cell. Group keys are asked on both axes: a row
+group for its own row, a column group for its subtotal column and for the single
+column it leaves when it is collapsed.
     - `rowAxisLabel: React.ReactNode` — Heading of the row axis, shown in the top-left corner.
     - `caption: React.ReactNode` — Visible title of the table, also its accessible name.
-    - `expandedValues: string[]` — Keys of the expanded row groups (controlled). A group that is not listed shows only
+    - `expandedRowValues: string[]` — Keys of the expanded row groups (controlled). A group that is not listed shows only
 its own row, which carries its subtotal.
-    - `defaultExpandedValues: string[]` — Row groups expanded on first render (uncontrolled). Defaults to every group.
-    - `onExpandedChange: (values: string[]) => void` — Called with the new list of expanded row groups when a group is expanded or collapsed.
+    - `defaultExpandedRowValues: string[]` — Row groups expanded on first render (uncontrolled). Defaults to every group.
+    - `onExpandedRowChange: (values: string[]) => void` — Called with the new list of expanded row groups when a row group is expanded or collapsed.
+    - `expandedColumnValues: string[]` — Keys of the expanded column groups (controlled). A group that is not listed shows a
+single column, which carries its subtotal: `getValue` receives the group's key.
+    - `defaultExpandedColumnValues: string[]` — Column groups expanded on first render (uncontrolled). Defaults to every group.
+    - `onExpandedColumnChange: (values: string[]) => void` — Called with the new list of expanded column groups when a column group is expanded or collapsed.
     - `maxHeight: string | number` — Maximum height of the table (a number is px). Past it the table scrolls vertically
 inside its own box.
     - `stickyHeader: boolean` = false — Keeps the column headings in view while the table scrolls vertically. Every heading
@@ -2513,7 +2519,7 @@ scrolls with the rest, so that the values stay readable.
     - `virtualized: boolean` = false — Renders only the rows in view (plus a few around them) and keeps the scroll height
 with empty spacer rows. Use it for tables with hundreds of rows, together with
 `maxHeight`. Rows must all have the same height, so keep labels and values on one line.
-    - `columnSubtotals: boolean` = false — Adds a subtotal column after the columns of each column group.
+    - `columnSubtotals: boolean` = false — Adds a subtotal column after the columns of each expanded column group.
     - `totalRow: boolean` = false — Adds a grand total row at the bottom.
     - `totalColumn: boolean` = false — Adds a grand total column at the right edge.
     - `labels: { /** Heading of the grand total row / column and of each subtotal column. */ total?: string; }` — Text of the total headings, for when the built-in translations do not fit.

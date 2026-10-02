@@ -125,12 +125,70 @@ describe("layoutPivotColumns", () => {
     expect(layout.headerRows[0][0].kind).toBe("leaf");
   });
 
+  it("replaces a collapsed group by one subtotal column under a heading that reaches the bottom", () => {
+    const axis = [group("q1", leaf("jan"), leaf("feb")), group("q2", leaf("apr"))];
+    const layout = layoutPivotColumns(axis, { isExpanded: (key) => key !== "q1" });
+    expect(layout.depth).toBe(2);
+    expect(layout.columns.map((c) => [c.key, c.kind])).toEqual([
+      ["q1", "subtotal"],
+      ["apr", "leaf"],
+    ]);
+    const q1 = layout.headerRows[0][0];
+    expect(q1).toMatchObject({ key: "q1", kind: "group", expanded: false, colSpan: 1, rowSpan: 2, reachesBottom: true });
+    expect(layout.headerRows[0][1]).toMatchObject({ key: "q2", kind: "group", expanded: true, colSpan: 1, rowSpan: 1 });
+    expect(layout.columns[0].headerIds).toEqual([q1.id]);
+    expect(layout.groupSpans).toEqual([1, 1]);
+  });
+
+  it("adds no second subtotal column to a collapsed group", () => {
+    const layout = layoutPivotColumns([group("q1", leaf("jan"), leaf("feb"))], {
+      subtotals: true,
+      isExpanded: () => false,
+    });
+    expect(layout.columns.map((c) => [c.key, c.kind])).toEqual([["q1", "subtotal"]]);
+  });
+
+  it("counts only the visible levels: collapsing the deepest groups removes a heading level", () => {
+    const axis = [group("y", group("q1", leaf("jan")), leaf("extra"))];
+    expect(layoutPivotColumns(axis).depth).toBe(3);
+    const inner = layoutPivotColumns(axis, { isExpanded: (key) => key !== "q1" });
+    expect(inner.depth).toBe(2);
+    expect(inner.headerRows).toHaveLength(2);
+    expect(inner.headerRows[1].every((c) => c.rowSpan === 1 && c.reachesBottom)).toBe(true);
+    const outer = layoutPivotColumns(axis, { isExpanded: (key) => key !== "y" });
+    expect(outer.depth).toBe(1);
+    expect(outer.columns.map((c) => c.key)).toEqual(["y"]);
+  });
+
+  it("keeps the group boundary on the column a collapsed top-level group leaves", () => {
+    const axis = [group("q1", leaf("jan"), leaf("feb")), group("q2", leaf("apr"), leaf("may"))];
+    const layout = layoutPivotColumns(axis, { isExpanded: (key) => key !== "q2" });
+    expect(layout.columns.map((c) => c.startsGroup)).toEqual([true, false, true]);
+  });
+
   it("fills the header grid exactly, with no gap and no overlap, for random trees", () => {
+    let collapsedSomething = 0;
     for (let seed = 1; seed <= 200; seed++) {
       const rand = rng(seed);
       const axis = randomAxis(rand, 3);
-      const options = { subtotals: rand() < 0.5, total: rand() < 0.5 };
+      // 半分の木では、グループをでたらめに畳む
+      const collapsed = new Set<string>();
+      if (seed % 2 === 0) {
+        const visit = (nodes: PivotAxisInput[]) =>
+          nodes.forEach((n) => {
+            if (!n.children?.length) return;
+            if (rand() < 0.4) collapsed.add(n.key);
+            visit(n.children);
+          });
+        visit(axis);
+      }
+      if (collapsed.size) collapsedSomething++;
+      const options = { subtotals: rand() < 0.5, total: rand() < 0.5, isExpanded: (key: string) => !collapsed.has(key) };
       const layout = layoutPivotColumns(axis, options);
+      // 畳んだグループの見出しは 1 列で、最下段に届く
+      for (const cell of layout.headerRows.flat()) {
+        if (cell.kind === "group" && !cell.expanded) expect([cell.colSpan, cell.reachesBottom]).toEqual([1, true]);
+      }
       const grid = toGrid(layout);
       const width = layout.columns.length;
       for (const line of grid) {
@@ -145,7 +203,11 @@ describe("layoutPivotColumns", () => {
       expect(layout.groupSpans.reduce((a, b) => a + b, 0)).toBe(width);
       const ids = layout.headerRows.flat().map((c) => c.id);
       expect(new Set(ids).size).toBe(ids.length);
+      // 空の段を残さない
+      layout.headerRows.forEach((cells) => expect(cells.length).toBeGreaterThan(0));
     }
+    // 畳んだ木を 1 つも試さずに緑になるのを防ぐ
+    expect(collapsedSomething).toBeGreaterThan(50);
   });
 });
 

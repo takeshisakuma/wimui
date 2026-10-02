@@ -53,7 +53,7 @@ type Layout = {
   /** 本文（`tbody`）の上端の位置。スクロールすると上へ動く（実物と同じ）。 */
   bodyTop?: () => number;
   /** 見出しのセルの幅。列幅を測る処理に返す。 */
-  cellWidth?: () => number;
+  cellWidth?: (cell: HTMLElement) => number;
 };
 
 /**
@@ -81,7 +81,9 @@ const withLayout = (layout: Layout, run: () => void) => {
   const originalCellRect = HTMLTableCellElement.prototype.getBoundingClientRect;
   if (layout.cellWidth) {
     const cellWidth = layout.cellWidth;
-    HTMLTableCellElement.prototype.getBoundingClientRect = () => ({ width: cellWidth() }) as DOMRect;
+    HTMLTableCellElement.prototype.getBoundingClientRect = function (this: HTMLTableCellElement) {
+      return { width: cellWidth(this) } as DOMRect;
+    };
   }
   vi.stubGlobal(
     "ResizeObserver",
@@ -255,8 +257,8 @@ describe("PivotTable", () => {
     });
 
     it("gives a button only to rows that have children", () => {
-      render(<PivotTable rows={ROWS} columns={COLUMNS} getValue={getValue} />);
-      expect(screen.getAllByRole("button")).toHaveLength(1);
+      const { container } = render(<PivotTable rows={ROWS} columns={COLUMNS} getValue={getValue} />);
+      expect(within(container.querySelector("tbody")!).getAllByRole("button")).toHaveLength(1);
       expect(within(screen.getByRole("rowheader", { name: "Latte" })).queryByRole("button")).toBeNull();
     });
 
@@ -278,58 +280,210 @@ describe("PivotTable", () => {
     });
 
     it("keeps the headers of the rows after a collapsed group pointing at the right headings", () => {
-      render(<PivotTable rows={ROWS} columns={COLUMNS} getValue={getValue} defaultExpandedValues={[]} />);
+      render(<PivotTable rows={ROWS} columns={COLUMNS} getValue={getValue} defaultExpandedRowValues={[]} />);
       expect(headersOf(screen.getByText("gift/apr"))).toEqual(["Gift cards", "Q2", "Apr"]);
     });
 
-    it("starts from defaultExpandedValues", () => {
-      render(<PivotTable rows={ROWS} columns={COLUMNS} getValue={getValue} defaultExpandedValues={[]} />);
+    it("starts from defaultExpandedRowValues", () => {
+      render(<PivotTable rows={ROWS} columns={COLUMNS} getValue={getValue} defaultExpandedRowValues={[]} />);
       expect(headings()).toEqual(["Drinks", "Gift cards"]);
     });
 
     it("reports the new list without changing anything when controlled", () => {
-      const onExpandedChange = vi.fn();
+      const onExpandedRowChange = vi.fn();
       render(
         <PivotTable
           rows={ROWS}
           columns={COLUMNS}
           getValue={getValue}
-          expandedValues={["drinks"]}
-          onExpandedChange={onExpandedChange}
+          expandedRowValues={["drinks"]}
+          onExpandedRowChange={onExpandedRowChange}
         />,
       );
       fireEvent.click(toggleOf("Drinks"));
-      expect(onExpandedChange).toHaveBeenCalledWith([]);
+      expect(onExpandedRowChange).toHaveBeenCalledWith([]);
       // 親が値を変えるまでは開いたまま
       expect(headings()).toEqual(["Drinks", "Latte", "Tea", "Gift cards"]);
     });
 
-    it("follows expandedValues when the parent changes it", () => {
+    it("follows expandedRowValues when the parent changes it", () => {
       const { rerender } = render(
-        <PivotTable rows={ROWS} columns={COLUMNS} getValue={getValue} expandedValues={["drinks"]} />,
+        <PivotTable rows={ROWS} columns={COLUMNS} getValue={getValue} expandedRowValues={["drinks"]} />,
       );
-      rerender(<PivotTable rows={ROWS} columns={COLUMNS} getValue={getValue} expandedValues={[]} />);
+      rerender(<PivotTable rows={ROWS} columns={COLUMNS} getValue={getValue} expandedRowValues={[]} />);
       expect(headings()).toEqual(["Drinks", "Gift cards"]);
     });
 
     it("reports the added key when a collapsed group is expanded", () => {
-      const onExpandedChange = vi.fn();
+      const onExpandedRowChange = vi.fn();
       render(
         <PivotTable
           rows={ROWS}
           columns={COLUMNS}
           getValue={getValue}
-          defaultExpandedValues={[]}
-          onExpandedChange={onExpandedChange}
+          defaultExpandedRowValues={[]}
+          onExpandedRowChange={onExpandedRowChange}
         />,
       );
       fireEvent.click(toggleOf("Drinks"));
-      expect(onExpandedChange).toHaveBeenCalledWith(["drinks"]);
+      expect(onExpandedRowChange).toHaveBeenCalledWith(["drinks"]);
     });
 
-    it("has no buttons when the row axis is flat", () => {
-      render(<PivotTable rows={[{ key: "a", label: "A" }]} columns={COLUMNS} getValue={getValue} />);
-      expect(screen.queryByRole("button")).toBeNull();
+    it("has no row buttons when the row axis is flat", () => {
+      const { container } = render(<PivotTable rows={[{ key: "a", label: "A" }]} columns={COLUMNS} getValue={getValue} />);
+      expect(within(container.querySelector("tbody")!).queryByRole("button")).toBeNull();
+    });
+  });
+
+  describe("collapsing column groups", () => {
+    const NESTED: PivotTableAxisNode[] = [
+      { key: "station", label: "Station", children: COLUMNS },
+      { key: "other", label: "Other" },
+    ];
+    const columnNames = () => screen.getAllByRole("columnheader").map((h) => h.textContent);
+    const toggleOf = (name: string) => screen.getByRole("button", { name });
+    const colgroupSpans = (container: HTMLElement) =>
+      Array.from(container.querySelectorAll("colgroup")).map((g) => g.getAttribute("span"));
+
+    it("expands every group by default and gives a button to every column group", () => {
+      const { container } = render(<PivotTable rows={ROWS} columns={COLUMNS} getValue={getValue} />);
+      const buttons = within(container.querySelector("thead")!).getAllByRole("button");
+      expect(buttons.map((b) => b.textContent)).toEqual(["Q1", "Q2"]);
+      buttons.forEach((b) => expect(b).toHaveAttribute("aria-expanded", "true"));
+      expect(within(screen.getByRole("columnheader", { name: "Jan" })).queryByRole("button")).toBeNull();
+    });
+
+    it("collapses a group to one column that asks for the group's key, and expands it again", () => {
+      const { container } = render(<PivotTable rows={ROWS} columns={COLUMNS} getValue={getValue} />);
+      fireEvent.click(toggleOf("Q1"));
+      expect(columnNames()).toEqual(["Q1", "Q2", "Apr"]);
+      expect(toggleOf("Q1")).toHaveAttribute("aria-expanded", "false");
+      // 配下の列は消え、グループの値の列が 1 本残る
+      expect(screen.queryByText("latte/jan")).toBeNull();
+      expect(screen.getByText("latte/q1")).toBeInTheDocument();
+      expect(colgroupSpans(container)).toEqual([null, "1", "1"]);
+      fireEvent.click(toggleOf("Q1"));
+      expect(columnNames()).toEqual(["Q1", "Q2", "Jan", "Feb", "Apr"]);
+      expect(colgroupSpans(container)).toEqual([null, "2", "1"]);
+    });
+
+    it("stretches the collapsed heading down to the last level and keeps it a column group", () => {
+      render(<PivotTable rows={ROWS} columns={COLUMNS} getValue={getValue} defaultExpandedColumnValues={["q2"]} />);
+      const q1 = screen.getByRole("columnheader", { name: "Q1" });
+      expect(q1).toHaveAttribute("rowspan", "2");
+      expect(q1).not.toHaveAttribute("colspan");
+      expect(q1).toHaveAttribute("scope", "colgroup");
+    });
+
+    it("lists only the group in the headers of its collapsed column", () => {
+      render(<PivotTable rows={ROWS} columns={COLUMNS} getValue={getValue} defaultExpandedColumnValues={["q2"]} />);
+      expect(headersOf(screen.getByText("tea/q1"))).toEqual(["Drinks", "Tea", "Q1"]);
+      // 後ろの列の見出しは、番号が詰まっても正しい見出しを指す
+      expect(headersOf(screen.getByText("tea/apr"))).toEqual(["Drinks", "Tea", "Q2", "Apr"]);
+    });
+
+    it("shows the same single column whether or not columnSubtotals is set", () => {
+      render(
+        <PivotTable rows={ROWS} columns={COLUMNS} getValue={getValue} columnSubtotals defaultExpandedColumnValues={["q2"]} />,
+      );
+      // Q1 は 1 列だけ（「Total」の小見出しは持たない）。開いている Q2 は小計の列を持つ
+      expect(columnNames()).toEqual(["Q1", "Q2", "Apr", "Total"]);
+      expect(headersOf(screen.getByText("latte/q1"))).toEqual(["Drinks", "Latte", "Q1"]);
+      expect(headersOf(screen.getByText("latte/q2"))).toEqual(["Drinks", "Latte", "Q2", "Total"]);
+    });
+
+    it("drops a heading level when no group is expanded", () => {
+      const { container } = render(
+        <PivotTable rows={ROWS} columns={COLUMNS} getValue={getValue} rowAxisLabel="Product" defaultExpandedColumnValues={[]} />,
+      );
+      expect(container.querySelectorAll("thead tr")).toHaveLength(1);
+      expect(screen.getByRole("columnheader", { name: "Product" })).toHaveAttribute("rowspan", "1");
+      expect(columnNames()).toEqual(["Product", "Q1", "Q2"]);
+    });
+
+    it("hides the nested groups of a collapsed group and remembers their state", () => {
+      render(<PivotTable rows={ROWS} columns={NESTED} getValue={getValue} />);
+      fireEvent.click(toggleOf("Q1"));
+      fireEvent.click(toggleOf("Station"));
+      expect(columnNames()).toEqual(["Station", "Other"]);
+      expect(screen.getByText("latte/station")).toBeInTheDocument();
+      fireEvent.click(toggleOf("Station"));
+      // Q1 は畳んだまま戻る
+      expect(toggleOf("Q1")).toHaveAttribute("aria-expanded", "false");
+      expect(toggleOf("Q2")).toHaveAttribute("aria-expanded", "true");
+    });
+
+    it("keeps the row and the column state apart", () => {
+      const onExpandedRowChange = vi.fn();
+      const onExpandedColumnChange = vi.fn();
+      render(
+        <PivotTable
+          rows={ROWS}
+          columns={COLUMNS}
+          getValue={getValue}
+          onExpandedRowChange={onExpandedRowChange}
+          onExpandedColumnChange={onExpandedColumnChange}
+        />,
+      );
+      fireEvent.click(toggleOf("Q1"));
+      expect(onExpandedColumnChange).toHaveBeenCalledWith(["q2"]);
+      expect(onExpandedRowChange).not.toHaveBeenCalled();
+      fireEvent.click(toggleOf("Drinks"));
+      expect(onExpandedRowChange).toHaveBeenCalledWith([]);
+      expect(onExpandedColumnChange).toHaveBeenCalledTimes(1);
+    });
+
+    it("reports the new list without changing anything when controlled", () => {
+      const onExpandedColumnChange = vi.fn();
+      const { rerender } = render(
+        <PivotTable
+          rows={ROWS}
+          columns={COLUMNS}
+          getValue={getValue}
+          expandedColumnValues={["q1", "q2"]}
+          onExpandedColumnChange={onExpandedColumnChange}
+        />,
+      );
+      fireEvent.click(toggleOf("Q1"));
+      expect(onExpandedColumnChange).toHaveBeenCalledWith(["q2"]);
+      // 親が値を変えるまでは開いたまま
+      expect(screen.getByRole("columnheader", { name: "Jan" })).toBeInTheDocument();
+      rerender(<PivotTable rows={ROWS} columns={COLUMNS} getValue={getValue} expandedColumnValues={["q2"]} />);
+      expect(screen.queryByRole("columnheader", { name: "Jan" })).toBeNull();
+    });
+
+    it("keeps focus on the button of the group that was collapsed", () => {
+      render(<PivotTable rows={ROWS} columns={COLUMNS} getValue={getValue} />);
+      const q1 = toggleOf("Q1");
+      act(() => q1.focus());
+      fireEvent.click(q1);
+      expect(document.activeElement).toBe(q1);
+      expect(q1).toHaveAttribute("aria-expanded", "false");
+    });
+
+    it("keeps focus on a later group's button when an earlier group is collapsed from outside", () => {
+      const { rerender } = render(
+        <PivotTable rows={ROWS} columns={COLUMNS} getValue={getValue} expandedColumnValues={["q1", "q2"]} />,
+      );
+      const q2 = toggleOf("Q2");
+      act(() => q2.focus());
+      rerender(<PivotTable rows={ROWS} columns={COLUMNS} getValue={getValue} expandedColumnValues={["q2"]} />);
+      // Q1 を畳むと Q2 の見出しの番号は変わるが、要素は同じまま
+      expect(q2).toBeInTheDocument();
+      expect(document.activeElement).toBe(q2);
+    });
+
+    it("has no column buttons when the column axis is flat", () => {
+      const { container } = render(<PivotTable rows={ROWS} columns={[{ key: "a", label: "A" }]} getValue={getValue} />);
+      expect(within(container.querySelector("thead")!).queryByRole("button")).toBeNull();
+    });
+
+    it("keeps the grand total row and column after a collapse", () => {
+      render(
+        <PivotTable rows={ROWS} columns={COLUMNS} getValue={getValue} totalRow totalColumn defaultExpandedColumnValues={[]} />,
+      );
+      expect(screen.getByText("ALL/q1")).toBeInTheDocument();
+      expect(headersOf(screen.getByText("latte/ALL"))).toEqual(["Drinks", "Latte", "Total"]);
     });
   });
 
@@ -691,6 +845,27 @@ describe("PivotTable", () => {
           else delete (HTMLElement.prototype as unknown as Record<string, unknown>).clientWidth;
         }
       });
+    });
+
+    it("remembers widths per column, not per position, across a column collapse", () => {
+      const widths: Record<string, number> = { Jan: 300, Feb: 100, Apr: 100, Q1: 80 };
+      const minWidthOf = (name: string) => screen.getByRole("columnheader", { name }).style.minWidth;
+      inViewport(
+        () => {
+          render(<PivotTable rows={MANY} columns={COLUMNS} getValue={getValue} maxHeight={320} virtualized />);
+          expect(minWidthOf("Jan")).toBe("300px");
+          fireEvent.click(screen.getByRole("button", { name: "Q1" }));
+          // Q1 は Jan のいた位置に来るが、Jan の幅は引き継がない。後ろの列も自分の幅のまま
+          expect(minWidthOf("Q1")).toBe("80px");
+          expect(minWidthOf("Apr")).toBe("100px");
+          // 開き直すと、覚えていた幅に戻る（いま測った幅が狭くても）
+          widths.Jan = 90;
+          fireEvent.click(screen.getByRole("button", { name: "Q1" }));
+          expect(minWidthOf("Jan")).toBe("300px");
+          expect(minWidthOf("Feb")).toBe("100px");
+        },
+        { cellWidth: (cell) => widths[cell.textContent ?? ""] ?? 50, clientWidth: 900 },
+      );
     });
   });
 

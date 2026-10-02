@@ -137,6 +137,30 @@
     }
   }
 
+  /* 列のグループの開閉ボタン。block の flex は `text-align` では動かないので、見出しの揃えを
+     余白で作る: 畳んだ見出し（1 列だけを持つ）は値の真上＝右、開いた見出しは掛かる列の中央。 */
+  .columnToggle {
+    margin-left: auto;
+  }
+
+  .group .columnToggle {
+    margin-right: auto;
+  }
+
+  /* 開閉ボタンを持たない列見出しの文字（角のセルも含む）。ボタンと同じ高さの箱にして、同じ段に
+     並ぶボタン付きの見出しと文字の位置を揃える ── 箱が無いと、ボタンの中の文字だけが半端に上がる
+     （実測: 角の文字が、隣の見出しの文字より 0.82px 下）。 */
+  .columnLeafLabel {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    min-height: var(--wim-tap-target-min);
+  }
+
+  .corner .columnLeafLabel {
+    justify-content: flex-start;
+  }
+
   /* 開閉ボタンを持たない行の文字。山形の幅と間隔ぶん下げて、ボタンの文字の位置に揃える。 */
   .leafLabel {
     display: flex;

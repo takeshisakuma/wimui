@@ -22,6 +22,8 @@ export type PivotHeaderCell<T extends PivotAxisInput = PivotAxisInput> = {
   startsGroup: boolean;
   /** 最上位の節か。`colgroup` と 1 対 1 に対応するのはこの段だけ。 */
   topLevel: boolean;
+  /** 配下の列が出ているか（グループでないセルは常に `false`）。 */
+  expanded: boolean;
 };
 
 /** 値を持つ 1 列。 */
@@ -57,8 +59,12 @@ export type PivotRow<T extends PivotAxisInput = PivotAxisInput> = {
 
 const isGroup = (node: PivotAxisInput) => !!node.children?.length;
 
-const depthOf = (nodes: PivotAxisInput[]): number =>
-  nodes.reduce((max, n) => Math.max(max, 1 + (isGroup(n) ? depthOf(n.children!) : 0)), 0);
+// 折りたたまれたグループは 1 段として数える（配下の段は出ない）
+const depthOf = (nodes: PivotAxisInput[], isExpanded: (key: string) => boolean): number =>
+  nodes.reduce(
+    (max, n) => Math.max(max, 1 + (isGroup(n) && isExpanded(n.key) ? depthOf(n.children!, isExpanded) : 0)),
+    0,
+  );
 
 /**
  * 列の軸の木を、見出しの段（`colSpan` / `rowSpan` 付き）と値の列の並びにする。
@@ -66,12 +72,15 @@ const depthOf = (nodes: PivotAxisInput[]): number =>
  * - 葉は、自分の段から最下段まで縦に伸びる（木の深さが揃っていなくても段がずれない）
  * - `subtotals` を付けると、グループごとに子の後ろへ小計の列を 1 本足す
  * - `total` を付けると、右端に総計の列を 1 本足す
+ * - 折りたたまれたグループは、配下の列を出さず、自分の値（小計）の列を 1 本だけ出す。見出しの
+ *   セルは葉と同じく最下段まで伸びる。段の数は、見えている木の深さになる
  */
 export function layoutPivotColumns<T extends PivotAxisInput>(
   nodes: T[],
-  options: { subtotals?: boolean; total?: boolean } = {},
+  options: { subtotals?: boolean; total?: boolean; isExpanded?: (key: string) => boolean } = {},
 ): PivotColumnLayout<T> {
-  const depth = Math.max(1, depthOf(nodes));
+  const isExpanded = options.isExpanded ?? (() => true);
+  const depth = Math.max(1, depthOf(nodes, isExpanded));
   const headerRows: PivotHeaderCell<T>[][] = Array.from({ length: depth }, () => []);
   const columns: PivotColumn[] = [];
   const groupSpans: number[] = [];
@@ -97,6 +106,7 @@ export function layoutPivotColumns<T extends PivotAxisInput>(
       reachesBottom: true,
       startsGroup,
       topLevel,
+      expanded: false,
     });
     columns.push({ key, kind, headerIds: [...path, id], startsGroup });
   };
@@ -106,6 +116,24 @@ export function layoutPivotColumns<T extends PivotAxisInput>(
     const topLevel = level === 0;
     if (!isGroup(node)) {
       addColumn(node, "leaf", level, path, topLevel, startsGroup);
+      return 1;
+    }
+    if (!isExpanded(node.key)) {
+      // 見出しのセルはグループのまま（開閉ボタンを持つ）、値の列は小計として 1 本
+      const id = nextId++;
+      headerRows[level].push({
+        id,
+        key: node.key,
+        node,
+        kind: "group",
+        colSpan: 1,
+        rowSpan: depth - level,
+        reachesBottom: true,
+        startsGroup,
+        topLevel,
+        expanded: false,
+      });
+      columns.push({ key: node.key, kind: "subtotal", headerIds: [...path, id], startsGroup });
       return 1;
     }
     const cell: PivotHeaderCell<T> = {
@@ -118,6 +146,7 @@ export function layoutPivotColumns<T extends PivotAxisInput>(
       reachesBottom: false,
       startsGroup,
       topLevel,
+      expanded: true,
     };
     headerRows[level].push(cell);
     const childPath = [...path, cell.id];

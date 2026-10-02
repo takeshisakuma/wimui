@@ -13,8 +13,8 @@ export type PivotTableAxisNode = {
   /** Unique within its axis. Passed back to `getValue`. */
   key: string;
   /**
-   * Heading shown for this row or column. On the row axis the label of a group is drawn
-   * inside its expand / collapse button, so it must not contain links or other controls.
+   * Heading shown for this row or column. The label of a group is drawn inside its
+   * expand / collapse button, so it must not contain links or other controls.
    */
   label: React.ReactNode;
   /** Nested headings. A node with children is a group; its own value is the subtotal. */
@@ -34,7 +34,9 @@ export type PivotTableProps = Omit<React.ComponentPropsWithoutRef<"table">, "chi
   /**
    * Returns the content of one cell. The component does not aggregate: a group key asks
    * for that group's subtotal and `null` asks for the grand total of that axis. Return
-   * `null` or `undefined` for an empty cell.
+   * `null` or `undefined` for an empty cell. Group keys are asked on both axes: a row
+   * group for its own row, a column group for its subtotal column and for the single
+   * column it leaves when it is collapsed.
    */
   getValue: (rowKey: string | null, columnKey: string | null) => React.ReactNode;
   /** Heading of the row axis, shown in the top-left corner. */
@@ -45,11 +47,20 @@ export type PivotTableProps = Omit<React.ComponentPropsWithoutRef<"table">, "chi
    * Keys of the expanded row groups (controlled). A group that is not listed shows only
    * its own row, which carries its subtotal.
    */
-  expandedValues?: string[];
+  expandedRowValues?: string[];
   /** Row groups expanded on first render (uncontrolled). Defaults to every group. */
-  defaultExpandedValues?: string[];
-  /** Called with the new list of expanded row groups when a group is expanded or collapsed. */
-  onExpandedChange?: (values: string[]) => void;
+  defaultExpandedRowValues?: string[];
+  /** Called with the new list of expanded row groups when a row group is expanded or collapsed. */
+  onExpandedRowChange?: (values: string[]) => void;
+  /**
+   * Keys of the expanded column groups (controlled). A group that is not listed shows a
+   * single column, which carries its subtotal: `getValue` receives the group's key.
+   */
+  expandedColumnValues?: string[];
+  /** Column groups expanded on first render (uncontrolled). Defaults to every group. */
+  defaultExpandedColumnValues?: string[];
+  /** Called with the new list of expanded column groups when a column group is expanded or collapsed. */
+  onExpandedColumnChange?: (values: string[]) => void;
   /**
    * Maximum height of the table (a number is px). Past it the table scrolls vertically
    * inside its own box.
@@ -72,7 +83,7 @@ export type PivotTableProps = Omit<React.ComponentPropsWithoutRef<"table">, "chi
    * `maxHeight`. Rows must all have the same height, so keep labels and values on one line.
    */
   virtualized?: boolean;
-  /** Adds a subtotal column after the columns of each column group. */
+  /** Adds a subtotal column after the columns of each expanded column group. */
   columnSubtotals?: boolean;
   /** Adds a grand total row at the bottom. */
   totalRow?: boolean;
@@ -88,6 +99,8 @@ const ROW_HEIGHT_ESTIMATE = 40; /* Exception: Structural Logic — 仮想化の�
 const OVERSCAN_ROWS = 8;
 // 器の高さを測る前の 1 回目の描画で描く行の数（全行を描いてから減らすことをしない）。
 const INITIAL_ROWS = 30;
+// 列幅を覚えるときの、角のセル（行見出しの列）の名前。値の列は「種類:キー」なので重ならない。
+const CORNER_KEY = "corner";
 
 const collectGroupKeys = (nodes: PivotTableAxisNode[], out: string[] = []): string[] => {
   for (const node of nodes) {
@@ -99,14 +112,36 @@ const collectGroupKeys = (nodes: PivotTableAxisNode[], out: string[] = []): stri
   return out;
 };
 
+/** 1 つの軸の開閉の状態。渡されていれば親が持ち（制御）、無ければ部品が持つ。 */
+const useExpandedGroups = (
+  nodes: PivotTableAxisNode[],
+  controlled: string[] | undefined,
+  defaults: string[] | undefined,
+  onChange: ((values: string[]) => void) | undefined,
+) => {
+  const [uncontrolled, setUncontrolled] = useState<string[]>(() => defaults ?? collectGroupKeys(nodes));
+  const expanded = controlled ?? uncontrolled;
+  const expandedSet = useMemo(() => new Set(expanded), [expanded]);
+  const toggle = useCallback(
+    (key: string) => {
+      const next = expandedSet.has(key) ? expanded.filter((v) => v !== key) : [...expanded, key];
+      if (controlled === undefined) setUncontrolled(next);
+      onChange?.(next);
+    },
+    [expanded, expandedSet, controlled, onChange],
+  );
+  return [expandedSet, toggle] as const;
+};
+
 /**
  * PivotTable — draws already aggregated data as a table with multi-level row and column
  * headings, subtotals and grand totals. It only draws: grouping and summing stay with the
  * caller, who answers `getValue(rowKey, columnKey)` for every cell.
  *
- * Row groups can be collapsed to their subtotal row with the button in their heading
- * (Enter or Space). The button is named by the group label, so the heading still reads as
- * the plain label when a cell announces it.
+ * Groups on both axes can be collapsed with the button in their heading (Enter or Space):
+ * a row group to its subtotal row, a column group to a single subtotal column. The button
+ * is named by the group label, so the heading still reads as the plain label when a cell
+ * announces it.
  *
  * Every cell lists the headings it belongs to in its `headers` attribute, so a screen
  * reader announces the full row path and column path of a value.
@@ -126,9 +161,12 @@ export const PivotTable = React.forwardRef<HTMLTableElement, PivotTableProps>(
       getValue,
       rowAxisLabel,
       caption,
-      expandedValues: controlledExpanded,
-      defaultExpandedValues,
-      onExpandedChange,
+      expandedRowValues,
+      defaultExpandedRowValues,
+      onExpandedRowChange,
+      expandedColumnValues,
+      defaultExpandedColumnValues,
+      onExpandedColumnChange,
       maxHeight,
       stickyHeader = false,
       stickyRowHeaders = false,
@@ -146,27 +184,33 @@ export const PivotTable = React.forwardRef<HTMLTableElement, PivotTableProps>(
     const idBase = React.useId();
     const totalLabel = labels?.total ?? t("pivottable.total");
 
-    const columnLayout = useMemo(
-      () => layoutPivotColumns(columns, { subtotals: columnSubtotals, total: totalColumn }),
-      [columns, columnSubtotals, totalColumn],
+    const [expandedRows, toggleRow] = useExpandedGroups(
+      rows,
+      expandedRowValues,
+      defaultExpandedRowValues,
+      onExpandedRowChange,
     );
-    const [uncontrolledExpanded, setUncontrolledExpanded] = useState<string[]>(
-      () => defaultExpandedValues ?? collectGroupKeys(rows),
-    );
-    const expanded = controlledExpanded ?? uncontrolledExpanded;
-    const expandedSet = useMemo(() => new Set(expanded), [expanded]);
-    const toggle = useCallback(
-      (key: string) => {
-        const next = expandedSet.has(key) ? expanded.filter((v) => v !== key) : [...expanded, key];
-        if (controlledExpanded === undefined) setUncontrolledExpanded(next);
-        onExpandedChange?.(next);
-      },
-      [expanded, expandedSet, controlledExpanded, onExpandedChange],
+    const [expandedColumns, toggleColumn] = useExpandedGroups(
+      columns,
+      expandedColumnValues,
+      defaultExpandedColumnValues,
+      onExpandedColumnChange,
     );
 
-    const rowLayout = useMemo(() => layoutPivotRows(rows, (key) => expandedSet.has(key)), [rows, expandedSet]);
+    const columnLayout = useMemo(
+      () =>
+        layoutPivotColumns(columns, {
+          subtotals: columnSubtotals,
+          total: totalColumn,
+          isExpanded: (key) => expandedColumns.has(key),
+        }),
+      [columns, columnSubtotals, totalColumn, expandedColumns],
+    );
+    const rowLayout = useMemo(() => layoutPivotRows(rows, (key) => expandedRows.has(key)), [rows, expandedRows]);
     // 開閉ボタンを持つ行が 1 つでもあれば、持たない行の文字をボタンの文字の位置に揃える
     const hasRowGroups = useMemo(() => collectGroupKeys(rows).length > 0, [rows]);
+    // 列も同じ: ボタンを持つ見出しが 1 つでもあれば、持たない見出しの文字をボタンと同じ高さの箱に入れる
+    const hasColumnGroups = useMemo(() => collectGroupKeys(columns).length > 0, [columns]);
 
     const hasCorner = rowAxisLabel !== undefined && rowAxisLabel !== null && rowAxisLabel !== false;
     const cornerId = `${idBase}corner`;
@@ -252,8 +296,10 @@ export const PivotTable = React.forwardRef<HTMLTableElement, PivotTableProps>(
     // フォーカスを持つ行。窓の外へ出ても描いたままにする（消すとフォーカスがページの先頭へ戻る）
     const [focusedRowKey, setFocusedRowKey] = useState<string | null>(null);
     // 列の幅は、描かれている行の中身で決まる。見えている行だけを描くと、桁の多い値が現れるたびに
-    // 列が動く。一度広がった幅は覚えておき、狭くは戻さない。
-    const [columnWidths, setColumnWidths] = useState<number[]>([]);
+    // 列が動く。一度広がった幅は覚えておき、狭くは戻さない。列の位置ではなく列のキーで覚える ──
+    // 列のグループを畳むと位置がずれるので、位置で覚えると別の列に前の幅が当たる。畳んで隠れた列の
+    // 幅も残るので、開き直したときに元の幅へ戻る。
+    const [columnWidths, setColumnWidths] = useState<Record<string, number>>({});
     const lastClientWidth = React.useRef(0);
 
     const measureView = useCallback(() => {
@@ -275,27 +321,31 @@ export const PivotTable = React.forwardRef<HTMLTableElement, PivotTableProps>(
           : next,
       );
       // 列の幅: 見出しの最下段のセル（列ごとに 1 つ）と角のセルを測る
-      const widths = Array.from(table.querySelectorAll<HTMLElement>("thead [data-column-index]")).reduce<number[]>(
-        (out, cell) => {
-          out[Number(cell.dataset.columnIndex)] = cell.getBoundingClientRect().width;
-          return out;
-        },
-        [],
+      const widths = Array.from(table.querySelectorAll<HTMLElement>("thead [data-column-key]")).map(
+        (cell) => [cell.dataset.columnKey as string, cell.getBoundingClientRect().width] as const,
       );
       // 器の幅が変わったら覚えた幅は捨てる（広い器で伸びた幅を、狭い器に持ち込まない）
       const reset = lastClientWidth.current !== scroller.clientWidth;
       lastClientWidth.current = scroller.clientWidth;
       setColumnWidths((prev) => {
-        const base = reset ? [] : prev;
+        const next: Record<string, number> = reset ? {} : { ...prev };
         // 端数のまま覚える（丸めると、切り捨てなら 1px 未満だけ縮み、切り上げなら表が器からはみ出す）。
         // 測り直しの誤差で更新が続かないよう、0.01px を超えて広がったときだけ更新する
-        const merged = widths.map((w, i) => ((w || 0) > (base[i] ?? 0) + 0.01 ? w : (base[i] ?? 0)));
-        return merged.length === prev.length && merged.every((w, i) => w === prev[i]) ? prev : merged;
+        for (const [key, width] of widths) if ((width || 0) > (next[key] ?? 0) + 0.01) next[key] = width;
+        const keys = Object.keys(next);
+        return keys.length === Object.keys(prev).length && keys.every((key) => next[key] === prev[key]) ? prev : next;
       });
     }, []);
 
     const rowCount = rowLayout.length;
     const leafColumnCount = columnLayout.columns.length;
+    // 値の列ごとの名前。小計の列と、畳んだグループが残す列は同じ名前になる（同じ値を出す列なので、
+    // 幅も引き継いでよい）
+    const columnKeys = useMemo(
+      () => columnLayout.columns.map((column) => `${column.kind}:${column.key ?? ""}`),
+      [columnLayout],
+    );
+    const columnSignature = columnKeys.join("|");
     React.useLayoutEffect(() => {
       if (!virtualized) return;
       measureView();
@@ -303,8 +353,8 @@ export const PivotTable = React.forwardRef<HTMLTableElement, PivotTableProps>(
       const observer = new ResizeObserver(measureView);
       if (scrollerRef.current) observer.observe(scrollerRef.current);
       return () => observer.disconnect();
-      // 行や列の数が変わったら測り直す
-    }, [virtualized, measureView, rowCount, leafColumnCount]);
+      // 行の数や列の並びが変わったら測り直す（列は、畳んでも数が変わらないことがある）
+    }, [virtualized, measureView, rowCount, columnSignature]);
 
     const rowIndexByKey = useMemo(() => new Map(rowLayout.map((row, index) => [row.key, index])), [rowLayout]);
     const segments = useMemo(() => {
@@ -332,15 +382,15 @@ export const PivotTable = React.forwardRef<HTMLTableElement, PivotTableProps>(
       });
     }, [virtualized, view, rowCount, rowHeight, focusedRowKey, rowIndexByKey]);
 
-    // 値の列の番号 → その列の見出しの最下段のセルの id（列幅を測る・下限を渡すため）
-    const columnIndexByHeaderId = useMemo(
-      () => new Map(columnLayout.columns.map((column, index) => [column.headerIds[column.headerIds.length - 1], index])),
-      [columnLayout],
+    // 見出しの最下段のセルの id → その列の名前（列幅を測る・下限を渡すため）
+    const columnKeyByHeaderId = useMemo(
+      () =>
+        new Map(columnLayout.columns.map((column, index) => [column.headerIds[column.headerIds.length - 1], columnKeys[index]])),
+      [columnLayout, columnKeys],
     );
-    // 角のセルが 0 番、値の列は 1 番から
-    const columnWidthProps = (index: number | undefined) =>
-      virtualized && index !== undefined
-        ? { "data-column-index": index, style: columnWidths[index] ? { minWidth: columnWidths[index] } : undefined }
+    const columnWidthProps = (key: string | undefined) =>
+      virtualized && key !== undefined
+        ? { "data-column-key": key, style: columnWidths[key] ? { minWidth: columnWidths[key] } : undefined }
         : null;
 
     // 段の高さは端数を持つ（実測 38.39px）。そのまま積むと段と段の間に 1px 未満の隙間ができ、下を
@@ -400,7 +450,7 @@ export const PivotTable = React.forwardRef<HTMLTableElement, PivotTableProps>(
                 type="button"
                 className={localStyles.toggle}
                 aria-expanded={row.expanded}
-                onClick={() => toggle(row.key)}
+                onClick={() => toggleRow(row.key)}
               >
                 <span className={classNames(localStyles.chevron, row.expanded && localStyles.open)} aria-hidden="true">
                   <Icon component={ChevronRightIcon} size="sm" />
@@ -476,10 +526,10 @@ export const PivotTable = React.forwardRef<HTMLTableElement, PivotTableProps>(
                         stickyHeader && localStyles.stickyTop,
                         stickLeft && localStyles.stickyLeft,
                       )}
-                      {...columnWidthProps(0)}
-                      style={{ ...stickyTop(0, true), ...columnWidthProps(0)?.style }}
+                      {...columnWidthProps(CORNER_KEY)}
+                      style={{ ...stickyTop(0, true), ...columnWidthProps(CORNER_KEY)?.style }}
                     >
-                      {rowAxisLabel}
+                      <span className={classNames(hasColumnGroups && localStyles.columnLeafLabel)}>{rowAxisLabel}</span>
                     </th>
                   ) : (
                     // 中身の無い見出しセルは置かない（空の `th` は読み上げで「見出し、空」になる）
@@ -491,13 +541,15 @@ export const PivotTable = React.forwardRef<HTMLTableElement, PivotTableProps>(
                         stickyHeader && localStyles.stickyTop,
                         stickLeft && localStyles.stickyLeft,
                       )}
-                      {...columnWidthProps(0)}
-                      style={{ ...stickyTop(0, true), ...columnWidthProps(0)?.style }}
+                      {...columnWidthProps(CORNER_KEY)}
+                      style={{ ...stickyTop(0, true), ...columnWidthProps(CORNER_KEY)?.style }}
                     />
                   ))}
                 {cells.map((cell, cellIndex) => (
                   <th
-                    key={cell.id}
+                    // `id` は並び順の連番なので、前の列を畳むと後ろのセルの番号が変わる。番号を key に
+                    // すると後ろのセルが作り直され、そこにあったフォーカスが消える。軸のキーで決める
+                    key={`${cell.kind}:${cell.key ?? ""}`}
                     id={columnHeaderId(cell.id)}
                     // 入れ子のグループは `colgroup` を持てないので、掛かる列で示す（`col` は `colSpan` の幅に効く）
                     scope={cell.kind === "group" && cell.topLevel ? "colgroup" : "col"}
@@ -505,21 +557,39 @@ export const PivotTable = React.forwardRef<HTMLTableElement, PivotTableProps>(
                     rowSpan={cell.rowSpan > 1 ? cell.rowSpan : undefined}
                     className={classNames(
                       localStyles.columnHeader,
-                      cell.kind === "group" && localStyles.group,
+                      // 畳んだグループは 1 列だけを持つので、葉と同じく値の真上（右揃え）に置く
+                      cell.kind === "group" && cell.expanded && localStyles.group,
                       cell.reachesBottom && localStyles.bottom,
                       // 行見出しの列を固定するときは、先頭の列の左の線を固定した列の側が描く
                       cell.startsGroup && !(stickLeft && cellIndex === 0) && localStyles.groupStart,
                       stickyHeader && localStyles.stickyTop,
                     )}
-                    {...(cell.reachesBottom ? columnWidthProps((columnIndexByHeaderId.get(cell.id) ?? -1) + 1) : null)}
+                    {...(cell.reachesBottom ? columnWidthProps(columnKeyByHeaderId.get(cell.id)) : null)}
                     style={{
                       ...stickyTop(level),
-                      ...(cell.reachesBottom
-                        ? columnWidthProps((columnIndexByHeaderId.get(cell.id) ?? -1) + 1)?.style
-                        : null),
+                      ...(cell.reachesBottom ? columnWidthProps(columnKeyByHeaderId.get(cell.id))?.style : null),
                     }}
                   >
-                    {cell.kind === "group" || cell.kind === "leaf" ? cell.node?.label : totalLabel}
+                    {cell.kind === "group" ? (
+                      <button
+                        type="button"
+                        className={classNames(localStyles.toggle, localStyles.columnToggle)}
+                        aria-expanded={cell.expanded}
+                        onClick={() => toggleColumn(cell.key as string)}
+                      >
+                        <span
+                          className={classNames(localStyles.chevron, cell.expanded && localStyles.open)}
+                          aria-hidden="true"
+                        >
+                          <Icon component={ChevronRightIcon} size="sm" />
+                        </span>
+                        {cell.node?.label}
+                      </button>
+                    ) : (
+                      <span className={classNames(hasColumnGroups && localStyles.columnLeafLabel)}>
+                        {cell.kind === "leaf" ? cell.node?.label : totalLabel}
+                      </span>
+                    )}
                   </th>
                 ))}
               </tr>
