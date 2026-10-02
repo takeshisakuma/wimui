@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import classNames from "classnames";
 import styles from "./anchor.module.scss";
 
@@ -57,13 +57,7 @@ export const Anchor = ({
     }
   };
 
-  /*
-   * 現在地の判定と、印の位置の計測は、どちらも描画の前に済ませる（layout effect）。
-   * 描画のあと（effect）でやると、「まだ現在地が無い」「リンクは現在地だが印が無い」という途中の
-   * 姿がそれぞれ 1 フレームずつ画面に出る（実測: 80 回の表示のうち 66 回で、印の無いフレームが
-   * 1〜3 枚描かれた）。
-   */
-  useLayoutEffect(() => {
+  useEffect(() => {
     const handleScroll = () => {
       const getAllLinks = (
         links: AnchorLinkItem[],
@@ -130,7 +124,7 @@ export const Anchor = ({
     return () => window.removeEventListener("scroll", handleScroll);
   }, [items, offset, bounds, activeId, direction]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (!activeId || !containerRef.current) return;
     const activeLink = containerRef.current.querySelector(
       `a[href="${activeId}"]`,
