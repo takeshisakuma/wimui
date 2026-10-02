@@ -133,8 +133,8 @@ test.describe("DataGrid — Sorting", () => {
   test("sorts Name column ascending on first click", async ({ page }) => {
     const nameHeader = page.getByRole("columnheader", { name: "Name" });
     await nameHeader.click();
-    // Alice Brown is alphabetically first
-    await expect(dgRow(page).locator("td").nth(1)).toHaveText("Alice Brown");
+    // Marcus Bell is alphabetically first among the demo rows
+    await expect(dgRow(page).locator("td").nth(1)).toHaveText("Marcus Bell");
   });
 
   test("sorts Name column descending on second click", async ({ page }) => {
@@ -246,26 +246,30 @@ test.describe("Transfer", () => {
   });
 
   test("items in targetKeys start in the right panel", async ({ page }) => {
-    // targetKeys=["1","3","5"] → Item 2, Item 4, Item 6 are on the right
+    // The demo lists the columns of an order export. targetKeys=["1","3","5"] →
+    // "Placed at", "Tracking number" and "Email" start on the right
     const panels = page.locator(".wim-transfer__list");
     const targetPanel = panels.last();
-    await expect(targetPanel.getByText("Item 2")).toBeVisible();
-    await expect(targetPanel.getByText("Item 4")).toBeVisible();
+    await expect(targetPanel.getByText("Tracking number")).toBeVisible();
+    await expect(targetPanel.getByText("Email", { exact: true })).toBeVisible();
+    // 左に残る列は右に居ない（どちらのパネルにも出る、を緑にしない）
+    await expect(targetPanel.getByText("Payment method")).toHaveCount(0);
   });
 
   test("moves a selected item from source to target", async ({ page }) => {
-    // Item 3 (key "2") is in source panel (targetKeys=["1","3","5"])
+    // "Payment method" (key "6") is in the source panel and is not locked
     const panels = page.locator(".wim-transfer__list");
     const sourcePanel = panels.first();
     const targetPanel = panels.last();
 
-    await sourcePanel.getByRole("option", { name: "Item 3" }).click();
+    await sourcePanel.getByRole("option", { name: /^Payment method/ }).click();
 
     // Click the → (right arrow) move button
     const moveRightBtn = page.locator(".wim-transfer__operation button").first();
     await moveRightBtn.click();
 
-    await expect(targetPanel.getByText("Item 3")).toBeVisible();
+    await expect(targetPanel.getByText("Payment method")).toBeVisible();
+    await expect(sourcePanel.getByText("Payment method")).toHaveCount(0);
   });
 
   test("moves a selected item from target back to source", async ({ page }) => {
@@ -273,13 +277,14 @@ test.describe("Transfer", () => {
     const sourcePanel = panels.first();
     const targetPanel = panels.last();
 
-    await targetPanel.getByRole("option", { name: "Item 2" }).click();
+    await targetPanel.getByRole("option", { name: /^Tracking number/ }).click();
 
     // Click the ← (left arrow) move button
     const moveLeftBtn = page.locator(".wim-transfer__operation button").last();
     await moveLeftBtn.click();
 
-    await expect(sourcePanel.getByText("Item 2", { exact: true })).toBeVisible();
+    await expect(sourcePanel.getByText("Tracking number")).toBeVisible();
+    await expect(targetPanel.getByText("Tracking number")).toHaveCount(0);
   });
 });
 

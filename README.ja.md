@@ -476,13 +476,14 @@ npm run test:report     # カバレッジ測定と未テストチェックを同
 
 ```
 npm run build-storybook                                 # 初回・ストーリー変更後に必須
-npm run test:vrt                                        # vrt/ 配下の Playwright テスト一式（VRT・a11y・e2e）
+npm run test:vrt                                        # ビジュアルリグレッションのみ（vrt/vrt.spec.ts）
+npm run test:e2e                                        # キーボード・フォーカス・配置の e2e（vrt/e2e.spec.ts と vrt/*.e2e.spec.ts）
 npm run test:vrt:update                                 # スナップショットを更新
 npm run test:vrt:report                                 # 差分をスライダー形式で確認
 $env:FILTER='Calendar'; npm run test:vrt:update         # Calendarのスナップショットのみ更新
 ```
 
-> CI の Visual Regression Test ワークフローは `vrt/vrt.spec.ts` のみを実行します。ローカルの `npm run test:vrt` は a11y / e2e も含みます。
+> CI の Playwright のワークフローは、種類ごとに 1 つずつ spec を実行します: `vrt/vrt.spec.ts`（Visual Regression Test）、`vrt/a11y.spec.ts`（Accessibility）、e2e の spec（E2E）。a11y をローカルで流すには `npx playwright test vrt/a11y.spec.ts` を使います。
 > Playwright のバージョンを更新した後は `npx playwright install` でブラウザを再取得してください。
 
 #### 環境変数
