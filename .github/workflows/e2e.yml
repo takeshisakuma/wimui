@@ -8,34 +8,16 @@ name: E2E (keyboard, focus, layout)
 # ここで見るのは、単体テスト（jsdom）にも VRT にも写らないもの ── キーボード操作、
 # フォーカスの行き先、`headers` と描画位置の照合、仮想化の窓、途中のフレームに出る姿。
 #
-# **`public/locales/**` を paths に入れてある**: e2e は英語の文言で要素を引くので、
-# ストーリーの文言だけを変えた PR でも結果が変わる（腐った 4 件はまさにこの形だった）。
+# **`paths` で絞らない（2026-10-03）。** `E2E` は main の必須チェックで、必須チェックは
+# 「起動しなかった」と「まだ終わっていない」を区別しない ── paths で絞ると、docs だけの PR では
+# このワークフローが起動せず、必須チェックが永久に「待ち」のままになってマージできなくなる。
+# 必須の残り 2 つ（`lint.yml` / `unit-test.yml`）も絞っていない。ジョブは約 3 分。
+# 最初は paths を持っていた（`public/locales/**` を含む。e2e は英語の文言で要素を引くので、
+# ストーリーの文言だけを変えた PR でも結果が変わる）。絞らなければ、この漏れも起きない。
 on:
   pull_request:
-    paths:
-      - "src/**"
-      - "stories/**"
-      - "public/locales/**"
-      - "vrt/**"
-      - "playwright.config.ts"
-      - "scripts/ci-install-playwright.sh"
-      - ".storybook/**"
-      - "package.json"
-      - "package-lock.json"
-      - ".github/workflows/e2e.yml"
   push:
     branches: [main]
-    paths:
-      - "src/**"
-      - "stories/**"
-      - "public/locales/**"
-      - "vrt/**"
-      - "playwright.config.ts"
-      - "scripts/ci-install-playwright.sh"
-      - ".storybook/**"
-      - "package.json"
-      - "package-lock.json"
-      - ".github/workflows/e2e.yml"
   workflow_dispatch:
 
 concurrency:
