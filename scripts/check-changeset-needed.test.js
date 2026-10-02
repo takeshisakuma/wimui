@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { needsChangeset } from "./check-changeset-needed.mjs";
+import { needsChangeset, readNameStatus } from "./check-changeset-needed.mjs";
 
 /**
  * changeset の付け忘れの警告（changeset-reminder）。
@@ -51,5 +51,42 @@ describe("check-changeset-needed", () => {
 
   it("changeset の README や設定を触っただけでは changeset と数えない", () => {
     expect(needsChangeset(["src/index.ts", ".changeset/README.md"], [".changeset/README.md"]).needed).toBe(true);
+  });
+
+  // 警告を 12 日・78 本の PR で振り返って見つけた誤検出（2026-10-03）。#763 は、まだ公開していない
+  // 機能の changeset を**書き換えて**変更を説明していたのに、「足した」ファイルしか数えていなかった
+  // ので警告が出た。入力は `git diff --name-status` の行（実物の #763 の抜粋）。
+  describe("git の出力からの読み取り", () => {
+    const PR_763 = [
+      "M\t.changeset/rich-text-editor-markdown.md",
+      "M\tsrc/components/form/RichTextEditor/RichTextEditor.tsx",
+      "M\tsrc/components/form/RichTextEditor/markdown.ts",
+      "M\tIMPROVEMENTS.md",
+    ];
+    const check = (lines) => {
+      const { changed, written } = readNameStatus(lines);
+      return needsChangeset(changed, written).needed;
+    };
+
+    it("既存の changeset を書き換えた #763 は鳴らない", () => {
+      expect(check(PR_763)).toBe(false);
+    });
+
+    it("足した changeset も、これまでどおり数える", () => {
+      expect(check(["A\t.changeset/new-one.md", "M\tsrc/index.ts"])).toBe(false);
+    });
+
+    it("changeset を消しただけでは数えない", () => {
+      expect(check(["D\t.changeset/old-one.md", "M\tsrc/index.ts"])).toBe(true);
+    });
+
+    it("changeset に触れていなければ鳴る", () => {
+      expect(check(PR_763.slice(1))).toBe(true);
+    });
+
+    it("改名は、新しい側の名前で出荷物かどうかを見る", () => {
+      expect(check(["R100\tdocs/old.ts\tsrc/new.ts"])).toBe(true);
+      expect(check(["R090\t.changeset/a.md\t.changeset/b.md", "M\tsrc/index.ts"])).toBe(false);
+    });
   });
 });
