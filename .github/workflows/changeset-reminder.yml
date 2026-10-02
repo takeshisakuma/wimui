@@ -1,8 +1,13 @@
 name: Changeset Reminder
 
-# 出荷物（src/ / tokens/）を変えた PR に changeset が無ければ、PR にコメントで知らせる。
-# **いまは警告だけで、ジョブは落とさない**（2026-09-21・ユーザー判断）。数週間様子を見て、
-# 誤検出が空の changeset（npx changeset --empty）でさばけると分かったら落とす形に上げる。
+# 出荷物（src/ / tokens/）を変えた PR に changeset が無ければ、PR にコメントで知らせ、
+# **ジョブを落とす**（2026-10-03・ユーザー判断。T292）。**main の必須チェックではないので、
+# 赤になってもマージは止まらない。**
+#
+# 2026-09-21 から 12 日は警告だけで動かした。振り返ると（78 本）、出るべき 3 本に警告は出て
+# いたが、3 本とも警告が付いたままマージされた ── コメントだけでは気づけなかった。誤検出は
+# 1 件（既存の changeset を書き換えた PR）で、判定を直して 0 件にしてある。版を上げない変更
+# （コメントだけ等）は、空の changeset（npx changeset --empty）を足せば通る。
 #
 # 運用は「changeset は PR ごとに同梱する」（2026-09-21 に切り替え。以前はリリース直前に
 # まとめて書いていて、0.31.0 では #657 / #659 を取りこぼした）。判定は
@@ -18,7 +23,7 @@ permissions:
 
 jobs:
   remind:
-    name: Changeset reminder (warning only)
+    name: Changeset reminder
     # Version PR（changesets が作る）と Dependabot は対象外
     if: ${{ !startsWith(github.head_ref, 'changeset-release/') && github.actor != 'dependabot[bot]' }}
     runs-on: ubuntu-latest
@@ -60,7 +65,7 @@ jobs:
           if [ "$MISSING" = "true" ]; then
             {
               echo "$MARKER"
-              echo "**changeset がありません（警告のみ・マージは止めません）**"
+              echo "**changeset がありません（このチェックは赤になりますが、必須チェックではないのでマージは止めません）**"
               echo
               echo "この PR は出荷物（\`src/\` / \`tokens/\`）を変えています。"
               echo
@@ -81,3 +86,10 @@ jobs:
           else
             gh pr comment "$PR" --body-file body.md
           fi
+
+      # コメントを書いたあとで落とす（先に落とすと、何が足りないのかが PR に出ない）
+      - name: Fail when a changeset is missing
+        if: steps.check.outputs.missing == 'true'
+        run: |
+          cat reminder.txt
+          exit 1
