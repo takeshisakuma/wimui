@@ -36,9 +36,20 @@ const REQUIRED_PATHS = ["package.json", "package-lock.json"];
 
 // 2026-08-22: `narrow-overflow.yml` と `tap-target.yml` も同じ形（全ストーリーを
 // ブラウザで測るゲート）なので、同じ規約で見張る。
-// 2026-10-02（CI-13）: `e2e.yml` も足す。こちらは全ストーリーではなく e2e の spec を流すが、
-// paths が漏れたときの壊れ方（対象なのに起動しない）は同じ。
-const TARGETS = ["vrt.yml", "a11y.yml", "tap-target.yml", "narrow-overflow.yml", "e2e.yml"];
+const TARGETS = ["vrt.yml", "a11y.yml", "tap-target.yml", "narrow-overflow.yml"];
+
+/**
+ * **main の必須チェックを持つワークフローは、`pull_request` を paths で絞らない**（CI-13・2026-10-03）。
+ *
+ * 必須チェックは「起動しなかった」と「まだ終わっていない」を区別しない。paths で絞ると、
+ * 絞りから外れた PR（docs だけの PR など）ではチェックが永久に「待ち」のままになり、
+ * マージできなくなる。上の TARGETS とは逆向きの規約（あちらは「絞るなら漏らすな」）。
+ *
+ * この一覧は、リポジトリ設定（branch protection の required checks）の写し。設定は API でしか
+ * 読めないので、ここでは突き合わせない。**必須チェックを足したら、ここにも足すこと。**
+ * いまの必須: `Lint & Type Check`（lint.yml）/ `Vitest`（unit-test.yml）/ `E2E`（e2e.yml）。
+ */
+const REQUIRED_CHECK_WORKFLOWS = ["lint.yml", "unit-test.yml", "e2e.yml"];
 
 /**
  * `on:` 直下のトリガーごとに `paths:` の配列を拾う、用途を絞った読み取り。
@@ -137,12 +148,47 @@ for (const name of TARGETS) {
   }
 }
 
+let checkedRequired = 0;
+for (const name of REQUIRED_CHECK_WORKFLOWS) {
+  const file = path.join(root, ".github", "workflows", name);
+  if (!fs.existsSync(file)) {
+    errors.push(`${name}: ファイルが見つからない（REQUIRED_CHECK_WORKFLOWS の指定が古い）`);
+    continue;
+  }
+  checkedRequired++;
+  const triggers = readTriggerPaths(file);
+  if (!("pull_request" in triggers)) {
+    errors.push(`${name}: \`pull_request\` トリガーが無い（必須チェックが PR で起動しない）`);
+    continue;
+  }
+  // `paths-ignore` / `branches` などの絞りも同じ結果になる。`pull_request:` の下に何か書いて
+  // あれば落とす（読み取りは `paths:` しか拾わないので、ここは行で見る）
+  const lines = fs.readFileSync(file, "utf8").split(/\r?\n/);
+  const start = lines.findIndex((l) => /^ {2}pull_request:\s*$/.test(l));
+  const filters = [];
+  for (let i = start + 1; i < lines.length; i++) {
+    const line = lines[i];
+    if (!line.trim() || line.trim().startsWith("#")) continue;
+    if (line.length - line.trimStart().length <= 2) break;
+    filters.push(line.trim());
+  }
+  if (start < 0 || filters.length) {
+    errors.push(
+      `${name}: \`pull_request\` を絞っている（${filters[0] ?? "書式を読めない"}）── 必須チェックの` +
+        `ワークフローは全 PR で起動させること。絞りから外れた PR がマージできなくなる`,
+    );
+  }
+}
+
 console.log("--- Checking VRT / a11y trigger paths (T92) ---");
 // 母数を出す。「0 件」がガードの緑なのか走査対象が空なのかを出力で見分けられるように
 // する（T84 / T89 と同じ）。
-console.log(`走査: ワークフロー ${checked} / ${TARGETS.length} ファイル`);
+console.log(
+  `走査: paths を持つワークフロー ${checked} / ${TARGETS.length} ファイル、` +
+    `必須チェックのワークフロー ${checkedRequired} / ${REQUIRED_CHECK_WORKFLOWS.length} ファイル`,
+);
 
-if (checked !== TARGETS.length || errors.length) {
+if (checked !== TARGETS.length || checkedRequired !== REQUIRED_CHECK_WORKFLOWS.length || errors.length) {
   console.error("\n✗ トリガーの paths に穴がある:\n");
   for (const e of errors) console.error(`  - ${e}`);
   console.error(
