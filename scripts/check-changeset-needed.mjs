@@ -19,6 +19,9 @@
  *   - テストだけの変更（`*.test.*`）
  *   - `.changeset/*.md` を足した PR ── 版を上げない変更（コメントの張り替えなど）は
  *     `npx changeset --empty` で空の changeset を足せば通る
+ *   - まだ公開していない既存の changeset を**書き換えた** PR（2026-10-03。導入から 12 日・
+ *     78 本の PR を振り返って見つけた誤検出: #763 は機能の changeset を書き換えて変更を
+ *     説明していたのに、足したファイルしか数えていなかったので警告が出た）
  *
  * Usage: node scripts/check-changeset-needed.mjs [<base-ref>]   （既定: origin/main）
  *   changeset が要るのに無ければ exit 1（警告に使うかどうかは呼ぶ側が決める）
@@ -40,13 +43,32 @@ export function isChangeset(file) {
 
 /**
  * @param {string[]} changed  PR で変わったファイル（削除も含めてよい）
- * @param {string[]} added    PR で足されたファイル
+ * @param {string[]} written  PR で足した・書き換えたファイル（消しただけのものは入れない）
  * @returns {{ needed: boolean, shipped: string[] }}
  */
-export function needsChangeset(changed, added) {
+export function needsChangeset(changed, written) {
   const shipped = changed.filter(isShipped);
-  const hasChangeset = added.some(isChangeset);
+  const hasChangeset = written.some(isChangeset);
   return { needed: shipped.length > 0 && !hasChangeset, shipped };
+}
+
+/**
+ * `git diff --name-status` の行を、変わったファイルと、書かれた（足した・書き換えた・改名した先の）
+ * ファイルに分ける。改名とコピーは「R100<TAB>旧<TAB>新」の形で、新しい側を採る。
+ * @param {string[]} lines
+ * @returns {{ changed: string[], written: string[] }}
+ */
+export function readNameStatus(lines) {
+  const changed = [];
+  const written = [];
+  for (const line of lines) {
+    const [status, ...paths] = line.split("\t");
+    const file = paths[paths.length - 1];
+    if (!file) continue;
+    changed.push(file);
+    if (!status.startsWith("D")) written.push(file);
+  }
+  return { changed, written };
 }
 
 function git(args) {
@@ -55,9 +77,8 @@ function git(args) {
 
 function main() {
   const base = process.argv[2] || "origin/main";
-  const changed = git(["diff", "--name-only", `${base}...HEAD`]);
-  const added = git(["diff", "--name-only", "--diff-filter=A", `${base}...HEAD`]);
-  const { needed, shipped } = needsChangeset(changed, added);
+  const { changed, written } = readNameStatus(git(["diff", "--name-status", `${base}...HEAD`]));
+  const { needed, shipped } = needsChangeset(changed, written);
   if (!needed) {
     console.log(
       shipped.length
