@@ -8,6 +8,7 @@ const STORIES = [
   "components-data-structures-pivottable--totals",
   "components-data-structures-pivottable--nested-columns",
   "components-data-structures-pivottable--collapsed",
+  "components-data-structures-pivottable--collapsed-columns",
   "components-data-structures-pivottable--sticky-headers",
 ];
 
@@ -111,6 +112,10 @@ test.describe("PivotTable", () => {
     await page.goto(STORY_URL(STORIES[0]));
     await page.waitForLoadState("networkidle");
     const drinks = page.getByRole("button", { name: "Drinks" });
+    // 列のグループのボタン（Q1・Q2）が先に来る
+    await page.keyboard.press("Tab");
+    await expect(page.getByRole("button", { name: "Q1" })).toBeFocused();
+    await page.keyboard.press("Tab");
     await page.keyboard.press("Tab");
     await expect(drinks).toBeFocused();
     await page.keyboard.press("Enter");
@@ -122,6 +127,56 @@ test.describe("PivotTable", () => {
     await page.keyboard.press("Space");
     await expect(drinks).toHaveAttribute("aria-expanded", "true");
     await expect(page.getByRole("rowheader", { name: "Drip coffee" })).toBeVisible();
+  });
+
+  test("collapses and expands a column group from the keyboard, keeping focus on its button", async ({ page }) => {
+    await page.goto(STORY_URL(STORIES[0]));
+    await page.waitForLoadState("networkidle");
+    const q1 = page.getByRole("button", { name: "Q1" });
+    await page.keyboard.press("Tab");
+    await expect(q1).toBeFocused();
+    await page.keyboard.press("Enter");
+    await expect(q1).toHaveAttribute("aria-expanded", "false");
+    await expect(q1).toBeFocused();
+    await expect(page.getByRole("columnheader", { name: "Jan", exact: true })).toHaveCount(0);
+    // グループの値の列が 1 本残る（1〜3 月の合計）
+    await expect(page.getByRole("row", { name: /^Drinks 7,304 2,672/ })).toBeVisible();
+    // 見出しの位置は見ない: 表は器の幅いっぱいに広がるので、列が減ると残りの列（行見出しの列も）が
+    // 広がり、畳んだ見出しは右へ動く（実測: 幅 1280px で Q1 の左端が 115px）。
+    // 見出しの段は 2 段のまま（Q2 が開いている）。畳んだ見出しは最下段まで届く
+    const spans = await page.evaluate(() => {
+      const table = document.querySelector("table.wim-pivot-table")!;
+      const th = Array.from(table.querySelectorAll("thead th")).find((el) => el.textContent?.trim() === "Q1")!;
+      const lastRow = table.querySelector("thead tr:last-child")!;
+      return {
+        levels: table.querySelectorAll("thead tr").length,
+        gapToBody: Math.abs(th.getBoundingClientRect().bottom - lastRow.getBoundingClientRect().bottom),
+      };
+    });
+    expect(spans.levels).toBe(2);
+    expect(spans.gapToBody).toBeLessThan(1);
+    await page.keyboard.press("Space");
+    await expect(q1).toHaveAttribute("aria-expanded", "true");
+    await expect(page.getByRole("columnheader", { name: "Jan", exact: true })).toBeVisible();
+  });
+
+  test("drops the lower heading level when every column group is collapsed", async ({ page }) => {
+    await page.goto(STORY_URL(STORIES[0]));
+    await page.waitForLoadState("networkidle");
+    const measure = () =>
+      page.evaluate(() => {
+        const table = document.querySelector("table.wim-pivot-table")!;
+        const head = table.querySelector("thead")!;
+        return { levels: head.querySelectorAll("tr").length, height: head.getBoundingClientRect().height };
+      });
+    const before = await measure();
+    await page.getByRole("button", { name: "Q1" }).click();
+    await page.getByRole("button", { name: "Q2" }).click();
+    const after = await measure();
+    expect(before.levels).toBe(2);
+    expect(after.levels).toBe(1);
+    expect(after.height).toBeLessThan(before.height);
+    await expect(page.getByRole("row", { name: /^Drinks 7,304 8,879/ })).toBeVisible();
   });
 
   test("keeps every heading level in view, stacked without a gap, while scrolling vertically", async ({ page }) => {

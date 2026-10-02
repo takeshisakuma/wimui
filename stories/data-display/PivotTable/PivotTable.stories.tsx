@@ -145,12 +145,33 @@ export const Collapsed: Story = {
         getValue={getValue}
         rowAxisLabel={t("story.pivottable_product")}
         caption={t("story.pivottable_caption")}
-        defaultExpandedValues={["food"]}
+        defaultExpandedRowValues={["food"]}
       />
     );
   },
   args: {
     totalRow: true,
+  },
+};
+
+/** 列のグループも畳める。畳んだグループは、自分の値（`getValue` にグループのキーが渡る）の列を 1 本だけ残す。 */
+export const CollapsedColumns: Story = {
+  render: function Render(args) {
+    const { t, rows, columns, getValue } = useStationPivot();
+    return (
+      <PivotTable
+        {...args}
+        rows={rows}
+        columns={columns}
+        getValue={getValue}
+        rowAxisLabel={t("story.pivottable_product")}
+        caption={t("story.pivottable_caption")}
+        defaultExpandedColumnValues={["q2"]}
+      />
+    );
+  },
+  args: {
+    totalColumn: true,
   },
 };
 

@@ -7482,11 +7482,19 @@
         }
       }
     },
-    "PivotTable.defaultExpandedValues": {
+    "PivotTable.defaultExpandedColumnValues": {
       "required": false,
       "type": "string[]"
     },
-    "PivotTable.expandedValues": {
+    "PivotTable.defaultExpandedRowValues": {
+      "required": false,
+      "type": "string[]"
+    },
+    "PivotTable.expandedColumnValues": {
+      "required": false,
+      "type": "string[]"
+    },
+    "PivotTable.expandedRowValues": {
       "required": false,
       "type": "string[]"
     },
@@ -7508,7 +7516,11 @@
       "required": false,
       "type": "string | number"
     },
-    "PivotTable.onExpandedChange": {
+    "PivotTable.onExpandedColumnChange": {
+      "required": false,
+      "type": "(values: string[]) => void"
+    },
+    "PivotTable.onExpandedRowChange": {
       "required": false,
       "type": "(values: string[]) => void"
     },
