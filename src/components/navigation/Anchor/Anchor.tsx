@@ -249,3 +249,5 @@ export const Anchor = ({
 };
 
 export default Anchor;
+
+// probe: changeset の警告が落ちることの実証用（マージしない）
