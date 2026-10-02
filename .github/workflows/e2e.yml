@@ -1,0 +1,86 @@
+name: E2E (keyboard, focus, layout)
+
+# CI-13（2026-10-02）: `vrt/e2e.spec.ts` と `vrt/*.e2e.spec.ts` は、どのワークフローからも
+# 呼ばれていなかった。Playwright を回すワークフローは spec を 1 本ずつ名指しで呼ぶ作りで、
+# 名指しされないファイルは走らない。走っていないあいだに `e2e.spec.ts` の 27 件中 4 件が
+# 腐っていた（ストーリーのデモの文言を差し替えたときに、テストが置き去りになった）。
+#
+# ここで見るのは、単体テスト（jsdom）にも VRT にも写らないもの ── キーボード操作、
+# フォーカスの行き先、`headers` と描画位置の照合、仮想化の窓、途中のフレームに出る姿。
+#
+# **`public/locales/**` を paths に入れてある**: e2e は英語の文言で要素を引くので、
+# ストーリーの文言だけを変えた PR でも結果が変わる（腐った 4 件はまさにこの形だった）。
+on:
+  pull_request:
+    paths:
+      - "src/**"
+      - "stories/**"
+      - "public/locales/**"
+      - "vrt/**"
+      - "playwright.config.ts"
+      - "scripts/ci-install-playwright.sh"
+      - ".storybook/**"
+      - "package.json"
+      - "package-lock.json"
+      - ".github/workflows/e2e.yml"
+  push:
+    branches: [main]
+    paths:
+      - "src/**"
+      - "stories/**"
+      - "public/locales/**"
+      - "vrt/**"
+      - "playwright.config.ts"
+      - "scripts/ci-install-playwright.sh"
+      - ".storybook/**"
+      - "package.json"
+      - "package-lock.json"
+      - ".github/workflows/e2e.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: e2e-${{ github.head_ref || github.ref_name }}-${{ github.event_name }}
+  cancel-in-progress: true
+
+jobs:
+  e2e:
+    name: E2E
+    runs-on: ubuntu-26.04 # T281: 描画を測るので OS を固定（latest の段階移行で OS が混ざらないよう、版は明示して意図して上げる）
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Install Playwright browsers
+        # CI-8: apt が固まると job タイムアウトまで戻ってこない。1 回あたりを縛って再試行する。
+        timeout-minutes: 15
+        run: bash scripts/ci-install-playwright.sh
+
+      - name: Build Storybook
+        run: npm run build-storybook
+
+      # `playwright.config.ts` は `retries: 2` なので、そのままだと「1 回目は落ちて、やり直したら
+      # 通った」テストが緑になる。e2e が見ているのは途中の姿や競合で、**たまに落ちること自体が
+      # 欠陥の出方**（`anchor.e2e.spec.ts` が見ている欠陥は、1 回の表示では 8 割しか出なかった）。
+      # `--fail-on-flaky-tests` で、やり直して通ったテストも赤にする。やり直し自体は残すので、
+      # レポートで「毎回落ちる」と「たまに落ちる」は見分けられる。
+      - name: Run e2e specs
+        run: npm run test:e2e -- --fail-on-flaky-tests
+
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: e2e-report
+          path: playwright-report/
+          retention-days: 7

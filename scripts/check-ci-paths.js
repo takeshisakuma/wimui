@@ -36,7 +36,9 @@ const REQUIRED_PATHS = ["package.json", "package-lock.json"];
 
 // 2026-08-22: `narrow-overflow.yml` と `tap-target.yml` も同じ形（全ストーリーを
 // ブラウザで測るゲート）なので、同じ規約で見張る。
-const TARGETS = ["vrt.yml", "a11y.yml", "tap-target.yml", "narrow-overflow.yml"];
+// 2026-10-02（CI-13）: `e2e.yml` も足す。こちらは全ストーリーではなく e2e の spec を流すが、
+// paths が漏れたときの壊れ方（対象なのに起動しない）は同じ。
+const TARGETS = ["vrt.yml", "a11y.yml", "tap-target.yml", "narrow-overflow.yml", "e2e.yml"];
 
 /**
  * `on:` 直下のトリガーごとに `paths:` の配列を拾う、用途を絞った読み取り。

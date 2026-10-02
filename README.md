@@ -474,13 +474,14 @@ Requires a static Storybook build first (`storybook-static/` is gitignored).
 
 ```
 npm run build-storybook                                 # required initially and after story changes
-npm run test:vrt                                        # the full Playwright suite under vrt/ (VRT, a11y, e2e)
+npm run test:vrt                                        # visual regression only (vrt/vrt.spec.ts)
+npm run test:e2e                                        # keyboard / focus / layout specs (vrt/e2e.spec.ts and vrt/*.e2e.spec.ts)
 npm run test:vrt:update                                 # update snapshots
 npm run test:vrt:report                                 # review diffs in a slider view
 $env:FILTER='Calendar'; npm run test:vrt:update         # update Calendar snapshots only
 ```
 
-> The CI Visual Regression Test workflow runs only `vrt/vrt.spec.ts`. Local `npm run test:vrt` also includes a11y / e2e.
+> Each Playwright workflow in CI runs one kind of spec: `vrt/vrt.spec.ts` (Visual Regression Test), `vrt/a11y.spec.ts` (Accessibility) and the e2e specs (E2E). Run a11y locally with `npx playwright test vrt/a11y.spec.ts`.
 > After updating the Playwright version, re-fetch browsers with `npx playwright install`.
 
 #### Environment variables
