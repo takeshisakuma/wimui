@@ -72,3 +72,18 @@
 <meta property="og:image:alt" content="WIM UI — React component library" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="https://takeshisakuma.github.io/wimui/images/og-image.png" />
+
+<!--
+  アイコン。PNG は、SVG の favicon を使わない相手の分 ── Android（タブ一覧・
+  ホーム画面への追加）と iOS。PNG と manifest は `npm run site-icons:build` が
+  `public/images/icons/favicon.svg` から作る。
+
+  **SVG の行もここに書く。** Storybook は、この head に `rel="icon"` が 1 つでもあると
+  自分の `<link rel="icon" href="./favicon.svg">` を出さなくなる（実測: PNG の行だけを
+  足したら SVG のリンクが消えた）。`./favicon.svg` の中身は `main.ts` の staticDirs で
+  差し替えている。
+-->
+<link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+<link rel="icon" type="image/png" sizes="192x192" href="./images/icons/icon-192.png" />
+<link rel="apple-touch-icon" href="./images/icons/apple-touch-icon.png" />
+<link rel="manifest" href="./images/icons/manifest.webmanifest" />
