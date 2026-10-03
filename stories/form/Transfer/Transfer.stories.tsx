@@ -114,11 +114,14 @@ export const Controlled: Story = {
 
     // 左パネルに残っている最初の「外せる列」（dataSource の index 3）。
     // キー 1・2 は TransferWrapper の既定で target 側にある。
-    const trackingColumn = canvas.getByText("Tracking number");
+    // 文言の span は `pointer-events: none`（クリックは行＝option が受ける）なので、行を引いて押す。
+    // 以前は span を `getByText` で引いており、userEvent が「押せない要素」として例外を投げていた
+    // ── play はどの CI でも検査されていなかったので、黙って落ち続けていた。
+    const trackingColumn = canvas.getByRole("option", { name: "Tracking number" });
     await userEvent.click(trackingColumn);
 
     // Move to right
-    const moveToRightButton = canvas.getByRole("button", { name: "Move to Target" });
+    const moveToRightButton = canvas.getByRole("button", { name: "Move to selected" });
     await userEvent.click(moveToRightButton);
 
     // 右パネルへ移ったことの確認（"Target" という見出しは翻訳されるため、
