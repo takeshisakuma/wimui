@@ -44,8 +44,11 @@ Major Second (1.125) に近い Type Scale を採用。
 | トークン | 値 | 用途 |
 |----------|-----|------|
 | `--wim-font-weight-normal` | 400 | 本文 |
-| `--wim-font-weight-medium` | 500 | ラベル、強調 |
-| `--wim-font-weight-bold` | 700 | 見出し、ボタン |
+| `--wim-font-weight-medium` | 500 | 操作のラベル（Button、SegmentedControl、Tabs の未選択、入力系のラベル）、Badge / Tag / Chip |
+| `--wim-font-weight-semibold` | 600 | 面の見出し（Dialog、Drawer、Toast、Alert、Banner、Accordion の開いた見出し）、表の見出し、Menu のグループ見出し |
+| `--wim-font-weight-bold` | 700 | 文書の見出し（Title）、数値の主役（Stats の値、Countdown）、選択中の Tabs / TabNavigation、Label / Legend |
+
+ボタンのラベルは medium です（bold ではありません）。semibold は「面の中の見出し」、bold は「ページや数値の主役」という使い分けです。
 
 ### 行高
 
