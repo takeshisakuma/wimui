@@ -37,4 +37,5 @@ describe("MyComponent", () => {
 - **CI では `e2e.yml` が流す**（CI-13・2026-10-02 から。それまでは、どのワークフローからも呼ばれておらず、`e2e.spec.ts` の 4 件が腐っていた）。新しい spec は、ファイル名を `*.e2e.spec.ts` にすれば拾われる。
 - **やり直して通ったテストも赤になる**（`--fail-on-flaky-tests`）。e2e が見ているのは途中の姿や競合で、たまに落ちること自体が欠陥の出方だから。赤になったら、レポートで「毎回落ちる」のか「たまに落ちる」のかを先に見る。
 - **待ちを決め打ちにしない。** 「2 フレーム待つ」「200ms 待つ」は、ローカル（Windows）で通っても CI（Linux）で外れる（PivotTable の仮想化のテストが、CI で初めて流した回に落ちた）。待つのは「窓が追いついた」「要素が現れた」などの状態にし、現れなかったときに落ちる検査を別に置く。
+- **「1 回目だけ落ちて再試行で通る」は、PR を疑う前に main で同じ E2E を流して比べる**（`gh workflow run "E2E (keyboard, focus, layout)" --ref main`）。2026-10-03 は pivottable の「Tab のあとフォーカスが無い」「scrollHeight が 0」が main でも落ち、原因は**描いたストーリーの作り直し**だった（`storybook-react-i18next` が `languageChanged` で作り直す。遅い runner でだけ、初回描画の後に届く）。`.storybook/preview.ts` の `loaders` が翻訳の読み込みを待って止めており、`vrt/story-remount.e2e.spec.ts` が CPU を 6 倍遅くして見張る。**速い手元では再現しない競合は、CDP の `Emulation.setCPUThrottlingRate` で遅くして踏む。**
 - **英語の文言で要素を引くので、ストーリーのデモの文言を変えたら e2e も流す**（腐っていた 4 件は、文言の差し替えにテストが付いていかなかった）。`e2e.yml` は全 PR で起動する（`E2E` は main の必須チェック。必須チェックのワークフローは paths で絞らない ── 絞ると、絞りから外れた PR がマージできなくなる。`check:ci-paths` が見張る）。
