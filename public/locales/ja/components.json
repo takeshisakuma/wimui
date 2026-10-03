@@ -657,6 +657,9 @@
     "expand": "{{label}} を展開",
     "search_aria": "ツリー項目を検索"
   },
+  "datepicker": {
+    "dialog": "日付を選択"
+  },
   "daterangepicker": {
     "start": "開始日",
     "end": "終了日"

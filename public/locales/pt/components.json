@@ -657,6 +657,9 @@
     "expand": "Expandir {{label}}",
     "search_aria": "Buscar itens da árvore"
   },
+  "datepicker": {
+    "dialog": "Escolher data"
+  },
   "daterangepicker": {
     "start": "Data inicial",
     "end": "Data final"

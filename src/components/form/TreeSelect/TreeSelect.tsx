@@ -335,7 +335,14 @@ export const TreeSelect = forwardRef<HTMLDivElement, TreeSelectProps>(({
         >
           <div id={dropdownId}>
             <FocusTrap active={isOpen} initialFocus={false}>
-              <div role="dialog" aria-modal="true" aria-labelledby={labelId}>
+              {/* パネルにも引き金と同じ名前を付ける。label が無いと aria-labelledby が空になり、名前の無い
+                  dialog になっていた（axe の aria-dialog-name・serious）。 */}
+              <div
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby={labelId || ariaLabelledBy}
+                aria-label={label ? undefined : (ariaLabel || placeholderStr)}
+              >
                 <TreeView
                   multiSelect={multiple}
                   defaultSelectedValues={selectedKeys}
