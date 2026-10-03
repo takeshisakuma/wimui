@@ -304,6 +304,7 @@ Major Second (1.125) に近い比率に基づく、意図的にコンパクト�
 | Code は親の文字サイズに追従する（`0.9em`） | `rem` に固定しない | インラインのコードは、見出しの中でも本文の中でも周りの文字に対する比率で見える方が自然 |
 | Kbd は下辺が厚いキーキャップで、Code は平ら | 質感は揃えない | キーは「押すもの」、コードは「書いてあるもの」 |
 | Switch（md で 24px）は Checkbox・Radio（18px）より高い | 高さは揃えない | 横に動くつまみを持つので、同じ高さにすると掴みにくい。揃えたいときは Switch の `sm`（18px） |
+| Table・DataGrid の器は角丸 4px（`component`）、Card は 12px（`container`） | 表の器は Card に揃えない | 表は「面」ではなく「格子」なので、器の丸みは部品の丸みで足りる。Table と DataGrid、Toolbar、Pagination が同じページに並ぶので、12px と 4px の器が交互に出るのを避ける（T236。`table.module.scss` のコメント）。Table のカード表示（狭い幅）も同じ |
 | Button の枠は 2px、Input の枠は 1px | 線幅は揃えない | Button は solid / outline / ghost の外寸を揃えるために全 variant で 2px の枠を持つ。Input に合わせると Button 全体の外寸が動く |
 | ダークで、入力欄の枠（`line`）は明るく、パネルの枠（`border`）は暗い | 線の明るさは揃えない | 入力欄は 1px の線だけが「ここに入力できる」の合図なので、ダークでも消さない。パネルは面の色差でも読めるので、線は沈める（`tokens/color/semantic.json` の `line` のコメント） |
 
