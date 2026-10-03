@@ -17,24 +17,11 @@
       outline-color var(--wim-transition-base),
       opacity var(--wim-transition-base);
 
-    &::after {
-      position: absolute;
-      bottom: -6px; /* Exception: Geometric Harmony — decorative underline offset */
-      left: 0;
-      width: 100%;
-      height: var(--wim-border-width-thick);
-      content: "";
-      background-color: currentcolor;
-      transform: scaleX(0);
-      transform-origin: right;
-      transition: transform var(--wim-transition-base);
-    }
-
-    &:hover {
-      &::after {
-        transform: scaleX(1);
-        transform-origin: left;
-      }
+    /* ホバーの下線は文字の text-decoration で引く（下の .label）。以前はリンクの箱の 6px 下に 2px の棒を
+       置いて横に伸ばしていたが、段落の中では棒が次の行の文字の上端に接した（実測: 棒 402.2〜404.2px、
+       次の行の文字の箱の上端 401px）。text-decoration は行の中に収まり、折り返しても各行に付く。 */
+    &:hover .label {
+      text-decoration-color: currentcolor;
     }
 
     &:focus-visible {
@@ -49,8 +36,16 @@
       align-items: center;
     }
 
+    /* 下線は最初から引いておき、色だけ透明 → 文字色に変える（線の有無を切り替えると transition が効かない）。
+       .root ではなく .label に付ける: .inner は inline-flex（アトミックなインライン）なので、
+       .root の text-decoration は中の文字まで伝わらない。 */
     .label {
       line-height: var(--wim-line-height-tight);
+      text-decoration: var(--wim-decoration-underline);
+      text-decoration-thickness: var(--wim-border-width-thin);
+      text-decoration-color: transparent;
+      text-underline-offset: var(--wim-text-underline-offset);
+      transition: text-decoration-color var(--wim-transition-base);
     }
 
     // Sizes

@@ -126,7 +126,11 @@ export const Controlled: Story = {
 
     // 右パネルへ移ったことの確認（"Target" という見出しは翻訳されるため、
     // パネル名ではなく列名の存在で見る）。
-    await expect(canvas.getByText("Tracking number")).toBeInTheDocument();
+    // 以前は「文書のどこかにある」だけを見ていて、移動に失敗しても通っていた。
+    // 左（1 つ目の listbox）から消え、右（2 つ目）に入ったことを見る。
+    const [source, target] = canvas.getAllByRole("listbox");
+    await expect(within(target).getByRole("option", { name: "Tracking number" })).toBeInTheDocument();
+    await expect(within(source).queryByRole("option", { name: "Tracking number" })).not.toBeInTheDocument();
   },
 };
 

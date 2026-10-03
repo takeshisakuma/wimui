@@ -64,8 +64,9 @@
     &.clickable {
       cursor: pointer;
 
+      /* ホバーも押下も 0.85（塗りの面の共通の量。押下は縮みで示す。docs/rules/css.md）。 */
       &:hover {
-        background-color: oklch(from var(--bg, transparent) calc(l * 0.9) c h);
+        background-color: oklch(from var(--bg, transparent) calc(l * 0.85) c h);
       }
 
       &:active {

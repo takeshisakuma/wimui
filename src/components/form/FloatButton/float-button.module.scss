@@ -147,7 +147,7 @@
       background-color: var(--wim-color-primary);
 
       &:hover {
-        background-color: oklch(from var(--wim-color-primary) calc(l * 0.9) c h);
+        background-color: oklch(from var(--wim-color-primary) calc(l * 0.85) c h);
         box-shadow: var(--wim-shadow-lg);
         transform: translateY(var(--wim-lift-sm)); /* component-slop-ok: 浮いている部品。浮き上がりがページから離れていることの合図 */
       }
@@ -158,7 +158,7 @@
       background-color: var(--wim-color-danger);
 
       &:hover {
-        background-color: oklch(from var(--wim-color-danger) calc(l * 0.9) c h);
+        background-color: oklch(from var(--wim-color-danger) calc(l * 0.85) c h);
         box-shadow: var(--wim-shadow-lg);
         transform: translateY(var(--wim-lift-sm)); /* component-slop-ok: 浮いている部品。浮き上がりがページから離れていることの合図 */
       }
@@ -169,7 +169,7 @@
       background-color: var(--wim-color-success);
 
       &:hover {
-        background-color: oklch(from var(--wim-color-success) calc(l * 0.9) c h);
+        background-color: oklch(from var(--wim-color-success) calc(l * 0.85) c h);
         box-shadow: var(--wim-shadow-lg);
         transform: translateY(var(--wim-lift-sm)); /* component-slop-ok: 浮いている部品。浮き上がりがページから離れていることの合図 */
       }
