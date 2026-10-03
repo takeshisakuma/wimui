@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import React from "react";
 import { ALL_NAMESPACES } from "../../i18nConstants";
 import { Button, Popconfirm } from "wimui";
+import { openFirstPopup } from "../../playOpen";
 
 
 const meta: Meta<typeof Popconfirm> = {
@@ -79,4 +80,11 @@ export const Disabled: Story = {
       </Popconfirm>
     );
   },
+};
+
+// 開いた姿。ほかのストーリーは閉じたまま撮られるので、開いた中身を変えても VRT と a11y の CI が
+// 動かなかった。docs ページでは play が走らず閉じた姿になるので、載せても意味がない。
+export const Open: Story = {
+  ...Default,
+  play: openFirstPopup,
 };

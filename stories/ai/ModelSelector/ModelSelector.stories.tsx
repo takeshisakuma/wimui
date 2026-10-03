@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { ModelSelector, ModelOption } from "@/components/ai/ModelSelector/ModelSelector";
+import { openFirstPopup } from "../../playOpen";
 
 // Model names and provider descriptions are brand identifiers, kept verbatim.
 // i18n-ignore-start
@@ -110,4 +111,11 @@ export const Disabled: Story = {
     defaultValue: "gpt-4o",
     disabled: true,
   },
+};
+
+// 開いた姿。ほかのストーリーは閉じたまま撮られるので、開いた中身を変えても VRT と a11y の CI が
+// 動かなかった。docs ページでは play が走らず閉じた姿になるので、載せても意味がない。
+export const Open: Story = {
+  ...Default,
+  play: openFirstPopup,
 };

@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import React, { useState, useEffect } from "react";
 import { HamburgerMenu, HamburgerMenuProps } from "wimui";
+import { openFirstPopup } from "../../playOpen";
 
 const meta: Meta<typeof HamburgerMenu> = {
   title: "Components/Navigation Elements/HamburgerMenu",
@@ -75,4 +76,11 @@ export const Colored: Story = {
     color: "var(--wim-color-danger)",
   },
   render: renderWithState,
+};
+
+// 開いた姿。ほかのストーリーは閉じたまま撮られるので、開いた中身を変えても VRT と a11y の CI が
+// 動かなかった。docs ページでは play が走らず閉じた姿になるので、載せても意味がない。
+export const Open: Story = {
+  ...Default,
+  play: openFirstPopup,
 };

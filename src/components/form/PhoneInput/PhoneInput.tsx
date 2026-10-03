@@ -83,6 +83,8 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
     const generatedId = useId();
     const inputId = `wim-phone-input-${generatedId}`;
     const labelId = label ? `${inputId}-label` : undefined;
+    // 国の引き金と、開いたリストの両方に同じ名前を付ける（label があればそちらを aria-labelledby で指す）。
+    const countryAriaLabel = label ? undefined : "Select country";
     const errorId = error ? `${inputId}-error` : undefined;
 
     const [isOpen, setIsOpen] = useState(false);
@@ -144,7 +146,7 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
               aria-haspopup="listbox"
               aria-expanded={isOpen}
               aria-labelledby={labelId}
-              aria-label={label ? undefined : "Select country"}
+              aria-label={countryAriaLabel}
             >
               <span aria-hidden="true" style={{ fontSize: "1.2em" }}>{selectedCountry.flag}</span>
               {/* 旗・番号・シェブロンの間隔はセレクタの gap が作る（T58） */}
@@ -160,7 +162,14 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
             </button>
 
             <Transition show={isOpen} preset="fade" className={styles.dropdown}>
-              <ul className={styles.countryList} role="listbox">
+              {/* リストにも名前を付ける（引き金と同じ）。名前の無い listbox は axe の aria-input-field-name（serious）。
+                  開いた姿のストーリーが無く、CI に写っていなかった。 */}
+              <ul
+                className={styles.countryList}
+                role="listbox"
+                aria-labelledby={label ? labelId : undefined}
+                aria-label={countryAriaLabel}
+              >
                 {PHONE_COUNTRIES.map((country) => (
                   <li
                     key={country.code}
