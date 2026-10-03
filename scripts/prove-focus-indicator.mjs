@@ -63,6 +63,15 @@ const CASES = [
   { name: '[鳴らない] 注記つき', css: '.proveTemp:focus-visible {\n  outline: none; /* focus-indicator-ok: 実証用 */\n}', expect: null },
 ];
 
+// 前回の実行が途中で落ちて差し込みが残っていると、それを「元」として保存してしまう（2026-10-03 に
+// ファイルロックで落ちた回に実際に起きた）。先に確かめる。
+const dirty = execFileSync('git', ['status', '--porcelain', '--', INSERT_FILE], { encoding: 'utf8' }).trim();
+if (dirty) {
+  console.log(`✗ ${INSERT_FILE} に未コミットの変更があります。戻してから流してください:
+${dirty}`);
+  process.exit(1);
+}
+
 const original = fs.readFileSync(INSERT_FILE, 'utf8');
 try {
   const base = run();

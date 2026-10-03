@@ -12,7 +12,7 @@
   &:hover { opacity: 0.85; }
 
   // OK — oklch 空間で L（明度）のみ調整。ダーク・ライト共に均一な変化
-  &:hover { background-color: oklch(from var(--wim-color-primary) calc(l * 0.9) c h); }
+  &:hover { background-color: oklch(from var(--wim-color-primary) calc(l * 0.85) c h); }
   ```
 
 - **原則**: 明度の調整（暗くする・明るくする）を伴うすべての色指定において、`color-mix(in srgb, ...)` よりも `oklch(from ...)` を優先してください。SRGB空間での混色は知覚的に不均一な結果を招くため、新規実装での使用は非推奨です。
@@ -24,9 +24,18 @@
     --_bg: var(--wim-color-neutral-subtle);
     background: var(--_bg);
     &.primary { --_bg: var(--wim-color-primary); }
-    &:hover { background: oklch(from var(--_bg) calc(l * 1.1) c h); }
+    &:hover { background: oklch(from var(--_bg) calc(l * 0.85) c h); }
   }
   ```
+
+- **暗くする量は 2 組だけ**です。部品ごとに別の値を書かないでください（2026-10-04 まで Button 0.85 / Chip 0.9 / Tag 0.95、Badge は 1.1 で**明るく**なっていた）。
+
+  | 面 | ホバー | 押下 | 例 |
+  |---|---|---|---|
+  | 色の付いた塗り（intent の面、淡い塗りを含む） | `l * 0.85` | `l * 0.85`（ホバーと同じ。押下は縮み `--wim-scale-active` で示す） | Button（solid）、Badge、Tag、Chip、FloatButton |
+  | 面の色（`surface`）の行や枠 | `l * 0.95` | `l * 0.92` | List の行、Pagination のページ、FloatButton の default |
+
+  塗りの 0.85 は Button で実測して決めた値です（T272。0.9 では静止時との面どうしの比が約 1.2 で見分けにくく、0.85 で約 1.3）。**押下でさらに暗くしない**のも実測からです ── 0.8 まで下げると、dark の danger の塗り（明るい面に暗い文字）で文字とのコントラストが 4.47 になり AA（4.5）を割りました（0.85 では 5.18）。ホバーで**明るく**する書き方は使いません ── dark では塗りが暗いので暗くする向きでも沈まず、light と向きを揃えられます。
 
 - `opacity` は 表示/非表示の切り替え（`opacity: 0 → 1`）にのみ使用してください。`disabled` 状態への `opacity` トークン適用は引き続き許可します。
 
