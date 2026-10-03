@@ -23,6 +23,8 @@ Storybook / リポジトリで使うサンプル画像の出所・権利・目�
 | `src/media/avatar_{1,2,3,4}.svg` | 抽象アバター 4 枚（120×120・円と肩のシルエット） | **自作 SVG**（T55。**実在人物を一切含まない**） |
 | `src/media/scene_{wide,card_1,card_2,card_3,landscape,portrait_tall}.svg` | 風景シーン 6 枚（各種アスペクト比） | **自作 SVG**（T55） |
 | `src/media/video_poster.webp` | 「now making」黒地プレースホルダ | 自作（テキストグラフィック） |
+| `public/images/icons/favicon.svg` | 公開サイトのアイコン（赤地の正方形の中央に WIM ロゴ） | **自作 SVG**（`public/wimlogo.svg` のパスを正方形に置き直したもの） |
+| `public/images/icons/*.png` / `manifest.webmanifest` | 上記の PNG 版（192 / 512 / maskable 512 / apple-touch-icon 180）と Web App Manifest | **生成物**（`npm run site-icons:build` が `favicon.svg` から作る。手で書き出さない） |
 
 ### 目視確認（2026-07-18）
 

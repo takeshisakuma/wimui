@@ -331,6 +331,7 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "node scripts/cleanup-storybook.cjs && storybook build",
     "seo:build": "node scripts/generate-seo-artifacts.mjs",
+    "site-icons:build": "node scripts/generate-site-icons.mjs",
     "deploy": "npm run build-storybook && gh-pages -d storybook-static",
     "format": "prettier --write .",
     "lint": "eslint src stories --max-warnings=0",

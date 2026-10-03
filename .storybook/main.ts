@@ -29,7 +29,13 @@ const config: StorybookConfig = {
     options: {},
   },
 
-  staticDirs: ["../public"], //言語ファイル
+  staticDirs: [
+    "../public", //言語ファイル
+    // `/favicon.svg` を既定のアイコン（Storybook のロゴ）から差し替える。リンクは
+    // manager-head.html に書いてある。実体を `public/` 直下に置かないのは npm パッケージに
+    // 同梱させないため
+    { from: "../public/images/icons/favicon.svg", to: "/favicon.svg" },
+  ],
 
   viteFinal: async (config) => {
     // Viteの設定をマージ
