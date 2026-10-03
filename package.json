@@ -387,6 +387,7 @@
     "check:a11y-incomplete": "node scripts/check-a11y-incomplete.js",
     "a11y:incomplete:update": "node scripts/update-a11y-incomplete.js",
     "a11y:incomplete:measure": "node scripts/measure-a11y-incomplete.mjs",
+    "measure:focus-forced-colors": "node scripts/measure-focus-forced-colors.mjs",
     "smoke": "npm run build && node scripts/smoke/run.mjs",
     "smoke:full": "npm run build && node scripts/smoke/run.mjs --full",
     "smoke:pnpm": "npm run build && node scripts/smoke/run.mjs --pm pnpm",

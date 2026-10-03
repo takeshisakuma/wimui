@@ -30,6 +30,38 @@
 
 - `opacity` は 表示/非表示の切り替え（`opacity: 0 → 1`）にのみ使用してください。`disabled` 状態への `opacity` トークン適用は引き続き許可します。
 
+# フォーカス表示（`:focus-visible` / `:focus-within`）
+
+既定のフォーカス表示は outline です（`base.scss`。2px の実線、offset 2px）。部品が自前の表示を書く必要があるのは、外側に描く余地が無い（トラックや外枠の中に詰まった項目）・外枠側に出したい（入力欄）ときだけです。
+
+- **`outline: none` で消して box-shadow や背景だけにしない。** Windows のハイコントラストなどの強制カラー（forced-colors）では box-shadow が描かれず、フォーカスが丸ごと消えます（2026-10-03 の実測: 1499 の停止点のうち 246 が画素差 0）。影で描くときは、同じブロックに透明の outline を敷きます。通常の表示では何も描かれず、強制カラーでだけ色が付きます。
+
+  ```scss
+  @use "../../../styles/focus-mixins" as focus;
+
+  // NG — 強制カラーで何も出ない
+  &:focus-visible { outline: none; box-shadow: var(--wim-shadow-focus); }
+
+  // OK — 外側の輪
+  &:focus-visible {
+    @include focus.forced-colors-outline;
+
+    box-shadow: var(--wim-shadow-focus);
+  }
+
+  // OK — 内側の輪（外に描けない項目）
+  &:focus-visible {
+    @include focus.forced-colors-outline($inset: true);
+
+    box-shadow: inset 0 0 0 var(--wim-border-width-thick) var(--wim-color-focus-outline);
+  }
+  ```
+
+- 外枠の `:focus-within` に輪を出す部品（入力欄）も同じです。中の `input` で outline を消しているので、外枠のブロックに mixin を書きます。
+- hover と同じブロックに書かない（強制カラーでホバーにも輪が出る）。フォーカスのブロックを分けます。
+- 色は `--wim-color-focus-outline`（primary を直接使わない。dark で 1.61:1）。
+- 書き方は `npm run check:focus-indicator` が見ます。**実際に見えるか**（親が切り取る・別の規則が勝つ）はコードから決められないので、フォーカス表示を触ったら `npm run measure:focus-forced-colors -- --only <ストーリー ID の一部>` で測ってください（手順は `MAINTENANCE.md` 12-4）。
+
 # `!important` の使用
 
 新規コードで `!important` を使用する場合は以下の方針に従ってください。

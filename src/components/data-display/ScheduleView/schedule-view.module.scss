@@ -1,3 +1,5 @@
+@use "../../../styles/focus-mixins" as focus;
+
 @layer component {
   .root {
     width: 100%;
@@ -86,6 +88,13 @@
         color: var(--wim-color-text-on-primary);
         background: var(--wim-color-primary);
         border-color: var(--wim-color-primary);
+      }
+
+      /* FullCalendar は `.fc .fc-button:focus { outline: 0; box-shadow: … }` で、影だけでフォーカスを
+         示す。強制カラーでは影が消えるので、透明の outline を敷く。クラスを重ねているのは
+         FullCalendar の規則（クラス 3 つ相当。実行時に <style> で差し込まれるので順序に頼れない）に勝つため。 */
+      &.fc-button:focus-visible {
+        @include focus.forced-colors-outline;
       }
     }
 

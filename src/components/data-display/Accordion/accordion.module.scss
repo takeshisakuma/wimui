@@ -1,3 +1,5 @@
+@use "../../../styles/focus-mixins" as focus;
+
 @layer component {
   .root {
     width: 100%;
@@ -58,7 +60,8 @@
     }
 
     &:focus-visible {
-      outline: none;
+      @include focus.forced-colors-outline($inset: true);
+
       box-shadow: inset 0 0 0 var(--wim-border-width-thick) var(--wim-color-focus-outline);
     }
   }

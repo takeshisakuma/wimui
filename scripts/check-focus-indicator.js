@@ -18,6 +18,17 @@
  *                        枠の色の変化など、はっきりした合図がほかにあれば通す。
  *   4. focus-double      outline の実線と、実線の輪（`--wim-shadow-focus` / `-ring`）を両方付けて
  *                        いる。同じ色の輪が二重に出る。
+ *   5. focus-forced-colors  影（box-shadow）や背景だけでフォーカスを示し、outline が無い。
+ *                        強制カラー（Windows のハイコントラスト等）では box-shadow が描かれず、
+ *                        表示が消える（2026-10-03 の実測で 1499 の停止点のうち 246 が画素差 0）。
+ *                        `@include focus.forced-colors-outline`（`src/styles/_focus-mixins.scss`。
+ *                        透明の outline）を同じブロックに書く。**この規則だけ `:focus-within` も見る**
+ *                        （入力欄は外枠の `:focus-within` に影の輪を出す）。見るのは次の 2 つ:
+ *                          a. `outline: none` / `0` で消し、影や背景を代わりにしている
+ *                          b. フォーカス色の影（`--wim-shadow-focus` 系 / `--wim-color-focus-outline`）
+ *                             があり、outline の宣言が無い（本体で outline を消している部品）
+ *                        **実際に見えるかは `measure:focus-forced-colors` で測る**（親が切り取る・
+ *                        別の規則が勝つ、はここからは分からない）。
  *
  * **見ないもの**: 部品の本体（フォーカスでないセレクタ）の `outline: none`。その要素が
  * フォーカスできるかをコードから決められないので、全ストーリーで Tab を当てて測る方で補う
@@ -44,7 +55,10 @@ const stagedFiles = args.filter((a) => !a.startsWith('--') && !probeFiles.includ
 const EXCUSE = 'focus-indicator-ok:';
 
 const FOCUS_SELECTOR = /:focus(-visible)?\b(?!-within)/;
-const INDICATOR_PROP = /^(outline|outline-color|box-shadow|border|border-color|border-(top|right|bottom|left)(-color)?)$/;
+const FOCUS_WITHIN_SELECTOR = /:focus-within\b/;
+const FORCED_COLORS_MIXIN = /@include\s+focus\.forced-colors-outline\b/;
+const FOCUS_SHADOW = /--wim-shadow-focus(-ring)?\b|--wim-shadow-field-focus\b|--wim-color-focus-outline\b|--wim-color-primary\b/;
+const INDICATOR_PROP =/^(outline|outline-color|box-shadow|border|border-color|border-(top|right|bottom|left)(-color)?)$/;
 const ALT_INDICATOR = /^(box-shadow|outline|outline-color|border|border-color|border-(top|right|bottom|left)(-color)?|background|background-color|text-decoration|text-decoration-line)$/;
 
 /** コメントを空白に置き換える（行数は保つ）。 */
@@ -87,6 +101,7 @@ export function scan(files, { honourExcuses = true } = {}) {
       const top = stack[stack.length - 1];
       const decl = line.match(/^\s*([\w-]+)\s*:\s*(.*?);?\s*$/);
       if (top && decl && !line.includes('{')) top.decls.push({ prop: decl[1], value: decl[2], line: i });
+      if (top && FORCED_COLORS_MIXIN.test(line)) top.forcedColorsOutline = true;
       for (const c of line) {
         if (c === '{') {
           stack.push({ sel: pending.trim(), decls: [], line: i });
@@ -94,11 +109,29 @@ export function scan(files, { honourExcuses = true } = {}) {
         } else if (c === '}') {
           const b = stack.pop();
           pending = '';
-          if (!b || !FOCUS_SELECTOR.test(b.sel)) continue;
+          if (!b) continue;
           const push = (rule, detail, at) => {
             if (honourExcuses && (excused(rawLines, at) || excused(rawLines, b.line))) return;
             hits.push({ file, line: at + 1, rule, detail, text: rawLines[at].trim().slice(0, 100) });
           };
+          const isFocus = FOCUS_SELECTOR.test(b.sel);
+          // 強制カラーの規則だけは :focus-within も見る。マウス専用の :focus:not(:focus-visible) は見ない。
+          // フォーカスのブロックの中の入れ子（`&:focus-visible { & > .label { box-shadow } }`。TreeView）も見る。
+          const focusAncestors = stack.filter((a) => FOCUS_SELECTOR.test(a.sel) || FOCUS_WITHIN_SELECTOR.test(a.sel));
+          const nestedInFocus = focusAncestors.length > 0 && !focusAncestors.some((a) => a.forcedColorsOutline || /:not\(:focus-visible\)/.test(a.sel));
+          if ((isFocus || FOCUS_WITHIN_SELECTOR.test(b.sel) || nestedInFocus) && !/:not\(:focus-visible\)/.test(b.sel) && !b.forcedColorsOutline) {
+            const outlines = b.decls.filter((d) => d.prop === 'outline');
+            const removed = outlines.find((d) => /^(none|0)\b/.test(d.value.trim()));
+            const kept = outlines.some((d) => d !== removed);
+            const others = b.decls.filter((d) => ALT_INDICATOR.test(d.prop) && d.prop !== 'outline' && !/^none\b/.test(d.value.trim()));
+            const focusShadow = b.decls.find((d) => d.prop === 'box-shadow' && FOCUS_SHADOW.test(d.value));
+            if (!kept) {
+              // 代わりの表示が無い「消すだけ」は focus-hidden の持ち分（マウス用の定番もそちらで判定する）
+              if (removed && isFocus && others.length > 0) push('focus-forced-colors', 'outline を消して影や背景だけで示している（強制カラーで消える）', removed.line);
+              else if (!removed && focusShadow) push('focus-forced-colors', 'フォーカス色の影だけで、outline が無い（強制カラーで消える）', focusShadow.line);
+            }
+          }
+          if (!isFocus) continue;
           const indicators = b.decls.filter((d) => INDICATOR_PROP.test(d.prop));
           for (const d of indicators) {
             if (/var\(--wim-color-primary\)/.test(d.value)) push('focus-primary', 'フォーカスの表示に primary を使っている', d.line);
@@ -115,7 +148,7 @@ export function scan(files, { honourExcuses = true } = {}) {
           if (outlineNone && alts.length === 0 && !pointerOnly) push('focus-hidden', 'outline を消して、代わりの表示が無い', outlineNone.line);
           // outline の実線と、実線の輪（--wim-shadow-focus / -ring）を同じブロックで両方付けると、
           // 同じ色の輪が二重に出る（T270 で Checkbox / Switch / Radio が踏んだ）。
-          const solidOutline = b.decls.find((d) => d.prop === 'outline' && /\bsolid\b/.test(d.value));
+          const solidOutline = b.decls.find((d) => d.prop === 'outline' && /\bsolid\b/.test(d.value) && !/\btransparent\b/.test(d.value));
           const solidRing = b.decls.find((d) => d.prop === 'box-shadow' && /--wim-shadow-focus(-ring)?\b/.test(d.value));
           if (solidOutline && solidRing) push('focus-double', 'outline と実線の輪が二重に出る', solidRing.line);
           if (alts.length > 0 && alts.every((d) => isFaint(d.value))) {
@@ -157,9 +190,11 @@ if (isMain) {
     console.log('  - focus-hidden: outline を消すなら、同じブロックに代わりの表示を書く。');
     console.log('  - focus-faint-only: 淡い輪だけにしない。枠の色の変化か、--wim-shadow-focus を足す。');
     console.log('  - focus-double: outline と実線の輪のどちらか一方にする。');
+    console.log('  - focus-forced-colors: 同じブロックに `@include focus.forced-colors-outline;` を書く（内側の輪なら `($inset: true)`）。');
+    console.log('      先頭に `@use "../../../styles/focus-mixins" as focus;`。直したら `npm run measure:focus-forced-colors` で実物を測る。');
     console.log(`  どうしても残すなら、同じ行か直上のコメントに \`${EXCUSE} <理由>\` を書くこと。`);
     process.exit(1);
   }
   // 「フォーカスは見える」とは言わない。部品の本体の outline: none は見ていない。
-  console.log('\n✓ :focus / :focus-visible のブロックの primary 直書き・消すだけ・淡い色だけ は 0 件です。');
+  console.log('\n✓ :focus / :focus-visible のブロックの primary 直書き・消すだけ・淡い色だけ・影だけ（強制カラーで消える）は 0 件です。');
 }

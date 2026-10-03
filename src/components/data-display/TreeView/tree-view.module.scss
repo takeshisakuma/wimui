@@ -1,3 +1,5 @@
+@use "../../../styles/focus-mixins" as focus;
+
 @layer component {
   .root {
     box-sizing: border-box;
@@ -46,6 +48,8 @@
       box-shadow var(--wim-duration-base) var(--wim-easing-standard);
 
     &:focus {
+      @include focus.forced-colors-outline;
+
       border-color: var(--wim-color-focus-outline);
       box-shadow: 0 0 0 3px oklch(from var(--wim-color-focus-outline) l c h / 0.1); /* Exception: Browser Rendering Fixes — keyboard focus halo */
     }
@@ -112,12 +116,16 @@
       box-shadow: none;
       
       & > .labelContainer {
+        @include focus.forced-colors-outline;
+
         border-radius: var(--wim-radius-component);
         box-shadow: var(--wim-shadow-focus);
       }
     }
   
     &.selected:focus-visible > .labelContainer {
+       @include focus.forced-colors-outline;
+
        box-shadow: var(--wim-shadow-focus);
     }
   }
@@ -164,6 +172,8 @@
       transform var(--wim-duration-slow) var(--wim-easing-standard);
 
     &:focus-visible {
+      @include focus.forced-colors-outline;
+
       box-shadow: var(--wim-shadow-focus);
     }
 
