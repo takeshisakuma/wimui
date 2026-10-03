@@ -171,6 +171,7 @@ $wim-lift-md: -1.5px;
 $wim-lift-lg: -2px;
 $wim-lift-none: 0;
 $wim-scale-active: 0.98;
+$wim-scale-active-sm: 0.9; // 小さいボタン（24〜28px の閉じるボタンなど）の押下用。0.98 だと縮みが 0.5px ほどで、押した感触が出ない。Toast / Snackbar / Alert の閉じるボタンが生の 0.9 / 0.95 を書いていたのを 1 つにまとめた（2026-10-04）。
 $wim-scale-hover: 1.02;
 $wim-drop-shadow-xs: drop-shadow(0 1px 2px oklch(0 0 0 / 0.08)) drop-shadow(0 1px 1px oklch(0 0 0 / 0.05)); // shadow-xs と同じ影を filter で落とす形。box-shadow は要素のボーダーボックスに沿うので、吹き出しの三角のような擬似要素との継ぎ目に線が出る。drop-shadow は合成後の不透明領域に沿うため、本体と三角がひとつの形として落ちる（T63）。
 $wim-spacing-hairline: 0.0625rem;

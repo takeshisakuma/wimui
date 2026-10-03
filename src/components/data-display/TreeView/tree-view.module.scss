@@ -90,22 +90,20 @@
       outline-color var(--wim-transition-fast),
       opacity var(--wim-transition-fast);
   
+    /* 選択行は List の選択行と同じ淡い面（primary 12%）。以前は primary のベタ塗り＋白文字で、
+       隣に List を置くと同じ「選ばれた行」なのに片方だけページの主役になっていた。ベタ塗りは
+       「1 つだけの現在地」（Calendar の日・Pagination の現在ページ）に残す。 */
     &.selected > .labelContainer {
-      color: var(--wim-color-text-on-primary);
-      background-color: var(--wim-color-primary);
+      background-color: color-mix(in oklch, var(--wim-color-primary) 12%, var(--wim-color-surface));
 
       &:hover {
-        background-color: oklch(from var(--wim-color-primary) calc(l * 0.95) c h);
-      }
-  
-      .expandBtn {
-        color: var(--wim-color-text-on-primary);
+        background-color: color-mix(in oklch, var(--wim-color-primary) 16%, var(--wim-color-surface));
       }
     }
   
+    /* 無効は文字色（text-disabled）だけで示す。opacity も掛けると、ほかの部品の無効より一段薄くなる。 */
     &.disabled {
       pointer-events: none;
-      opacity: var(--wim-opacity-ghost);
   
       .labelContainer {
         color: var(--wim-color-text-disabled);
@@ -218,10 +216,6 @@
     width: var(--wim-tree-icon-size, var(--wim-spacing-3xl));
     height: var(--wim-tree-icon-size, var(--wim-spacing-3xl));
     color: var(--wim-color-text-secondary);
-  }
-
-  .item.selected > .labelContainer .icon {
-    color: var(--wim-color-text-on-primary);
   }
 
   .label {

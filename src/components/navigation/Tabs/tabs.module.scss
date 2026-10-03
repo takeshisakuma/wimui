@@ -186,10 +186,11 @@
         background-color: transparent;
       }
 
+      /* 選択は文字色と下線（.slider）で示す。太さは変えない ── medium → bold にすると選択のたびに
+         タブの幅が動いていた（実測: 152.0 → 146.4px / 109.2 → 113.1px）。面も塗らない ── 以前は
+         選択中と「未選択をホバー」が同じ surface-hover で、見分けが下線だけだった。 */
       &.active {
-        font-weight: var(--wim-font-weight-bold);
         color: var(--wim-color-text-accent);
-        background-color: var(--wim-color-surface-hover);
       }
 
       &:focus-visible {

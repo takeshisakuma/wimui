@@ -38,7 +38,10 @@
     color: inherit;
     text-align: left;
     cursor: pointer;
-    background-color: var(--wim-color-surface-hover);
+
+    /* 休止時は面の色。以前は休止時から surface-hover（primary 8%）で、触る前からホバーした色に見え、
+       ホバーしても面が変わらなかった。ホバーと開いた見出しだけ surface-hover にする。 */
+    background-color: var(--wim-color-surface);
     border: none;
     transition:
       color var(--wim-transition-fast),
