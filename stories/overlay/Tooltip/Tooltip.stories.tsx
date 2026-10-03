@@ -45,7 +45,7 @@ export const Variants: Story = {
   render: function Render() {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <div style={{ display: "flex", gap: "var(--wim-spacing-5xl)", padding: "var(--wim-spacing-5xl) var(--wim-spacing-xl) var(--wim-spacing-xl)" }}>
+      <div style={{ display: "flex", gap: "calc(var(--wim-spacing-5xl) * 2)", padding: "var(--wim-spacing-5xl) var(--wim-spacing-xl) var(--wim-spacing-xl)" }}>
         {(["default", "glass"] as const).map((variant) => (
           <Tooltip key={variant} open variant={variant} placement="top">
             <TooltipTrigger asChild>

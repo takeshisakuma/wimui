@@ -54,4 +54,12 @@
   .arrow {
     fill: var(--bg-tooltip, var(--wim-color-surface-inverse));
   }
+
+  /* glass の矢印は、本体と同じ面と枠の色にする。Tooltip.tsx は fill / stroke を属性で渡しているが、
+     上の `.arrow { fill }` が属性より強く、glass でも暗い矢印のままだった（明るい吹き出しに暗い三角）。
+     VRT に吹き出しが写るようになって初めて見えた（2026-10-04）。 */
+  .content.glass .arrow {
+    fill: var(--wim-color-glass-bg);
+    stroke: var(--wim-color-glass-border);
+  }
 }
