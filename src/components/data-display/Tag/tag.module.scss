@@ -89,7 +89,10 @@
     cursor: pointer;
     background: transparent;
     border: none;
-    border-radius: var(--wim-radius-sm);
+
+    /* 札の角丸（component）から 1 段（線幅 2px）引いた、内側のボタンの角丸。sm 固定だと、プリセットで
+       札だけ丸くなって中のボタンが角のまま残る（Soft で外 12px / 中 2px）。既定は 4 - 2 = 2px で同じ。 */
+    border-radius: calc(var(--wim-radius-component) - var(--wim-border-width-thick));
     opacity: var(--wim-opacity-secondary);
     transition:
       color var(--wim-transition-fast),
