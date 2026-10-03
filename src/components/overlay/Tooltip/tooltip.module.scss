@@ -16,10 +16,10 @@
     padding: var(--wim-spacing-sm) var(--wim-spacing-lg);
     font-size: var(--wim-font-size-sm);
     line-height: var(--wim-line-height-tight);
-    color: var(--text-tooltip, var(--wim-color-text-on-inverse));
+    color: var(--text-tooltip, var(--wim-comp-tooltip-fg));
     white-space: nowrap;
     pointer-events: none;
-    background-color: var(--bg-tooltip, var(--wim-color-surface-inverse));
+    background-color: var(--bg-tooltip, var(--wim-comp-tooltip-bg));
     border-radius: var(--wim-radius-overlay);
     box-shadow: var(--wim-shadow-overlay);
 
@@ -52,7 +52,7 @@
   }
   
   .arrow {
-    fill: var(--bg-tooltip, var(--wim-color-surface-inverse));
+    fill: var(--bg-tooltip, var(--wim-comp-tooltip-bg));
   }
 
   /* glass の矢印は、本体と同じ面と枠の色にする。Tooltip.tsx は fill / stroke を属性で渡しているが、

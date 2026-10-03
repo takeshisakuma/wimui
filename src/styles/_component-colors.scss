@@ -77,6 +77,10 @@
   --wim-comp-control-default-fg: var(--wim-color-primary);
   --wim-comp-control-default-bg: var(--wim-color-surface);
   --wim-comp-control-default-border: var(--wim-color-primary);
+
+  /* Tooltip の面と文字。light は surface-inverse（暗い面に白い文字）。 */
+  --wim-comp-tooltip-bg: var(--wim-color-surface-inverse);
+  --wim-comp-tooltip-fg: var(--wim-color-text-on-inverse);
   --wim-comp-close-hover: rgb(0 0 0 / 0.05);
   --wim-comp-decoration-highlight-color: #fff9c4;
   --wim-comp-overlay-control-track: rgb(255 255 255 / 0.3);
@@ -142,6 +146,14 @@
   --wim-comp-control-default-fg: var(--wim-color-text-primary);
   --wim-comp-control-default-bg: var(--wim-color-surface-variant);
   --wim-comp-control-default-border: var(--wim-color-border);
+
+  /* dark の Tooltip は明るい面に暗い文字（反転）。surface-inverse は dark でも #262626 のままで、
+     ページの地（surface-app #262626）と同じ色になり、吹き出しが影と文字だけで浮いていた。
+     surface-inverse 自体は変えない ── Footer / Audio は「常に暗い面」として使っている。
+     #e5e5e5 は surface-app #262626 上でも surface #393939 上でも面として見分けられ、
+     文字 #262626 とは 12:1 以上。 */
+  --wim-comp-tooltip-bg: #e5e5e5;
+  --wim-comp-tooltip-fg: #262626;
   --wim-comp-close-hover: rgb(255 255 255 / 0.1);
   --wim-comp-decoration-highlight-color: #5c4400;
   --wim-comp-overlay-control-track: rgb(255 255 255 / 0.3);
@@ -207,6 +219,14 @@
   --wim-comp-control-default-fg: var(--wim-color-text-primary);
   --wim-comp-control-default-bg: var(--wim-color-surface-variant);
   --wim-comp-control-default-border: var(--wim-color-border);
+
+  /* dark の Tooltip は明るい面に暗い文字（反転）。surface-inverse は dark でも #262626 のままで、
+     ページの地（surface-app #262626）と同じ色になり、吹き出しが影と文字だけで浮いていた。
+     surface-inverse 自体は変えない ── Footer / Audio は「常に暗い面」として使っている。
+     #e5e5e5 は surface-app #262626 上でも surface #393939 上でも面として見分けられ、
+     文字 #262626 とは 12:1 以上。 */
+  --wim-comp-tooltip-bg: #e5e5e5;
+  --wim-comp-tooltip-fg: #262626;
   --wim-comp-close-hover: rgb(255 255 255 / 0.1);
   --wim-comp-decoration-highlight-color: #5c4400;
   --wim-comp-overlay-control-track: rgb(255 255 255 / 0.3);
