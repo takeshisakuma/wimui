@@ -80,12 +80,14 @@
         opacity var(--wim-transition-fast),
         transform var(--wim-transition-fast);
 
+      /* ホバーは暗くする（0.85）。以前は 1.1 で**明るく**していて、Tag・Chip・Button と向きが逆だった。
+         押下も同じ 0.85（縮みで示す）。量は塗りの面の共通の値（docs/rules/css.md）。 */
       &:hover {
-        background-color: oklch(from var(--bg) calc(l * 1.1) c h);
+        background-color: oklch(from var(--bg) calc(l * 0.85) c h);
       }
 
       &:active {
-        background-color: oklch(from var(--bg) calc(l * 0.9) c h);
+        background-color: oklch(from var(--bg) calc(l * 0.85) c h);
         transform: scale(var(--wim-scale-active));
       }
     }

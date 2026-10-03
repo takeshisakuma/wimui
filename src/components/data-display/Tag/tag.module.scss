@@ -58,12 +58,13 @@
         opacity var(--wim-transition-fast),
         transform var(--wim-transition-fast);
 
+      /* ホバーも押下も 0.85（塗りの面の共通の量。押下は縮みで示す。docs/rules/css.md）。 */
       &:hover {
-        background-color: oklch(from var(--bg) calc(l * 0.95) c h);
+        background-color: oklch(from var(--bg) calc(l * 0.85) c h);
       }
 
       &:active {
-        background-color: oklch(from var(--bg) calc(l * 0.9) c h);
+        background-color: oklch(from var(--bg) calc(l * 0.85) c h);
         transform: scale(var(--wim-scale-active));
       }
     }
