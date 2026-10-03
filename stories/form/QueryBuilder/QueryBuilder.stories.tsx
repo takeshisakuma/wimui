@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { QueryBuilder, type QueryField, type QueryGroup } from "../../../src/components/form/QueryBuilder/QueryBuilder";
 import { useTranslation } from "react-i18next";
-import { expect, userEvent, within } from "storybook/test";
+import { expect, userEvent, within, waitFor } from "storybook/test";
 
 const fields: QueryField[] = [
   { name: "firstName", label: "query.builder.field_first_name", type: "string" },
@@ -102,7 +102,10 @@ export const Default: Story = {
     await userEvent.click(addRuleButton);
 
     // Check if a rule is added (field select is visible)
-    await expect(canvas.getByRole("combobox")).toBeVisible();
+    // 1 行のルールは combobox を複数持つ（項目・演算子）。`getByRole` は複数あると例外になり、
+    // ここで play が止まっていた（グループの追加まで進んでいなかった）。
+    // 足した行は不透明度 0 から現れるので、見えるまで待つ（その場で見ると「見えない」で落ちる）。
+    await waitFor(() => expect(canvas.getAllByRole("combobox")[0]).toBeVisible());
 
     // Click "Add Group"
     const addGroupButton = canvas.getByRole("button", { name: /add group/i });
