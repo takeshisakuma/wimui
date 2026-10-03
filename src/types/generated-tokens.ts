@@ -195,6 +195,7 @@ export type WimLiftKey =
 
 export type WimScaleKey = 
   | "active"
+  | "active-sm"
   | "hover";
 
 export type WimDropShadowKey = 

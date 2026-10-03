@@ -99,8 +99,8 @@ R_outer ≈ R_inner + S
 
 | トークン | 値 | 対象 |
 |---|---|---|
-| `--wim-shadow-overlay` | `shadow-md` | Dropdown, Popover, Menu, Tooltip など浮遊小要素 |
-| `--wim-shadow-modal` | `shadow-lg` | Dialog, Drawer, Notification, Snackbar など重いモーダル |
+| `--wim-shadow-overlay` | `shadow-md` | Dropdown, Popover, Menu, Tooltip など浮遊小要素。一時的に浮く通知（Toast, Snackbar, Notification）もここ |
+| `--wim-shadow-modal` | `shadow-lg` | Dialog, Drawer など、画面を止める重いモーダル |
 
 `--wim-shadow-xs / sm` はボタンやカードの hover/active など軽いインタラクションに、`--wim-shadow-md / lg` はカードや Terminal など静的に浮き上がって見せる面に使用します。
 

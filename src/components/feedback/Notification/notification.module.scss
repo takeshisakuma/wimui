@@ -8,7 +8,7 @@
     overflow: hidden;
     background-color: var(--wim-color-surface);
     border: var(--wim-border-width-thin) solid var(--wim-color-border-secondary);
-    border-radius: var(--wim-radius-component);
+    border-radius: var(--wim-radius-overlay);
 
     // 影は `.container`（position: fixed ＝内容に重なるとき）へ移した。ここは
     // in-page 配置で、輪郭は面と枠が作る（T50）。実測 2026-08-01: 面↔ページの
@@ -129,7 +129,7 @@
 
       // ここだけが「浮いて内容に重なる」配置。影は重なりの手掛かりなので、
       // in-page の `.root` ではなく浮いているときだけ出す（T50）。
-      box-shadow: var(--wim-shadow-modal);
+      box-shadow: var(--wim-shadow-overlay);
     }
 
     &.topRight {

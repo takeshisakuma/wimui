@@ -67,13 +67,16 @@
     display: flex;
     flex-direction: column;
     gap: var(--wim-spacing-xs);
-    padding: var(--wim-spacing-lg);
+
+    /* 見出しのサイズ（lg）と余白（2xl）は Dialog と同じ。以前は見出しが xl・余白が lg で、
+       同じ「開くパネル」なのに Drawer の方がタイトルが大きく、中が狭かった。 */
+    padding: var(--wim-spacing-2xl);
     border-bottom: var(--wim-border-width-thin) solid var(--border-subtle, var(--wim-color-border));
   }
 
   .title {
     margin: 0;
-    font-size: var(--wim-font-size-xl);
+    font-size: var(--wim-font-size-lg);
     font-weight: var(--wim-font-weight-semibold);
     color: var(--wim-color-text-primary);
   }
@@ -90,7 +93,7 @@
   .body {
     flex: 1;
     min-height: 0;
-    padding: var(--wim-spacing-lg);
+    padding: var(--wim-spacing-2xl);
     overflow-y: auto;
   }
 
@@ -98,7 +101,7 @@
     display: flex;
     gap: var(--wim-spacing-md);
     justify-content: flex-end;
-    padding: var(--wim-spacing-lg);
+    padding: var(--wim-spacing-2xl);
     margin-top: auto;
     border-top: var(--wim-border-width-thin) solid var(--border-subtle, var(--wim-color-border));
   }

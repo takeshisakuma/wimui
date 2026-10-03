@@ -73,8 +73,10 @@
     pointer-events: auto;
     background: var(--wim-snackbar-bg);
     border: var(--wim-border-width-thin) solid var(--wim-snackbar-border);
-    border-radius: var(--wim-radius-component);
-    box-shadow: var(--wim-shadow-modal);
+
+    /* Toast / Notification と同じ「一時的に浮く通知」の角丸と影（overlay）。 */
+    border-radius: var(--wim-radius-overlay);
+    box-shadow: var(--wim-shadow-overlay);
 
     // Initial state for animation
     opacity: 0;
@@ -177,7 +179,7 @@
     }
 
     &:active {
-      transform: scale(0.9);
+      transform: scale(var(--wim-scale-active-sm));
     }
   }
 

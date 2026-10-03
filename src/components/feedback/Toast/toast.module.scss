@@ -164,7 +164,7 @@
     }
 
     &:active {
-      transform: scale(0.9);
+      transform: scale(var(--wim-scale-active-sm));
     }
 
     svg {

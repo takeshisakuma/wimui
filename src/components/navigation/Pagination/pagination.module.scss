@@ -73,7 +73,7 @@
 
       &:active:not(.disabled, .active) {
         background-color: oklch(from var(--wim-color-primary) l c h / 0.15);
-        transform: scale(0.96);
+        transform: scale(var(--wim-scale-active));
       }
 
       &.active {
@@ -88,7 +88,6 @@
         cursor: not-allowed;
         background-color: transparent;
         border-color: transparent;
-        opacity: var(--wim-opacity-ghost);
       }
 
       &.ellipsis {
