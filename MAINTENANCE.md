@@ -556,7 +556,8 @@ npm run measure:focus-forced-colors -- --report tmp-focus-forced-colors   # ま�
 - 直し方は `src/styles/_focus-mixins.scss` の `forced-colors-outline`（透明の outline。規則は `docs/rules/css.md`）。通常の表示は変わらない ── 透明の outline の有無で画素を直に比べて、Link / Input / Textarea は差 0、OtpInput は 8 画素が 1 階調（207 と 208）
 - **`other-visible` の 16 は NodeGraph / InteractiveGraph**（SVG の線の色と太さが変わる）。強制カラーでも見えているので落とさない。**測れずの 1 は AspectRatio の iframe**（中身が別の文書）
 - **ScheduleView のボタンは FullCalendar のもの**で、ライブラリ側が `.fc .fc-button:focus { outline: 0; box-shadow }` と書いている。ガードは自分の SCSS しか見ないので、外部ライブラリを包む部品はこの道具でしか見つからない。通常の表示のフォーカスが FullCalendar の灰色の輪のままなのは今回触っていない
-- **届いていない範囲**: 閉じたポップアップの中（最初の 1 つを開いた分だけ）。CommandPalette の検索欄はここに当たり、ガード側（入れ子のブロックを見る規則）で見つけた。Chromium の模擬なので、Windows の実機のパレットでは見ていない。Patterns のストーリーは対象外
+- **届いていない範囲**: 閉じたポップアップの中（最初の 1 つを開いた分だけ）。CommandPalette の検索欄はここに当たり、ガード側（入れ子のブロックを見る規則）で見つけた。全量は Chromium の模擬で測った（実機は `--system` で一部だけ）。Patterns のストーリーは対象外
+- **実機のパレットで測るときは `--system`**（2026-10-04）。OS のコントラスト テーマを適用した状態で `npm run measure:focus-forced-colors -- --system --only <ID の一部>` を流すと、模擬ではなく OS の設定のまま測る（ウィンドウが開く。画面を出さないモードは OS の強制カラーに従わない）。模擬と実機は色が違い、**模擬では気づけない欠陥があった** ── 入力欄は外枠の `:focus-within` に outline を出すが、色を任せると本文の色（白）になり、枠と同じ色の線が足されるだけだった（フォーカスした要素そのものの outline は強調色になる）。mixin が `outline-color: Highlight` を名指しするようにして直した。**この道具の合否は線種しか見ていない**ので、色は画像で確かめること
 - CI には載せていない（全量で 20 分強）。**ガードが「書き方」を見張り、この道具は「実物」を見る**という分担
 
 ### 13. VRT スナップショットの衛生

@@ -33,7 +33,10 @@
  *     outline-color だけは Highlight に変わって見えるが、線種が none なので描かれない。
  *   - **描画前に Tab を押すと 0 件になる。** `#storybook-root` に子が出るまで待っている。
  *     「停止点 0 のストーリー数」が前回から大きく増えたら、結果ではなく測り方を疑うこと。
- *   - Chromium の強制カラーの模擬で測っている。Windows の実機のパレットとは色が違う。
+ *   - 既定は Chromium の強制カラーの模擬。Windows の実機のパレットとは色が違う（`--system` で実機）。
+ *   - **「outline が出ている」は「見分けられる」ではない。** 合否は線種しか見ていない。外枠の
+ *     `:focus-within` に出した outline は、色を指定しないと本文の色（CanvasText）になり、枠と同じ色の
+ *     線が足されるだけだった（入力欄。実機の画像を見て初めて分かった）。色まで見るなら画像を見ること。
  *   - 閉じたポップアップの中は、最初の 1 つを開いた分しか測らない。
  *
  * 使い方:
@@ -42,6 +45,8 @@
  *   node scripts/measure-focus-forced-colors.mjs                  # Components を全量（各 10 分弱 × 2 回）
  *   node scripts/measure-focus-forced-colors.mjs --only tabs      # ストーリー ID の部分一致で絞る
  *   node scripts/measure-focus-forced-colors.mjs --base http://localhost:6016
+ *   node scripts/measure-focus-forced-colors.mjs --system --only input
+ *                                                                # OS のコントラスト テーマをそのまま使う（実機のパレット。ウィンドウが開く）
  *   node scripts/measure-focus-forced-colors.mjs --report tmp-focus-forced-colors
  *                                                                # 取り直さず、前回の結果を集計し直す
  *
@@ -65,6 +70,9 @@ const ONLY = opt('--only', null);
 const REPORT = opt('--report', null);
 const OUT = REPORT ?? opt('--out', 'tmp-focus-forced-colors');
 const ALLOW = args.includes('--allow');
+// OS の強制カラー（Windows のコントラスト テーマ）をそのまま使う。模擬ではなく実機のパレットで測る。
+// 画面を出さないモードは OS の設定に従わないので、ウィンドウを開く（測っている間、画面に出る）。
+const SYSTEM = args.includes('--system');
 const CONCURRENCY = 6;
 const MAX_TABS = 8;
 const PAD = 8;
@@ -205,13 +213,25 @@ async function runStory(page, story) {
 async function sweep(mode, stories) {
   const file = path.join(OUT, `${mode}.jsonl`);
   const out = fs.createWriteStream(file);
-  const browser = await chromium.launch();
+  const useSystem = SYSTEM && mode === 'active';
+  const browser = await chromium.launch({ headless: !useSystem });
   const context = await browser.newContext({
     viewport: VIEWPORT,
-    forcedColors: mode === 'active' ? 'active' : 'none',
-    colorScheme: 'light',
+    // null ＝ Playwright の模擬を外して OS の設定に従わせる
+    forcedColors: useSystem ? null : mode === 'active' ? 'active' : 'none',
+    colorScheme: useSystem ? null : 'light',
     reducedMotion: 'reduce',
   });
+  if (useSystem) {
+    const probe = await context.newPage();
+    const on = await probe.evaluate(() => matchMedia('(forced-colors: active)').matches);
+    await probe.close();
+    if (!on) {
+      await browser.close();
+      console.error('[FAIL] --system: OS の強制カラーが有効ではありません。コントラスト テーマを適用してから流してください（左 Alt + 左 Shift + PrintScreen）。');
+      process.exit(1);
+    }
+  }
   let cursor = 0;
   let done = 0;
   await Promise.all(Array.from({ length: CONCURRENCY }, async () => {

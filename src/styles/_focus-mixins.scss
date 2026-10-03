@@ -27,4 +27,13 @@
   } @else {
     outline-offset: 0;
   }
+
+  /* 色は強調色（Highlight）を名指しする。任せると、**フォーカスした要素そのもの**の outline は Highlight に
+     なるが、`:focus-within` で外枠に出した outline は本文の色（CanvasText）になる ── 入力欄は枠と同じ色の
+     線が 2px 足されるだけで、「枠が少し太くなった」ようにしか見えなかった（2026-10-04。Windows の
+     コントラスト テーマの実機で確認。Chromium の模擬では気づけなかった）。システムカラーの名前は
+     強制カラーでも上書きされない。 */
+  @media (forced-colors: active) {
+    outline-color: Highlight;
+  }
 }
