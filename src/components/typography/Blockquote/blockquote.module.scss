@@ -47,46 +47,31 @@
        0.5 倍）して作っていたが、塗りは dark で暗い色なので、さらに暗くすると dark の面に沈む
        （axe の実測: dark で primary 1.23 / success 1.34 / warning 1.89 / danger 3.81 / info 1.01）。
        text-* はテーマごとに面に対して AA を満たす色（同じ測り方で light 6.33〜10.35 / dark 8.6〜11.21）。
-       左の線は塗りのままでよい（文字ではない）。 */
+       左の線も文字と同じ色にする（currentcolor）。以前は intent の塗りの色で、dark では
+       primary・success・info の線が暗い面に沈んでいた。light では塗りより一段落ち着いた色になる。 */
 
     &.primary {
       color: var(--wim-color-text-accent);
-
-      &.border {
-        border-color: var(--wim-color-primary);
-      }
     }
 
     &.success {
       color: var(--wim-color-text-success);
-
-      &.border {
-        border-color: var(--wim-color-success);
-      }
     }
 
     &.warning {
       color: var(--wim-color-text-warning);
-
-      &.border {
-        border-color: var(--wim-color-warning);
-      }
     }
 
     &.danger {
       color: var(--wim-color-text-danger);
-
-      &.border {
-        border-color: var(--wim-color-text-danger);
-      }
     }
 
     &.info {
       color: var(--wim-color-text-info);
+    }
 
-      &.border {
-        border-color: var(--wim-color-info);
-      }
+    &:is(.primary, .success, .warning, .danger, .info).border {
+      border-color: currentcolor;
     }
   }
 }
