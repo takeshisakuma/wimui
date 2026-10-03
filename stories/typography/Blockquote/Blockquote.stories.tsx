@@ -91,6 +91,23 @@ export const VariousColors = {
   }
 };
 
+// intent の色（color="primary" など）。この値はどのストーリーにも描かれておらず、dark で文字が
+// 面に沈んでいても（コントラスト 1.01〜3.81）a11y の CI に写らなかった（2026-10-04 に text-* へ修正）。
+export const Intents = {
+  render: function Render(args: React.ComponentProps<typeof Blockquote>) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <div style={{ display: "flex", flexDirection: "column", gap: "var(--wim-spacing-2xl)" }}>
+        <Blockquote {...args} content={t('story.quote_default')} color="primary" />
+        <Blockquote {...args} content={t('story.quote_work')} color="success" />
+        <Blockquote {...args} content={t('story.quote_simple')} color="warning" />
+        <Blockquote {...args} content={t('story.quote_design')} color="danger" />
+        <Blockquote {...args} content={t('story.quote_measure')} color="info" />
+      </div>
+    );
+  }
+};
+
 export const AsChild = {
   render: (args: React.ComponentProps<typeof Blockquote>) => {
     const { t } = useTranslation(ALL_NAMESPACES);
