@@ -101,8 +101,8 @@ export const Intents = {
         <Blockquote {...args} content={t('story.quote_default')} color="primary" />
         <Blockquote {...args} content={t('story.quote_work')} color="success" />
         <Blockquote {...args} content={t('story.quote_simple')} color="warning" />
-        <Blockquote {...args} content={t('story.quote_black')} color="danger" />
-        <Blockquote {...args} content={t('story.quote_deepgray')} color="info" />
+        <Blockquote {...args} content={t('story.quote_design')} color="danger" />
+        <Blockquote {...args} content={t('story.quote_measure')} color="info" />
       </div>
     );
   }
