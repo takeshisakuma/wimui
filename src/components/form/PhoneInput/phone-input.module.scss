@@ -1,5 +1,6 @@
 @use "../../../tokens/breakpoints" as breakpoints;
 @use "../../../styles/field-mixins" as field;
+@use "../../../styles/focus-mixins" as focus;
 
 @layer component {
   .root {
@@ -26,6 +27,8 @@
     }
 
     &:focus-within:not(.disabled) {
+      @include focus.forced-colors-outline;
+
       border-color: var(--wim-color-primary);
       box-shadow: var(--wim-shadow-focus-ring);
     }
@@ -81,7 +84,8 @@
     }
 
     &:focus-visible {
-      outline: none;
+      @include focus.forced-colors-outline;
+
       background-color: var(--wim-color-surface-hover);
     }
 

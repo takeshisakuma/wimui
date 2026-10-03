@@ -1,0 +1,30 @@
+/**
+ * Focus-indicator primitives shared by component modules.
+ *
+ * These mixins emit no CSS on their own (only when `@include`-ed), so `@use`-ing
+ * this partial from a component module adds nothing to the bundle until used.
+ */
+
+/*
+ * 影（box-shadow）で描くフォーカスの輪に添える、強制カラー（forced-colors）用の outline。
+ *
+ * Windows のハイコントラストなどの強制カラーでは box-shadow が描かれない。`outline: none` にして
+ * 影だけでフォーカスを示す部品は、そこで表示が丸ごと消えていた（2026-10-03 の実測:
+ * 1499 の停止点のうち 246 が画素差 0、115 が文字カーソルか下線の色だけ）。
+ *
+ * 透明の outline は通常の表示では何も描かず、強制カラーでは色が上書きされて見えるようになる。
+ * 影の輪と同じ位置に出すため、offset は 0（外側の輪）か、線幅ぶん内側（`$inset: true`。
+ * トラックや外枠の中に詰まっていて外側に描けない項目）にする。
+ *
+ * `outline: none` の代わりに、フォーカスのブロック（`:focus-visible` / `:focus-within`）で使う。
+ * 付け忘れは `npm run check:focus-indicator` の focus-forced-colors が落とす。
+ */
+@mixin forced-colors-outline($inset: false) {
+  outline: var(--wim-focus-outline-width) solid transparent;
+
+  @if $inset {
+    outline-offset: calc(-1 * var(--wim-focus-outline-width));
+  } @else {
+    outline-offset: 0;
+  }
+}

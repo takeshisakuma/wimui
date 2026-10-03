@@ -1,4 +1,5 @@
 @use "../../../tokens/breakpoints" as breakpoints;
+@use "../../../styles/focus-mixins" as focus;
 
 @layer component {
   .root {
@@ -92,6 +93,8 @@
     transition: box-shadow var(--wim-duration-fast) var(--wim-easing-standard);
 
     &:focus-visible {
+      @include focus.forced-colors-outline;
+
       box-shadow: 0 0 0 var(--wim-focus-outline-width) var(--wim-color-focus-outline);
     }
 

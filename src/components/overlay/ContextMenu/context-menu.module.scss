@@ -1,3 +1,5 @@
+@use "../../../styles/focus-mixins" as focus;
+
 @layer component {
   // asChild のときは付けない（利用者の要素の display を上書きしないため）。
   // 実測: `<tr>` に inline-block が乗ると行がインラインで流れ、ヘッダと
@@ -34,8 +36,9 @@
   
   .item {
     &:focus-visible {
+      @include focus.forced-colors-outline;
+
       z-index: 1;
-      outline: none;
       box-shadow: var(--wim-shadow-focus);
     }
   }

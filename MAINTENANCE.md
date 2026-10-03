@@ -526,6 +526,39 @@ npm run a11y:incomplete:measure -- --report tmp-a11y-measure/results.jsonl   # �
 - **Storybook のキャンバス地（`#e5e5e5` / `#262626`）は製品のサーフェストークン（`#fff` / `#393939`）と違う。** 4.5 の境界付近はトークンの地で測り直す（画素の丸めで ±0.07 動く）
 - CI には載せていない。**ラチェット（12-2）が「増減」を見張り、この道具は「中身」を見る**という分担
 
+### 12-4. 強制カラーでフォーカス表示が出るかを測り直す
+
+**書き方のガードは実物の代わりにならない。** `check:focus-indicator` の focus-forced-colors は「影だけでフォーカスを示して outline が無い」ブロックを落とすが、親が切り取る・外部ライブラリの規則が勝つ・JS が付ける属性で出し分ける、はコードから決められない。Windows のハイコントラストなどの強制カラー（forced-colors）では box-shadow が描かれないので、実物で Tab を当てて測る。
+
+```bash
+npm run build-storybook
+npx http-server@14 storybook-static -p 6006 -c-1 --silent   # 別ターミナル
+
+npm run measure:focus-forced-colors                          # Components を全量（通常 → 強制カラー。合わせて 20〜25 分 / 6 並列）
+npm run measure:focus-forced-colors -- --only tabs           # ストーリー ID の部分一致で絞る
+npm run measure:focus-forced-colors -- --report tmp-focus-forced-colors   # まとめ直すだけ
+```
+
+**測り方**: 各ストーリーで Tab を最大 8 回（ポップアップを持つ要素は最初の 1 つだけ開く）。停止点ごとに、フォーカス中と `blur()` 後の画素と computed style を比べ、通常の表示と強制カラー（Playwright の `forcedColors: "active"`）を突き合わせる。強制カラーで **outline の線種が none 以外に変わること**が合格。`nothing`（画素差 0）/ `weak`（周長に満たない差）が 1 つでもあれば exit 1。
+
+- **「停止点 0 のストーリー数」を先に見る。** 描画前に Tab を押すと 0 件になる（T270 で 86% が 0 件になった）。前回から大きく増えたら、結果ではなく測り方を疑う
+- **画素差 > 0 を「見える」と数えない。** 強制カラーでは `caret-color: transparent` が効かず、入力欄は文字カーソルの分だけ差が出る。1px の枠の色が Highlight に変わるだけの差も出る（模擬パレットでは黒 → 濃い紫で、ほぼ見分けられない）
+- **直したあとは「0 件」を信用しない。** 修正前の結果を同じ集計に通して落ちることを確かめてある（下の実測）。道具を変えたら、`outline: none` ＋ `box-shadow` を故意に戻した部品を `--only` で測って `nothing` と出ることを見る
+
+**2026-10-03 の実測**（Components 1063 ストーリー・**停止点 1499 / 停止点 0 のストーリー 424 / エラー 0 / 突き合わせ漏れ 0**。修正前後で同じ）:
+
+| | outline | nothing | weak | other-visible | 測れず |
+|---|---|---|---|---|---|
+| 修正前（main の `bb91106416`） | 1054 | 246 | 115 | 84 | 0 |
+| 修正後 | 1482 | 0 | 0 | 16 | 1 |
+
+- 修正前に消えていたのは、`outline: none` にして影（`--wim-shadow-focus` / `-ring` / 内側の影）や背景だけで示していた部品（Pagination 49 / Select・Cascader などの入力枠 22 / Link 18 / GanttChart 17 / Accordion 14 / Banner 10 ほか）。`weak` は入力欄の文字カーソル 90・ScheduleView 20・Tabs の下線の色 3 ほか
+- 直し方は `src/styles/_focus-mixins.scss` の `forced-colors-outline`（透明の outline。規則は `docs/rules/css.md`）。通常の表示は変わらない ── 透明の outline の有無で画素を直に比べて、Link / Input / Textarea は差 0、OtpInput は 8 画素が 1 階調（207 と 208）
+- **`other-visible` の 16 は NodeGraph / InteractiveGraph**（SVG の線の色と太さが変わる）。強制カラーでも見えているので落とさない。**測れずの 1 は AspectRatio の iframe**（中身が別の文書）
+- **ScheduleView のボタンは FullCalendar のもの**で、ライブラリ側が `.fc .fc-button:focus { outline: 0; box-shadow }` と書いている。ガードは自分の SCSS しか見ないので、外部ライブラリを包む部品はこの道具でしか見つからない。通常の表示のフォーカスが FullCalendar の灰色の輪のままなのは今回触っていない
+- **届いていない範囲**: 閉じたポップアップの中（最初の 1 つを開いた分だけ）。CommandPalette の検索欄はここに当たり、ガード側（入れ子のブロックを見る規則）で見つけた。Chromium の模擬なので、Windows の実機のパレットでは見ていない。Patterns のストーリーは対象外
+- CI には載せていない（全量で 20 分強）。**ガードが「書き方」を見張り、この道具は「実物」を見る**という分担
+
 ### 13. VRT スナップショットの衛生
 
 ```bash

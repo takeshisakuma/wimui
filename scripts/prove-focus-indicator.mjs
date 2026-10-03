@@ -45,7 +45,20 @@ const CASES = [
   { name: '[鳴らない] outline と淡い赤の輪（エラーの合図）', css: '.proveTemp:focus-visible {\n  outline: 2px solid var(--wim-color-focus-outline);\n  box-shadow: var(--wim-shadow-error-ring);\n}', expect: null },
   { name: '[鳴らない] フォーカス色の outline', css: '.proveTemp:focus-visible {\n  outline: 2px solid var(--wim-color-focus-outline);\n}', expect: null },
   { name: '[鳴らない] マウスのときだけ消す', css: '.proveTemp:focus:not(:focus-visible) {\n  outline: none;\n}', expect: null },
-  { name: '[鳴らない] 淡い輪＋フォーカス色の枠', css: '.proveTemp:focus {\n  border-color: var(--wim-color-focus-outline);\n  box-shadow: var(--wim-shadow-field-focus);\n}', expect: null },
+  { name: '[鳴らない] 淡い輪＋フォーカス色の枠', css: '.proveTemp:focus {\n  @include focus.forced-colors-outline;\n  border-color: var(--wim-color-focus-outline);\n  box-shadow: var(--wim-shadow-field-focus);\n}', expect: null },
+  // focus-forced-colors（2026-10-03）: 影や背景だけの表示は、強制カラーで消える
+  { name: 'outline を消して影の輪だけ', css: '.proveTemp:focus-visible {\n  outline: none;\n  box-shadow: var(--wim-shadow-focus);\n}', expect: 'focus-forced-colors' },
+  { name: 'outline を消して背景だけ', css: '.proveTemp:focus-visible {\n  outline: none;\n  background-color: var(--wim-color-surface-hover);\n}', expect: 'focus-forced-colors' },
+  { name: '影の輪だけ（outline の宣言なし）', css: '.proveTemp:focus-visible {\n  box-shadow: inset 0 0 0 2px var(--wim-color-focus-outline);\n}', expect: 'focus-forced-colors' },
+  { name: ':focus-within の影の輪だけ', css: '.proveTemp:focus-within {\n  box-shadow: var(--wim-shadow-focus-ring);\n}', expect: 'focus-forced-colors' },
+  { name: 'フォーカスのブロックの入れ子に影の輪', css: '.proveTemp:focus-visible {\n  box-shadow: none;\n  & > .label {\n    box-shadow: var(--wim-shadow-focus);\n  }\n}', expect: 'focus-forced-colors' },
+  { name: ':focus-within に primary の影の輪', css: '.proveTemp:focus-within {\n  box-shadow: inset 0 0 0 1px var(--wim-color-primary);\n}', expect: 'focus-forced-colors' },
+  { name: '[鳴らない] 入れ子の影の輪＋ mixin', css: '.proveTemp:focus-visible {\n  box-shadow: none;\n  & > .label {\n    @include focus.forced-colors-outline;\n    box-shadow: var(--wim-shadow-focus);\n  }\n}', expect: null },
+  { name: '[鳴らない] 影の輪＋透明の outline（mixin）', css: '.proveTemp:focus-visible {\n  @include focus.forced-colors-outline;\n  box-shadow: var(--wim-shadow-focus);\n}', expect: null },
+  { name: '[鳴らない] 内側の影の輪＋ mixin（$inset）', css: '.proveTemp:focus-visible {\n  @include focus.forced-colors-outline($inset: true);\n  box-shadow: inset 0 0 0 2px var(--wim-color-focus-outline);\n}', expect: null },
+  { name: '[鳴らない] :focus-within の影の輪＋ mixin', css: '.proveTemp:focus-within {\n  @include focus.forced-colors-outline;\n  box-shadow: var(--wim-shadow-focus-ring);\n}', expect: null },
+  { name: '[鳴らない] 影の輪＋透明の outline（直書き。二重にも数えない）', css: '.proveTemp:focus-visible {\n  outline: 2px solid transparent;\n  box-shadow: var(--wim-shadow-focus);\n}', expect: null },
+  { name: '[鳴らない] :focus-within のエラーの輪（フォーカス色でない影）', css: '.proveTemp:focus-within {\n  box-shadow: var(--wim-shadow-error-ring);\n}', expect: null },
   { name: '[鳴らない] :focus-within は見ない', css: '.proveTemp:focus-within {\n  outline: none;\n}', expect: null },
   { name: '[鳴らない] 注記つき', css: '.proveTemp:focus-visible {\n  outline: none; /* focus-indicator-ok: 実証用 */\n}', expect: null },
 ];
@@ -82,6 +95,25 @@ for (const [commit, file] of KNOWN) {
   const res = run(['--probe', tmp]);
   fs.rmSync(tmp);
   check(`--probe     直す前の実物が鳴る: ${commit}:${path.basename(file)}`, res.code === 1 && res.out.includes('[focus-primary]'), res.out);
+}
+
+// --probe: 強制カラーで消えていた実物（main の bb91106416。影や背景だけでフォーカスを示していた）が鳴る
+const KNOWN_FORCED_COLORS = [
+  'src/components/navigation/Link/link.module.scss',
+  'src/components/navigation/Tabs/tabs.module.scss',
+  'src/components/navigation/Menubar/menubar.module.scss',
+  'src/components/form/InputBase/input-base.module.scss',
+  'src/components/charts/GanttChart/gantt-chart.module.scss',
+  'src/components/data-display/TreeView/tree-view.module.scss', // 入れ子（:focus-visible > .labelContainer）
+  'src/components/form/RichTextEditor/rich-text-editor.module.scss', // :focus-within に primary の影
+  'src/components/navigation/CommandPalette/command-palette.module.scss', // 計測では届かない（開いた中の検索欄）
+];
+for (const file of KNOWN_FORCED_COLORS) {
+  const tmp = path.join(os.tmpdir(), `prove-focus-bb91106416-${path.basename(file)}`);
+  fs.writeFileSync(tmp, execFileSync('git', ['show', `bb91106416:${file}`]));
+  const res = run(['--probe', tmp]);
+  fs.rmSync(tmp);
+  check(`--probe     直す前の実物が鳴る: bb91106416:${path.basename(file)}`, res.code === 1 && res.out.includes('[focus-forced-colors]'), res.out);
 }
 
 if (failed > 0) {

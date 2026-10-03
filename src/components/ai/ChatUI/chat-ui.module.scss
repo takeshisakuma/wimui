@@ -1,3 +1,5 @@
+@use "../../../styles/focus-mixins" as focus;
+
 @layer component {
   .container {
     display: flex;
@@ -261,6 +263,8 @@
     transition: border-color var(--wim-transition-fast), box-shadow var(--wim-transition-fast);
 
     &:focus-within {
+      @include focus.forced-colors-outline;
+
       border-color: var(--wim-color-primary);
       box-shadow: var(--wim-shadow-focus-ring);
     }

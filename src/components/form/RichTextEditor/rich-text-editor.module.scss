@@ -1,4 +1,5 @@
 @use "../../../styles/field-mixins" as field;
+@use "../../../styles/focus-mixins" as focus;
 
 @layer component {
   .root {
@@ -25,6 +26,8 @@
       opacity var(--wim-transition-base);
   
     &:focus-within {
+      @include focus.forced-colors-outline;
+
       border-color: var(--wim-color-primary);
       box-shadow: inset 0 0 0 var(--wim-border-width-thin) var(--wim-color-primary);
     }

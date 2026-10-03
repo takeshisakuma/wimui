@@ -1,3 +1,5 @@
+@use "../../../styles/focus-mixins" as focus;
+
 @layer component {
   .root {
     box-sizing: border-box;
@@ -38,8 +40,12 @@
 
     &:hover:not(:disabled),
     &:focus-visible {
-      outline: none;
       background-color: var(--wim-color-surface-hover);
+    }
+
+    /* フォーカスだけに付ける（hover と同じブロックに置くと、強制カラーでホバーにも輪が出る）。 */
+    &:focus-visible {
+      @include focus.forced-colors-outline($inset: true);
     }
 
     &:disabled {
