@@ -5,7 +5,11 @@ import LanguageDetector from "i18next-browser-languagedetector";
 import Backend from "i18next-http-backend";
 import { ALL_NAMESPACES } from "../stories/i18nConstants";
 
-i18n
+/**
+ * 初期化（＝ `ns` の全 namespace の読み込みと、最初の `languageChanged`）が終わると解決する。
+ * `preview.ts` の loader がこれを待ってから描画を始める（理由はそちらのコメント）。
+ */
+export const i18nReady = i18n
   .use(Backend)
   .use(LanguageDetector)
   .use(initReactI18next)

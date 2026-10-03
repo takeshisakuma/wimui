@@ -4,7 +4,7 @@ import { addons } from "storybook/internal/preview-api";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../stories/i18nConstants";
 
-import i18n from "./i18n";
+import i18n, { i18nReady } from "./i18n";
 // wimui コンポーネントは react-i18next に依存せず内蔵ストア（setWimLocale）で言語を切り替える。
 // Storybook のツールバー言語切替を内蔵ストアへ橋渡しし、docs 上でも言語追従させる。
 import { setWimLocale } from "../src/i18n/instance";
@@ -112,6 +112,17 @@ const applyDensity = (density: unknown): void => {
 setWimLocale(i18n.language ?? "en");
 setWimDensity("comfortable");
 
+/**
+ * 進行中の言語切替。loader がこれを待つ（下の `loaders` のコメント）。
+ * `changeLanguage` は読み込みが終わってから `languageChanged` を出すので、それまで描画を始めない。
+ */
+let pendingLanguage: Promise<unknown> = Promise.resolve();
+const switchLanguage = (locale: string): Promise<unknown> =>
+  i18n.language === locale
+    ? Promise.resolve()
+    : // 失敗しても描画は止めない（キーがそのまま出るだけで、待ち続けるよりまし）
+      i18n.changeLanguage(locale).catch(() => undefined);
+
 // ① i18n の言語変更イベントを購読（モジュールレベル = 常に有効）
 //    T.tsx や他のコードが i18n.changeLanguage() を呼んだ際にも確実に反映される
 i18n.on("languageChanged", applyLang);
@@ -134,7 +145,7 @@ const initChannel = () => {
           const locale = globals?.locale as string | undefined;
           if (locale) {
             applyLang(locale);
-            if (i18n.language !== locale) i18n.changeLanguage(locale);
+            pendingLanguage = switchLanguage(locale);
           }
           const theme = globals?.theme as string | undefined;
           if (theme) applyTheme(theme);
@@ -162,7 +173,8 @@ const syncFromUrl = () => {
     if (localeMatch) {
       const locale = localeMatch[1];
       applyLang(locale);
-      if (i18n.language !== locale) i18n.changeLanguage(locale);
+      // 初期化が終わる前は `i18n.language` が未定で、`en` でも切替が走る。初期化を待ってから比べる
+      pendingLanguage = i18nReady.then(() => switchLanguage(locale), () => undefined);
     }
 
     const themeMatch = globals?.match(/theme:([^;]+)/);
@@ -201,6 +213,27 @@ const preview: Preview = {
       },
     },
   },
+  // **翻訳の読み込みと言語切替が終わるまで、描画を始めない。**
+  //
+  // `storybook-react-i18next` のデコレーター（`withI18Next`）は、i18n の `languageChanged` を受けると
+  // `key` を変えてストーリーを**丸ごと作り直す**。i18next は初期化の最後（全 namespace を読み終えた時点）に
+  // 必ず 1 回 `languageChanged` を出す。このイベントが初回描画の**後**に届くと、描いたばかりのストーリーが
+  // 外されて作り直される ── フォーカスは外れ、テストが掴んでいた要素は切り離される。
+  //
+  // 届く順は速さで決まる。デコレーターが購読を始めるのは初回描画の完了後なので、速い環境ではイベントが
+  // 先に過ぎて何も起きず、遅い環境でだけ作り直しになる（2026-10-03。CPU を 6 倍遅くすると 4 回中 4 回、
+  // 初回描画の約 0.5 秒後に作り直し。CI の E2E が pivottable の「Tab 後にフォーカスが無い」
+  // 「scrollHeight が 0」で、main でも PR でも落ちた）。
+  //
+  // loader は描画の前に待たれるので、ここで初期化と進行中の切替を待てば、`languageChanged` は
+  // 必ずデコレーターの購読より前に過ぎる。ツールバーでの切替は従来どおり作り直しになる（意図どおり）。
+  loaders: [
+    async () => {
+      await i18nReady.catch(() => undefined);
+      await pendingLanguage;
+      return {};
+    },
+  ],
   decorators: [
     // 翻訳ロード完了前に描画すると、defaultValue / useState に t() を渡す
     // ストーリーで生キーが初期値に固定される（useSuspense: false のため）。
