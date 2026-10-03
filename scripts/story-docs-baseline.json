@@ -161,6 +161,7 @@
     "stories/navigation/TabBar/TabBar.stories.tsx::Fixed",
     "stories/overlay/ContextMenu/ContextMenu.stories.tsx::Disabled",
     "stories/overlay/Drawer/Drawer.stories.tsx::Controlled",
+    "stories/overlay/Drawer/Drawer.stories.tsx::Open",
     "stories/overlay/Drawer/Drawer.stories.tsx::WithoutSlide",
     "stories/overlay/HoverCard/HoverCard.stories.tsx::Instant",
     "stories/overlay/Menu/Menu.stories.tsx::WithDisabledItems",
