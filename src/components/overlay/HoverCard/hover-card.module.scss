@@ -33,8 +33,9 @@
     border: var(--wim-border-width-thin) solid var(--wim-color-border);
     border-radius: var(--wim-radius-overlay);
     box-shadow: var(--wim-shadow-overlay);
-    opacity: 0;
-    animation: fadeIn var(--wim-duration-fast) forwards;
+
+    /* 既定は「見えている」（Tooltip と同じ理由。アニメーションが止められても消えたままにしない）。 */
+    animation: fadeIn var(--wim-duration-fast);
   
     &.top {
       bottom: 100%;
