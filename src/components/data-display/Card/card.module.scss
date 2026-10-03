@@ -180,12 +180,15 @@
       border-radius: var(--wim-radius-container);
     }
 
+    /* xl / 2xl は container からの相対で決める。値トークン（--wim-radius-xl = 12px / 2xl = 16px）を
+       直に使うとプリセットで動かず、Soft（container = 16px）では lg 16px > xl 12px と大小が逆転していた。
+       既定の見た目は同じ（container 12px → xl 12px / 2xl 16px）。足す 1 段は md（4px）。 */
     &.radius-xl {
-      border-radius: var(--wim-radius-xl);
+      border-radius: var(--wim-radius-container);
     }
 
     &.radius-2xl {
-      border-radius: var(--wim-radius-2xl);
+      border-radius: calc(var(--wim-radius-container) + var(--wim-radius-md));
     }
   }
 

@@ -373,6 +373,13 @@ const checks = [
   },
   {
     category: "lib",
+    // 面の角丸に値トークン（--wim-radius-md / lg / xl / 2xl）を直に使うと、テーマのプリセットで動かない
+    // （2026-10-03。Soft で Button 12px に対し Tour / QRCode は 4px のまま、Card は lg 16px > xl 12px）。
+    name: "Corner radii use role tokens (component / container / overlay), not value tokens",
+    command: "node scripts/check-radius-tokens.js",
+  },
+  {
+    category: "lib",
     name: "Public API Surface (npm freeze guard)",
     command: "node scripts/check-public-api.js",
   },

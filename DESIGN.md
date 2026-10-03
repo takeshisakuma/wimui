@@ -108,14 +108,14 @@ Major Second (1.125) に近い比率に基づく、意図的にコンパクト�
 
 | トークン | 値 | 用途 |
 |----------|-----|------|
-| `--wim-radius-sm` | 2px | 微小な角丸（Badge, Chip） |
-| `--wim-radius-md` | 4px | 標準角丸（Input, Card） |
-| `--wim-radius-lg` | 8px | 目立つ角丸（Dialog, Toast） |
-| `--wim-radius-xl` | 12px | 大きな角丸（Card, Modal 等） |
+| `--wim-radius-sm` | 2px | 部品の中のサブ要素（Tag の閉じるボタン、メニューの項目など） |
+| `--wim-radius-md` | 4px | 標準角丸（`component` の参照先） |
+| `--wim-radius-lg` | 8px | 目立つ角丸（`overlay` の参照先） |
+| `--wim-radius-xl` | 12px | 大きな角丸（`container` の参照先） |
 | `--wim-radius-2xl` | 16px | より大きな角丸（モバイルカード等） |
-| `--wim-radius-full` | 9999px | 完全な丸（Avatar, Pill） |
+| `--wim-radius-full` | 9999px | 完全な丸（Avatar、ピル形の Badge / Chip） |
 
-値ベースのトークンを直接使わず、役割ベースのセマンティックエイリアスを優先する。
+値ベースのトークンを直接使わず、役割ベースのセマンティックエイリアスを優先する。**テーマのプリセット（Soft / Bold / Minimal）が動かすのはエイリアスだけ**なので、値トークンを直に使った面はプリセットを替えても角が動かない。
 
 | エイリアス | 参照先 | 用途 |
 |-----------|--------|------|

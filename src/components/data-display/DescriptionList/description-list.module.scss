@@ -19,7 +19,7 @@
     &.border {
       overflow: hidden;
       border: var(--wim-border-width-thin) solid var(--wim-color-border);
-      border-radius: var(--wim-radius-lg, 8px);
+      border-radius: var(--wim-radius-container);
   
       .item {
         border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border-secondary);

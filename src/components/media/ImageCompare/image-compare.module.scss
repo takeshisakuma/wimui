@@ -158,11 +158,11 @@
   }
 
   .radius-md {
-    border-radius: var(--wim-radius-md);
+    border-radius: var(--wim-radius-md); /* radius-value-ok: radius prop のキーが値スケールそのもの（docs/rules/tokens.md の例外） */
   }
 
   .radius-lg {
-    border-radius: var(--wim-radius-lg);
+    border-radius: var(--wim-radius-lg); /* radius-value-ok: radius prop のキーが値スケールそのもの（docs/rules/tokens.md の例外） */
   }
 
   .radius-full {
