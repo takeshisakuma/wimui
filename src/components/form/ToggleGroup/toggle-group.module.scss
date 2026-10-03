@@ -6,6 +6,9 @@
   .root {
     @include indicator.indicator-container-segmented($bg: var(--wim-color-surface), $padding: var(--wim-focus-outline-offset));
 
+    /* トラックの角丸（component）から余白ぶんを引いた、中の項目とスライダーの角丸（SegmentedControl と同じ）。 */
+    --_inner-radius: calc(var(--wim-radius-component) - var(--wim-focus-outline-offset));
+
     box-sizing: border-box;
     display: inline-flex;
     gap: var(--wim-spacing-3xs);
@@ -28,7 +31,7 @@
     }
   
     .slider {
-      @include indicator.indicator-slider-contained($offset: var(--wim-focus-outline-offset), $bg: var(--wim-color-primary));
+      @include indicator.indicator-slider-contained($radius: var(--_inner-radius), $offset: var(--wim-focus-outline-offset), $bg: var(--wim-color-primary));
   
       z-index: 1;
       opacity: 0;
@@ -59,7 +62,7 @@
       line-height: 1;
       color: var(--wim-color-text-secondary);
       white-space: nowrap;
-      border-radius: var(--wim-radius-sm);
+      border-radius: var(--_inner-radius);
 
       @include indicator.indicator-item-base;
   

@@ -70,7 +70,7 @@
 
 | トークン | 値 | 対象 |
 |---|---|---|
-| `--wim-radius-component` | 4px | Button, Input, Tag, Badge など小〜中要素 |
+| `--wim-radius-component` | 4px | Button, Input, Tag, SegmentedControl / ToggleGroup のトラックなど小〜中要素 |
 | `--wim-radius-container` | 12px | Card, Table, Modal など大きな親要素 |
 | `--wim-radius-overlay` | 8px | Tooltip, Popover など浮遊要素 |
 
@@ -85,6 +85,12 @@ R_outer ≈ R_inner + S
 逆に外側と内側が同じ角丸（例: 外枠 4px の中に 4px のボタン）だと角が視覚的に衝突して見えるため、外側を大きくするか内側を小さくして差をつけてください。
 
 この計算は厳密な強制ではなく、設計判断の拠り所として使用してください。lint では検出されません。
+
+**役割トークンを使う理由は、プリセットに付いていくこと。** テーマのプリセット（`data-wim-preset`。Soft / Bold / Minimal）が上書きするのは `component` / `container` / `overlay` の 3 つだけです。値トークン（`--wim-radius-md` 等）を直に使った面は、プリセットを替えても角が動かず、同じ画面で丸い部品と角ばった部品が混ざります（2026-10-03 まで Tag・Tooltip・SegmentedControl・ToggleGroup・Tour・QRCode・DescriptionList がこの状態だった）。
+
+- **外側に入れ子で収まる内側の角丸は、外側から導く。** 値トークンの `sm` を置くと外側だけ丸くなる。SegmentedControl / ToggleGroup は、トラックが `component`、中の項目とスライダーが `calc(var(--wim-radius-component) - <余白>)` です（引いて負になっても 0 に丸められる）。
+- **値スケールのキーを受ける prop でも、役割トークンと混ぜるなら相対で書く。** Card の `radius` は `md` → `component`、`lg` → `container` なので、`xl` / `2xl` を値トークンのままにすると Soft（container = 16px）で `lg` 16px > `xl` 12px と大小が逆転した。`xl` は `container`、`2xl` は `container` に 1 段（`--wim-radius-md`）足した値です。
+- **ピル形（`--wim-radius-full`）の部品は Badge と Chip**。Tag は角のある札で `component`。
 
 ## シャドウ（Shadow）の設計指針
 

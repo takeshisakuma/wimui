@@ -14,7 +14,7 @@
 }
 
 /* A container that has a subtle background and segmented items */
-@mixin indicator-container-segmented($radius: var(--wim-radius-md), $bg: var(--wim-color-surface-variant), $padding: var(--wim-spacing-md)) {
+@mixin indicator-container-segmented($radius: var(--wim-radius-component), $bg: var(--wim-color-surface-variant), $padding: var(--wim-spacing-md)) {
   position: relative;
   display: inline-flex;
   padding: $padding;
