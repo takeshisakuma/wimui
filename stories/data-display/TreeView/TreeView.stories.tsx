@@ -107,6 +107,26 @@ export const Default: Story = {
   },
 };
 
+// 選択行。どのストーリーにも描かれておらず、選択の面を変えても VRT が動かなかった
+// （2026-10-04。primary のベタ塗りから List と同じ淡い面にした）。
+export const Selected: Story = {
+  render: function Render() {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <TreeView defaultExpandedValues={["1", "2"]} defaultSelectedValues={["1-2"]}>
+        <TreeView.Item value="1" label={t("story.tree_system")}>
+          <TreeView.Item value="1-1" label={t("story.tree_logs")} />
+          <TreeView.Item value="1-2" label={t("story.tree_config")} />
+        </TreeView.Item>
+        <TreeView.Item value="2" label={t("story.tree_users")}>
+          <TreeView.Item value="2-1" label={t("story.tree_admin")} />
+          <TreeView.Item value="2-2" label={t("story.tree_guest")} />
+        </TreeView.Item>
+      </TreeView>
+    );
+  },
+};
+
 export const MultiSelect: Story = {
   render: function Render() {
     const { t } = useTranslation(ALL_NAMESPACES);

@@ -87,6 +87,17 @@ export const Default: Story = {
   },
 };
 
+// 開いた状態。ほかのストーリーは閉じたまま撮られるので、見出し・余白・フッターを変えても VRT が
+// 動かなかった（2026-10-04。開いた Drawer が写るのは Patterns の 1 画面だけだった）。
+// docs ページには載せない（ページを開いた瞬間に Drawer が開いてしまう）。
+export const Open: Story = {
+  ...Default,
+  args: {
+    side: "right",
+    defaultOpen: true,
+  },
+};
+
 export const Left: Story = {
   args: {
     side: "left",

@@ -22,8 +22,14 @@
     background-color: var(--bg-tooltip, var(--wim-color-surface-inverse));
     border-radius: var(--wim-radius-overlay);
     box-shadow: var(--wim-shadow-overlay);
-    opacity: 0;
-    animation: fadeIn var(--wim-duration-fast) forwards;
+
+    /* 既定は「見えている」。入場は keyframes の from（opacity 0）から始める。
+       以前は既定が opacity: 0 で、animation の forwards で 1 に留めていた。アニメーションが
+       止められると（`animation: none`）**消えたまま**になる ── VRT は撮影時にアニメーションを
+       止めるので、`open` のストーリー（Variants）は吹き出しが写らないままベースラインになっていた
+       （#796 で角丸と影を変えたのに 1 枚も動かなかったことで判明）。利用者側でアニメーションを
+       切っている環境でも同じことが起きる。 */
+    animation: fadeIn var(--wim-duration-fast);
     will-change: opacity;
   
     &.glass {
