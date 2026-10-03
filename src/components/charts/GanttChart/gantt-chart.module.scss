@@ -83,7 +83,7 @@
 
     &::-webkit-scrollbar-thumb {
       background: var(--wim-color-scrollbar-thumb);
-      border-radius: var(--wim-radius-md);
+      border-radius: var(--wim-radius-md); /* radius-value-ok: スクロールバーのつまみ。テーマのプリセットで動かす面ではない */
     }
 
     &::-webkit-scrollbar-track {

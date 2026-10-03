@@ -90,6 +90,7 @@ R_outer ≈ R_inner + S
 
 - **外側に入れ子で収まる内側の角丸は、外側から導く。** 値トークンの `sm` を置くと外側だけ丸くなる。SegmentedControl / ToggleGroup は、トラックが `component`、中の項目とスライダーが `calc(var(--wim-radius-component) - <余白>)` です（引いて負になっても 0 に丸められる）。
 - **値スケールのキーを受ける prop でも、役割トークンと混ぜるなら相対で書く。** Card の `radius` は `md` → `component`、`lg` → `container` なので、`xl` / `2xl` を値トークンのままにすると Soft（container = 16px）で `lg` 16px > `xl` 12px と大小が逆転した。`xl` は `container`、`2xl` は `container` に 1 段（`--wim-radius-md`）足した値です。
+- **`npm run check:radius-tokens` が、値トークンを直に使った角丸を落とします**（`audit:lib` / lint-staged。SCSS の `border-radius`、mixin の `$radius:`、TSX の `borderRadius`）。prop のキーが値スケールそのものの場合（上の例外）は、同じ行か直上のコメントに `radius-value-ok: <理由>` を書きます。**`sm` 固定の内側は検査できない**ので、役割トークンの面の中に `sm` を置いたら、プリセットを当てて computed style で確かめてください。
 - **ピル形（`--wim-radius-full`）の部品は Badge と Chip**。Tag は角のある札で `component`。
 
 ## シャドウ（Shadow）の設計指針

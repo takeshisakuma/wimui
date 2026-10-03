@@ -65,7 +65,7 @@ export const CHART_THEME = {
     contentStyle: {
       backgroundColor: "var(--wim-color-glass-bg)",
       border: "1px solid var(--wim-color-glass-border)",
-      borderRadius: "var(--wim-radius-md)",
+      borderRadius: "var(--wim-radius-overlay)",
       fontSize: "var(--wim-font-size-sm)",
       backdropFilter: "blur(8px)",
       color: "var(--wim-color-text-primary)",

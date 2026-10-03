@@ -433,10 +433,12 @@
     "check:slop": "node scripts/check-slop.js",
     "check:component-slop": "node scripts/check-component-slop.js",
     "check:focus-indicator": "node scripts/check-focus-indicator.js",
+    "check:radius-tokens": "node scripts/check-radius-tokens.js",
     "judge:slop": "node scripts/judge-slop.mjs",
     "prove:slop": "node scripts/prove-slop-guard.mjs",
     "prove:component-slop": "node scripts/prove-component-slop.mjs",
     "prove:focus-indicator": "node scripts/prove-focus-indicator.mjs",
+    "prove:radius-tokens": "node scripts/prove-radius-tokens.mjs",
     "prove:prop-api": "node scripts/prove-prop-api.mjs",
     "skills:link": "node scripts/link-skills.mjs",
     "check:skills-mirror": "node scripts/link-skills.mjs --check",
@@ -726,7 +728,8 @@
       "node scripts/check-shrinkable-roots.js",
       "node scripts/check-field-roots.js",
       "node scripts/check-component-slop.js",
-      "node scripts/check-focus-indicator.js"
+      "node scripts/check-focus-indicator.js",
+      "node scripts/check-radius-tokens.js"
     ],
     "**/*.mdx": [
       "node --max-old-space-size=4096 ./node_modules/eslint/bin/eslint.js --fix --max-warnings=0 --cache",
@@ -774,6 +777,7 @@
       "node scripts/stage-generated.js public/llms.txt public/llms-full.txt --"
     ],
     "src/components/**/*.{ts,tsx}": [
+      "node scripts/check-radius-tokens.js",
       "node scripts/generate-llms.js",
       "node scripts/stage-generated.js public/llms.txt public/llms-full.txt --"
     ],
