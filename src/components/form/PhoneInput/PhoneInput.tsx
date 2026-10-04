@@ -6,6 +6,7 @@ import { Transition } from "../../layout/Transition/Transition";
 import styles from "./phone-input.module.scss";
 import { ChevronDownIcon } from "@/icon";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { wimResources } from "@/i18n/generated/resources";
 
 // ─── Country Data ─────────────────────────────────────────────────────────────
 
@@ -142,24 +143,36 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
 
     // 国名は翻訳キー（form:phone.countries.<コード>。en / ja / pt）から引く。
     const countryName = (c: Country) => t(`phone.countries.${c.code}`);
+    // 英語の国名（表示言語によらない）。頭文字の検索の 2 段目で使う。
+    const englishCountryName = (c: Country) => {
+      const form = wimResources.en?.form as { phone?: { countries?: Record<string, string> } } | undefined;
+      return form?.phone?.countries?.[c.code] ?? "";
+    };
 
-    // 打った文字で国へ飛ぶ。国名の前方一致（大文字小文字を区別しない）。数字（先頭の + は無視）は国番号の前方一致。
-    // 同じ 1 文字を続けて打ったときは、その文字で始まる国を順に巡る（"u" → United States → United Kingdom）。
+    // 打った文字で国へ飛ぶ。前方一致（大文字小文字を区別しない）。数字（先頭の + は無視）は国番号で照合する。
+    // 文字は 3 段で照合し、**当たりが出た最初の段だけ**を使う:
+    //   1. 表示している言語の国名
+    //   2. 英語の国名（日本語の表示では、IME の変換中のキー入力は届かないので、国名を直接は打てない）
+    //   3. 国コード（jp / kr など）
+    // 段を分けるのは、表示名で当たるものを先にするため（英語の表示で "g" は Germany。国コードの GB より先）。
+    // 同じ 1 文字を続けて打ったときは、その段の中で、その文字で始まる国を順に巡る。
     const findByText = (text: string, from: number) => {
       const query = text.toLowerCase().replace(/^\+/, "");
       if (query === "") return -1;
       const byDial = /^[0-9]+$/.test(query);
-      // 国名は、いま表示している言語の名前で照合する。
-      const matches = (c: Country, q: string) =>
-        byDial ? c.dialCode.startsWith(q) : countryName(c).toLowerCase().startsWith(q);
       // 国番号では巡らない（"44" は 4 で始まる番号の 2 つ目ではなく、44 そのもの）。
       const repeated = !byDial && query.length > 1 && query.split("").every((ch) => ch === query[0]);
       const q = repeated ? query[0] : query;
       // 打ち始め・同じ文字の繰り返しは「いまの次」から、続きの文字は「いま」から探す（いまの項目に留まれる）。
       const start = repeated || query.length === 1 ? from + 1 : from;
-      for (let i = 0; i < PHONE_COUNTRIES.length; i++) {
-        const index = (Math.max(start, 0) + i) % PHONE_COUNTRIES.length;
-        if (matches(PHONE_COUNTRIES[index], q)) return index;
+      const tiers: ((c: Country) => string)[] = byDial
+        ? [(c) => c.dialCode]
+        : [(c) => countryName(c).toLowerCase(), (c) => englishCountryName(c).toLowerCase(), (c) => c.code.toLowerCase()];
+      for (const textOf of tiers) {
+        for (let i = 0; i < PHONE_COUNTRIES.length; i++) {
+          const index = (Math.max(start, 0) + i) % PHONE_COUNTRIES.length;
+          if (textOf(PHONE_COUNTRIES[index]).startsWith(q)) return index;
+        }
       }
       return -1;
     };

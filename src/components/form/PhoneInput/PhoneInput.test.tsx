@@ -216,6 +216,43 @@ describe("PhoneInput", () => {
       expect(activeName(trigger)).toContain("United Kingdom");
     });
 
+    // 文字は 3 段で照合する: 表示している国名 → 英語の国名 → 国コード。当たった最初の段だけを使う。
+    it("prefers the displayed name over the country code", () => {
+      render(<PhoneInput />);
+      const trigger = screen.getByRole("combobox");
+      // "g" は国コード GB（United Kingdom）にも当たるが、表示名の Germany が先
+      type(trigger, "g");
+      expect(activeName(trigger)).toContain("Germany");
+    });
+
+    it("falls back to the country code when no name matches", () => {
+      render(<PhoneInput />);
+      const trigger = screen.getByRole("combobox");
+      type(trigger, "gb");
+      expect(activeName(trigger)).toContain("United Kingdom");
+    });
+
+    it("matches the English name and the country code when another language is displayed", () => {
+      const original = getWimLocale();
+      try {
+        setWimLocale("ja");
+        const { unmount } = render(<PhoneInput />);
+        let trigger = screen.getByRole("combobox");
+        // 日本語の国名は IME なしでは打てない。英語名の頭文字で当たる
+        type(trigger, "j");
+        expect(activeName(trigger)).toContain("日本");
+        unmount();
+
+        render(<PhoneInput />);
+        trigger = screen.getByRole("combobox");
+        // 英語名（South Korea）には当たらず、国コード（KR）で当たる
+        type(trigger, "kr");
+        expect(activeName(trigger)).toContain("韓国");
+      } finally {
+        setWimLocale(original);
+      }
+    });
+
     it("starts a new search after a pause", () => {
       vi.useFakeTimers();
       try {
