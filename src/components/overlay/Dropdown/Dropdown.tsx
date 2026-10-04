@@ -283,6 +283,11 @@ export const DropdownTrigger = forwardRef<HTMLDivElement, DropdownTriggerProps>(
           if (e.key === "Enter" || e.key === " ") {
             e.preventDefault();
             toggle();
+          } else if (e.key === "ArrowDown" && !isOpen) {
+            // ↓ でも開く（最初の項目へフォーカス）。Menubar・選択系・DatePicker は ↓ で開くのに、
+            // ここだけ Enter / Space しか見ていなかった（T303）。
+            e.preventDefault();
+            toggle();
           }
         }}
       >

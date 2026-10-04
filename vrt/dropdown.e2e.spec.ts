@@ -26,6 +26,15 @@ for (const { name, id } of TARGETS) {
       return trigger;
     };
 
+    // ↓ でも開く（T303）。開いた直後の ↓ が、同じキー入力で 2 つ目まで進まないことも見る。
+    test("ArrowDown on the trigger opens the menu on its first item", async ({ page }) => {
+      const trigger = page.locator('#storybook-root [aria-haspopup="menu"]').first();
+      await trigger.focus();
+      await page.keyboard.press("ArrowDown");
+      await expect(page.getByRole("menu")).toBeVisible();
+      await expect(page.getByRole("menuitem").first()).toBeFocused();
+    });
+
     test("Escape closes the menu and returns focus to the trigger", async ({ page }) => {
       const trigger = await openWithKeyboard(page);
       await page.keyboard.press("Escape");

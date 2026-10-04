@@ -194,6 +194,24 @@ describe("Dropdown", () => {
     });
   });
 
+  it("opens with ArrowDown on the trigger and focuses the first item", async () => {
+    render(
+      <Dropdown>
+        <DropdownTrigger>Toggle</DropdownTrigger>
+        <DropdownMenu>
+          <DropdownItem>Item 1</DropdownItem>
+          <DropdownItem>Item 2</DropdownItem>
+        </DropdownMenu>
+      </Dropdown>,
+    );
+    const trigger = screen.getByText("Toggle");
+    trigger.focus();
+    const notPrevented = fireEvent.keyDown(trigger, { key: "ArrowDown" });
+    // ページがスクロールしないよう、既定の動作は止める
+    expect(notPrevented).toBe(false);
+    await waitFor(() => expect(screen.getByRole("menuitem", { name: "Item 1" })).toHaveFocus());
+  });
+
   it("does not move focus when the menu closes while focus is elsewhere", async () => {
     render(
       <>
