@@ -189,3 +189,28 @@
 ```
 
 新しい暗色/明色切替が必要な場合は、`src/tokens/_semantic-colors.scss` の `:root` と `@mixin dark-theme` の両方にトークンを追加してください。
+
+# 入場のアニメーション（既定は「見えている」）
+
+入場のフェードは、**既定を「見えている」にして、keyframes の `from` から始めます**。既定を透明にして、アニメーションの終わりの値で見えるようにしてはいけません。
+
+```scss
+// NG: アニメーションが止められると、透明のまま残る
+.content {
+  opacity: 0;
+  animation: fadeIn var(--wim-duration-fast) forwards;
+}
+
+// OK: 既定は見えている。入場は from（透明）から始まり、終わったら既定の値に戻る
+.content {
+  animation: fadeIn var(--wim-duration-fast);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+}
+```
+
+理由は 2 つあります。VRT は撮影時にアニメーションを止めるので、NG の書き方だと開いた姿が透明のままベースラインになり、見た目を変えても何も赤くなりません（Tooltip と HoverCard で実際に起きました）。利用者がアニメーションを切っている環境でも、同じ理由で表示されません。
+
+`npm run check:opacity-forwards` が、同じ要素に透明の既定と、終わりの値を留めるアニメーション（forwards / both）を持つ規則を落とします（`audit:lib` / lint-staged。実証は `npm run prove:opacity-forwards`）。別々の規則に分けて書いた組・mixin の先・インラインスタイルは見ていないので、開いた姿のストーリーを VRT に載せて確かめてください。意図した形なら、アニメーションの行か直上のコメントに注記（`opacity-forwards-ok:` と理由）を書きます。

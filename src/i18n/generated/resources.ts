@@ -298,6 +298,9 @@ export const wimResources: WimResources = {
         "optional": "Optional",
         "required": "Required"
       },
+      "phone": {
+        "select_country": "Select country"
+      },
       "select": {
         "no_options": "No options found"
       },
@@ -684,6 +687,9 @@ export const wimResources: WimResources = {
         "very_weak": "とても弱い",
         "weak": "弱い"
       },
+      "phone": {
+        "select_country": "国を選択"
+      },
       "prompt_input": {
         "aria_label": "プロンプト入力",
         "attach_label": "ファイルを添付",
@@ -1039,6 +1045,9 @@ export const wimResources: WimResources = {
         "very_strong": "Muito forte",
         "very_weak": "Muito fraca",
         "weak": "Fraca"
+      },
+      "phone": {
+        "select_country": "Selecionar país"
       },
       "prompt_input": {
         "aria_label": "Campo de prompt",

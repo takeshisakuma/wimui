@@ -2,6 +2,7 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { PhoneInput, PHONE_COUNTRIES } from "./PhoneInput";
 import styles from "./phone-input.module.scss";
+import { setWimLocale, getWimLocale } from "@/i18n/instance";
 
 describe("PhoneInput", () => {
   it("renders the phone number input", () => {
@@ -88,5 +89,18 @@ describe("PhoneInput", () => {
     render(<PhoneInput disabled />);
     const root = screen.getByTestId("phone-input-root");
     expect(root).toHaveClass(styles.disabled);
+  });
+
+  it("names the country trigger and the open list in the active locale", () => {
+    const original = getWimLocale();
+    try {
+      setWimLocale("ja");
+      render(<PhoneInput />);
+      const trigger = screen.getByRole("button", { name: "国を選択" });
+      fireEvent.click(trigger);
+      expect(screen.getByRole("listbox", { name: "国を選択" })).toBeInTheDocument();
+    } finally {
+      setWimLocale(original);
+    }
   });
 });

@@ -434,11 +434,13 @@
     "check:component-slop": "node scripts/check-component-slop.js",
     "check:focus-indicator": "node scripts/check-focus-indicator.js",
     "check:radius-tokens": "node scripts/check-radius-tokens.js",
+    "check:opacity-forwards": "node scripts/check-opacity-forwards.js",
     "judge:slop": "node scripts/judge-slop.mjs",
     "prove:slop": "node scripts/prove-slop-guard.mjs",
     "prove:component-slop": "node scripts/prove-component-slop.mjs",
     "prove:focus-indicator": "node scripts/prove-focus-indicator.mjs",
     "prove:radius-tokens": "node scripts/prove-radius-tokens.mjs",
+    "prove:opacity-forwards": "node scripts/prove-opacity-forwards.mjs",
     "prove:prop-api": "node scripts/prove-prop-api.mjs",
     "skills:link": "node scripts/link-skills.mjs",
     "check:skills-mirror": "node scripts/link-skills.mjs --check",
@@ -729,7 +731,8 @@
       "node scripts/check-field-roots.js",
       "node scripts/check-component-slop.js",
       "node scripts/check-focus-indicator.js",
-      "node scripts/check-radius-tokens.js"
+      "node scripts/check-radius-tokens.js",
+      "node scripts/check-opacity-forwards.js"
     ],
     "**/*.mdx": [
       "node --max-old-space-size=4096 ./node_modules/eslint/bin/eslint.js --fix --max-warnings=0 --cache",

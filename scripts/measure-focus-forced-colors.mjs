@@ -44,6 +44,8 @@
  *   npx http-server@14 storybook-static -p 6006 -c-1 --silent   # 別ターミナルで配信
  *   node scripts/measure-focus-forced-colors.mjs                  # Components を全量（各 10 分弱 × 2 回）
  *   node scripts/measure-focus-forced-colors.mjs --only tabs      # ストーリー ID の部分一致で絞る
+ *   node scripts/measure-focus-forced-colors.mjs --scope Patterns/ --out tmp-focus-forced-colors-patterns
+ *                                                                # 合成画面（題が Patterns/ で始まるストーリー）を測る
  *   node scripts/measure-focus-forced-colors.mjs --base http://localhost:6016
  *   node scripts/measure-focus-forced-colors.mjs --system --only input
  *                                                                # OS のコントラスト テーマをそのまま使う（実機のパレット。ウィンドウが開く）
@@ -67,6 +69,8 @@ const opt = (name, fallback) => {
 };
 const BASE = opt('--base', 'http://localhost:6006');
 const ONLY = opt('--only', null);
+// 題（title）の先頭で対象を決める。既定は Components。Patterns を測るなら `--scope Patterns/`。
+const SCOPE = opt('--scope', 'Components/');
 const REPORT = opt('--report', null);
 const OUT = REPORT ?? opt('--out', 'tmp-focus-forced-colors');
 const ALLOW = args.includes('--allow');
@@ -326,14 +330,14 @@ if (!REPORT) {
     process.exit(1);
   }
   const index = await res.json();
-  let stories = Object.values(index.entries).filter((e) => e.type === 'story' && e.title.startsWith('Components/'));
+  let stories = Object.values(index.entries).filter((e) => e.type === 'story' && e.title.startsWith(SCOPE));
   if (ONLY) stories = stories.filter((s) => s.id.includes(ONLY));
   if (stories.length === 0) {
-    console.error('[FAIL] 対象のストーリーが 0 件です。--only の指定か、index.json の中身を確かめてください。');
+    console.error('[FAIL] 対象のストーリーが 0 件です。--scope / --only の指定か、index.json の中身を確かめてください。');
     process.exit(1);
   }
   fs.mkdirSync(OUT, { recursive: true });
-  console.log(`対象: ${stories.length} ストーリー（${BASE}）`);
+  console.log(`対象: ${stories.length} ストーリー（${SCOPE}・${BASE}）`);
   await sweep('none', stories);
   await sweep('active', stories);
 }

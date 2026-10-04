@@ -5,6 +5,7 @@ import { Icon } from "../../media/Icon/Icon";
 import { Transition } from "../../layout/Transition/Transition";
 import styles from "./phone-input.module.scss";
 import { ChevronDownIcon } from "@/icon";
+import { useWimTranslation } from "@/i18n/useWimTranslation";
 
 // ─── Country Data ─────────────────────────────────────────────────────────────
 
@@ -84,7 +85,8 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
     const inputId = `wim-phone-input-${generatedId}`;
     const labelId = label ? `${inputId}-label` : undefined;
     // 国の引き金と、開いたリストの両方に同じ名前を付ける（label があればそちらを aria-labelledby で指す）。
-    const countryAriaLabel = label ? undefined : "Select country";
+    const { t } = useWimTranslation("form");
+    const countryAriaLabel = label ? undefined : t("phone.select_country");
     const errorId = error ? `${inputId}-error` : undefined;
 
     const [isOpen, setIsOpen] = useState(false);

@@ -75,7 +75,8 @@
     "weak": "弱い"
   },
   "phone": {
-    "number": "電話番号"
+    "number": "電話番号",
+    "select_country": "国を選択"
   },
   "prompt_input": {
     "aria_label": "プロンプト入力",
