@@ -267,6 +267,13 @@
     &:active {
       background-color: var(--wim-color-surface-hover);
     }
+
+    // 無効の入力欄の中では、押せる見た目（手のカーソル・ホバーの面）を出さない。
+    // 上の :hover / :active と同じ詳細度なので、後ろに置いて勝たせる。
+    &:disabled {
+      cursor: not-allowed;
+      background-color: transparent;
+    }
   }
 
   // Make sure children (inputs, triggers) don't have their own borders

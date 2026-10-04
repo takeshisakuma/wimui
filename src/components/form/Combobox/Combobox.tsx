@@ -178,6 +178,8 @@ export const Combobox = ({
                 name: "ChevronDownIcon",
                 rotated: isOpen,
                 onClick: () => setIsOpen(!isOpen),
+                // 開閉は入力欄の ↓ / Esc が持つ。山形はポインタ用
+                decorative: true,
               },
             ]}
           >

@@ -206,7 +206,7 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
       if (isOpen) {
         const timer = setTimeout(() => {
           const focusedDay = containerRef.current?.querySelector<HTMLButtonElement>(
-            '[data-calendar-day][data-selected]:not(:disabled), [data-calendar-day]:focus',
+            '[data-calendar-day][tabindex="0"]:not(:disabled), [data-calendar-day][data-selected]:not(:disabled), [data-calendar-day]:focus',
           );
           if (focusedDay) {
             focusedDay.focus();
@@ -255,6 +255,8 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
                   name: "ChevronDownIcon",
                   rotated: isOpen,
                   onClick: handleInputClick,
+                  // 開閉は入力欄の Enter / Space / ↓ が持つ。山形はポインタ用
+                  decorative: true,
                 },
               ]}
             >

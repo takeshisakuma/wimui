@@ -21,7 +21,7 @@
     "calendar_disabled_dates_desc": "Existem duas maneiras de desativar datas: passando um array ou uma função.",
     "calendar_integration_datepicker": "Integração com DatePicker",
     "calendar_integration_datepicker_desc": "O Calendar é usado como um componente interno do DatePicker. Use este componente diretamente para necessidades de calendário independentes.",
-    "calendar_keyboard_desc": "As teclas de seta navegam entre datas. Page Up e Page Down movem entre os meses. Home e End movem para o primeiro e último dia do mês. Enter ou Espaço seleciona a data focada.",
+    "calendar_keyboard_desc": "As teclas de seta navegam entre datas. Page Up e Page Down movem entre os meses. Home e End movem para o primeiro e último dia da semana. Enter ou Espaço seleciona a data focada.",
     "calendar_long_desc": "Detalhes e uso para o componente Calendar.",
     "calendar_min_max_dates": "Restringindo o Intervalo de Datas Selecionáveis",
     "calendar_min_max_dates_desc": "Limite o intervalo selecionável com as propriedades minDate e maxDate. Datas fora desse intervalo ficarão acinzentadas.",

@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, act } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { Calendar } from "./Calendar";
 import React from "react";
@@ -51,85 +51,143 @@ describe("Calendar", () => {
     expect(screen.getByText("2024 / 7")).toBeInTheDocument();
   });
 
-  it("navigates days with ArrowLeft key", () => {
+  // T304: 以前のキーのテストは「落ちないこと」しか見ておらず、矢印は実際には何もしていなかった。
+  // フォーカスのある日（data-date）で確かめる。2024-01-15 は月曜、日曜始まりの週は 14〜20 日。
+  const focusedDay = () => document.activeElement?.getAttribute("data-date");
+  const press = (key: string, init: Record<string, unknown> = {}) =>
+    fireEvent.keyDown(document.activeElement as HTMLElement, { key, ...init });
+  const focusDay = (label: string) => act(() => screen.getByLabelText(label).focus());
+
+  it("keeps exactly one day in the tab order (the selected day)", () => {
     render(<Calendar defaultValue={new Date(2024, 0, 15)} />);
-    const day15 = screen.getByText("15");
-    fireEvent.click(day15);
-    fireEvent.keyDown(day15, { key: "ArrowLeft" });
-    // Focus moves to previous day - just verifying no crash
+    const stops = screen.getAllByRole("gridcell").filter((cell) => cell.tabIndex === 0);
+    expect(stops).toHaveLength(1);
+    expect(stops[0]).toHaveAttribute("data-date", "2024-1-15");
+  });
+
+  it("moves focus by a day with ArrowLeft / ArrowRight", () => {
+    render(<Calendar defaultValue={new Date(2024, 0, 15)} />);
+    focusDay("2024-1-15");
+    press("ArrowLeft");
+    expect(focusedDay()).toBe("2024-1-14");
+    press("ArrowRight");
+    press("ArrowRight");
+    expect(focusedDay()).toBe("2024-1-16");
+    // 停止点も付いてくる
+    expect(screen.getAllByRole("gridcell").filter((cell) => cell.tabIndex === 0)).toHaveLength(1);
+    expect(document.activeElement).toHaveAttribute("tabindex", "0");
+  });
+
+  it("moves focus by a week with ArrowUp / ArrowDown", () => {
+    render(<Calendar defaultValue={new Date(2024, 0, 15)} />);
+    focusDay("2024-1-15");
+    press("ArrowUp");
+    expect(focusedDay()).toBe("2024-1-8");
+    press("ArrowDown");
+    press("ArrowDown");
+    expect(focusedDay()).toBe("2024-1-22");
+  });
+
+  it("crosses into the next month and turns the page", () => {
+    render(<Calendar defaultValue={new Date(2024, 0, 31)} />);
+    focusDay("2024-1-31");
+    press("ArrowRight");
+    expect(screen.getByText("2024 / 2")).toBeInTheDocument();
+    expect(focusedDay()).toBe("2024-2-1");
+    press("ArrowLeft");
+    expect(screen.getByText("2024 / 1")).toBeInTheDocument();
+    expect(focusedDay()).toBe("2024-1-31");
+  });
+
+  it("moves to the ends of the week with Home / End", () => {
+    render(<Calendar defaultValue={new Date(2024, 0, 17)} />);
+    focusDay("2024-1-17");
+    press("Home");
+    expect(focusedDay()).toBe("2024-1-14");
+    press("End");
+    expect(focusedDay()).toBe("2024-1-20");
+  });
+
+  it("counts the week from Monday when weekStartsOn is 1", () => {
+    render(<Calendar defaultValue={new Date(2024, 0, 17)} weekStartsOn={1} />);
+    focusDay("2024-1-17");
+    press("Home");
+    expect(focusedDay()).toBe("2024-1-15");
+    press("End");
+    expect(focusedDay()).toBe("2024-1-21");
+  });
+
+  it("skips disabled days in the direction of travel", () => {
+    render(<Calendar defaultValue={new Date(2024, 0, 15)} disabledDates={[new Date(2024, 0, 16)]} />);
+    focusDay("2024-1-15");
+    press("ArrowRight");
+    expect(focusedDay()).toBe("2024-1-17");
+  });
+
+  it("stops at minDate instead of losing focus", () => {
+    render(<Calendar defaultValue={new Date(2024, 0, 15)} minDate={new Date(2024, 0, 15)} />);
+    focusDay("2024-1-15");
+    press("ArrowLeft");
+    expect(focusedDay()).toBe("2024-1-15");
+  });
+
+  it("does nothing for arrow keys pressed outside a day", () => {
+    render(<Calendar defaultValue={new Date(2024, 0, 15)} />);
+    const next = screen.getByLabelText("Next month");
+    act(() => next.focus());
+    press("ArrowRight");
+    expect(next).toHaveFocus();
     expect(screen.getByText("2024 / 1")).toBeInTheDocument();
   });
 
-  it("navigates days with ArrowRight key", () => {
-    const date = new Date(2024, 0, 15);
-    const { container } = render(<Calendar defaultValue={date} />);
-    const grid = container.querySelector(`.${styles.grid}`)!;
-    fireEvent.keyDown(grid, { key: "ArrowRight" });
-    expect(screen.getByText("2024 / 1")).toBeInTheDocument();
+  it("pages by a month with PageUp / PageDown and keeps the day", () => {
+    render(<Calendar defaultValue={new Date(2024, 5, 15)} />);
+    focusDay("2024-6-15");
+    press("PageUp");
+    expect(screen.getByText("2024 / 5")).toBeInTheDocument();
+    expect(focusedDay()).toBe("2024-5-15");
+    press("PageDown");
+    press("PageDown");
+    expect(screen.getByText("2024 / 7")).toBeInTheDocument();
+    expect(focusedDay()).toBe("2024-7-15");
   });
 
-  it("navigates weeks with ArrowUp key", () => {
-    const date = new Date(2024, 0, 15);
-    const { container } = render(<Calendar defaultValue={date} />);
-    const grid = container.querySelector(`.${styles.grid}`)!;
-    fireEvent.keyDown(grid, { key: "ArrowUp" });
-    expect(screen.getByText("2024 / 1")).toBeInTheDocument();
+  it("clamps to the last day when the target month is shorter", () => {
+    render(<Calendar defaultValue={new Date(2024, 0, 31)} />);
+    focusDay("2024-1-31");
+    press("PageDown");
+    expect(focusedDay()).toBe("2024-2-29");
   });
 
-  it("navigates weeks with ArrowDown key", () => {
-    const date = new Date(2024, 0, 15);
-    const { container } = render(<Calendar defaultValue={date} />);
-    const grid = container.querySelector(`.${styles.grid}`)!;
-    fireEvent.keyDown(grid, { key: "ArrowDown" });
-    expect(screen.getByText("2024 / 1")).toBeInTheDocument();
+  it("pages by a year with Ctrl or Shift + PageUp / PageDown", () => {
+    render(<Calendar defaultValue={new Date(2024, 5, 15)} />);
+    focusDay("2024-6-15");
+    press("PageUp", { ctrlKey: true });
+    expect(screen.getByText("2023 / 6")).toBeInTheDocument();
+    expect(focusedDay()).toBe("2023-6-15");
+    press("PageDown", { shiftKey: true });
+    expect(screen.getByText("2024 / 6")).toBeInTheDocument();
   });
 
-  it("navigates to previous month with PageUp key", () => {
-    const date = new Date(2024, 5, 15);
-    const { container } = render(<Calendar defaultValue={date} />);
+  it("pages from the grid without a focused day (view only)", () => {
+    const { container } = render(<Calendar defaultValue={new Date(2024, 5, 15)} />);
     const grid = container.querySelector(`.${styles.grid}`)!;
     fireEvent.keyDown(grid, { key: "PageUp" });
     expect(screen.getByText("2024 / 5")).toBeInTheDocument();
-  });
-
-  it("navigates to next month with PageDown key", () => {
-    const date = new Date(2024, 5, 15);
-    const { container } = render(<Calendar defaultValue={date} />);
-    const grid = container.querySelector(`.${styles.grid}`)!;
-    fireEvent.keyDown(grid, { key: "PageDown" });
-    expect(screen.getByText("2024 / 7")).toBeInTheDocument();
-  });
-
-  it("navigates to previous year with Ctrl+PageUp", () => {
-    const date = new Date(2024, 5, 15);
-    const { container } = render(<Calendar defaultValue={date} />);
-    const grid = container.querySelector(`.${styles.grid}`)!;
-    fireEvent.keyDown(grid, { key: "PageUp", ctrlKey: true });
-    expect(screen.getByText("2023 / 6")).toBeInTheDocument();
-  });
-
-  it("navigates to next year with Ctrl+PageDown", () => {
-    const date = new Date(2024, 5, 15);
-    const { container } = render(<Calendar defaultValue={date} />);
-    const grid = container.querySelector(`.${styles.grid}`)!;
     fireEvent.keyDown(grid, { key: "PageDown", ctrlKey: true });
-    expect(screen.getByText("2025 / 6")).toBeInTheDocument();
+    expect(screen.getByText("2025 / 5")).toBeInTheDocument();
   });
 
-  it("navigates to start of week with Home key", () => {
-    const date = new Date(2024, 0, 17); // Wednesday
-    const { container } = render(<Calendar defaultValue={date} />);
-    const grid = container.querySelector(`.${styles.grid}`)!;
-    fireEvent.keyDown(grid, { key: "Home" });
-    expect(screen.getByText("2024 / 1")).toBeInTheDocument();
-  });
-
-  it("navigates to end of week with End key", () => {
-    const date = new Date(2024, 0, 17); // Wednesday
-    const { container } = render(<Calendar defaultValue={date} />);
-    const grid = container.querySelector(`.${styles.grid}`)!;
-    fireEvent.keyDown(grid, { key: "End" });
-    expect(screen.getByText("2024 / 1")).toBeInTheDocument();
+  it("keeps one tab stop after the month buttons turn the page", () => {
+    render(<Calendar defaultValue={new Date(2024, 0, 31)} />);
+    const next = screen.getByLabelText("Next month");
+    act(() => next.focus());
+    fireEvent.click(next);
+    // ボタンからフォーカスを奪わない。停止点は、送り先の月の同じ日（無ければ月末）
+    expect(next).toHaveFocus();
+    const stops = screen.getAllByRole("gridcell").filter((cell) => cell.tabIndex === 0);
+    expect(stops).toHaveLength(1);
+    expect(stops[0]).toHaveAttribute("data-date", "2024-2-29");
   });
 
   it("selects date with Enter key", () => {

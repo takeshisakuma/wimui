@@ -72,6 +72,8 @@ export const TimePicker = forwardRef<HTMLInputElement, TimePickerProps>(({
       rightIcon={rightIcon}
       rightIconColor={disabled || showClearButton ? undefined : "primary"}
       onRightIconClick={showClearButton ? undefined : handleClockClick}
+      // 時計はブラウザの選択画面を開くだけ。時刻そのものは入力欄のキー操作で入れられる
+      rightIconDecorative
       {...props}
     />
   );
