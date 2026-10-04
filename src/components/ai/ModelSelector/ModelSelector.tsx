@@ -264,7 +264,9 @@ export const ModelSelector = React.forwardRef<HTMLDivElement, ModelSelectorProps
         }
       }
       if (parts.length === 0) return null;
-      return <span className={styles.metaRow}>{parts}</span>;
+      // 部品の間に文字としての区切りを入れる（flex なので描かれない）。
+      const spaced = parts.flatMap((part, i) => (i === 0 ? [part] : [" ", part]));
+      return <span className={styles.metaRow}>{spaced}</span>;
     };
 
     return (
@@ -312,6 +314,9 @@ export const ModelSelector = React.forwardRef<HTMLDivElement, ModelSelectorProps
             {selected ? (
               <>
                 <span className={styles.triggerName}>{selected.name}</span>
+                {/* 文字としての区切り。入れ物は flex なので空白は描かれず、見た目は変わらない。
+                    無いと、読み上げで名前とバッジがつながる（実機のナレーターで「GPT-4onew」と読まれた）。 */}
+                {" "}
                 {selected.badge && <span className={styles.badge}>{selected.badge}</span>}
               </>
             ) : (
@@ -369,11 +374,15 @@ export const ModelSelector = React.forwardRef<HTMLDivElement, ModelSelectorProps
                   <span className={styles.optionBody}>
                     <span className={styles.optionHeader}>
                       <span className={styles.optionName}>{model.name}</span>
+                      {" "}
                       {model.badge && <span className={styles.badge}>{model.badge}</span>}
                     </span>
+                    {/* 項目の名前は中の文字から作られる。区切りが無いと、名前・説明・メタ情報がつながって読まれる。 */}
+                    {" "}
                     {model.description && (
                       <span className={styles.description}>{model.description}</span>
                     )}
+                    {" "}
                     {renderMeta(model)}
                   </span>
                 </li>

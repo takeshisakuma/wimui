@@ -106,4 +106,21 @@ describe("ModelSelector", () => {
     expect(listbox).toHaveAttribute("tabindex", "-1");
     expect(listbox).not.toHaveAttribute("aria-activedescendant");
   });
+
+  // 入れ物は flex で、見た目の間隔は gap が作る。文字としての区切りが無いと、読み上げでつながる
+  // （実機のナレーターで、モデル名「GPT-4o」とバッジ「New」が「GPT-4onew」と読まれた）。
+  it("separates the name and the badge in the trigger's text", () => {
+    render(<ModelSelector models={MODELS} value="claude" />);
+    expect(screen.getByRole("combobox").textContent).toBe("Claude New");
+  });
+
+  it("separates the name, badge and metadata in each option's text", () => {
+    render(<ModelSelector models={MODELS} />);
+    fireEvent.click(screen.getByRole("combobox"));
+    const [gpt, claude] = screen.getAllByRole("option");
+    // バッジや説明が無い項目は区切りが続く。読み上げは空白の連なりを 1 つとして扱うので、畳んで比べる
+    const text = (el: HTMLElement) => (el.textContent ?? "").split(" ").filter(Boolean).join(" ");
+    expect(text(gpt)).toBe("GPT Context 128K In $2.5/1M Out $10/1M");
+    expect(text(claude)).toBe("Claude New Context 200K");
+  });
 });

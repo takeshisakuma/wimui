@@ -331,6 +331,8 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
                   >
                     <span aria-hidden="true">{country.flag}</span>
                     <span className={styles.countryName}>{countryName(country)}</span>
+                    {/* 文字としての区切り（flex なので描かれない）。無いと、国名と国番号がつながって読まれる。 */}
+                    {" "}
                     <span className={styles.countryCode}>+{country.dialCode}</span>
                   </li>
                 ))}
