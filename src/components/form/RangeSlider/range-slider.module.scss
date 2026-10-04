@@ -6,7 +6,10 @@
     display: flex;
     align-items: center;
     width: 100%;
-    height: 24px; /* Exception: Geometric Harmony — サム（18px）が確実にヒット可能な最小タッチ領域 */
+
+    // Slider と同じ決め方（comfortable は 24px のまま。compact は 20px）。つまみの当たり判定は、
+    // つまみ自身の `--wim-tap-target-min` が守る。T314
+    height: var(--wim-height-xs);
     touch-action: none;
     cursor: pointer;
 

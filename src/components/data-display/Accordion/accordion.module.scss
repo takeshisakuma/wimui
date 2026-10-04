@@ -30,7 +30,10 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    padding: var(--wim-spacing-2xl);
+
+    // 密度に追従する（comfortable は 2xl のまま。compact は縦 lg / 横 xl）。中身の余白は
+    // レイアウトの間隔なので、密度では動かさない。T314
+    padding: var(--wim-accordion-trigger-padding-y) var(--wim-control-padding-x-md);
     margin: 0;
     font-family: inherit;
     font-size: var(--wim-font-size-md);

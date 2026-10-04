@@ -50,6 +50,9 @@
   --wim-control-item-padding-x-md: var(--wim-spacing-md);
   --wim-control-item-padding-x-lg: var(--wim-spacing-lg);
 
+  /* Accordion trigger (the row you press). x は --wim-control-padding-x-md を使う */
+  --wim-accordion-trigger-padding-y: var(--wim-spacing-2xl);
+
   /* Menu / Select / Combobox list rows */
   --wim-list-item-padding-y: var(--wim-spacing-sm);
   --wim-list-item-padding-x: var(--wim-spacing-md);
@@ -141,6 +144,7 @@
   --wim-control-item-padding-x-sm: var(--wim-spacing-2xs);
   --wim-control-item-padding-x-md: var(--wim-spacing-xs);
   --wim-control-item-padding-x-lg: var(--wim-spacing-sm);
+  --wim-accordion-trigger-padding-y: var(--wim-spacing-lg);
   --wim-list-item-padding-y: var(--wim-spacing-2xs);
   --wim-list-item-padding-x: var(--wim-spacing-sm);
   --wim-table-cell-padding-y: var(--wim-spacing-xs);

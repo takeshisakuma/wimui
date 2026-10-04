@@ -79,7 +79,9 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: var(--wim-spacing-sm) var(--wim-spacing-md);
+
+      // 密度に追従する（comfortable は sm / md のまま。compact は 2xs / sm）。T314
+      padding: var(--wim-list-item-padding-y) var(--wim-list-item-padding-x);
       font-size: var(--wim-font-size-sm);
       font-weight: var(--wim-font-weight-medium);
       background: oklch(from var(--wim-color-primary) l c h / 0.04);

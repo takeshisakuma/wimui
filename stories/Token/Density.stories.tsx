@@ -2,17 +2,22 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
+  Accordion,
   Button,
   Checkbox,
   Group,
   Input,
+  OtpInput,
+  RangeSlider,
   SegmentedControl,
   Stack,
   Switch,
   Table,
+  Tabs,
   Text,
   Textarea,
   ToggleGroup,
+  Transfer,
 } from "wimui";
 import { ALL_NAMESPACES } from "../i18nConstants";
 
@@ -29,6 +34,7 @@ function DensityDemo({ density }: { density: "comfortable" | "compact" }) {
   const { t } = useTranslation(ALL_NAMESPACES);
   const [range, setRange] = useState("week");
   const [align, setAlign] = useState("left");
+  const [picked, setPicked] = useState<string[]>(["week"]);
 
   return (
     <div data-density={density} style={{ padding: "var(--wim-spacing-xl)" }}>
@@ -75,6 +81,36 @@ function DensityDemo({ density }: { density: "comfortable" | "compact" }) {
           ]}
           value={align}
           onChange={(value) => setAlign(typeof value === "string" ? value : value[0] ?? "left")}
+        />
+        {/* T314 で密度に追従させた部品。compact の姿は、ここでしか撮られない。 */}
+        <Tabs defaultValue="day">
+          <Tabs.List>
+            <Tabs.Trigger value="day">{t("story.density_day")}</Tabs.Trigger>
+            <Tabs.Trigger value="week">{t("story.density_week")}</Tabs.Trigger>
+            <Tabs.Trigger value="month">{t("story.density_month")}</Tabs.Trigger>
+          </Tabs.List>
+          <Tabs.Content value="day">{t("story.density_notes_ph")}</Tabs.Content>
+        </Tabs>
+        <Accordion type="single" collapsible defaultValue="item-1">
+          <Accordion.Item value="item-1">
+            <Accordion.Trigger>{t("story.accordion_trigger_1")}</Accordion.Trigger>
+            <Accordion.Content>{t("story.accordion_content_1")}</Accordion.Content>
+          </Accordion.Item>
+          <Accordion.Item value="item-2">
+            <Accordion.Trigger>{t("story.accordion_trigger_2")}</Accordion.Trigger>
+            <Accordion.Content>{t("story.accordion_content_2")}</Accordion.Content>
+          </Accordion.Item>
+        </Accordion>
+        <OtpInput length={4} label={t("story.density_role")} />
+        <RangeSlider label={t("story.density_name")} defaultValue={[20, 80]} />
+        <Transfer
+          dataSource={[
+            { key: "day", title: t("story.density_day") },
+            { key: "week", title: t("story.density_week") },
+            { key: "month", title: t("story.density_month") },
+          ]}
+          targetKeys={picked}
+          onChange={setPicked}
         />
         <Table>
           <Table.Header>
