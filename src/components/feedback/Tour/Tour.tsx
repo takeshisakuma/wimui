@@ -1,6 +1,13 @@
-import React, { useState, useLayoutEffect } from "react";
+import React, {
+  useEffect,
+  useId,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import classNames from "classnames";
 import { Portal } from "../../overlay/Portal/Portal";
+import { FocusTrap } from "../../overlay/FocusTrap/FocusTrap";
 import { Button } from "../../form/Button/Button";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
 import styles from "./tour.module.scss";
@@ -155,6 +162,36 @@ export const Tour = ({ steps, open, onClose, onFinish }: TourProps) => {
     };
   }, [open, currentStep, target]);
 
+  // 吹き出しはダイアログとして扱う（T310）。以前は役割を持たず、開いてもフォーカスは開始のボタンに
+  // 残り、Escape も効かなかった ── キーボードでは、マスク（画面全体のボタン）へ Tab で辿り着くまで
+  // 何もできず、支援技術には出たことが伝わらなかった。
+  const descriptionId = useId();
+  const bubbleRef = useRef<HTMLDivElement>(null);
+  const primaryRef = useRef<HTMLButtonElement>(null);
+  const hasBubble = open && !!step && !!targetRect;
+
+  // 吹き出しが出たら、進むボタンへフォーカスを移す。FocusTrap の initialFocus には任せない:
+  // 吹き出しは対象を測ってから出る（フォントを待つこともある）ので、罠が付いた時点ではまだ無い。
+  // ステップを戻って「戻る」が消えたとき（フォーカスごと消える）も、ここで拾う。
+  useEffect(() => {
+    if (!hasBubble) return;
+    const bubble = bubbleRef.current;
+    if (bubble && !bubble.contains(document.activeElement))
+      primaryRef.current?.focus();
+  }, [hasBubble, currentStep]);
+
+  // Escape で閉じる。フォーカスがどこにあっても効くように、文書で聞く。
+  useEffect(() => {
+    if (!open) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key !== "Escape") return;
+      e.preventDefault();
+      onClose();
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [open, onClose]);
+
   if (!open || !step) return null;
 
   const handleNext = () => {
@@ -178,7 +215,8 @@ export const Tour = ({ steps, open, onClose, onFinish }: TourProps) => {
 
   // マスクは先に出す。測ってからマスクを出すと、穴がオーバーレイ前の座標のまま固まる。
   const bubbleStyle: React.CSSProperties = {};
-  let effectivePlacement: NonNullable<TourStep["placement"]> = step.placement || "bottom";
+  let effectivePlacement: NonNullable<TourStep["placement"]> =
+    step.placement || "bottom";
   if (targetRect) {
     const margin = 16;
     const gap = 12;
@@ -226,60 +264,82 @@ export const Tour = ({ steps, open, onClose, onFinish }: TourProps) => {
 
   return (
     <Portal>
-      <div
-        className={styles.mask}
-        onClick={onClose}
-        role="button"
-        tabIndex={0}
-        aria-label={t("a11y.close_tour")}
-        onKeyDown={(e) => {
-          if (e.key === "Enter" || e.key === " ") onClose();
-        }}
-      />
-      {targetRect && (
-        <>
-          <div
-            className={styles.highlight}
-            style={{
-              top: targetRect.top - 4,
-              left: targetRect.left - 4,
-              width: targetRect.width + 8,
-              height: targetRect.height + 8,
-            }}
-          />
-          <div
-            className={classNames("wim-tour", styles.bubble)}
-            // 向きはここでしか観測できない。クラスは一つも持たない（位置は inline style）。
-            data-placement={effectivePlacement}
-            style={bubbleStyle}
-          >
-            <div className={styles.inner}>
-              <h3 className={styles.title}>{step.title}</h3>
-              <p className={styles.description}>{step.description}</p>
-              <div className={styles.footer}>
-                <span className={styles.progress}>
-                  {currentStep + 1} / {steps.length}
-                </span>
-                <div className={styles.buttons}>
-                  {currentStep > 0 && (
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      onClick={handleBack}
-                    >{t("action.back")}</Button>
-                  )}
-                  <Button
-                    size="sm"
-                    variant="solid"
-                    onClick={handleNext}
-                  >{currentStep === steps.length - 1 ? t("action.finish") : t("action.next")}</Button>
+      {/* 閉じたときのフォーカスの戻り先（開始のボタン）は、FocusTrap が覚える。 */}
+      <FocusTrap initialFocus={false}>
+        {/* 入れ物は位置を持たない（中身は全部 fixed）。名前はステップの題。対象を測る前（マスクだけの
+          あいだ）は題の要素がまだ無いので、aria-labelledby ではなく文字列で渡す。 */}
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={step.title}
+          aria-describedby={targetRect ? descriptionId : undefined}
+        >
+          {targetRect && (
+            <>
+              <div
+                className={styles.highlight}
+                style={{
+                  top: targetRect.top - 4,
+                  left: targetRect.left - 4,
+                  width: targetRect.width + 8,
+                  height: targetRect.height + 8,
+                }}
+              />
+              <div
+                ref={bubbleRef}
+                className={classNames("wim-tour", styles.bubble)}
+                // 向きはここでしか観測できない。クラスは一つも持たない（位置は inline style）。
+                data-placement={effectivePlacement}
+                style={bubbleStyle}
+              >
+                <div className={styles.inner}>
+                  <h3 className={styles.title}>{step.title}</h3>
+                  <p id={descriptionId} className={styles.description}>
+                    {step.description}
+                  </p>
+                  <div className={styles.footer}>
+                    <span className={styles.progress}>
+                      {currentStep + 1} / {steps.length}
+                    </span>
+                    <div className={styles.buttons}>
+                      {currentStep > 0 && (
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          onClick={handleBack}
+                        >
+                          {t("action.back")}
+                        </Button>
+                      )}
+                      <Button
+                        ref={primaryRef}
+                        size="sm"
+                        variant="solid"
+                        onClick={handleNext}
+                      >
+                        {currentStep === steps.length - 1
+                          ? t("action.finish")
+                          : t("action.next")}
+                      </Button>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </>
-      )}
+            </>
+          )}
+          {/* マスクは吹き出しの後ろに置く（重なりは z-index が決める）。Tab の順は「戻る・進む・閉じる」。 */}
+          <div
+            className={styles.mask}
+            onClick={onClose}
+            role="button"
+            tabIndex={0}
+            aria-label={t("a11y.close_tour")}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") onClose();
+            }}
+          />
+        </div>
+      </FocusTrap>
     </Portal>
   );
 };
-
