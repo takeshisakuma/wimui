@@ -9,24 +9,27 @@ import { useWimTranslation } from "@/i18n/useWimTranslation";
 
 // ─── Country Data ─────────────────────────────────────────────────────────────
 
+// 国名は翻訳キー（form:phone.countries.<コード>）が持つ。コードを足したら、en / ja / pt の 3 つにも足すこと
+// （型がキーの実在を見るので、足し忘れるとコンパイルで落ちる）。
+type CountryCode = "US" | "JP" | "GB" | "AU" | "DE" | "FR" | "CN" | "KR" | "IN" | "BR";
+
 interface Country {
-  code: string;
-  name: string;
+  code: CountryCode;
   dialCode: string;
   flag: string;
 }
 
 export const PHONE_COUNTRIES: Country[] = [
-  { code: "US", name: "United States", dialCode: "1", flag: "🇺🇸" },
-  { code: "JP", name: "Japan", dialCode: "81", flag: "🇯🇵" },
-  { code: "GB", name: "United Kingdom", dialCode: "44", flag: "🇬🇧" },
-  { code: "AU", name: "Australia", dialCode: "61", flag: "🇦🇺" },
-  { code: "DE", name: "Germany", dialCode: "49", flag: "🇩🇪" },
-  { code: "FR", name: "France", dialCode: "33", flag: "🇫🇷" },
-  { code: "CN", name: "China", dialCode: "86", flag: "🇨🇳" },
-  { code: "KR", name: "South Korea", dialCode: "82", flag: "🇰🇷" },
-  { code: "IN", name: "India", dialCode: "91", flag: "🇮🇳" },
-  { code: "BR", name: "Brazil", dialCode: "55", flag: "🇧🇷" },
+  { code: "US", dialCode: "1", flag: "🇺🇸" },
+  { code: "JP", dialCode: "81", flag: "🇯🇵" },
+  { code: "GB", dialCode: "44", flag: "🇬🇧" },
+  { code: "AU", dialCode: "61", flag: "🇦🇺" },
+  { code: "DE", dialCode: "49", flag: "🇩🇪" },
+  { code: "FR", dialCode: "33", flag: "🇫🇷" },
+  { code: "CN", dialCode: "86", flag: "🇨🇳" },
+  { code: "KR", dialCode: "82", flag: "🇰🇷" },
+  { code: "IN", dialCode: "91", flag: "🇮🇳" },
+  { code: "BR", dialCode: "55", flag: "🇧🇷" },
 ];
 
 // ─── PhoneInput ────────────────────────────────────────────────────────────────
@@ -137,14 +140,18 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
       setIsOpen(false);
     };
 
+    // 国名は翻訳キー（form:phone.countries.<コード>。en / ja / pt）から引く。
+    const countryName = (c: Country) => t(`phone.countries.${c.code}`);
+
     // 打った文字で国へ飛ぶ。国名の前方一致（大文字小文字を区別しない）。数字（先頭の + は無視）は国番号の前方一致。
     // 同じ 1 文字を続けて打ったときは、その文字で始まる国を順に巡る（"u" → United States → United Kingdom）。
     const findByText = (text: string, from: number) => {
       const query = text.toLowerCase().replace(/^\+/, "");
       if (query === "") return -1;
       const byDial = /^[0-9]+$/.test(query);
+      // 国名は、いま表示している言語の名前で照合する。
       const matches = (c: Country, q: string) =>
-        byDial ? c.dialCode.startsWith(q) : c.name.toLowerCase().startsWith(q);
+        byDial ? c.dialCode.startsWith(q) : countryName(c).toLowerCase().startsWith(q);
       // 国番号では巡らない（"44" は 4 で始まる番号の 2 つ目ではなく、44 そのもの）。
       const repeated = !byDial && query.length > 1 && query.split("").every((ch) => ch === query[0]);
       const q = repeated ? query[0] : query;
@@ -323,7 +330,7 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
                     aria-selected={selectedCountry.code === country.code}
                   >
                     <span aria-hidden="true">{country.flag}</span>
-                    <span className={styles.countryName}>{country.name}</span>
+                    <span className={styles.countryName}>{countryName(country)}</span>
                     <span className={styles.countryCode}>+{country.dialCode}</span>
                   </li>
                 ))}

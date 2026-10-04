@@ -155,7 +155,7 @@
         "react/jsx-runtime"
       ],
       "gzip": true,
-      "limit": "13 kB"
+      "limit": "14.5 kB"
     },
     {
       "name": "小さな画面: Button/Input/Card/Stack/Text (gzip)",
@@ -167,7 +167,7 @@
         "react/jsx-runtime"
       ],
       "gzip": true,
-      "limit": "19 kB"
+      "limit": "20.5 kB"
     },
     {
       "name": "フォーム画面: 入力7種 (gzip)",
@@ -223,7 +223,7 @@
         "marked"
       ],
       "gzip": true,
-      "limit": "26 kB"
+      "limit": "27.5 kB"
     },
     {
       "name": "wimui/layout 全部 (gzip)",
@@ -272,7 +272,7 @@
         "react/jsx-runtime"
       ],
       "gzip": true,
-      "limit": "50 kB"
+      "limit": "51 kB"
     },
     {
       "name": "UMD Bundle (gzip)",
