@@ -157,6 +157,13 @@ describe("PhoneInput", () => {
     expect(onCountryChange).not.toHaveBeenCalled();
   });
 
+  // 国旗は aria-hidden。国名と国番号の間に文字としての区切りが無いと、つながって読まれる。
+  it("separates the country name and the dial code in each option's text", () => {
+    render(<PhoneInput />);
+    fireEvent.click(screen.getByRole("combobox"));
+    expect(screen.getByRole("option", { name: "Japan +81" })).toBeInTheDocument();
+  });
+
   it("keeps the options out of the tab order", () => {
     render(<PhoneInput />);
     fireEvent.click(screen.getByRole("combobox"));
