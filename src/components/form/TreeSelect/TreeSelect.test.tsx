@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { render, screen, fireEvent, waitFor, act } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { TreeSelect, TreeSelectNode } from "./TreeSelect";
 import styles from "./tree-select.module.scss";
@@ -143,5 +143,18 @@ describe("TreeSelect", () => {
     expect(element.tagName).toBe("DIV");
     expect(element).toHaveClass(styles.root);
     expect(screen.getByRole("combobox")).toBeInTheDocument();
+  });
+
+  // T309: Escape は引き金の onKeyDown しか見ていなかった。フォーカスがパネルの中にあると閉じられなかった
+  it("closes on Escape pressed inside the panel and returns focus to the trigger", async () => {
+    render(<TreeSelect treeData={treeData} />);
+    const trigger = screen.getByRole("combobox");
+    fireEvent.click(trigger);
+    const item = screen.getAllByRole("treeitem")[0];
+    act(() => item.focus());
+    fireEvent.keyDown(item, { key: "Escape" });
+    await waitFor(() => expect(screen.queryByRole("tree")).not.toBeInTheDocument());
+    expect(trigger).toHaveAttribute("aria-expanded", "false");
+    expect(trigger).toHaveFocus();
   });
 });

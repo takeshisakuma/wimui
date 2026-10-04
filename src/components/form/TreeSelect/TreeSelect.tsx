@@ -291,7 +291,7 @@ export const TreeSelect = forwardRef<HTMLDivElement, TreeSelectProps>(({
           intent={error ? "danger" : "default"}
           width={width}
           fullWidth={fullWidth}
-          rightIcons={[{ name: "ChevronDownIcon", rotated: isOpen, onClick: handleToggle }]}
+          rightIcons={[{ name: "ChevronDownIcon", rotated: isOpen, onClick: handleToggle, decorative: true }]}
           className={classNames(
             isOpen && styles.open,
           )}
@@ -337,11 +337,22 @@ export const TreeSelect = forwardRef<HTMLDivElement, TreeSelectProps>(({
             <FocusTrap active={isOpen} initialFocus={false}>
               {/* パネルにも引き金と同じ名前を付ける。label が無いと aria-labelledby が空になり、名前の無い
                   dialog になっていた（axe の aria-dialog-name・serious）。 */}
+              {/* Escape はパネルの中でも受ける。引き金の onKeyDown しか見ていなかったので、フォーカスが
+                  パネルの中にあると閉じられなかった（T309）。dialog は操作を受ける入れ物で、jsx-a11y が
+                  非インタラクティブと見なすのは誤検出（CommandPalette と同じ扱い）。 */}
+              {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
               <div
                 role="dialog"
                 aria-modal="true"
                 aria-labelledby={labelId || ariaLabelledBy}
                 aria-label={label ? undefined : (ariaLabel || placeholderStr)}
+                onKeyDown={(e) => {
+                  if (e.key !== "Escape") return;
+                  e.preventDefault();
+                  e.stopPropagation();
+                  setIsOpen(false);
+                  triggerRef.current?.focus();
+                }}
               >
                 <TreeView
                   multiSelect={multiple}

@@ -255,6 +255,8 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
                   name: "ChevronDownIcon",
                   rotated: isOpen,
                   onClick: handleInputClick,
+                  // 開閉は入力欄の Enter / Space / ↓ が持つ。山形はポインタ用
+                  decorative: true,
                 },
               ]}
             >

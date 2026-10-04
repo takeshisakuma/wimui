@@ -55,6 +55,13 @@ export interface InputProps extends Omit<React.ComponentPropsWithoutRef<"input">
   /** Aria label for the right icon button */
   rightIconAriaLabel?: string;
   /**
+   * Treats the clickable right icon as a pointer-only affordance: it stays
+   * clickable but leaves the tab order and is hidden from assistive technology.
+   * Use it when the field already does the same thing from the keyboard.
+   * @default false
+   */
+  rightIconDecorative?: boolean;
+  /**
    * Static text shown after the field, inside the same shell — a unit such as
    * `kg`, `%` or `円`. It is announced with the field via `aria-describedby`,
    * so the unit does not have to be repeated in the label.
@@ -101,6 +108,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       showPasswordAriaLabel,
       hidePasswordAriaLabel,
       rightIconAriaLabel,
+      rightIconDecorative = false,
       suffix,
       styles: stylesProp,
       asChild = false,
@@ -182,6 +190,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           onClick: onRightIconClick,
           color: rightIconColor,
           ariaLabel: resolvedRightIconAriaLabel,
+          decorative: rightIconDecorative,
           className: rightIconClassName,
           rotated: rightIconRotated,
         });

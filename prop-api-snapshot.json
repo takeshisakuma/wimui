@@ -2341,6 +2341,9 @@
     "ColorInput.rightIconColor": {
       "type": "React.ComponentProps<typeof Icon>[\"color\"]"
     },
+    "ColorInput.rightIconDecorative": {
+      "type": "boolean"
+    },
     "ColorInput.rightIconRotated": {
       "type": "boolean"
     },
@@ -2449,6 +2452,9 @@
     },
     "ColorPicker.rightIconColor": {
       "type": "React.ComponentProps<typeof Icon>[\"color\"]"
+    },
+    "ColorPicker.rightIconDecorative": {
+      "type": "boolean"
     },
     "ColorPicker.rightIconRotated": {
       "type": "boolean"
@@ -3109,6 +3115,9 @@
     },
     "CreditCardInput.rightIconColor": {
       "type": "React.ComponentProps<typeof Icon>[\"color\"]"
+    },
+    "CreditCardInput.rightIconDecorative": {
+      "type": "boolean"
     },
     "CreditCardInput.rightIconRotated": {
       "type": "boolean"
@@ -5404,6 +5413,10 @@
       "required": false,
       "type": "React.ComponentProps<typeof Icon>[\"color\"]"
     },
+    "Input.rightIconDecorative": {
+      "required": false,
+      "type": "boolean"
+    },
     "Input.rightIconRotated": {
       "required": false,
       "type": "boolean"
@@ -5528,6 +5541,10 @@
         "color": {
           "required": false,
           "type": "React.ComponentProps<typeof Icon>[\"color\"]"
+        },
+        "decorative": {
+          "required": false,
+          "type": "boolean"
         },
         "name": {
           "required": true,
@@ -5673,6 +5690,9 @@
     },
     "InputMask.rightIconColor": {
       "type": "React.ComponentProps<typeof Icon>[\"color\"]"
+    },
+    "InputMask.rightIconDecorative": {
+      "type": "boolean"
     },
     "InputMask.rightIconRotated": {
       "type": "boolean"
@@ -7300,6 +7320,9 @@
     "PasswordInput.rightIconColor": {
       "type": "React.ComponentProps<typeof Icon>[\"color\"]"
     },
+    "PasswordInput.rightIconDecorative": {
+      "type": "boolean"
+    },
     "PasswordInput.rightIconRotated": {
       "type": "boolean"
     },
@@ -8853,6 +8876,9 @@
     },
     "SearchInput.rightIconColor": {
       "type": "React.ComponentProps<typeof Icon>[\"color\"]"
+    },
+    "SearchInput.rightIconDecorative": {
+      "type": "boolean"
     },
     "SearchInput.rightIconRotated": {
       "type": "boolean"
@@ -10986,6 +11012,9 @@
     },
     "TimePicker.rightIconColor": {
       "type": "React.ComponentProps<typeof Icon>[\"color\"]"
+    },
+    "TimePicker.rightIconDecorative": {
+      "type": "boolean"
     },
     "TimePicker.rightIconRotated": {
       "type": "boolean"

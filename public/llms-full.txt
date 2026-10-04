@@ -1010,6 +1010,10 @@ Useful for using the button styles with Link components (e.g. from React Router 
     - `showPasswordAriaLabel: string` — Aria label for the show-password toggle
     - `hidePasswordAriaLabel: string` — Aria label for the hide-password toggle
     - `rightIconAriaLabel: string` — Aria label for the right icon button
+    - `rightIconDecorative: boolean` = false — Treats the clickable right icon as a pointer-only affordance: it stays
+clickable but leaves the tab order and is hidden from assistive technology.
+Use it when the field already does the same thing from the keyboard.
+@default false
     - `suffix: React.ReactNode` — Static text shown after the field, inside the same shell — a unit such as
 `kg`, `%` or `円`. It is announced with the field via `aria-describedby`,
 so the unit does not have to be repeated in the label.
@@ -1038,6 +1042,10 @@ so the unit does not have to be repeated in the label.
     - `showPasswordAriaLabel: string` — Aria label for the show-password toggle
     - `hidePasswordAriaLabel: string` — Aria label for the hide-password toggle
     - `rightIconAriaLabel: string` — Aria label for the right icon button
+    - `rightIconDecorative: boolean` = false — Treats the clickable right icon as a pointer-only affordance: it stays
+clickable but leaves the tab order and is hidden from assistive technology.
+Use it when the field already does the same thing from the keyboard.
+@default false
     - `suffix: React.ReactNode` — Static text shown after the field, inside the same shell — a unit such as
 `kg`, `%` or `円`. It is announced with the field via `aria-describedby`,
 so the unit does not have to be repeated in the label.
@@ -1109,6 +1117,10 @@ so the unit does not have to be repeated in the label.
     - `showPasswordAriaLabel: string` — Aria label for the show-password toggle
     - `hidePasswordAriaLabel: string` — Aria label for the hide-password toggle
     - `rightIconAriaLabel: string` — Aria label for the right icon button
+    - `rightIconDecorative: boolean` = false — Treats the clickable right icon as a pointer-only affordance: it stays
+clickable but leaves the tab order and is hidden from assistive technology.
+Use it when the field already does the same thing from the keyboard.
+@default false
     - `suffix: React.ReactNode` — Static text shown after the field, inside the same shell — a unit such as
 `kg`, `%` or `円`. It is announced with the field via `aria-describedby`,
 so the unit does not have to be repeated in the label.
@@ -1287,6 +1299,10 @@ SCSS には誰も付けない `.default_intent` が「temporary name」のまま
     - `showPasswordAriaLabel: string` — Aria label for the show-password toggle
     - `hidePasswordAriaLabel: string` — Aria label for the hide-password toggle
     - `rightIconAriaLabel: string` — Aria label for the right icon button
+    - `rightIconDecorative: boolean` = false — Treats the clickable right icon as a pointer-only affordance: it stays
+clickable but leaves the tab order and is hidden from assistive technology.
+Use it when the field already does the same thing from the keyboard.
+@default false
     - `suffix: React.ReactNode` — Static text shown after the field, inside the same shell — a unit such as
 `kg`, `%` or `円`. It is announced with the field via `aria-describedby`,
 so the unit does not have to be repeated in the label.
@@ -1343,6 +1359,10 @@ make room rather than running underneath it.
     - `showPasswordAriaLabel: string` — Aria label for the show-password toggle
     - `hidePasswordAriaLabel: string` — Aria label for the hide-password toggle
     - `rightIconAriaLabel: string` — Aria label for the right icon button
+    - `rightIconDecorative: boolean` = false — Treats the clickable right icon as a pointer-only affordance: it stays
+clickable but leaves the tab order and is hidden from assistive technology.
+Use it when the field already does the same thing from the keyboard.
+@default false
     - `suffix: React.ReactNode` — Static text shown after the field, inside the same shell — a unit such as
 `kg`, `%` or `円`. It is announced with the field via `aria-describedby`,
 so the unit does not have to be repeated in the label.
@@ -1419,6 +1439,10 @@ box and receives a **1-based** position — the first box is `1`, not `0`.
     - `showPasswordAriaLabel: string` — Aria label for the show-password toggle
     - `hidePasswordAriaLabel: string` — Aria label for the hide-password toggle
     - `rightIconAriaLabel: string` — Aria label for the right icon button
+    - `rightIconDecorative: boolean` = false — Treats the clickable right icon as a pointer-only affordance: it stays
+clickable but leaves the tab order and is hidden from assistive technology.
+Use it when the field already does the same thing from the keyboard.
+@default false
     - `suffix: React.ReactNode` — Static text shown after the field, inside the same shell — a unit such as
 `kg`, `%` or `円`. It is announced with the field via `aria-describedby`,
 so the unit does not have to be repeated in the label.
@@ -1579,6 +1603,10 @@ and image files pasted or dropped into the editor are uploaded and inserted. The
     - `showPasswordAriaLabel: string` — Aria label for the show-password toggle
     - `hidePasswordAriaLabel: string` — Aria label for the hide-password toggle
     - `rightIconAriaLabel: string` — Aria label for the right icon button
+    - `rightIconDecorative: boolean` = false — Treats the clickable right icon as a pointer-only affordance: it stays
+clickable but leaves the tab order and is hidden from assistive technology.
+Use it when the field already does the same thing from the keyboard.
+@default false
     - `suffix: React.ReactNode` — Static text shown after the field, inside the same shell — a unit such as
 `kg`, `%` or `円`. It is announced with the field via `aria-describedby`,
 so the unit does not have to be repeated in the label.
@@ -1761,6 +1789,10 @@ but the toggle only shows a chevron, so it needs one of its own.
     - `showPasswordAriaLabel: string` — Aria label for the show-password toggle
     - `hidePasswordAriaLabel: string` — Aria label for the hide-password toggle
     - `rightIconAriaLabel: string` — Aria label for the right icon button
+    - `rightIconDecorative: boolean` = false — Treats the clickable right icon as a pointer-only affordance: it stays
+clickable but leaves the tab order and is hidden from assistive technology.
+Use it when the field already does the same thing from the keyboard.
+@default false
     - `suffix: React.ReactNode` — Static text shown after the field, inside the same shell — a unit such as
 `kg`, `%` or `円`. It is announced with the field via `aria-describedby`,
 so the unit does not have to be repeated in the label.
