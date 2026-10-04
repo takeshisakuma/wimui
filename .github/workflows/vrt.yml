@@ -72,6 +72,12 @@ on:
         description: "Update baseline snapshots and commit back"
         type: boolean
         default: false
+      # update が書き換える範囲を決めるときの比較の相手（T258）。既定は main。
+      # 別のブランチに積んだブランチ（stacked）で update するときは、積んだ先を渡す。
+      scope_base:
+        description: "Base ref for deciding which baselines the update may rewrite"
+        type: string
+        default: "main"
 
 # 同一ブランチの古い compare を自動キャンセル（update dispatch は別グループ）
 concurrency:
@@ -129,8 +135,39 @@ jobs:
         if: ${{ github.event.inputs.update_snapshots != 'true' }}
         run: npx playwright test vrt/vrt.spec.ts --shard=${{ matrix.shard }}/4
 
-      - name: Run VRT (update snapshots)
+      # **update が書き換えてよい範囲を、ブランチの変更から決める**（T258・2026-10-04）。
+      # 全量の撮り直しは、PR と無関係の絵を毎回 55〜91 枚書き換える（描画の揺れ。compare は main 版の
+      # ベースラインで通る）。手で仕分けて main 版へ戻していたのを、ここで決める。
+      # 決め方と割り切りは scripts/vrt-update-scope.js。**一覧が取れないときは all に倒す。**
+      - name: Decide update scope
+        id: scope
         if: ${{ github.event.inputs.update_snapshots == 'true' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SCOPE_BASE: ${{ github.event.inputs.scope_base || 'main' }}
+          SCOPE_HEAD: ${{ github.head_ref || github.ref_name }}
+        run: |
+          # compare API は 1 回に 300 ファイルまで。届いていたら「切れた」とみなして all に倒す。
+          if gh api "repos/${{ github.repository }}/compare/${SCOPE_BASE}...${SCOPE_HEAD}" --jq '.files[].filename' > /tmp/vrt-changed-files.txt \
+            && [ "$(wc -l < /tmp/vrt-changed-files.txt)" -lt 300 ]; then
+            node scripts/vrt-update-scope.js --files /tmp/vrt-changed-files.txt --ids-out /tmp/vrt-owned-ids.txt > /tmp/vrt-scope.json
+          else
+            node scripts/vrt-update-scope.js --force-all "変更ファイルの一覧が取れなかった（API の失敗か、300 件以上）" --ids-out /tmp/vrt-owned-ids.txt > /tmp/vrt-scope.json
+          fi
+          cat /tmp/vrt-scope.json
+          echo "mode=$(node -p "require('/tmp/vrt-scope.json').mode")" >> "$GITHUB_OUTPUT"
+          echo "ids=$(node -p "require('/tmp/vrt-scope.json').ids")" >> "$GITHUB_OUTPUT"
+          if [ "${{ matrix.shard }}" = "1" ]; then
+            {
+              echo "### VRT update の範囲"
+              echo ""
+              echo "- 比較: \`${SCOPE_BASE}...${SCOPE_HEAD}\`（変更ファイル $(wc -l < /tmp/vrt-changed-files.txt) 件）"
+              echo "- 判定: \`$(cat /tmp/vrt-scope.json)\`"
+            } >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Run VRT (update snapshots — all)
+        if: ${{ github.event.inputs.update_snapshots == 'true' && steps.scope.outputs.mode == 'all' }}
         # **`=all` は必須**（2026-07-31・T45）。Playwright 1.51+ の素の
         # `--update-snapshots` は既定が `changed` ＝「比較に失敗した分だけ書き戻す」で、
         # その合否は `vrt.spec.ts` の `threshold` / `maxDiffPixels` が決める。つまり
@@ -142,6 +179,21 @@ jobs:
         # 操作であって「差分検知」ではないので、閾値の判断を挟ませない。
         # 検知側の盲点そのものは T49 で別途扱う。
         run: npx playwright test vrt/vrt.spec.ts --update-snapshots=all --shard=${{ matrix.shard }}/4
+
+      # scoped の 1 段目: 全量を流し、**比較に落ちた絵と新しい絵だけ**を書き換える。
+      # 判定は compare と同じ比較器・同じ閾値（Playwright 自身がやる）。描画の揺れは書き換わらない。
+      # `changed` だけだと閾値未満の変更が残る（上の T45）ので、PR が持つ部品は 2 段目で撮り直す。
+      - name: Run VRT (update snapshots — changed only)
+        if: ${{ github.event.inputs.update_snapshots == 'true' && steps.scope.outputs.mode == 'scoped' }}
+        run: npx playwright test vrt/vrt.spec.ts --update-snapshots=changed --shard=${{ matrix.shard }}/4
+
+      # scoped の 2 段目: この PR が触った部品のストーリーは、閾値未満の変更もベースラインへ入れる。
+      # シャードによっては対象が 0 本になるので `--pass-with-no-tests`。
+      - name: Run VRT (update snapshots — owned stories)
+        if: ${{ github.event.inputs.update_snapshots == 'true' && steps.scope.outputs.mode == 'scoped' && steps.scope.outputs.ids != '0' }}
+        env:
+          VRT_STORY_IDS_FILE: /tmp/vrt-owned-ids.txt
+        run: npx playwright test vrt/vrt.spec.ts --update-snapshots=all --pass-with-no-tests --shard=${{ matrix.shard }}/4
 
       - name: Collect updated snapshots
         if: ${{ github.event.inputs.update_snapshots == 'true' }}

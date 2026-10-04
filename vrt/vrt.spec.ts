@@ -66,10 +66,27 @@ const stories = Object.values(index.entries).filter(
 const themes = process.env.THEME ? [process.env.THEME] : ["light", "dark"];
 const filter = process.env.FILTER || "";
 
+// update の 2 段目（`vrt.yml`・T258）: この PR が持つ部品のストーリーだけを撮り直す。
+// ファイルは `scripts/vrt-update-scope.js --ids-out` が書く（1 行 1 ID）。未設定なら全量。
+// **設定されているのに読めない・空のときは 1 本も撮らない**（全量に倒すと、範囲を絞った意味が消える）。
+const onlyIdsFile = process.env.VRT_STORY_IDS_FILE;
+const onlyIds = onlyIdsFile
+  ? new Set(
+      (fs.existsSync(onlyIdsFile) ? fs.readFileSync(onlyIdsFile, "utf-8") : "")
+        .split("\n")
+        .map((line) => line.trim())
+        .filter(Boolean),
+    )
+  : null;
+
 test.describe("Visual Regression Testing", () => {
   for (const theme of themes) {
     test.describe(`${theme} theme`, () => {
       for (const story of stories) {
+        if (onlyIds && !onlyIds.has(story.id)) {
+          continue;
+        }
+
         // Skip if title doesn't match filter
         if (
           filter &&

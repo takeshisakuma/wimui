@@ -441,6 +441,7 @@
     "prove:focus-indicator": "node scripts/prove-focus-indicator.mjs",
     "prove:radius-tokens": "node scripts/prove-radius-tokens.mjs",
     "prove:opacity-forwards": "node scripts/prove-opacity-forwards.mjs",
+    "prove:vrt-update-scope": "node scripts/prove-vrt-update-scope.mjs",
     "prove:prop-api": "node scripts/prove-prop-api.mjs",
     "skills:link": "node scripts/link-skills.mjs",
     "check:skills-mirror": "node scripts/link-skills.mjs --check",
