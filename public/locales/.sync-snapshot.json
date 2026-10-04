@@ -13808,7 +13808,8 @@
       "required": "Required"
     },
     "phone": {
-      "number": "Phone number"
+      "number": "Phone number",
+      "select_country": "Select country"
     },
     "select": {
       "no_options": "No options found",
