@@ -75,7 +75,8 @@
     "weak": "Fraca"
   },
   "phone": {
-    "number": "Número de telefone"
+    "number": "Número de telefone",
+    "select_country": "Selecionar país"
   },
   "prompt_input": {
     "aria_label": "Campo de prompt",

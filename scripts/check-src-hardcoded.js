@@ -115,9 +115,10 @@ for (const file of files) {
  * ラチェット。減らしたらこの値を下げてコミットする。**増やすことは許さない。**
  * 内訳（2026-08-01）: QueryBuilder 20（演算子ラベル）/ PhoneInput 4（国名と
  * "Select country"）/ Carousel 2（DEFAULT_LABELS）/ GanttChart 1。
+ * 2026-10-04: PhoneInput の "Select country" を翻訳キー（form:phone.select_country）へ移して 26（T295）。
  * いずれも**英語のフォールバックが UI に出る**形なので、本来は t() に通したい。
  */
-const BASELINE = 27;
+const BASELINE = 26;
 
 const scope = probeFiles.length > 0 ? `${probeFiles.length} probe file(s)` : `${files.length} files`;
 console.log(`--- src の生 UI 文字列 (${scope}) ---\n`);
