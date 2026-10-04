@@ -34,11 +34,24 @@ export const FocusTrap = ({
 }: FocusTrapProps) => {
   const rootRef = useRef<HTMLDivElement>(null);
   const previouslyFocusedElement = useRef<HTMLElement | null>(null);
+  const capturedForActive = useRef(false);
+
+  // 「開く前のフォーカス」は、**描画の時点で**覚える。effect の中で読むと遅い ── 子の effect は親の
+  // effect より先に走るので、中身が自分でフォーカスを取る部品（CommandPalette の検索欄）では、
+  // ここに来た時点の activeElement が既に罠の中の要素になっている。それを「前のフォーカス」として
+  // 覚えると、閉じたときに消えた要素へ戻そうとして、フォーカスが body へ落ちる（T308）。
+  // 描画は子の effect より前なので、開いたボタンがまだ activeElement にいる。
+  /* eslint-disable react-hooks/refs -- 読むだけで、描画の結果には使わない（閉じたときの戻り先を覚える） */
+  if (active && !capturedForActive.current && typeof document !== "undefined") {
+    previouslyFocusedElement.current = document.activeElement as HTMLElement | null;
+    capturedForActive.current = true;
+  } else if (!active && capturedForActive.current) {
+    capturedForActive.current = false;
+  }
+  /* eslint-enable react-hooks/refs */
 
   useEffect(() => {
     if (!active) return;
-
-    previouslyFocusedElement.current = document.activeElement as HTMLElement;
 
     const root = rootRef.current;
     if (!root) return;
@@ -119,8 +132,10 @@ export const FocusTrap = ({
 
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
-      if (previouslyFocusedElement.current) {
-        previouslyFocusedElement.current.focus();
+      // 戻り先が文書から消えていたら何もしない（消えた要素への focus() は効かず、フォーカスは動かない）。
+      const previous = previouslyFocusedElement.current;
+      if (previous && previous.isConnected) {
+        previous.focus();
       }
     };
   }, [active, initialFocus]);

@@ -197,7 +197,7 @@ export type MenubarMenuProps = React.ComponentPropsWithoutRef<"div"> & {
 
 const MenubarMenu = React.forwardRef<HTMLDivElement, MenubarMenuProps>(
   ({ value, disabled = false, className, children, ...props }, ref) => {
-    const { openMenuId, setOpenMenuId } = useMenubar();
+    const { openMenuId, setOpenMenuId, focusTrigger } = useMenubar();
     const reactId = useId();
     const triggerId = `wim-menubar-trigger-${value}-${reactId}`;
     const contentId = `wim-menubar-content-${value}-${reactId}`;
@@ -206,7 +206,12 @@ const MenubarMenu = React.forwardRef<HTMLDivElement, MenubarMenuProps>(
     const open = () => {
       if (!disabled) setOpenMenuId(value);
     };
-    const close = () => setOpenMenuId(null);
+    // 項目を選んだとき・Tab のときに呼ぶ。メニューの中にフォーカスがあるまま閉じると、面ごと消えて
+    // フォーカスが body へ落ちる（T307。Escape のときだけ引き金へ戻していた）。先に引き金へ戻す。
+    const close = () => {
+      focusTrigger(value);
+      setOpenMenuId(null);
+    };
     const toggle = () => {
       if (disabled) return;
       setOpenMenuId(isOpen ? null : value);
@@ -314,7 +319,7 @@ export type MenubarContentProps = React.ComponentPropsWithoutRef<"div"> & {
 
 const MenubarContent = React.forwardRef<HTMLDivElement, MenubarContentProps>(
   ({ align = "start", className, children, ...props }, ref) => {
-    const { contentId, triggerId, isOpen } = useMenubarMenu();
+    const { contentId, triggerId, isOpen, close } = useMenubarMenu();
     const [focusedIndex, setFocusedIndex] = useState(-1);
     const [wasOpen, setWasOpen] = useState(isOpen);
     const contentRef = useRef<HTMLDivElement | null>(null);
@@ -367,6 +372,11 @@ const MenubarContent = React.forwardRef<HTMLDivElement, MenubarContentProps>(
         case "End":
           event.preventDefault();
           setFocusedIndex(items.length - 1);
+          break;
+        case "Tab":
+          // 以前は分岐が無く、メニューが開いたまま、フォーカスだけ隣の項目へ移っていた（T302 / T307）。
+          // 閉じて、既定の動作に任せる（close がフォーカスを引き金へ戻すので、引き金の次へ進む）。
+          close();
           break;
         default:
           break;
