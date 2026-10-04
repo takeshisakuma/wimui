@@ -397,7 +397,24 @@
       "rule": "ルール",
       "rule_added": "ルールを追加しました",
       "true": "有効",
-      "value": "値"
+      "value": "値",
+      "operators": {
+        "equal": "等しい",
+        "not_equal": "等しくない",
+        "contains": "含む",
+        "starts_with": "で始まる",
+        "ends_with": "で終わる",
+        "is_null": "空である",
+        "is_not_null": "空でない",
+        "greater_than": "より大きい",
+        "less_than": "より小さい",
+        "greater_than_or_equal": "以上",
+        "less_than_or_equal": "以下",
+        "after": "より後",
+        "before": "より前",
+        "after_or_on": "以降",
+        "before_or_on": "以前"
+      }
     }
   },
   "rating": {
@@ -675,5 +692,11 @@
   },
   "pivottable": {
     "total": "合計"
+  },
+  "carousel": {
+    "slide": "スライド {{number}}",
+    "prev_slide": "前のスライド",
+    "next_slide": "次のスライド",
+    "go_to_slide": "スライド {{number}} へ移動"
   }
 }

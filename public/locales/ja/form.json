@@ -76,7 +76,19 @@
   },
   "phone": {
     "number": "電話番号",
-    "select_country": "国を選択"
+    "select_country": "国を選択",
+    "countries": {
+      "US": "アメリカ合衆国",
+      "JP": "日本",
+      "GB": "イギリス",
+      "AU": "オーストラリア",
+      "DE": "ドイツ",
+      "FR": "フランス",
+      "CN": "中国",
+      "KR": "韓国",
+      "IN": "インド",
+      "BR": "ブラジル"
+    }
   },
   "prompt_input": {
     "aria_label": "プロンプト入力",

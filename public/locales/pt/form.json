@@ -76,7 +76,19 @@
   },
   "phone": {
     "number": "Número de telefone",
-    "select_country": "Selecionar país"
+    "select_country": "Selecionar país",
+    "countries": {
+      "US": "Estados Unidos",
+      "JP": "Japão",
+      "GB": "Reino Unido",
+      "AU": "Austrália",
+      "DE": "Alemanha",
+      "FR": "França",
+      "CN": "China",
+      "KR": "Coreia do Sul",
+      "IN": "Índia",
+      "BR": "Brasil"
+    }
   },
   "prompt_input": {
     "aria_label": "Campo de prompt",

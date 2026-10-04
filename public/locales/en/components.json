@@ -591,7 +591,24 @@
       "field_birthday": "Birthday",
       "field_is_active": "Is Active",
       "true": "True",
-      "false": "False"
+      "false": "False",
+      "operators": {
+        "equal": "Equals",
+        "not_equal": "Does not equal",
+        "contains": "Contains",
+        "starts_with": "Starts with",
+        "ends_with": "Ends with",
+        "is_null": "Is null",
+        "is_not_null": "Is not null",
+        "greater_than": "Greater than",
+        "less_than": "Less than",
+        "greater_than_or_equal": "Greater than or equal",
+        "less_than_or_equal": "Less than or equal",
+        "after": "After",
+        "before": "Before",
+        "after_or_on": "After or on",
+        "before_or_on": "Before or on"
+      }
     }
   },
   "operators": {
@@ -675,5 +692,11 @@
   },
   "pivottable": {
     "total": "Total"
+  },
+  "carousel": {
+    "slide": "Slide {{number}}",
+    "prev_slide": "Previous slide",
+    "next_slide": "Next slide",
+    "go_to_slide": "Go to slide {{number}}"
   }
 }

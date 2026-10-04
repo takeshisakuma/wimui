@@ -397,7 +397,24 @@
       "rule": "Regra",
       "rule_added": "Regra adicionada",
       "true": "Verdadeiro",
-      "value": "Valor"
+      "value": "Valor",
+      "operators": {
+        "equal": "Igual a",
+        "not_equal": "Diferente de",
+        "contains": "Contém",
+        "starts_with": "Começa com",
+        "ends_with": "Termina com",
+        "is_null": "É nulo",
+        "is_not_null": "Não é nulo",
+        "greater_than": "Maior que",
+        "less_than": "Menor que",
+        "greater_than_or_equal": "Maior ou igual a",
+        "less_than_or_equal": "Menor ou igual a",
+        "after": "Depois de",
+        "before": "Antes de",
+        "after_or_on": "A partir de",
+        "before_or_on": "Até"
+      }
     }
   },
   "rating": {
@@ -675,5 +692,11 @@
   },
   "pivottable": {
     "total": "Total"
+  },
+  "carousel": {
+    "slide": "Slide {{number}}",
+    "prev_slide": "Slide anterior",
+    "next_slide": "Próximo slide",
+    "go_to_slide": "Ir para o slide {{number}}"
   }
 }

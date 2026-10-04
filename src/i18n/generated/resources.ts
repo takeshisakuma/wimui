@@ -193,7 +193,24 @@ export const wimResources: WimResources = {
           "operator": "Operator",
           "value": "Value",
           "true": "True",
-          "false": "False"
+          "false": "False",
+          "operators": {
+            "equal": "Equals",
+            "not_equal": "Does not equal",
+            "contains": "Contains",
+            "starts_with": "Starts with",
+            "ends_with": "Ends with",
+            "is_null": "Is null",
+            "is_not_null": "Is not null",
+            "greater_than": "Greater than",
+            "less_than": "Less than",
+            "greater_than_or_equal": "Greater than or equal",
+            "less_than_or_equal": "Less than or equal",
+            "after": "After",
+            "before": "Before",
+            "after_or_on": "After or on",
+            "before_or_on": "Before or on"
+          }
         }
       },
       "sortable_list": {
@@ -256,6 +273,12 @@ export const wimResources: WimResources = {
       },
       "pivottable": {
         "total": "Total"
+      },
+      "carousel": {
+        "slide": "Slide {{number}}",
+        "prev_slide": "Previous slide",
+        "next_slide": "Next slide",
+        "go_to_slide": "Go to slide {{number}}"
       }
     },
     "data-display": {
@@ -299,7 +322,19 @@ export const wimResources: WimResources = {
         "required": "Required"
       },
       "phone": {
-        "select_country": "Select country"
+        "select_country": "Select country",
+        "countries": {
+          "US": "United States",
+          "JP": "Japan",
+          "GB": "United Kingdom",
+          "AU": "Australia",
+          "DE": "Germany",
+          "FR": "France",
+          "CN": "China",
+          "KR": "South Korea",
+          "IN": "India",
+          "BR": "Brazil"
+        }
       },
       "select": {
         "no_options": "No options found"
@@ -576,7 +611,24 @@ export const wimResources: WimResources = {
           "rule": "ルール",
           "rule_added": "ルールを追加しました",
           "true": "有効",
-          "value": "値"
+          "value": "値",
+          "operators": {
+            "equal": "等しい",
+            "not_equal": "等しくない",
+            "contains": "含む",
+            "starts_with": "で始まる",
+            "ends_with": "で終わる",
+            "is_null": "空である",
+            "is_not_null": "空でない",
+            "greater_than": "より大きい",
+            "less_than": "より小さい",
+            "greater_than_or_equal": "以上",
+            "less_than_or_equal": "以下",
+            "after": "より後",
+            "before": "より前",
+            "after_or_on": "以降",
+            "before_or_on": "以前"
+          }
         }
       },
       "signature": {
@@ -615,6 +667,12 @@ export const wimResources: WimResources = {
       },
       "pivottable": {
         "total": "合計"
+      },
+      "carousel": {
+        "slide": "スライド {{number}}",
+        "prev_slide": "前のスライド",
+        "next_slide": "次のスライド",
+        "go_to_slide": "スライド {{number}} へ移動"
       }
     },
     "data-display": {
@@ -688,7 +746,19 @@ export const wimResources: WimResources = {
         "weak": "弱い"
       },
       "phone": {
-        "select_country": "国を選択"
+        "select_country": "国を選択",
+        "countries": {
+          "US": "アメリカ合衆国",
+          "JP": "日本",
+          "GB": "イギリス",
+          "AU": "オーストラリア",
+          "DE": "ドイツ",
+          "FR": "フランス",
+          "CN": "中国",
+          "KR": "韓国",
+          "IN": "インド",
+          "BR": "ブラジル"
+        }
       },
       "prompt_input": {
         "aria_label": "プロンプト入力",
@@ -935,7 +1005,24 @@ export const wimResources: WimResources = {
           "rule": "Regra",
           "rule_added": "Regra adicionada",
           "true": "Verdadeiro",
-          "value": "Valor"
+          "value": "Valor",
+          "operators": {
+            "equal": "Igual a",
+            "not_equal": "Diferente de",
+            "contains": "Contém",
+            "starts_with": "Começa com",
+            "ends_with": "Termina com",
+            "is_null": "É nulo",
+            "is_not_null": "Não é nulo",
+            "greater_than": "Maior que",
+            "less_than": "Menor que",
+            "greater_than_or_equal": "Maior ou igual a",
+            "less_than_or_equal": "Menor ou igual a",
+            "after": "Depois de",
+            "before": "Antes de",
+            "after_or_on": "A partir de",
+            "before_or_on": "Até"
+          }
         }
       },
       "signature": {
@@ -974,6 +1061,12 @@ export const wimResources: WimResources = {
       },
       "pivottable": {
         "total": "Total"
+      },
+      "carousel": {
+        "slide": "Slide {{number}}",
+        "prev_slide": "Slide anterior",
+        "next_slide": "Próximo slide",
+        "go_to_slide": "Ir para o slide {{number}}"
       }
     },
     "data-display": {
@@ -1047,7 +1140,19 @@ export const wimResources: WimResources = {
         "weak": "Fraca"
       },
       "phone": {
-        "select_country": "Selecionar país"
+        "select_country": "Selecionar país",
+        "countries": {
+          "US": "Estados Unidos",
+          "JP": "Japão",
+          "GB": "Reino Unido",
+          "AU": "Austrália",
+          "DE": "Alemanha",
+          "FR": "França",
+          "CN": "China",
+          "KR": "Coreia do Sul",
+          "IN": "Índia",
+          "BR": "Brasil"
+        }
       },
       "prompt_input": {
         "aria_label": "Campo de prompt",
