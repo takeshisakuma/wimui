@@ -84,13 +84,18 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
     const generatedId = useId();
     const inputId = `wim-phone-input-${generatedId}`;
     const labelId = label ? `${inputId}-label` : undefined;
-    // 国の引き金と、開いたリストの両方に同じ名前を付ける（label があればそちらを aria-labelledby で指す）。
+    // 国の引き金と、開いたリストの両方に同じ名前を付ける。フィールドの label は番号の入力欄の名前なので、
+    // 国の選択には使わない（以前は label があると、国の引き金まで「電話番号」と読まれていた）。
     const { t } = useWimTranslation("form");
-    const countryAriaLabel = label ? undefined : t("phone.select_country");
+    const countryAriaLabel = t("phone.select_country");
+    const listboxId = `${inputId}-countries`;
+    const optionId = (index: number) => `${inputId}-country-${index}`;
     const errorId = error ? `${inputId}-error` : undefined;
 
     const [isOpen, setIsOpen] = useState(false);
+    const [activeIndex, setActiveIndex] = useState(-1);
     const containerRef = useRef<HTMLDivElement>(null);
+    const listRef = useRef<HTMLUListElement>(null);
 
     // Handle click outside
     useEffect(() => {
@@ -117,6 +122,64 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
       onChange?.(e.target.value);
     };
 
+    const lastIndex = PHONE_COUNTRIES.length - 1;
+    const openList = (at?: number) => {
+      const selectedIndex = PHONE_COUNTRIES.findIndex((c) => c.code === selectedCountry.code);
+      setActiveIndex(at ?? Math.max(selectedIndex, 0));
+      setIsOpen(true);
+    };
+    const selectCountry = (index: number) => {
+      const country = PHONE_COUNTRIES[index];
+      if (!country) return;
+      onCountryChange?.(country.code);
+      setIsOpen(false);
+    };
+
+    // 引き金は select-only の combobox。フォーカスは引き金に残し、キーは全部ここで受ける
+    // （ModelSelector と同じ形）。以前は各項目が Tab の停止点で、矢印キーも Esc も効かなかった。
+    const handleTriggerKeyDown = (e: React.KeyboardEvent) => {
+      if (disabled) return;
+      switch (e.key) {
+        case "ArrowDown":
+        case "ArrowUp":
+          e.preventDefault();
+          if (!isOpen) openList();
+          else {
+            const delta = e.key === "ArrowDown" ? 1 : -1;
+            setActiveIndex((prev) => (prev + delta + PHONE_COUNTRIES.length) % PHONE_COUNTRIES.length);
+          }
+          break;
+        case "Home":
+        case "End":
+          e.preventDefault();
+          if (isOpen) setActiveIndex(e.key === "Home" ? 0 : lastIndex);
+          else openList(e.key === "Home" ? 0 : lastIndex);
+          break;
+        case "Enter":
+        case " ":
+          e.preventDefault();
+          if (!isOpen) openList();
+          else selectCountry(activeIndex);
+          break;
+        case "Escape":
+          if (isOpen) {
+            e.preventDefault();
+            setIsOpen(false);
+          }
+          break;
+        case "Tab":
+          setIsOpen(false);
+          break;
+      }
+    };
+
+    useEffect(() => {
+      if (isOpen && activeIndex >= 0) {
+        const items = listRef.current?.querySelectorAll('[role="option"]');
+        (items?.[activeIndex] as HTMLElement | undefined)?.scrollIntoView?.({ block: "nearest" });
+      }
+    }, [activeIndex, isOpen]);
+
     return (
       <FieldTemplate
         label={label}
@@ -142,12 +205,25 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
           <div className={styles.countryWrapper}>
             <button
               type="button"
+              // 名前は aria-label、値は中の文字（国番号）。
+              role="combobox"
               className={styles.countryTrigger}
-              onClick={() => !disabled && setIsOpen(!isOpen)}
+              onClick={() => {
+                if (disabled) return;
+                if (isOpen) setIsOpen(false);
+                else openList();
+              }}
+              onKeyDown={handleTriggerKeyDown}
+              // Space の click は keyup で起きるブラウザがある。keydown で選んだ直後に開き直さないよう止める。
+              onKeyUp={(e) => {
+                if (e.key === " ") e.preventDefault();
+              }}
               disabled={disabled}
               aria-haspopup="listbox"
               aria-expanded={isOpen}
-              aria-labelledby={labelId}
+              // リストは開くまで DOM に無い。閉じているあいだは指さない（壊れた参照になる）。
+              aria-controls={isOpen ? listboxId : undefined}
+              aria-activedescendant={isOpen && activeIndex >= 0 ? optionId(activeIndex) : undefined}
               aria-label={countryAriaLabel}
             >
               <span aria-hidden="true" style={{ fontSize: "1.2em" }}>{selectedCountry.flag}</span>
@@ -165,32 +241,33 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
 
             <Transition show={isOpen} preset="fade" className={styles.dropdown}>
               {/* リストにも名前を付ける（引き金と同じ）。名前の無い listbox は axe の aria-input-field-name（serious）。
-                  開いた姿のストーリーが無く、CI に写っていなかった。 */}
+                  フォーカスは引き金に残すので、項目は Tab の停止点にしない（押してもフォーカスを奪わないよう、
+                  mousedown の既定の動作を止める）。 */}
               <ul
+                ref={listRef}
+                id={listboxId}
                 className={styles.countryList}
                 role="listbox"
-                aria-labelledby={label ? labelId : undefined}
                 aria-label={countryAriaLabel}
+                // スクロールする要素は、Chrome では tabindex が無くても Tab の停止点になる。-1 で外す
+                // （外さないと、Tab がこのリストへ入り、閉じるアニメーションの終わりでリストごと消えて
+                // フォーカスが body へ落ちる）。
+                tabIndex={-1}
+                onMouseDown={(e) => e.preventDefault()}
               >
-                {PHONE_COUNTRIES.map((country) => (
+                {PHONE_COUNTRIES.map((country, index) => (
+                  // キー操作は引き金（combobox）で受ける。項目ごとのキーのハンドラは要らない。
+                  // eslint-disable-next-line jsx-a11y/click-events-have-key-events
                   <li
                     key={country.code}
+                    id={optionId(index)}
                     className={classNames(
                       styles.countryOption,
+                      index === activeIndex && styles.active,
                       selectedCountry.code === country.code && styles.selected,
                     )}
-                    onClick={() => {
-                      onCountryChange?.(country.code);
-                      setIsOpen(false);
-                    }}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter" || e.key === " ") {
-                        e.preventDefault();
-                        onCountryChange?.(country.code);
-                        setIsOpen(false);
-                      }
-                    }}
-                    tabIndex={0}
+                    onMouseEnter={() => setActiveIndex(index)}
+                    onClick={() => selectCountry(index)}
                     role="option"
                     aria-selected={selectedCountry.code === country.code}
                   >

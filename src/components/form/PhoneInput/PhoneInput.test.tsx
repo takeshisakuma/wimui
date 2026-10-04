@@ -12,7 +12,7 @@ describe("PhoneInput", () => {
 
   it("renders the country code selector button", () => {
     render(<PhoneInput />);
-    expect(screen.getByRole("button", { name: "Select country" })).toBeInTheDocument();
+    expect(screen.getByRole("combobox", { name: "Select country" })).toBeInTheDocument();
   });
 
   it("shows default country US dial code", () => {
@@ -39,7 +39,7 @@ describe("PhoneInput", () => {
     render(<PhoneInput onCountryChange={onCountryChange} />);
     
     // Open dropdown
-    fireEvent.click(screen.getByRole("button", { name: "Select country" }));
+    fireEvent.click(screen.getByRole("combobox", { name: "Select country" }));
     
     // Select Japan
     const japanOption = screen.getByText("Japan");
@@ -50,7 +50,7 @@ describe("PhoneInput", () => {
 
   it("disables both button and input when disabled", () => {
     render(<PhoneInput disabled />);
-    expect(screen.getByRole("button", { name: "Select country" })).toBeDisabled();
+    expect(screen.getByRole("combobox", { name: "Select country" })).toBeDisabled();
     expect(screen.getByRole("textbox")).toBeDisabled();
   });
 
@@ -73,7 +73,7 @@ describe("PhoneInput", () => {
     render(<PhoneInput />);
     
     // Open dropdown
-    fireEvent.click(screen.getByRole("button", { name: "Select country" }));
+    fireEvent.click(screen.getByRole("combobox", { name: "Select country" }));
     
     const options = screen.getAllByRole("option");
     expect(options).toHaveLength(PHONE_COUNTRIES.length);
@@ -96,11 +96,72 @@ describe("PhoneInput", () => {
     try {
       setWimLocale("ja");
       render(<PhoneInput />);
-      const trigger = screen.getByRole("button", { name: "国を選択" });
+      const trigger = screen.getByRole("combobox", { name: "国を選択" });
       fireEvent.click(trigger);
       expect(screen.getByRole("listbox", { name: "国を選択" })).toBeInTheDocument();
     } finally {
       setWimLocale(original);
+    }
+  });
+
+  it("exposes the country trigger as a combobox whose value is the dial code", () => {
+    render(<PhoneInput countryCode="JP" label="Phone Number" />);
+    // フィールドの label は番号の入力欄の名前。国の選択は自分の名前を持つ
+    const trigger = screen.getByRole("combobox", { name: "Select country" });
+    expect(trigger).toHaveTextContent("+81");
+    expect(trigger).toHaveAttribute("aria-expanded", "false");
+    expect(trigger).not.toHaveAttribute("aria-controls");
+    expect(screen.getByRole("textbox", { name: "Phone Number" })).toBeInTheDocument();
+  });
+
+  it("moves the active option from the trigger with arrow keys, Home and End", () => {
+    render(<PhoneInput />);
+    const trigger = screen.getByRole("combobox");
+    fireEvent.keyDown(trigger, { key: "ArrowDown" });
+    const options = screen.getAllByRole("option");
+    const selected = options.findIndex((o) => o.getAttribute("aria-selected") === "true");
+    expect(trigger).toHaveAttribute("aria-controls", screen.getByRole("listbox").id);
+    // 開いたときは、選択中の国を指す
+    expect(trigger).toHaveAttribute("aria-activedescendant", options[selected].id);
+    fireEvent.keyDown(trigger, { key: "End" });
+    expect(trigger).toHaveAttribute("aria-activedescendant", options[options.length - 1].id);
+    // 末尾から下で先頭へ回る
+    fireEvent.keyDown(trigger, { key: "ArrowDown" });
+    expect(trigger).toHaveAttribute("aria-activedescendant", options[0].id);
+    fireEvent.keyDown(trigger, { key: "ArrowUp" });
+    expect(trigger).toHaveAttribute("aria-activedescendant", options[options.length - 1].id);
+    fireEvent.keyDown(trigger, { key: "Home" });
+    expect(trigger).toHaveAttribute("aria-activedescendant", options[0].id);
+  });
+
+  it("selects the active country with Enter and closes", () => {
+    const onCountryChange = vi.fn();
+    render(<PhoneInput onCountryChange={onCountryChange} />);
+    const trigger = screen.getByRole("combobox");
+    fireEvent.keyDown(trigger, { key: "Enter" });
+    fireEvent.keyDown(trigger, { key: "Home" });
+    fireEvent.keyDown(trigger, { key: "Enter" });
+    expect(onCountryChange).toHaveBeenCalledWith(PHONE_COUNTRIES[0].code);
+    expect(trigger).toHaveAttribute("aria-expanded", "false");
+  });
+
+  it("closes with Escape without changing the country", () => {
+    const onCountryChange = vi.fn();
+    render(<PhoneInput onCountryChange={onCountryChange} />);
+    const trigger = screen.getByRole("combobox");
+    fireEvent.keyDown(trigger, { key: " " });
+    expect(trigger).toHaveAttribute("aria-expanded", "true");
+    fireEvent.keyDown(trigger, { key: "ArrowDown" });
+    fireEvent.keyDown(trigger, { key: "Escape" });
+    expect(trigger).toHaveAttribute("aria-expanded", "false");
+    expect(onCountryChange).not.toHaveBeenCalled();
+  });
+
+  it("keeps the options out of the tab order", () => {
+    render(<PhoneInput />);
+    fireEvent.click(screen.getByRole("combobox"));
+    for (const option of screen.getAllByRole("option")) {
+      expect(option).not.toHaveAttribute("tabindex");
     }
   });
 });

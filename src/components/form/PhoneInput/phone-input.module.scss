@@ -134,7 +134,9 @@
     cursor: pointer;
     transition: background-color var(--wim-transition-fast);
 
-    &:hover {
+    // キーボードで指している項目（aria-activedescendant）も、ホバーと同じ面にする。
+    &:hover,
+    &.active {
       background-color: var(--wim-color-surface-hover);
     }
 
