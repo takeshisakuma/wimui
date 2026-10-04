@@ -1,3 +1,4 @@
+import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 import { FocusTrap } from "./FocusTrap";
@@ -165,6 +166,33 @@ describe("FocusTrap", () => {
       </FocusTrap>,
     );
     expect(container.firstChild).toHaveClass("my-trap");
+  });
+
+  // 中身が自分の effect でフォーカスを取る部品（検索欄つきのパレットなど）。子の effect は親より
+  // 先に走るので、effect の中で「前のフォーカス」を読むと、既に罠の中の要素になっている（T308）。
+  it("restores focus to the opener even when a child grabs focus in its own effect", () => {
+    const AutoFocusInput = () => {
+      const ref = React.useRef<HTMLInputElement>(null);
+      React.useEffect(() => {
+        ref.current?.focus();
+      }, []);
+      return <input ref={ref} aria-label="search" />;
+    };
+    const opener = document.createElement("button");
+    opener.textContent = "Open";
+    document.body.appendChild(opener);
+    opener.focus();
+
+    const { unmount } = render(
+      <FocusTrap initialFocus={false}>
+        <AutoFocusInput />
+      </FocusTrap>,
+    );
+    expect(screen.getByLabelText("search")).toHaveFocus();
+
+    unmount();
+    expect(opener).toHaveFocus();
+    document.body.removeChild(opener);
   });
 
   it("restores focus to previously focused element on unmount", () => {

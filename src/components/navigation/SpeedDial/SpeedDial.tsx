@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useRef, useEffect, useState } from "react";
+import { useWimTranslation } from "@/i18n/useWimTranslation";
 import classNames from "classnames";
 import localStyles from "./speed-dial.module.scss";
 import { FloatButton } from "../../form/FloatButton/FloatButton";
@@ -41,7 +42,7 @@ export type SpeedDialProps = React.ComponentPropsWithoutRef<"div"> & {
   /**
    * Accessible name for the trigger button.
    * Lands on the inner `FloatButton`, not on the wrapper `div`.
-   * Omit to keep the icon-name fallback (`PlusIcon` / `CloseIcon`).
+   * Defaults to a translated "Open menu" / "Close menu" (en / ja / pt), following the open state.
    */
   "aria-label"?: string;
 };
@@ -69,8 +70,13 @@ export const SpeedDial = React.forwardRef<HTMLDivElement, SpeedDialProps>(
     },
     ref
   ) => {
+    const { t } = useWimTranslation("common");
     const [uncontrolledOpen, setUncontrolledOpen] = useState(false);
     const open = controlledOpen ?? uncontrolledOpen;
+    const actionsRef = useRef<HTMLDivElement>(null);
+    // キーボードで開いたときだけ、最初のアクションへフォーカスを移し、フォーカスが外へ出たら閉じる。
+    // ホバーで開いたときにフォーカスを動かすと、ポインタの操作の途中でフォーカスが飛ぶ。
+    const openedByKeyboard = useRef(false);
 
     const handleOpenChange = (nextOpen: boolean) => {
       setUncontrolledOpen(nextOpen);
@@ -89,7 +95,40 @@ export const SpeedDial = React.forwardRef<HTMLDivElement, SpeedDialProps>(
       if (trigger === "click") handleOpenChange(!open);
     };
 
+    // 既定（trigger="hover"）では、クリックでは開かない。そのままだとキーボードで開く手段が無かった
+    // （T306）。引き金の Enter / Space は、どちらのモードでも開閉する。
+    const handleTriggerKeyDown = (e: React.KeyboardEvent) => {
+      if (e.key !== "Enter" && e.key !== " ") return;
+      e.preventDefault(); // このあとの click（click モードでは開閉する）と二重にしない
+      openedByKeyboard.current = !open;
+      handleOpenChange(!open);
+    };
+
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+      if (e.key !== "Escape" || !open) return;
+      e.preventDefault();
+      openedByKeyboard.current = false;
+      handleOpenChange(false);
+      e.currentTarget.querySelector<HTMLElement>("[aria-haspopup]")?.focus();
+    };
+
+    const handleBlur = (e: React.FocusEvent<HTMLDivElement>) => {
+      if (!openedByKeyboard.current) return;
+      if (e.currentTarget.contains(e.relatedTarget as Node | null)) return;
+      openedByKeyboard.current = false;
+      handleOpenChange(false);
+    };
+
+    useEffect(() => {
+      if (open && openedByKeyboard.current) {
+        actionsRef.current?.querySelector<HTMLElement>("button")?.focus();
+      }
+    }, [open]);
+
     return (
+      // キーとフォーカスの処理は、中のボタン（引き金とアクション）から上がってくる分を受けるだけ。
+      // この div 自体は操作の対象ではない。
+      // eslint-disable-next-line jsx-a11y/no-static-element-interactions
       <div
         ref={ref}
         className={classNames("wim-speed-dial", 
@@ -100,9 +139,13 @@ export const SpeedDial = React.forwardRef<HTMLDivElement, SpeedDialProps>(
         )}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
+        onKeyDown={handleKeyDown}
+        onBlur={handleBlur}
         {...props}
       >
-        <div className={localStyles.actions}>
+        {/* 閉じているあいだは、アクションを操作と読み上げの対象から外す。見た目は opacity: 0 で消して
+            いるだけなので、外さないと Tab で見えないボタンに着き、Enter でそのまま実行される（T306）。 */}
+        <div ref={actionsRef} className={localStyles.actions} inert={!open}>
           {actions.map((action, index) => (
             <div
               key={index}
@@ -133,7 +176,9 @@ export const SpeedDial = React.forwardRef<HTMLDivElement, SpeedDialProps>(
           position="inline"
           aria-expanded={open}
           aria-haspopup="true"
-          aria-label={ariaLabel}
+          // 名前を渡さないとアイコン名（「PlusIcon」）が名前になっていた。翻訳つきの既定の名前を使う。
+          aria-label={ariaLabel ?? (open ? t("a11y.close_menu") : t("a11y.open_menu"))}
+          onKeyDown={handleTriggerKeyDown}
         />
       </div>
     );

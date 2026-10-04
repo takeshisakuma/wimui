@@ -2160,7 +2160,7 @@ near the right edge pushes the page into a horizontal scroll. Anchor a
     - `onOpenChange: (open: boolean) => void` — Callback when open state changes
     - `aria-label: string` — Accessible name for the trigger button.
 Lands on the inner `FloatButton`, not on the wrapper `div`.
-Omit to keep the icon-name fallback (`PlusIcon` / `CloseIcon`).
+Defaults to a translated "Open menu" / "Close menu" (en / ja / pt), following the open state.
 - **Stepper** — Visual sequence steps
   - ⚠️ Not the same as elsewhere: In Apple HIG and macOS, a "Stepper" is the control that increments a number — that is `NumberInput` here. WIM's `Stepper` shows progress through a sequence of steps, which is what Material calls a Stepper.
     - `steps: Step[]` = [] — Array of step configurations
