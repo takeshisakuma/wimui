@@ -1,0 +1,2 @@
+"use client";
+import{n as e}from"./rolldown-runtime-DkW27tQK.js";var t,n,r,i;function a(){return(a=e((()=>{({expect:t,userEvent:n,waitFor:r}=__STORYBOOK_MODULE_TEST__),i=async({canvasElement:e})=>{let i=e.querySelector(`[aria-haspopup], [aria-expanded]`);await t(i).not.toBeNull(),i&&(await n.click(i),await r(()=>t(i).toHaveAttribute(`aria-expanded`,`true`)))}})))()}export{i as n,a as t};

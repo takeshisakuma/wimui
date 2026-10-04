@@ -1,0 +1,16 @@
+"use client";
+import{a as e,n as t}from"./rolldown-runtime-DkW27tQK.js";import{t as n}from"./react-Q1GcV6wX.js";import{t as r}from"./jsx-runtime-DeHZSEgm.js";import{t as i}from"./classnames-D09xBJOL.js";import{n as a,t as o}from"./useWimTranslation-akUKuRsR.js";var s,c,l,u,d,f;function p(){return(p=t((()=>{s=`_root_1vx6l_23`,c=`_content_1vx6l_26`,l=`_collapsed_1vx6l_29`,u=`_inner_1vx6l_36`,d=`_toggle_1vx6l_39`,f={root:s,content:c,collapsed:l,inner:u,toggle:d}})))()}var m,h,g,_;function v(){return(v=t((()=>{m=e(n(),1),h=e(i(),1),o(),p(),g=r(),_=m.forwardRef(({lines:e=3,expanded:t,defaultExpanded:n=!1,onExpandedChange:r,showLabel:i,hideLabel:o,className:s,style:c,children:l,...u},d)=>{let{t:p}=a(`components`),_=m.useId(),v=t!==void 0,[y,b]=m.useState(n),x=v?t:y,S=m.useRef(null),C=m.useRef(null),[w,T]=m.useState(!1);m.useLayoutEffect(()=>{if(x)return;let e=S.current,t=C.current;if(!e||!t)return;let n=()=>{T(t.scrollHeight>e.clientHeight+1)};if(n(),typeof ResizeObserver>`u`)return;let r=new ResizeObserver(n);return r.observe(e),r.observe(t),()=>r.disconnect()},[x,e]);let E=()=>{let e=!x;v||b(e),r?.(e)},D=w||x;return(0,g.jsxs)(`div`,{ref:d,className:(0,h.default)(`wim-spoiler`,f.root,s),style:{...c,"--wim-spoiler-lines":e},...u,children:[(0,g.jsx)(`div`,{ref:S,id:_,className:(0,h.default)(f.content,!x&&f.collapsed),children:(0,g.jsx)(`div`,{ref:C,className:f.inner,children:l})}),D&&(0,g.jsx)(`button`,{type:`button`,className:f.toggle,"aria-expanded":x,"aria-controls":_,onClick:E,children:x?o??p(`spoiler.show_less`):i??p(`spoiler.show_more`)})]})}),_.displayName=`Spoiler`,_.__docgenInfo={description:`Spoiler collapses long text (reviews, comments, descriptions) to a fixed
+number of lines via CSS line-clamp and reveals the rest with an accessible
+"show more" toggle (aria-expanded / aria-controls). The toggle only appears
+when the content actually overflows the collapsed height, and the clamped
+text stays in the DOM so screen readers and in-page search still see it.
+
+Composition Contract:
+- Managed by: App consumption
+- Scroll lock: No
+- Observers: Owns a ResizeObserver on its content (disconnected on
+  unmount) to re-check overflow when the container or text changes.`,methods:[],displayName:`Spoiler`,props:{lines:{required:!1,tsType:{name:`number`},description:`Number of text lines shown while collapsed.
+@default 3`,defaultValue:{value:`3`,computed:!1}},expanded:{required:!1,tsType:{name:`boolean`},description:`Controlled expanded state. Use together with onExpandedChange.`},defaultExpanded:{required:!1,tsType:{name:`boolean`},description:`Initial expanded state for uncontrolled usage.
+@default false`,defaultValue:{value:`false`,computed:!1}},onExpandedChange:{required:!1,tsType:{name:`signature`,type:`function`,raw:`(expanded: boolean) => void`,signature:{arguments:[{type:{name:`boolean`},name:`expanded`}],return:{name:`void`}}},description:`Called with the next state when the toggle is activated.`},showLabel:{required:!1,tsType:{name:`ReactReactNode`,raw:`React.ReactNode`},description:`Label of the toggle while collapsed.
+@default t("spoiler.show_more")`},hideLabel:{required:!1,tsType:{name:`ReactReactNode`,raw:`React.ReactNode`},description:`Label of the toggle while expanded.
+@default t("spoiler.show_less")`}}}})))()}export{v as n,_ as t};

@@ -1,0 +1,11 @@
+{
+  "story": {
+    "button_click_me": "Clique em mim",
+    "linkbutton_google": "Ir para o Google",
+    "splitbutton_main": "Salvar",
+    "splitbutton_toggle": "Mais opções de salvamento",
+    "splitbutton_draft": "Salvar como rascunho",
+    "splitbutton_close": "Salvar e fechar",
+    "splitbutton_template": "Salvar como modelo"
+  }
+}

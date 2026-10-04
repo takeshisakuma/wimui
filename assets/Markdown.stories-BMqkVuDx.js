@@ -1,0 +1,9 @@
+"use client";
+import{a as e,n as t,r as n}from"./rolldown-runtime-DkW27tQK.js";import{t as r}from"./react-Q1GcV6wX.js";import{n as i,t as a}from"./useTranslation-BDKsuBAo.js";import{n as o,t as s}from"./i18nConstants-BhvmnjLS.js";import{t as c}from"./jsx-runtime-DeHZSEgm.js";import{t as l}from"./classnames-D09xBJOL.js";import{i as u,n as d,r as f,t as p}from"./lib-CK2PzSj4.js";var m,h;function g(){return(g=t((()=>{m=`_root_12ust_29`,h={root:m}})))()}var _,v,y;function b(){return(b=t((()=>{r(),u(),p(),_=e(l(),1),g(),v=c(),y=({content:e,children:t,gfm:n=!0,className:r})=>{let i=e??t??``;return(0,v.jsx)(`div`,{className:(0,_.default)(`wim-markdown`,h.root,r),children:(0,v.jsx)(f,{remarkPlugins:n?[d]:[],children:i})})},y.__docgenInfo={description:`Renders a Markdown string as HTML styled according to wim UI.`,methods:[],displayName:`Markdown`,props:{content:{required:!1,tsType:{name:`string`},description:"Markdown string to render. Provide either `content` or `children`."},children:{required:!1,tsType:{name:`string`},description:`Markdown string to render (when passed as children).`},gfm:{required:!1,tsType:{name:`boolean`},description:`Whether to enable GitHub Flavored Markdown (default: true).`,defaultValue:{value:`true`,computed:!1}},className:{required:!1,tsType:{name:`string`},description:`Additional class names.`}}}})))()}var x=n({Default:()=>w,__namedExportsOrder:()=>T,default:()=>C}),S,C,w,T;function E(){return(E=t((()=>{r(),a(),o(),b(),S=c(),C={title:`Components/Utilities/Markdown`,component:y},w={render:e=>{let{t}=i(s);return(0,S.jsx)(y,{...e,children:t(`story.markdown_sample`)})}},T=[`Default`],w.parameters={...w.parameters,docs:{...w.parameters?.docs,source:{originalSource:`{
+  render: args => {
+    const {
+      t
+    } = useTranslation(ALL_NAMESPACES);
+    return <Markdown {...args}>{t("story.markdown_sample")}</Markdown>;
+  }
+}`,...w.parameters?.docs?.source}}}})))()}export{x as n,E as r,w as t};
