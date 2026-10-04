@@ -338,7 +338,7 @@ git branch -vv | grep ": gone]"   # 追跡先が消えたローカルブラン�
 
 **観点の候補**（測り終えたら消し、思いついたら足す）
 
-- 同じ役割の部品で、キー操作が揃っているか ── **メニュー系**（Dropdown / Menu / Menubar / ContextMenu / SplitButton）と**日付系**（DatePicker / DateRangePicker / Calendar / TimePicker）は未計測。選択系は 2026-10-04 に測った
+- 同じ役割の部品で、キー操作が揃っているか ── 選択系（Tab）とメニュー系・日付系は 2026-10-04 に測った。**未計測**: 選択系の開くキーと面の中の移動（今回と同じ手順で）・タブ系（Tabs / TabNavigation / SegmentedControl / ToggleGroup）・ツリーと一覧（TreeView / List / DataGrid）・メニューで項目を選んで閉じたあとのフォーカスの行き先
 - 状態の網羅 ── hover / active / focus / disabled / selected が、部品ごとに在るか・同じトークンを使っているか
 - サイズの段 ── `sm` / `md` / `lg` の高さが、入力系とボタン系で揃っているか（computed style で比べる）
 - dark で、浮く面が地に対して見分けられるか ── Tooltip（#813）と Snackbar（#818）は直した。Toast / Notification / Popover / HoverCard は未計測
@@ -350,6 +350,7 @@ git branch -vv | grep ": gone]"   # 追跡先が消えたローカルブラン�
 | 日付 | 観点 | 測った範囲 | 外れ | 起票 |
 |---|---|---|---|---|
 | 2026-10-04 | 開いたリストで Tab を押したあと（フォーカスの行き先・リストが残るか） | 選択系 7 部品（Select / MultiSelect / Combobox / Cascader / TreeSelect / ModelSelector / PhoneInput）の `Open` ストーリー | 2（Select・TreeSelect が開いたまま）。フォーカスを失う部品は 0 | T299（#829）・T300（#831）。どちらも済 |
+| 2026-10-04 | 同じ役割の部品で、キー操作が揃っているか（メニュー系・日付系） | メニュー系 6（Dropdown / SplitButton / Menubar / ContextMenu / HamburgerMenu / Menu）と日付系 5（DatePicker / DateRangePicker / Calendar / RangeCalendar / TimePicker）。開くキー 4 種・面の中の移動・Escape・Tab | 5 件。**測れなかったもの 1**（TimePicker はブラウザ標準の `<input type="time">` で、開く面を持たない）。外れなし: 置いてある Menu（矢印・Home / End が動き、Tab で外へ出る）。メニューの中の矢印・Home / End は 4 部品とも揃っていた | T301（Dropdown / SplitButton が Escape でフォーカスを失う）・T302（Tab の挙動が 3 通り。Menubar は開いたまま残る）・T303（↓ で開かない）・T304（カレンダーは矢印で日を動かせず、全部の日が Tab の停止点）・T305（HamburgerMenu が Escape で閉じない） |
 
 ---
 
