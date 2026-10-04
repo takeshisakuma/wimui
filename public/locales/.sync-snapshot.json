@@ -1952,7 +1952,8 @@
       "zoom_out": "Zoom out",
       "counter": "{{current}} / {{total}}",
       "open": "Open image",
-      "open_named": "Open image: {{name}}"
+      "open_named": "Open image: {{name}}",
+      "dialog": "Image viewer"
     },
     "gallery": {
       "toolbar_label": "Bulk actions toolbar",

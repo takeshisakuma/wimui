@@ -145,3 +145,14 @@ export const SingleAction: Story = {
     );
   },
 };
+
+// 開いた姿。ほかのストーリーは閉じたまま撮られるので、開いた中身を変えても VRT と a11y の CI が
+// 動かなかった（T293）。docs ページには載せない（play は docs では走らず、defaultOpen はページを開いた瞬間に開く）。
+export const Open: Story = {
+  ...Default,
+  // docs ページは <Stories /> で全ストーリーを並べる。載せると、ページを開いた瞬間に開いてしまう。
+  tags: ["!autodocs"],
+  args: {
+    defaultOpen: true,
+  },
+};

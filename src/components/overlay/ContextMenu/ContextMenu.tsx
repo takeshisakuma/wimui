@@ -164,14 +164,21 @@ const ContextMenuInner = ({
       data-testid="context-menu-trigger"
     >
       <Slottable>{children}</Slottable>
-      <FloatingPortal>
+      {/* preserveTabOrder を切る: 非モーダルのとき Portal が前後に置くガード（aria-hidden かつ tabindex=0）も同じ規則に当たる。Tab は下で閉じる。 */}
+      <FloatingPortal preserveTabOrder={false}>
         <Transition
           show={isOpen}
           preset="fade"
         >
+          {/* メニューはモーダルにしない。モーダルのフォーカス管理は背後を aria-hidden にするが、背後には
+              フォーカスできる要素（この引き金自身も）が残り、axe の aria-hidden-focus（serious）になる。
+              ガード（aria-hidden かつ tabindex=0 の span）も同じ規則に当たるので置かない。代わりに
+              Tab はメニューを閉じて、開く前の場所へフォーカスを戻す（下の onKeyDown）。
+              開いた姿のストーリーが無く、CI に写っていなかった（T293）。 */}
           <FloatingFocusManager
             context={context}
-            modal={true}
+            modal={false}
+            guards={false}
             initialFocus={isKeyboardOpen ? (activeIndex ?? 0) : -1}
           >
             <div
@@ -182,8 +189,16 @@ const ContextMenuInner = ({
                 onClick: handleClose,
                 onKeyDown(e: React.KeyboardEvent) {
                   if (e.key === "Escape") handleClose();
+                  // ガードを置かないので、Tab をそのまま通すとフォーカスが body の末尾（Portal の外）へ抜ける。
+                  if (e.key === "Tab") {
+                    e.preventDefault();
+                    handleClose();
+                  }
                 },
               }) as React.HTMLAttributes<HTMLDivElement>)}
+              // useRole は「引き金の id」を aria-labelledby に入れるが、ここの引き金は座標だけの仮想要素で、
+              // その id を持つ要素は DOM に無い（壊れた参照。axe: aria-valid-attr-value）。外す。
+              aria-labelledby={undefined}
             >
               <ContextMenuContext.Provider value={{ activeIndex, getItemProps }}>
                 <FloatingList elementsRef={elementsRef}>

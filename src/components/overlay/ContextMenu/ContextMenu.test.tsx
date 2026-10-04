@@ -182,6 +182,39 @@ describe("ContextMenu", () => {
     });
   });
 
+  it("closes menu on Tab key in the floating menu", async () => {
+    render(
+      <ContextMenu menu={<ContextMenuItem>Item 1</ContextMenuItem>}>
+        <div data-testid="trigger">Trigger</div>
+      </ContextMenu>,
+    );
+
+    fireEvent.contextMenu(screen.getByTestId("trigger"));
+    const floatingMenu = document.querySelector('[role="menu"]') as HTMLElement;
+    fireEvent.keyDown(floatingMenu, { key: "Tab" });
+
+    await waitFor(() => {
+      expect(screen.queryByText("Item 1")).not.toBeInTheDocument();
+    });
+  });
+
+  it("does not hide the page or leave broken references while the menu is open", () => {
+    render(
+      <ContextMenu menu={<ContextMenuItem>Item 1</ContextMenuItem>}>
+        <div data-testid="trigger">Trigger</div>
+      </ContextMenu>,
+    );
+
+    fireEvent.contextMenu(screen.getByTestId("trigger"));
+    const floatingMenu = document.querySelector('[role="menu"]') as HTMLElement;
+    // 背後を aria-hidden にしない（背後にフォーカスできる要素が残る）
+    expect(screen.getByTestId("context-menu-trigger").closest('[aria-hidden="true"]')).toBeNull();
+    // ガード（aria-hidden かつ tabindex=0）が無いことは実ブラウザで見る（vrt/contextmenu.e2e.spec.ts）。
+    // jsdom では Floating UI がガードを出し、実ブラウザと食い違う。
+    // 引き金は座標だけの仮想要素なので、その id を指す aria-labelledby は壊れた参照になる
+    expect(floatingMenu).not.toHaveAttribute("aria-labelledby");
+  });
+
   it("closes menu on click inside the floating menu", async () => {
     render(
       <ContextMenu menu={<ContextMenuItem>Item 1</ContextMenuItem>}>

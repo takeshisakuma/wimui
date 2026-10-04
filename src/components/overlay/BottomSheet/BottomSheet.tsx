@@ -1,6 +1,7 @@
 import React, {
   createContext,
   useContext,
+  useId,
   useState,
   useCallback,
 } from "react";
@@ -10,6 +11,8 @@ import styles from "./bottom-sheet.module.scss";
 
 // --- BottomSheet Context ---
 type BottomSheetContextType = {
+  titleId: string;
+  descriptionId: string;
   open: boolean;
   onOpenChange: (open: boolean) => void;
 };
@@ -69,9 +72,16 @@ const BottomSheetInner = ({
     [isControlled, onOpenChange],
   );
 
+  // 開いた面（role="dialog"）の名前と説明。Dialog / Drawer と同じ形で、見出しと説明文を id で指す。
+  // 以前は名前が無く、支援技術には「ダイアログ」としか伝わらなかった（axe: aria-dialog-name・serious。
+  // 開いた姿のストーリーが無く、CI に写っていなかった）。
+  const generatedId = useId();
+  const titleId = `wim-bottom-sheet-${generatedId}-title`;
+  const descriptionId = `wim-bottom-sheet-${generatedId}-description`;
+
   return (
     <BottomSheetContext.Provider
-      value={{ open, onOpenChange: handleOpenChange }}
+      value={{ titleId, descriptionId, open, onOpenChange: handleOpenChange }}
     >
       {children}
     </BottomSheetContext.Provider>
@@ -193,7 +203,7 @@ export const BottomSheetContent = ({
   children,
   className,
 }: BottomSheetContentProps) => {
-  const { open, onOpenChange } = useBottomSheet();
+  const { open, onOpenChange, titleId, descriptionId } = useBottomSheet();
 
   // **実体の無いクラス名を渡していた**（`slide-bottom-enter` 等はどの CSS にも
   // 無い）。効いていたのは `OverlayBase` の既定 `preset="scale"` のほうで、
@@ -213,6 +223,8 @@ export const BottomSheetContent = ({
       overlayClassName={styles.overlay}
       contentClassName={classNames("wim-bottom-sheet", styles.content, className)}
       transitionProps={slideTransition}
+      aria-labelledby={titleId}
+      aria-describedby={descriptionId}
     >
       <div className={styles.handle} />
       {children}
@@ -252,11 +264,14 @@ export const BottomSheetTitle = ({
 }: {
   children: React.ReactNode;
   className?: string;
-}) => (
-  <h2 className={classNames(styles.title, className)} data-testid="bottom-sheet-title">
-    {children}
-  </h2>
-);
+}) => {
+  const { titleId } = useBottomSheet();
+  return (
+    <h2 id={titleId} className={classNames(styles.title, className)} data-testid="bottom-sheet-title">
+      {children}
+    </h2>
+  );
+};
 
 export const BottomSheetDescription = ({
   children,
@@ -264,11 +279,14 @@ export const BottomSheetDescription = ({
 }: {
   children: React.ReactNode;
   className?: string;
-}) => (
-  <p className={classNames(styles.description, className)} data-testid="bottom-sheet-description">
-    {children}
-  </p>
-);
+}) => {
+  const { descriptionId } = useBottomSheet();
+  return (
+    <p id={descriptionId} className={classNames(styles.description, className)} data-testid="bottom-sheet-description">
+      {children}
+    </p>
+  );
+};
 
 export const BottomSheetBody = ({
   children,

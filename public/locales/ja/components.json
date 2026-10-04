@@ -338,7 +338,8 @@
     "zoom_in": "拡大",
     "zoom_out": "縮小",
     "open": "画像を開く",
-    "open_named": "画像を開く: {{name}}"
+    "open_named": "画像を開く: {{name}}",
+    "dialog": "画像ビューア"
   },
   "linkvsbutton": {
     "btn_examples": "フォームの送信、モーダルの開閉、状態の変更、計算の実行",

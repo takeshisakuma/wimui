@@ -127,6 +127,21 @@ describe("BottomSheet", () => {
     );
     expect(screen.getByText("Default Open Content")).toBeInTheDocument();
   });
+
+  it("names and describes the dialog with its title and description", () => {
+    render(
+      <BottomSheet defaultOpen={true}>
+        <BottomSheetContent>
+          <BottomSheetHeader>
+            <BottomSheetTitle>Share file</BottomSheetTitle>
+            <BottomSheetDescription>Choose who can open it.</BottomSheetDescription>
+          </BottomSheetHeader>
+        </BottomSheetContent>
+      </BottomSheet>,
+    );
+    const dialog = screen.getByRole("dialog", { name: "Share file" });
+    expect(dialog).toHaveAccessibleDescription("Choose who can open it.");
+  });
 });
 
 describe("BottomSheetTrigger", () => {

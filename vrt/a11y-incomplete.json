@@ -1,7 +1,7 @@
 {
   "reasons": {
     "aria-valid-attr-value": "axe は `aria-haspopup` が付いた要素の `aria-controls` について、**参照先 ID が在るかを自分では決められない**と言う（ポップアップは開くまで DOM に無いことがあるため）。`Dropdown` は開いている間だけ `aria-controls` を出し、メニューは `FloatingPortal` で body 直下に `id={menuId}` として実在する（`Dropdown.tsx` の `DropdownMenu`）。**T264 で `AlignmentRight` を `defaultOpen` にするまで、どのストーリーもメニューを開いていなかったので出ていなかった** ── 新しい欠陥ではなく、実アプリで開いた時点でずっと出ていたものが初めて測られた形。 **`Popover` も同じ形**（2026-09-30・#744）: トリガーは開いている間 `aria-controls` を出し、中身は `FloatingPortal` で body 直下にある。`Variants` で 2 つを開いて突き合わせ、`aria-controls` の参照先が 2 つとも実在し、`role=\"dialog\"` で名前（`aria-labelledby` の見出し）を持つことを確かめた。",
-    "color-contrast": "背景色を機械が決められず、axe はコントラスト比を計算できない。**ただし「決められない」は「読めている」の意味ではない**ので、2026-08-19 に凍結分 1325 ノードを全量実測した（T206。手順は `MAINTENANCE.md` 12-3 / `npm run a11y:incomplete:measure`）── 対象の文字だけ透明にして矩形を撮り、実際に描かれている画素を地として見本を作り、判定は axe にさせる。結果、面の大半を占める背景で 4.5:1 を割るものが 496 件あり、内訳は T212（チャートの軸の目盛り 396 / 凡例のラベル 77）・T213（写真やキャンバス地の上の白文字 7）・T214（solid ボタンのシーン 2）として起票してある。**ここに凍結してあるのは「測ったうえで残っているもの」で、直す予定のものも含む**（直せば violations 側に出るので、この許可は同時に消える）。**覆われている文字 38 件は、コントラストの契約を課さないと決めて閉じた**（2026-08-19・利用者判断）── `LoadingOverlay` の幕の下の本文 14（`audit-feedbackfamily` / `audit-skeletonfamily` の一様な幕 2 を含む。実測 2.15〜2.44）と、`SwipeAction` の隠れたアクションのラベル 24（`patterns-oncall` の 8 を含む。白 on 白＝比 1.00 の `equalRatio`）。**幕や行の下にある文字が読めないのは設計どおり**で、色を変えて解く話ではない。そもそもこの手順では測れない（拾える画素は覆っている側の色で、その要素の背景ではない）ので、**出ている状態を測りたければそういうストーリーを足すこと**。残る `nonBmp` 112 は `aria-hidden` の差分記号など支援技術に出ないもので、axe が測らない。なお「文字が短すぎる」だけはスペック側が文字を伸ばして axe に測り直させ、本物なら violations に格上げする（T108）。 **2026-09-19**: `components-layout-bentogrid--default` と `patterns-marketing--feature-section` の 2 件（light / dark）をここから落とした。`BentoGrid` の `itemHeader` から斜めグラデを外して単色にした結果、**axe が地を決められるようになり incomplete が消えた**（そして違反は出なかった）。つまりこの 2 件は「測れないから許可していた」もので、面をトークンで切ったことで測れるようになった。全 4 シャードが走って 2 ストーリー × 2 テーマ＝ 4 件ちょうどを報告したので、部分実行からの再生成ではなく該当分の削除として扱った。 **`Popover` の `Variants`（2026-09-30・#744）**: 開いた中身の説明文を `npm run a11y:incomplete:measure -- --only popover--variants` で測り、light / dark × 既定 / glass の 4 ノードとも**全候補の背景で 4.5:1 を満たした**。対照として `--inject-fg \"rgb(215,215,215)\"` で文字を薄くすると light の 2 ノードだけが落ち（1.43 / 1.41）、dark は通った。 **`TreeDiagram` の `Collapsed`（2026-09-30・T277）**: 折りたたんだノードの「+3」（隠れている人数を出す開閉ボタン）について、axe は「一部が別の要素に覆われていて背景色が決まらない」と言い、関連要素にボタン自身を挙げる。カードの内側に収める・角を丸めない・行の高さを合わせる・図の外枠のスクロールを外す、の 4 通りをその場で試したがどれでも消えず、**axe がそう読む原因は特定できていない**。実画素では `npm run a11y:incomplete:measure -- --only treediagram--collapsed` で light / dark とも**全候補の背景で 4.5:1 を満たした**（`--inject-fg \"rgb(215,215,215)\"` の対照では light だけが 1.43 で落ちた）。開いたときの記号は `MinusIcon` にしてあり（文字の「−」は axe が「非テキストの記号だけ」として判定できなかった）、そちらは出ない。 **2026-09-30**: 開閉ボタンを `--wim-tap-target-min`（24px）にした結果、light / dark とも incomplete が消えた（違反は出なかった）。ボタンが小さく縁に半分はみ出していたため axe が地を決められなかったもので、許可は外した。",
+    "color-contrast": "背景色を機械が決められず、axe はコントラスト比を計算できない。**ただし「決められない」は「読めている」の意味ではない**ので、2026-08-19 に凍結分 1325 ノードを全量実測した（T206。手順は `MAINTENANCE.md` 12-3 / `npm run a11y:incomplete:measure`）── 対象の文字だけ透明にして矩形を撮り、実際に描かれている画素を地として見本を作り、判定は axe にさせる。結果、面の大半を占める背景で 4.5:1 を割るものが 496 件あり、内訳は T212（チャートの軸の目盛り 396 / 凡例のラベル 77）・T213（写真やキャンバス地の上の白文字 7）・T214（solid ボタンのシーン 2）として起票してある。**ここに凍結してあるのは「測ったうえで残っているもの」で、直す予定のものも含む**（直せば violations 側に出るので、この許可は同時に消える）。**覆われている文字 38 件は、コントラストの契約を課さないと決めて閉じた**（2026-08-19・利用者判断）── `LoadingOverlay` の幕の下の本文 14（`audit-feedbackfamily` / `audit-skeletonfamily` の一様な幕 2 を含む。実測 2.15〜2.44）と、`SwipeAction` の隠れたアクションのラベル 24（`patterns-oncall` の 8 を含む。白 on 白＝比 1.00 の `equalRatio`）。**幕や行の下にある文字が読めないのは設計どおり**で、色を変えて解く話ではない。そもそもこの手順では測れない（拾える画素は覆っている側の色で、その要素の背景ではない）ので、**出ている状態を測りたければそういうストーリーを足すこと**。残る `nonBmp` 112 は `aria-hidden` の差分記号など支援技術に出ないもので、axe が測らない。なお「文字が短すぎる」だけはスペック側が文字を伸ばして axe に測り直させ、本物なら violations に格上げする（T108）。 **2026-09-19**: `components-layout-bentogrid--default` と `patterns-marketing--feature-section` の 2 件（light / dark）をここから落とした。`BentoGrid` の `itemHeader` から斜めグラデを外して単色にした結果、**axe が地を決められるようになり incomplete が消えた**（そして違反は出なかった）。つまりこの 2 件は「測れないから許可していた」もので、面をトークンで切ったことで測れるようになった。全 4 シャードが走って 2 ストーリー × 2 テーマ＝ 4 件ちょうどを報告したので、部分実行からの再生成ではなく該当分の削除として扱った。 **`Popover` の `Variants`（2026-09-30・#744）**: 開いた中身の説明文を `npm run a11y:incomplete:measure -- --only popover--variants` で測り、light / dark × 既定 / glass の 4 ノードとも**全候補の背景で 4.5:1 を満たした**。対照として `--inject-fg \"rgb(215,215,215)\"` で文字を薄くすると light の 2 ノードだけが落ち（1.43 / 1.41）、dark は通った。 **`TreeDiagram` の `Collapsed`（2026-09-30・T277）**: 折りたたんだノードの「+3」（隠れている人数を出す開閉ボタン）について、axe は「一部が別の要素に覆われていて背景色が決まらない」と言い、関連要素にボタン自身を挙げる。カードの内側に収める・角を丸めない・行の高さを合わせる・図の外枠のスクロールを外す、の 4 通りをその場で試したがどれでも消えず、**axe がそう読む原因は特定できていない**。実画素では `npm run a11y:incomplete:measure -- --only treediagram--collapsed` で light / dark とも**全候補の背景で 4.5:1 を満たした**（`--inject-fg \"rgb(215,215,215)\"` の対照では light だけが 1.43 で落ちた）。開いたときの記号は `MinusIcon` にしてあり（文字の「−」は axe が「非テキストの記号だけ」として判定できなかった）、そちらは出ない。 **2026-09-30**: 開閉ボタンを `--wim-tap-target-min`（24px）にした結果、light / dark とも incomplete が消えた（違反は出なかった）。ボタンが小さく縁に半分はみ出していたため axe が地を決められなかったもので、許可は外した。 **`Tour` / `Lightbox` の `Open`（2026-10-04・T293）**: 開いた姿を初めてストーリーに置いて出たもの。`npm run a11y:incomplete:measure -- --only=--open` 相当で測り、`Tour` の説明文と進み具合（吹き出しが幕に重なるので地が決められない）は最頻の地で light 8.19 以上 / dark 6.62 以上、`Lightbox` の題と説明（グラデーションの地）は 12.21〜20.5。8 ノードとも全候補の背景で 4.5:1 を満たした。",
     "aria-prohibited-attr": "第三者ライブラリの内部マークアップ。react-flow の Controls（`Panel` に `aria-label` を直書きしており role を渡す口が無い）と FullCalendar の `fc-view-harness` / `fc-col-header-cell-cushion`。自前の分（Dashboard / JsonViewer / Kanban / SourceCitation / Stepper / Transfer / InteractiveArea / 見本の span）は T205 で直した。",
     "th-has-data-cells": "データ行が 0 の空状態テーブル（`DataGrid/Empty` と `Patterns/Admin` の「該当なし」）。見出しに対応するセルが無いのは空だからで、実装の誤りではない。",
     "frame-tested": "外部 iframe（Google Maps の埋め込み）。別オリジンなので axe が中に入れない ＝ 原理的に測れない。",
@@ -550,6 +550,14 @@
         "color-contrast"
       ]
     },
+    "components-media-lightbox--open": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
     "components-navigation-elements-menubar--open": {
       "light": [
         "aria-valid-attr-value"
@@ -583,6 +591,14 @@
       "dark": [
         "aria-hidden-focus",
         "aria-valid-attr-value",
+        "color-contrast"
+      ]
+    },
+    "components-overlays-tour--open": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
         "color-contrast"
       ]
     },
