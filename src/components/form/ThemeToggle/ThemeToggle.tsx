@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
+import { useWimTranslation } from "@/i18n/useWimTranslation";
 import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import { Icon } from "../../media/Icon/Icon";
@@ -90,11 +91,12 @@ export const ThemeToggle = React.forwardRef<HTMLDivElement, ThemeToggleProps>(
     },
     ref,
   ) => {
+    const { t } = useWimTranslation("common");
     const {
-      light = "Light",
-      dark = "Dark",
-      system = "System",
-      toggle = "Toggle theme",
+      light = t("common.light"),
+      dark = t("common.dark"),
+      system = t("theme.system"),
+      toggle = t("theme.toggle"),
     } = labels ?? {};
     const modeLabels: Record<ThemeMode, string> = { light, dark, system };
 

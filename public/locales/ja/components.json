@@ -697,6 +697,8 @@
     "slide": "スライド {{number}}",
     "prev_slide": "前のスライド",
     "next_slide": "次のスライド",
-    "go_to_slide": "スライド {{number}} へ移動"
+    "go_to_slide": "スライド {{number}} へ移動",
+    "roledescription": "カルーセル",
+    "slide_roledescription": "スライド"
   }
 }

@@ -1,4 +1,5 @@
 import React from "react";
+import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { Icon } from "../../../media/Icon/Icon";
 import { type VideoLabels } from "./VideoControls";
 import { ChevronRightIcon, ChevronLeftIcon, CheckIcon, CloseIcon, PlayIcon } from "@/icon";
@@ -48,18 +49,19 @@ export function VideoAdvancedMenu({
   labels = {},
   styles,
 }: VideoAdvancedMenuProps) {
+  const { t } = useWimTranslation("common");
   const {
-    settings = "Settings",
-    quality = "Quality",
-    playbackRate: playbackRateLabel = "Playback Speed",
-    aspectRatio = "Aspect Ratio",
-    standard = "Standard",
-    playlist: playlistLabel = "Playlist",
-    contain = "Contain",
-    cover = "Cover",
-    fill = "Fill",
-    scaleDown = "Scale Down",
-    none = "None",
+    settings = t("a11y.settings"),
+    quality = t("quality"),
+    playbackRate: playbackRateLabel = t("playback.speed"),
+    aspectRatio = t("aspect.ratio"),
+    standard = t("standard"),
+    playlist: playlistLabel = t("a11y.playlist"),
+    contain = t("video.fit_contain"),
+    cover = t("video.fit_cover"),
+    fill = t("video.fit_fill"),
+    scaleDown = t("video.fit_scale_down"),
+    none = t("common.none"),
   } = labels;
 
   if (!activeMenu) return null;

@@ -259,7 +259,7 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
       onKeyDown={handleKeyDown}
       tabIndex={0}
       role="region"
-      aria-roledescription="carousel"
+      aria-roledescription={t("carousel.roledescription")}
       {...props}
     >
       <div className={styles.viewport}>
@@ -294,7 +294,7 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
                 } as React.CSSProperties
               }
               role="group"
-              aria-roledescription="slide"
+              aria-roledescription={t("carousel.slide_roledescription")}
               aria-label={mergedLabels.slideLabel((index % originalItemCount) + 1)}
             >
               {child}

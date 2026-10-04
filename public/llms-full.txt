@@ -1821,7 +1821,7 @@ so the unit does not have to be repeated in the label.
     - `dataSource: TransferItem[]` = [] — All items shown across the two lists
     - `targetKeys: string[]` — Keys of the items in the target (right) list
     - `onChange: ( targetKeys: string[], direction: "toLeft" | "toRight", moveKeys: string[], ) => void` — Callback when items are moved between the lists
-    - `titles: [React.ReactNode, React.ReactNode]` = ["Source", "Target"] — Titles of the source and target lists
+    - `titles: [React.ReactNode, React.ReactNode]` — Titles of the source and target lists
     - `className: string` — Additional class names
     - `style: React.CSSProperties` — Inline styles
     - `disabled: boolean` = false — Whether the component is disabled
@@ -2522,7 +2522,7 @@ When omitted, both Backspace and Delete work.
     - `fitViewOptions: FitViewOptions` — Options for the initial fit-view behavior
     - `defaultEdgeOptions: DefaultEdgeOptions` — Default options applied to new edges
     - `className: string` — Additional CSS class
-    - `aria-label: string` = "Node graph" — Accessible label for the graph region
+    - `aria-label: string` — Accessible label for the graph region
 - **PivotTable** — Draws aggregated data as a table with multi-level row and column headings, subtotals and grand totals. (aka Pivot, Cross Tab, Crosstab)
     - `rows: PivotTableAxisNode[]` (required) — The row axis as a tree. Groups are drawn as an outline: one indented row per node.
     - `columns: PivotTableAxisNode[]` (required) — The column axis as a tree. Groups become headings that span their columns.
@@ -2632,7 +2632,7 @@ renders inline, next to whatever follows it.
     - `locale: string` = "en" — Locale string, e.g. "ja", "pt"
     - `unselectAuto: boolean` = true — Whether clicking elsewhere on the page will clear the current selection
     - `className: string` — Additional CSS class
-    - `aria-label: string` = "Schedule" — Accessible label for the schedule region
+    - `aria-label: string` — Accessible label for the schedule region
 - **SortableList** — Item rearrangement and reordering
     - `asChild: boolean` = false — If true, the component will be rendered as its child.
     - `onSortEnd: (oldIndex: number, newIndex: number) => void` — Callback called when reordering is completed.

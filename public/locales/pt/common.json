@@ -77,7 +77,8 @@
     "next": "Próximo",
     "save": "Salvar",
     "search": "Pesquisar",
-    "submit": "Enviar"
+    "submit": "Enviar",
+    "previous": "Anterior"
   },
   "analytics": "Análise",
   "aspect": {
@@ -98,7 +99,9 @@
     "placeholder": "Olá!",
     "placeholder_interactive": "A que horas é a reunião amanhã?",
     "support": "Suporte",
-    "you": "Você"
+    "you": "Você",
+    "send": "Enviar",
+    "user_avatar": "Avatar do usuário"
   },
   "common": {
     "all": "Todos",
@@ -451,7 +454,8 @@
   "nodeGraph": {
     "add_node": "Adicionar",
     "new_node": "Nó",
-    "node_name": "Nome do nó"
+    "node_name": "Nome do nó",
+    "label": "Grafo de nós"
   },
   "language": {
     "en": "Inglês",
@@ -498,7 +502,8 @@
     "search": "Relatório trimestral"
   },
   "playback": {
-    "rate": "Velocidade de Reprodução"
+    "rate": "Velocidade de Reprodução",
+    "speed": "Velocidade de reprodução"
   },
   "processing": "Processando...",
   "profile": "Perfil",
@@ -667,5 +672,49 @@
     "delete": "Excluir",
     "edited": "Editado",
     "action_context": "no comentário de {{name}}"
+  },
+  "threadList": {
+    "new_thread": "Nova conversa",
+    "empty": "Ainda não há conversas",
+    "delete": "Excluir conversa",
+    "label": "Histórico de conversas"
+  },
+  "modelSelector": {
+    "placeholder": "Selecione um modelo",
+    "context": "Contexto",
+    "input": "Entrada",
+    "output": "Saída"
+  },
+  "scheduleView": {
+    "label": "Agenda"
+  },
+  "rangeSlider": {
+    "start": "Início",
+    "end": "Fim",
+    "start_of": "Início: {{label}}",
+    "end_of": "Fim: {{label}}"
+  },
+  "theme": {
+    "system": "Sistema",
+    "toggle": "Alternar tema"
+  },
+  "audio": {
+    "unknown_title": "Título desconhecido",
+    "unknown_artist": "Artista desconhecido",
+    "repeat_off": "Repetição desativada",
+    "repeat_single": "Repetir uma",
+    "repeat_all": "Repetir todas",
+    "shuffle": "Aleatório",
+    "bass_boost": "Reforço de graves"
+  },
+  "imageCompare": {
+    "handle": "Arraste para comparar"
+  },
+  "video": {
+    "label": "Vídeo",
+    "fit_contain": "Conter",
+    "fit_cover": "Cobrir",
+    "fit_fill": "Preencher",
+    "fit_scale_down": "Reduzir"
   }
 }

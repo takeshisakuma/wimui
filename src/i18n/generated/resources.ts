@@ -65,7 +65,20 @@ export const wimResources: WimResources = {
         "edit": "Edit",
         "finish": "Finish",
         "next": "Next",
-        "save": "Save"
+        "save": "Save",
+        "previous": "Previous"
+      },
+      "chat": {
+        "send": "Send",
+        "user_avatar": "User avatar"
+      },
+      "aspect": {
+        "ratio": "Aspect ratio"
+      },
+      "common": {
+        "dark": "Dark",
+        "light": "Light",
+        "none": "None"
       },
       "copied": "Copied",
       "copy": {
@@ -84,7 +97,12 @@ export const wimResources: WimResources = {
         "go_to": "Go to",
         "items_per_page": "items per page"
       },
+      "playback": {
+        "speed": "Playback Speed"
+      },
+      "quality": "Quality",
       "sat": "Sat",
+      "standard": "Standard",
       "sun": "Sun",
       "thu": "Thu",
       "tue": "Tue",
@@ -104,7 +122,8 @@ export const wimResources: WimResources = {
       "nodeGraph": {
         "add_node": "Add",
         "new_node": "Node",
-        "node_name": "Node name"
+        "node_name": "Node name",
+        "label": "Node graph"
       },
       "reaction": {
         "aria_label": "Reactions",
@@ -139,6 +158,50 @@ export const wimResources: WimResources = {
         "delete": "Delete",
         "edited": "Edited",
         "action_context": "on {{name}}'s comment"
+      },
+      "threadList": {
+        "new_thread": "New conversation",
+        "empty": "No conversations yet",
+        "delete": "Delete conversation",
+        "label": "Conversation history"
+      },
+      "modelSelector": {
+        "placeholder": "Select a model",
+        "context": "Context",
+        "input": "In",
+        "output": "Out"
+      },
+      "scheduleView": {
+        "label": "Schedule"
+      },
+      "rangeSlider": {
+        "start": "Start",
+        "end": "End",
+        "start_of": "Start {{label}}",
+        "end_of": "End {{label}}"
+      },
+      "theme": {
+        "system": "System",
+        "toggle": "Toggle theme"
+      },
+      "audio": {
+        "unknown_title": "Unknown Title",
+        "unknown_artist": "Unknown Artist",
+        "repeat_off": "Repeat Off",
+        "repeat_single": "Repeat One",
+        "repeat_all": "Repeat All",
+        "shuffle": "Shuffle",
+        "bass_boost": "Bass Boost"
+      },
+      "imageCompare": {
+        "handle": "Drag to compare"
+      },
+      "video": {
+        "label": "Video",
+        "fit_contain": "Contain",
+        "fit_cover": "Cover",
+        "fit_fill": "Fill",
+        "fit_scale_down": "Scale Down"
       }
     },
     "components": {
@@ -278,7 +341,9 @@ export const wimResources: WimResources = {
         "slide": "Slide {{number}}",
         "prev_slide": "Previous slide",
         "next_slide": "Next slide",
-        "go_to_slide": "Go to slide {{number}}"
+        "go_to_slide": "Go to slide {{number}}",
+        "roledescription": "carousel",
+        "slide_roledescription": "slide"
       }
     },
     "data-display": {
@@ -350,10 +415,13 @@ export const wimResources: WimResources = {
         "task_todo": "Incomplete task"
       },
       "transfer": {
+        "no_data": "No data",
         "move_to_source": "Move to available",
         "move_to_target": "Move to selected",
+        "source": "Available",
         "status_moved_to_source": "{{count}} item(s) moved to available",
-        "status_moved_to_target": "{{count}} item(s) moved to selected"
+        "status_moved_to_target": "{{count}} item(s) moved to selected",
+        "target": "Selected"
       },
       "password_strength": {
         "very_weak": "Very weak",
@@ -459,7 +527,11 @@ export const wimResources: WimResources = {
         "edit": "編集",
         "finish": "完了",
         "next": "次へ",
-        "save": "保存"
+        "save": "保存",
+        "previous": "前へ"
+      },
+      "aspect": {
+        "ratio": "アスペクト比"
       },
       "autosave": {
         "aria_label": "自動保存の状態",
@@ -467,6 +539,15 @@ export const wimResources: WimResources = {
         "saved": "保存済み",
         "saved_at": "{{time}}に保存済み",
         "saving": "保存中..."
+      },
+      "chat": {
+        "send": "送信",
+        "user_avatar": "ユーザーのアバター"
+      },
+      "common": {
+        "dark": "ダーク",
+        "light": "ライト",
+        "none": "なし"
       },
       "copied": "コピーしました",
       "copy": {
@@ -489,7 +570,8 @@ export const wimResources: WimResources = {
       "nodeGraph": {
         "add_node": "追加",
         "new_node": "ノード",
-        "node_name": "ノード名"
+        "node_name": "ノード名",
+        "label": "ノードグラフ"
       },
       "mon": "月",
       "pagination": {
@@ -497,17 +579,22 @@ export const wimResources: WimResources = {
         "go_to": "移動",
         "items_per_page": "件 / ページ"
       },
+      "playback": {
+        "speed": "再生速度"
+      },
       "pullToRefresh": {
         "loading": "更新中...",
         "pull": "引っ張って更新",
         "release": "離して更新"
       },
+      "quality": "画質",
       "reaction": {
         "add_reaction": "リアクションを追加",
         "aria_label": "リアクション",
         "react_with": "{{emoji}}、{{count}}件のリアクション"
       },
       "sat": "土",
+      "standard": "標準",
       "sun": "日",
       "thu": "木",
       "tue": "火",
@@ -533,6 +620,50 @@ export const wimResources: WimResources = {
         "delete": "削除",
         "edited": "編集済み",
         "action_context": "{{name}} のコメントに対して"
+      },
+      "threadList": {
+        "new_thread": "新しい会話",
+        "empty": "会話はまだありません",
+        "delete": "会話を削除",
+        "label": "会話の履歴"
+      },
+      "modelSelector": {
+        "placeholder": "モデルを選択",
+        "context": "コンテキスト",
+        "input": "入力",
+        "output": "出力"
+      },
+      "scheduleView": {
+        "label": "スケジュール"
+      },
+      "rangeSlider": {
+        "start": "開始",
+        "end": "終了",
+        "start_of": "{{label}}（開始）",
+        "end_of": "{{label}}（終了）"
+      },
+      "theme": {
+        "system": "システム",
+        "toggle": "テーマを切り替え"
+      },
+      "audio": {
+        "unknown_title": "不明なタイトル",
+        "unknown_artist": "不明なアーティスト",
+        "repeat_off": "リピートなし",
+        "repeat_single": "1 曲リピート",
+        "repeat_all": "全曲リピート",
+        "shuffle": "シャッフル",
+        "bass_boost": "低音ブースト"
+      },
+      "imageCompare": {
+        "handle": "ドラッグして比較"
+      },
+      "video": {
+        "label": "動画",
+        "fit_contain": "全体を表示",
+        "fit_cover": "画面を埋める",
+        "fit_fill": "引き伸ばす",
+        "fit_scale_down": "縮小のみ"
       }
     },
     "components": {
@@ -672,7 +803,9 @@ export const wimResources: WimResources = {
         "slide": "スライド {{number}}",
         "prev_slide": "前のスライド",
         "next_slide": "次のスライド",
-        "go_to_slide": "スライド {{number}} へ移動"
+        "go_to_slide": "スライド {{number}} へ移動",
+        "roledescription": "カルーセル",
+        "slide_roledescription": "スライド"
       }
     },
     "data-display": {
@@ -789,8 +922,11 @@ export const wimResources: WimResources = {
       "transfer": {
         "move_to_source": "選択可能に移動",
         "move_to_target": "選択済みに移動",
+        "no_data": "データがありません",
+        "source": "選択可能",
         "status_moved_to_source": "{{count}} 件を選択可能リストに移動しました",
-        "status_moved_to_target": "{{count}} 件を選択済みリストに移動しました"
+        "status_moved_to_target": "{{count}} 件を選択済みリストに移動しました",
+        "target": "選択済み"
       }
     }
   },
@@ -853,7 +989,11 @@ export const wimResources: WimResources = {
         "edit": "Editar",
         "finish": "Concluir",
         "next": "Próximo",
-        "save": "Salvar"
+        "save": "Salvar",
+        "previous": "Anterior"
+      },
+      "aspect": {
+        "ratio": "Proporção"
       },
       "autosave": {
         "aria_label": "Status do salvamento automático",
@@ -861,6 +1001,15 @@ export const wimResources: WimResources = {
         "saved": "Salvo",
         "saved_at": "Salvo às {{time}}",
         "saving": "Salvando..."
+      },
+      "chat": {
+        "send": "Enviar",
+        "user_avatar": "Avatar do usuário"
+      },
+      "common": {
+        "dark": "Escuro",
+        "light": "Claro",
+        "none": "Nenhum"
       },
       "copied": "Copiado",
       "copy": {
@@ -883,7 +1032,8 @@ export const wimResources: WimResources = {
       "nodeGraph": {
         "add_node": "Adicionar",
         "new_node": "Nó",
-        "node_name": "Nome do nó"
+        "node_name": "Nome do nó",
+        "label": "Grafo de nós"
       },
       "mon": "Seg",
       "pagination": {
@@ -891,17 +1041,22 @@ export const wimResources: WimResources = {
         "go_to": "Ir para",
         "items_per_page": "itens / página"
       },
+      "playback": {
+        "speed": "Velocidade de reprodução"
+      },
       "pullToRefresh": {
         "loading": "Atualizando...",
         "pull": "Puxe para atualizar",
         "release": "Solte para atualizar"
       },
+      "quality": "Qualidade",
       "reaction": {
         "add_reaction": "Adicionar reação",
         "aria_label": "Reações",
         "react_with": "{{emoji}}, {{count}} reações"
       },
       "sat": "Sáb",
+      "standard": "Padrão",
       "sun": "Dom",
       "thu": "Qui",
       "tue": "Ter",
@@ -927,6 +1082,50 @@ export const wimResources: WimResources = {
         "delete": "Excluir",
         "edited": "Editado",
         "action_context": "no comentário de {{name}}"
+      },
+      "threadList": {
+        "new_thread": "Nova conversa",
+        "empty": "Ainda não há conversas",
+        "delete": "Excluir conversa",
+        "label": "Histórico de conversas"
+      },
+      "modelSelector": {
+        "placeholder": "Selecione um modelo",
+        "context": "Contexto",
+        "input": "Entrada",
+        "output": "Saída"
+      },
+      "scheduleView": {
+        "label": "Agenda"
+      },
+      "rangeSlider": {
+        "start": "Início",
+        "end": "Fim",
+        "start_of": "Início: {{label}}",
+        "end_of": "Fim: {{label}}"
+      },
+      "theme": {
+        "system": "Sistema",
+        "toggle": "Alternar tema"
+      },
+      "audio": {
+        "unknown_title": "Título desconhecido",
+        "unknown_artist": "Artista desconhecido",
+        "repeat_off": "Repetição desativada",
+        "repeat_single": "Repetir uma",
+        "repeat_all": "Repetir todas",
+        "shuffle": "Aleatório",
+        "bass_boost": "Reforço de graves"
+      },
+      "imageCompare": {
+        "handle": "Arraste para comparar"
+      },
+      "video": {
+        "label": "Vídeo",
+        "fit_contain": "Conter",
+        "fit_cover": "Cobrir",
+        "fit_fill": "Preencher",
+        "fit_scale_down": "Reduzir"
       }
     },
     "components": {
@@ -1066,7 +1265,9 @@ export const wimResources: WimResources = {
         "slide": "Slide {{number}}",
         "prev_slide": "Slide anterior",
         "next_slide": "Próximo slide",
-        "go_to_slide": "Ir para o slide {{number}}"
+        "go_to_slide": "Ir para o slide {{number}}",
+        "roledescription": "carrossel",
+        "slide_roledescription": "slide"
       }
     },
     "data-display": {
@@ -1183,8 +1384,11 @@ export const wimResources: WimResources = {
       "transfer": {
         "move_to_source": "Mover para disponível",
         "move_to_target": "Mover para selecionado",
+        "no_data": "Sem dados",
+        "source": "Disponível",
         "status_moved_to_source": "{{count}} item(s) movido(s) para lista disponível",
-        "status_moved_to_target": "{{count}} item(s) movido(s) para lista selecionada"
+        "status_moved_to_target": "{{count}} item(s) movido(s) para lista selecionada",
+        "target": "Selecionado"
       }
     }
   }

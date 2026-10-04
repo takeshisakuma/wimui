@@ -98,7 +98,7 @@ export const Audio = ({
   ...props
 }: AudioProps) => {
   const { t } = useWimTranslation("common");
-  const { unknownTitle = "Unknown Title", unknownArtist = "Unknown Artist" } = labels;
+  const { unknownTitle = t("audio.unknown_title"), unknownArtist = t("audio.unknown_artist") } = labels;
   const playlist: AudioTrack[] = useMemo(() => {
     if (!src) return [];
     const arr = Array.isArray(src) ? src : [src];
