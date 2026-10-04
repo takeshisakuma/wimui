@@ -199,7 +199,7 @@ mdxFiles.forEach(file => {
 // `stories/ai/VoiceVisualizer/VoiceVisualizer.mdx`（#734 で消えていた）。増えたものは無い
 // ── 42 にしたコミット（7cd1d2b9）を worktree に出して同じ検査に通し、失敗ファイルの
 // 一覧どうしを突き合わせた。
-const HARDCODED_FILE_BASELINE = 38;
+const HARDCODED_FILE_BASELINE = 37;
 
 if (filesFromArgs.length > 0) {
   if (failures.length > 0) {

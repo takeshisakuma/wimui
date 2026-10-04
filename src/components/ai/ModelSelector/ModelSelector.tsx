@@ -160,18 +160,19 @@ export const ModelSelector = React.forwardRef<HTMLDivElement, ModelSelectorProps
       setOpen(false);
     };
 
-    const handleTriggerKeyDown = (e: React.KeyboardEvent) => {
-      if (disabled) return;
-      if (e.key === "ArrowDown" || e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        if (!open) {
-          setOpen(true);
-          const currentIdx = models.findIndex((m) => m.id === currentValue);
-          setActiveIndex(currentIdx >= 0 ? currentIdx : 0);
-        }
-      } else if (e.key === "Escape") {
-        setOpen(false);
+    const firstEnabled = (from: number, delta: number) => {
+      let next = from;
+      for (let i = 0; i < models.length; i++) {
+        if (!models[next]?.disabled) return next;
+        next = (next + delta + models.length) % models.length;
       }
+      return -1;
+    };
+
+    const openList = (at?: number) => {
+      const currentIdx = models.findIndex((m) => m.id === currentValue);
+      setActiveIndex(at ?? (currentIdx >= 0 ? currentIdx : firstEnabled(0, 1)));
+      setOpen(true);
     };
 
     const moveActive = (delta: number) => {
@@ -185,21 +186,45 @@ export const ModelSelector = React.forwardRef<HTMLDivElement, ModelSelectorProps
       });
     };
 
-    const handleListKeyDown = (e: React.KeyboardEvent) => {
-      if (e.key === "ArrowDown") {
-        e.preventDefault();
-        moveActive(1);
-      } else if (e.key === "ArrowUp") {
-        e.preventDefault();
-        moveActive(-1);
-      } else if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        const model = models[activeIndex];
-        if (model) selectModel(model);
-      } else if (e.key === "Escape") {
-        e.preventDefault();
-        setOpen(false);
-        containerRef.current?.querySelector("button")?.focus();
+    // フォーカスは引き金（combobox）に置いたまま、キーは全部ここで受ける（select-only combobox）。
+    // いまの項目は aria-activedescendant で伝える。リスト側で受けていた頃は、フォーカスの無い
+    // listbox に aria-activedescendant が付いていて、読み上げに「いまどの項目か」が届かなかった。
+    const handleTriggerKeyDown = (e: React.KeyboardEvent) => {
+      if (disabled) return;
+      switch (e.key) {
+        case "ArrowDown":
+        case "ArrowUp":
+          e.preventDefault();
+          if (!open) openList();
+          else moveActive(e.key === "ArrowDown" ? 1 : -1);
+          break;
+        case "Home":
+        case "End":
+          e.preventDefault();
+          if (e.key === "Home") {
+            if (open) setActiveIndex(firstEnabled(0, 1));
+            else openList(firstEnabled(0, 1));
+          } else if (open) setActiveIndex(firstEnabled(models.length - 1, -1));
+          else openList(firstEnabled(models.length - 1, -1));
+          break;
+        case "Enter":
+        case " ":
+          e.preventDefault();
+          if (!open) openList();
+          else {
+            const model = models[activeIndex];
+            if (model) selectModel(model);
+          }
+          break;
+        case "Escape":
+          if (open) {
+            e.preventDefault();
+            setOpen(false);
+          }
+          break;
+        case "Tab":
+          setOpen(false);
+          break;
       }
     };
 
@@ -256,6 +281,9 @@ export const ModelSelector = React.forwardRef<HTMLDivElement, ModelSelectorProps
       >
         <button
           type="button"
+          /* 引き金は combobox（select-only）。名前は aria-label、値は中の文字（選択中のモデル名）。
+             button のままだと aria-label が中の文字を上書きし、選択中のモデル名が読まれなかった。 */
+          role="combobox"
           className={styles.trigger}
           aria-haspopup="listbox"
           aria-expanded={open}
@@ -264,15 +292,21 @@ export const ModelSelector = React.forwardRef<HTMLDivElement, ModelSelectorProps
              `aria-valid-attr-value` を **critical の incomplete** で出す）。
              開いているあいだだけ指す。 */
           aria-controls={open ? listboxId : undefined}
+          aria-activedescendant={
+            open && activeIndex >= 0 ? `${generatedId}-opt-${activeIndex}` : undefined
+          }
           aria-label={triggerAriaLabel}
           disabled={disabled}
           onClick={() => {
             if (disabled) return;
-            setOpen((o) => !o);
-            const currentIdx = models.findIndex((m) => m.id === currentValue);
-            setActiveIndex(currentIdx >= 0 ? currentIdx : 0);
+            if (open) setOpen(false);
+            else openList();
           }}
           onKeyDown={handleTriggerKeyDown}
+          // Space の click は keyup で起きるブラウザがある。keydown で選んだ直後に開き直さないよう止める。
+          onKeyUp={(e) => {
+            if (e.key === " ") e.preventDefault();
+          }}
         >
           <span className={styles.triggerLabel}>
             {selected ? (
@@ -296,20 +330,17 @@ export const ModelSelector = React.forwardRef<HTMLDivElement, ModelSelectorProps
             ref={listRef}
             id={listboxId}
             role="listbox"
-            /* 名前と、キーボードで届く tabIndex。リストは縦にスクロールするので、tabIndex が -1 だと
-               axe の scrollable-region-focusable（serious）、名前が無いと aria-input-field-name（serious）。
-               開いた姿のストーリーが無く、CI に写っていなかった。矢印キーの操作は従来どおり引き金でも受ける。 */
+            /* 名前は引き金と同じ。フォーカスは引き金に残すので、リストは Tab の停止点にしない
+               （押してもフォーカスを奪わないよう、mousedown の既定の動作を止める）。 */
             aria-label={triggerAriaLabel}
-            tabIndex={0}
             className={styles.dropdown}
-            onKeyDown={handleListKeyDown}
-            aria-activedescendant={activeIndex >= 0 ? `${generatedId}-opt-${activeIndex}` : undefined}
+            onMouseDown={(e) => e.preventDefault()}
           >
             {models.map((model, index) => {
               const isSelected = model.id === currentValue;
               return (
-                // Keyboard interaction is handled at the listbox level (handleListKeyDown);
-                // options are activated via roving aria-activedescendant, so per-option key
+                // Keyboard interaction is handled on the combobox trigger (handleTriggerKeyDown);
+                // options are activated via aria-activedescendant, so per-option key
                 // listeners are unnecessary.
                 // eslint-disable-next-line jsx-a11y/click-events-have-key-events
                 <li
