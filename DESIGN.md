@@ -260,6 +260,21 @@ Major Second (1.125) に近い比率に基づく、意図的にコンパクト�
 | UI コンポーネント | `sm`, `md`, `lg` | `ComponentSize` |
 | レイアウト | `xs`, `sm`, `md`, `lg`, `xl` | - |
 
+### 密度（compact）に追従するもの・しないもの
+
+`data-density="compact"` で縮むのは、**操作する部品の高さと余白（制御トークン。`src/styles/_ui-patterns.scss`）だけ**です。レイアウトの間隔（`--wim-spacing-*`）は動かしません。2026-10-05 に、追従していなかった操作系の部品を一通り見て、次のように決めました（T314）。
+
+| 部品 | compact のとき | 理由 |
+|---|---|---|
+| Tabs / Accordion（FAQSection も）/ Transfer の一覧の見出し / OtpInput / RangeSlider | 縮む（タブ・見出しの余白、セルと根の高さ） | 一覧や入力に並ぶ部品で、まわりだけ縮むと間延びする |
+| Pagination / Calendar・RangeCalendar の日 | 縮まない | 既に当たり判定の下限（24px。WCAG 2.5.8）にいる。これ以上は縮められない |
+| Menubar | 縮まない | 項目は 27.9px で、下限の 24px まで 4px しかない。縮めても差が見えない |
+| CheckboxGroup / RadioGroup | 縮まない（中のチェックボックス・ラジオは縮む） | グループが持つのは項目のあいだの間隔で、レイアウトの間隔にあたる |
+| SmartSearchInput | 縮む（以前から。1 行で 62 → 56px。高さを `--wim-height-md` から計算している） | 起票のときは「追従しない」と数えていたが、描画のあとに属性だけ変えて測ったための読み違い |
+| Alert / Carousel / Card など、面や入れ物 | 縮まない | 密度は操作する部品の寸法の話で、面の余白は対象にしない |
+
+密度に追従させるときは、**comfortable で今と同じ値になる制御トークンへ差し替える**（既定の絵を動かさない）。compact の姿は `Token/Density` のストーリーが撮ります。
+
 ### バリアント体系
 
 | 対象 | 型名 | 値 |

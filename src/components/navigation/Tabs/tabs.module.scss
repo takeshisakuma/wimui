@@ -65,7 +65,9 @@
       .trigger {
         justify-content: flex-start;
         width: 100%;
-        padding: var(--wim-spacing-md) var(--wim-spacing-lg);
+
+        // 密度に追従する（comfortable は md / lg のまま。compact は xs / sm）。T314
+        padding: var(--wim-field-padding-y) var(--wim-control-item-padding-x-lg);
         margin-right: -1px; /* Exception: Browser Rendering Fixes — 縦タブの選択ボーダー重ね合わせ */
         text-align: left;
         white-space: normal;
@@ -157,7 +159,9 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: var(--wim-spacing-sm) var(--wim-spacing-lg);
+
+      // 密度に追従する（comfortable は sm / lg のまま。compact は 2xs / sm）。T314
+      padding: var(--wim-control-padding-y-sm) var(--wim-control-item-padding-x-lg);
       margin-bottom: -1px; /* Exception: Browser Rendering Fixes — タブ選択ボーダーの重ね合わせ */
       font-weight: var(--wim-font-weight-medium);
       color: var(--wim-color-text-secondary);

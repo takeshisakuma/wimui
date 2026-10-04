@@ -40,8 +40,10 @@
   .input {
     all: unset;
     box-sizing: border-box;
-    width: 3rem; /* Exception: Structural Logic — OTP セルの固定寸法（操作性確保のため死守） */
-    height: 3rem; /* Exception: Structural Logic — OTP セルの固定寸法（操作性確保のため死守） */
+
+    // セルは lg の段（48px）。密度に追従する（compact は 40px）。T314
+    width: var(--wim-height-lg);
+    height: var(--wim-height-lg);
     font-size: var(--wim-font-size-xl); /* Exception: Structural Logic — OTP セル内の視認性確保のため md より大きいサイズを使用 */
     color: var(--wim-color-text-primary);
     text-align: center;
@@ -57,8 +59,10 @@
       opacity var(--wim-transition-base);
   
     @include breakpoints.container-down(sm) {
-      width: 2.5rem;
-      height: 2.5rem;
+      // 狭いコンテナでは md の段（42px。以前は 40px で、入力・ボタンの段から 2px 外れていた ── T313）。
+      // 根の最大幅が sm の境より狭いので、fullWidth でない限り、こちらが既定の姿になる。
+      width: var(--wim-height-md);
+      height: var(--wim-height-md);
       font-size: var(--wim-font-size-md);
     }
   
