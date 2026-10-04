@@ -96,6 +96,8 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
     const [activeIndex, setActiveIndex] = useState(-1);
     const containerRef = useRef<HTMLDivElement>(null);
     const listRef = useRef<HTMLUListElement>(null);
+    // 頭文字の検索（typeahead）。続けて打った文字をためて、間が空いたら捨てる。
+    const typeahead = useRef<{ text: string; timer: ReturnType<typeof setTimeout> | null }>({ text: "", timer: null });
 
     // Handle click outside
     useEffect(() => {
@@ -135,6 +137,40 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
       setIsOpen(false);
     };
 
+    // 打った文字で国へ飛ぶ。国名の前方一致（大文字小文字を区別しない）。数字（先頭の + は無視）は国番号の前方一致。
+    // 同じ 1 文字を続けて打ったときは、その文字で始まる国を順に巡る（"u" → United States → United Kingdom）。
+    const findByText = (text: string, from: number) => {
+      const query = text.toLowerCase().replace(/^\+/, "");
+      if (query === "") return -1;
+      const byDial = /^[0-9]+$/.test(query);
+      const matches = (c: Country, q: string) =>
+        byDial ? c.dialCode.startsWith(q) : c.name.toLowerCase().startsWith(q);
+      // 国番号では巡らない（"44" は 4 で始まる番号の 2 つ目ではなく、44 そのもの）。
+      const repeated = !byDial && query.length > 1 && query.split("").every((ch) => ch === query[0]);
+      const q = repeated ? query[0] : query;
+      // 打ち始め・同じ文字の繰り返しは「いまの次」から、続きの文字は「いま」から探す（いまの項目に留まれる）。
+      const start = repeated || query.length === 1 ? from + 1 : from;
+      for (let i = 0; i < PHONE_COUNTRIES.length; i++) {
+        const index = (Math.max(start, 0) + i) % PHONE_COUNTRIES.length;
+        if (matches(PHONE_COUNTRIES[index], q)) return index;
+      }
+      return -1;
+    };
+
+    const handleTypeahead = (char: string) => {
+      const state = typeahead.current;
+      if (state.timer) clearTimeout(state.timer);
+      state.text += char;
+      state.timer = setTimeout(() => {
+        state.text = "";
+        state.timer = null;
+      }, 500);
+      const index = findByText(state.text, isOpen ? activeIndex : -1);
+      if (index < 0) return;
+      if (isOpen) setActiveIndex(index);
+      else openList(index);
+    };
+
     // 引き金は select-only の combobox。フォーカスは引き金に残し、キーは全部ここで受ける
     // （ModelSelector と同じ形）。以前は各項目が Tab の停止点で、矢印キーも Esc も効かなかった。
     const handleTriggerKeyDown = (e: React.KeyboardEvent) => {
@@ -158,7 +194,9 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
         case "Enter":
         case " ":
           e.preventDefault();
-          if (!isOpen) openList();
+          // 検索の途中の Space は文字として扱う（"united k" と打てるように）。
+          if (e.key === " " && typeahead.current.text !== "") handleTypeahead(" ");
+          else if (!isOpen) openList();
           else selectCountry(activeIndex);
           break;
         case "Escape":
@@ -170,8 +208,21 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
         case "Tab":
           setIsOpen(false);
           break;
+        default:
+          // 印字できる 1 文字（修飾キーなし）だけを検索に回す。
+          if (e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey) {
+            e.preventDefault();
+            handleTypeahead(e.key);
+          }
       }
     };
+
+    useEffect(() => {
+      const state = typeahead.current;
+      return () => {
+        if (state.timer) clearTimeout(state.timer);
+      };
+    }, []);
 
     useEffect(() => {
       if (isOpen && activeIndex >= 0) {
