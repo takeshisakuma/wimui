@@ -171,6 +171,19 @@ describe("Select", () => {
     await waitFor(() => expect(screen.queryByRole("listbox")).toBeNull());
   });
 
+  it("closes dropdown on Tab key without blocking the default tab order", async () => {
+    render(<Select options={options} />);
+    const trigger = screen.getByRole("combobox");
+    fireEvent.click(trigger);
+    await waitFor(() => expect(screen.queryByRole("listbox")).not.toBeNull());
+
+    // 既定の動作（次の要素へ進む）は止めない
+    const notPrevented = fireEvent.keyDown(trigger, { key: "Tab" });
+    expect(notPrevented).toBe(true);
+    await waitFor(() => expect(screen.queryByRole("listbox")).toBeNull());
+    expect(trigger).toHaveAttribute("aria-expanded", "false");
+  });
+
   it("opens dropdown on Space key", async () => {
     render(<Select options={options} />);
     fireEvent.keyDown(screen.getByRole("combobox"), { key: " " });
