@@ -259,7 +259,7 @@
     "phoneinput_choice_phoneinput_when": "国コード選択付きで国際電話番号を入力させる場合。",
     "phoneinput_desc": "国際電話番号入力",
     "phoneinput_design_intent": "PhoneInputは国コードセレクターと電話番号フィールドを一体化した入力コンポーネントです。国を選択するとフラグとダイヤルコードが表示され、ユーザーが手動で国番号を入力する必要がなく、国際電話番号収集のUX問題を解決します。",
-    "phoneinput_keyboard_desc": "Tab キーで最初に国セレクター、次に電話番号の入力欄にフォーカスします。国セレクターでは、Enter・Space・矢印キーでリストを開き、矢印キーと Home / End で国を移動し、Enter または Space で選択し、Esc で変更せずに閉じます。Tab はリストを閉じて次へ進みます。",
+    "phoneinput_keyboard_desc": "Tab キーで最初に国セレクター、次に電話番号の入力欄にフォーカスします。国セレクターでは、Enter・Space・矢印キーでリストを開き、矢印キーと Home / End で国を移動し、Enter または Space で選択し、Esc で変更せずに閉じます。Tab はリストを閉じて次へ進みます。 文字を打つと、その文字で始まる国へ移動します（同じ 1 文字を続けて打つと、該当する国を順に巡ります）。数字を打つと、国番号で移動します。",
     "phoneinput_long_desc": "国ダイヤルコードセレクター付きの国際電話番号複合入力です。",
     "phoneinput_scenario_checkout": "ECチェックアウト: 任意の国からの配送連絡先電話番号の収集。",
     "phoneinput_scenario_checkout_title": "ECチェックアウト",

@@ -67,4 +67,18 @@ test.describe("PhoneInput", () => {
     await expect(page.getByRole("listbox")).toHaveCount(0);
     await expect(page.getByRole("textbox")).toBeFocused();
   });
+
+  // 実際のキー入力で: 文字で国へ飛び、検索の途中の Space は選択にならず、Enter で選ぶ。
+  test("typing a name jumps to the country and Enter selects it", async ({ page }) => {
+    const trigger = page.getByRole("combobox", { name: "Select country" });
+    await trigger.focus();
+    await page.keyboard.type("united k");
+    await expect(page.getByRole("listbox")).toBeVisible();
+    const active = await trigger.getAttribute("aria-activedescendant");
+    await expect(page.locator(`[id="${active}"]`)).toContainText("United Kingdom");
+    await page.keyboard.press("Enter");
+    await expect(page.getByRole("listbox")).toHaveCount(0);
+    await expect(trigger).toContainText("+44");
+    await expect(trigger).toBeFocused();
+  });
 });
