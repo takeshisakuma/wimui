@@ -107,7 +107,6 @@ CI・テスト・監査体制は堅い（typecheck / coverage 80% / axe-core WCA
 | # | 項目 | 優先 | 内容 | 検証方法 |
 |---|---|---|---|---|
 | T293 | **開いた姿が自動検査に入っていない部品の残り** | P1 | 開く引き金（`aria-haspopup` / `aria-expanded`）を持つ 27 部品のうち 18 部品は、開いた姿が VRT にも a11y の CI にも写っていなかった。選択系・日付系・メニュー系の 13 部品には `Open` ストーリーを足した（`stories/playOpen.ts`。4 部品で serious の違反が見つかって直した）。**引き金にこれらの属性を持たない部品は調べていない**: Dialog / BottomSheet / HoverCard / ContextMenu / CommandPalette / Tour / Lightbox | 各部品の開いた姿を axe（WCAG 2.1 AA）で light / dark。足したら `vrt/play-functions.e2e.spec.ts` が通ること |
-| T294 | **ModelSelector の読み上げ** | 判断待ち | 引き金がボタンで、選択中の項目を示す `aria-activedescendant` がフォーカスのない listbox 側に付いている。読み上げで「いまどの項目か」が伝わらない可能性がある。標準の形は引き金を `role="combobox"` にすること（select-only combobox）。**役割が変わるので利用者のテスト（`getByRole("button")`）に影響する** | スクリーンリーダーで矢印キーを押して項目名が読まれること |
 | T295 | **PhoneInput の「Select country」が英語の直書き** | P3 | 引き金と開いたリストの `aria-label`。ランタイムの翻訳キーに載せる | `node scripts/check-src-hardcoded.js`（`audit:lib` の Raw UI strings）の件数が 1 減ること・ja / pt で読み上げ名が変わること |
 | T296 | **Patterns のストーリーの強制カラー計測** | P3 | `measure:focus-forced-colors` は Components だけを測った。対象を広げて流す | 消える・弱い停止点が 0 |
 | T297 | **「既定が透明で、アニメーションの終わりで見える」書き方のガード** | P2 | `opacity: 0` ＋ `animation … forwards` は、アニメーションが止められると消えたままになる（VRT は撮影時に止める）。Tooltip と HoverCard で見つけて直した。全ストーリーの点検では残り 0 件だが、書き方を落とす検査が無い。Video の `skipFadeIn` に同じ書き方が 1 か所ある | 故意に同じ書き方を入れて落ちること（全量 / lint-staged） |
