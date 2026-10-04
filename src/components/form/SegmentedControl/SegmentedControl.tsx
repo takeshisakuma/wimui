@@ -102,6 +102,13 @@ export const SegmentedControl = forwardRef<HTMLDivElement, SegmentedControlProps
         nextIndex = index + 1;
         if (nextIndex >= options.length) nextIndex = 0;
         break;
+      // 端へ。ToggleGroup / Rating / Tabs と同じ（T315）
+      case "Home":
+        nextIndex = 0;
+        break;
+      case "End":
+        nextIndex = options.length - 1;
+        break;
       default:
         return;
     }

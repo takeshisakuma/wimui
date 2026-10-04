@@ -2,7 +2,7 @@ import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
-import { FieldError, Input, Label } from "wimui";
+import { Input, Label } from "wimui";
 
 
 const meta: Meta<typeof Input> = {
@@ -160,26 +160,17 @@ export const Danger: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "8px",
-        }}
-      >
-        <Label label={t("story.input_label_email")} required>
-          <Input
-            {...args}
-            placeholder={t("story.input_placeholder_email")}
-            defaultValue="invalid-email@"
-          />
-        </Label>
-        <FieldError content={t("story.input_error_email")} />
-      </div>
+      // エラー文は `error` で渡す。入力欄の `aria-describedby` がエラー文を指し、`aria-invalid` が付く。
+      // Label ＋ Input ＋ 別に置いた FieldError、という組み方だと、見た目は同じでも入力欄から辿れない（T316）。
+      <Input
+        {...args}
+        label={t("story.input_label_email")}
+        required
+        error={t("story.input_error_email")}
+        placeholder={t("story.input_placeholder_email")}
+        defaultValue="invalid-email@"
+      />
     );
-  },
-  args: {
-    intent: "danger",
   },
 };
 
