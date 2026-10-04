@@ -59,13 +59,18 @@ test.describe("ModelSelector", () => {
     await expect(trigger).toBeFocused();
   });
 
-  test("Tab closes the list and moves on", async ({ page }) => {
-    const trigger = page.getByRole("combobox");
-    await trigger.focus();
+  // 「引き金からフォーカスが外れた」だけでは足りない。スクロールするリストは Chrome で Tab の停止点に
+  // なるので、Tab がリストへ入り、リストが消えてフォーカスが body へ落ちても通ってしまう
+  // （最初の版がそうだった。PhoneInput の同じテストが落ちて気づいた）。次の停止点まで見る。
+  test("Tab closes the list and moves to the next control", async ({ page }) => {
+    await page.goto(STORY_URL.replace("--default", "--sizes"));
+    await waitForStoryReady(page);
+    const triggers = page.getByRole("combobox");
+    await triggers.nth(0).focus();
     await page.keyboard.press("ArrowDown");
     await expect(page.getByRole("listbox")).toBeVisible();
     await page.keyboard.press("Tab");
     await expect(page.getByRole("listbox")).toHaveCount(0);
-    await expect(trigger).not.toBeFocused();
+    await expect(triggers.nth(1)).toBeFocused();
   });
 });

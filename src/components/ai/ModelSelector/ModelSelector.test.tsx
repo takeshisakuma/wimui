@@ -102,7 +102,8 @@ describe("ModelSelector", () => {
     render(<ModelSelector models={MODELS} />);
     fireEvent.click(screen.getByRole("combobox"));
     const listbox = screen.getByRole("listbox");
-    expect(listbox).not.toHaveAttribute("tabindex");
+    // Chrome はスクロールする要素を Tab の停止点にするので、明示して外す
+    expect(listbox).toHaveAttribute("tabindex", "-1");
     expect(listbox).not.toHaveAttribute("aria-activedescendant");
   });
 });

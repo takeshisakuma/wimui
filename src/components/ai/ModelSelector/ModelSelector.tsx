@@ -333,6 +333,10 @@ export const ModelSelector = React.forwardRef<HTMLDivElement, ModelSelectorProps
             /* 名前は引き金と同じ。フォーカスは引き金に残すので、リストは Tab の停止点にしない
                （押してもフォーカスを奪わないよう、mousedown の既定の動作を止める）。 */
             aria-label={triggerAriaLabel}
+            // スクロールする要素は、Chrome では tabindex が無くても Tab の停止点になる。-1 で外す
+            // （外さないと、Tab がこのリストへ入り、閉じるアニメーションの終わりでリストごと消えて
+            // フォーカスが body へ落ちる）。
+            tabIndex={-1}
             className={styles.dropdown}
             onMouseDown={(e) => e.preventDefault()}
           >
