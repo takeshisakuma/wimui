@@ -1,3 +1,4 @@
+import React from "react";
 import { render, screen, fireEvent, act } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { readFileSync } from "node:fs";
@@ -129,6 +130,76 @@ describe("Tour", () => {
 
     fireEvent.click(screen.getByText("Finish"));
     expect(handleFinish).toHaveBeenCalled();
+  });
+
+  // T310: 吹き出しはダイアログとして扱う
+  describe("as a dialog", () => {
+    function Harness({ onClose }: { onClose?: () => void }) {
+      const [open, setOpen] = React.useState(false);
+      return (
+        <>
+          <button onClick={() => setOpen(true)}>Start</button>
+          <Tour
+            steps={steps}
+            open={open}
+            onClose={() => {
+              onClose?.();
+              setOpen(false);
+            }}
+          />
+        </>
+      );
+    }
+
+    const start = () => {
+      const button = screen.getByRole("button", { name: "Start" });
+      act(() => button.focus());
+      fireEvent.click(button);
+      return button;
+    };
+
+    it("is a named modal dialog described by the step copy", () => {
+      render(<Tour steps={steps} open={true} onClose={() => {}} />);
+      const dialog = screen.getByRole("dialog", { name: steps[0].title });
+      expect(dialog).toHaveAttribute("aria-modal", "true");
+      const describedBy = dialog.getAttribute("aria-describedby");
+      expect(describedBy).toBeTruthy();
+      expect(document.getElementById(describedBy!)).toHaveTextContent(steps[0].description);
+    });
+
+    it("moves focus to the Next button when it opens", () => {
+      render(<Harness />);
+      start();
+      expect(screen.getByRole("button", { name: "Next" })).toHaveFocus();
+    });
+
+    it("closes on Escape and returns focus to the opener", () => {
+      const onClose = vi.fn();
+      render(<Harness onClose={onClose} />);
+      const opener = start();
+      fireEvent.keyDown(document.activeElement as HTMLElement, { key: "Escape" });
+      expect(onClose).toHaveBeenCalledTimes(1);
+      expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+      expect(opener).toHaveFocus();
+    });
+
+    it("does not listen for Escape while closed", () => {
+      const onClose = vi.fn();
+      render(<Harness onClose={onClose} />);
+      fireEvent.keyDown(document.body, { key: "Escape" });
+      expect(onClose).not.toHaveBeenCalled();
+    });
+
+    it("keeps focus inside when Back disappears on the first step", () => {
+      render(<Harness />);
+      start();
+      fireEvent.click(screen.getByRole("button", { name: "Next" }));
+      const back = screen.getByRole("button", { name: "Back" });
+      act(() => back.focus());
+      fireEvent.click(back);
+      expect(screen.queryByRole("button", { name: "Back" })).not.toBeInTheDocument();
+      expect(screen.getByRole("button", { name: "Next" })).toHaveFocus();
+    });
   });
 
   it("calls onClose when mask is clicked", () => {
