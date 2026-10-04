@@ -1,5 +1,11 @@
 # wimui
 
+## 0.51.1
+
+### Patch Changes
+
+- 5127c81: SegmentedControl で、Home / End キーが効くようにしました（最初・最後の選択肢へ移ります）。ToggleGroup / Tabs / Rating と同じ操作です。
+
 ## 0.51.0
 
 ### Minor Changes
