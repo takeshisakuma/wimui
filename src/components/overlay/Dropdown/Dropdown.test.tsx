@@ -151,6 +151,68 @@ describe("Dropdown", () => {
 
   // T264: 開く手段が公開されていなかったので、VRT はメニューを一度も撮れず、
   // 使う側も行の操作から開けなかった。契約は Popover / HoverCard に合わせてある。
+  // メニューの中にフォーカスがあるまま閉じると、面ごと消えてフォーカスが body へ落ちる（T301。
+  // 実ブラウザの計測で、Dropdown と SplitButton だけ Escape のあと body だった）。
+  describe("returns focus to the trigger when the menu closes with focus inside it", () => {
+    const openWithKeyboard = async () => {
+      render(
+        <Dropdown>
+          <DropdownTrigger>Toggle</DropdownTrigger>
+          <DropdownMenu>
+            <DropdownItem>Item 1</DropdownItem>
+            <DropdownItem>Item 2</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>,
+      );
+      const trigger = screen.getByText("Toggle");
+      trigger.focus();
+      fireEvent.keyDown(trigger, { key: "Enter" });
+      await waitFor(() => expect(screen.getByRole("menuitem", { name: "Item 1" })).toHaveFocus());
+      return trigger;
+    };
+
+    it("Escape", async () => {
+      const trigger = await openWithKeyboard();
+      fireEvent.keyDown(document, { key: "Escape" });
+      await waitFor(() => expect(screen.queryByText("Item 1")).not.toBeInTheDocument());
+      expect(trigger).toHaveFocus();
+    });
+
+    it("selecting an item", async () => {
+      const trigger = await openWithKeyboard();
+      fireEvent.click(screen.getByText("Item 1"));
+      await waitFor(() => expect(screen.queryByText("Item 1")).not.toBeInTheDocument());
+      expect(trigger).toHaveFocus();
+    });
+
+    it("Tab (the default action then moves on from the trigger)", async () => {
+      const trigger = await openWithKeyboard();
+      const notPrevented = fireEvent.keyDown(screen.getByRole("menuitem", { name: "Item 1" }), { key: "Tab" });
+      expect(notPrevented).toBe(true);
+      await waitFor(() => expect(screen.queryByText("Item 1")).not.toBeInTheDocument());
+      expect(trigger).toHaveFocus();
+    });
+  });
+
+  it("does not move focus when the menu closes while focus is elsewhere", async () => {
+    render(
+      <>
+        <input aria-label="other" />
+        <Dropdown defaultOpen>
+          <DropdownTrigger>Toggle</DropdownTrigger>
+          <DropdownMenu>
+            <DropdownItem>Item 1</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>
+      </>,
+    );
+    const other = screen.getByLabelText("other");
+    other.focus();
+    fireEvent.keyDown(document, { key: "Escape" });
+    await waitFor(() => expect(screen.queryByText("Item 1")).not.toBeInTheDocument());
+    expect(other).toHaveFocus();
+  });
+
   it("starts open with defaultOpen and still closes from the trigger", async () => {
     render(
       <Dropdown defaultOpen>
