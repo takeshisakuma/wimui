@@ -3,6 +3,7 @@ import React, {
   useContext,
   useState,
   useCallback,
+  useEffect,
   useMemo,
 } from "react";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
@@ -454,6 +455,29 @@ const TreeView = ({
 
   const useVirtual = !!nodes && flatNodes.length >= virtualThreshold;
 
+  // データ駆動（`nodes`）では、矢印キーは `focusedValue` を動かすだけで、DOM のフォーカスは動かして
+  // いなかった。tabIndex=0 の項目だけが次へ移り、実際のフォーカスは元の項目に残る ── 次の ↓ は
+  // 「元の項目の次」をもう一度計算するので、2 つ目より先へ進めない（T309。TreeSelect の中で実測）。
+  // フォーカスがツリーの中にあるときだけ、値の変化に DOM のフォーカスを追従させる（検索欄で打って
+  // いるあいだは奪わない）。
+  const focusItem = useCallback((value: string | null) => {
+    const root = containerRef.current;
+    if (!root || !value) return;
+    const item = Array.from(root.querySelectorAll<HTMLElement>('[role="treeitem"]')).find(
+      (el) => el.getAttribute("data-value") === value,
+    );
+    if (item && item !== document.activeElement) item.focus();
+  }, []);
+
+  useEffect(() => {
+    if (!nodes || !focusedValue) return;
+    const root = containerRef.current;
+    const active = document.activeElement;
+    if (!root || !active || !root.contains(active)) return;
+    if (active instanceof HTMLInputElement) return;
+    focusItem(focusedValue);
+  }, [nodes, focusedValue, focusItem]);
+
   const handleNodeKeyDown = useCallback(
     (e: React.KeyboardEvent, node: FlatNode, flatIndex: number) => {
       switch (e.key) {
@@ -559,7 +583,8 @@ const TreeView = ({
           onKeyDown={(e) => {
             // Tab はツリーが扱うキーではない。止めると、外側の FocusTrap（document で Tab を聞く）に届かず、
             // モーダルの面の中にツリーを置いたときにフォーカスが外へ出る（TreeSelect で実測）。
-            if (e.key !== "Tab") e.stopPropagation();
+            // Escape も同じ: ツリーは使わないキーで、止めると外側の面（TreeSelect のパネル・Modal）が閉じられない（T309）。
+            if (e.key !== "Tab" && e.key !== "Escape") e.stopPropagation();
             handleNodeKeyDown(e, node, index);
           }}
           onFocus={(e) => {
@@ -663,10 +688,13 @@ const TreeView = ({
         onFocus={(e) => {
           if (e.target === containerRef.current) {
             if (nodes) {
+              // 入れ物にフォーカスが来たら、フォーカスのある項目（無ければ先頭）へ渡す。値が変わらない
+              // ときは上の effect が走らないので、ここで直接移す。
               if (focusedValue) {
-                setFocusedValue(focusedValue);
+                focusItem(focusedValue);
               } else if (flatNodes.length > 0) {
                 setFocusedValue(flatNodes[0].value);
+                focusItem(flatNodes[0].value);
               }
             } else {
               if (focusedValue) {
@@ -833,7 +861,7 @@ export const TreeViewItem = ({
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (disabled) return;
     // Tab は止めない（上の data 駆動の項目と同じ理由。外側の FocusTrap に届かなくなる）。
-    if (e.key !== "Tab") e.stopPropagation();
+    if (e.key !== "Tab" && e.key !== "Escape") e.stopPropagation();
 
     const items = Array.from(
       containerRef.current?.querySelectorAll(

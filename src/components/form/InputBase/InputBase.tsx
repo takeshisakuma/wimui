@@ -13,6 +13,13 @@ export type InputBaseIcon = {
   className?: string;
   /** Whether the icon should be rotated 180deg */
   rotated?: boolean;
+  /**
+   * Marks a clickable icon as a pointer-only affordance that repeats what the
+   * control already does from the keyboard (the chevron of a combobox, the
+   * clock of a time field). It stays clickable but is taken out of the tab
+   * order and hidden from assistive technology, so it needs no name.
+   */
+  decorative?: boolean;
 };
 
 export type InputBaseProps = {
@@ -177,6 +184,7 @@ export const InputBase = ({
               onClick={onLeftIconClick}
               className={classNames(localStyles.iconButton, stylesProp?.iconButton)}
               aria-label={resolvedLeftIconAriaLabel}
+              disabled={isDisabled}
             >
               <Icon
                 name={leftIcon}
@@ -230,7 +238,13 @@ export const InputBase = ({
                   type="button"
                   onClick={icon.onClick}
                   className={classNames(localStyles.iconButton, stylesProp?.iconButton)}
-                  aria-label={icon.ariaLabel ?? t("a11y.right_icon_action")}
+                  // 無効の入力欄の中に、押せて Tab で届くボタンが残っていた（T311）。入力欄と一緒に無効にする。
+                  disabled={isDisabled}
+                  // 飾りの扱いのアイコン（コンボボックスの山形など）は、キーボードの操作を入力欄そのものが
+                  // 持っている。押せるままにして、Tab の停止点と読み上げからは外す。
+                  tabIndex={icon.decorative ? -1 : undefined}
+                  aria-hidden={icon.decorative || undefined}
+                  aria-label={icon.decorative ? undefined : (icon.ariaLabel ?? t("a11y.right_icon_action"))}
                 >
                   <Icon
                     name={icon.name}

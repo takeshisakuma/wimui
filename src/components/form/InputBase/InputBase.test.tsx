@@ -201,4 +201,37 @@ describe("InputBase", () => {
     );
     expect(container.querySelector(`.${styles.rotated}`)).toBeInTheDocument();
   });
+
+  // T311: 無効の入力欄の中に、押せて Tab で届くボタンが残っていた
+  it("disables the icon buttons together with the field", () => {
+    render(
+      <InputBase
+        disabled
+        leftIcon="SearchIcon"
+        onLeftIconClick={() => {}}
+        rightIcons={[{ name: "CloseIcon", onClick: () => {}, ariaLabel: "Close" }]}
+      >
+        <input />
+      </InputBase>,
+    );
+    const buttons = screen.getAllByRole("button");
+    expect(buttons).toHaveLength(2);
+    for (const button of buttons) expect(button).toBeDisabled();
+  });
+
+  it("keeps a decorative icon clickable but out of the tab order and the accessibility tree", () => {
+    const handler = vi.fn();
+    const { container } = render(
+      <InputBase rightIcons={[{ name: "ChevronDownIcon", onClick: handler, decorative: true }]}>
+        <input />
+      </InputBase>,
+    );
+    expect(screen.queryByRole("button")).not.toBeInTheDocument();
+    const button = container.querySelector("button") as HTMLButtonElement;
+    expect(button).toHaveAttribute("tabindex", "-1");
+    expect(button).toHaveAttribute("aria-hidden", "true");
+    expect(button).not.toHaveAttribute("aria-label");
+    fireEvent.click(button);
+    expect(handler).toHaveBeenCalledTimes(1);
+  });
 });

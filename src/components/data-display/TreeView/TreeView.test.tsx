@@ -288,6 +288,21 @@ describe("TreeView", () => {
       { value: "2", label: "Root 2" },
     ];
 
+    // T309: 矢印は focusedValue だけ動かし、DOM のフォーカスが動かなかった。次の ↓ は元の項目から
+    // 数え直すので、2 つ目より先へ進めなかった。
+    it("moves DOM focus with the arrow keys, past the second item", () => {
+      render(<TreeView nodes={treeNodes} defaultExpandedValues={["1"]} />);
+      const items = screen.getAllByRole("treeitem");
+      expect(items).toHaveLength(4);
+      act(() => items[0].focus());
+      fireEvent.keyDown(document.activeElement as HTMLElement, { key: "ArrowDown" });
+      expect(document.activeElement).toHaveAttribute("data-value", "1.1");
+      fireEvent.keyDown(document.activeElement as HTMLElement, { key: "ArrowDown" });
+      expect(document.activeElement).toHaveAttribute("data-value", "1.2");
+      fireEvent.keyDown(document.activeElement as HTMLElement, { key: "ArrowUp" });
+      expect(document.activeElement).toHaveAttribute("data-value", "1.1");
+    });
+
     it("renders root nodes", () => {
       render(<TreeView nodes={treeNodes} />);
       expect(screen.getByText("Root 1")).toBeInTheDocument();
