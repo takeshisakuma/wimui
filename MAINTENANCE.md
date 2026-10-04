@@ -536,6 +536,7 @@ npx http-server@14 storybook-static -p 6006 -c-1 --silent   # 別ターミナル
 
 npm run measure:focus-forced-colors                          # Components を全量（通常 → 強制カラー。合わせて 20〜25 分 / 6 並列）
 npm run measure:focus-forced-colors -- --only tabs           # ストーリー ID の部分一致で絞る
+npm run measure:focus-forced-colors -- --scope Patterns/ --out tmp-focus-forced-colors-patterns   # 合成画面（58 ストーリーで 2 分ほど）
 npm run measure:focus-forced-colors -- --report tmp-focus-forced-colors   # まとめ直すだけ
 ```
 
@@ -558,6 +559,7 @@ npm run measure:focus-forced-colors -- --report tmp-focus-forced-colors   # ま�
 - **ScheduleView のボタンは FullCalendar のもの**で、ライブラリ側が `.fc .fc-button:focus { outline: 0; box-shadow }` と書いている。ガードは自分の SCSS しか見ないので、外部ライブラリを包む部品はこの道具でしか見つからない。通常の表示のフォーカスが FullCalendar の灰色の輪のままなのは今回触っていない
 - **届いていない範囲**: 閉じたポップアップの中（最初の 1 つを開いた分だけ）。CommandPalette の検索欄はここに当たり、ガード側（入れ子のブロックを見る規則）で見つけた。全量は Chromium の模擬で測った（実機は `--system` で一部だけ）。Patterns のストーリーは対象外
 - **実機のパレットで測るときは `--system`**（2026-10-04）。OS のコントラスト テーマを適用した状態で `npm run measure:focus-forced-colors -- --system --only <ID の一部>` を流すと、模擬ではなく OS の設定のまま測る（ウィンドウが開く。画面を出さないモードは OS の強制カラーに従わない）。模擬と実機は色が違い、**模擬では気づけない欠陥があった** ── 入力欄は外枠の `:focus-within` に outline を出すが、色を任せると本文の色（白）になり、枠と同じ色の線が足されるだけだった（フォーカスした要素そのものの outline は強調色になる）。mixin が `outline-color: Highlight` を名指しするようにして直した。**この道具の合否は線種しか見ていない**ので、色は画像で確かめること
+- **Patterns も測った**（2026-10-04・T296。`--scope Patterns/`）。58 ストーリー・**停止点 230 / 停止点 0 のストーリー 4 / エラー 0 / 突き合わせ漏れ 0**。230 の停止点は通常も強制カラーも全部 outline で、消える・弱い停止点は 0。停止点 0 の 4 つ（`patterns-marketing--testimonial` / `--feature-section` / `--comparison-table`、`patterns-roastery--default`）は、Tab で届く要素が実際に 0 個の画面（対照の `patterns-hiring--default` は 38 個で、同じ数え方で Tab が届く）。Components と同じく、Tab は最大 8 回・閉じたポップアップは最初の 1 つだけなので、画面の奥の停止点は測っていない
 - CI には載せていない（全量で 20 分強）。**ガードが「書き方」を見張り、この道具は「実物」を見る**という分担
 
 ### 13. VRT スナップショットの衛生
