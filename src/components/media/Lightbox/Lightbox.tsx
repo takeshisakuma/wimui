@@ -267,6 +267,13 @@ export const LightboxContent = ({
       closeOnOverlayClick={closeOnOverlayClick}
       overlayClassName={styles.overlay}
       className={classNames("wim-lightbox", styles.contentRoot, className)}
+      // 開いた面（role="dialog"）の名前。いまの画像の title、無ければ alt、どちらも無ければ既定の名前。
+      // 以前は名前が無かった（axe: aria-dialog-name・serious。開いた姿のストーリーが無く、CI に写っていなかった）。
+      aria-label={
+        props["aria-labelledby"]
+          ? undefined
+          : (props["aria-label"] ?? (currentItem.title || currentItem.alt || t("lightbox.dialog")))
+      }
       transitionProps={{
         preset: "fade", // Override default "scale" to avoid conflict
         enter: styles.contentEnter,

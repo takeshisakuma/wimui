@@ -552,6 +552,14 @@
         "color-contrast"
       ]
     },
+    "components-media-lightbox--open": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
     "components-navigation-elements-menubar--open": {
       "light": [
         "aria-valid-attr-value"
@@ -585,6 +593,14 @@
       "dark": [
         "aria-hidden-focus",
         "aria-valid-attr-value",
+        "color-contrast"
+      ]
+    },
+    "components-overlays-tour--open": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
         "color-contrast"
       ]
     },

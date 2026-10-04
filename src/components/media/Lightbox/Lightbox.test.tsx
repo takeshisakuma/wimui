@@ -47,6 +47,20 @@ describe("Lightbox", () => {
     expect(onOpenChange).toHaveBeenCalledWith(true);
   });
 
+  it("names the dialog after the current image (title, then alt, then a default)", () => {
+    renderGallery();
+    fireEvent.click(screen.getByText("open-first"));
+    expect(screen.getByRole("dialog", { name: "Title A" })).toBeInTheDocument();
+    fireEvent.click(screen.getByLabelText("Next"));
+    expect(screen.getByRole("dialog", { name: "image-b" })).toBeInTheDocument();
+  });
+
+  it("falls back to the default dialog name when the image has neither title nor alt", () => {
+    renderGallery({}, {}, [{ src: "/a.png" }]);
+    fireEvent.click(screen.getByText("open-first"));
+    expect(screen.getByRole("dialog", { name: "Image viewer" })).toBeInTheDocument();
+  });
+
   it("opens at the trigger's index", () => {
     renderGallery();
     fireEvent.click(screen.getByText("open-second"));

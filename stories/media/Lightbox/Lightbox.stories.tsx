@@ -2,6 +2,7 @@ import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
+import { openWith } from "../../playOpen";
 import { Lightbox, LightboxTrigger, LightboxContent, LightboxGallery } from "@/components/media/Lightbox/Lightbox";
 import { Image } from "@/components/media/Image/Image";
 
@@ -108,4 +109,11 @@ export const WithCaptions: Story = {
     </Lightbox>
   );
   },
+};
+
+// 開いた姿。ほかのストーリーは閉じたまま撮られるので、開いた中身を変えても VRT と a11y の CI が
+// 動かなかった（T293）。docs ページには載せない（play は docs では走らず、defaultOpen はページを開いた瞬間に開く）。
+export const Open: Story = {
+  ...WithCaptions,
+  play: openWith("click", "button", ".wim-lightbox"),
 };

@@ -38,6 +38,29 @@ test.describe("ContextMenu", () => {
       await page.keyboard.press("Escape");
       await expect(page.getByRole("menu")).not.toBeVisible();
     });
+
+    // メニューはモーダルにしない（T293）。以前は開くと背後（#storybook-root）が aria-hidden になり、
+    // 中にフォーカスできる要素が残っていた（axe: aria-hidden-focus）。ガードも同じ規則に当たる。
+    test("does not hide the page or add focus guards while open", async ({ page }) => {
+      const trigger = page.getByTestId("context-menu-trigger").first();
+      await trigger.click({ button: "right" });
+      await expect(page.getByRole("menu")).toBeVisible();
+
+      await expect(page.locator("#storybook-root")).not.toHaveAttribute("aria-hidden", "true");
+      await expect(page.locator("[data-floating-ui-focus-guard]")).toHaveCount(0);
+      await expect(page.getByRole("menu")).not.toHaveAttribute("aria-labelledby", /.*/);
+    });
+
+    test("Tab closes the menu and returns focus to the trigger", async ({ page }) => {
+      const trigger = page.getByTestId("context-menu-trigger").first();
+      await trigger.focus();
+      await page.keyboard.press("Enter");
+      await expect(page.getByRole("menuitem").first()).toBeFocused();
+
+      await page.keyboard.press("Tab");
+      await expect(page.getByRole("menu")).toHaveCount(0);
+      await expect(trigger).toBeFocused();
+    });
   });
 
   test.describe("disabled items", () => {

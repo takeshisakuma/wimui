@@ -338,7 +338,8 @@
     "zoom_in": "Aumentar zoom",
     "zoom_out": "Diminuir zoom",
     "open": "Abrir imagem",
-    "open_named": "Abrir imagem: {{name}}"
+    "open_named": "Abrir imagem: {{name}}",
+    "dialog": "Visualizador de imagens"
   },
   "linkvsbutton": {
     "btn_examples": "Envio de formulários, abertura de modais, alteração de estados, execução de cálculos.",
