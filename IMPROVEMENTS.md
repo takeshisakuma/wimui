@@ -111,7 +111,6 @@ CI・テスト・監査体制は堅い（typecheck / coverage 80% / axe-core WCA
 | T295 | **PhoneInput の「Select country」が英語の直書き** | P3 | 引き金と開いたリストの `aria-label`。ランタイムの翻訳キーに載せる | `node scripts/check-src-hardcoded.js`（`audit:lib` の Raw UI strings）の件数が 1 減ること・ja / pt で読み上げ名が変わること |
 | T296 | **Patterns のストーリーの強制カラー計測** | P3 | `measure:focus-forced-colors` は Components だけを測った。対象を広げて流す | 消える・弱い停止点が 0 |
 | T297 | **「既定が透明で、アニメーションの終わりで見える」書き方のガード** | P2 | `opacity: 0` ＋ `animation … forwards` は、アニメーションが止められると消えたままになる（VRT は撮影時に止める）。Tooltip と HoverCard で見つけて直した。全ストーリーの点検では残り 0 件だが、書き方を落とす検査が無い。Video の `skipFadeIn` に同じ書き方が 1 か所ある | 故意に同じ書き方を入れて落ちること（全量 / lint-staged） |
-| T298 | **Snackbar の dark の地** | 判断待ち | `surface-inverse` は dark でも `#262626` で、ページの地と同じ。白 10% の枠があるので輪郭は出ている。Tooltip は反転（明るい面）にした（#813）。揃えるかどうか | — |
 | CI-14 | **E2E が 2026-10-03 の午後から落ち始めた理由** | 保留（再発待ち） | 朝まで 10 回緑だった E2E が、同じコミットで落ちるようになった。落ち方の正体（ストーリーの作り直し）は #794 で止めたが、**なぜその日から runner が遅くなったのかは分かっていない** | 再発したら runner image の版と所要時間を比べる |
 
 ### コンポーネント追加の検討（2026-09-28 起票）
