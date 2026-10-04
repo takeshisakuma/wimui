@@ -69,16 +69,14 @@ export const Danger: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-        <Label label={t("story.textarea_label_details")}>
-          <Textarea {...args} placeholder={t("story.textarea_placeholder_error")} />
-        </Label>
-        <FieldError content={t("story.textarea_error_10chars")} />
-      </div>
+      // エラー文は `error` で渡す（入力欄から `aria-describedby` で辿れる。T316）
+      <Textarea
+        {...args}
+        label={t("story.textarea_label_details")}
+        error={t("story.textarea_error_10chars")}
+        placeholder={t("story.textarea_placeholder_error")}
+      />
     );
-  },
-  args: {
-    intent: "danger",
   },
 };
 
