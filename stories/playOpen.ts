@@ -19,11 +19,11 @@ export const openFirstPopup = async ({ canvasElement }: { canvasElement: HTMLEle
   await waitFor(() => expect(trigger).toHaveAttribute("aria-expanded", "true"));
 };
 
-type OpenAction = "click" | "hover" | "contextmenu";
+type OpenAction = "click" | "contextmenu";
 
 /**
- * 引き金に `aria-haspopup` / `aria-expanded` を持たない部品用（ContextMenu / HoverCard / Tour /
- * Lightbox / CommandPalette）。`openFirstPopup` は属性で引き金を探すので、これらは拾えない。
+ * 引き金に `aria-haspopup` / `aria-expanded` を持たない部品用（ContextMenu / Tour / Lightbox /
+ * CommandPalette）。`openFirstPopup` は属性で引き金を探すので、これらは拾えない。
  *
  * 引き金はキャンバスの中から、開いた面は `document` 全体から探す（Portal で body に出るものがある）。
  * 開いた面が出なければ例外を投げる（`vrt/play-functions.e2e.spec.ts` が落とす）── 閉じたままの姿を
@@ -36,7 +36,13 @@ export const openWith =
     await expect(trigger).not.toBeNull();
     if (!trigger) return;
     if (action === "click") await userEvent.click(trigger);
-    else if (action === "hover") await userEvent.hover(trigger);
-    else fireEvent.contextMenu(trigger);
+    else {
+      // 座標を渡さないと (0, 0) になり、メニューが画面の隅に出る（キーボードで開いた扱いにもなる）。
+      const rect = trigger.getBoundingClientRect();
+      fireEvent.contextMenu(trigger, {
+        clientX: Math.round(rect.left + rect.width / 2),
+        clientY: Math.round(rect.top + rect.height / 2),
+      });
+    }
     await waitFor(() => expect(document.querySelector(openedSelector)).not.toBeNull(), { timeout: 3000 });
   };

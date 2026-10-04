@@ -5,7 +5,6 @@ import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
 import { Avatar, HoverCard, HoverCardContent, HoverCardTrigger } from "wimui";
 import avatar2 from "@/media/avatar_2.svg";
-import { openWith } from "../../playOpen";
 
 
 const meta: Meta<typeof HoverCard> = {
@@ -17,7 +16,7 @@ export default meta;
 type Story = StoryObj<typeof HoverCard>;
 
 export const Default: Story = {
-  render: () => {
+  render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
       <div
@@ -29,7 +28,7 @@ export const Default: Story = {
           minHeight: "600px",
         }}
       >
-        <HoverCard>
+        <HoverCard {...args}>
           <HoverCardTrigger asChild>
             <a
               href="/"
@@ -125,7 +124,11 @@ export const Instant: Story = {
 
 // 開いた姿。ほかのストーリーは閉じたまま撮られるので、開いた中身を変えても VRT と a11y の CI が
 // 動かなかった（T293）。docs ページには載せない（play は docs では走らず、defaultOpen はページを開いた瞬間に開く）。
+// ホバーの play では撮れない: 実際のポインタはカードの上に無いので、撮影の時点で閉じている
+// （最初は play で開き、VRT に吹き出しの無い絵が入った）。`open` で開いたままにする。
 export const Open: Story = {
   ...Default,
-  play: openWith("hover", "a[href]", ".wim-hover-card > :nth-child(2)"),
+  args: {
+    open: true,
+  },
 };
