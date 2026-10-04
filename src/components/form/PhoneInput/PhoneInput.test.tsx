@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, act } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { PhoneInput, PHONE_COUNTRIES } from "./PhoneInput";
 import styles from "./phone-input.module.scss";
@@ -163,5 +163,80 @@ describe("PhoneInput", () => {
     for (const option of screen.getAllByRole("option")) {
       expect(option).not.toHaveAttribute("tabindex");
     }
+  });
+
+  describe("typeahead", () => {
+    const activeName = (trigger: HTMLElement) => {
+      const id = trigger.getAttribute("aria-activedescendant");
+      return id ? document.getElementById(id)?.textContent : null;
+    };
+    const type = (trigger: HTMLElement, text: string) => {
+      for (const key of text) fireEvent.keyDown(trigger, { key });
+    };
+
+    it("opens the list and jumps to the first country starting with the typed letter", () => {
+      render(<PhoneInput />);
+      const trigger = screen.getByRole("combobox");
+      type(trigger, "j");
+      expect(trigger).toHaveAttribute("aria-expanded", "true");
+      expect(activeName(trigger)).toContain("Japan");
+    });
+
+    it("narrows with the following letters, including a space", () => {
+      render(<PhoneInput />);
+      const trigger = screen.getByRole("combobox");
+      type(trigger, "united k");
+      expect(activeName(trigger)).toContain("United Kingdom");
+      // 検索の途中の Space は選択ではない
+      expect(trigger).toHaveAttribute("aria-expanded", "true");
+    });
+
+    it("cycles through the matches when the same letter is repeated", () => {
+      render(<PhoneInput countryCode="JP" />);
+      const trigger = screen.getByRole("combobox");
+      type(trigger, "u");
+      expect(activeName(trigger)).toContain("United States");
+      type(trigger, "u");
+      expect(activeName(trigger)).toContain("United Kingdom");
+      type(trigger, "u");
+      expect(activeName(trigger)).toContain("United States");
+    });
+
+    it("matches the dial code when digits are typed", () => {
+      render(<PhoneInput />);
+      const trigger = screen.getByRole("combobox");
+      type(trigger, "+44");
+      expect(activeName(trigger)).toContain("United Kingdom");
+    });
+
+    it("starts a new search after a pause", () => {
+      vi.useFakeTimers();
+      try {
+        render(<PhoneInput />);
+        const trigger = screen.getByRole("combobox");
+        type(trigger, "j");
+        expect(activeName(trigger)).toContain("Japan");
+        act(() => {
+          vi.advanceTimersByTime(600);
+        });
+        type(trigger, "b");
+        expect(activeName(trigger)).toContain("Brazil");
+      } finally {
+        vi.useRealTimers();
+      }
+    });
+
+    it("leaves the active country alone when nothing matches, and ignores modified keys", () => {
+      const onCountryChange = vi.fn();
+      render(<PhoneInput onCountryChange={onCountryChange} />);
+      const trigger = screen.getByRole("combobox");
+      type(trigger, "j");
+      type(trigger, "z");
+      expect(activeName(trigger)).toContain("Japan");
+      fireEvent.keyDown(trigger, { key: "b", ctrlKey: true });
+      expect(activeName(trigger)).toContain("Japan");
+      fireEvent.keyDown(trigger, { key: "Enter" });
+      expect(onCountryChange).toHaveBeenCalledWith("JP");
+    });
   });
 });

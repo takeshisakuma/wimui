@@ -145,6 +145,16 @@ export function useSelect({
         e.preventDefault();
         break;
 
+      // Tab はリストを閉じて、そのまま次へ進む（既定の動作は止めない）。以前は分岐が無く、フォーカスが
+      // 外へ出てもリストが開いたまま残った（MultiSelect / Combobox / Cascader は閉じる）。
+      case "Tab":
+        if (isOpen) {
+          setIsOpen(false);
+          setSearchValue("");
+          setFocusedIndex(-1);
+        }
+        break;
+
       case "ArrowDown":
         e.preventDefault();
         if (!isOpen) {

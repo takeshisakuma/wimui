@@ -1,5 +1,23 @@
 # wimui
 
+## 0.49.0
+
+### Minor Changes
+
+- 65d28eb: PhoneInput の国の選択を、キーボードで操作できる `combobox` にしました。**引き金の役割が `button` から `combobox` に変わるので、テストで `getByRole("button", { name: "Select country" })` を使っている場合は `getByRole("combobox", …)` に直してください。**
+
+  - **以前**: 開いたリストの各項目が Tab の停止点で、矢印キーも Esc も効きませんでした（Tab で 1 つずつ進み、Enter / Space で選ぶだけ）。
+  - **今**: フォーカスは引き金に残り、キーは引き金で受けます。↑ / ↓ で開く・移動、Home / End で最初・最後、Enter / Space で選択、Esc で変更せずに閉じる、Tab で閉じて次へ。いまの項目は `aria-activedescendant` で伝えます。
+  - **名前**: `label` を渡したとき、国の引き金まで `label`（例:「電話番号」）で読まれていました。`label` は番号の入力欄の名前なので、国の選択は常に「Select country」（ja:「国を選択」/ pt:「Selecionar país」）になります。値は国番号（例: `+81`）です。
+
+### Patch Changes
+
+- 95b6ef2: 開いた面のアクセシビリティを直しました。開いた姿を初めて自動で検査して見つかったものです。
+
+  - **BottomSheet**: 開いたシート（`dialog`）に名前がありませんでした。`BottomSheetTitle` を名前、`BottomSheetDescription` を説明として結び付けます（Dialog / Drawer と同じ形）。
+  - **Lightbox**: 開いたビューア（`dialog`）に名前がありませんでした。いまの画像の `title`、無ければ `alt`、どちらも無ければ既定の名前（「Image viewer」。en / ja / pt）を使います。`LightboxContent` に `aria-label` / `aria-labelledby` を渡した場合はそちらが優先です。
+  - **ContextMenu**: 開いているあいだ、背後のページ全体が `aria-hidden` になっていました（中にフォーカスできる要素が残る形）。メニューをモーダルにするのをやめ、背後を隠さないようにしました。**開いたメニューで Tab を押すと、メニューを閉じて、開く前の場所へフォーカスを戻します**（以前は Tab がメニューの中を回っていました）。メニューが、存在しない要素を `aria-labelledby` で指していたのも外しました。
+
 ## 0.48.0
 
 ### Minor Changes
