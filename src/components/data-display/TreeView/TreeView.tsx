@@ -557,7 +557,9 @@ const TreeView = ({
             }
           }}
           onKeyDown={(e) => {
-            e.stopPropagation();
+            // Tab はツリーが扱うキーではない。止めると、外側の FocusTrap（document で Tab を聞く）に届かず、
+            // モーダルの面の中にツリーを置いたときにフォーカスが外へ出る（TreeSelect で実測）。
+            if (e.key !== "Tab") e.stopPropagation();
             handleNodeKeyDown(e, node, index);
           }}
           onFocus={(e) => {
@@ -830,7 +832,8 @@ export const TreeViewItem = ({
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (disabled) return;
-    e.stopPropagation();
+    // Tab は止めない（上の data 駆動の項目と同じ理由。外側の FocusTrap に届かなくなる）。
+    if (e.key !== "Tab") e.stopPropagation();
 
     const items = Array.from(
       containerRef.current?.querySelectorAll(

@@ -74,6 +74,71 @@ describe("FocusTrap", () => {
     expect(screen.getByText("Last")).toHaveFocus();
   });
 
+  // 末尾が tabindex="-1" のボタンだと、以前は「最後の要素」がそのボタンになり、Tab で実際に出ていく
+  // 要素（ここでは Item）が端として扱われず、フォーカスが外へ出た（TreeSelect の開いたパネル）。
+  it("wraps Tab from the last tabbable element when untabbable buttons follow it", () => {
+    render(
+      <FocusTrap initialFocus={false}>
+        <div tabIndex={0}>Item</div>
+        <button tabIndex={-1}>Hidden action 1</button>
+        <button tabIndex={-1}>Hidden action 2</button>
+      </FocusTrap>,
+    );
+    const item = screen.getByText("Item");
+    item.focus();
+    const notPrevented = fireEvent.keyDown(document, { key: "Tab" });
+    expect(notPrevented).toBe(false);
+    expect(item).toHaveFocus();
+  });
+
+  it("does not auto focus an untabbable element", () => {
+    render(
+      <FocusTrap>
+        <button tabIndex={-1}>Skipped</button>
+        <button>First tabbable</button>
+      </FocusTrap>,
+    );
+    expect(screen.getByText("First tabbable")).toHaveFocus();
+  });
+
+  // フォーカスが、停止点の一覧に無い要素（スクリプトでフォーカスした tabindex="-1" の入れ物）に
+  // あるとき。前にも後ろにも停止点が無い方向へは、外へ出さずに折り返す。
+  it("wraps when focus sits on a programmatically focused container", () => {
+    render(
+      <FocusTrap initialFocus={false}>
+        <div tabIndex={-1} data-testid="container">
+          <button>Inner</button>
+        </div>
+      </FocusTrap>,
+    );
+    const container = screen.getByTestId("container");
+    container.focus();
+    // 入れ物より前に停止点は無い → Shift+Tab は最後の停止点へ折り返す
+    const back = fireEvent.keyDown(document, { key: "Tab", shiftKey: true });
+    expect(back).toBe(false);
+    expect(screen.getByText("Inner")).toHaveFocus();
+
+    // 入れ物より後ろには停止点がある → Tab は止めない（ブラウザが次へ進める）
+    container.focus();
+    const forward = fireEvent.keyDown(document, { key: "Tab" });
+    expect(forward).toBe(true);
+  });
+
+  it("leaves Tab alone when focus is outside the trap", () => {
+    const outside = document.createElement("button");
+    document.body.appendChild(outside);
+    render(
+      <FocusTrap initialFocus={false}>
+        <button>Inside</button>
+      </FocusTrap>,
+    );
+    outside.focus();
+    const notPrevented = fireEvent.keyDown(document, { key: "Tab" });
+    expect(notPrevented).toBe(true);
+    expect(outside).toHaveFocus();
+    document.body.removeChild(outside);
+  });
+
   it("prevents default Tab when no focusable elements", () => {
     render(
       <FocusTrap>
