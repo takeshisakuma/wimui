@@ -81,6 +81,10 @@
   /* Tooltip の面と文字。light は surface-inverse（暗い面に白い文字）。 */
   --wim-comp-tooltip-bg: var(--wim-color-surface-inverse);
   --wim-comp-tooltip-fg: var(--wim-color-text-on-inverse);
+
+  /* Snackbar（intent なし）の面と文字。light は surface-inverse を少し沈めた暗い面に白い文字。 */
+  --wim-comp-snackbar-bg: oklch(from var(--wim-color-surface-inverse) calc(l * 0.9) c h);
+  --wim-comp-snackbar-fg: var(--wim-color-white);
   --wim-comp-close-hover: rgb(0 0 0 / 0.05);
   --wim-comp-decoration-highlight-color: #fff9c4;
   --wim-comp-overlay-control-track: rgb(255 255 255 / 0.3);
@@ -154,6 +158,10 @@
      文字 #262626 とは 12:1 以上。 */
   --wim-comp-tooltip-bg: #e5e5e5;
   --wim-comp-tooltip-fg: #262626;
+
+  /* dark の Snackbar（intent なし）は Tooltip と同じ反転の面。暗い面のままだとページの地と同じ色になる。 */
+  --wim-comp-snackbar-bg: var(--wim-comp-tooltip-bg);
+  --wim-comp-snackbar-fg: var(--wim-comp-tooltip-fg);
   --wim-comp-close-hover: rgb(255 255 255 / 0.1);
   --wim-comp-decoration-highlight-color: #5c4400;
   --wim-comp-overlay-control-track: rgb(255 255 255 / 0.3);
@@ -227,6 +235,10 @@
      文字 #262626 とは 12:1 以上。 */
   --wim-comp-tooltip-bg: #e5e5e5;
   --wim-comp-tooltip-fg: #262626;
+
+  /* dark の Snackbar（intent なし）は Tooltip と同じ反転の面。暗い面のままだとページの地と同じ色になる。 */
+  --wim-comp-snackbar-bg: var(--wim-comp-tooltip-bg);
+  --wim-comp-snackbar-fg: var(--wim-comp-tooltip-fg);
   --wim-comp-close-hover: rgb(255 255 255 / 0.1);
   --wim-comp-decoration-highlight-color: #5c4400;
   --wim-comp-overlay-control-track: rgb(255 255 255 / 0.3);

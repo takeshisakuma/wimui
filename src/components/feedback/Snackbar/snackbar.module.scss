@@ -45,13 +45,19 @@
   }
 
   .root {
-    /* Component-scoped tokens: Snackbar is always a dark surface */
-    --wim-snackbar-bg: oklch(from var(--wim-color-surface-inverse) calc(l * 0.9) c h);
-    --wim-snackbar-border: oklch(from var(--wim-color-white) l c h / 0.1);
-    --wim-snackbar-close-idle: oklch(from var(--wim-color-white) l c h / 0.7);
-    --wim-snackbar-close-hover: oklch(from var(--wim-color-white) l c h / 0.1);
-    --wim-snackbar-action: var(--wim-color-white);
-    --wim-snackbar-action-hover: oklch(from var(--wim-color-white) l c h / 0.15);
+    /* Component-scoped tokens. intent なしの面は、light が暗い面に白い文字、dark が明るい面に暗い文字
+       （Tooltip と同じ反転。暗い面のままだと dark のページの地と同じ色になる）。
+       枠・閉じるボタン・アクションは文字の色（--wim-snackbar-fg）から作るので、面が反転しても付いてくる。
+       intent つき（success / danger / warning / info）は色の面に白い文字のまま。 */
+    --wim-snackbar-bg: var(--wim-comp-snackbar-bg);
+    --wim-snackbar-fg: var(--wim-comp-snackbar-fg);
+    --wim-snackbar-border: oklch(from var(--wim-snackbar-fg) l c h / 0.1);
+    --wim-snackbar-close-idle: oklch(from var(--wim-snackbar-fg) l c h / 0.7);
+    --wim-snackbar-close-hover: oklch(from var(--wim-snackbar-fg) l c h / 0.1);
+    --wim-snackbar-action: var(--wim-snackbar-fg);
+    --wim-snackbar-action-bg: oklch(from var(--wim-snackbar-fg) l c h / 0.3);
+    --wim-snackbar-action-hover: oklch(from var(--wim-snackbar-fg) l c h / 0.2);
+    --wim-snackbar-action-active: oklch(from var(--wim-snackbar-fg) l c h / 0.25);
 
     position: relative;
     display: flex;
@@ -69,7 +75,7 @@
       padding-right: var(--wim-spacing-4xl);
     }
 
-    color: var(--wim-color-white);
+    color: var(--wim-snackbar-fg);
     pointer-events: auto;
     background: var(--wim-snackbar-bg);
     border: var(--wim-border-width-thin) solid var(--wim-snackbar-border);
@@ -174,7 +180,7 @@
       transform var(--wim-transition-fast);
 
     &:hover {
-      color: var(--wim-color-white);
+      color: var(--wim-snackbar-fg);
       background: var(--wim-snackbar-close-hover);
     }
 
@@ -183,46 +189,42 @@
     }
   }
 
-  // Variants: override surface color; action becomes white on colored backgrounds
+  // Variants: 色の面に白い文字（テーマによらない）。枠・閉じるボタン・アクションは --wim-snackbar-fg に付いてくる
   .success {
     --wim-snackbar-bg: oklch(from var(--wim-color-success) calc(l * 0.75) c h);
-    --wim-snackbar-action: var(--wim-color-white);
-    --wim-snackbar-action-hover: var(--wim-snackbar-border);
+    --wim-snackbar-fg: var(--wim-color-white);
   }
 
   .danger {
     --wim-snackbar-bg: oklch(from var(--wim-color-danger) calc(l * 0.75) c h);
-    --wim-snackbar-action: var(--wim-color-white);
-    --wim-snackbar-action-hover: var(--wim-snackbar-border);
+    --wim-snackbar-fg: var(--wim-color-white);
   }
 
   .warning {
     /* White-on-warning AA: 0.75 yields ~3.2:1 after vivid tokens; 0.58 keeps orange and clears 4.5:1 */
     --wim-snackbar-bg: oklch(from var(--wim-color-warning) calc(l * 0.58) c h);
-    --wim-snackbar-action: var(--wim-color-white);
-    --wim-snackbar-action-hover: var(--wim-snackbar-border);
+    --wim-snackbar-fg: var(--wim-color-white);
   }
 
   .info {
     --wim-snackbar-bg: oklch(from var(--wim-color-info) calc(l * 0.75) c h);
-    --wim-snackbar-action: var(--wim-color-white);
-    --wim-snackbar-action-hover: var(--wim-snackbar-border);
+    --wim-snackbar-fg: var(--wim-color-white);
   }
 }
 
 /* Unlayered: beats @layer component button rules and :root CSS variable definitions */
 .actionButton {
   color: var(--wim-snackbar-action);
-  background-color: var(--wim-comp-overlay-control-track);
+  background-color: var(--wim-snackbar-action-bg);
   border-color: transparent;
 
   &:hover:not(:disabled) {
-    background-color: var(--wim-comp-overlay-control-hover);
+    background-color: var(--wim-snackbar-action-hover);
     border-color: transparent;
   }
 
   &:active:not(:disabled) {
-    background-color: var(--wim-comp-overlay-control-active);
+    background-color: var(--wim-snackbar-action-active);
     border-color: transparent;
   }
 }
