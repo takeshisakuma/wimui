@@ -380,6 +380,14 @@ const checks = [
   },
   {
     category: "lib",
+    // 既定が opacity: 0 で、forwards のアニメーションの終わりで見えるようにすると、アニメーションが止められた
+    // ときに消えたままになる（2026-10-04・T297。Tooltip / HoverCard の吹き出しが VRT に写っていなかった）。
+    // 実証は `npm run prove:opacity-forwards`。
+    name: "No element is hidden until a forwards animation ends (opacity: 0 + animation … forwards)",
+    command: "node scripts/check-opacity-forwards.js",
+  },
+  {
+    category: "lib",
     name: "Public API Surface (npm freeze guard)",
     command: "node scripts/check-public-api.js",
   },
