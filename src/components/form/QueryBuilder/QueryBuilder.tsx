@@ -101,49 +101,49 @@ const generateId = () => {
 
 /**
  * 演算子の語彙。**利用者が `QueryRule.operator` に渡すのは `value`（記号）**で、
- * `key` は翻訳の引き当てにしか使わない。以前は `operator: string` だったため
+ * `key` は翻訳の引き当てにしか使わない（文言は `components:query.builder.operators.<key>`。en / ja / pt）。以前は `operator: string` だったため
  * `"greater_equal"` のような語を渡すと**空の Select が黙って描画された**（T124）。
  * 型はこの表から導くので、値を足せば型も追随する（T38 と同じ形）。
  */
 const DEFAULT_OPERATORS = {
   string: [
-    { label: "Equals", value: "=", key: "equal" },
-    { label: "Does not equal", value: "!=", key: "not_equal" },
-    { label: "Contains", value: "contains", key: "contains" },
-    { label: "Starts with", value: "starts_with", key: "starts_with" },
-    { label: "Ends with", value: "ends_with", key: "ends_with" },
-    { label: "Is null", value: "is_null", key: "is_null" },
-    { label: "Is not null", value: "is_not_null", key: "is_not_null" },
+    { value: "=", key: "equal" },
+    { value: "!=", key: "not_equal" },
+    { value: "contains", key: "contains" },
+    { value: "starts_with", key: "starts_with" },
+    { value: "ends_with", key: "ends_with" },
+    { value: "is_null", key: "is_null" },
+    { value: "is_not_null", key: "is_not_null" },
   ],
   number: [
-    { label: "Equals", value: "=", key: "equal" },
-    { label: "Does not equal", value: "!=", key: "not_equal" },
-    { label: "Greater than", value: ">", key: "greater_than" },
-    { label: "Less than", value: "<", key: "less_than" },
-    { label: "Greater than or equal", value: ">=", key: "greater_than_or_equal" },
-    { label: "Less than or equal", value: "<=", key: "less_than_or_equal" },
-    { label: "Is null", value: "is_null", key: "is_null" },
-    { label: "Is not null", value: "is_not_null", key: "is_not_null" },
+    { value: "=", key: "equal" },
+    { value: "!=", key: "not_equal" },
+    { value: ">", key: "greater_than" },
+    { value: "<", key: "less_than" },
+    { value: ">=", key: "greater_than_or_equal" },
+    { value: "<=", key: "less_than_or_equal" },
+    { value: "is_null", key: "is_null" },
+    { value: "is_not_null", key: "is_not_null" },
   ],
   date: [
-    { label: "Equals", value: "=", key: "equal" },
-    { label: "Does not equal", value: "!=", key: "not_equal" },
-    { label: "After", value: ">", key: "after" },
-    { label: "Before", value: "<", key: "before" },
-    { label: "After or on", value: ">=", key: "after_or_on" },
-    { label: "Before or on", value: "<=", key: "before_or_on" },
-    { label: "Is null", value: "is_null", key: "is_null" },
-    { label: "Is not null", value: "is_not_null", key: "is_not_null" },
+    { value: "=", key: "equal" },
+    { value: "!=", key: "not_equal" },
+    { value: ">", key: "after" },
+    { value: "<", key: "before" },
+    { value: ">=", key: "after_or_on" },
+    { value: "<=", key: "before_or_on" },
+    { value: "is_null", key: "is_null" },
+    { value: "is_not_null", key: "is_not_null" },
   ],
   boolean: [
-    { label: "Equals", value: "=", key: "equal" },
-    { label: "Does not equal", value: "!=", key: "not_equal" },
-    { label: "Is null", value: "is_null", key: "is_null" },
-    { label: "Is not null", value: "is_not_null", key: "is_not_null" },
+    { value: "=", key: "equal" },
+    { value: "!=", key: "not_equal" },
+    { value: "is_null", key: "is_null" },
+    { value: "is_not_null", key: "is_not_null" },
   ],
 } as const satisfies Record<
   QueryFieldType,
-  readonly { label: string; value: string; key: string }[]
+  readonly { value: string; key: string }[]
 >;
 
 /** `QueryRule.operator` に渡せる値（`DEFAULT_OPERATORS` の `value`）。 */
@@ -389,7 +389,7 @@ export const QueryBuilder = ({
     const type = fieldDef?.type || "string";
     const operators = DEFAULT_OPERATORS[type].map(op => ({
       ...op,
-      label: operatorOverrides[op.key] || op.label
+      label: operatorOverrides[op.key] || t(`query.builder.operators.${op.key}`),
     }));
 
     const handleFieldChange = (val: string) => {

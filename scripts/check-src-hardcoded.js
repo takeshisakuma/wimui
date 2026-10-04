@@ -117,8 +117,12 @@ for (const file of files) {
  * "Select country"）/ Carousel 2（DEFAULT_LABELS）/ GanttChart 1。
  * 2026-10-04: PhoneInput の "Select country" を翻訳キー（form:phone.select_country）へ移して 26（T295）。
  * いずれも**英語のフォールバックが UI に出る**形なので、本来は t() に通したい。
+ * 2026-10-04: 残りの 26 件を全部翻訳キーへ移して 0（QueryBuilder の演算子 → components:query.builder.operators.* /
+ * PhoneInput の国名 → form:phone.countries.* / Carousel → components:carousel.* / GanttChart → components:ganttchart.*）。
+ * **この検査は空白か句読点を含む文字列しか拾わない。** 1 語のラベル（"Equals" / "Japan"）は同じ直書きでも数えて
+ * いなかった（26 件のうち演算子は 20 と出ていたが、実際の行は 27）。0 件は「直書きが無い」の意味ではない。
  */
-const BASELINE = 26;
+const BASELINE = 0;
 
 const scope = probeFiles.length > 0 ? `${probeFiles.length} probe file(s)` : `${files.length} files`;
 console.log(`--- src の生 UI 文字列 (${scope}) ---\n`);

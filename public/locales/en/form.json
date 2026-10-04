@@ -41,7 +41,19 @@
   },
   "phone": {
     "number": "Phone number",
-    "select_country": "Select country"
+    "select_country": "Select country",
+    "countries": {
+      "US": "United States",
+      "JP": "Japan",
+      "GB": "United Kingdom",
+      "AU": "Australia",
+      "DE": "Germany",
+      "FR": "France",
+      "CN": "China",
+      "KR": "South Korea",
+      "IN": "India",
+      "BR": "Brazil"
+    }
   },
   "select": {
     "no_options": "No options found",

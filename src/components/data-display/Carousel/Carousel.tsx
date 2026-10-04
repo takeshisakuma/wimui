@@ -10,6 +10,7 @@ import { Slot } from "@radix-ui/react-slot";
 import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
 import styles from "./carousel.module.scss";
+import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { ChevronLeftIcon, ChevronRightIcon } from "@/icon";
 
 export type Breakpoints = {
@@ -62,13 +63,6 @@ export type CarouselProps = {
   asChild?: boolean;
 };
 
-const DEFAULT_LABELS: Required<CarouselLabels> = {
-  slideLabel: (number) => `Slide ${number}`,
-  prevSlide: "Previous slide",
-  nextSlide: "Next slide",
-  goToSlide: (number) => `Go to slide ${number}`,
-};
-
 const getSlidesToShow = (
   setting: number | Breakpoints | undefined,
   width: number,
@@ -106,7 +100,15 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
   ...props
 }, ref) => {
   const Component = asChild ? Slot : "div";
-  const mergedLabels = { ...DEFAULT_LABELS, ...labels };
+  // 既定の文言は翻訳キー（components:carousel.*。en / ja / pt）。`labels` で渡した分が優先。
+  const { t } = useWimTranslation("components");
+  const mergedLabels: Required<CarouselLabels> = {
+    slideLabel: (number) => t("carousel.slide", { number }),
+    prevSlide: t("carousel.prev_slide"),
+    nextSlide: t("carousel.next_slide"),
+    goToSlide: (number) => t("carousel.go_to_slide", { number }),
+    ...labels,
+  };
 
   const items = useMemo(() => React.Children.toArray(children), [children]);
   const originalItemCount = items.length;
