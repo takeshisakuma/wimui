@@ -170,10 +170,6 @@ export const wimResources: WimResources = {
         "rte_image_upload_failed": "The image could not be uploaded.",
         "rte_image_invalid": "Enter a URL that starts with http:// or https://, or a relative path."
       },
-      "ganttchart": {
-        "aria_chart": "Gantt chart",
-        "aria_task_bar": "{{label}}: {{start}} – {{end}}"
-      },
       "signature": {
         "clear": "Clear"
       },
@@ -588,10 +584,6 @@ export const wimResources: WimResources = {
         "selected_count": "{{count}}件選択中",
         "toolbar_label": "一括操作ツールバー"
       },
-      "ganttchart": {
-        "aria_chart": "ガントチャート",
-        "aria_task_bar": "{{label}}: {{start}} – {{end}}"
-      },
       "lightbox": {
         "close": "閉じる",
         "counter": "{{current}} / {{total}}",
@@ -985,10 +977,6 @@ export const wimResources: WimResources = {
         "select_item": "Selecionar {{title}}",
         "selected_count": "{{count}} item selecionado",
         "toolbar_label": "Barra de ações em massa"
-      },
-      "ganttchart": {
-        "aria_chart": "Gráfico de Gantt",
-        "aria_task_bar": "{{label}}: {{start}} – {{end}}"
       },
       "lightbox": {
         "close": "Fechar",

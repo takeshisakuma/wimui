@@ -4,11 +4,11 @@ import { setWimLocale, getWimLocale } from "@/i18n/instance";
 import { QueryBuilder, type QueryGroup } from "./form/QueryBuilder/QueryBuilder";
 import { PhoneInput } from "./form/PhoneInput/PhoneInput";
 import { Carousel } from "./data-display/Carousel/Carousel";
-import { GanttChart } from "./charts/GanttChart/GanttChart";
 
 // 英語の直書きだった既定の文言が、表示言語（setWimLocale）に従うこと。
 // 以前は `check-src-hardcoded.js` のラチェットで 26 件を凍結していた（QueryBuilder の演算子・
-// PhoneInput の国名・Carousel と GanttChart の既定のラベル）。部品ごとのテストは英語しか見ていない。
+// PhoneInput の国名・Carousel の既定のラベル）。部品ごとのテストは英語しか見ていない。
+// GanttChart は入れていない: charts に翻訳を読ませると `wimui/charts` が +9 kB になるので、英語のまま残した。
 describe("runtime strings follow the active locale", () => {
   const original = getWimLocale();
   afterEach(() => setWimLocale(original));
@@ -80,16 +80,5 @@ describe("runtime strings follow the active locale", () => {
     );
     expect(screen.getByRole("button", { name: "Avançar" })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Slide anterior" })).toBeInTheDocument();
-  });
-
-  it("GanttChart: chart name", () => {
-    setWimLocale("ja");
-    render(
-      <GanttChart
-        tasks={[{ id: "t1", label: "Design", startDate: new Date(2026, 0, 1), endDate: new Date(2026, 0, 5) }]}
-        startDate={new Date(2026, 0, 1)}
-      />,
-    );
-    expect(screen.getByRole("grid")).toHaveAccessibleName("ガントチャート");
   });
 });

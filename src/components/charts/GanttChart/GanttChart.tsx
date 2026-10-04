@@ -1,7 +1,6 @@
 import React, { useCallback, useMemo, useState } from "react";
 import classNames from "classnames";
 import styles from "./gantt-chart.module.scss";
-import { useWimTranslation } from "@/i18n/useWimTranslation";
 
 export type GanttTask = {
   id: string;
@@ -56,6 +55,11 @@ export type GanttChartProps = {
   className?: string;
   /** Labels for manual translation overrides. */
   labels?: GanttChartLabels;
+};
+
+const DEFAULT_LABELS: Required<GanttChartLabels> = {
+  ariaChart: "Gantt Chart",
+  ariaTaskBar: (label, start, end) => `${label}: ${start} - ${end}`,
 };
 
 function startOfDay(date: Date): Date {
@@ -155,14 +159,7 @@ export const GanttChart = ({
   className,
   labels,
 }: GanttChartProps): React.ReactElement => {
-  // 既定の文言は翻訳キー（components:ganttchart.*。en / ja / pt）。`labels` で渡した分が優先。
-  // キーは以前から locales にあったが、部品が読んでおらず、英語の直書きが出ていた。
-  const { t } = useWimTranslation("components");
-  const mergedLabels: Required<GanttChartLabels> = {
-    ariaChart: t("ganttchart.aria_chart"),
-    ariaTaskBar: (label, start, end) => t("ganttchart.aria_task_bar", { label, start, end }),
-    ...labels,
-  };
+  const mergedLabels = { ...DEFAULT_LABELS, ...labels };
   const [focusedIndex, setFocusedIndex] = useState<number>(-1);
 
   const colWidth = columnWidth ?? DEFAULT_COLUMN_WIDTHS[viewMode];
