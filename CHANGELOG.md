@@ -1,5 +1,40 @@
 # wimui
 
+## 0.51.2
+
+### Patch Changes
+
+- ffba2fa: 英語で固定だった既定の文言を、表示言語（`setWimLocale` / `WimProvider`）に従うようにしました。対象は 11 部品です: ChatUI（送信ボタン・アバターの代替テキスト）/ ThreadList / ModelSelector / Carousel（`aria-roledescription`）/ NodeGraph / ScheduleView / RangeSlider（つまみの名前）/ ThemeToggle / Transfer / Audio / ImageCompare / Video。
+
+  - `labels` や `aria-label` で渡した文言は、これまで通り優先されます。
+  - **英語の既定の文言が変わるもの**:
+    - Transfer の一覧の題: 「Source」/「Target」→「Available」/「Selected」（移動ボタンの「Move to selected」と揃えました）。空のときの文言は「No Data」→「No data」
+    - ChatUI のアバターの代替テキスト: 「User Avatar」→「User avatar」
+  - 単位の表記（ModelSelector の `/1M`、Video の `s`）と、Audio のスリープタイマーの文言は、変えていません。
+
+  内蔵の翻訳が増えたので、翻訳を読む入口は一律に約 1.3 kB（gzip）増えます（`import { Button }` 単体で 13.8 → 15.2 kB）。
+
+- 7f4ddb2: 密度（`data-density="compact"`）に追従していなかった操作系の部品を、追従させました。**既定（comfortable）の見た目は、OtpInput を除いて変わりません。**
+
+  - **Tabs**: タブの上下・左右の余白
+  - **Accordion**（FAQSection も）: 見出し（押す行）の余白
+  - **Transfer**: 一覧の見出しの余白
+  - **RangeSlider**: 根の高さ（Slider と同じ決め方に揃えました。24 → 20px。つまみの当たり判定は 24px のまま）
+  - **OtpInput**: セルの大きさ。**既定の見た目も変わります** ── セルは 40px → 42px（入力欄・ボタンの md と同じ高さ）。compact では 36px。`fullWidth` などで広いときは 48px（compact で 40px）
+
+  追加したトークン: `--wim-accordion-trigger-padding-y`（Accordion の見出しの縦の余白。compact で小さくなります）。
+
+  Pagination・Menubar・Calendar の日・CheckboxGroup / RadioGroup は、compact でも変わりません（当たり判定の下限にいる、または項目のあいだの間隔のため）。
+
+- 7a1029c: Tour を、キーボードと支援技術で使えるようにしました（吹き出しをダイアログとして扱います）。
+
+  - **開くと、フォーカスが「次へ」のボタンへ移ります**。これまでは開始のボタンに残り、吹き出しの中へ届くには、画面全体のマスクを Tab で越える必要がありました。
+  - **Escape で閉じます**（`onClose` が呼ばれます）。閉じると、フォーカスは開いたときの要素へ戻ります。
+  - **Tab は、ツアーの中を回ります**（戻る・次へ・閉じる）。開いているあいだ、後ろのページへは出ません。
+  - 吹き出しは `role="dialog"`（`aria-modal`）になり、名前はステップの題、説明はステップの本文です。支援技術に、出たことと中身が伝わります。
+
+  見た目は変えていません。
+
 ## 0.51.1
 
 ### Patch Changes
