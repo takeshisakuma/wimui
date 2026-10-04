@@ -17,6 +17,7 @@
 - [ ] `npm run check:imports`（charts / ai / peer data-display をルートから import していない）
 - [ ] `npm run check:slop`（`stories/Patterns/**` を触ったとき。135deg グラデ・誇張形容詞・style 既定値上書き/px 直書きの増加を検出）
 - [ ] `npm run lint` / `npm run stylelint`（触った TS/SCSS）
+- [ ] 出荷物（`src/` / `tokens/`）を変えたなら `npm run build` / `npm run size`（サイズ予算。`audit:lib` には入っていない。`size` は `dist/` を測るので先に `build`。翻訳キーを足したときも増える）
 - [ ] 新規コンポーネントなら `npm run audit-mdx` と MDX 必須セクション
 - [ ] ストーリーを足した・変えたなら `npm run check:a11y-incomplete`（axe の「人に確かめろ」の許可リスト。増えても減っても a11y の CI が落ちる）
 - [ ] 出荷物（`src/` / `tokens/`）を変えたなら changeset を同梱した（`npx changeset`。版を上げない変更なら `npx changeset --empty`。無いと `changeset-reminder` がコメントし、ジョブが赤になる）

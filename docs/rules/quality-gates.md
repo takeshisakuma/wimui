@@ -23,6 +23,7 @@
 | peer import 境界 | `npm run check:imports` | charts / ai / peer 依存の部品を触ったとき | charts / ai / peer 依存をルート `wimui` から引いていないか |
 | AI-slop | `npm run check:slop` | `stories/Patterns/**` を触ったとき | 135deg グラデ・誇張形容詞・style 既定値の上書き / px 直書きの増加 |
 | 型・スタイル | `npm run lint` / `npm run stylelint` | TS / SCSS を触ったとき | 構文・スタイル |
+| バンドルサイズ | `npm run build` / `npm run size` | `src/` / `tokens/` を変えたとき（ランタイムの翻訳キーを足したときを含む） | サイズ予算（`package.json` の `size-limit`。形は `docs/rules/build.md`）。**`audit:lib` には入っていない**（ビルドが要るため）ので、別に流す。`size` は `dist/` を測るので、**先に `build`**（古い `dist/` のままだと変更前を測って緑になる）。内蔵の翻訳は 1 つの塊で同梱されるので、文言を足すと翻訳を読む入口が全部増える（`{ Button }` 単体も）。翻訳をまだ読んでいない subpath（`wimui/charts`）の部品に `useWimTranslation` を足すと +9 kB。2026-10-04 に #832 がこれを流さずに出て、Bundle Size Check が 5 つ赤くなった |
 | MDX 全数監査 | `npm run audit-mdx` | 新規コンポーネント | 必須セクション |
 | a11y の `incomplete` | `npm run check:a11y-incomplete` | ストーリーを足した・変えたとき | 「axe が**人に確かめろ**と言った指摘」の許可リスト（`vrt/a11y-incomplete.json`）の形・理由・孤児。**新しいストーリーで増えても減っても a11y の CI が落ちる** ── 直すか、理由を書いて許す（更新手順は `MAINTENANCE.md` 12-2） |
 | 合成（新規公開） | T179 のプローブ | 新規公開コンポーネント | カタログ単体では出荷しない。他部品と組んで置き方・a11y・狭幅を触り、確認後に画面は捨てる。`stories/Patterns/` にカバー率のために書かない（`docs/rules/implementation.md`） |
