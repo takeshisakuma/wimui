@@ -139,9 +139,18 @@ const DropdownInner = forwardRef<HTMLDivElement, DropdownProps>(
       }
     };
     const close = useCallback(() => {
+      // メニューの中にフォーカスがあるまま閉じると、面ごと消えてフォーカスの置き場が無くなる（body へ落ちる）。
+      // 閉じる前に引き金へ戻す。Escape・項目を選んだとき・Tab のどれでも同じ ── Tab は、ここで引き金へ
+      // 戻したあとに既定の動作が走るので、「引き金の次」へ進む（メニューは body 直下のポータルにあるので、
+      // 戻さないと文書の末尾へ飛ぶ）。メニューの外にフォーカスがあるとき（外側のクリックなど）は動かさない。
+      const menu = refs.floating.current;
+      const hadFocus = !!menu && menu.contains(document.activeElement);
       setIsOpen(false);
       setFocusedIndex(-1);
-    }, [setIsOpen]);
+      if (hadFocus) {
+        (refs.reference.current as HTMLElement | null)?.focus?.({ preventScroll: true });
+      }
+    }, [setIsOpen, refs.floating, refs.reference]);
 
     useEffect(() => {
       const handleClickOutside = (event: MouseEvent) => {
@@ -272,6 +281,11 @@ export const DropdownTrigger = forwardRef<HTMLDivElement, DropdownTriggerProps>(
         tabIndex={0}
         onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) => {
           if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            toggle();
+          } else if (e.key === "ArrowDown" && !isOpen) {
+            // ↓ でも開く（最初の項目へフォーカス）。Menubar・選択系・DatePicker は ↓ で開くのに、
+            // ここだけ Enter / Space しか見ていなかった（T303）。
             e.preventDefault();
             toggle();
           }
