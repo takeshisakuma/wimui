@@ -94,6 +94,14 @@
         "color-contrast"
       ]
     },
+    "components-advanced-inputs-cascader--open": {
+      "light": [
+        "aria-valid-attr-value"
+      ],
+      "dark": [
+        "aria-valid-attr-value"
+      ]
+    },
     "components-advanced-inputs-imagecropper--circular": {
       "light": [
         "color-contrast"
@@ -116,6 +124,14 @@
       ],
       "dark": [
         "color-contrast"
+      ]
+    },
+    "components-advanced-inputs-treeselect--open": {
+      "light": [
+        "aria-valid-attr-value"
+      ],
+      "dark": [
+        "aria-valid-attr-value"
       ]
     },
     "components-ai-codediffviewer--applied": {
@@ -184,6 +200,16 @@
         "color-contrast"
       ]
     },
+    "components-ai-modelselector--open": {
+      "light": [
+        "aria-valid-attr-value",
+        "color-contrast"
+      ],
+      "dark": [
+        "aria-valid-attr-value",
+        "color-contrast"
+      ]
+    },
     "components-ai-sourcecitation--default": {
       "light": [
         "color-contrast"
@@ -232,6 +258,16 @@
         "color-contrast"
       ]
     },
+    "components-alerts-notifications-popconfirm--open": {
+      "light": [
+        "aria-hidden-focus",
+        "aria-valid-attr-value"
+      ],
+      "dark": [
+        "aria-hidden-focus",
+        "aria-valid-attr-value"
+      ]
+    },
     "components-application-shell-header--sticky": {
       "light": [
         "color-contrast"
@@ -246,6 +282,22 @@
       ],
       "dark": [
         "color-contrast"
+      ]
+    },
+    "components-basic-inputs-phoneinput--open": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
+    "components-buttons-splitbutton--open": {
+      "light": [
+        "aria-valid-attr-value"
+      ],
+      "dark": [
+        "aria-valid-attr-value"
       ]
     },
     "components-data-indicators-barcode--formats": {
@@ -498,6 +550,14 @@
         "color-contrast"
       ]
     },
+    "components-navigation-elements-menubar--open": {
+      "light": [
+        "aria-valid-attr-value"
+      ],
+      "dark": [
+        "aria-valid-attr-value"
+      ]
+    },
     "components-navigation-utilities-keyboardshortcuts--mac-style": {
       "light": [
         "color-contrast"
@@ -524,6 +584,38 @@
         "aria-hidden-focus",
         "aria-valid-attr-value",
         "color-contrast"
+      ]
+    },
+    "components-pickers-sliders-datepicker--open": {
+      "light": [
+        "aria-valid-attr-value"
+      ],
+      "dark": [
+        "aria-valid-attr-value"
+      ]
+    },
+    "components-pickers-sliders-daterangepicker--open": {
+      "light": [
+        "aria-valid-attr-value"
+      ],
+      "dark": [
+        "aria-valid-attr-value"
+      ]
+    },
+    "components-selection-controls-multiselect--open": {
+      "light": [
+        "aria-valid-attr-value"
+      ],
+      "dark": [
+        "aria-valid-attr-value"
+      ]
+    },
+    "components-selection-controls-select--open": {
+      "light": [
+        "aria-valid-attr-value"
+      ],
+      "dark": [
+        "aria-valid-attr-value"
       ]
     },
     "components-typography-icons-kbd--combined": {

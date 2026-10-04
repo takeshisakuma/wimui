@@ -296,7 +296,11 @@ export const ModelSelector = React.forwardRef<HTMLDivElement, ModelSelectorProps
             ref={listRef}
             id={listboxId}
             role="listbox"
-            tabIndex={-1}
+            /* 名前と、キーボードで届く tabIndex。リストは縦にスクロールするので、tabIndex が -1 だと
+               axe の scrollable-region-focusable（serious）、名前が無いと aria-input-field-name（serious）。
+               開いた姿のストーリーが無く、CI に写っていなかった。矢印キーの操作は従来どおり引き金でも受ける。 */
+            aria-label={triggerAriaLabel}
+            tabIndex={0}
             className={styles.dropdown}
             onKeyDown={handleListKeyDown}
             aria-activedescendant={activeIndex >= 0 ? `${generatedId}-opt-${activeIndex}` : undefined}

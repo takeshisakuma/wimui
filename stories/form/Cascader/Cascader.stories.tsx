@@ -6,6 +6,7 @@ import {
   CascaderOption,
 } from "../../../src/components/form/Cascader/Cascader";
 import { ALL_NAMESPACES } from "../../i18nConstants";
+import { openFirstPopup } from "../../playOpen";
 
 const meta: Meta<typeof Cascader> = {
   title: "Components/Advanced Inputs/Cascader",
@@ -215,4 +216,11 @@ export const CustomSeparator: Story = {
       />
     );
   },
+};
+
+// 開いた姿。ほかのストーリーは閉じたまま撮られるので、開いた中身を変えても VRT と a11y の CI が
+// 動かなかった。docs ページでは play が走らず閉じた姿になるので、載せても意味がない。
+export const Open: Story = {
+  ...Default,
+  play: openFirstPopup,
 };

@@ -424,7 +424,15 @@ export const Cascader = ({
           className={styles.dropdown}
         >
           {menus.map((menuOptions, level) => (
-            <div key={level} className={styles.menu} role="listbox">
+            <div
+              key={level}
+              className={styles.menu}
+              role="listbox"
+              /* 各段のリストにも名前を付ける（引き金と同じ）。名前の無い listbox は axe の
+                 aria-input-field-name（serious）。開いた姿のストーリーが無く、CI に写っていなかった。 */
+              aria-labelledby={labelId}
+              aria-label={!labelId ? (ariaLabel || getSelectedLabelStr() || getLabelText(placeholder)) : undefined}
+            >
               {menuOptions.map((option, index) => {
                 const isActive = activePath[level] === option.value;
                 const isFocused =

@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
 import { expect, userEvent, within } from "storybook/test";
 import { MultiSelect } from "wimui";
+import { openFirstPopup } from "../../playOpen";
 
 
 const meta: Meta<typeof MultiSelect> = {
@@ -127,4 +128,11 @@ export const WithClearButton: Story = {
     await expect(canvas.queryByText("Apple")).not.toBeInTheDocument();
     await expect(canvas.queryByText("Banana")).not.toBeInTheDocument();
   },
+};
+
+// 開いた姿。ほかのストーリーは閉じたまま撮られるので、開いた中身を変えても VRT と a11y の CI が
+// 動かなかった。docs ページでは play が走らず閉じた姿になるので、載せても意味がない。
+export const Open: Story = {
+  ...Default,
+  play: openFirstPopup,
 };

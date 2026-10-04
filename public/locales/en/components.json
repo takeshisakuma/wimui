@@ -657,6 +657,9 @@
     "expand": "Expand {{label}}",
     "search_aria": "Search tree items"
   },
+  "datepicker": {
+    "dialog": "Choose date"
+  },
   "daterangepicker": {
     "start": "Start date",
     "end": "End date"

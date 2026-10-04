@@ -10,6 +10,7 @@ import { FieldTemplate } from "../FieldTemplate";
 import { FieldIntent, FieldVariant, FieldWidth } from "../../../types/tokens";
 import styles from "./date-picker.module.scss";
 import inputStyles from "../../form/Input/input.module.scss";
+import { useWimTranslation } from "@/i18n/useWimTranslation";
 
 export type DatePickerLabels = {
   placeholder?: string;
@@ -103,6 +104,7 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
     // Combine multiple refs for the root
     const combinedRef = mergeRefs(containerRef, ref);
 
+    const { t } = useWimTranslation("components");
     const generatedId = useId();
     const id = customId || `wim-datepicker-${generatedId}`;
     const dropdownId = `${id}-dropdown`;
@@ -288,7 +290,15 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
               className={styles.dropdown}
             >
               <FocusTrap active={isOpen} initialFocus={false}>
-                <div role="dialog" aria-modal="true" aria-labelledby={labelId}>
+                {/* パネルにも名前を付ける。見える label が無いとき（外側の <Label> で包む使い方・aria-label だけを
+                    渡す使い方）は aria-labelledby が空になり、名前の無い dialog になっていた（axe の
+                    aria-dialog-name・serious）。開いた姿のストーリーが無く、CI に写っていなかった。 */}
+                <div
+                  role="dialog"
+                  aria-modal="true"
+                  aria-labelledby={labelId}
+                  aria-label={labelId ? undefined : (props["aria-label"] ?? t("datepicker.dialog"))}
+                >
                   <Calendar
                     value={currentValue ?? undefined}
                     onChange={handleDateChange}

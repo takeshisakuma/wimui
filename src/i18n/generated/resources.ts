@@ -238,6 +238,9 @@ export const wimResources: WimResources = {
         "expand": "Expand {{label}}",
         "search_aria": "Search tree items"
       },
+      "datepicker": {
+        "dialog": "Choose date"
+      },
       "daterangepicker": {
         "start": "Start date",
         "end": "End date"
@@ -590,6 +593,9 @@ export const wimResources: WimResources = {
         "expand": "{{label}} を展開",
         "search_aria": "ツリー項目を検索"
       },
+      "datepicker": {
+        "dialog": "日付を選択"
+      },
       "daterangepicker": {
         "start": "開始日",
         "end": "終了日"
@@ -941,6 +947,9 @@ export const wimResources: WimResources = {
         "collapse": "Recolher {{label}}",
         "expand": "Expandir {{label}}",
         "search_aria": "Buscar itens da árvore"
+      },
+      "datepicker": {
+        "dialog": "Escolher data"
       },
       "daterangepicker": {
         "start": "Data inicial",
