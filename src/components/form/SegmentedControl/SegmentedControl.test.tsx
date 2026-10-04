@@ -62,6 +62,27 @@ describe("SegmentedControl", () => {
     expect(activeItem).toHaveClass(styles.active);
   });
 
+  it("moves to the first / last option with Home / End", async () => {
+    const onChange = vi.fn();
+    await act(async () => {
+      render(<SegmentedControl options={options} value="2" onChange={onChange} />);
+    });
+    await waitFor(() => expect(screen.getByRole("radiogroup")).toHaveClass(styles.ready));
+    const btns = screen.getAllByRole("radio");
+
+    act(() => {
+      fireEvent.keyDown(btns[1], { key: "End" });
+    });
+    expect(onChange).toHaveBeenLastCalledWith("3");
+    expect(btns[2]).toHaveFocus();
+
+    act(() => {
+      fireEvent.keyDown(btns[2], { key: "Home" });
+    });
+    expect(onChange).toHaveBeenLastCalledWith("1");
+    expect(btns[0]).toHaveFocus();
+  });
+
   it("handles keyboard navigation (ArrowRight, ArrowDown, ArrowLeft, ArrowUp)", async () => {
     const onChange = vi.fn();
     await act(async () => {
