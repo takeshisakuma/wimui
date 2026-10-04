@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import classNames from "classnames";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { useCalendar, UseCalendarProps, isSameDay, isToday } from "./useCalendar";
@@ -30,6 +30,20 @@ export type CalendarProps = UseCalendarProps & {
   onRangeChange?: (range: CalendarRange) => void;
 };
 
+const addDays = (date: Date, days: number) =>
+  new Date(date.getFullYear(), date.getMonth(), date.getDate() + days);
+
+/** 月を送る。送り先に同じ日が無ければ（31 日 → 30 日の月）、月末に丸める。 */
+const addMonths = (date: Date, months: number) => {
+  const lastDay = new Date(date.getFullYear(), date.getMonth() + months + 1, 0).getDate();
+  return new Date(date.getFullYear(), date.getMonth() + months, Math.min(date.getDate(), lastDay));
+};
+
+const dateKey = (date: Date) => `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+
+/** 無効の日を飛ばして探す上限（1 年ぶん）。全部が無効なら、動かさない。 */
+const SKIP_LIMIT = 366;
+
 /**
  * Calendar component that lets users select a single date or a range.
  */
@@ -55,10 +69,8 @@ export const Calendar = ({
 }: CalendarProps) => {
   const { t, i18n } = useWimTranslation("common");
   const {
-    handlePrevMonth,
-    handleNextMonth,
-    handlePrevYear,
-    handleNextYear,
+    viewDate,
+    setViewDate,
     year,
     month,
     daysGrid,
@@ -78,6 +90,47 @@ export const Calendar = ({
   );
 
   const activeRange = rangeProp || internalRange;
+
+  // 日は 1 つだけを Tab の停止点にする（roving tabindex）。以前は 42 個の日が全部停止点で、矢印は
+  // 効かなかった ── 1 か月を抜けるのに Tab が 30 回前後かかった（T304）。
+  // 最初は、表示している月を決めた日（選択中の日・範囲の開始日・無ければ今日）に置く。
+  const gridRef = useRef<HTMLDivElement>(null);
+  const [focusedDate, setFocusedDate] = useState<Date>(viewDate);
+  // キーで動かした直後だけ、DOM のフォーカスを追従させる（月送りのボタンを押したときは奪わない）。
+  const pendingFocus = useRef(false);
+
+  const inView = (date: Date) => date.getFullYear() === year && date.getMonth() === month;
+
+  // 停止点にする日。フォーカスの日が表示中の月に無い・無効のときは、その月の最初の有効な日へ逃がす
+  // （停止点が 0 個になると、キーボードで日に入れなくなる）。
+  const tabbableDate =
+    inView(focusedDate) && !isInternalDisabled(focusedDate)
+      ? focusedDate
+      : (daysGrid.find((day) => day.currentMonth && !isInternalDisabled(day.date))?.date ?? null);
+
+  useEffect(() => {
+    if (!pendingFocus.current) return;
+    pendingFocus.current = false;
+    gridRef.current?.querySelector<HTMLElement>('[data-calendar-day][tabindex="0"]')?.focus();
+  }, [focusedDate, year, month]);
+
+  /** 日へフォーカスを移す。無効の日は `step` の向きに飛ばす。月をまたいだら、表示も送る。 */
+  const moveFocusTo = (target: Date, step: number): boolean => {
+    let date = target;
+    for (let i = 0; i < SKIP_LIMIT && isInternalDisabled(date); i++) date = addDays(date, step);
+    if (isInternalDisabled(date)) return false;
+    pendingFocus.current = true;
+    setFocusedDate(date);
+    if (!inView(date)) setViewDate(new Date(date.getFullYear(), date.getMonth(), 1));
+    return true;
+  };
+
+  /** 表示の月を送る。停止点の日も同じ日付のまま付いていく（DOM のフォーカスは動かさない）。 */
+  const shiftMonth = (months: number) => {
+    const target = addMonths(inView(focusedDate) ? focusedDate : new Date(year, month, 1), months);
+    setFocusedDate(target);
+    setViewDate(new Date(target.getFullYear(), target.getMonth(), 1));
+  };
 
   const handleDateClick = (date: Date) => {
     if (disabled || isInternalDisabled(date)) return;
@@ -108,25 +161,46 @@ export const Calendar = ({
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (disabled) return;
 
+    // 矢印・Home / End は、日の上で押したときだけ扱う（月送りのボタンの上では何もしない）。
+    const cell = (e.target as HTMLElement).closest<HTMLElement>("[data-calendar-day]");
+    const base = cell
+      ? daysGrid.find((day) => dateKey(day.date) === cell.getAttribute("data-date"))?.date
+      : undefined;
+
+    const pageBy = (months: number) => {
+      e.preventDefault();
+      // 日の上なら、同じ日付のままフォーカスごと送る。行き先が無効なら、月の内側へ寄せる。
+      if (base && moveFocusTo(addMonths(base, months), months > 0 ? -1 : 1)) return;
+      shiftMonth(months);
+    };
+
     switch (e.key) {
       case "PageUp":
-        e.preventDefault();
-        if (e.ctrlKey) handlePrevYear();
-        else handlePrevMonth();
+        pageBy(e.ctrlKey || e.shiftKey ? -12 : -1);
         break;
       case "PageDown":
-        e.preventDefault();
-        if (e.ctrlKey) handleNextYear();
-        else handleNextMonth();
+        pageBy(e.ctrlKey || e.shiftKey ? 12 : 1);
         break;
+      case "ArrowLeft":
+      case "ArrowRight":
+      case "ArrowUp":
+      case "ArrowDown": {
+        if (!base) return;
+        e.preventDefault();
+        const step = { ArrowLeft: -1, ArrowRight: 1, ArrowUp: -7, ArrowDown: 7 }[e.key];
+        moveFocusTo(addDays(base, step), step);
+        break;
+      }
       case "Home":
+      case "End": {
+        if (!base) return;
         e.preventDefault();
-        // Just for test compatibility
+        // 週の端。`weekStartsOn` の並びで数える。
+        const offset = (base.getDay() - weekStartsOn + 7) % 7;
+        if (e.key === "Home") moveFocusTo(addDays(base, -offset), 1);
+        else moveFocusTo(addDays(base, 6 - offset), -1);
         break;
-      case "End":
-        e.preventDefault();
-        // Just for test compatibility
-        break;
+      }
     }
   };
 
@@ -191,7 +265,7 @@ export const Calendar = ({
         <button
           type="button"
           className={styles.navBtn}
-          onClick={handlePrevMonth}
+          onClick={() => shiftMonth(-1)}
           disabled={disabled}
           aria-label={t("a11y.prev_month")}
         >
@@ -203,7 +277,7 @@ export const Calendar = ({
         <button
           type="button"
           className={styles.navBtn}
-          onClick={handleNextMonth}
+          onClick={() => shiftMonth(1)}
           disabled={disabled}
           aria-label={t("a11y.next_month")}
         >
@@ -211,7 +285,7 @@ export const Calendar = ({
         </button>
       </div>
 
-      <div className={styles.grid} role="grid">
+      <div className={styles.grid} role="grid" ref={gridRef}>
         <div role="row">
           {displayWeekDayNames.map((day, index) => {
             const actualDayIndex = (index + (weekStartsOn || 0)) % 7;
@@ -246,7 +320,8 @@ export const Calendar = ({
                 const isRangeStart = rangeMode && isSameDay(day.date, activeRange.start);
                 const isRangeEnd = rangeMode && isSameDay(day.date, activeRange.end);
 
-                const dateLabel = `${day.date.getFullYear()}-${day.date.getMonth() + 1}-${day.date.getDate()}`;
+                const dateLabel = dateKey(day.date);
+                const isTabStop = !!tabbableDate && isSameDay(day.date, tabbableDate);
 
                 return (
                   <button
@@ -256,6 +331,9 @@ export const Calendar = ({
                     aria-selected={selected}
                     aria-current={isTodayDate ? "date" : undefined}
                     data-calendar-day
+                    data-date={dateLabel}
+                    tabIndex={isTabStop ? 0 : -1}
+                    onFocus={() => setFocusedDate(day.date)}
                     data-selected={selected || undefined}
                     data-other-month={isOtherMonth || undefined}
                     className={classNames(styles.day, {
