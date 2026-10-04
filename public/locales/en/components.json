@@ -697,6 +697,8 @@
     "slide": "Slide {{number}}",
     "prev_slide": "Previous slide",
     "next_slide": "Next slide",
-    "go_to_slide": "Go to slide {{number}}"
+    "go_to_slide": "Go to slide {{number}}",
+    "roledescription": "carousel",
+    "slide_roledescription": "slide"
   }
 }

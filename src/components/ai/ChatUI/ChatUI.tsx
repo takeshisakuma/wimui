@@ -266,7 +266,7 @@ export const ChatInput = forwardRef<HTMLTextAreaElement, ChatInputProps>(
               onClick={handleSend}
               disabled={!value.trim()}
               type="button"
-              aria-label={sendButtonLabel || "Send"}
+              aria-label={sendButtonLabel || t("chat.send")}
             >
               {hasLabel ? sendButtonLabel : <Icon component={sendButtonIcon} size="sm" />}
             </button>
@@ -309,8 +309,9 @@ export const ChatAvatar = ({
   ...props
 }: ChatAvatarProps): React.ReactElement => {
   const [imageError, setImageError] = React.useState(false);
+  const { t } = useWimTranslation("common");
 
-  const alt = altProp || "User Avatar";
+  const alt = altProp || t("chat.user_avatar");
 
   return (
     <div

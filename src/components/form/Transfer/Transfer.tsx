@@ -98,7 +98,8 @@ const TransferList = ({
   labels = {},
   className,
 }: TransferListProps) => {
-  const { noData = "No Data" } = labels;
+  const { t } = useWimTranslation("form");
+  const { noData = t("transfer.no_data") } = labels;
   const bodyRef = useRef<HTMLDivElement>(null);
   const vListRef = useRef<HTMLDivElement>(null);
   const [bodyHeight, setBodyHeight] = useState(0);
@@ -248,7 +249,7 @@ export const Transfer = ({
   dataSource = [],
   targetKeys,
   onChange,
-  titles = ["Source", "Target"],
+  titles: titlesProp,
   className,
   style,
   disabled = false,
@@ -259,6 +260,7 @@ export const Transfer = ({
   labels = {},
 }: TransferProps) => {
   const { t } = useWimTranslation("form");
+  const titles = titlesProp ?? [t("transfer.source"), t("transfer.target")];
   const {
     moveToTarget = t("transfer.move_to_target"),
     moveToSource = t("transfer.move_to_source"),

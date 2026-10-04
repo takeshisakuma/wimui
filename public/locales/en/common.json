@@ -77,7 +77,8 @@
     "next": "Next",
     "save": "Save",
     "search": "Search",
-    "submit": "Submit"
+    "submit": "Submit",
+    "previous": "Previous"
   },
   "chat": {
     "attachment_prefix": "Attached: {{fileName}}",
@@ -85,7 +86,9 @@
     "placeholder_interactive": "What time is the meeting tomorrow?",
     "ai_assistant": "AI Assistant",
     "you": "You",
-    "support": "Support"
+    "support": "Support",
+    "send": "Send",
+    "user_avatar": "User avatar"
   },
   "analytics": "Analytics",
   "aspect": {
@@ -477,7 +480,8 @@
     "search": "Quarterly report"
   },
   "playback": {
-    "rate": "Playback rate"
+    "rate": "Playback rate",
+    "speed": "Playback Speed"
   },
   "processing": "Processing...",
   "profile": "Profile",
@@ -632,7 +636,8 @@
   "nodeGraph": {
     "add_node": "Add",
     "new_node": "Node",
-    "node_name": "Node name"
+    "node_name": "Node name",
+    "label": "Node graph"
   },
   "reaction": {
     "aria_label": "Reactions",
@@ -667,5 +672,49 @@
     "delete": "Delete",
     "edited": "Edited",
     "action_context": "on {{name}}'s comment"
+  },
+  "threadList": {
+    "new_thread": "New conversation",
+    "empty": "No conversations yet",
+    "delete": "Delete conversation",
+    "label": "Conversation history"
+  },
+  "modelSelector": {
+    "placeholder": "Select a model",
+    "context": "Context",
+    "input": "In",
+    "output": "Out"
+  },
+  "scheduleView": {
+    "label": "Schedule"
+  },
+  "rangeSlider": {
+    "start": "Start",
+    "end": "End",
+    "start_of": "Start {{label}}",
+    "end_of": "End {{label}}"
+  },
+  "theme": {
+    "system": "System",
+    "toggle": "Toggle theme"
+  },
+  "audio": {
+    "unknown_title": "Unknown Title",
+    "unknown_artist": "Unknown Artist",
+    "repeat_off": "Repeat Off",
+    "repeat_single": "Repeat One",
+    "repeat_all": "Repeat All",
+    "shuffle": "Shuffle",
+    "bass_boost": "Bass Boost"
+  },
+  "imageCompare": {
+    "handle": "Drag to compare"
+  },
+  "video": {
+    "label": "Video",
+    "fit_contain": "Contain",
+    "fit_cover": "Cover",
+    "fit_fill": "Fill",
+    "fit_scale_down": "Scale Down"
   }
 }

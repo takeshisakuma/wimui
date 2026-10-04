@@ -1,4 +1,5 @@
 import React from "react";
+import { useWimTranslation } from "@/i18n/useWimTranslation";
 import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
 import { PlusIcon, CloseIcon } from "@/icon";
@@ -61,11 +62,12 @@ export interface ThreadListProps
  */
 export const ThreadList = React.forwardRef<HTMLElement, ThreadListProps>(
   ({ threads, activeId, onSelect, onDelete, onNewThread, labels, className, ...props }, ref) => {
+    const { t } = useWimTranslation("common");
     const {
-      newThread = "New conversation",
-      empty = "No conversations yet",
-      delete: deleteLabel = "Delete conversation",
-      listAriaLabel = "Conversation history",
+      newThread = t("threadList.new_thread"),
+      empty = t("threadList.empty"),
+      delete: deleteLabel = t("threadList.delete"),
+      listAriaLabel = t("threadList.label"),
     } = labels ?? {};
 
     return (

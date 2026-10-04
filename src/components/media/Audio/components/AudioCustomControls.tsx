@@ -1,4 +1,5 @@
 import React from "react";
+import { useWimTranslation } from "@/i18n/useWimTranslation";
 import classNames from "classnames";
 import { Icon } from "../../../media/Icon/Icon";
 import { RepeatIcon, ShuffleIcon, ChartIcon, ClockIcon, ChevronLeftIcon, ChevronRightIcon, MuteIcon, VolumeIcon, PauseIcon, PlayIcon } from "@/icon";
@@ -80,21 +81,22 @@ export function AudioCustomControls({
   labels = {},
   styles,
 }: AudioCustomControlsProps) {
+  const { t } = useWimTranslation("common");
   const {
-    seek = "Seek",
-    mute = "Mute",
-    unmute = "Unmute",
-    volume: volumeLabel = "Volume",
-    play = "Play",
-    pause = "Pause",
-    next = "Next",
-    prev = "Previous",
-    repeatMode0 = "Repeat Off",
-    repeatMode1 = "Repeat One",
-    repeatMode2 = "Repeat All",
-    shuffle = "Shuffle",
-    playbackSpeed = "Playback Speed",
-    bassBoost = "Bass Boost",
+    seek = t("a11y.seek"),
+    mute = t("a11y.mute"),
+    unmute = t("a11y.unmute"),
+    volume: volumeLabel = t("a11y.volume"),
+    play = t("a11y.play"),
+    pause = t("a11y.pause"),
+    next = t("action.next"),
+    prev = t("action.previous"),
+    repeatMode0 = t("audio.repeat_off"),
+    repeatMode1 = t("audio.repeat_single"),
+    repeatMode2 = t("audio.repeat_all"),
+    shuffle = t("audio.shuffle"),
+    playbackSpeed = t("playback.speed"),
+    bassBoost = t("audio.bass_boost"),
     sleepTimer: sleepTimerLabel = "Sleep Timer (15m)",
   } = labels;
 

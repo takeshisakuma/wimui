@@ -88,9 +88,9 @@ describe("Transfer", () => {
       const listboxes = screen.getAllByRole("listbox");
       expect(listboxes).toHaveLength(1);
       // Source list should have the role
-      expect(screen.getByRole("listbox", { name: "Source" })).toBeInTheDocument();
+      expect(screen.getByRole("listbox", { name: "Available" })).toBeInTheDocument();
       // Target list should NOT have the role
-      expect(screen.queryByRole("listbox", { name: "Target" })).not.toBeInTheDocument();
+      expect(screen.queryByRole("listbox", { name: "Selected" })).not.toBeInTheDocument();
     });
 
     it("renders options with correct roles and aria-selected", () => {

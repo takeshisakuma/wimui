@@ -77,7 +77,8 @@
     "next": "次へ",
     "save": "保存",
     "search": "検索",
-    "submit": "送信"
+    "submit": "送信",
+    "previous": "前へ"
   },
   "analytics": "分析",
   "aspect": {
@@ -98,7 +99,9 @@
     "placeholder": "こんにちは！",
     "placeholder_interactive": "明日の会議は何時ですか？",
     "support": "サポート",
-    "you": "あなた"
+    "you": "あなた",
+    "send": "送信",
+    "user_avatar": "ユーザーのアバター"
   },
   "common": {
     "all": "すべて",
@@ -451,7 +454,8 @@
   "nodeGraph": {
     "add_node": "追加",
     "new_node": "ノード",
-    "node_name": "ノード名"
+    "node_name": "ノード名",
+    "label": "ノードグラフ"
   },
   "language": {
     "en": "英語",
@@ -498,7 +502,8 @@
     "search": "四半期レポート"
   },
   "playback": {
-    "rate": "再生速度"
+    "rate": "再生速度",
+    "speed": "再生速度"
   },
   "processing": "処理中...",
   "profile": "プロフィール",
@@ -667,5 +672,49 @@
     "delete": "削除",
     "edited": "編集済み",
     "action_context": "{{name}} のコメントに対して"
+  },
+  "threadList": {
+    "new_thread": "新しい会話",
+    "empty": "会話はまだありません",
+    "delete": "会話を削除",
+    "label": "会話の履歴"
+  },
+  "modelSelector": {
+    "placeholder": "モデルを選択",
+    "context": "コンテキスト",
+    "input": "入力",
+    "output": "出力"
+  },
+  "scheduleView": {
+    "label": "スケジュール"
+  },
+  "rangeSlider": {
+    "start": "開始",
+    "end": "終了",
+    "start_of": "{{label}}（開始）",
+    "end_of": "{{label}}（終了）"
+  },
+  "theme": {
+    "system": "システム",
+    "toggle": "テーマを切り替え"
+  },
+  "audio": {
+    "unknown_title": "不明なタイトル",
+    "unknown_artist": "不明なアーティスト",
+    "repeat_off": "リピートなし",
+    "repeat_single": "1 曲リピート",
+    "repeat_all": "全曲リピート",
+    "shuffle": "シャッフル",
+    "bass_boost": "低音ブースト"
+  },
+  "imageCompare": {
+    "handle": "ドラッグして比較"
+  },
+  "video": {
+    "label": "動画",
+    "fit_contain": "全体を表示",
+    "fit_cover": "画面を埋める",
+    "fit_fill": "引き伸ばす",
+    "fit_scale_down": "縮小のみ"
   }
 }

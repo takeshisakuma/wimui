@@ -1,4 +1,5 @@
 import React, { useId, useRef, useState, useEffect, useCallback } from "react";
+import { useWimTranslation } from "@/i18n/useWimTranslation";
 import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
 import { Transition } from "../../layout/Transition/Transition";
@@ -111,13 +112,15 @@ export const ModelSelector = React.forwardRef<HTMLDivElement, ModelSelectorProps
     },
     ref,
   ) => {
+    const { t } = useWimTranslation("common");
     const {
-      placeholder = "Select a model",
-      contextLabel = "Context",
-      inputLabel = "In",
-      outputLabel = "Out",
+      placeholder = t("modelSelector.placeholder"),
+      contextLabel = t("modelSelector.context"),
+      inputLabel = t("modelSelector.input"),
+      outputLabel = t("modelSelector.output"),
+      // 単位の表記で、言語によらない
       perTokensLabel = "/1M",
-      triggerAriaLabel = "Select a model",
+      triggerAriaLabel = t("modelSelector.placeholder"),
     } = labels ?? {};
 
     const isControlled = value !== undefined;

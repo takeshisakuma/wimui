@@ -116,12 +116,13 @@ export const NodeGraph = React.forwardRef<HTMLDivElement, NodeGraphProps>(
       fitViewOptions,
       defaultEdgeOptions,
       className,
-      "aria-label": ariaLabel = "Node graph",
+      "aria-label": ariaLabelProp,
       ...props
     },
     ref,
   ) => {
     const { t } = useWimTranslation("common");
+    const ariaLabel = ariaLabelProp ?? t("nodeGraph.label");
     const addLabel = t("nodeGraph.add_node");
     const nameLabel = t("nodeGraph.node_name");
     const namePlaceholder = t("nodeGraph.new_node");

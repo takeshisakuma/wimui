@@ -697,6 +697,8 @@
     "slide": "Slide {{number}}",
     "prev_slide": "Slide anterior",
     "next_slide": "Próximo slide",
-    "go_to_slide": "Ir para o slide {{number}}"
+    "go_to_slide": "Ir para o slide {{number}}",
+    "roledescription": "carrossel",
+    "slide_roledescription": "slide"
   }
 }

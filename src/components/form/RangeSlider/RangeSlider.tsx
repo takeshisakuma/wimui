@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback, useId } from "react";
+import { useWimTranslation } from "@/i18n/useWimTranslation";
 import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import { useSliderCommon } from "../../../utilities/slider-utils";
@@ -72,6 +73,7 @@ export const RangeSlider = ({
   children,
   ...props
 }: RangeSliderProps) => {
+  const { t } = useWimTranslation("common");
   const isControlled = value !== undefined;
   const generatedId = useId();
   const id = customId || generatedId;
@@ -306,7 +308,7 @@ export const RangeSlider = ({
             aria-valuenow={currentValue[0]}
             aria-disabled={disabled}
             aria-labelledby={label ? labelId : ariaLabelledBy}
-            aria-label={label ? `Start ${label}` : ariaLabel || "Start"}
+            aria-label={label ? t("rangeSlider.start_of", { label }) : ariaLabel || t("rangeSlider.start")}
             aria-describedby={error ? errorId : undefined}
             aria-invalid={error ? true : undefined}
             tabIndex={disabled ? -1 : 0}
@@ -324,7 +326,7 @@ export const RangeSlider = ({
             aria-valuenow={currentValue[1]}
             aria-disabled={disabled}
             aria-labelledby={label ? labelId : ariaLabelledBy}
-            aria-label={label ? `End ${label}` : ariaLabel || "End"}
+            aria-label={label ? t("rangeSlider.end_of", { label }) : ariaLabel || t("rangeSlider.end")}
             aria-describedby={error ? errorId : undefined}
             aria-invalid={error ? true : undefined}
             tabIndex={disabled ? -1 : 0}
