@@ -21,7 +21,7 @@
     "calendar_disabled_dates_desc": "There are two ways to disable dates: by passing an array or a function.",
     "calendar_integration_datepicker": "Integration with DatePicker",
     "calendar_integration_datepicker_desc": "Calendar is used as an internal component of DatePicker. Use this component directly for standalone calendar needs.",
-    "calendar_keyboard_desc": "Arrow keys navigate between dates. Page Up and Page Down move between months. Home and End move to the first and last day of the month. Enter or Space selects the focused date.",
+    "calendar_keyboard_desc": "Arrow keys navigate between dates. Page Up and Page Down move between months. Home and End move to the first and last day of the week. Enter or Space selects the focused date.",
     "calendar_long_desc": "Details and usage for the Calendar component.",
     "calendar_min_max_dates": "Restricting Selectable Date Range",
     "calendar_min_max_dates_desc": "Limit the selectable range with minDate and maxDate properties. Dates outside this range will be grayed out.",

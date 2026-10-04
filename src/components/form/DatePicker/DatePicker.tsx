@@ -206,7 +206,7 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
       if (isOpen) {
         const timer = setTimeout(() => {
           const focusedDay = containerRef.current?.querySelector<HTMLButtonElement>(
-            '[data-calendar-day][data-selected]:not(:disabled), [data-calendar-day]:focus',
+            '[data-calendar-day][tabindex="0"]:not(:disabled), [data-calendar-day][data-selected]:not(:disabled), [data-calendar-day]:focus',
           );
           if (focusedDay) {
             focusedDay.focus();
