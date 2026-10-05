@@ -55,7 +55,7 @@ export const SegmentedSizes: Story = {
     defaultValue: "light",
   },
   render: (args) => (
-    <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
+    <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "16px" }}>
       <ThemeToggle {...args} size="sm" />
       <ThemeToggle {...args} size="md" />
       <ThemeToggle {...args} size="lg" />
