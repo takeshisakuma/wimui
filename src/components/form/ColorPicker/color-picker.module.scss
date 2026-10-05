@@ -1,6 +1,7 @@
 @layer component {
   .input {
-    height: var(--wim-height-md); // Match other inputs
+    /* 高さは殻（InputBase）が決める。ここで `--wim-height-md` を指定すると、殻の枠の分だけ
+       ほかの入力欄より 2px 高くなる（T313）。 */
     padding: 0 !important;
     cursor: pointer;
   
