@@ -10,11 +10,15 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: var(--wim-spacing-2xl);
 
-    /* 当たり判定の下限。WCAG 2.5.8（AA）の 24×24。密度 compact で 2xl が 16 になり、sm は 12 まで縮む。 T117 */
+    /* ボタンと同じ高さの段に乗せる（T313。sm / md / lg = 32 / 42 / 48px。密度 compact では
+       28 / 36 / 40px）。以前は 12 / 16 / 22.4px を指定していて、下の当たり判定の下限（24px）に
+       3 つとも切り上げられ、`size` を変えても大きさが変わらなかった。 */
+    width: var(--wim-height-md);
+
+    /* 当たり判定の下限。WCAG 2.5.8（AA）の 24×24。 T117 */
     min-width: var(--wim-tap-target-min);
-    height: var(--wim-spacing-2xl);
+    height: var(--wim-height-md);
     min-height: var(--wim-tap-target-min);
     padding: 0;
     color: var(--wim-color-text-primary);
@@ -51,11 +55,13 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: var(--wim-spacing-xl);
 
-    /* 当たり判定の下限。WCAG 2.5.8（AA）の 24×24。塗りは中のアイコンなので見た目は変わらない。 T117 */
+    /* 外の器（余白 3xs × 2 を含む）が、ボタンと同じ高さの段に乗るようにする（T313）。 */
+    width: calc(var(--wim-height-md) - var(--wim-spacing-3xs) * 2);
+
+    /* 当たり判定の下限。WCAG 2.5.8（AA）の 24×24。 T117 */
     min-width: var(--wim-tap-target-min);
-    height: var(--wim-spacing-xl);
+    height: calc(var(--wim-height-md) - var(--wim-spacing-3xs) * 2);
     min-height: var(--wim-tap-target-min);
     padding: 0;
     color: var(--wim-color-text-secondary);
@@ -80,23 +86,23 @@
 
   // Sizes — icon button
   .iconButton.sm {
-    width: var(--wim-spacing-xl);
-    height: var(--wim-spacing-xl);
+    width: var(--wim-height-sm);
+    height: var(--wim-height-sm);
   }
 
   .iconButton.lg {
-    width: var(--wim-spacing-3xl);
-    height: var(--wim-spacing-3xl);
+    width: var(--wim-height-lg);
+    height: var(--wim-height-lg);
   }
 
   // Sizes — segmented
   .segmented.sm .segment {
-    width: var(--wim-spacing-lg);
-    height: var(--wim-spacing-lg);
+    width: calc(var(--wim-height-sm) - var(--wim-spacing-3xs) * 2);
+    height: calc(var(--wim-height-sm) - var(--wim-spacing-3xs) * 2);
   }
 
   .segmented.lg .segment {
-    width: var(--wim-spacing-2xl);
-    height: var(--wim-spacing-2xl);
+    width: calc(var(--wim-height-lg) - var(--wim-spacing-3xs) * 2);
+    height: calc(var(--wim-height-lg) - var(--wim-spacing-3xs) * 2);
   }
 }
