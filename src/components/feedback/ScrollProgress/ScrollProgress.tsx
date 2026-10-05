@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import type { IndicatorIntent } from "../../../types/tokens";
 import classNames from "classnames";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { commonNs } from "@/i18n/generated/common";
 import styles from "./scrollprogress.module.scss";
 
 export type ScrollProgressProps = React.ComponentPropsWithoutRef<"div"> & {
@@ -33,7 +34,7 @@ export const ScrollProgress = ({
   "aria-label": ariaLabel,
   ...props
 }: ScrollProgressProps) => {
-  const { t } = useWimTranslation("common");
+  const { t } = useWimTranslation(commonNs);
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {

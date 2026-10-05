@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import classNames from "classnames";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { componentsNs } from "@/i18n/generated/components";
 import { MinusIcon } from "@/icon";
 import { Icon } from "../../media/Icon/Icon";
 import { layoutTree, type TreeLayoutNode } from "./layoutTree";
@@ -130,7 +131,7 @@ export const TreeDiagram = React.forwardRef<HTMLDivElement, TreeDiagramProps>(
     },
     ref,
   ) => {
-    const { t } = useWimTranslation("components");
+    const { t } = useWimTranslation(componentsNs);
     const idBase = React.useId();
     const expandLabel = labels?.expand ?? ((l: string) => t("treediagram.expand", { label: l }));
     const collapseLabel = labels?.collapse ?? ((l: string) => t("treediagram.collapse", { label: l }));

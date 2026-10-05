@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from "react";
 import classNames from "classnames";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { componentsNs } from "@/i18n/generated/components";
 import { Input } from "../../form/Input/Input";
 import styles from "./color-input.module.scss";
 
@@ -39,7 +40,7 @@ export const ColorInput = ({
   style,
   ...props
 }: React.ComponentProps<typeof Input>) => {
-  const { t } = useWimTranslation("components");
+  const { t } = useWimTranslation(componentsNs);
   const [internalValue, setInternalValue] = useState(
     () => (defaultValue as string) ?? "#000000",
   );

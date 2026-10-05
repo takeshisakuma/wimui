@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useCallback, useEffect } from "react";
 import classNames from "classnames";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { componentsNs } from "@/i18n/generated/components";
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import { OverlayBase } from "../../_internal/OverlayBase";
 import { Icon } from "../Icon/Icon";
@@ -135,7 +136,7 @@ export const LightboxTrigger = ({
   ...props
 }: LightboxTriggerProps) => {
   const { setOpen, setCurrentIndex, items, setItems } = useLightbox();
-  const { t } = useWimTranslation("components");
+  const { t } = useWimTranslation(componentsNs);
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     onClick?.(e);
@@ -224,7 +225,7 @@ export const LightboxContent = ({
   ...props
 }: LightboxContentProps) => {
   const { open, setOpen, currentIndex, setCurrentIndex, items } = useLightbox();
-  const { t } = useWimTranslation("components");
+  const { t } = useWimTranslation(componentsNs);
   const [zoom, setZoom] = useState(1);
 
   const handlePrev = useCallback(() => {

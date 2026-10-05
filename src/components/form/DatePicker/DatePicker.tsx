@@ -11,6 +11,7 @@ import { FieldIntent, FieldVariant, FieldWidth } from "../../../types/tokens";
 import styles from "./date-picker.module.scss";
 import inputStyles from "../../form/Input/input.module.scss";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { componentsNs } from "@/i18n/generated/components";
 
 export type DatePickerLabels = {
   placeholder?: string;
@@ -104,7 +105,7 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
     // Combine multiple refs for the root
     const combinedRef = mergeRefs(containerRef, ref);
 
-    const { t } = useWimTranslation("components");
+    const { t } = useWimTranslation(componentsNs);
     const generatedId = useId();
     const id = customId || `wim-datepicker-${generatedId}`;
     const dropdownId = `${id}-dropdown`;

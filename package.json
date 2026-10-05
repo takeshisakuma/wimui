@@ -709,7 +709,7 @@
       "node scripts/check-heading-line-height.js",
       "node scripts/check-git-casing.cjs",
       "node scripts/generate-i18n-resources.js",
-      "node scripts/stage-generated.js src/i18n/generated/resources.ts src/i18n/generated/keys.ts --"
+      "node scripts/stage-generated.js src/i18n/generated --"
     ],
     "stories/**/*.{ts,tsx}": [
       "node scripts/check-stories-hardcoded.js",
@@ -754,7 +754,7 @@
       "node scripts/check-i18n-aliases.js",
       "node scripts/check-mdx-links.js",
       "node scripts/generate-i18n-resources.js",
-      "node scripts/stage-generated.js src/i18n/generated/resources.ts src/i18n/generated/keys.ts --",
+      "node scripts/stage-generated.js src/i18n/generated --",
       "node scripts/check-doc-token-refs.js"
     ],
     "src/icon/*.svg": [

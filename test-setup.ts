@@ -85,14 +85,17 @@ if (isJsdom) {
 
 // wimui コンポーネントは内蔵 i18n フック（useWimTranslation, i18next 非依存）を使う。
 // テストでは本物の解決ロジック（wimTranslate）へ委譲し、本番と同一の文言を検証する。
+type WimNamespace = import("./src/i18n/instance").WimNamespace;
 vi.mock("@/i18n/useWimTranslation", async () => {
   const actual = await vi.importActual<typeof import("./src/i18n/instance")>(
     "./src/i18n/instance",
   );
   return {
-    useWimTranslation: (ns?: string | readonly string[]) => ({
+    // 名前空間は実体（generated/<ns>.ts の定数）で渡る（T318）。本物のフックと同じく、渡された
+    // 名前空間だけを探す ── ここで全部の名前空間を探すと、指定違いがテストで見えなくなる。
+    useWimTranslation: (ns?: WimNamespace | readonly WimNamespace[]) => ({
       t: (key: string, options?: Record<string, unknown>) =>
-        actual.wimTranslate(ns, key, options),
+        actual.wimTranslate(ns == null ? [] : Array.isArray(ns) ? ns : [ns as WimNamespace], key, options),
       // T107: 以前は `language: "en"` の固定値だった。**`i18n.language` を読む
       // コンポーネントはユニットテストで検証できない**状態で、実際 `Calendar` の
       // 曜日名（`Intl` へ渡す）は locale を切り替えても常に英語のままだった。

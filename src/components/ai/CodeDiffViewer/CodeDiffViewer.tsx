@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useImperativeHandle, useMemo, useRef } f
 import classNames from "classnames";
 import { diffLines, type Change } from "diff";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { formNs } from "@/i18n/generated/form";
 import { Icon } from "../../media/Icon/Icon";
 import { AlignJustifyIcon, CheckIcon, CloseIcon, ColumnsIcon, CopyIcon, SpinnerIcon } from "@/icon";
 import styles from "./code-diff-viewer.module.scss";
@@ -164,7 +165,7 @@ export const CodeDiffViewer = React.forwardRef<HTMLDivElement, CodeDiffViewerPro
     },
     ref
   ) => {
-    const { t } = useWimTranslation("form");
+    const { t } = useWimTranslation(formNs);
     const [copied, setCopied] = React.useState(false);
 
     // autoView: driven by ResizeObserver. manualView: set by user click; reset when auto crosses threshold.

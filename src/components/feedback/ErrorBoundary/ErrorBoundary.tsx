@@ -1,5 +1,6 @@
 import React, { Component, ErrorInfo, ReactNode, useState } from "react";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { commonNs } from "@/i18n/generated/common";
 import { isDev } from "../../../utilities/dev-utils";
 import { Alert } from "../../feedback/Alert/Alert";
 import { Button } from "../../form/Button/Button";
@@ -53,7 +54,7 @@ const DefaultFallback = ({
   reset: () => void;
   labels?: ErrorBoundaryLabels;
 }) => {
-  const { t } = useWimTranslation("common");
+  const { t } = useWimTranslation(commonNs);
   const [showDetails, setShowDetails] = useState(false);
 
   const resolved: Required<ErrorBoundaryLabels> = {

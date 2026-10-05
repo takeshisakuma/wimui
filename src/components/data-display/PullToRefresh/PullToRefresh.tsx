@@ -4,6 +4,7 @@ import { Slot } from "@radix-ui/react-slot";
 import localStyles from "./pull-to-refresh.module.scss";
 import { Icon } from "../../media/Icon/Icon";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { commonNs } from "@/i18n/generated/common";
 import { LoadingIcon, ChevronDownIcon } from "@/icon";
 
 export interface PullToRefreshProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -42,7 +43,7 @@ export const PullToRefresh = React.forwardRef<HTMLDivElement, PullToRefreshProps
     },
     ref
   ) => {
-    const { t } = useWimTranslation();
+    const { t } = useWimTranslation(commonNs);
     const [pullDistance, setPullDistance] = useState(0);
     const [internalRefreshing, setInternalRefreshing] = useState(false);
     const [isDragging, setIsDragging] = useState(false);

@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import classNames from "classnames";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { commonNs } from "@/i18n/generated/common";
 import { Input } from "../Input/Input";
 import { IconButton } from "../IconButton/IconButton";
 import { FieldTemplate } from "../FieldTemplate";
@@ -55,7 +56,7 @@ export const InlineEdit = React.forwardRef<HTMLDivElement, InlineEditProps>(
     },
     ref
   ) => {
-    const { t } = useWimTranslation("common");
+    const { t } = useWimTranslation(commonNs);
     const [isEditing, setIsEditing] = useState(false);
     const [savedValue, setSavedValue] = useState(defaultValue ?? "");
     const [internalValue, setInternalValue] = useState(defaultValue ?? "");

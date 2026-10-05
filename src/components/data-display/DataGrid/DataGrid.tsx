@@ -1,5 +1,6 @@
 import React, { useMemo, useCallback } from "react";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { commonNs } from "@/i18n/generated/common";
 import classNames from "classnames";
 import { Table } from "../Table/Table";
 import { Checkbox } from "../../form/Checkbox/Checkbox";
@@ -133,7 +134,7 @@ export function DataGrid<T extends Record<string, unknown>>({
   className,
   ariaLabel,
 }: DataGridProps<T>) {
-  const { t } = useWimTranslation("common");
+  const { t } = useWimTranslation(commonNs);
   // "refresh" は読める・触れるまま更新中であることだけを伝える。従来の boolean は
   // blocking と同義（既定の挙動を変えない）。
   const isBusy = loading !== false && loading !== undefined;

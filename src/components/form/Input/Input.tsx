@@ -1,5 +1,6 @@
 import React, { useId, forwardRef, useState, useRef } from "react";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { commonNs } from "@/i18n/generated/common";
 import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import { useMergedRef } from "../../../hooks/useMergedRef";
@@ -117,7 +118,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     },
     ref,
   ) => {
-    const { t } = useWimTranslation("common");
+    const { t } = useWimTranslation(commonNs);
     const resolvedShowPasswordAriaLabel = showPasswordAriaLabel ?? t("a11y.show_password");
     const resolvedHidePasswordAriaLabel = hidePasswordAriaLabel ?? t("a11y.hide_password");
     const resolvedRightIconAriaLabel = rightIconAriaLabel ?? t("a11y.right_icon_action");

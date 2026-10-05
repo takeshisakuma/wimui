@@ -1,6 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { formNs } from "@/i18n/generated/form";
 import { Icon } from "../../media/Icon/Icon";
 import { Tooltip, TooltipTrigger, TooltipContent } from "../../overlay/Tooltip/Tooltip";
 import { ThumbUpIcon, ThumbDownIcon, RefreshIcon } from "@/icon";
@@ -45,7 +46,7 @@ export const AIResponseFeedback = React.forwardRef<HTMLDivElement, AIResponseFee
     },
     ref
   ) => {
-    const { t } = useWimTranslation("form");
+    const { t } = useWimTranslation(formNs);
     const isControlled = controlledFeedback !== undefined;
     const [internalFeedback, setInternalFeedback] = React.useState<AIFeedbackValue | null>(
       defaultFeedback

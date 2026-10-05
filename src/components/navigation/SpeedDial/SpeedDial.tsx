@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { commonNs } from "@/i18n/generated/common";
 import classNames from "classnames";
 import localStyles from "./speed-dial.module.scss";
 import { FloatButton } from "../../form/FloatButton/FloatButton";
@@ -70,7 +71,7 @@ export const SpeedDial = React.forwardRef<HTMLDivElement, SpeedDialProps>(
     },
     ref
   ) => {
-    const { t } = useWimTranslation("common");
+    const { t } = useWimTranslation(commonNs);
     const [uncontrolledOpen, setUncontrolledOpen] = useState(false);
     const open = controlledOpen ?? uncontrolledOpen;
     const actionsRef = useRef<HTMLDivElement>(null);

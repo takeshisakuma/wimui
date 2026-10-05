@@ -1,6 +1,7 @@
 import React, { useState, forwardRef } from "react";
 import classNames from "classnames";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { commonNs } from "@/i18n/generated/common";
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import { Icon } from "../../media/Icon/Icon";
 import { VisuallyHidden } from "../../layout/VisuallyHidden/VisuallyHidden";
@@ -48,7 +49,7 @@ export const Kanban = forwardRef<HTMLDivElement, KanbanProps>(
     },
     ref,
   ) => {
-    const { t } = useWimTranslation("common");
+    const { t } = useWimTranslation(commonNs);
     const [draggedItem, setDraggedItem] = useState<{
       itemId: string;
       columnId: string;
@@ -228,7 +229,7 @@ export const KanbanColumn = ({
 }: KanbanColumnProps) => {
   const { dragOverColumn, handleDragOver, handleDrop, setDragOverColumn } =
     useKanban();
-  const { t } = useWimTranslation("common");
+  const { t } = useWimTranslation(commonNs);
 
   // 列見出しは素の `div` で、列そのものにもロールと名前が無かったので、支援技術からは
   // **どのカードがどの列のものか分からなかった**（T211）。
@@ -287,7 +288,7 @@ export const KanbanCard = ({
   disabled,
   className,
 }: KanbanCardProps) => {
-  const { t } = useWimTranslation("common");
+  const { t } = useWimTranslation(commonNs);
   const {
     draggedItem,
     handleDragStart,

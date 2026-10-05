@@ -3,6 +3,7 @@ import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import { Icon } from "../../media/Icon/Icon";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { commonNs } from "@/i18n/generated/common";
 import styles from "./backtop.module.scss";
 import { ChevronUpIcon } from "@/icon";
 
@@ -39,7 +40,7 @@ export const BackTop = React.forwardRef<HTMLDivElement, BackTopProps>(
     },
     ref,
   ) => {
-    const { t } = useWimTranslation("common");
+    const { t } = useWimTranslation(commonNs);
     const [visible, setVisible] = useState(false);
 
     const getScrollTop = useCallback(

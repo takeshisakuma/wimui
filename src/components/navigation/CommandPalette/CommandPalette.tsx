@@ -8,6 +8,7 @@ import React, {
   ReactNode,
 } from "react";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { componentsNs } from "@/i18n/generated/components";
 import classNames from "classnames";
 import { Portal } from "../../overlay/Portal/Portal";
 import { Transition } from "../../layout/Transition/Transition";
@@ -217,7 +218,7 @@ export const CommandPaletteContent = ({
   className,
   "aria-label": ariaLabel,
 }: CommandPaletteContentProps) => {
-  const { t } = useWimTranslation("components");
+  const { t } = useWimTranslation(componentsNs);
   const { open, onOpenChange, activeIndex, setActiveIndex, isKeyboardNavigating, setIsKeyboardNavigating } = useCommandPalette();
     const mousePosRef = useRef<{ x: number; y: number } | null>(null);
 
@@ -476,7 +477,7 @@ export const CommandPaletteEmpty = ({
 }: {
   children?: ReactNode;
 }) => {
-  const { t } = useWimTranslation("components");
+  const { t } = useWimTranslation(componentsNs);
   const resolvedChildren = children ?? t("command_palette.no_results");
   const { open, search } = useCommandPalette();
   const [isEmpty, setIsEmpty] = useState(false);

@@ -1,6 +1,7 @@
 import React, { forwardRef, useCallback, useId } from "react";
 import classNames from "classnames";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { formNs } from "@/i18n/generated/form";
 import { InputBase } from "../InputBase";
 import { FieldTemplate } from "../FieldTemplate";
 import { useAutoResize } from "../../../hooks/useAutoResize";
@@ -73,7 +74,7 @@ export const SmartSearchInput = forwardRef<HTMLTextAreaElement, SmartSearchInput
     },
     ref
   ) => {
-    const { t } = useWimTranslation("form");
+    const { t } = useWimTranslation(formNs);
     const isControlled = controlledValue !== undefined;
     const [internalValue, setInternalValue] = React.useState(defaultValue as string);
     const currentValue = isControlled ? (controlledValue as string) : internalValue;

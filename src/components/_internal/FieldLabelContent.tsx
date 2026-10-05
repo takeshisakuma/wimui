@@ -1,5 +1,6 @@
 import React from "react";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { formNs } from "@/i18n/generated/form";
 import { Badge } from "../data-display/Badge/Badge";
 import styles from "./field-label-content.module.scss";
 
@@ -53,7 +54,7 @@ export const FieldLabelContent = ({
   optionalLabel,
   className,
 }: FieldLabelContentProps) => {
-  const { t } = useWimTranslation("form");
+  const { t } = useWimTranslation(formNs);
   const resolvedRequired = requiredLabel ?? t("form.required");
   const resolvedOptional = optionalLabel ?? t("form.optional");
 

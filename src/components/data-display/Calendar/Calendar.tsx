@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import classNames from "classnames";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { commonNs } from "@/i18n/generated/common";
 import { useCalendar, UseCalendarProps, isSameDay, isToday } from "./useCalendar";
 import { Icon } from "../../media/Icon/Icon";
 import styles from "./calendar.module.scss";
@@ -67,7 +68,7 @@ export const Calendar = ({
   weekStartsOn = 0,
   ...props
 }: CalendarProps) => {
-  const { t, i18n } = useWimTranslation("common");
+  const { t, i18n } = useWimTranslation(commonNs);
   const {
     viewDate,
     setViewDate,

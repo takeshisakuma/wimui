@@ -1,5 +1,6 @@
 import React from "react";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { commonNs } from "@/i18n/generated/common";
 import classNames from "classnames";
 import { Icon } from "../../../media/Icon/Icon";
 import { RepeatIcon, ShuffleIcon, ChartIcon, ClockIcon, ChevronLeftIcon, ChevronRightIcon, MuteIcon, VolumeIcon, PauseIcon, PlayIcon } from "@/icon";
@@ -81,7 +82,7 @@ export function AudioCustomControls({
   labels = {},
   styles,
 }: AudioCustomControlsProps) {
-  const { t } = useWimTranslation("common");
+  const { t } = useWimTranslation(commonNs);
   const {
     seek = t("a11y.seek"),
     mute = t("a11y.mute"),

@@ -1,5 +1,6 @@
 import React, { useRef, useState, useCallback } from "react";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { commonNs } from "@/i18n/generated/common";
 import classNames from "classnames";
 import { Icon } from "../Icon/Icon";
 import { ChevronLeftIcon, ChevronRightIcon } from "@/icon";
@@ -79,7 +80,7 @@ export const ImageCompare = React.forwardRef<HTMLDivElement, ImageCompareProps>(
     },
     ref,
   ) => {
-    const { t } = useWimTranslation("common");
+    const { t } = useWimTranslation(commonNs);
     const { handleAriaLabel = t("imageCompare.handle") } = labels ?? {};
     const isControlled = position !== undefined;
     const [internalPosition, setInternalPosition] = useState(clamp(defaultPosition));

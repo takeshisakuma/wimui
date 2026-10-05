@@ -9,6 +9,7 @@ import React, {
 } from "react";
 import classNames from "classnames";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { componentsNs } from "@/i18n/generated/components";
 import { CloseIcon } from "@/icon";
 import { Icon } from "../Icon/Icon";
 import { Checkbox } from "../../form/Checkbox/Checkbox";
@@ -90,7 +91,7 @@ export const Gallery = React.forwardRef<HTMLDivElement, GalleryProps>(
     },
     ref,
   ) => {
-    const { t } = useWimTranslation("components");
+    const { t } = useWimTranslation(componentsNs);
     const isControlled = controlledSelected !== undefined;
 
     const [uncontrolledSelected, setUncontrolledSelected] = useState<
@@ -340,7 +341,7 @@ const GalleryItemInternal = ({ item, index }: GalleryItemInternalProps) => {
     setFocusedIndex,
     onItemClick,
   } = useGalleryContext();
-  const { t } = useWimTranslation("components");
+  const { t } = useWimTranslation(componentsNs);
   const isSelected = selectedIds.has(item.id);
   const isFocused = focusedIndex === index;
 

@@ -1,5 +1,6 @@
 import React, { useState, useId, useCallback, useRef } from "react";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { componentsNs } from "@/i18n/generated/components";
 import classNames from "classnames";
 import { IconButton } from "../IconButton/IconButton";
 import { Button } from "../../form/Button/Button";
@@ -163,7 +164,7 @@ export const QueryBuilder = ({
   id: customId,
   labels = {},
 }: QueryBuilderProps) => {
-  const { t } = useWimTranslation("components");
+  const { t } = useWimTranslation(componentsNs);
   const {
     ruleAdded = t("query.builder.rule_added"),
     groupAdded = t("query.builder.group_added"),

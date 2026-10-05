@@ -1,6 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { componentsNs } from "@/i18n/generated/components";
 import localStyles from "./spoiler.module.scss";
 
 export type SpoilerProps = React.ComponentPropsWithoutRef<"div"> & {
@@ -63,7 +64,7 @@ export const Spoiler = React.forwardRef<HTMLDivElement, SpoilerProps>(
     },
     ref,
   ) => {
-    const { t } = useWimTranslation("components");
+    const { t } = useWimTranslation(componentsNs);
     const contentId = React.useId();
 
     const isControlled = expanded !== undefined;

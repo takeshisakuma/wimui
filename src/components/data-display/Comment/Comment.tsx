@@ -1,6 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { commonNs } from "@/i18n/generated/common";
 import { Avatar } from "../Avatar/Avatar";
 import { VisuallyHidden } from "../../layout/VisuallyHidden/VisuallyHidden";
 import styles from "./comment.module.scss";
@@ -114,7 +115,7 @@ export const Comment = React.forwardRef<HTMLElement, CommentProps>(
     },
     ref,
   ) => {
-    const { t } = useWimTranslation("common");
+    const { t } = useWimTranslation(commonNs);
     const headerId = `${id}-author`;
     const isEditing = editingId !== undefined && editingId === id;
     const isReplying = replyingTo !== undefined && replyingTo === id;

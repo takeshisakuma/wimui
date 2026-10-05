@@ -2,6 +2,7 @@ import React, { useState, useRef, createContext, useContext, useCallback } from 
 import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { componentsNs } from "@/i18n/generated/components";
 import { Icon } from "../../media/Icon/Icon";
 import { mergeRefs } from "../../_internal/mergeRefs";
 import styles from "./sortable-list.module.scss";
@@ -110,7 +111,7 @@ export const SortableListItem = React.forwardRef<HTMLLIElement, SortableListItem
       disabled: listDisabled,
     } = useSortableList();
     const itemRef = useRef<HTMLLIElement>(null);
-    const { t } = useWimTranslation("components");
+    const { t } = useWimTranslation(componentsNs);
 
     const disabled = listDisabled || itemDisabled;
     const isDragging = draggingIndex === index;

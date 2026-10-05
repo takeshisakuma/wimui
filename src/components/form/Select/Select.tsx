@@ -1,5 +1,6 @@
 import React, { useId, forwardRef } from "react";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { formNs } from "@/i18n/generated/form";
 import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import { Transition } from "../../layout/Transition/Transition";
@@ -118,7 +119,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
     },
     ref,
   ) => {
-    const { t } = useWimTranslation("form");
+    const { t } = useWimTranslation(formNs);
     const generatedId = useId();
     const id = customId || `wim-select-${generatedId}`;
     const labelId = label ? `${id}-label` : undefined;

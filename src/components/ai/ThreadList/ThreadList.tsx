@@ -1,5 +1,6 @@
 import React from "react";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { commonNs } from "@/i18n/generated/common";
 import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
 import { PlusIcon, CloseIcon } from "@/icon";
@@ -62,7 +63,7 @@ export interface ThreadListProps
  */
 export const ThreadList = React.forwardRef<HTMLElement, ThreadListProps>(
   ({ threads, activeId, onSelect, onDelete, onNewThread, labels, className, ...props }, ref) => {
-    const { t } = useWimTranslation("common");
+    const { t } = useWimTranslation(commonNs);
     const {
       newThread = t("threadList.new_thread"),
       empty = t("threadList.empty"),

@@ -1,6 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { formNs } from "@/i18n/generated/form";
 import styles from "./password-strength.module.scss";
 
 export type PasswordStrengthLevel = 0 | 1 | 2 | 3 | 4;
@@ -34,7 +35,7 @@ const defaultCalculateLevel = (password: string): PasswordStrengthLevel => {
  */
 export const PasswordStrength = React.forwardRef<HTMLDivElement, PasswordStrengthProps>(
   ({ password = "", score, showLabel = true, calculateLevel = defaultCalculateLevel, className, ...props }, ref) => {
-    const { t } = useWimTranslation("form");
+    const { t } = useWimTranslation(formNs);
     const currentScore = score !== undefined ? score : calculateLevel(password);
 
     const getLevelConfig = (lvl: number) => {

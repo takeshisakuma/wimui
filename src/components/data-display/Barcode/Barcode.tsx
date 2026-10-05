@@ -1,6 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { commonNs } from "@/i18n/generated/common";
 import { useMergedRef } from "../../../hooks/useMergedRef";
 import { encodeBarcode, toRuns, type BarcodeFormat } from "./encode";
 import { warnUnencodableValue } from "./warn-unencodable-value";
@@ -103,7 +104,7 @@ export const Barcode = React.forwardRef<HTMLDivElement, BarcodeProps>(
     },
     ref,
   ) => {
-    const { t } = useWimTranslation("common");
+    const { t } = useWimTranslation(commonNs);
     const encoded = encodeBarcode(value, format);
 
     /*

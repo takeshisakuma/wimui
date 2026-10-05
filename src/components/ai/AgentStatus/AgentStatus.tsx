@@ -1,6 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { formNs } from "@/i18n/generated/form";
 import { Icon } from "../../media/Icon/Icon";
 import { CheckCircleIcon, AlertCircleIcon, HourglassIcon } from "@/icon";
 import { ComponentSizeBasic } from "../../../types/tokens";
@@ -37,7 +38,7 @@ const ICONS: Partial<Record<AgentStatusValue, React.ComponentType<React.SVGProps
  */
 export const AgentStatus = React.forwardRef<HTMLDivElement, AgentStatusProps>(
   ({ status, message, size = "md", showLabel = true, className, ...props }, ref) => {
-    const { t } = useWimTranslation("form");
+    const { t } = useWimTranslation(formNs);
     const label = message ?? t(`agent_status.${status}`);
     const IconComponent = ICONS[status];
     const iconSize = size === "lg" ? "sm" : "xs";
