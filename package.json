@@ -155,7 +155,7 @@
         "react/jsx-runtime"
       ],
       "gzip": true,
-      "limit": "16 kB"
+      "limit": "10.5 kB"
     },
     {
       "name": "小さな画面: Button/Input/Card/Stack/Text (gzip)",
@@ -167,7 +167,7 @@
         "react/jsx-runtime"
       ],
       "gzip": true,
-      "limit": "22 kB"
+      "limit": "18.5 kB"
     },
     {
       "name": "フォーム画面: 入力7種 (gzip)",
@@ -179,7 +179,7 @@
         "react/jsx-runtime"
       ],
       "gzip": true,
-      "limit": "25 kB"
+      "limit": "22 kB"
     },
     {
       "name": "ルートバレル全部 — 最悪ケース (gzip)",
@@ -235,7 +235,7 @@
         "react/jsx-runtime"
       ],
       "gzip": true,
-      "limit": "32 kB"
+      "limit": "30 kB"
     },
     {
       "name": "wimui/data-display 全部 (gzip)",
@@ -247,7 +247,7 @@
         "react/jsx-runtime"
       ],
       "gzip": true,
-      "limit": "84 kB"
+      "limit": "85 kB"
     },
     {
       "name": "wimui/charts 全部 (gzip)",
@@ -272,7 +272,7 @@
         "react/jsx-runtime"
       ],
       "gzip": true,
-      "limit": "52.5 kB"
+      "limit": "50 kB"
     },
     {
       "name": "UMD Bundle (gzip)",
