@@ -4,7 +4,7 @@
     "calendar_a11y_2": "Selecione uma data usando as teclas Enter ou Espaço.",
     "calendar_a11y_3": "Alterne entre os meses usando as teclas Page Up e Page Down.",
     "calendar_a11y_4": "Em conformidade com os padrões de design de calendário WAI-ARIA.",
-    "calendar_a11y_5": "Os estados selecionado e desativado são comunicados via aria-selected e aria-disabled.",
+    "calendar_a11y_5": "As datas selecionadas são comunicadas via aria-selected. As datas desativadas usam o atributo nativo disabled: não recebem foco, e as setas as pulam.",
     "calendar_advanced_features": "Recursos Avançados",
     "calendar_behavior_1": "Selecione a data de início no primeiro clique.",
     "calendar_behavior_2": "Selecione a data de término no segundo clique.",

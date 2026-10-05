@@ -34,6 +34,7 @@
     "hamburgerMenu_prop_className": "Nome de classe personalizado",
     "hamburgerMenu_prop_color": "Cor das barras",
     "hamburgerMenu_prop_onClick": "Função de callback quando o menu é alternado",
+    "hamburgerMenu_prop_onOpenChange": "Chamado com o próximo estado de abertura: o oposto de `open` quando o botão é pressionado, e false quando Escape é pressionado com o menu aberto. Escape também devolve o foco ao botão. Sem este callback o botão não consegue fechar com Escape, porque `open` é controlado.",
     "hamburgerMenu_prop_open": "Se o menu está aberto",
     "hamburgerMenu_prop_size": "Tamanho do menu hambúrguer",
     "hamburgerMenu_prop_visibleBelow": "Exibe apenas abaixo do breakpoint fornecido (ex.: \"md\" corresponde à faixa do drawer mobile do Sidebar)",

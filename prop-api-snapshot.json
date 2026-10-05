@@ -4695,6 +4695,10 @@
       "required": false,
       "type": "React.MouseEventHandler<HTMLButtonElement>"
     },
+    "HamburgerMenu.onOpenChange": {
+      "required": false,
+      "type": "(open: boolean) => void"
+    },
     "HamburgerMenu.open": {
       "required": false,
       "type": "boolean"

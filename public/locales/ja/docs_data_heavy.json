@@ -4,7 +4,7 @@
     "calendar_a11y_2": "Enter / Space キーで日付を選択できます。",
     "calendar_a11y_3": "Page Up / Down で月の移動ができます。",
     "calendar_a11y_4": "WAI-ARIA のカレンダーパターンに準拠しています。",
-    "calendar_a11y_5": "選択状態・無効状態は aria-selected / aria-disabled で通知されます。",
+    "calendar_a11y_5": "選択状態は aria-selected で通知されます。無効の日は標準の disabled 属性で無効にしています。フォーカスは着かず、矢印キーは無効の日を飛ばします。",
     "calendar_advanced_features": "高度な機能",
     "calendar_behavior_1": "1回目のクリックで開始日を選択します。",
     "calendar_behavior_2": "2回目のクリックで終了日を選択します。",

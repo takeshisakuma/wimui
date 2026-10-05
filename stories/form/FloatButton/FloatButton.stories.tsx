@@ -44,6 +44,10 @@ export default meta;
 type Story = StoryObj<typeof FloatButton>;
 
 export const Basic: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return <FloatButton {...args} aria-label={t("story.floatbutton_create")} />;
+  },
   args: {
     iconName: "CircleIcon",
     shape: "circle",
@@ -78,24 +82,32 @@ export const LongLabel: Story = {
 };
 
 export const Sizes: Story = {
-  render: () => (
-    <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
-      <FloatButton iconName="CircleIcon" size="sm" position="inline" />
-      <FloatButton iconName="CircleIcon" size="md" position="inline" />
-      <FloatButton iconName="CircleIcon" size="lg" position="inline" />
-    </div>
-  ),
+  render: function Render() {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    const name = t("story.floatbutton_create");
+    return (
+      <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
+        <FloatButton iconName="CircleIcon" size="sm" position="inline" aria-label={name} />
+        <FloatButton iconName="CircleIcon" size="md" position="inline" aria-label={name} />
+        <FloatButton iconName="CircleIcon" size="lg" position="inline" aria-label={name} />
+      </div>
+    );
+  },
 };
 
 // T280: この値は VRT が撮るストーリーのどれにも描かれていなかった（Audit / ChatUI は撮影対象外）。
 export const Variants: Story = {
-  render: () => (
-    <div style={{ display: "flex", gap: "var(--wim-spacing-lg)", alignItems: "center" }}>
-      <FloatButton iconName="CircleIcon" position="inline" />
-      <FloatButton iconName="CircleIcon" variant="outline" position="inline" />
-      <FloatButton iconName="CircleIcon" variant="glass" position="inline" />
-    </div>
-  ),
+  render: function Render() {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    const name = t("story.floatbutton_create");
+    return (
+      <div style={{ display: "flex", gap: "var(--wim-spacing-lg)", alignItems: "center" }}>
+        <FloatButton iconName="CircleIcon" position="inline" aria-label={name} />
+        <FloatButton iconName="CircleIcon" variant="outline" position="inline" aria-label={name} />
+        <FloatButton iconName="CircleIcon" variant="glass" position="inline" aria-label={name} />
+      </div>
+    );
+  },
 };
 
 export const ExtendedSizes: Story = {
@@ -147,6 +159,10 @@ export const AutoShrink: Story = {
 };
 
 export const Primary: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return <FloatButton {...args} aria-label={t("story.floatbutton_refresh")} />;
+  },
   args: {
     iconName: "LoadingIcon",
     shape: "circle",
@@ -156,6 +172,10 @@ export const Primary: Story = {
 };
 
 export const Square: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return <FloatButton {...args} aria-label={t("story.floatbutton_stop")} />;
+  },
   args: {
     iconName: "SquareIcon",
     variant: "outline",
@@ -166,6 +186,10 @@ export const Square: Story = {
 };
 
 export const WithBadge: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return <FloatButton {...args} aria-label={t("story.floatbutton_notifications")} />;
+  },
   args: {
     iconName: "CircleIcon",
     badge: 3,
@@ -189,6 +213,7 @@ export const FixedPosition: Story = {
           shape="circle"
           size="md"
           position="bottom-right"
+          aria-label={t("story.floatbutton_back_to_top")}
           description={t("story.floatbutton_click_me")}
         />
       </div>
@@ -227,7 +252,13 @@ export const BackTop: Story = {
     return (
       <div style={{ height: "200vh", padding: "20px" }}>
         <p>{t("story.floatbutton_scroll_top_desc")}</p>
-        <FloatButton {...args} backTop visibilityHeight={100} size="md" />
+        <FloatButton
+          {...args}
+          backTop
+          visibilityHeight={100}
+          size="md"
+          aria-label={t("story.floatbutton_back_to_top")}
+        />
       </div>
     );
   },

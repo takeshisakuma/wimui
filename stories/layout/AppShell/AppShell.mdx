@@ -253,7 +253,7 @@ function AppLayout() {
             <HamburgerMenu
               visibleBelow="md"
               open={mobileOpen}
-              onClick={() => setMobileOpen((o) => !o)}
+              onOpenChange={setMobileOpen}
             />
           </Header.Section>
         </Header>

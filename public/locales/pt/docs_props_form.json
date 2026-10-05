@@ -231,7 +231,7 @@
     "fileUpload_prop_onChange": "Callback quando arquivos são selecionados",
     "fileUpload_prop_required": "Se deve exibir o indicador de obrigatório",
     "fileUpload_prop_size": "Tamanho do botão",
-    "floatButton_prop_aria-label": "Rótulo Aria para acessibilidade",
+    "floatButton_prop_aria-label": "Nome acessível. Obrigatório quando não há `label` em string: um botão apenas com ícone não tem texto de onde tirar um nome, e o nome do ícone não é usado como nome.",
     "floatButton_prop_asChild": "Se verdadeiro, o botão será renderizado como seu filho, mesclando suas props nesse filho.",
     "floatButton_prop_backTop": "Se verdadeiro, o botão rolará para o topo da página quando clicado",
     "floatButton_prop_badge": "Conteúdo do selo (número ou ponto)",

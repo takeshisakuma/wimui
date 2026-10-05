@@ -180,7 +180,7 @@ NavbarLink.displayName = "Navbar.Link";
 
 export type NavbarToggleProps = Omit<
   React.ComponentPropsWithoutRef<typeof HamburgerMenu>,
-  "open" | "onClick"
+  "open" | "onClick" | "onOpenChange"
 >;
 
 export const NavbarToggle = React.forwardRef<
@@ -198,7 +198,7 @@ export const NavbarToggle = React.forwardRef<
       <HamburgerMenu
         ref={ref}
         open={isMenuOpen}
-        onClick={() => setIsMenuOpen(!isMenuOpen)}
+        onOpenChange={setIsMenuOpen}
         className={className}
         {...props}
       />

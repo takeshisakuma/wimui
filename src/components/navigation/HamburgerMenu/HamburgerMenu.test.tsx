@@ -54,6 +54,53 @@ describe("HamburgerMenu", () => {
     expect(screen.getByRole("button")).not.toHaveClass(styles.visibleBelowMd);
   });
 
+  // T305: 開いた状態で Escape を押しても閉じなかった。
+  describe("onOpenChange", () => {
+    it("reports the next state when pressed", () => {
+      const onOpenChange = vi.fn();
+      const { rerender } = render(<HamburgerMenu onOpenChange={onOpenChange} />);
+      fireEvent.click(screen.getByRole("button"));
+      expect(onOpenChange).toHaveBeenLastCalledWith(true);
+
+      rerender(<HamburgerMenu open onOpenChange={onOpenChange} />);
+      fireEvent.click(screen.getByRole("button"));
+      expect(onOpenChange).toHaveBeenLastCalledWith(false);
+    });
+
+    it("closes on Escape from anywhere in the document and returns focus to the button", () => {
+      const onOpenChange = vi.fn();
+      render(
+        <>
+          <HamburgerMenu open onOpenChange={onOpenChange} />
+          <a href="#panel-link">Panel link</a>
+        </>,
+      );
+      screen.getByRole("link").focus();
+      fireEvent.keyDown(screen.getByRole("link"), { key: "Escape" });
+      expect(onOpenChange).toHaveBeenCalledWith(false);
+      expect(screen.getByRole("button")).toHaveFocus();
+    });
+
+    it("ignores Escape while closed", () => {
+      const onOpenChange = vi.fn();
+      render(<HamburgerMenu onOpenChange={onOpenChange} />);
+      fireEvent.keyDown(document.body, { key: "Escape" });
+      expect(onOpenChange).not.toHaveBeenCalled();
+    });
+
+    it("leaves an Escape that something inside already handled", () => {
+      const onOpenChange = vi.fn();
+      render(
+        <>
+          <HamburgerMenu open onOpenChange={onOpenChange} />
+          <input aria-label="Search" onKeyDown={(event) => event.preventDefault()} />
+        </>,
+      );
+      fireEvent.keyDown(screen.getByRole("textbox"), { key: "Escape" });
+      expect(onOpenChange).not.toHaveBeenCalled();
+    });
+  });
+
   it("supports asChild prop", () => {
     render(
       <HamburgerMenu asChild>

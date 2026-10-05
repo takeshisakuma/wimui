@@ -41,12 +41,7 @@ const renderWithState = (args: HamburgerMenuProps) => {
     setIsOpen(args.open || false);
   }, [args.open]);
 
-  const toggle = (e: React.MouseEvent<HTMLButtonElement>) => {
-    setIsOpen((prev) => !prev);
-    args.onClick?.(e);
-  };
-
-  return <HamburgerMenu {...args} open={open} onClick={toggle} />;
+  return <HamburgerMenu {...args} open={open} onOpenChange={setIsOpen} />;
 };
 
 export const Default: Story = {

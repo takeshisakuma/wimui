@@ -27,7 +27,7 @@ export interface SidebarProps extends React.ComponentPropsWithoutRef<"aside"> {
    * ```tsx
    * const [open, setOpen] = useState(false);
    *
-   * <HamburgerMenu visibleBelow="md" open={open} onClick={() => setOpen((o) => !o)} />
+   * <HamburgerMenu visibleBelow="md" open={open} onOpenChange={setOpen} />
    * <Sidebar mobileOpen={open} onOverlayClick={() => setOpen(false)}>…</Sidebar>
    * ```
    *

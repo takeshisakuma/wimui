@@ -231,7 +231,7 @@
     "fileUpload_prop_onChange": "ファイルが選択された時のコールバック",
     "fileUpload_prop_required": "必須表示にするかどうか",
     "fileUpload_prop_size": "ボタンのサイズ",
-    "floatButton_prop_aria-label": "アクセシビリティ用の Aria ラベル",
+    "floatButton_prop_aria-label": "アクセシブル名。文字列の `label` が無いときは必須です。アイコンだけのボタンには名前を取れる文字が無く、アイコン名は名前に使いません。",
     "floatButton_prop_asChild": "true の場合、ボタンは子要素としてレンダリングされ、props がその子要素にマージされます。",
     "floatButton_prop_backTop": "true の場合、クリック時にページの先頭までスクロールします",
     "floatButton_prop_badge": "バッジの内容（数値またはドット）",

@@ -4,7 +4,7 @@
     "calendar_a11y_2": "Select a date using Enter or Space keys.",
     "calendar_a11y_3": "Change months using Page Up and Page Down keys.",
     "calendar_a11y_4": "Compliant with WAI-ARIA calendar design patterns.",
-    "calendar_a11y_5": "Selected and disabled states are communicated via aria-selected and aria-disabled.",
+    "calendar_a11y_5": "Selected dates are communicated via aria-selected. Disabled dates use the native disabled attribute: they cannot receive focus, and the arrow keys skip over them.",
     "calendar_advanced_features": "Advanced Features",
     "calendar_behavior_1": "Select the start date on the first click.",
     "calendar_behavior_2": "Select the end date on the second click.",
