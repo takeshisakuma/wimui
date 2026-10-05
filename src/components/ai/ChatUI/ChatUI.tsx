@@ -1,6 +1,7 @@
 import React, { forwardRef } from "react";
 import classNames from "classnames";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { commonNs } from "@/i18n/generated/common";
 import { ComponentSizeBasic } from "../../../types/tokens";
 import { Icon } from "../../media/Icon/Icon";
 import { SendIcon, PaperclipIcon } from "@/icon";
@@ -202,7 +203,7 @@ export const ChatInput = forwardRef<HTMLTextAreaElement, ChatInputProps>(
     },
     ref,
   ) => {
-    const { t } = useWimTranslation("common");
+    const { t } = useWimTranslation(commonNs);
     const [internalValue, setInternalValue] = React.useState("");
     const isControlled = props.value !== undefined;
     const value = isControlled ? (props.value as string) : internalValue;
@@ -309,7 +310,7 @@ export const ChatAvatar = ({
   ...props
 }: ChatAvatarProps): React.ReactElement => {
   const [imageError, setImageError] = React.useState(false);
-  const { t } = useWimTranslation("common");
+  const { t } = useWimTranslation(commonNs);
 
   const alt = altProp || t("chat.user_avatar");
 

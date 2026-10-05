@@ -11,6 +11,7 @@ import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
 import styles from "./carousel.module.scss";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { componentsNs } from "@/i18n/generated/components";
 import { ChevronLeftIcon, ChevronRightIcon } from "@/icon";
 
 export type Breakpoints = {
@@ -101,7 +102,7 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
 }, ref) => {
   const Component = asChild ? Slot : "div";
   // 既定の文言は翻訳キー（components:carousel.*。en / ja / pt）。`labels` で渡した分が優先。
-  const { t } = useWimTranslation("components");
+  const { t } = useWimTranslation(componentsNs);
   const mergedLabels: Required<CarouselLabels> = {
     slideLabel: (number) => t("carousel.slide", { number }),
     prevSlide: t("carousel.prev_slide"),

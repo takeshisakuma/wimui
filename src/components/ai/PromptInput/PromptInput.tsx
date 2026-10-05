@@ -1,6 +1,7 @@
 import React, { useCallback } from "react";
 import classNames from "classnames";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { formNs } from "@/i18n/generated/form";
 import { Icon } from "../../media/Icon/Icon";
 import { SendIcon, PaperclipIcon } from "@/icon";
 import { useAutoResize } from "../../../hooks/useAutoResize";
@@ -75,7 +76,7 @@ export const PromptInput = React.forwardRef<HTMLTextAreaElement, PromptInputProp
     },
     ref
   ) => {
-    const { t } = useWimTranslation("form");
+    const { t } = useWimTranslation(formNs);
     const isControlled = controlledValue !== undefined;
     const [internalValue, setInternalValue] = React.useState(defaultValue);
     const currentValue = isControlled ? controlledValue : internalValue;

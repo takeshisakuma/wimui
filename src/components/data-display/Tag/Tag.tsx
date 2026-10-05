@@ -1,6 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { commonNs } from "@/i18n/generated/common";
 import { Icon } from "../../media/Icon/Icon";
 import { IndicatorBase } from "../../_internal/IndicatorBase";
 import { ComponentSizeBasic, IndicatorIntent, IndicatorVariant } from "../../../types/tokens";
@@ -53,7 +54,7 @@ export const Tag = React.forwardRef<HTMLSpanElement, TagProps>(
     },
     ref,
   ) => {
-    const { t } = useWimTranslation("common");
+    const { t } = useWimTranslation(commonNs);
 
     if (asChild && onDelete) {
       throw new Error(

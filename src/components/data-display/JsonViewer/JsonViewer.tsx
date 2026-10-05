@@ -4,6 +4,7 @@ import localStyles from "./json-viewer.module.scss";
 import { Icon } from "../../media/Icon/Icon";
 import { IconButton } from "../../form/IconButton/IconButton";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { commonNs } from "@/i18n/generated/common";
 import { PlusIcon, TrashIcon, ChevronDownIcon, ChevronRightIcon } from "@/icon";
 
 export interface JsonViewerProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -177,7 +178,7 @@ const JsonNode = ({
   onDelete: (path: (string | number)[]) => void;
   onAdd: (path: (string | number)[]) => void;
 }) => {
-  const { t } = useWimTranslation();
+  const { t } = useWimTranslation(commonNs);
   const [expanded, setExpanded] = useState(currentDepth < depth);
   const isObject = value !== null && typeof value === "object";
   const isArray = Array.isArray(value);
@@ -319,7 +320,7 @@ const JsonNode = ({
  */
 export const JsonViewer = React.forwardRef<HTMLDivElement, JsonViewerProps>(
   ({ data: initialData, expandDepth = 1, showCopy = true, showToolbar = true, editable = false, onChange, className, ...props }, ref) => {
-    const { t } = useWimTranslation();
+    const { t } = useWimTranslation(commonNs);
     const [data, setData] = useState(initialData);
     const [prevInitialData, setPrevInitialData] = useState(initialData);
     const titleId = useId();

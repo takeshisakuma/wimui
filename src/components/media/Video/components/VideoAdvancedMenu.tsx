@@ -1,5 +1,6 @@
 import React from "react";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { commonNs } from "@/i18n/generated/common";
 import { Icon } from "../../../media/Icon/Icon";
 import { type VideoLabels } from "./VideoControls";
 import { ChevronRightIcon, ChevronLeftIcon, CheckIcon, CloseIcon, PlayIcon } from "@/icon";
@@ -49,7 +50,7 @@ export function VideoAdvancedMenu({
   labels = {},
   styles,
 }: VideoAdvancedMenuProps) {
-  const { t } = useWimTranslation("common");
+  const { t } = useWimTranslation(commonNs);
   const {
     settings = t("a11y.settings"),
     quality = t("quality"),

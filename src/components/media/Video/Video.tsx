@@ -1,5 +1,6 @@
 import React from "react";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { commonNs } from "@/i18n/generated/common";
 import type { MediaRadius } from "../../../types/tokens";
 import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
@@ -97,7 +98,7 @@ export const Video = ({
   tracks,
   ...props
 }: VideoProps) => {
-  const { t } = useWimTranslation("common");
+  const { t } = useWimTranslation(commonNs);
   // `seconds` は単位の記号で、言語によらない
   const { videoAriaLabel = t("video.label"), seconds = "s" } = labels;
   const {

@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from "react";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { commonNs } from "@/i18n/generated/common";
 import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import { Icon } from "../../media/Icon/Icon";
@@ -121,7 +122,7 @@ export const Pagination = ({
   showQuickJumper = false,
   labels = {},
 }: PaginationProps) => {
-  const { t } = useWimTranslation("common");
+  const { t } = useWimTranslation(commonNs);
   const {
     prevPage = t("a11y.go_to_prev_page"),
     nextPage = t("a11y.go_to_next_page"),

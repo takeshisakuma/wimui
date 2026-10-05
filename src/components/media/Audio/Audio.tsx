@@ -2,6 +2,7 @@ import React, { useMemo, useEffect } from "react";
 import type { MediaRadius } from "../../../types/tokens";
 import classNames from "classnames";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { commonNs } from "@/i18n/generated/common";
 import { useMediaLoader } from "@/hooks/useMediaLoader";
 import { useAudioPlayer } from "./hooks/useAudioPlayer";
 import { useAudioMetadata } from "./hooks/useAudioMetadata";
@@ -97,7 +98,7 @@ export const Audio = ({
   tracks,
   ...props
 }: AudioProps) => {
-  const { t } = useWimTranslation("common");
+  const { t } = useWimTranslation(commonNs);
   const { unknownTitle = t("audio.unknown_title"), unknownArtist = t("audio.unknown_artist") } = labels;
   const playlist: AudioTrack[] = useMemo(() => {
     if (!src) return [];

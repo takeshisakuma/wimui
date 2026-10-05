@@ -10,6 +10,7 @@ import { Portal } from "../../overlay/Portal/Portal";
 import { FocusTrap } from "../../overlay/FocusTrap/FocusTrap";
 import { Button } from "../../form/Button/Button";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { commonNs } from "@/i18n/generated/common";
 import styles from "./tour.module.scss";
 
 type TourStep = {
@@ -88,7 +89,7 @@ function isFullyVisible(rect: DOMRect) {
 }
 
 export const Tour = ({ steps, open, onClose, onFinish }: TourProps) => {
-  const { t } = useWimTranslation("common");
+  const { t } = useWimTranslation(commonNs);
   const [currentStep, setCurrentStep] = useState(0);
   const [targetRect, setTargetRect] = useState<DOMRect | null>(null);
   const step = steps[currentStep];

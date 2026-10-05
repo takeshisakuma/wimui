@@ -1,5 +1,6 @@
 import React, { useId, useRef, useState, useEffect, useCallback } from "react";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { commonNs } from "@/i18n/generated/common";
 import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
 import { Transition } from "../../layout/Transition/Transition";
@@ -112,7 +113,7 @@ export const ModelSelector = React.forwardRef<HTMLDivElement, ModelSelectorProps
     },
     ref,
   ) => {
-    const { t } = useWimTranslation("common");
+    const { t } = useWimTranslation(commonNs);
     const {
       placeholder = t("modelSelector.placeholder"),
       contextLabel = t("modelSelector.context"),

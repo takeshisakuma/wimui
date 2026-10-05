@@ -1,5 +1,6 @@
 import React from "react";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { commonNs } from "@/i18n/generated/common";
 import { Icon } from "../media/Icon/Icon";
 import { ComponentSize } from "../../types/tokens";
 import { CloseIcon } from "@/icon";
@@ -48,7 +49,7 @@ export const FeedbackCloseButton = ({
   ariaLabel,
   size = "sm",
 }: FeedbackCloseButtonProps) => {
-  const { t } = useWimTranslation("common");
+  const { t } = useWimTranslation(commonNs);
   const resolvedAriaLabel = ariaLabel ?? t("a11y.close");
 
   if (!onClose) return null;

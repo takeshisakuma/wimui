@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { commonNs } from "@/i18n/generated/common";
 import classNames from "classnames";
 import FullCalendar from "@fullcalendar/react";
 import { useMergedRef } from "../../../hooks/useMergedRef";
@@ -107,7 +108,7 @@ export const ScheduleView = React.forwardRef<HTMLDivElement, ScheduleViewProps>(
     },
     ref
   ) => {
-    const { t } = useWimTranslation("common");
+    const { t } = useWimTranslation(commonNs);
     const ariaLabel = ariaLabelProp ?? t("scheduleView.label");
     const calendarRef = useRef<FullCalendar>(null);
     const rootRef = useRef<HTMLDivElement>(null);

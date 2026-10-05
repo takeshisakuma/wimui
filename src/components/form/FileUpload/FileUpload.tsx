@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { formNs } from "@/i18n/generated/form";
 import classNames from "classnames";
 import { Button } from "../../form/Button/Button";
 import { Icon } from "../../media/Icon/Icon";
@@ -68,7 +69,7 @@ export const FileUpload = ({
   required,
   layout = "vertical",
 }: FileUploadProps) => {
-  const { t } = useWimTranslation("form");
+  const { t } = useWimTranslation(formNs);
   const generatedId = React.useId();
   const id = `wim-fileupload-${generatedId}`;
   const labelId = label ? `${id}-label` : undefined;

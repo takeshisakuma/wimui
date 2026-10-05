@@ -1,5 +1,6 @@
 import React from "react";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { commonNs } from "@/i18n/generated/common";
 import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import localStyles from "./button.module.scss";
@@ -107,7 +108,7 @@ export const Button = React.forwardRef<
       return () => cancelAnimationFrame(frame);
     }, [children, animateWidth]);
 
-    const { t } = useWimTranslation("common");
+    const { t } = useWimTranslation(commonNs);
     const isDisabled = disabled;
 
     let resolvedAriaLabel: string | undefined;

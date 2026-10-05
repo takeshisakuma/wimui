@@ -1,6 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { formNs } from "@/i18n/generated/form";
 import { Icon } from "../../media/Icon/Icon";
 import { ExternalLinkIcon } from "@/icon";
 import styles from "./source-citation.module.scss";
@@ -44,7 +45,7 @@ export const SourceCitation = ({
   domain: domainProp,
   className,
 }: SourceCitationProps) => {
-  const { t } = useWimTranslation("form");
+  const { t } = useWimTranslation(formNs);
   const displayDomain = domainProp ?? (url ? extractDomain(url) : undefined);
   const ariaLabel = index != null ? t("source_citation.source_label", { index }) : title;
 

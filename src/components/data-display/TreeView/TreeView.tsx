@@ -7,6 +7,7 @@ import React, {
   useMemo,
 } from "react";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { componentsNs } from "@/i18n/generated/components";
 import classNames from "classnames";
 import localStyles from "./tree-view.module.scss";
 import { Icon } from "../../media/Icon/Icon";
@@ -292,7 +293,7 @@ const TreeView = ({
   labelId,
   styles: stylesProp,
 }: TreeViewProps) => {
-  const { t } = useWimTranslation("components");
+  const { t } = useWimTranslation(componentsNs);
   const {
     searchPlaceholder,
     searchAriaLabel = t("treeview.search_aria"),

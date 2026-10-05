@@ -1,6 +1,8 @@
 import React from "react";
 import { Drawer } from "../../overlay/Drawer/Drawer";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { commonNs } from "@/i18n/generated/common";
+import { formNs } from "@/i18n/generated/form";
 import { Icon } from "../../media/Icon/Icon";
 import { CloseIcon, MaximizeIcon, MinimizeIcon } from "@/icon";
 import classNames from "classnames";
@@ -37,7 +39,7 @@ export const ArtifactsOverlay: React.FC<ArtifactsOverlayProps> = ({
   showFullscreenToggle = false,
   className,
 }) => {
-  const { t } = useWimTranslation(["common", "form"]);
+  const { t } = useWimTranslation([commonNs, formNs]);
   const [isFullscreen, setIsFullscreen] = React.useState(false);
 
   return (

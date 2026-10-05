@@ -1,6 +1,7 @@
 import React, { useCallback, useMemo, useState } from "react";
 import classNames from "classnames";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { componentsNs } from "@/i18n/generated/components";
 import { ChevronRightIcon } from "@/icon";
 import { useMergedRef } from "../../../hooks/useMergedRef";
 import { Icon } from "../../media/Icon/Icon";
@@ -180,7 +181,7 @@ export const PivotTable = React.forwardRef<HTMLTableElement, PivotTableProps>(
     },
     ref,
   ) => {
-    const { t } = useWimTranslation("components");
+    const { t } = useWimTranslation(componentsNs);
     const idBase = React.useId();
     const totalLabel = labels?.total ?? t("pivottable.total");
 

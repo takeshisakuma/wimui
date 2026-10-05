@@ -1,6 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { commonNs } from "@/i18n/generated/common";
 import { Indicator } from "../../feedback/Indicator/Indicator";
 import { VisuallyHidden } from "../../layout/VisuallyHidden/VisuallyHidden";
 import { ComponentSizeBasic } from "../../../types/tokens";
@@ -77,7 +78,7 @@ export const Presence = React.forwardRef<HTMLSpanElement, PresenceProps>(
     },
     ref,
   ) => {
-    const { t } = useWimTranslation("common");
+    const { t } = useWimTranslation(commonNs);
     const text = label ?? t(`presence.${status}`);
 
     return (

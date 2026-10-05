@@ -2,6 +2,7 @@ import React from "react";
 import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { dataDisplayNs } from "@/i18n/generated/data-display";
 import type { ComponentSizeBasic } from "../../../types/tokens";
 import localStyles from "./countdown.module.scss";
 
@@ -126,7 +127,7 @@ export const Countdown = React.forwardRef<HTMLTimeElement, CountdownProps>(
     },
     ref,
   ) => {
-    const { t, i18n } = useWimTranslation("data-display");
+    const { t, i18n } = useWimTranslation(dataDisplayNs);
     const language = locale ?? i18n?.language ?? "en";
     const Root = asChild ? Slot : "time";
 

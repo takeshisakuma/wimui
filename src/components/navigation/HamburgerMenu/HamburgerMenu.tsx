@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { commonNs } from "@/i18n/generated/common";
 import { useMergedRef } from "@/hooks/useMergedRef";
 import { ComponentSizeBasic } from "../../../types/tokens";
 import styles from "./hamburger-menu.module.scss";
@@ -54,7 +55,7 @@ export const HamburgerMenu = React.forwardRef<
     },
     ref,
   ) => {
-    const { t } = useWimTranslation("common");
+    const { t } = useWimTranslation(commonNs);
     const Comp = asChild ? Slot : "button";
 
     const buttonRef = useRef<HTMLButtonElement | null>(null);

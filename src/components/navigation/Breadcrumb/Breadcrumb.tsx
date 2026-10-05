@@ -1,6 +1,7 @@
 import React, { forwardRef } from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { commonNs } from "@/i18n/generated/common";
 import classNames from "classnames";
 import styles from "./breadcrumb.module.scss";
 import { Link } from "../../navigation/Link/Link";
@@ -51,7 +52,7 @@ export const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(({
   asChild,
   ...props
 }, ref) => {
-  const { t } = useWimTranslation("common");
+  const { t } = useWimTranslation(commonNs);
   const resolvedAriaLabel = ariaLabel ?? t("a11y.breadcrumb");
   const Component = asChild ? Slot : "nav";
 

@@ -1,5 +1,6 @@
 import React from "react";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { commonNs } from "@/i18n/generated/common";
 import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import { Icon } from "../../media/Icon/Icon";
@@ -70,7 +71,7 @@ export const Chip = React.forwardRef<HTMLElement, ChipProps>(
     },
     ref,
   ) => {
-    const { t } = useWimTranslation("common");
+    const { t } = useWimTranslation(commonNs);
     const resolvedDeleteAriaLabel = deleteAriaLabel ?? t("a11y.delete");
     if (asChild && onDelete) {
       throw new Error(

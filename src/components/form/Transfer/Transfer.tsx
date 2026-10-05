@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useId, useEffect, useRef } from "react";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { formNs } from "@/i18n/generated/form";
 import classNames from "classnames";
 import { Checkbox } from "../../form/Checkbox/Checkbox";
 import { Button } from "../../form/Button/Button";
@@ -98,7 +99,7 @@ const TransferList = ({
   labels = {},
   className,
 }: TransferListProps) => {
-  const { t } = useWimTranslation("form");
+  const { t } = useWimTranslation(formNs);
   const { noData = t("transfer.no_data") } = labels;
   const bodyRef = useRef<HTMLDivElement>(null);
   const vListRef = useRef<HTMLDivElement>(null);
@@ -259,7 +260,7 @@ export const Transfer = ({
   layout = "vertical",
   labels = {},
 }: TransferProps) => {
-  const { t } = useWimTranslation("form");
+  const { t } = useWimTranslation(formNs);
   const titles = titlesProp ?? [t("transfer.source"), t("transfer.target")];
   const {
     moveToTarget = t("transfer.move_to_target"),

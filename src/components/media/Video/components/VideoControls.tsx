@@ -1,5 +1,6 @@
 import React from "react";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { commonNs } from "@/i18n/generated/common";
 import classNames from "classnames";
 import { Icon } from "../../../media/Icon/Icon";
 import { DocumentIcon, ChevronLeftIcon, ChevronRightIcon, SettingsIcon, MonitorIcon, PauseIcon, PlayIcon, MuteIcon, VolumeIcon, MinimizeIcon, MaximizeIcon } from "@/icon";
@@ -86,7 +87,7 @@ export function VideoControls({
   labels = {},
   styles,
 }: VideoControlsProps) {
-  const { t } = useWimTranslation("common");
+  const { t } = useWimTranslation(commonNs);
   const {
     playlist: playlistLabel = t("a11y.playlist"),
     skipBackward = t("a11y.skip_backward"),

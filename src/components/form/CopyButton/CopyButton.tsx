@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import classNames from "classnames";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { commonNs } from "@/i18n/generated/common";
 import { Button } from "../../form/Button/Button";
 import { Tooltip, TooltipTrigger, TooltipContent } from "../../overlay/Tooltip/Tooltip";
 import { isDev } from "@/utilities/dev-utils";
@@ -35,7 +36,7 @@ export const CopyButton = ({
   asChild = false,
   children,
 }: CopyButtonProps) => {
-  const { t } = useWimTranslation("common");
+  const { t } = useWimTranslation(commonNs);
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {

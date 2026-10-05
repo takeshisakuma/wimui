@@ -1,6 +1,7 @@
 import React, { createContext, useCallback, useContext, useMemo, useState } from "react";
 import classNames from "classnames";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { componentsNs } from "@/i18n/generated/components";
 import { CloseIcon, EditIcon, PlusIcon } from "@/icon";
 import { Icon } from "../../media/Icon/Icon";
 import { Card } from "../../data-display/Card/Card";
@@ -92,7 +93,7 @@ export const Dashboard = React.forwardRef<HTMLDivElement, DashboardProps>(
     },
     ref,
   ) => {
-    const { t } = useWimTranslation("components");
+    const { t } = useWimTranslation(componentsNs);
     const isControlled = controlledEditable !== undefined;
     const [uncontrolledEditable, setUncontrolledEditable] =
       useState(defaultEditable);
@@ -220,7 +221,7 @@ export const DashboardWidgetCard = ({
      置いたときに段が飛ぶ（axe heading-order）。見た目はクラスが持つので、
      段を変えても描画は変わらない。 */
   const Heading = `h${titleLevel}` as "h2" | "h3" | "h4" | "h5" | "h6";
-  const { t } = useWimTranslation("components");
+  const { t } = useWimTranslation(componentsNs);
 
   const { id, title, description, content, span = 1, rowSpan = 1 } = widget;
 

@@ -3,6 +3,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import classNames from "classnames";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { formNs } from "@/i18n/generated/form";
 import { CodeBlock } from "../CodeBlock/CodeBlock";
 import { Title, type TitleProps } from "../../typography/Title/Title";
 import { Text } from "../../typography/Text/Text";
@@ -48,7 +49,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
   baseLevel = "2xl",
   className,
 }) => {
-  const { t } = useWimTranslation("form");
+  const { t } = useWimTranslation(formNs);
   return (
     <div className={classNames("wim-markdown-renderer", styles.root, className)}>
       <ReactMarkdown

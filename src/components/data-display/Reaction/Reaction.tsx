@@ -1,6 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { commonNs } from "@/i18n/generated/common";
 import { ComponentSizeBasic } from "../../../types/tokens";
 import { PlusIcon } from "../../../icon";
 import styles from "./reaction.module.scss";
@@ -45,7 +46,7 @@ export const Reaction = React.forwardRef<HTMLDivElement, ReactionProps>(
     },
     ref,
   ) => {
-    const { t } = useWimTranslation("common");
+    const { t } = useWimTranslation(commonNs);
 
     return (
       <div

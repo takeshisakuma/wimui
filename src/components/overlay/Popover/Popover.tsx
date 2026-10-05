@@ -1,5 +1,6 @@
 import React, { ReactNode } from "react";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { commonNs } from "@/i18n/generated/common";
 import {
   FloatingPortal,
   useMergeRefs,
@@ -261,7 +262,7 @@ export const PopoverClose = ({
   asChild?: boolean;
   ariaLabel?: string;
 }) => {
-  const { t } = useWimTranslation("common");
+  const { t } = useWimTranslation(commonNs);
   const resolvedAriaLabel = ariaLabel ?? t("a11y.close");
   const context = React.useContext(PopoverContext);
   if (!context) return null;

@@ -2,6 +2,8 @@ import React, { useMemo } from "react";
 import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { commonNs } from "@/i18n/generated/common";
+import { componentsNs } from "@/i18n/generated/components";
 import { Tooltip, TooltipTrigger, TooltipContent } from "../../overlay/Tooltip/Tooltip";
 import styles from "./calendar-heatmap.module.scss";
 
@@ -66,7 +68,7 @@ export const CalendarHeatmap = React.forwardRef<HTMLDivElement, CalendarHeatmapP
     },
     ref,
   ) => {
-    const { t } = useWimTranslation("common");
+    const { t } = useWimTranslation([commonNs, componentsNs]);
     const Component = asChild ? Slot : "div";
     const dataMap = useMemo(() => {
       const map = new Map<string, number>();

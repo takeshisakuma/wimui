@@ -1,5 +1,6 @@
 import React from "react";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { componentsNs } from "@/i18n/generated/components";
 import classNames from "classnames";
 import { useEditor, useEditorState, EditorContent, type Editor } from "@tiptap/react";
 import { createDocument } from "@tiptap/core";
@@ -294,7 +295,7 @@ export const RichTextEditor = ({
   onImageUpload,
   format = "html",
 }: RichTextEditorProps) => {
-  const { t } = useWimTranslation("components");
+  const { t } = useWimTranslation(componentsNs);
   const {
     bold = t("a11y.rte_bold"),
     italic = t("a11y.rte_italic"),

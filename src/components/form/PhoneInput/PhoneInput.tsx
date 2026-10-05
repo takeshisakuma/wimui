@@ -6,7 +6,7 @@ import { Transition } from "../../layout/Transition/Transition";
 import styles from "./phone-input.module.scss";
 import { ChevronDownIcon } from "@/icon";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
-import { wimResources } from "@/i18n/generated/resources";
+import { formNs } from "@/i18n/generated/form";
 
 // ─── Country Data ─────────────────────────────────────────────────────────────
 
@@ -90,7 +90,7 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
     const labelId = label ? `${inputId}-label` : undefined;
     // 国の引き金と、開いたリストの両方に同じ名前を付ける。フィールドの label は番号の入力欄の名前なので、
     // 国の選択には使わない（以前は label があると、国の引き金まで「電話番号」と読まれていた）。
-    const { t } = useWimTranslation("form");
+    const { t } = useWimTranslation(formNs);
     const countryAriaLabel = t("phone.select_country");
     const listboxId = `${inputId}-countries`;
     const optionId = (index: number) => `${inputId}-country-${index}`;
@@ -145,8 +145,8 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
     const countryName = (c: Country) => t(`phone.countries.${c.code}`);
     // 英語の国名（表示言語によらない）。頭文字の検索の 2 段目で使う。
     const englishCountryName = (c: Country) => {
-      const form = wimResources.en?.form as { phone?: { countries?: Record<string, string> } } | undefined;
-      return form?.phone?.countries?.[c.code] ?? "";
+      const en = formNs.resources.en as { phone?: { countries?: Record<string, string> } } | undefined;
+      return en?.phone?.countries?.[c.code] ?? "";
     };
 
     // 打った文字で国へ飛ぶ。前方一致（大文字小文字を区別しない）。数字（先頭の + は無視）は国番号で照合する。

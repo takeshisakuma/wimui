@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect, useCallback, useId } from "react";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { commonNs } from "@/i18n/generated/common";
 import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import { useSliderCommon } from "../../../utilities/slider-utils";
@@ -73,7 +74,7 @@ export const RangeSlider = ({
   children,
   ...props
 }: RangeSliderProps) => {
-  const { t } = useWimTranslation("common");
+  const { t } = useWimTranslation(commonNs);
   const isControlled = value !== undefined;
   const generatedId = useId();
   const id = customId || generatedId;

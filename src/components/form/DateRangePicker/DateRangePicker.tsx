@@ -2,6 +2,7 @@ import React from "react";
 import classNames from "classnames";
 import { useId } from "react";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { componentsNs } from "@/i18n/generated/components";
 import { DatePicker } from "../../form/DatePicker/DatePicker";
 import { FieldTemplate } from "../FieldTemplate";
 import styles from "./date-range-picker.module.scss";
@@ -35,7 +36,7 @@ export const DateRangePicker = ({
   required,
   layout = "vertical",
 }: DateRangePickerProps) => {
-  const { t } = useWimTranslation("components");
+  const { t } = useWimTranslation(componentsNs);
   const generatedId = useId();
   const id = `wim-daterangepicker-${generatedId}`;
   const labelId = label ? `${id}-label` : undefined;

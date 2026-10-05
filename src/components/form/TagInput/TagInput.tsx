@@ -1,6 +1,7 @@
 import React, { useState, useRef, useId } from "react";
 import classNames from "classnames";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { formNs } from "@/i18n/generated/form";
 import { Tag } from "../../data-display/Tag/Tag";
 import { InputBase } from "../InputBase/InputBase";
 import { FieldTemplate } from "../FieldTemplate/FieldTemplate";
@@ -119,7 +120,7 @@ export const TagInput = React.forwardRef<HTMLDivElement, TagInputProps>(
       inputRef.current?.focus();
     };
 
-    const { t } = useWimTranslation("form");
+    const { t } = useWimTranslation(formNs);
     const generatedId = useId();
     const id = props.id || `wim-tag-input-${generatedId}`;
     const errorId = error ? `${id}-error` : undefined;

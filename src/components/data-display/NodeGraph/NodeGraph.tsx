@@ -20,6 +20,7 @@ import "@xyflow/react/dist/style.css";
 import { Icon } from "../../media/Icon/Icon";
 import { PlusIcon, TrashIcon } from "@/icon";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { commonNs } from "@/i18n/generated/common";
 import styles from "./node-graph.module.scss";
 
 export type { Node as NodeGraphNode, Edge as NodeGraphEdge };
@@ -121,7 +122,7 @@ export const NodeGraph = React.forwardRef<HTMLDivElement, NodeGraphProps>(
     },
     ref,
   ) => {
-    const { t } = useWimTranslation("common");
+    const { t } = useWimTranslation(commonNs);
     const ariaLabel = ariaLabelProp ?? t("nodeGraph.label");
     const addLabel = t("nodeGraph.add_node");
     const nameLabel = t("nodeGraph.node_name");
