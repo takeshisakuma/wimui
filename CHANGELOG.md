@@ -1,5 +1,51 @@
 # wimui
 
+## 0.52.0
+
+### Minor Changes
+
+- b6365d3: 入力系の部品の高さを、ボタンと同じ段に揃えました。**見た目が変わります（入力欄が 2px 低くなります）。**
+
+  - **入力欄は 44px → 42px**（密度 compact では 38px → 36px）。Input / NumberInput / PasswordInput / SearchInput / InputMask / CreditCardInput / Select / MultiSelect / Cascader / TreeSelect / TagInput（1 行のとき）/ DatePicker / DateRangePicker / TimePicker / ColorInput / ColorPicker と、これらを中に持つ部品（Pagination の件数の選択など）が対象です。これまでは、中身の下限（42px）の外に枠の 1px × 2 が足されていて、ボタンの md（42px）と横に並べると 2px ずれました。Combobox と PhoneInput は、もともと 42px です。
+  - **MultiSelect**: 項目を選んでチップが出ているときも 42px です（これまでは 44px）。上下の余白を、ほかの入力欄と同じにしました。
+  - **ModelSelector**: sm / md / lg を 32 / 42 / 48px にしました（これまでは 31.8 / 35 / 40.4px）。密度 compact では 28 / 36 / 40px です。
+
+  入力欄の高さを 44px と決め打ちして位置を合わせている箇所（重ねたアイコン・隣に置いた独自の要素など）があれば、42px（`var(--wim-height-md)`）に直してください。
+
+- 4081a88: キーボード操作と読み上げの名前を 3 部品で直しました。**利用者のテストに響く変更があります。**
+
+  - **FloatButton**: 名前を渡さなかったときに、アイコン名（「PlusIcon」など）を読み上げの名前にするのをやめました。`aria-label` も文字列の `label` も無いときは、名前を付けずに、開発時だけ警告を出します（アクセシビリティの自動検査でも落ちるので、付け忘れに気づけます）。アイコンだけで使っている箇所には、動作を表す `aria-label` を渡してください。`getByRole("button", { name: "PlusIcon" })` のようにアイコン名で引いているテストは、渡した名前で引く形に直してください。
+  - **Toolbar**: Tab の停止点を 1 つにまとめました（roving tabindex）。Tab で入ると最後に使ったコントロール（最初は先頭）に着き、次の Tab でツールバーを出ます。中は矢印キーで動き、Home / End で端へ移ります。これまでは、中のボタンが全部 Tab で止まりました。文字の入力欄・select・スライダーは対象外で、自分の Tab の停止点と矢印キーを持ったままです（これまでは、入力欄で矢印キーを押すと、フォーカスが隣のコントロールへ移りました）。ToggleGroup のような入れ子の部品は 1 つのコントロールとして数え、交差する軸の矢印キーでその中を動きます（主軸の矢印と Home / End は Toolbar が受けるので、Toolbar の `onKeyDown` には届きません。先に受けたいときは `onKeyDownCapture` を使ってください）。
+  - **HamburgerMenu**: `onOpenChange` を足しました。ボタンを押すと次の開閉状態で呼ばれ、開いているあいだに Escape を押すと `false` で呼ばれて、フォーカスがボタンへ戻ります。`open` は制御された値なので、Escape で閉じるには `onOpenChange` を渡してください（`onClick` だけの使い方は、これまでどおり動きます）。Navbar の `Navbar.Toggle` は、この形に切り替えてあります。
+
+  Calendar と DatePicker の文書は、無効の日の扱いを実装に合わせて直しました（標準の `disabled` 属性で無効にしていて、矢印キーは無効の日を飛ばします。実装は変えていません）。
+
+- cd168f8: ThemeToggle の `size` が効くようになりました。**既定の大きさが変わります（24px → 42px）。**
+
+  - これまでは、`size` に sm / md / lg のどれを渡しても 24px でした（指定していた 12 / 16 / 22.4px が、当たり判定の下限 24px に切り上げられていました）。
+  - sm / md / lg を、ボタンと同じ 32 / 42 / 48px にしました（密度 compact では 28 / 36 / 40px）。IconButton の隣に置くと、同じ高さで並びます。`variant="segmented"` は、外の器がこの高さになります。
+  - 中のアイコンも `size` に合わせて大きくなります。
+
+  これまでの小ささに近づけたいときは `size="sm"`（32px）を渡してください。
+
+### Patch Changes
+
+- 25674d1: 内蔵の翻訳を、部品が使う分だけ同梱するようにしました。**使う部品が少ないほど、バンドルが小さくなります。**
+
+  これまでは、全部品の文言（279 キー × 英語・日本語・ポルトガル語）を 1 つの塊で同梱していたので、`import { Button }` だけでも全部品の文言を受け取っていました。翻訳を名前空間ごとに分け、部品が自分の使う分だけを読む形にしました。
+
+  | 使い方                               | これまで | 今回     |
+  | ------------------------------------ | -------- | -------- |
+  | `import { Button }` だけ             | 15.15 kB | 9.51 kB  |
+  | Button / Input / Card / Stack / Text | 21.02 kB | 17.58 kB |
+  | フォームの入力 7 種                  | 24.24 kB | 20.94 kB |
+  | `wimui/layout` 全部                  | 31.36 kB | 29.09 kB |
+  | `wimui/ai` 全部                      | 51.58 kB | 48.9 kB  |
+
+  （gzip 後。）全部品を 1 つに読む使い方（UMD・ルートから全部を import）は、0.1〜0.6 kB 増えます。
+
+  API と表示される文言は変わりません。表示言語の切り替えは、これまでどおり `setWimLocale` か `WimProvider` の `locale` です。
+
 ## 0.51.2
 
 ### Patch Changes
