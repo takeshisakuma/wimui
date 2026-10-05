@@ -4,6 +4,7 @@ import { Slot, Slottable } from "@radix-ui/react-slot";
 import styles from "./float-button.module.scss";
 import { Icon } from "../../media/Icon/Icon";
 import { ComponentSizeBasic, ButtonIntent } from "../../../types/tokens";
+import { isDev } from "@/utilities/dev-utils";
 
 export interface FloatButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /**
@@ -61,7 +62,10 @@ export interface FloatButtonProps extends React.ButtonHTMLAttributes<HTMLButtonE
   className?: string;
   /** Style attribute */
   style?: React.CSSProperties;
-  /** Aria label for accessibility */
+  /**
+   * Accessible name. Required when there is no string `label`: an icon-only button has no
+   * text to take a name from, and the icon name is not used as one.
+   */
   "aria-label"?: string;
 }
 
@@ -123,6 +127,23 @@ export const FloatButton = React.forwardRef<HTMLButtonElement, FloatButtonProps>
       onClick?.(e);
     };
 
+    // 名前が無いときに、アイコン名（「PlusIcon」など）を名前にしない（T319）。空ではないので
+    // axe は通るが、利用者には何のボタンか伝わらない。名前を付けずに、検査に落とさせる。
+    const accessibleName = ariaLabel || (typeof label === "string" ? label : undefined);
+    const hasName =
+      !!accessibleName ||
+      !!label ||
+      !!children ||
+      !!props["aria-labelledby"] ||
+      typeof description === "string";
+    useEffect(() => {
+      if (isDev && !hasName) {
+        console.warn(
+          "[wimui] FloatButton has no accessible name. Pass `aria-label` (or a string `label`) that describes the action.",
+        );
+      }
+    }, [hasName]);
+
     if (!visible && backTop) return null;
 
     const Component = asChild ? Slot : "button";
@@ -162,7 +183,7 @@ export const FloatButton = React.forwardRef<HTMLButtonElement, FloatButtonProps>
         style={style}
         onClick={handleClick}
         title={typeof description === "string" ? description : undefined}
-        aria-label={ariaLabel || (typeof label === "string" ? label : iconName)}
+        aria-label={accessibleName}
         {...props}
       >
         <Slottable>{children}</Slottable>

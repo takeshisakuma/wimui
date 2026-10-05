@@ -835,7 +835,7 @@ does:
 ```tsx
 const [open, setOpen] = useState(false);
 
-<HamburgerMenu visibleBelow="md" open={open} onClick={() => setOpen((o) => !o)} />
+<HamburgerMenu visibleBelow="md" open={open} onOpenChange={setOpen} />
 <Sidebar mobileOpen={open} onOverlayClick={() => setOpen(false)}>…</Sidebar>
 ```
 
@@ -1240,7 +1240,8 @@ SCSS には誰も付けない `.default_intent` が「temporary name」のまま
     - `visibilityHeight: number` = 400 — Visibility threshold for backTop (in pixels)
     - `className: string` — Additional class names
     - `style: React.CSSProperties` — Style attribute
-    - `aria-label: string` — Aria label for accessibility
+    - `aria-label: string` — Accessible name. Required when there is no string `label`: an icon-only button has no
+text to take a name from, and the icon name is not used as one.
 - **IconButton** — A square button containing only an icon without a text label.
     - `iconName: React.ComponentProps<typeof Icon>["name"]` (required) — Icon name to display
     - `aria-label: string` (required) — Accessible label for the icon-only button
@@ -2120,6 +2121,9 @@ follows the theme and never needs a hand-mixed colour.
     - `asChild: boolean` = false — If true, merge button props onto the child element.
     - `open: boolean` = false — Whether the menu is open
     - `onClick: React.MouseEventHandler<HTMLButtonElement>` — Callback function when the menu is toggled
+    - `onOpenChange: (open: boolean) => void` — Called with the next open state: the opposite of `open` when the button is pressed, and
+false when Escape is pressed while the menu is open. Escape also moves focus back to the
+button. Without this callback the button cannot close on Escape, because `open` is controlled.
     - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size of the hamburger menu
     - `color: string` — Color of the bars
     - `visibleBelow: "xs" | "sm" | "md" | "lg" | "xl"` — Show only below the given breakpoint (e.g. "md" matches Sidebar's mobile drawer range)

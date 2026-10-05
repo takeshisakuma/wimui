@@ -111,7 +111,7 @@ const [mobileOpen, setMobileOpen] = useState(false);
   <HamburgerMenu
     visibleBelow="md"
     open={mobileOpen}
-    onClick={() => setMobileOpen((o) => !o)}
+    onOpenChange={setMobileOpen}
   />
 
   <Sidebar

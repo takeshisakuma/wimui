@@ -231,7 +231,7 @@
     "fileUpload_prop_onChange": "Callback when files are selected",
     "fileUpload_prop_required": "Whether to show the required indicator",
     "fileUpload_prop_size": "Size of the button",
-    "floatButton_prop_aria-label": "Aria label for accessibility",
+    "floatButton_prop_aria-label": "Accessible name. Required when there is no string `label`: an icon-only button has no text to take a name from, and the icon name is not used as one.",
     "floatButton_prop_asChild": "If true, the button will be rendered as its child, merging its props onto that child.",
     "floatButton_prop_backTop": "If true, the button will scroll to the top of the page when clicked",
     "floatButton_prop_badge": "Badge content (number or dot)",

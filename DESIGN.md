@@ -322,6 +322,8 @@ Major Second (1.125) に近い比率に基づく、意図的にコンパクト�
 | Switch（md で 24px）は Checkbox・Radio（18px）より高い | 高さは揃えない | 横に動くつまみを持つので、同じ高さにすると掴みにくい。揃えたいときは Switch の `sm`（18px） |
 | Table・DataGrid の器は角丸 4px（`component`）、Card は 12px（`container`） | 表の器は Card に揃えない | 表は「面」ではなく「格子」なので、器の丸みは部品の丸みで足りる。Table と DataGrid、Toolbar、Pagination が同じページに並ぶので、12px と 4px の器が交互に出るのを避ける（T236。`table.module.scss` のコメント）。Table のカード表示（狭い幅）も同じ |
 | Button の枠は 2px、Input の枠は 1px | 線幅は揃えない | Button は solid / outline / ghost の外寸を揃えるために全 variant で 2px の枠を持つ。Input に合わせると Button 全体の外寸が動く |
+| 開いたメニューで Tab を押すと、Dropdown・SplitButton・Menubar は閉じて引き金の次へ進み、ContextMenu は閉じて開く前の要素へ戻る | Tab の行き先は揃えない | ContextMenu は引き金のボタンを持たない（引き金はページ上の領域そのもの）ので、「引き金の次」が決まらない。開く前にフォーカスのあった要素へ戻すのが、失わない唯一の行き先（T302） |
+| Carousel の前へ・次へのボタンは Tab で止まらない（`tabIndex=-1`） | Tab の停止点にしない | スライドの領域が停止点で、そこで ← → を押すと動く。ボタンも停止点にすると、同じ操作に 3 つの停止点ができる。ボタンはポインタ用（T315） |
 | ダークで、入力欄の枠（`line`）は明るく、パネルの枠（`border`）は暗い | 線の明るさは揃えない | 入力欄は 1px の線だけが「ここに入力できる」の合図なので、ダークでも消さない。パネルは面の色差でも読めるので、線は沈める（`tokens/color/semantic.json` の `line` のコメント） |
 
 ---

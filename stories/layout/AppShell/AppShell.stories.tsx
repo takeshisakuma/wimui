@@ -257,7 +257,7 @@ export const WithSidebar: Story = {
                 size="sm"
                 visibleBelow="md"
                 open={mobileOpen}
-                onClick={() => setMobileOpen((o) => !o)}
+                onOpenChange={setMobileOpen}
               />
               <div style={{ fontWeight: "bold", fontSize: "1.2rem" }}>
                 {t("story.appshell_dashboard")}

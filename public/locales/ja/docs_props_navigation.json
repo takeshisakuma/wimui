@@ -34,6 +34,7 @@
     "hamburgerMenu_prop_className": "カスタムクラス名",
     "hamburgerMenu_prop_color": "バーの色",
     "hamburgerMenu_prop_onClick": "メニューが切り替えられた時に呼び出されるコールバック関数",
+    "hamburgerMenu_prop_onOpenChange": "次の開閉状態を受け取ります。ボタンを押したときは `open` の反対、開いているあいだに Escape を押したときは false です。Escape のときはフォーカスもボタンへ戻ります。`open` は制御された値なので、このコールバックが無いと Escape では閉じられません。",
     "hamburgerMenu_prop_open": "メニューが開いているかどうか",
     "hamburgerMenu_prop_size": "ハンバーガーメニューのサイズ",
     "hamburgerMenu_prop_visibleBelow": "指定したブレークポイント未満でのみ表示します（例: \"md\" は Sidebar のモバイルドロワー範囲に一致します）",

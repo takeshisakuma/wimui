@@ -103,6 +103,32 @@ describe("FloatButton", () => {
     expect(screen.getByRole("button")).toHaveClass(styles.shrink);
   });
 
+  // T319: 名前を渡さないと、アイコン名（「PlusIcon」）が読み上げの名前になっていた。
+  describe("accessible name", () => {
+    it("does not fall back to the icon name, and warns in development", () => {
+      const warn = vi.spyOn(console, "warn").mockImplementation(() => {});
+      render(<FloatButton iconName="PlusIcon" />);
+      const button = screen.getByRole("button");
+      expect(button).not.toHaveAttribute("aria-label");
+      expect(button).toHaveAccessibleName("");
+      expect(warn).toHaveBeenCalledTimes(1);
+      expect(warn.mock.calls[0][0]).toContain("FloatButton has no accessible name");
+      warn.mockRestore();
+    });
+
+    it("stays quiet when aria-label, a label or a string description names it", () => {
+      const warn = vi.spyOn(console, "warn").mockImplementation(() => {});
+      render(<FloatButton iconName="PlusIcon" aria-label="Add item" />);
+      render(<FloatButton iconName="PlusIcon" label="Create" />);
+      render(<FloatButton iconName="PlusIcon" description="Scroll to top" />);
+      expect(screen.getByRole("button", { name: "Add item" })).toBeInTheDocument();
+      expect(screen.getByRole("button", { name: "Create" })).toBeInTheDocument();
+      expect(screen.getByRole("button", { name: "Scroll to top" })).toBeInTheDocument();
+      expect(warn).not.toHaveBeenCalled();
+      warn.mockRestore();
+    });
+  });
+
   it("ellipsis-clips long labels at the 200px cap (T181)", () => {
     const scss = readFileSync(
       "src/components/form/FloatButton/float-button.module.scss",
