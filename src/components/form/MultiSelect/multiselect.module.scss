@@ -22,8 +22,10 @@
     width: 100%;
     min-height: var(--wim-height-md);
 
-    /* Inline padding comes from InputBase .inner (!important offsets). */
-    padding-block: var(--wim-field-padding-y);
+    /* Inline padding comes from InputBase .inner (!important offsets).
+       上下は InputBase の既定（`--wim-spacing-xs`）と同じにする。`--wim-field-padding-y` だと、
+       チップ（25.6px）を選んだときに中身が 41.6px になり、殻が 42px を 1.6px 超える（T313）。 */
+    padding-block: var(--wim-spacing-xs);
     padding-inline: 0;
     font-size: var(--wim-font-size-md);
     line-height: var(--wim-line-height-snug-jp);
