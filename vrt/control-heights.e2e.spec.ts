@@ -51,6 +51,8 @@ const ladder = async (page: Page, density: string) => {
 for (const density of ["comfortable", "compact"]) {
   test.describe(`control heights (${density})`, () => {
     test("every input shell is as tall as a medium button", async ({ page }) => {
+      // 1 本で 17 ストーリーを開く。全量を並べて流すと、既定の 60 秒を超える
+      test.setTimeout(240_000);
       const [, md] = await ladder(page, density);
       const measured: Record<string, number | null> = {};
       for (const id of INPUT_STORIES) {
@@ -65,6 +67,7 @@ for (const density of ["comfortable", "compact"]) {
     // 殻だけ 42px にして中身が縮むと、殻の上下は押しても入力欄に届かない。`input[type="color"]` は
     // 内容の高さが無いので 0px に潰れ、色の見本が消える（殻の高さだけ見ていた 1 回目は、これを通した）。
     test("the control inside fills the shell, minus its border", async ({ page }) => {
+      test.setTimeout(240_000);
       const gaps: Record<string, number | null> = {};
       for (const id of INPUT_STORIES.filter((story) => !SHELL[story])) {
         await page.goto(url(id, density));
