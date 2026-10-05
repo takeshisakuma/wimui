@@ -47,6 +47,22 @@ export const Sizes: Story = {
   ),
 };
 
+// segmented も、外の器が同じ高さの段に乗る（T313）。Sizes は icon の変種しか描いていなかった。
+export const SegmentedSizes: Story = {
+  args: {
+    variant: "segmented",
+    modes: ["light", "dark", "system"],
+    defaultValue: "light",
+  },
+  render: (args) => (
+    <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "16px" }}>
+      <ThemeToggle {...args} size="sm" />
+      <ThemeToggle {...args} size="md" />
+      <ThemeToggle {...args} size="lg" />
+    </div>
+  ),
+};
+
 export const LivePreview: Story = {
   render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);

@@ -142,7 +142,7 @@ export const ThemeToggle = React.forwardRef<HTMLDivElement, ThemeToggleProps>(
           ref={ref}
           role="group"
           aria-label={toggle}
-          className={classNames(styles.segmented, styles[size], className)}
+          className={classNames("wim-theme-toggle", styles.segmented, styles[size], className)}
           {...props}
         >
           {modes.map((mode) => {
@@ -157,7 +157,7 @@ export const ThemeToggle = React.forwardRef<HTMLDivElement, ThemeToggleProps>(
                 title={modeLabels[mode]}
                 onClick={() => selectMode(mode)}
               >
-                <Icon component={ICONS[mode]} size="sm" />
+                <Icon component={ICONS[mode]} size={size} />
               </button>
             );
           })}
@@ -179,7 +179,7 @@ export const ThemeToggle = React.forwardRef<HTMLDivElement, ThemeToggleProps>(
           title={modeLabels[current]}
           onClick={cycle}
         >
-          <Icon component={ICONS[current]} size="sm" />
+          <Icon component={ICONS[current]} size={size} />
         </button>
         <Slottable>{children}</Slottable>
       </Component>

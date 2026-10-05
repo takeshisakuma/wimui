@@ -205,7 +205,7 @@ export const Overview: StoryObj = {
             </Stack>
           </ComponentGroup>
           <ComponentGroup label={`${t("audit:label_theme_toggle")} — ${t("audit:sfx_segmented")}`} align="start">
-            <Stack direction="row" gap="lg" align="center">
+            <Stack direction="row" gap="lg" align="center" wrap>
               <ThemeToggle variant="segmented" modes={["light", "dark", "system"]} size="sm" applyToDocument={false} storageKey={null} />
               <ThemeToggle variant="segmented" modes={["light", "dark", "system"]} size="md" applyToDocument={false} storageKey={null} />
               <ThemeToggle variant="segmented" modes={["light", "dark", "system"]} size="lg" applyToDocument={false} storageKey={null} />
