@@ -35,7 +35,13 @@
     /* shrinkable-ok: `.root` が下限（`--wim-width-sm`）を持つので、この 0 は
        モデル名が長いときにトリガー内で省略させるための正当な縮み。 */
     min-width: 0;
-    padding: var(--wim-spacing-sm) var(--wim-spacing-md);
+
+    /* ボタン・入力欄と同じ高さの段に乗せる（T313）。余白と行の高さだけで決まっていたときは
+       sm / md / lg が 31.8 / 35 / 40.4px で、隣に並べた Button（32 / 42 / 48px）とずれた。
+       上下の余白は持たない（中身は 1 行で、`align-items: center` が中央に置く）。余白があると、
+       密度 compact（28 / 36 / 40px）で中身の方が高くなり、段から外れる。 */
+    min-height: var(--wim-height-md);
+    padding: 0 var(--wim-spacing-md);
     font-family: inherit;
     font-size: var(--wim-font-size-sm);
     color: var(--wim-color-text-primary);
@@ -202,12 +208,14 @@
 
   // Sizes
   .sm .trigger {
-    padding: var(--wim-spacing-xs) var(--wim-spacing-sm);
+    min-height: var(--wim-height-sm);
+    padding: 0 var(--wim-spacing-sm);
     font-size: var(--wim-font-size-xs);
   }
 
   .lg .trigger {
-    padding: var(--wim-spacing-md) var(--wim-spacing-lg);
+    min-height: var(--wim-height-lg);
+    padding: 0 var(--wim-spacing-lg);
     font-size: var(--wim-font-size-md);
   }
 }
