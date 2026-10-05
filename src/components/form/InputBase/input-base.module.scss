@@ -284,14 +284,19 @@
        （`--wim-height-md`）があると、殻の枠 1px × 2 がその外に足されて 44px になり、ボタン
        （42px）と並べたときに 2px ずれる。中身は殻の内側いっぱいに伸ばす（押せる範囲を
        縮めないため）。Input / Select など、中身が自分の下限を持つ部品が 20 以上あるので、
-       1 つずつ消さずにここで止める（同じレイヤー・同じ詳細度なので、`!important` が要る）。 */
+       1 つずつ消さずにここで止める（同じレイヤー・同じ詳細度なので、`!important` が要る）。
+
+       **`height` は `auto` にすること。** `height: 100%` のままだと、殻の高さが `min-height` でしか
+       決まっていないので % が解決できず、しかも `auto` ではないので `stretch` も効かない。中身は
+       自分の内容の高さ（31.6px）に縮み、殻の上下 5px は押しても入力欄に届かなくなる。
+       `input[type="color"]` は内容の高さが無いので 0px に潰れ、色の見本が消えた（実測）。 */
     align-self: stretch;
     width: 100%;
 
     /* shrinkable-ok: 殻（`.root`）が下限を持つので、その内側で入力欄を
        殻いっぱいに広げるためのもの。ここに下限を置くと中身が殻より広くなる。 */
     min-width: 0 !important;
-    height: 100%;
+    height: auto;
     min-height: 0 !important;
     padding-top: var(--wim-spacing-xs);
     padding-right: var(--wim-input-offset-right) !important;

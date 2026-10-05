@@ -25,6 +25,7 @@ const INPUT_STORIES = [
   "components-pickers-sliders-daterangepicker--default",
   "components-pickers-sliders-timepicker--default",
   "components-pickers-sliders-colorinput--default",
+  "components-pickers-sliders-colorpicker--default",
 ];
 
 const heights = (page: Page, selector: string) =>
@@ -59,6 +60,25 @@ for (const density of ["comfortable", "compact"]) {
         measured[id] = (await heights(page, SHELL[id] ?? ".wim-input-base"))[0] ?? null;
       }
       expect(measured).toEqual(Object.fromEntries(INPUT_STORIES.map((id) => [id, md])));
+    });
+
+    // 殻だけ 42px にして中身が縮むと、殻の上下は押しても入力欄に届かない。`input[type="color"]` は
+    // 内容の高さが無いので 0px に潰れ、色の見本が消える（殻の高さだけ見ていた 1 回目は、これを通した）。
+    test("the control inside fills the shell, minus its border", async ({ page }) => {
+      const gaps: Record<string, number | null> = {};
+      for (const id of INPUT_STORIES.filter((story) => !SHELL[story])) {
+        await page.goto(url(id, density));
+        await waitForStoryReady(page);
+        gaps[id] = await page.evaluate(() => {
+          const shell = document.querySelector("#storybook-root .wim-input-base");
+          if (!shell || shell.children.length === 0) return null;
+          // 殻の子には、左右のアイコンも並ぶ。いちばん高い子が、入力欄（か引き金）
+          const inner = Math.max(...Array.from(shell.children).map((child) => child.getBoundingClientRect().height));
+          return Math.round((shell.getBoundingClientRect().height - inner) * 10) / 10;
+        });
+      }
+      // 枠 1px × 2
+      expect(gaps).toEqual(Object.fromEntries(Object.keys(gaps).map((id) => [id, 2])));
     });
 
     test("ModelSelector sm / md / lg sit on the button height ladder", async ({ page }) => {
