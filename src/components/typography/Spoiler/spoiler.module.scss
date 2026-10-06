@@ -47,7 +47,8 @@
       border-color var(--wim-transition-base),
       box-shadow var(--wim-transition-base),
       outline-color var(--wim-transition-base),
-      opacity var(--wim-transition-base);
+      opacity var(--wim-transition-base),
+      scale var(--wim-transition-fast);
 
     &:hover {
       color: oklch(from var(--wim-color-primary) calc(l * 0.9) c h);

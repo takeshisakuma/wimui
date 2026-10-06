@@ -22,6 +22,7 @@ $hamburger-layer-border-radius: 4px !default; // Exception: Geometric Harmony â€
     cursor: pointer;
     background-color: transparent;
     border: none;
+    transition: scale var(--wim-transition-fast);
 
     &:hover {
       // oklch alpha dims the bars only; avoids opacity on the whole element

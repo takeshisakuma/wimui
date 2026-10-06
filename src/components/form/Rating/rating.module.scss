@@ -60,7 +60,9 @@
     height: var(--wim-rating-star-size);
     min-height: var(--wim-tap-target-min);
     cursor: pointer;
-    transition: transform var(--wim-transition-fast);
+    transition:
+      transform var(--wim-transition-fast),
+      scale var(--wim-transition-fast);
 
     &:hover {
       transform: scale(1.1); /* component-slop-ok: 星が小さく、色の変化だけでは今どの星の上にいるか読み取りにくい */

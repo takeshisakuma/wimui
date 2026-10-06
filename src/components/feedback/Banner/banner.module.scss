@@ -116,7 +116,9 @@
     border: none;
     border-radius: var(--wim-radius-sm);
     opacity: var(--wim-opacity-disabled);
-    transition: opacity var(--wim-transition-fast);
+    transition:
+      opacity var(--wim-transition-fast),
+      scale var(--wim-transition-fast);
 
     &:hover {
       background: var(--wim-comp-close-hover);

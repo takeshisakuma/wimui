@@ -122,6 +122,7 @@
         margin-bottom: calc(var(--wim-border-width-thin) * -1);
         border-bottom: var(--wim-border-width-thick) solid transparent;
         border-radius: var(--wim-radius-sm) var(--wim-radius-sm) 0 0;
+        transition: scale var(--wim-transition-fast);
 
         &:hover:not(.disabled) {
           color: var(--wim-color-text-accent);

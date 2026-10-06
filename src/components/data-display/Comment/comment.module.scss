@@ -82,6 +82,7 @@
     background: none;
     border: none;
     border-radius: var(--wim-radius-sm);
+    transition: scale var(--wim-transition-fast);
 
     &:hover {
       color: var(--wim-color-text-primary);
