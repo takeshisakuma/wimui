@@ -137,7 +137,9 @@
 
   .toggle {
     color: var(--wim-color-text-tertiary);
-    transition: color var(--wim-duration-fast);
+    transition:
+      color var(--wim-duration-fast),
+      scale var(--wim-transition-fast);
   }
 
   .children {

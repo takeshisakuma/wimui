@@ -67,6 +67,27 @@ const SETUP = `
     if (el.nextElementSibling) nodes.push(el.nextElementSibling);
     return nodes.map((n) => read(n) + "~" + read(n, "::before") + "~" + read(n, "::after")).join("\\n");
   };
+  // 押して縮む要素（scale が付いた要素）のうち、縮みがトランジションに乗っていないものを数える。
+  // 乗っていないと、大きさが瞬時に変わる（Carousel の前へ・次へで目立った。2026-10-06 ユーザーの指摘）。
+  // 計測のためにトランジションを切っているので、その style を一時的に外して読む。
+  window.__pressedSnaps = (selector, index) => {
+    const el = document.querySelectorAll("#storybook-root " + selector)[index];
+    if (!el) return 0;
+    const nodes = [el, ...Array.from(el.querySelectorAll("*")).slice(0, 40)];
+    const shrunk = nodes.filter((n) => getComputedStyle(n).scale !== "none");
+    if (shrunk.length === 0) return 0;
+    const off = document.querySelector("style[data-pressed-probe]");
+    if (off) off.disabled = true;
+    const bad = shrunk.filter((n) => {
+      const cs = getComputedStyle(n);
+      const props = cs.transitionProperty.split(",").map((p) => p.trim());
+      const durations = cs.transitionDuration.split(",").map((d) => parseFloat(d));
+      const i = props.findIndex((p) => p === "scale" || p === "all");
+      return i < 0 || !(durations[i % durations.length] > 0);
+    }).length;
+    if (off) off.disabled = false;
+    return bad;
+  };
   window.__pressedPoint = (selector, index) => {
     const el = document.querySelectorAll("#storybook-root " + selector)[index];
     if (!el) return null;
@@ -81,11 +102,23 @@ const SETUP = `
 const prepare = async (page: Page, id: string) => {
   await page.goto(url(id));
   await waitForStoryReady(page);
-  await page.addStyleTag({ content: "*,*::before,*::after{transition:none!important;animation:none!important}" });
   await page.evaluate(SETUP);
+  await page.evaluate(() => {
+    const off = document.createElement("style");
+    off.setAttribute("data-pressed-probe", "");
+    off.textContent = "*,*::before,*::after{transition:none!important;animation:none!important}";
+    document.head.appendChild(off);
+  });
 };
 
-type Finding = { story: string; key: string; label: string; state: "changes" | "same" | "covered" | "exempt" };
+type Finding = {
+  story: string;
+  key: string;
+  label: string;
+  state: "changes" | "same" | "covered" | "exempt";
+  /** 押して縮むのに、縮みがトランジションに乗っていない */
+  snaps?: boolean;
+};
 
 const measureStory = async (page: Page, id: string): Promise<Finding[]> => {
   await prepare(page, id);
@@ -127,12 +160,21 @@ const measureStory = async (page: Page, id: string): Promise<Finding[]> => {
     await page.mouse.move(point.x, point.y);
     await page.mouse.down();
     const pressed = await snapshot();
+    const snaps =
+      (await page.evaluate(
+        ([sel, index]) =>
+          (window as unknown as { __pressedSnaps: (s: string, i: number) => number }).__pressedSnaps(
+            sel as string,
+            index as number,
+          ),
+        [INTERACTIVE, target.index] as const,
+      )) > 0;
     // 要素の外で離す（click を起こさない）。そのあと載せ直して、押していない姿を読む
     await page.mouse.move(1, 1);
     await page.mouse.up();
     await page.mouse.move(point.x, point.y);
     const released = await snapshot();
-    findings.push({ ...base, state: pressed !== null && pressed !== released ? "changes" : "same" });
+    findings.push({ ...base, state: pressed !== null && pressed !== released ? "changes" : "same", snaps });
   }
   return findings;
 };
@@ -166,5 +208,7 @@ for (let shard = 0; shard < SHARDS; shard++) {
     }
     const same = findings.filter((f) => f.state === "same").map((f) => `${f.story} ${f.key} "${f.label}"`);
     expect(same).toEqual([]);
+    const snapping = findings.filter((f) => f.snaps).map((f) => `${f.story} ${f.key} "${f.label}"`);
+    expect(snapping).toEqual([]);
   });
 }

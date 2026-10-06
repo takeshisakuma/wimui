@@ -136,7 +136,9 @@
     justify-content: center;
     width: var(--wim-spacing-3xl);
     color: var(--wim-color-text-tertiary);
-    transition: transform var(--wim-duration-fast) var(--wim-easing-standard);
+    transition:
+      transform var(--wim-duration-fast) var(--wim-easing-standard),
+      scale var(--wim-transition-fast);
 
     &.open {
       transform: rotate(90deg);

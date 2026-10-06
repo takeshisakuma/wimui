@@ -134,7 +134,9 @@
        暗い絵で消える。白の輪郭は明暗どちらでも残る（インジケーターと同じトークン）。 */
     box-shadow: 0 0 0 var(--wim-border-width-thick) var(--wim-comp-carousel-ring);
     transform: translateY(-50%);
-    transition: background-color var(--wim-transition-fast);
+    transition:
+      background-color var(--wim-transition-fast),
+      scale var(--wim-transition-fast);
 
     &:hover:not(:disabled) {
       background-color: var(--wim-comp-carousel-control-hover-bg);

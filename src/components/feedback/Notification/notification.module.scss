@@ -91,7 +91,8 @@
       border-color var(--wim-transition-base),
       box-shadow var(--wim-transition-base),
       outline-color var(--wim-transition-base),
-      opacity var(--wim-transition-base);
+      opacity var(--wim-transition-base),
+      scale var(--wim-transition-fast);
 
     &:hover {
       color: var(--wim-color-text-secondary);
