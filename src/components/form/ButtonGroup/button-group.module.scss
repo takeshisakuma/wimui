@@ -44,6 +44,13 @@
           margin-left: calc(var(--wim-border-width-thick, 2px) * -1);
         }
 
+        // solid のボタンは影を持つ。後ろのボタンの影が手前のボタンの面に落ちると、dark で境目に
+        // 上下いっぱいの暗い線が出る（SplitButton と同じ形）。左へはみ出す分だけを切る。フォーカスの輪は
+        // 切らない。ボタンとリンクに限る ── 入れ物を切ると、その中から開く面まで切れる。
+        &:is(button, a):not(:first-child, :focus-visible) {
+          clip-path: inset(calc(var(--wim-spacing-xl) * -1) calc(var(--wim-spacing-xl) * -1) calc(var(--wim-spacing-xl) * -1) 0);
+        }
+
         &:first-child {
           --wim-field-radius-tl: var(--wim-radius-component);
           --wim-field-radius-bl: var(--wim-radius-component);
@@ -76,6 +83,11 @@
           &:not(:first-child) {
             margin-top: calc(var(--wim-border-width-thick, 2px) * -1);
             margin-left: 0;
+          }
+
+          // 縦に積むと、左に隣は居ない
+          &:is(button, a):not(:first-child, :focus-visible) {
+            clip-path: none;
           }
 
           --wim-field-radius-tl: var(--wim-radius-component);

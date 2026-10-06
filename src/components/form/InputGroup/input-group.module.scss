@@ -41,6 +41,12 @@
         }
       }
 
+      // solid のボタンは影を持つ。入力欄の後ろに置くと、その影が入力欄の面に落ちて、dark で境目に
+      // 暗い線が出る（SplitButton・ButtonGroup と同じ形）。左へはみ出す分だけを切る。
+      &:is(button, a):not(:first-child, :focus-visible) {
+        clip-path: inset(calc(var(--wim-spacing-xl) * -1) calc(var(--wim-spacing-xl) * -1) calc(var(--wim-spacing-xl) * -1) 0);
+      }
+
       // Handle focus state z-index and interaction resets
       &:focus-within,
       &:focus,
