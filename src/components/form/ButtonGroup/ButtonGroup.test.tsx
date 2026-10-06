@@ -73,6 +73,41 @@ describe("ButtonGroup", () => {
     expect(screen.getByText("Btn")).toBeInTheDocument();
   });
 
+  // joined の solid は面が同色で境目が消えるので、solid の子に区切りのための印を付ける。
+  it("marks solid children of a joined group so a divider can sit between them", () => {
+    render(
+      <ButtonGroup joined variant="solid">
+        <button className="own">One</button>
+        <button>Two</button>
+      </ButtonGroup>,
+    );
+    expect(screen.getByText("One")).toHaveClass("own", styles.solidItem);
+    expect(screen.getByText("Two")).toHaveClass(styles.solidItem);
+  });
+
+  it("marks only the children that are solid when the group has no variant", () => {
+    const Child = ({ variant, className }: { variant?: string; className?: string }) => (
+      <button className={className}>{variant}</button>
+    );
+    render(
+      <ButtonGroup joined>
+        <Child variant="solid" />
+        <Child variant="outline" />
+      </ButtonGroup>,
+    );
+    expect(screen.getByText("solid")).toHaveClass(styles.solidItem);
+    expect(screen.getByText("outline")).not.toHaveClass(styles.solidItem);
+  });
+
+  it("does not mark children when the group is not joined", () => {
+    render(
+      <ButtonGroup variant="solid">
+        <button>Loose</button>
+      </ButtonGroup>,
+    );
+    expect(screen.getByText("Loose")).not.toHaveClass(styles.solidItem);
+  });
+
   it("applies custom className", () => {
     const { container } = render(
       <ButtonGroup className="my-group">
