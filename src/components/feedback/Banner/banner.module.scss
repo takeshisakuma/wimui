@@ -1,4 +1,5 @@
 @use "../../../styles/focus-mixins" as focus;
+@use "../../../styles/pressed-mixins" as pressed;
 
 @layer component {
   .root {
@@ -120,6 +121,10 @@
     &:hover {
       background: var(--wim-comp-close-hover);
       opacity: 1;
+    }
+
+    &:active {
+      @include pressed.shrink(var(--wim-scale-active-sm));
     }
 
     &:focus-visible {

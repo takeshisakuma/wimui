@@ -1,3 +1,5 @@
+@use "../../../styles/pressed-mixins" as pressed;
+
 @layer component {
   /* 横スクロールの器。Table の器（`.scope` / `.container`）は使わない ── あちらは
      `container-type: inline-size` を持つので、幅が中身で決まる置き場（shrink-to-fit）では
@@ -115,6 +117,10 @@
 
     &:hover .chevron {
       color: var(--wim-color-text-primary);
+    }
+
+    &:active .chevron {
+      @include pressed.shrink(var(--wim-scale-active-sm));
     }
 
     &:focus-visible {

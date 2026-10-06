@@ -1,5 +1,6 @@
 @use "../../../styles/field-mixins" as field;
 @use "../../../styles/focus-mixins" as focus;
+@use "../../../styles/pressed-mixins" as pressed;
 
 @layer component {
   .root {
@@ -265,7 +266,7 @@
     }
 
     &:active {
-      background-color: var(--wim-color-surface-hover);
+      @include pressed.tinted;
     }
 
     // 無効の入力欄の中では、押せる見た目（手のカーソル・ホバーの面）を出さない。

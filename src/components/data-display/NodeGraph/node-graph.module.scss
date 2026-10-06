@@ -1,3 +1,5 @@
+@use "../../../styles/pressed-mixins" as pressed;
+
 @layer component {
   .root {
     position: relative;
@@ -79,6 +81,10 @@
 
     &:hover:not(:disabled) {
       background: var(--wim-color-ghost-bg-hover);
+    }
+
+    &:active:not(:disabled) {
+      @include pressed.ghost;
     }
 
     &:disabled {

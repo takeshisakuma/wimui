@@ -1,3 +1,5 @@
+@use "../../../styles/pressed-mixins" as pressed;
+
 @layer component {
   .root {
     position: relative;
@@ -93,6 +95,10 @@
 
     &:hover {
       color: var(--wim-color-text-secondary);
+    }
+
+    &:active {
+      @include pressed.shrink(var(--wim-scale-active-sm));
     }
   }
 

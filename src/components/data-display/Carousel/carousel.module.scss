@@ -1,4 +1,5 @@
 @use "../../../styles/focus-mixins" as focus;
+@use "../../../styles/pressed-mixins" as pressed;
 
 @layer component {
   .root {
@@ -41,6 +42,10 @@
 
       &:hover:not(:disabled) {
         background-color: var(--wim-color-surface-subtle);
+      }
+
+      &:active:not(:disabled) {
+        @include pressed.shrink(var(--wim-scale-active-sm));
       }
 
       /* 外に出すと、押せない側が消えると**列がずれて中身が動く**（overlay では
@@ -133,6 +138,10 @@
 
     &:hover:not(:disabled) {
       background-color: var(--wim-comp-carousel-control-hover-bg);
+    }
+
+    &:active:not(:disabled) {
+      @include pressed.shrink(var(--wim-scale-active-sm));
     }
 
     /* 押せない側は出さない。opacity だけだと 30% 塗りがさらに薄くなり、

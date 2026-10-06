@@ -1,3 +1,5 @@
+@use "../../../styles/pressed-mixins" as pressed;
+
 @layer component {
   .root {
     display: flex;
@@ -84,6 +86,10 @@
     &:hover {
       color: var(--wim-color-text-primary);
       text-decoration: underline;
+    }
+
+    &:active {
+      @include pressed.shrink;
     }
 
     /* キーボードの居場所を消さない。地の色を塗らないので輪郭で示す。 */

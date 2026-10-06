@@ -1,3 +1,5 @@
+@use "../../../styles/pressed-mixins" as pressed;
+
 @layer component {
   .root {
     position: relative;
@@ -68,6 +70,10 @@
       .editIconWrapper {
         opacity: 1;
       }
+    }
+
+    &:active {
+      @include pressed.tinted;
     }
     
     &:focus-visible {
