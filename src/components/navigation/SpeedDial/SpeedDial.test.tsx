@@ -153,6 +153,34 @@ describe("SpeedDial", () => {
     expect(closed).toHaveFocus();
   });
 
+  // hover モードをキーボードで開くと、アクションを実行しても開いたまま残っていた（T322）。
+  it("closes and returns focus to the trigger after running an action from the keyboard", async () => {
+    const user = userEvent.setup();
+    const onAction = vi.fn();
+    render(<SpeedDial actions={[{ icon: "EditIcon", label: "Edit", onClick: onAction }]} />);
+    screen.getByLabelText("Open menu").focus();
+    await user.keyboard("{Enter}");
+    expect(screen.getByLabelText("Edit")).toHaveFocus();
+
+    await user.keyboard("{Enter}");
+    expect(onAction).toHaveBeenCalledTimes(1);
+    const closed = screen.getByLabelText("Open menu");
+    expect(closed).toHaveAttribute("aria-expanded", "false");
+    expect(closed).toHaveFocus();
+  });
+
+  // click モードは実行すると閉じるが、フォーカスを持ったアクションが inert になり、行き先が無かった。
+  it("returns focus to the trigger after running an action with click trigger", async () => {
+    const user = userEvent.setup();
+    render(<SpeedDial actions={[{ icon: "EditIcon", label: "Edit" }]} trigger="click" />);
+    screen.getByLabelText("Open menu").focus();
+    await user.keyboard("{Enter}");
+    await user.keyboard("{Enter}");
+    const closed = screen.getByLabelText("Open menu");
+    expect(closed).toHaveAttribute("aria-expanded", "false");
+    expect(closed).toHaveFocus();
+  });
+
   it("closes when focus leaves after a keyboard open", async () => {
     const user = userEvent.setup();
     render(

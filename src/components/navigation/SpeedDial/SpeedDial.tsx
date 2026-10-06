@@ -120,6 +120,19 @@ export const SpeedDial = React.forwardRef<HTMLDivElement, SpeedDialProps>(
       handleOpenChange(false);
     };
 
+    // アクションを実行したら閉じる。click モードのときと、キーボードで開いたとき（T322。hover モードを
+    // キーボードで開くと、実行しても開いたまま残っていた）。ホバーで開いているあいだは、ポインタが
+    // 載っているので閉じない。
+    const closeAfterAction = () => {
+      if (trigger !== "click" && !openedByKeyboard.current) return;
+      openedByKeyboard.current = false;
+      // 閉じるとアクションは inert になる。フォーカスを持ったまま閉じると body へ落ちるので、先に引き金へ戻す
+      if (actionsRef.current?.contains(document.activeElement)) {
+        actionsRef.current.parentElement?.querySelector<HTMLElement>("[aria-haspopup]")?.focus();
+      }
+      handleOpenChange(false);
+    };
+
     useEffect(() => {
       if (open && openedByKeyboard.current) {
         actionsRef.current?.querySelector<HTMLElement>("button")?.focus();
@@ -163,7 +176,7 @@ export const SpeedDial = React.forwardRef<HTMLDivElement, SpeedDialProps>(
                 className={action.className}
                 onClick={() => {
                   action.onClick?.();
-                  if (trigger === "click") handleOpenChange(false);
+                  closeAfterAction();
                 }}
                 position="inline"
               />

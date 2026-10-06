@@ -334,7 +334,7 @@
     "speed_dial_desc": "Botão de ação flutuante que expande sub-ações ao passar o mouse ou clicar.",
     "speed_dial_design_intent": "Fornecer uma forma econômica de espaço para exibir ações principais em uma UI móvel ou de alta densidade.",
     "speed_dial_i18n_desc": "Rótulos de ação e tooltips são localizados via chaves de tradução.",
-    "speed_dial_keyboard_desc": "O foco percorre os botões de ação quando aberto. Escape fecha o menu.",
+    "speed_dial_keyboard_desc": "Enter ou Espaço no botão principal abre o menu e move o foco para a primeira ação. Executar uma ação pelo teclado fecha o menu e devolve o foco ao botão principal. Escape fecha o menu.",
     "speed_dial_motion_desc": "Animações de entrada/saída escalonadas para os botões de ação, criando uma sensação premium.",
     "speed_dial_responsive_desc": "Mantém a posição em relação à viewport ou ao contêiner. Escala bem em telas menores.",
     "speed_dial_scenario_1": "Criação de publicações em redes sociais com diferentes tipos de mídia (foto, vídeo, enquete).",

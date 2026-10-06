@@ -984,7 +984,7 @@
       "speed_dial_best_practice_1": "Place in a consistent location, typically the bottom-right corner.",
       "speed_dial_best_practice_2": "Ensure sufficient contrast between the button and the background.",
       "speed_dial_responsive_desc": "Maintains position relative to viewport or container. Scales well on smaller screens.",
-      "speed_dial_keyboard_desc": "Focus moves through action buttons when open. Escape closes the menu.",
+      "speed_dial_keyboard_desc": "Enter or Space on the trigger opens the menu and moves focus to the first action. Running an action from the keyboard closes the menu and returns focus to the trigger. Escape closes the menu.",
       "speed_dial_i18n_desc": "Action labels and tooltips are localized via translation keys.",
       "swipe_action_design_intent": "Offer a mobile-native gesture-based way to perform quick actions on list items.",
       "swipe_action_choice_matrix_desc": "Use for common list actions like delete or archive in mobile-first applications.",
