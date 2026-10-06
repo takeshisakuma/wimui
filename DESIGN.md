@@ -120,7 +120,7 @@ Major Second (1.125) に近い比率に基づく、意図的にコンパクト�
 | エイリアス | 参照先 | 用途 |
 |-----------|--------|------|
 | `--wim-radius-component` | `--wim-radius-md` (4px) | Button, Input, Tag など |
-| `--wim-radius-overlay` | `--wim-radius-lg` (8px) | Tooltip, Popover など浮遊要素 |
+| `--wim-radius-overlay` | `--wim-radius-lg` (8px) | Tooltip, Popover など浮遊要素。Select・Combobox・DatePicker などの開いた面（リスト・メニュー・カレンダー）もここ |
 | `--wim-radius-container` | `--wim-radius-xl` (12px) | Card, Modal など大きな親要素 |
 
 ### ボーダー幅
@@ -324,7 +324,7 @@ Major Second (1.125) に近い比率に基づく、意図的にコンパクト�
 | Button の枠は 2px、Input の枠は 1px | 線幅は揃えない | Button は solid / outline / ghost の外寸を揃えるために全 variant で 2px の枠を持つ。Input に合わせると Button 全体の外寸が動く |
 | 開いたメニューで Tab を押すと、Dropdown・SplitButton・Menubar は閉じて引き金の次へ進み、ContextMenu は閉じて開く前の要素へ戻る | Tab の行き先は揃えない | ContextMenu は引き金のボタンを持たない（引き金はページ上の領域そのもの）ので、「引き金の次」が決まらない。開く前にフォーカスのあった要素へ戻すのが、失わない唯一の行き先（T302） |
 | Carousel の前へ・次へのボタンは Tab で止まらない（`tabIndex=-1`） | Tab の停止点にしない | スライドの領域が停止点で、そこで ← → を押すと動く。ボタンも停止点にすると、同じ操作に 3 つの停止点ができる。ボタンはポインタ用（T315） |
-| ダークで、入力欄の枠（`line`）は明るく、パネルの枠（`border`）は暗い | 線の明るさは揃えない | 入力欄は 1px の線だけが「ここに入力できる」の合図なので、ダークでも消さない。パネルは面の色差でも読めるので、線は沈める（`tokens/color/semantic.json` の `line` のコメント） |
+| ダークで、入力欄の枠（`line`）は明るく、パネルの枠（`border`）は暗い | 線の明るさは揃えない | 入力欄は 1px の線だけが「ここに入力できる」の合図なので、ダークでも消さない。パネルは面の色差でも読めるので、線は沈める（`tokens/color/semantic.json` の `line` のコメント）。**開いたリストやメニューはパネルの側**（引き金が入力欄でも、開いた面の枠と中の区切りは `border`。T320） |
 
 ---
 

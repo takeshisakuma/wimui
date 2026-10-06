@@ -135,15 +135,16 @@
     right: 0;
     left: 0;
     z-index: var(--wim-z-overlay);
+    overflow: hidden;
     background-color: var(--wim-color-surface);
-    border: var(--wim-border-width-thin) solid var(--wim-color-line);
-    border-radius: var(--wim-radius-component);
+    border: var(--wim-border-width-thin) solid var(--wim-color-border);
+    border-radius: var(--wim-radius-overlay);
     box-shadow: var(--wim-shadow-overlay);
   }
 
   .search {
     padding: var(--wim-field-padding-y-tight);
-    border-bottom: var(--wim-border-width-thin) solid var(--wim-color-line);
+    border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border);
   }
 
   .searchInput {
@@ -186,7 +187,7 @@
     letter-spacing: var(--wim-letter-spacing-wide);
     white-space: nowrap;
     pointer-events: none;
-    border-top: var(--wim-border-width-thin) solid var(--wim-color-line);
+    border-top: var(--wim-border-width-thin) solid var(--wim-color-border);
 
     &:first-child {
       padding-top: var(--wim-spacing-sm);

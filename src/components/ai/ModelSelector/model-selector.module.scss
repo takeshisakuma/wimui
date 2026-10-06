@@ -131,8 +131,8 @@
     list-style: none;
     background: var(--wim-color-surface);
     border: var(--wim-border-width-thin) solid var(--wim-color-border);
-    border-radius: var(--wim-radius-component);
-    box-shadow: var(--wim-shadow-md);
+    border-radius: var(--wim-radius-overlay);
+    box-shadow: var(--wim-shadow-overlay);
   }
 
   .option {
