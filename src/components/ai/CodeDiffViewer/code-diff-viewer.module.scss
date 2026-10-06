@@ -140,7 +140,13 @@
     border-radius: var(--wim-radius-sm);
     transition:
       background var(--wim-duration-fast) var(--wim-easing-standard),
-      color var(--wim-duration-fast) var(--wim-easing-standard);
+      color var(--wim-duration-fast) var(--wim-easing-standard),
+      scale var(--wim-transition-fast);
+
+    // 適用は色の付いた塗り、却下は ghost。どちらも縮みで揃える
+    &:active {
+      @include pressed.shrink;
+    }
 
     &:focus-visible {
       outline: var(--wim-focus-outline-width) solid var(--wim-color-focus-outline);

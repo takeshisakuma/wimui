@@ -131,7 +131,8 @@
     transition:
       background-color var(--wim-duration-base) var(--wim-easing-standard),
       border-color var(--wim-duration-base) var(--wim-easing-standard),
-      color var(--wim-duration-base) var(--wim-easing-standard);
+      color var(--wim-duration-base) var(--wim-easing-standard),
+      scale var(--wim-transition-fast);
   
     &:hover:not(:disabled, .selected) {
       background-color: var(--wim-color-surface-hover);
@@ -175,6 +176,11 @@
 
       &:hover:not(:disabled) {
         background-color: oklch(from var(--wim-color-primary) l c h / 0.2);
+      }
+
+      // 範囲の中の日は、ホバーの地（20%）が押下の地（15%）より濃い。地ではなく縮みで示す
+      &:active:not(:disabled) {
+        @include pressed.shrink;
       }
     }
   

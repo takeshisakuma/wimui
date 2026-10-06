@@ -106,11 +106,16 @@
       border-color var(--wim-duration-fast),
       box-shadow var(--wim-duration-fast),
       outline-color var(--wim-duration-fast),
-      opacity var(--wim-duration-fast);
+      opacity var(--wim-duration-fast),
+      scale var(--wim-transition-fast);
 
     &:hover {
       color: var(--wim-color-text-primary);
       background: var(--wim-color-surface-subtle-alpha);
+    }
+
+    &:active {
+      @include pressed.shrink(var(--wim-scale-active-sm));
     }
 
     &.delete:hover {
@@ -175,6 +180,10 @@
       &:focus-visible {
         text-decoration: underline dotted currentcolor;
         text-underline-offset: var(--wim-spacing-3xs);
+      }
+
+      &:active {
+        @include pressed.tinted;
       }
 
       &:focus-visible {

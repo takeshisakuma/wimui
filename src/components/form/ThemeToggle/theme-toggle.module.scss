@@ -75,10 +75,15 @@
     border: none;
     border-radius: var(--wim-radius-sm);
     transition: background-color var(--wim-duration-fast) var(--wim-easing-standard),
-      color var(--wim-duration-fast) var(--wim-easing-standard);
+      color var(--wim-duration-fast) var(--wim-easing-standard),
+      scale var(--wim-transition-fast);
 
     &:hover {
       color: var(--wim-color-text-primary);
+    }
+
+    &:active:not(.active) {
+      @include pressed.shrink;
     }
 
     &.active {

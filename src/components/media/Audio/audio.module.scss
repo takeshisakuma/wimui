@@ -1,4 +1,5 @@
 @use "../../../styles/focus-mixins" as focus;
+@use "../../../styles/pressed-mixins" as pressed;
 
 @layer component {
   .root {
@@ -272,11 +273,16 @@
     border-radius: var(--wim-radius-full);
     transition:
       background-color var(--wim-transition-fast),
-      color var(--wim-transition-fast);
+      color var(--wim-transition-fast),
+      scale var(--wim-transition-fast);
 
     &:hover {
       color: var(--wim-color-text-accent); // Accent color
       background-color: oklch(from var(--wim-color-white) l c h / 0.1);
+    }
+
+    &:active {
+      @include pressed.shrink(var(--wim-scale-active-sm));
     }
 
     // Active state for toggles

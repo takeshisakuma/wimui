@@ -2,7 +2,13 @@ import fs from "fs";
 import { test, expect, type Page } from "@playwright/test";
 import { waitForStoryReady } from "./story-ready";
 
-const url = (id: string) => `/iframe.html?id=${id}&viewMode=story&globals=theme:light;locale:en`;
+// 既定は light・comfortable・部品ごとに 1 本。測り残しを見るときは環境変数で広げる（CI では流さない）:
+//   PRESSED_GLOBALS="theme:dark;locale:en"                    dark
+//   PRESSED_GLOBALS="theme:light;locale:en;density:compact"   compact
+//   PRESSED_ALL=1                                             全ストーリー（既定のストーリーに出ない操作要素）
+const GLOBALS = process.env.PRESSED_GLOBALS ?? "theme:light;locale:en";
+const ALL_STORIES = !!process.env.PRESSED_ALL;
+const url = (id: string) => `/iframe.html?id=${id}&viewMode=story&globals=${GLOBALS}`;
 
 // T321: 押しても見た目が変わらない操作要素が、測った 143 個のうち 62 個あった。押下が変わるのは Button を
 // 土台にするものと数部品だけで、隣のタブや閉じるボタンは沈まなかった。線は役割で引く（`docs/rules/css.md`）:
@@ -26,7 +32,10 @@ const INTERACTIVE = [
 ].join(",");
 
 /** 押下の見た目を付けない要素。理由は `docs/rules/css.md` の「押下の見た目を付ける要素」。 */
-const EXEMPT_CLASS = /react-flow__/;
+// - react-flow__      xyflow が描くボタン
+// - wim-box           レイアウトの素の箱を、ストーリーが button として描いたもの（Box は見た目を持たない）
+// - appshell-modern-  ストーリーが自前の CSS で描いたボタン
+const EXEMPT_CLASS = /react-flow__|\.wim-box(\.|$)|appshell-modern-/;
 
 type Target = { index: number; key: string; label: string; exempt: boolean };
 
@@ -51,7 +60,9 @@ const SETUP = `
       seen.add(key);
       const label = (el.getAttribute("aria-label") || el.textContent || "").trim().slice(0, 30);
       const link = el.tagName === "A" && !role;
-      out.push({ index, key, label, link });
+      // クラスを 1 つも持たない要素は、ストーリーが直に置いた素のボタン（部品の要素ではない）
+      const scaffold = !String(el.className && el.className.baseVal !== undefined ? el.className.baseVal : el.className).trim();
+      out.push({ index, key, label, link, scaffold });
     });
     return out;
   };
@@ -116,20 +127,64 @@ type Finding = {
   key: string;
   label: string;
   state: "changes" | "same" | "covered" | "exempt";
+  /** ほかの要素に覆われていてマウスで押せず、開発者ツールの「状態を強制」で測った */
+  forced?: boolean;
   /** 押して縮むのに、縮みがトランジションに乗っていない */
   snaps?: boolean;
 };
 
-const measureStory = async (page: Page, id: string): Promise<Finding[]> => {
+// 覆われていてマウスで押せない要素（SwipeAction の奥のボタン・ImageCompare のつまみ）は、
+// :hover と :hover:active を強制して比べる。押下で親に付く :active は再現できない。
+const measureForced = async (page: Page, index: number): Promise<"changes" | "same" | "covered"> => {
+  const client = await page.context().newCDPSession(page);
+  try {
+    await page.evaluate(
+      ([sel, i]) => {
+        document.querySelectorAll("#storybook-root " + sel)[i as number]?.setAttribute("data-pressed-forced", "");
+      },
+      [INTERACTIVE, index] as const,
+    );
+    await client.send("DOM.enable");
+    await client.send("CSS.enable");
+    const { root } = await client.send("DOM.getDocument", { depth: 0 });
+    const { nodeId } = await client.send("DOM.querySelector", { nodeId: root.nodeId, selector: "[data-pressed-forced]" });
+    if (!nodeId) return "covered";
+    const snapshot = () =>
+      page.evaluate(
+        ([sel, i]) =>
+          (window as unknown as { __pressedSnapshot: (s: string, n: number) => string | null }).__pressedSnapshot(
+            sel as string,
+            i as number,
+          ),
+        [INTERACTIVE, index] as const,
+      );
+    await client.send("CSS.forcePseudoState", { nodeId, forcedPseudoClasses: ["hover"] });
+    const hovered = await snapshot();
+    await client.send("CSS.forcePseudoState", { nodeId, forcedPseudoClasses: ["hover", "active"] });
+    const pressed = await snapshot();
+    return pressed !== null && pressed !== hovered ? "changes" : "same";
+  } catch {
+    return "covered";
+  } finally {
+    await client.detach().catch(() => undefined);
+  }
+};
+
+const measureStory = async (page: Page, id: string, seen?: Set<string>): Promise<Finding[]> => {
   await prepare(page, id);
   const targets = (await page.evaluate(
-    (sel) => (window as unknown as { __pressedTargets: (s: string) => (Target & { link: boolean })[] }).__pressedTargets(sel),
+    (sel) => (window as unknown as { __pressedTargets: (s: string) => (Target & { link: boolean; scaffold: boolean })[] }).__pressedTargets(sel),
     INTERACTIVE,
-  )) as (Target & { link: boolean })[];
+  )) as (Target & { link: boolean; scaffold: boolean })[];
   const findings: Finding[] = [];
   for (const [n, target] of targets.entries()) {
+    // 全ストーリーを開くときは、同じ部品の別のストーリーで測った要素を測り直さない
+    if (seen) {
+      if (seen.has(target.key)) continue;
+      seen.add(target.key);
+    }
     const base = { story: id, key: target.key, label: target.label };
-    if (target.link || EXEMPT_CLASS.test(target.key)) {
+    if (target.link || target.scaffold || EXEMPT_CLASS.test(target.key)) {
       findings.push({ ...base, state: "exempt" });
       continue;
     }
@@ -154,11 +209,17 @@ const measureStory = async (page: Page, id: string): Promise<Finding[]> => {
       [INTERACTIVE, target.index] as const,
     );
     if (!point || point.covered) {
-      findings.push({ ...base, state: "covered" });
+      findings.push({ ...base, state: await measureForced(page, target.index), forced: true });
       continue;
     }
     await page.mouse.move(point.x, point.y);
     await page.mouse.down();
+    // 押した点に、もうその要素が居ないことがある（xyflow は表示のあとでノードの位置を合わせ直す）。
+    // :active が付いていなければ、押せていなかった可能性がある。
+    const landed = await page.evaluate(
+      ([sel, index]) => !!document.querySelectorAll("#storybook-root " + sel)[index as number]?.matches(":active"),
+      [INTERACTIVE, target.index] as const,
+    );
     const pressed = await snapshot();
     const snaps =
       (await page.evaluate(
@@ -174,7 +235,16 @@ const measureStory = async (page: Page, id: string): Promise<Finding[]> => {
     await page.mouse.up();
     await page.mouse.move(point.x, point.y);
     const released = await snapshot();
-    findings.push({ ...base, state: pressed !== null && pressed !== released ? "changes" : "same", snaps });
+    if (pressed !== null && pressed !== released) {
+      findings.push({ ...base, state: "changes", snaps });
+    } else if (!landed) {
+      // 変わらず、しかも :active が付いていなかった ＝ 押せていなかった可能性。状態を強制して測り直す。
+      // （:active が付いていなくても変わる部品はある ── TreeView は pointerdown で行を描き直し、
+      //   押下の見た目は行の側に付く。だから、変わったかどうかを先に見る）
+      findings.push({ ...base, state: await measureForced(page, target.index), forced: true });
+    } else {
+      findings.push({ ...base, state: "same", snaps });
+    }
   }
   return findings;
 };
@@ -183,7 +253,7 @@ const SHARDS = 6;
 
 for (let shard = 0; shard < SHARDS; shard++) {
   test(`pressed look on every in-place control (${shard + 1}/${SHARDS})`, async ({ page, request }) => {
-    test.setTimeout(900_000);
+    test.setTimeout(ALL_STORIES ? 3_600_000 : 900_000);
     const index = (await (await request.get("/index.json")).json()) as {
       entries: Record<string, { id: string; type: string }>;
     };
@@ -194,14 +264,24 @@ for (let shard = 0; shard < SHARDS; shard++) {
       const component = e.id.split("--")[0];
       if (!byComponent.has(component) || e.id.endsWith("--default")) byComponent.set(component, e.id);
     }
-    const stories = [...byComponent.values()].sort();
+    const stories = ALL_STORIES
+      ? Object.values(index.entries)
+          .filter((e) => e.type === "story" && e.id.startsWith("components-"))
+          .map((e) => e.id)
+          .sort()
+      : [...byComponent.values()].sort();
+    const components = [...new Set(stories.map((id) => id.split("--")[0]))];
+    const seenByComponent = new Map<string, Set<string>>();
     // 一覧が読めていること（0 本だと、何も測らずに通る）
     expect(stories.length).toBeGreaterThan(150);
 
     const findings: Finding[] = [];
-    for (const [i, id] of stories.entries()) {
-      if (i % SHARDS !== shard) continue;
-      findings.push(...(await measureStory(page, id)));
+    for (const id of stories) {
+      // 部品で割り振る（全ストーリーを開くとき、同じ部品のストーリーを同じ組で順に見る）
+      const component = id.split("--")[0];
+      if (components.indexOf(component) % SHARDS !== shard) continue;
+      if (ALL_STORIES && !seenByComponent.has(component)) seenByComponent.set(component, new Set());
+      findings.push(...(await measureStory(page, id, seenByComponent.get(component))));
     }
     if (process.env.PRESSED_REPORT) {
       fs.writeFileSync(`${process.env.PRESSED_REPORT}.${shard}.json`, JSON.stringify(findings, null, 1));

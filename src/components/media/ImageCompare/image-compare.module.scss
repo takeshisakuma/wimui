@@ -1,5 +1,6 @@
 @use "../../../tokens/breakpoints" as breakpoints;
 @use "../../../styles/focus-mixins" as focus;
+@use "../../../styles/pressed-mixins" as pressed;
 
 @layer component {
   .root {
@@ -93,6 +94,10 @@
     border: var(--wim-border-width-thin) solid var(--wim-color-border);
     border-radius: var(--wim-radius-full);
     box-shadow: var(--wim-shadow-md);
+
+    &:active {
+      @include pressed.surface;
+    }
 
     &:focus-visible {
       @include focus.forced-colors-outline;
