@@ -90,7 +90,7 @@ export const SplitButton = React.forwardRef<HTMLDivElement, SplitButtonProps>(
     return (
       <div
         ref={ref}
-        className={classNames("wim-split-button", styles.root, styles[size], className)}
+        className={classNames("wim-split-button", styles.root, styles[size], styles[variant], className)}
         {...props}
       >
         <Button

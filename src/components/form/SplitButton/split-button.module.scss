@@ -14,7 +14,10 @@
     .toggle {
       position: relative;
       padding-inline: var(--wim-spacing-md);
-      margin-left: calc(var(--wim-border-width-thin) * -1);
+
+      // ボタンの枠は 2px（thick）。1px しか重ねないと、outline の境目だけ 3px の帯になる
+      // （外周は 2px）。ButtonGroup の joined と同じ量を重ねる。
+      margin-left: calc(var(--wim-border-width-thick) * -1);
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
 
@@ -29,6 +32,27 @@
         content: "";
         background-color: var(--wim-color-overlay-soft);
       }
+
+      // solid は影を持つ。トグルの影が主ボタンの面に落ちると、境目に上下いっぱいの暗い線が出る
+      // （dark は影が濃いので、区切りと合わせて線が 2 本に見えた）。左へはみ出す分だけを切る。
+      // フォーカスの輪は切らない。
+      &:not(:focus-visible) {
+        clip-path: inset(
+          calc(var(--wim-spacing-xl) * -1) calc(var(--wim-spacing-xl) * -1) calc(var(--wim-spacing-xl) * -1) 0
+        );
+      }
+    }
+
+    // outline は、重ねた枠の線がそのまま境目になる。区切りを足すと線が 2 本になる
+    // （light では区切りが白で見えず、dark でだけ 2 本に見えていた）。
+    &.outline .toggle::before {
+      content: none;
+    }
+
+    // ghost は枠も地も無い。白い区切りは light で見えないので、文字の色で引く。
+    &.ghost .toggle::before {
+      background-color: currentcolor;
+      opacity: var(--wim-opacity-dim);
     }
   }
 
