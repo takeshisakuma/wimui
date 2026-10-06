@@ -32,15 +32,19 @@ export const ButtonGroup = ({
 }: ButtonGroupProps) => {
   const style = joined ? {} : { gap };
 
+  // joined の solid は面が同色で、ボタンどうしの境目が消える。solid どうしが隣り合う所に区切りを
+  // 引けるように、solid の子に印を付ける（グループの variant が子の variant より優先）。
   const childrenWithProps =
-    !asChild && variant
+    !asChild && (variant || joined)
       ? React.Children.map(children, (child) => {
-          if (React.isValidElement(child)) {
-            return React.cloneElement(child as React.ReactElement<{ variant?: ButtonVariant }>, {
-              variant,
-            });
+          if (!React.isValidElement(child)) return child;
+          const childProps = child.props as { variant?: ButtonVariant; className?: string };
+          const next: { variant?: ButtonVariant; className?: string } = {};
+          if (variant) next.variant = variant;
+          if (joined && (variant ?? childProps.variant) === "solid") {
+            next.className = classNames(childProps.className, styles.solidItem);
           }
-          return child;
+          return Object.keys(next).length > 0 ? React.cloneElement(child, next) : child;
         })
       : children;
 
