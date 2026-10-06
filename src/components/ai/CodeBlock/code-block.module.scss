@@ -1,4 +1,5 @@
 @use "../../../styles/font-mixins" as font;
+@use "../../../styles/pressed-mixins" as pressed;
 
 @layer component {
   .root {
@@ -72,6 +73,10 @@
     &:hover {
       color: var(--wim-color-text-primary);
       background: var(--wim-color-ghost-bg-hover);
+    }
+
+    &:active {
+      @include pressed.ghost;
     }
 
     &:focus-visible {

@@ -1,6 +1,7 @@
 @use "../../../styles/indicator-mixins" as indicator;
 @use "../../../styles/field-mixins" as field;
 @use "../../../styles/focus-mixins" as focus;
+@use "../../../styles/pressed-mixins" as pressed;
 
 @layer component {
   .root {
@@ -69,6 +70,10 @@
       &:hover:not(:disabled, .active) {
         color: var(--wim-color-text-accent);
         background-color: var(--wim-color-surface-hover);
+      }
+
+      &:active:not(:disabled, .active) {
+        @include pressed.tinted;
       }
   
       &:disabled {

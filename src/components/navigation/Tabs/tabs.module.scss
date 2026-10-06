@@ -1,6 +1,7 @@
 @use "../../../tokens/breakpoints" as breakpoints;
 @use "../../../styles/indicator-mixins" as indicator;
 @use "../../../styles/focus-mixins" as focus;
+@use "../../../styles/pressed-mixins" as pressed;
 
 .container {
   width: 100%;
@@ -182,6 +183,10 @@
       &:hover:not(:disabled) {
         color: var(--wim-color-text-accent);
         background-color: var(--wim-color-surface-hover);
+      }
+
+      &:active:not(:disabled) {
+        @include pressed.tinted;
       }
 
       &:disabled {

@@ -1,3 +1,4 @@
+@use "../../../styles/pressed-mixins" as pressed;
 
 @layer component {
   .root {
@@ -31,7 +32,7 @@
     }
 
     &:active:not(:disabled) {
-      background: oklch(from var(--wim-color-ghost-bg-hover) calc(l * 0.9) c h);
+      @include pressed.ghost;
     }
 
     &:disabled {

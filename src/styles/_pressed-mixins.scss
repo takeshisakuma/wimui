@@ -1,0 +1,28 @@
+// 押下（`:active`）の見た目。どの要素に付けるか・どれを使うかは `docs/rules/css.md` の
+// 「押下の見た目を付ける要素」。部品ごとに別の値を書かず、ここの 4 つから選ぶ（T321）。
+// 使い方: ホバーの規則のすぐ後ろに、**ホバーと同じ詳細度のセレクタで**置く。
+//   &:hover:not(:disabled) { background-color: var(--wim-color-surface-hover); }
+//   &:active:not(:disabled) { @include pressed.tinted; }
+// `:not()` を落とすと詳細度でホバーに負け、押しても変わらない。
+
+/// ホバーが `--wim-color-surface-hover`（primary の 8%）の行・タブ・日。Pagination のページと同じ量。
+@mixin tinted {
+  background-color: oklch(from var(--wim-color-primary) l c h / 0.15);
+}
+
+/// ホバーが `--wim-color-ghost-bg-hover` の、地を持たないボタン。
+/// `oklch(from ghost-bg-hover calc(l * 0.9) …)` は効かない（元が黒の 5% なので、明度を掛けても変わらない）。
+@mixin ghost {
+  background-color: var(--wim-color-ghost-bg-active);
+}
+
+/// 面の色（`surface`）を地に持つボタン・行。List の行と同じ量。
+@mixin surface {
+  background-color: oklch(from var(--wim-color-surface) calc(l * 0.92) c h);
+}
+
+/// ホバーで地が変わらない要素（文字や印だけのボタン）。`transform` を位置決めに使っている要素でも
+/// 重ねられるように、`scale` プロパティで縮める。小さい印は `$amount: var(--wim-scale-active-sm)`。
+@mixin shrink($amount: var(--wim-scale-active)) {
+  scale: $amount;
+}

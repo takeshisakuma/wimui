@@ -1,4 +1,5 @@
 @use "../../../tokens/breakpoints" as breakpoints;
+@use "../../../styles/pressed-mixins" as pressed;
 
 /* Exception: Geometric Harmony — ハンバーガーアイコンの各バーの寸法・間隔は幾何学的整合性のため px 固定 */
 $hamburger-layer-width: 32px !default; // Exception: Geometric Harmony — バーの厚み・間隔・角丸の幾何学的整合性
@@ -25,6 +26,10 @@ $hamburger-layer-border-radius: 4px !default; // Exception: Geometric Harmony �
     &:hover {
       // oklch alpha dims the bars only; avoids opacity on the whole element
       --wim-hamburger-color: oklch(from var(--wim-color-text-primary) l c h / 0.7);
+    }
+
+    &:active {
+      @include pressed.shrink(var(--wim-scale-active-sm));
     }
 
     .box {

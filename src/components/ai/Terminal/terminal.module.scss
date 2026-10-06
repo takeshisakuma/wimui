@@ -1,4 +1,5 @@
 @use "../../../styles/font-mixins" as font;
+@use "../../../styles/pressed-mixins" as pressed;
 
 @layer component {
   /* ── macOS-style dark window ── */
@@ -94,6 +95,10 @@
     &:hover {
       color: var(--wim-color-text-primary);
       background: var(--wim-color-surface-hover);
+    }
+
+    &:active {
+      @include pressed.tinted;
     }
 
     &:focus-visible {

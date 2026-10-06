@@ -1,6 +1,7 @@
 @use "../../../styles/indicator-mixins" as indicator;
 @use "../../../styles/field-mixins" as field;
 @use "../../../styles/focus-mixins" as focus;
+@use "../../../styles/pressed-mixins" as pressed;
 
 @layer component {
   .root {
@@ -150,6 +151,10 @@
 
     &:hover {
       color: var(--wim-color-text-primary);
+    }
+
+    &:active:not(.active) {
+      @include pressed.tinted;
     }
 
     &.active {

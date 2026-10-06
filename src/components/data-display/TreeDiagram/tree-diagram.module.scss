@@ -1,4 +1,5 @@
 @use "../../../tokens/breakpoints" as breakpoints;
+@use "../../../styles/pressed-mixins" as pressed;
 
 @layer component {
   // 図は中身の大きさ（配置の計算で決まる）を持ち、置き場より広ければ自分の箱の中でスクロールする。
@@ -55,6 +56,10 @@
 
       &:hover {
         border-color: var(--wim-color-border-secondary);
+      }
+
+      &:active {
+        @include pressed.surface;
       }
     }
 
@@ -127,6 +132,10 @@
     &:hover {
       color: var(--wim-color-text-primary);
       border-color: var(--wim-color-border-secondary);
+    }
+
+    &:active {
+      @include pressed.surface;
     }
   }
 

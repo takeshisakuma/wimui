@@ -1,5 +1,6 @@
 @use "../../../tokens/breakpoints" as breakpoints;
 @use "../../../styles/focus-mixins" as focus;
+@use "../../../styles/pressed-mixins" as pressed;
 
 @layer component {
   .root {
@@ -54,6 +55,10 @@
 
     &:hover:not(:disabled) {
       border-color: var(--wim-color-text-tertiary);
+    }
+
+    &:active:not(:disabled) {
+      @include pressed.surface;
     }
 
     &:focus-visible {

@@ -37,6 +37,29 @@
 
   塗りの 0.85 は Button で実測して決めた値です（T272。0.9 では静止時との面どうしの比が約 1.2 で見分けにくく、0.85 で約 1.3）。**押下でさらに暗くしない**のも実測からです ── 0.8 まで下げると、dark の danger の塗り（明るい面に暗い文字）で文字とのコントラストが 4.47 になり AA（4.5）を割りました（0.85 では 5.18）。ホバーで**明るく**する書き方は使いません ── dark では塗りが暗いので暗くする向きでも沈まず、light と向きを揃えられます。
 
+- **押下の見た目を付ける要素**（T321・2026-10-06 ユーザー判断）。線は役割で引きます。
+
+  | | 要素 | 例 |
+  |---|---|---|
+  | 付ける | 押すと**その場で**何かが起きる要素 | ボタン、タブ、ラジオ（ToggleGroup・SegmentedControl・Rating）、項目、Calendar の日と月送り、開閉、閉じる、Copy |
+  | 付けない | 押すと**移動する**リンク（役割を持たないリンク要素） | Link、Breadcrumb、Navbar、SourceCitation |
+  | 付けない | 外部ライブラリが描くボタン | NodeGraph・InteractiveGraph のズームの操作（xyflow） |
+
+  リンクに付けないのは、押した直後にページが変わって押下の姿がほぼ見えず、下線と色で役割が既に伝わっているためです。タブの形をしたリンク（TabNavigation）は、役割がタブなので付けます。
+
+  書き方は `src/styles/_pressed-mixins.scss` の 4 つから選び、部品ごとに値を書きません。
+
+  | ホバーの姿 | 押下 | mixin |
+  |---|---|---|
+  | `--wim-color-surface-hover`（primary の 8%）の地 | primary の 15%（Pagination のページと同じ） | `pressed.tinted` |
+  | `--wim-color-ghost-bg-hover` の地 | `--wim-color-ghost-bg-active` | `pressed.ghost` |
+  | 面の色（`surface`）を地に持つ | `l * 0.92`（上の表の 2 行目） | `pressed.surface` |
+  | 地が変わらない（文字や印の色だけ） | 縮み（`--wim-scale-active`。小さい印は `--wim-scale-active-sm`） | `pressed.shrink` |
+
+  - **押下の規則は、ホバーと同じ詳細度のセレクタで、ホバーのすぐ後ろに置く。** ホバーが `:not(:disabled)` を持つのに押下が持たないと、詳細度で負けて押しても変わりません
+  - **`ghost-bg-hover` に明度を掛けても変わりません**（元が黒の 5% なので）。AIResponseFeedback は押下の規則を持っていたのに、実測では変わっていませんでした
+  - 見張りは `vrt/pressed-states.e2e.spec.ts`（部品ごとに 1 本のストーリーを開き、押したままの姿と、離して載せ直した姿を比べる）。操作要素を足したら、ここが落ちます
+
 - `opacity` は 表示/非表示の切り替え（`opacity: 0 → 1`）にのみ使用してください。`disabled` 状態への `opacity` トークン適用は引き続き許可します。
 
 # フォーカス表示（`:focus-visible` / `:focus-within`）

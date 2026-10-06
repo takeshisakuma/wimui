@@ -1,4 +1,5 @@
 @use "../../../styles/font-mixins" as font;
+@use "../../../styles/pressed-mixins" as pressed;
 
 @layer component {
   .root {
@@ -69,6 +70,10 @@
     &.collapsible {
       cursor: pointer;
       &:hover { .toggle { color: var(--wim-color-text-accent); } }
+
+      &:active .toggle {
+        @include pressed.shrink(var(--wim-scale-active-sm));
+      }
     }
   }
 

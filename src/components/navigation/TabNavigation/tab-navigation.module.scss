@@ -1,6 +1,7 @@
 @use "sass:color";
 @use "../../../styles/indicator-mixins" as indicator;
 @use "../../../styles/focus-mixins" as focus;
+@use "../../../styles/pressed-mixins" as pressed;
 
 @layer component {
   .root {
@@ -82,6 +83,10 @@
         background-color: var(--wim-color-surface-hover);
       }
 
+      &:active:not(.disabled) {
+        @include pressed.tinted;
+      }
+
       &.disabled {
         color: var(--wim-color-text-disabled);
         cursor: not-allowed;
@@ -121,6 +126,10 @@
         &:hover:not(.disabled) {
           color: var(--wim-color-text-accent);
           background-color: transparent;
+        }
+
+        &:active:not(.disabled) {
+          @include pressed.shrink;
         }
 
         &.active {

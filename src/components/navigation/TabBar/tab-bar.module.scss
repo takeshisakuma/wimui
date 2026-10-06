@@ -1,3 +1,5 @@
+@use "../../../styles/pressed-mixins" as pressed;
+
 @layer component {
   .root {
     z-index: var(--wim-z-overlay);
@@ -63,6 +65,10 @@
 
       &:hover {
         background-color: oklch(from var(--wim-color-surface) calc(l * 0.95) c h);
+      }
+
+      &:active {
+        @include pressed.surface;
       }
 
       &.active {
