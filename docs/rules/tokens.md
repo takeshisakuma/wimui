@@ -72,7 +72,7 @@
 |---|---|---|
 | `--wim-radius-component` | 4px | Button, Input, Tag, SegmentedControl / ToggleGroup のトラックなど小〜中要素 |
 | `--wim-radius-container` | 12px | Card, Table, Modal など大きな親要素 |
-| `--wim-radius-overlay` | 8px | Tooltip, Popover など浮遊要素 |
+| `--wim-radius-overlay` | 8px | Tooltip, Popover など浮遊要素。**開いた面（Select・Combobox のリスト、メニュー、DatePicker のカレンダーなど）は全部ここ** ── 引き金が入力欄でも、開いた面は入力欄の角（`component`）に合わせない。枠は `--wim-color-border`、影は `--wim-shadow-overlay`（T320。`vrt/open-surfaces.e2e.spec.ts` が見る） |
 
 **親子ルール（Nested Radius）:** 要素を別の要素の内側に配置する場合、外側の角丸（R_outer）は内側の角丸（R_inner）に両者の間隔（S）を加えた値を目安にしてください。
 

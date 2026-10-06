@@ -110,9 +110,10 @@
     z-index: var(--wim-z-overlay);
     min-width: 16rem;
     max-height: 20rem;
+    overflow: hidden;
     background-color: var(--wim-color-surface);
-    border: var(--wim-border-width-thin) solid var(--wim-color-line);
-    border-radius: var(--wim-radius-component);
+    border: var(--wim-border-width-thin) solid var(--wim-color-border);
+    border-radius: var(--wim-radius-overlay);
     box-shadow: var(--wim-shadow-overlay);
   }
 
