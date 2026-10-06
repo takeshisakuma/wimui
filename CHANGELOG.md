@@ -1,5 +1,31 @@
 # wimui
 
+## 0.52.5
+
+### Patch Changes
+
+- 8513924: ButtonGroup（joined）: solid のボタンどうしの境目に、区切りの線を入れました。
+
+  solid は面が同じ色なので、つなげると 3 つのボタンが 1 枚の面に見えていました。SplitButton と同じ区切り（上下に余白のある 1px の線）を、solid どうしが隣り合う所に入れます。outline は重ねた枠が境目になるので、これまでどおりです。
+
+  合わせて、狭い幅で縦に積んだときの崩れを 2 つ直しました。
+
+  - 中の段の上の角と、最初の段の左下の角が、丸いまま残っていました。丸めるのは、いちばん上の段の上 2 つと、いちばん下の段の下 2 つだけにしました。
+  - 下の段の影が、上の段の面へはみ出していました。
+
+- 4ef8797: 押すと縮む操作要素の縮みを、トランジションに乗せました。
+
+  0.52.2 で足した押下の見た目のうち、縮むもの（Carousel の前へ・次へ / Banner・Notification の閉じる / HamburgerMenu / Rating の星 / Spoiler の開閉 / Comment の操作 / JsonViewer・PivotTable の開閉の印 / TabNavigation の下線型のタブ）は、大きさが瞬時に変わっていました。Carousel の前へ・次へで特に目立ちました。縮む量は変えていません。
+
+- 90d2605: 押下（`:active`）の見た目を、既定のストーリーに出ない操作要素にも付けました。
+
+  0.52.2 で足した押下の見た目は、部品ごとに既定のストーリー 1 本で測って付けたものでした。全ストーリーを開いて測り直すと、次の要素が押しても変わらないままでした。
+
+  - **地が濃くなるもの**: PromptInput の添付ボタン / PhoneInput・ModelSelector の開いたリストの項目 / JsonViewer の編集できる値 / ImageCompare のつまみ
+  - **少し縮むもの**: Audio・Video の操作ボタン / Stepper の押せるステップの印 / ThemeToggle の segment 型 / JsonViewer の追加・削除 / Chip の削除（MultiSelect の中のチップも同じ）/ CodeDiffViewer・JsonDiffViewer の適用・却下 / RangeCalendar の範囲の中の日
+
+  縮むものは、トランジションに乗せてあります。見た目だけの変更で、API は変わりません。
+
 ## 0.52.4
 
 ### Patch Changes
