@@ -146,6 +146,10 @@
       background-color: var(--wim-color-surface-hover);
     }
 
+    &:active {
+      @include pressed.tinted;
+    }
+
     &.selected {
       font-weight: var(--wim-font-weight-medium);
       color: var(--wim-color-text-accent);

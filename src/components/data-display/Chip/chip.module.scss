@@ -1,4 +1,5 @@
 @use "../../../styles/token-common" as *;
+@use "../../../styles/pressed-mixins" as pressed;
 
 @layer component {
   .root {
@@ -148,11 +149,17 @@
       border-color var(--wim-transition-fast),
       box-shadow var(--wim-transition-fast),
       outline-color var(--wim-transition-fast),
-      opacity var(--wim-transition-fast);
+      opacity var(--wim-transition-fast),
+      scale var(--wim-transition-fast);
 
     &:hover {
       background-color: var(--wim-color-ghost-bg-active);
       opacity: 1;
+    }
+
+    // ホバーの地が既に ghost の active なので、押下は縮みで示す
+    &:active {
+      @include pressed.shrink(var(--wim-scale-active-sm));
     }
 
     &:focus-visible {

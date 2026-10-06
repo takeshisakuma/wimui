@@ -1,6 +1,7 @@
 @use "../../../tokens/breakpoints" as breakpoints;
 @use "../../../styles/field-mixins" as field;
 @use "../../../styles/focus-mixins" as focus;
+@use "../../../styles/pressed-mixins" as pressed;
 
 @layer component {
   .root {
@@ -122,6 +123,10 @@
     &:hover:not(:disabled) {
       color: var(--wim-color-text-primary);
       background: var(--wim-color-ghost-bg-hover);
+    }
+
+    &:active:not(:disabled) {
+      @include pressed.ghost;
     }
 
     &:disabled {
