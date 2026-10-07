@@ -839,7 +839,7 @@
   },
   "dependencies": {
     "@floating-ui/react": "0.27.20",
-    "@radix-ui/react-slot": "1.3.3",
+    "@radix-ui/react-slot": "1.4.0",
     "classnames": "^2.5.1",
     "react-is": "19.3.0"
   }
