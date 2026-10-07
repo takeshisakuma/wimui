@@ -250,6 +250,8 @@
     "linkButton_desc": "Anchor styled as button",
     "link_a11y_note_desc": "Avoid ambiguous text like \"Click here\" or \"Learn more\". Instead, use specific descriptive phrases that clarify the destination (e.g., \"View Pricing Plans\"). This helps screen reader users understand where the link leads and strongly improves SEO.",
     "link_a11y_note_title": "Link Text Accessibility",
+    "link_as_child": "asChild",
+    "link_as_child_desc": "With asChild, the child element becomes the link itself and receives the Link styles and props. Use it to style a router link (React Router, Next.js). The icon and the external mark are rendered inside the child.",
     "link_desc": "Hyperlinks",
     "link_icon_left": "Left Icon",
     "link_icon_right": "Right Icon",

@@ -87,6 +87,25 @@ describe("asChild render smoke (T99)", () => {
         ),
       ).not.toThrow();
     });
+
+    // 例外が出ないだけでは足りない（T323）。Link は例外なしで描けていたが、部品のクラスも href も
+    // 子ではなく Link の内側の span に付いていた ── Slot は直下の Slottable しか探さないので、
+    // Slottable を別の要素の中に置くと、その要素が子の代わりに部品の要素になる。
+    //
+    // 見るのは「部品のクラス（`wim-*`）が子に付くこと」。「子が描画の根であること」では見ない ──
+    // Textarea（フィールドの枠）と Grid（コンテナクエリの器）は、asChild の有無にかかわらず
+    // 外側に 1 枚包むので、根で見ると正しい実装まで落ちる（最初にそう書いて、この 2 つで落ちた）。
+    it(`${name} は asChild で、部品のクラスを子の要素に付ける`, () => {
+      render(
+        <Component asChild {...props}>
+          <span data-testid={`aschild-root-${name}`}>slotted</span>
+        </Component>,
+      );
+      const child = screen.getByTestId(`aschild-root-${name}`);
+      const componentClasses = Array.from(child.classList).filter((c) => c.startsWith("wim-"));
+
+      expect(componentClasses, `子に付いたクラス: "${child.className}"`).not.toHaveLength(0);
+    });
   }
 });
 

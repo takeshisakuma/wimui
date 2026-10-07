@@ -260,6 +260,8 @@
     "linkButton_desc": "Link estilizado como botão",
     "link_a11y_note_desc": "Evite textos ambíguos como \"Clique aqui\" ou \"Saiba mais\". Em vez disso, use frases descritivas específicas que esclareçam o destino (ex: \"Ver detalhes do plano\"). Isso ajuda os usuários de leitores de tela a entender para onde o link leva e melhora significativamente o SEO.",
     "link_a11y_note_title": "Acessibilidade do texto do link",
+    "link_as_child": "asChild",
+    "link_as_child_desc": "Com asChild, o elemento filho passa a ser o próprio link e recebe os estilos e as props do Link. Use-o para estilizar um link de roteador (React Router, Next.js). O ícone e a marca de link externo são renderizados dentro do filho.",
     "link_desc": "Navegação por texto com suporte a ícones",
     "link_icon_left": "Ícone à esquerda",
     "link_icon_right": "Ícone à direita",
