@@ -73,6 +73,16 @@ updates:
         update-types: ["version-update:semver-major"]
       - dependency-name: "@vitest/*"
         update-types: ["version-update:semver-major"]
+      # marked 18 は **@tiptap/markdown が追随するまで上げられない**（2026-10-07・#883）。
+      # @tiptap/markdown@3.31.4（現行 latest）は dependencies に marked "^17.0.1" を持つので、
+      # こちらだけ 18 に上げると node_modules に marked が 2 つ入る（直下に 18・@tiptap/markdown の下に 17）。
+      # RichTextEditor は自分で作った `new Marked()` を @tiptap/markdown へ渡している
+      # （`src/components/form/RichTextEditor/markdown.ts`）ため、18 のインスタンスを 17 向けの実装へ渡す形になり、
+      # 型チェックが TS2322 で落ちる（#883 の Lint & Type Check）。
+      # @tiptap/markdown が marked 18 を受けたら本 ignore を外し、
+      # **marked（devDependencies と peerDependencies の範囲）と @tiptap/markdown を 1 PR で**上げること。
+      - dependency-name: "marked"
+        update-types: ["version-update:semver-major"]
 
   - package-ecosystem: "github-actions"
     directory: "/"
