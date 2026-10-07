@@ -329,6 +329,7 @@
     "test:report": "npm run test:coverage && npm run test:check",
     "prestorybook": "npx kill-port 6006",
     "storybook": "storybook dev -p 6006",
+    "storybook:fix-resolver": "node scripts/install-oxc-resolver-wasm.mjs",
     "build-storybook": "node scripts/cleanup-storybook.cjs && storybook build",
     "seo:build": "node scripts/generate-seo-artifacts.mjs",
     "site-icons:build": "node scripts/generate-site-icons.mjs",

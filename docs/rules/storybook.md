@@ -111,3 +111,4 @@ intent: {
 |---|---|
 | MDX でストーリー名が一致しない | ストーリーのエクスポート名（PascalCase）と `<Canvas of={...}>` の参照名を一致させる |
 | `--wim-color-*` 以外の色変数を stories/ で使う | `--wim-color-*` プレフィックス付きトークンに統一 |
+| Windows で Storybook が起動しない（`Cannot find native binding` と `An Application Control policy has blocked this file`） | `npm run storybook:fix-resolver`。Storybook が使う `oxc-resolver` のネイティブのファイルを、スマート アプリ コントロールが止めている。エラーは「lock と node_modules を消して入れ直せ」と言うが、入れ直しても直らない。このコマンドは、lock にある版の WASM 版を integrity を確かめてから `node_modules` にだけ入れる（`package.json`・lock・OS の設定は触らない）。**`npm ci` / `npm install` を流すと消えるので、そのたびに流し直す**。CI（Linux）には関係が無い |
