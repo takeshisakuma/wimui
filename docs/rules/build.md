@@ -47,7 +47,7 @@ rolldown ベースの Vite 8 には、エントリモジュール直下の CSS i
 - 対象: `recharts`（charts）、`react-markdown` / `remark-gfm`（Markdown）、`diff`（CodeDiffViewer）、`qrcode.react`（QRCode）、`@xyflow/react`（NodeGraph / InteractiveGraph）、`@tiptap/*`（RichTextEditor・`wimui/form/rich-text-editor`）、`@fullcalendar/*`（ScheduleView）、`react-hook-form` / `@hookform/resolvers` / `zod`（`wimui/rhf`）
 - 該当コンポーネントを使う利用者は、対応するライブラリを自分でインストールする必要があります。
 - 新しい重量級ライブラリを追加する場合は、(1) `peerDependencies` + `peerDependenciesMeta`（optional）に追加、(2) リポジトリ内の開発用に `devDependencies` にも追加、(3) `vite.config.ts` の `rollupOptions.external` と UMD の `globals` に追加、の3点をセットで行ってください。
-- 例外: `music-metadata`（Audio のタグ読み取り）は動的 `import()` で遅延読み込みしているため、利用側ビルドでの未解決エラーを避けるべく通常の `dependencies` に置いています。
+- `music-metadata`（Audio のタグ読み取り）も optional の peer です。`showMetadata` を渡したときだけ、動的 `import()` で読み込みます。レンジは、実際に動かして確かめた major だけを並べます（`^11.0.0 || ^12.0.0`。12 は 2026-10-07 に、タグ付きの mp3 を Node と Chromium で読んで確かめた）。上限の無いレンジにすると、次の major が出たときに `npm run check:peer-majors` が落ちます。
 
 ### peer サポート行列（一点集中）
 
