@@ -19,7 +19,7 @@ AI エージェント向けの skill は `.agents/skills/` が実体です（Cod
 | hover / active・`!important`・`@layer`・ダークモードの作り方 | `docs/rules/css.md` |
 | 翻訳キーの追加・PT-BR 語彙・ロケール分割・キー追加の手順・ランタイムとドキュメントの境界（どの namespace に置くか・同梱されるか） | `docs/rules/i18n.md` |
 | MDX を書く・docs ページの構成・Docgen の差し込み | `docs/rules/mdx.md` |
-| ストーリーの階層・サイドバー・ストーリーと argTypes の書き方 | `docs/rules/storybook.md` |
+| ストーリーの階層・サイドバー・ストーリーと argTypes の書き方・Windows で Storybook が起動しないとき | `docs/rules/storybook.md` |
 | アイコンを足す（SVGR パイプラインの使い方を含む） | `docs/rules/icons.md` |
 | 複数部品を組む・部品の既定を決める | `docs/design/composition.md` |
 | 部品を新規に作る・ディレクトリとバレルの配置・命名（PascalCase / kebab-case）・SCSS の import 必須（無いとスタイルが一切当たらず、テストでも lint でも検出できない） | `docs/rules/new-component.md` |
