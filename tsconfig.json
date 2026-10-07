@@ -54,7 +54,8 @@
     "src/**/*.mdx",
     "sandbox/**/*.ts",
     "sandbox/**/*.tsx",
-    ".storybook/i18n.ts"
+    ".storybook/i18n.ts",
+    "vitest-jest-dom.d.ts"
   ],
   "exclude": ["node_modules", "dist", "storybook-static"]
 }
