@@ -61,6 +61,48 @@ describe("collectLockClosure", () => {
     expect(collectLockClosure(optional, "node_modules/@scope/wasm")).toEqual(["node_modules/@scope/wasm"]);
   });
 
+  it("peer の依存も、解決先（最上位の別の版）までたどる", () => {
+    const withPeer = {
+      "node_modules/runtime": { version: "1.0.0", peerDependencies: { core: "^1.0.0" } },
+      "node_modules/core": { version: "1.1.0", dependencies: { threads: "1.0.0" } },
+      "node_modules/threads": { version: "1.0.0" },
+      "node_modules/@scope/wasm": { version: "2.0.0", dependencies: { runtime: "^1.0.0", core: "2.0.0" } },
+      "node_modules/@scope/wasm/node_modules/core": { version: "2.0.0" },
+    };
+    expect(collectLockClosure(withPeer, "node_modules/@scope/wasm").sort()).toEqual([
+      "node_modules/@scope/wasm",
+      "node_modules/@scope/wasm/node_modules/core",
+      "node_modules/core",
+      "node_modules/runtime",
+      "node_modules/threads",
+    ]);
+  });
+
+  it("必須の peer が lock に無ければ落とし、optional の peer なら落とさない", () => {
+    const required = {
+      "node_modules/@scope/wasm": { version: "2.0.0", peerDependencies: { gone: "^1.0.0" } },
+    };
+    expect(() => collectLockClosure(required, "node_modules/@scope/wasm")).toThrow(/解決できない依存/);
+    const optionalPeer = {
+      "node_modules/@scope/wasm": {
+        version: "2.0.0",
+        peerDependencies: { gone: "^1.0.0" },
+        peerDependenciesMeta: { gone: { optional: true } },
+      },
+    };
+    expect(collectLockClosure(optionalPeer, "node_modules/@scope/wasm")).toEqual(["node_modules/@scope/wasm"]);
+  });
+
+  it("このリポジトリの lock では、WASM の実行に要る最上位の @emnapi/core まで拾う", () => {
+    const lockPath = path.join(path.dirname(fileURLToPath(import.meta.url)), "..", "package-lock.json");
+    const real = JSON.parse(fs.readFileSync(lockPath, "utf8")).packages;
+    const closure = collectLockClosure(real, WASM_KEY);
+    // `@napi-rs/wasm-runtime`（最上位）が peer で要るもの。入れ子の版（WASM 版の直下）とは別に要る
+    expect(closure).toContain("node_modules/@napi-rs/wasm-runtime");
+    expect(closure).toContain("node_modules/@emnapi/core");
+    expect(closure).toContain("node_modules/@emnapi/runtime");
+  });
+
   it("このリポジトリの lock から、WASM 版と取得元・integrity のそろった依存を拾える", () => {
     const lockPath = path.join(path.dirname(fileURLToPath(import.meta.url)), "..", "package-lock.json");
     const real = JSON.parse(fs.readFileSync(lockPath, "utf8")).packages;

@@ -54,10 +54,20 @@ export function collectLockClosure(packages, rootKey) {
     if (seen.has(key)) return;
     seen.add(key);
     const entry = packages[key];
-    for (const name of Object.keys({ ...entry.dependencies, ...entry.optionalDependencies })) {
+    // peer も追う。`@napi-rs/wasm-runtime` は `@emnapi/core` / `@emnapi/runtime` を peer で要り、
+    // lock では最上位の別の版に解決される。ここを落とすと、入れたあとに `Cannot find module '@emnapi/core'` になる
+    // （2026-10-07。前に手で入れた残りがある node_modules では通り、`npm ci` の直後でだけ落ちた）
+    const names = Object.keys({ ...entry.dependencies, ...entry.optionalDependencies, ...entry.peerDependencies });
+    for (const name of names) {
       const found = resolve(key, name);
-      if (found) visit(found);
-      else if (entry.dependencies?.[name]) missing.push(`${name}（${key} の依存）`);
+      if (found) {
+        visit(found);
+        continue;
+      }
+      const required =
+        Boolean(entry.dependencies?.[name]) ||
+        (Boolean(entry.peerDependencies?.[name]) && !entry.peerDependenciesMeta?.[name]?.optional);
+      if (required) missing.push(`${name}（${key} の依存）`);
     }
   };
   visit(rootKey);
