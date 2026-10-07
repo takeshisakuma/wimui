@@ -50,4 +50,79 @@ describe("Link", () => {
     render(<Link label="Sec" href="#" priority="secondary" />);
     expect(screen.getByRole("link")).toHaveClass(styles.secondary);
   });
+
+  // T323: Slottable を内側の span の中に置いていたので、子ではなくその span が根になり、
+  // href もクラスも span に付いていた（`<span href="/parent"><span><a href="/child">`）
+  describe("asChild", () => {
+    it("子の要素を根にして、Link のクラスと属性を子に付ける", () => {
+      const { container } = render(
+        <Link asChild id="docs-link" aria-describedby="hint" data-track="nav">
+          <a href="/docs" data-testid="child">
+            Docs
+          </a>
+        </Link>,
+      );
+      const child = screen.getByTestId("child");
+
+      expect(container.firstElementChild).toBe(child);
+      expect(child.tagName).toBe("A");
+      expect(child).toHaveClass("wim-link");
+      expect(child).toHaveAttribute("href", "/docs");
+      expect(child).toHaveAttribute("id", "docs-link");
+      expect(child).toHaveAttribute("aria-describedby", "hint");
+      expect(child).toHaveAttribute("data-track", "nav");
+      // リンクは 1 つだけ。href を持つ span も、入れ子の a も作らない
+      expect(screen.getAllByRole("link")).toHaveLength(1);
+      expect(container.querySelector("span[href]")).toBeNull();
+    });
+
+    it("子の中身を、asChild なしと同じ内側の作りで包む", () => {
+      const anatomy = (root: Element) =>
+        Array.from(root.querySelectorAll("*"))
+          .filter((el) => !el.closest("svg") || el.tagName.toLowerCase() === "svg")
+          .map((el) => `${el.tagName.toLowerCase()}:${el.parentElement === root ? "root" : el.parentElement?.tagName.toLowerCase()}`);
+
+      const plain = render(
+        <Link href="/docs" iconName="CircleIcon" external>
+          Docs
+        </Link>,
+      );
+      const plainAnatomy = anatomy(plain.container.firstElementChild as Element);
+      plain.unmount();
+
+      const slotted = render(
+        <Link asChild iconName="CircleIcon" external>
+          <a href="/docs">Docs</a>
+        </Link>,
+      );
+      const root = slotted.container.firstElementChild as Element;
+
+      expect(anatomy(root)).toEqual(plainAnatomy);
+      expect(root).toHaveAttribute("target", "_blank");
+      expect(root).toHaveTextContent("Docs");
+      // アイコンと外部リンクの印の 2 つが、子の中に描かれる
+      expect(root.querySelectorAll("svg")).toHaveLength(2);
+    });
+
+    it("label を渡すと、子の中身の代わりに label を描く", () => {
+      render(
+        <Link asChild label="From label">
+          <a href="/docs">From child</a>
+        </Link>,
+      );
+      const link = screen.getByRole("link");
+
+      expect(link).toHaveTextContent("From label");
+      expect(link).not.toHaveTextContent("From child");
+    });
+
+    it("href は、子に書いた値が残る", () => {
+      render(
+        <Link asChild href="/parent">
+          <a href="/child">Docs</a>
+        </Link>,
+      );
+      expect(screen.getByRole("link")).toHaveAttribute("href", "/child");
+    });
+  });
 });

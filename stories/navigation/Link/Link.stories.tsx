@@ -109,6 +109,25 @@ export const WithIconRight: Story = {
   },
 };
 
+// 子の要素（ルーターのリンクの代わりに素の a）が、リンクそのものになる。
+// アイコンと外部リンクの印が、子の中に描かれることも写す（T323）
+export const AsChild: Story = {
+  args: {
+    asChild: true,
+    iconName: "CircleIcon",
+    iconPosition: "left",
+    external: true,
+  },
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <Link {...args}>
+        <a href="https://storybook.js.org/">{t("story.link_as_child")}</a>
+      </Link>
+    );
+  },
+};
+
 export const Small: Story = {
   args: {
     size: "sm",

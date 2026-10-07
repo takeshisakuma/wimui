@@ -70,6 +70,27 @@ export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
     const Component = asChild ? Slot : "a";
     const resolvedTarget = external ? "_blank" : target;
 
+    const renderInner = (content: React.ReactNode) => (
+      <span className={classNames(localStyles.inner, stylesProp?.inner)}>
+        {iconName && iconPosition === "left" && (
+          <Icon name={iconName} size={size} />
+        )}
+        <span className={classNames(localStyles.label, stylesProp?.label)}>
+          {content}
+        </span>
+        {iconName && iconPosition === "right" && (
+          <Icon name={iconName} size={size} />
+        )}
+        {external && (
+          <Icon
+            component={ExternalLinkIcon}
+            size={size}
+            className={classNames(localStyles.externalIcon, stylesProp?.externalIcon)}
+          />
+        )}
+      </span>
+    );
+
     return (
       <Component
         ref={ref}
@@ -83,24 +104,14 @@ export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
         target={resolvedTarget}
         {...props}
       >
-        <span className={classNames(localStyles.inner, stylesProp?.inner)}>
-          {iconName && iconPosition === "left" && (
-            <Icon name={iconName} size={size} />
-          )}
-          <span className={classNames(localStyles.label, stylesProp?.label)}>
-            <Slottable>{label ?? children}</Slottable>
-          </span>
-          {iconName && iconPosition === "right" && (
-            <Icon name={iconName} size={size} />
-          )}
-          {external && (
-            <Icon
-              component={ExternalLinkIcon}
-              size={size}
-              className={classNames(localStyles.externalIcon, stylesProp?.externalIcon)}
-            />
-          )}
-        </span>
+        {asChild ? (
+          // Slot は直下の Slottable しか探さない。Slottable を内側の span の中に置くと、子ではなく
+          // その span が根になり、href もクラスも span に付く（T323）。`child` で子を名指しして、
+          // 子の中身を内側の span で包み直す ── asChild でも、中の作りは同じになる
+          <Slottable child={children}>{(slotted) => renderInner(label ?? slotted)}</Slottable>
+        ) : (
+          renderInner(label ?? children)
+        )}
       </Component>
     );
   },
