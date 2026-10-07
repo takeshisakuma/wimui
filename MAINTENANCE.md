@@ -26,7 +26,7 @@ minor / patch はグループ PR をマージしてよい（`AGENTS.md` の委�
 
 ### 2. ブロック中の依存を、版番号ではなく**ブロッカーの実体**で再確認する
 
-**最後に実体で確認した日: 2026-09-28**（下の 4 件すべて。どれも解けていない ── addon-mcp だけ一部が動いた、行の中を見ること）。**確認は `npm view <ブロッカー> peerDependencies` で、
+**最後に実体で確認した日: 2026-10-07**（`vitest` 5 が解けていたので上げた ── 下の「解除したもの」。`eslint` 10・`typescript` 7・FullCalendar 7・`marked` 18 は解けていない。addon-mcp の行は 2026-10-02 の実測のまま）。**確認は `npm view <ブロッカー> peerDependencies` で、
 宣言の実物を読む** ── 「まだ無理だろう」で飛ばすと、解けたことに気づかないまま何か月も止まる。
 実際この日、`i18next-http-backend` は**解けていた**（`storybook-react-i18next` の peer が `^2 || ^3` から
 `^2 || ^3 || ^4` へ動いていた。メモには「2026-07-06 再確認、変化なし」と書いたまま放置されていた）。
@@ -43,7 +43,8 @@ minor / patch はグループ PR をマージしてよい（`AGENTS.md` の委�
 | `@storybook/addon-mcp` | ライブ MCP サーバの instructions がハードコードで第三者拡張が不可（T23） | `dist/preset.js` の `instructions` getter が外部のメタデータを受けるようになったか。**2026-09-28（10.6.0）: 一部だけ動いた。** ライブのサーバ（`initializeMCPServer` の `get instructions()`）は今も `buildServerInstructions` の結果だけを返す＝閉じたまま。一方、新しく **`experimental_storybookAi` プリセット**ができ、addon-mcp の実装（`buildStorybookAiMetadata`）は前のプリセットの `existingMetadata.instructions` を `joinInstructions` で**つなぐ**。読むのは Storybook の CLI 側の MCP（`storybook/dist/bin/core.js` の `src/cli/ai/mcp/local-metadata.ts`）。**CLI 経由のエージェントには WIM の合成ルールを届けられる道ができた**が、名前が `experimental_` で、開発サーバの MCP には効かない。T23 を進めるなら、まずこの道で `.storybook/main.ts` から instructions を足して CLI の MCP に出るかを実測する。**2026-10-02 に実測した（10.6.0。10.6.1 と 11.0.0-alpha.1 は getter だけ確認）: 採らない。** この道で足した instructions が出るのは `storybook ai --help` だけ（`STORYBOOK_FEATURE_AI_CLI=1` が要り、非推奨と表示される）。`storybook skills` / `storybook tools` / 開発サーバの MCP には出ない。**次に見るのは、`storybook skills` か `get instructions()` が、外から足した instructions を読むようになったか** |
 | `eslint` 10 | `eslint-plugin-jsx-a11y` / `eslint-plugin-react` の peer が `^9` まで | 両プラグインの peer 宣言 |
 | `typescript` 7 | **`typescript-eslint` の peer が `>=4.8.4 <6.1.0`**（8.67.0 時点。TS 7 どころか 6.1 も範囲外） | `npm view typescript-eslint peerDependencies.typescript` の上限が動いたか |
-| `vitest` + `@vitest/*` 4.1.11 | **2 つの壁が重なっている。** ①**major（5）は `@storybook/addon-vitest@10.6.0` の peer が `^3 \|\| ^4` で止めている**（2026-09-18・#605/#606/#607 が 3 本とも install 段階で ERESOLVE。5 を受けるのは `11.0.0-alpha.0` のみ。2026-09-28 も latest 10.6.0 は `^3 || ^4` のままで、5 を受けるのは `next` の `11.0.0-alpha.1` だけ）。②**minor/patch は npm の解決の問題**で、`vitest@4.1.10` が `@vitest/browser-playwright@"4.1.10"` を、それが `@vitest/browser@"4.1.10"` を**厳密ピン**する輪になっていて増分解決では置き換えられない（2026-08-22 実測） | ①`npm view @storybook/addon-vitest peerDependencies` の `vitest` / `@vitest/browser` が `^5` を含んだか（含んだら `dependabot.yml` の major ignore を外し、**4 パッケージ + addon-vitest を 1 PR で**）②**Dependabot のグループ PR を待つ**。手で上げようとしないこと |
+| `marked` 18 | `@tiptap/markdown@3.31.4` が dependencies に `marked: ^17.0.1` を持つ。こちらだけ上げると marked が 2 つ入り、RichTextEditor が作った `Marked` のインスタンス（18）を 17 向けの実装へ渡す形になる（2026-10-07・#883 は型チェックが TS2322 で落ちた。major の ignore は #884） | `npm view @tiptap/markdown dependencies.marked` が 18 を含んだか（含んだら、marked の devDependencies と peer のレンジ、`@tiptap/markdown` を 1 PR で） |
+| `@fullcalendar/*` 7 | プラグイン 3 つ（daygrid / timegrid / interaction）の `latest` が 6.1.21 のまま（2026-10-07。core だけ 7.1.1）。#598 の経緯は `dependabot.yml` のコメント | 3 つのプラグインの `latest` が 7 になったか（なったら、5 パッケージを 1 PR で） |
 
 **解除したもの**:
 
@@ -51,6 +52,7 @@ minor / patch はグループ PR をマージしてよい（`AGENTS.md` の委�
 |---|---|---|
 | `@changesets/cli` 3 | **2026-09-20**（T247 で cli 3.0.2 + `changesets/action@v2` を 1 PR で入れ、0.30.0 を新経路で公開した） | **本番でしか検証できない経路なので、実物まで見た** ── ①Version PR が `version-script` を経由している（`public/llms.txt` が 0.29.10 → 0.30.0 に再生成された。v1 の入力名なら黙って無視されてこのファイルは差分に出ない）②npm の `latest` = 0.30.0（provenance の attestations つき）③タグ `v0.30.0` ④GitHub Release。**「publish 成功のままタグと Release だけ静かに消える」という非対称な壊れ方は起きなかった。** 判定は引き続き `check:release-workflow` が持つ（CLI と action の組を見張る）。 |
 | `i18next-http-backend` 4 | **2026-09-20**（3.0.6 → 4.0.2） | **ブロッカーの peer が動いていた** ── `storybook-react-i18next` の `i18next-http-backend` peer が `^2 || ^3` から `^2 || ^3 || ^4` へ（lock の 10.1.4）。v4 の破壊的変更は **Node 18+ と native `fetch` の要求**（`cross-fetch` を落とした）だけで、この repo は `engines.node >=22`・使用先は Storybook（ブラウザ）なので当たらない。**確かめたこと**: `npm ls` で `storybook-react-i18next@10.1.4` が 4.0.2 を deduped で受けること、`npm run build-storybook` が通ること（`.storybook/i18n.ts` が `Backend` を import している実体）、CI の VRT / a11y。使い方は `.use(Backend)` + `backend.loadPath` だけで、v4 で変わった面に触れていない。 |
+| `vitest` + `@vitest/*` 5 | **2026-10-07**（4.1.11 → 5.0.3。`@storybook/addon-vitest` は 10.6.1 のまま） | **ブロッカーの peer が動いていた** ── `@storybook/addon-vitest@10.6.1` の `vitest` / `@vitest/browser` が `^3.0.0 \|\| ^4.0.0 \|\| ^5.0.0` に、`@vitest/browser-playwright` が `^4.0.0 \|\| ^5.0.0` になった。**確かめたこと**: ①CI と同じコマンド（`npx vitest run --coverage --config vite.config.ts --reporter=verbose`）で 269 ファイル・3598 件が通る（main の vitest 4 のランと同じ件数。カバレッジは 91.67 / 86.04 / 91.22 / 93.74 で、main は 91.66 / 86.03 / 91.22 / 93.74）②`check:aschild`（vitest を直接呼ぶ検査）③`tsc` / `lint` / `build` / `size` / `check:api` ④Storybook のビルドと、それを使う VRT / a11y / E2E は、PR の CI で見た（手元の Windows では、`oxc-resolver` のネイティブのファイルが OS のアプリ制御に止められて、Storybook をビルドできなかった。main と同じ版で、vitest とは関係が無い）。**直したこと**: vitest 5 は `Assertion` が `jest.Matchers` を継がなくなり、jest-dom のマッチャーの型が 2805 か所で落ちた（実行は通る。落ちるのは型チェックだけ）。`vitest-jest-dom.d.ts` で、vitest 5 が広げる場所にした `Matchers<R, T>` に乗せた。`@testing-library/jest-dom`（7.0.1）が vitest 5 に追随したら、このファイルは消せる。 |
 
 > **`vitest` 系は「手で上げようとして時間を溶かす」型。** 2026-08-22 に 3 通り試して全部だめだった:
 >
@@ -62,6 +64,7 @@ minor / patch はグループ PR をマージしてよい（`AGENTS.md` の委�
 >
 > 残る道はロック全体の作り直し（`rm -rf node_modules package-lock.json`）だが、**patch 1 つのために全依存の解決をやり直す**ことになり、レビューできない差分が出る。
 > **Dependabot は自前の解決器でロックを作り直すので、グループ PR に任せる。**
+> **2026-10-07 に効いた 4 つ目のやり方（major を手で上げるとき）**: `package.json` の 4 つを書き換えたあと、**lock の `packages` から `node_modules/vitest` と `node_modules/@vitest/*` の項目だけを消し**、`node_modules` の同じフォルダも消してから `npx npm@10 install`。輪になっているのは lock に残った厳密ピンなので、輪の中だけを外せば解決し直せる。版が動いたのは 28 項目（vitest 系と、その依存の入れ替わり）で、Storybook が持つ `@vitest/expect@3.2.4` は同じ版のまま入り直した。`npm ci --dry-run` は npm 10 と 11 の両方で通した。
 > なお **storybook で効いた「ピンの根元から 1 本ずつ」は、ここでは効かない** ── あちらは一方向の peer（addon → storybook）だったが、こちらは**相互に厳密ピンした輪**である。
 >
 > **（2026-09-20 に解除済み。以下は「なぜ組でしか上げられないか」の記録で、`check:release-workflow` が見張っている内容そのもの。）** **`@changesets/cli` 3 は「上げると赤が出ずにリリースが壊れる」型だった。** `changesets/action@v1` は publish の標準出力を正規表現で読んで publish 済みを判定している（`src/run.ts`: `let newTagRegex = /New tag:/`）。cli 3.0.0 の dist にはこの文字列が無く、代わりに `Creating git tags...` を出す。したがって **npm publish は成功したまま `published: false` と判定され、`git.pushTag` と GitHub Release の作成が丸ごとスキップされる**。ワークフローは緑で終わる。実際この 2 つは動いており（`v0.23.16` の Release と タグが存在する）、止まっても誰も気付かない。
