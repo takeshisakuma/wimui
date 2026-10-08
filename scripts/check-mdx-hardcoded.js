@@ -199,7 +199,11 @@ mdxFiles.forEach(file => {
 // `stories/ai/VoiceVisualizer/VoiceVisualizer.mdx`（#734 で消えていた）。増えたものは無い
 // ── 42 にしたコミット（7cd1d2b9）を worktree に出して同じ検査に通し、失敗ファイルの
 // 一覧どうしを突き合わせた。
-const HARDCODED_FILE_BASELINE = 37;
+// 2026-10-08: 37 → 36。T325 で `ScheduleView.mdx` に 1 項目足したら、引数モードが使い分けの
+// 表の `ScheduleView (timeGridWeek / timeGridDay)` と `ScheduleView (dayGridMonth)` を落とした。
+// `initialView` の値なので、`<code>initialView="..."</code>` の形にした。増えたものは無い
+// （直す前の全量は 37 で baseline どおり、直したあとは 36）。
+const HARDCODED_FILE_BASELINE = 36;
 
 if (filesFromArgs.length > 0) {
   if (failures.length > 0) {

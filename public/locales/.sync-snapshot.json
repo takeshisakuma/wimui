@@ -4455,6 +4455,7 @@
       "scheduleview_best_height": "Provide an explicit height for the container (e.g., 600px); height=\"100%\" depends on the parent element's height.",
       "scheduleview_best_slots": "Limit business hours with slotMinTime/slotMaxTime to reduce scrolling.",
       "scheduleview_best_dialog": "Implement onDateSelect to integrate with a dialog for entering appointment details.",
+      "scheduleview_best_narrow": "On narrow screens such as phones, the week and month views leave each day too little room, and event times and titles are cut off. Use the day view (initialView=\"timeGridDay\") there, or show the events as a list instead.",
       "scheduleview_keyboard_controls": "Move focus between controls (prev/next/today)",
       "scheduleview_keyboard_exec": "Execute focused control",
       "scheduleview_keyboard_builtin": "FullCalendar's built-in navigation",
