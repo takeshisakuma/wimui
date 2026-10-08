@@ -2,7 +2,7 @@ import { Buffer } from "node:buffer";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
+import { describe, it, expect, vi, beforeAll, beforeEach, afterEach } from "vitest";
 import { renderHook, waitFor } from "@testing-library/react";
 import { useAudioMetadata } from "./useAudioMetadata";
 
@@ -15,6 +15,13 @@ import { useAudioMetadata } from "./useAudioMetadata";
  *
  * ここでは見本の mp3 の頭に ID3v2.3 のタグを付け、モックなしでフックに読ませる。
  * Node で流すので、通るのは `music-metadata` の Node 用の入口。ブラウザ用の入口は別のファイルで、ここでは通らない。
+ *
+ * 待ち方の約束（2026-10-08・CI-15。全量の実行で 1 回落ちた）:
+ * - フックは `import("music-metadata")` が済んでから `fetch` を呼ぶ。最初の読み込みが `waitFor` の既定の 1 秒より
+ *   遅れると、テストが落ちたあとで読み込みが終わり、差し替えを外した本物の `fetch` が呼ばれる。
+ *   そのため `beforeAll` で先に読み込んでおく。
+ * - トラックは `renderHook` の外で作る。中で作ると描画のたびに別のオブジェクトになり、フックが読み直しを繰り返す
+ *   （`Audio` は `useMemo` したプレイリストから渡すので、実物では起きない）。
  */
 
 const sampleMp3 = fs.readFileSync(
@@ -74,8 +81,15 @@ const serve = (bytes: Buffer) => {
   );
 };
 
+/** 読み込みを先に済ませていても、全量の実行では遅れることがあるので、既定の 1 秒より長く待つ。 */
+const WAIT = { timeout: 10_000 };
+
 describe("useAudioMetadata（本物の music-metadata）", () => {
   let warn: ReturnType<typeof vi.spyOn>;
+
+  beforeAll(async () => {
+    await import("music-metadata");
+  }, 60_000);
 
   beforeEach(() => {
     warn = vi.spyOn(console, "warn").mockImplementation(() => {});
@@ -97,11 +111,10 @@ describe("useAudioMetadata（本物の music-metadata）", () => {
       ]),
     );
 
-    const { result } = renderHook(() =>
-      useAudioMetadata({ currentTrack: { src: "tagged.mp3" }, showMetadata: true }),
-    );
+    const track = { src: "tagged.mp3" };
+    const { result } = renderHook(() => useAudioMetadata({ currentTrack: track, showMetadata: true }));
 
-    await waitFor(() => expect(result.current.metaTitle).toBe("Sample Title"));
+    await waitFor(() => expect(result.current.metaTitle).toBe("Sample Title"), WAIT);
     expect(result.current.metaArtist).toBe("Sample Artist");
     expect(result.current.metaCover).toBe(`data:image/png;base64,${FRONT_COVER_PNG}`);
     expect(warn).not.toHaveBeenCalled();
@@ -110,11 +123,10 @@ describe("useAudioMetadata（本物の music-metadata）", () => {
   it("画像の無いタグでは、ジャケットを空のままにする", async () => {
     serve(withId3([textFrame("TIT2", "No Cover Title"), textFrame("TPE1", "No Cover Artist")]));
 
-    const { result } = renderHook(() =>
-      useAudioMetadata({ currentTrack: { src: "no-cover.mp3" }, showMetadata: true }),
-    );
+    const track = { src: "no-cover.mp3" };
+    const { result } = renderHook(() => useAudioMetadata({ currentTrack: track, showMetadata: true }));
 
-    await waitFor(() => expect(result.current.metaTitle).toBe("No Cover Title"));
+    await waitFor(() => expect(result.current.metaTitle).toBe("No Cover Title"), WAIT);
     expect(result.current.metaArtist).toBe("No Cover Artist");
     expect(result.current.metaCover).toBe("");
     expect(warn).not.toHaveBeenCalled();
@@ -127,17 +139,17 @@ describe("useAudioMetadata（本物の music-metadata）", () => {
     );
     vi.stubGlobal("fetch", fetchMock);
 
-    const { result } = renderHook(() =>
-      useAudioMetadata({ currentTrack: { src: "untagged.mp3" }, showMetadata: true }),
-    );
+    const track = { src: "untagged.mp3" };
+    const { result } = renderHook(() => useAudioMetadata({ currentTrack: track, showMetadata: true }));
 
     // 読み終わると、フックは自分で接続を中断する。その合図まで待ってから、空のままであることを見る
     const signal = await vi.waitFor(() => {
       const init = (fetchMock.mock.calls[0] as unknown as [string, RequestInit] | undefined)?.[1];
       expect(init?.signal?.aborted).toBe(true);
       return init?.signal;
-    });
+    }, WAIT);
     expect(signal?.aborted).toBe(true);
+    expect(fetchMock).toHaveBeenCalledTimes(1);
     expect(result.current.metaTitle).toBe("");
     expect(result.current.metaArtist).toBe("");
     expect(result.current.metaCover).toBe("");
