@@ -105,8 +105,20 @@
     overflow-x: auto;
 
     &.collapsed {
-      // line-height ≈ 1.6 × font-size (normal) — approximated with token
-      max-height: calc(var(--_max-lines, 10) * 1.6em + var(--wim-spacing-xl));
+      // 行の高さは `.pre` と同じ式で出す（文字の大きさ × 行の高さ）。足すのは `.pre` の上の余白だけ。
+      // 以前は `1.6em` で、この `em` は `.body` の文字の大きさ（16px）で解決されていた。コードは
+      // 14.224px なので 1 行あたり 2.8px 多く、`maxLines={10}` が 11 行と 12 行目の 4 割を見せていた（T324）。
+      // `.pre` の `font-size` / `line-height` / `padding` を変えたら、ここも揃えること
+      // （`vrt/codeblock.e2e.spec.ts` が、下端が最後の行の下の空きに来ることを見ている）。
+      // 最後に 1px 引く。行の境目は端数（10 行で 235.584px）で、箱の高さは整数に丸めて数えられる。
+      // 切り上がる行数（5 行・10 行）では、次の行が 0.4px 見えている扱いになり、axe の `color-contrast` が
+      // 「一部が隠れていて判定できない」を返した（実測）。1px 内側なら、丸めても境目を越えない。
+      // 引くぶんは最後の行の下の空き（行の高さと字面の差）に収まるので、文字は欠けない。
+
+      max-height: calc(
+        var(--_max-lines, 10) * var(--wim-font-size-sm) * var(--wim-line-height-loose) + var(--wim-spacing-md) - 1px
+      ); /* Exception: Browser Rendering Fixes — 行の境目の端数が切り上がって、次の行がはみ出すのを防ぐ */
+
       overflow-y: hidden;
     }
   }
