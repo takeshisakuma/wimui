@@ -6,6 +6,10 @@ import { waitForStoryReady } from "./story-ready";
 //   PRESSED_GLOBALS="theme:dark;locale:en"                    dark
 //   PRESSED_GLOBALS="theme:light;locale:en;density:compact"   compact
 //   PRESSED_ALL=1                                             全ストーリー（既定のストーリーに出ない操作要素）
+// 揺れを手元で再現するとき（CI-16 はこの 2 つで捕まえた。CI の遅い runner の代わりに CPU を絞り、1 部品だけを
+// `--repeat-each` で繰り返す。どの組に入るかは部品によるので、`-g` で組を絞らない）:
+//   PRESSED_CPU=6                                             CPU を 6 倍遅くする
+//   PRESSED_ONLY=speeddial                                    id にこの文字列を含むストーリーだけ
 const GLOBALS = process.env.PRESSED_GLOBALS ?? "theme:light;locale:en";
 const ALL_STORIES = !!process.env.PRESSED_ALL;
 const url = (id: string) => `/iframe.html?id=${id}&viewMode=story&globals=${GLOBALS}`;
@@ -77,6 +81,39 @@ const SETUP = `
     if (el.previousElementSibling) nodes.push(el.previousElementSibling);
     if (el.nextElementSibling) nodes.push(el.nextElementSibling);
     return nodes.map((n) => read(n) + "~" + read(n, "::before") + "~" + read(n, "::after")).join("\\n");
+  };
+  // 押したままの姿と、**その読みの時点で** :active が付いているかを、1 回で読む（CI-16）。
+  // 別々に読むと、あいだで :active が外れた回を「押せていたのに変わらない」と数える。実際に起きた形:
+  // SpeedDial はホバーで開き、開くと引き金のアイコンを差し替える。開く再描画より先に押下が届くと、
+  // 押した先（古いアイコンの中の要素）が DOM から外れ、Chrome は :active をいったん落として、次の
+  // 当たり判定で付け直す（実測で 30 ミリ秒ほど。CPU を 6 倍遅くして 400 回中 10 回、この窓で読んだ）。
+  // 外れていたら、付き直すのを数フレーム待ってから読む。
+  //
+  // 写しの前に、描き直しが止まるのを待つ。ホバーで開く部品は、載せた・外した・載せ直したのたびに
+  // 遅れて描き直す。待たないと、押した姿は「開いた姿」、離した姿は「まだ閉じた姿」を読み、押下の
+  // 見た目が無くても「変わる」と数える（引き金の押下を故意に消して、80 回中 1 回が通った）。
+  window.__pressedQuiet = async () => {
+    let changed = true;
+    const seen = new MutationObserver(() => { changed = true; });
+    seen.observe(document.getElementById("storybook-root"), { subtree: true, childList: true, attributes: true, characterData: true });
+    const frame = () => new Promise((r) => requestAnimationFrame(() => setTimeout(r, 0)));
+    for (let i = 0, still = 0; i < 30 && still < 2; i++) {
+      changed = false;
+      await frame();
+      still = changed ? 0 : still + 1;
+    }
+    seen.disconnect();
+  };
+  window.__pressedReleased = async (selector, index) => {
+    await window.__pressedQuiet();
+    return window.__pressedSnapshot(selector, index);
+  };
+  window.__pressedHeld = async (selector, index) => {
+    await window.__pressedQuiet();
+    const el = document.querySelectorAll("#storybook-root " + selector)[index];
+    for (let i = 0; el && i < 6 && !el.matches(":active"); i++) await new Promise((r) => requestAnimationFrame(() => r()));
+    const now = document.querySelectorAll("#storybook-root " + selector)[index];
+    return { landed: !!now && now.matches(":active"), snapshot: window.__pressedSnapshot(selector, index) };
   };
   // 押して縮む要素（scale が付いた要素）のうち、縮みがトランジションに乗っていないものを数える。
   // 乗っていないと、大きさが瞬時に変わる（Carousel の前へ・次へで目立った。2026-10-06 ユーザーの指摘）。
@@ -190,15 +227,6 @@ const measureStory = async (page: Page, id: string, seen?: Set<string>): Promise
     }
     // 前の要素の操作（pointerdown で開く・フォーカスが移る）を持ち越さない
     if (n > 0) await prepare(page, id);
-    const snapshot = () =>
-      page.evaluate(
-        ([sel, index]) =>
-          (window as unknown as { __pressedSnapshot: (s: string, i: number) => string | null }).__pressedSnapshot(
-            sel as string,
-            index as number,
-          ),
-        [INTERACTIVE, target.index] as const,
-      );
     const point = await page.evaluate(
       ([sel, index]) =>
         (
@@ -216,11 +244,16 @@ const measureStory = async (page: Page, id: string, seen?: Set<string>): Promise
     await page.mouse.down();
     // 押した点に、もうその要素が居ないことがある（xyflow は表示のあとでノードの位置を合わせ直す）。
     // :active が付いていなければ、押せていなかった可能性がある。
-    const landed = await page.evaluate(
-      ([sel, index]) => !!document.querySelectorAll("#storybook-root " + sel)[index as number]?.matches(":active"),
+    // :active の確認と写しは、同じ読みで取る（別々に読むと、あいだで外れた回を取り違える。CI-16）
+    const { landed, snapshot: pressed } = await page.evaluate(
+      ([sel, index]) =>
+        (
+          window as unknown as {
+            __pressedHeld: (s: string, i: number) => Promise<{ landed: boolean; snapshot: string | null }>;
+          }
+        ).__pressedHeld(sel as string, index as number),
       [INTERACTIVE, target.index] as const,
     );
-    const pressed = await snapshot();
     const snaps =
       (await page.evaluate(
         ([sel, index]) =>
@@ -234,7 +267,14 @@ const measureStory = async (page: Page, id: string, seen?: Set<string>): Promise
     await page.mouse.move(1, 1);
     await page.mouse.up();
     await page.mouse.move(point.x, point.y);
-    const released = await snapshot();
+    const released = await page.evaluate(
+      ([sel, index]) =>
+        (window as unknown as { __pressedReleased: (s: string, i: number) => Promise<string | null> }).__pressedReleased(
+          sel as string,
+          index as number,
+        ),
+      [INTERACTIVE, target.index] as const,
+    );
     if (pressed !== null && pressed !== released) {
       findings.push({ ...base, state: "changes", snaps });
     } else if (!landed) {
@@ -275,8 +315,13 @@ for (let shard = 0; shard < SHARDS; shard++) {
     // 一覧が読めていること（0 本だと、何も測らずに通る）
     expect(stories.length).toBeGreaterThan(150);
 
+    if (process.env.PRESSED_CPU) {
+      const client = await page.context().newCDPSession(page);
+      await client.send("Emulation.setCPUThrottlingRate", { rate: Number(process.env.PRESSED_CPU) });
+    }
     const findings: Finding[] = [];
     for (const id of stories) {
+      if (process.env.PRESSED_ONLY && !id.includes(process.env.PRESSED_ONLY)) continue;
       // 部品で割り振る（全ストーリーを開くとき、同じ部品のストーリーを同じ組で順に見る）
       const component = id.split("--")[0];
       if (components.indexOf(component) % SHARDS !== shard) continue;
