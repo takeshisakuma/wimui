@@ -1,28 +1,39 @@
 import { useState } from "react";
+import type { ReactNode } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
+import { Sparkline } from "@/components/charts/Sparkline/Sparkline";
 import { Dashboard } from "@/components/layout/Dashboard/Dashboard";
 import type { DashboardWidget, DashboardProps } from "@/components/layout/Dashboard/Dashboard";
 
 // Static content components defined at module level to avoid shared React Element instances between stories
-const RevenueContent = () => (
-  <div style={{ fontSize: "var(--wim-font-size-2xl)", fontWeight: "var(--wim-font-weight-bold)", color: "var(--wim-color-text-success)" }}>
-    $12,400
+// The figures carry no colour: colour says good or bad, not which metric it is (docs/design/composition.md).
+const KpiValue = ({ children }: { children: ReactNode }) => (
+  <div style={{ fontSize: "var(--wim-font-size-2xl)", fontWeight: "var(--wim-font-weight-bold)" }}>
+    {children}
   </div>
 );
 
-const UsersContent = () => (
-  <div style={{ fontSize: "var(--wim-font-size-2xl)", fontWeight: "var(--wim-font-weight-bold)", color: "var(--wim-color-text-accent)" }}>
-    2,841
-  </div>
-);
+const RevenueContent = () => <KpiValue>$12,400</KpiValue>;
 
-const TasksContent = () => (
-  <div style={{ fontSize: "var(--wim-font-size-2xl)", fontWeight: "var(--wim-font-weight-bold)", color: "var(--wim-color-text-warning)" }}>
-    17
-  </div>
-);
+const UsersContent = () => <KpiValue>2,841</KpiValue>;
+
+const TasksContent = () => <KpiValue>17</KpiValue>;
+
+// A real chart, not a labelled box standing in for one.
+const SessionsChart = () => {
+  const { t } = useTranslation(ALL_NAMESPACES);
+  return (
+    <Sparkline
+      data={[412, 388, 455, 501, 476, 298, 327]}
+      type="area"
+      width="100%"
+      height={80}
+      ariaLabel={t("story.dashboard_chart_caption")}
+    />
+  );
+};
 
 const meta: Meta<typeof Dashboard> = {
   title: "Components/Layout/Dashboard",
@@ -51,21 +62,6 @@ type Story = StoryObj<typeof Dashboard>;
 const DefaultDashboard = (args: DashboardProps) => {
   const { t } = useTranslation(ALL_NAMESPACES);
 
-  const chartContent = (
-    <div style={{
-      height: "80px",
-      background: "linear-gradient(to right, var(--wim-color-primary-subtle), var(--wim-color-primary-muted))",
-      borderRadius: "var(--wim-radius-component)",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      color: "var(--wim-color-text-secondary)",
-      fontSize: "var(--wim-font-size-sm)",
-    }}>
-      {t("story.dashboard_chart_caption")}
-    </div>
-  );
-
   const activityContent = (
     <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: "var(--wim-spacing-xs)" }}>
       {[
@@ -84,7 +80,7 @@ const DefaultDashboard = (args: DashboardProps) => {
     { id: "revenue", title: t("story.dashboard_widget_revenue"), description: t("story.dashboard_widget_revenue_desc"), span: 1, content: <RevenueContent /> },
     { id: "users", title: t("story.dashboard_widget_users"), description: t("story.dashboard_widget_users_desc"), span: 1, content: <UsersContent /> },
     { id: "tasks", title: t("story.dashboard_widget_tasks"), span: 1, content: <TasksContent /> },
-    { id: "chart", title: t("story.dashboard_widget_chart"), description: t("story.dashboard_widget_chart_desc"), span: 2, content: chartContent },
+    { id: "chart", title: t("story.dashboard_widget_chart"), description: t("story.dashboard_widget_chart_desc"), span: 2, content: <SessionsChart /> },
     { id: "activity", title: t("story.dashboard_widget_activity"), span: 1, content: activityContent },
   ];
 
@@ -105,21 +101,6 @@ const EditableDashboard = (args: DashboardProps) => {
   const [widgetIds, setWidgetIds] = useState<string[]>(["revenue", "users", "tasks", "chart", "activity"]);
   const [extraWidgets, setExtraWidgets] = useState<Array<{ id: string }>>([]);
 
-  const chartContent = (
-    <div style={{
-      height: "80px",
-      background: "linear-gradient(to right, var(--wim-color-primary-subtle), var(--wim-color-primary-muted))",
-      borderRadius: "var(--wim-radius-component)",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      color: "var(--wim-color-text-secondary)",
-      fontSize: "var(--wim-font-size-sm)",
-    }}>
-      {t("story.dashboard_chart_caption")}
-    </div>
-  );
-
   const activityContent = (
     <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: "var(--wim-spacing-xs)" }}>
       {[
@@ -138,7 +119,7 @@ const EditableDashboard = (args: DashboardProps) => {
     revenue: { id: "revenue", title: t("story.dashboard_widget_revenue"), description: t("story.dashboard_widget_revenue_desc"), span: 1, content: <RevenueContent /> },
     users: { id: "users", title: t("story.dashboard_widget_users"), description: t("story.dashboard_widget_users_desc"), span: 1, content: <UsersContent /> },
     tasks: { id: "tasks", title: t("story.dashboard_widget_tasks"), span: 1, content: <TasksContent /> },
-    chart: { id: "chart", title: t("story.dashboard_widget_chart"), description: t("story.dashboard_widget_chart_desc"), span: 2, content: chartContent },
+    chart: { id: "chart", title: t("story.dashboard_widget_chart"), description: t("story.dashboard_widget_chart_desc"), span: 2, content: <SessionsChart /> },
     activity: { id: "activity", title: t("story.dashboard_widget_activity"), span: 1, content: activityContent },
   };
 
@@ -191,26 +172,11 @@ export const Editable: Story = {
 const TwoColumnsDashboard = (args: DashboardProps) => {
   const { t } = useTranslation(ALL_NAMESPACES);
 
-  const chartContent = (
-    <div style={{
-      height: "80px",
-      background: "linear-gradient(to right, var(--wim-color-primary-subtle), var(--wim-color-primary-muted))",
-      borderRadius: "var(--wim-radius-component)",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      color: "var(--wim-color-text-secondary)",
-      fontSize: "var(--wim-font-size-sm)",
-    }}>
-      {t("story.dashboard_chart_caption")}
-    </div>
-  );
-
   const widgets: DashboardWidget[] = [
     { id: "revenue", title: t("story.dashboard_widget_revenue"), description: t("story.dashboard_widget_revenue_desc"), span: 1, content: <RevenueContent /> },
     { id: "users", title: t("story.dashboard_widget_users"), description: t("story.dashboard_widget_users_desc"), span: 1, content: <UsersContent /> },
     { id: "tasks", title: t("story.dashboard_widget_tasks"), span: 1, content: <TasksContent /> },
-    { id: "chart", title: t("story.dashboard_widget_chart"), description: t("story.dashboard_widget_chart_desc"), span: 2, content: chartContent },
+    { id: "chart", title: t("story.dashboard_widget_chart"), description: t("story.dashboard_widget_chart_desc"), span: 2, content: <SessionsChart /> },
   ];
 
   return <Dashboard {...args} widgets={widgets} label={t("story.dashboard_story_summary")} />;
