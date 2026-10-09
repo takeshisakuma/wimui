@@ -24,6 +24,23 @@ describe("Leaderboard", () => {
     expect(screen.getByText("4")).toBeInTheDocument();
   });
 
+  // メダル色は opt-in（T326）。既定では 1〜3 位も 4 位以下と同じ丸になる。
+  it("leaves the top three unpainted by default", () => {
+    render(<Leaderboard entries={mockEntries} />);
+    for (const item of screen.getAllByRole("listitem")) {
+      expect(item.className).not.toMatch(/rank[123]/);
+    }
+  });
+
+  it("paints only the top three when showMedals is set", () => {
+    render(<Leaderboard entries={mockEntries} showMedals />);
+    const items = screen.getAllByRole("listitem");
+    expect(items[0].className).toContain("rank1");
+    expect(items[1].className).toContain("rank2");
+    expect(items[2].className).toContain("rank3");
+    expect(items[3].className).not.toMatch(/rank\d/);
+  });
+
   it("renders as an ordered list", () => {
     render(<Leaderboard entries={mockEntries} />);
     expect(screen.getByRole("list")).toBeInTheDocument();

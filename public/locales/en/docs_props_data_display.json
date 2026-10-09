@@ -188,6 +188,7 @@
     "kanban_prop_onCardMove": "Callback when a card is moved (legacy / alternative name).",
     "kanban_prop_onMove": "Callback when a card is moved.",
     "leaderboard_prop_entries": "List of ranking entries",
+    "leaderboard_prop_showMedals": "Whether to paint the rank badges of the top three in gold, silver and bronze. Off by default: the number and the order already say the rank.",
     "leaderboard_prop_size": "Size",
     "leaderboard_prop_unit": "Label for the score unit",
     "listItem_prop_asChild": "Whether to render as a child element.",

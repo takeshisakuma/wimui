@@ -349,7 +349,7 @@ export function BillingOverview() {
 - **JsonDiffViewer** — Compares two JSON values as a formatted side-by-side or unified diff, built on top of CodeDiffViewer.
 - **JsonViewer** — Recursive tree viewer and editor for JSON data.
 - **Kanban** — Drag-and-drop board for visualizing workflow stages
-- **Leaderboard** — Display a ranked list of entries with scores and medal highlights for the top three positions.
+- **Leaderboard** — Display a ranked list of entries with scores. Medal colors for the top three are opt-in.
 - **List** — Structurally organized items in bullet points or numbered formats
 - **Markdown** — A component for safely rendering text in Markdown format.
 - **Marquee** — Scrolling text animation (aka Ticker)

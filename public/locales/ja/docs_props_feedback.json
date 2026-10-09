@@ -72,7 +72,7 @@
     "result_prop_description": "説明",
     "result_prop_extra": "操作エリア",
     "result_prop_icon": "カスタムアイコン",
-    "result_prop_intent": "意味的インテント — アイコンと色を決定します。\n@default \"default\"",
+    "result_prop_intent": "意味的インテント — アイコンと色を決定します。`default` は、`icon` を渡さない限りアイコンを描きません。\n@default \"default\"",
     "result_prop_status": "HTTP エラーステータス — ステータス固有の CSS クラスを追加し、ニュートラルなアイコンを表示します。\nエラーページ（404、403、500）に使用します。",
     "result_prop_title": "タイトル",
     "scrollProgress_prop_target": "スクロール位置を検知する対象の要素。デフォルトは `window`。",

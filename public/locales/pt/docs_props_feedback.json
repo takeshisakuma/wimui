@@ -72,7 +72,7 @@
     "result_prop_description": "A descrição",
     "result_prop_extra": "Área de operação",
     "result_prop_icon": "Ícone personalizado",
-    "result_prop_intent": "Intenção semântica — determina o ícone e a cor.\n@default \"default\"",
+    "result_prop_intent": "Intenção semântica — determina o ícone e a cor. `default` não desenha ícone, a menos que `icon` seja passado.\n@default \"default\"",
     "result_prop_status": "Status de erro HTTP — adiciona uma classe CSS específica do status e exibe um ícone neutro.\nUse para páginas de erro (404, 403, 500).",
     "result_prop_title": "O título",
     "scrollProgress_prop_target": "Elemento cuja posição de rolagem é monitorada. O padrão é `window`.",

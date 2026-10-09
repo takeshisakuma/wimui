@@ -135,7 +135,7 @@
     "interactiveArea_desc": "枠線やホバー状態を持つ、一貫したインタラクティブエリアの基盤コンポーネント。",
     "jsonDiffViewer_desc": "2つの JSON 値を整形し、Side-by-Side または Unified 形式の差分として比較します。CodeDiffViewer をベースに構築されています。",
     "keyboardShortcuts_desc": "キーボードショートカットの一覧を構造化して表示する",
-    "leaderboard_desc": "スコアと上位3件へのメダルハイライト付きランキングを表示するコンポーネント。",
+    "leaderboard_desc": "スコア付きのランキングを表示するコンポーネント。上位3件のメダル色は、指定したときだけ付きます。",
     "levels_title": "強度レベルの定義",
     "nodeGraph_desc": "ノード間の複雑なネットワークや関係性を視覚化します。",
     "overlay_base_desc": "Dialog, Drawer, BottomSheet に対して、ポータルによるレンダリング、バックドロップ、フォーカス管理を標準化します。",

@@ -135,7 +135,7 @@
     "interactiveArea_desc": "Componente base para áreas interativas consistentes com bordas e estados.",
     "jsonDiffViewer_desc": "Compara dois valores JSON como um diff formatado lado a lado ou unificado, construído sobre o CodeDiffViewer.",
     "keyboardShortcuts_desc": "Exibir uma lista estruturada de atalhos de teclado",
-    "leaderboard_desc": "Exibe uma lista classificada de entradas com pontuações e destaques de medalhas para as três primeiras posições.",
+    "leaderboard_desc": "Exibe uma lista classificada de entradas com pontuações. As cores de medalha para as três primeiras posições são opcionais.",
     "levels_title": "Definições de Nível",
     "nodeGraph_desc": "Visualiza redes complexas e relações entre nós.",
     "overlay_base_desc": "Padroniza a renderização baseada em portal, o plano de fundo e o gerenciamento de foco para Diálogos, Gavetas e BottomSheets.",

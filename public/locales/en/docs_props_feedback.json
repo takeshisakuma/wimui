@@ -72,7 +72,7 @@
     "result_prop_description": "The description",
     "result_prop_extra": "Operating area",
     "result_prop_icon": "Custom icon",
-    "result_prop_intent": "Semantic intent — determines the icon and color.\n@default \"default\"",
+    "result_prop_intent": "Semantic intent — determines the icon and color. `default` draws no icon unless `icon` is passed.\n@default \"default\"",
     "result_prop_status": "HTTP error status — adds a status-specific CSS class and shows a neutral icon.\r\nUse for error pages (404, 403, 500).",
     "result_prop_title": "The title",
     "scrollProgress_prop_target": "Element whose scroll position is tracked. Defaults to `window`.",

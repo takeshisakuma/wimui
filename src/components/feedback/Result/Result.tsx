@@ -4,7 +4,7 @@ import { Icon } from "../../media/Icon/Icon";
 import { InteractiveArea } from "../../layout/InteractiveArea/InteractiveArea";
 import type { WimIntent } from "../../../types/tokens";
 import styles from "./result.module.scss";
-import { AlertCircleIcon, CircleIcon, CheckIcon, InfoCircleIcon } from "@/icon";
+import { AlertCircleIcon, CheckIcon, InfoCircleIcon } from "@/icon";
 
 export type ResultIntent = Extract<
   WimIntent,
@@ -15,7 +15,7 @@ export type ResultHttpStatus = "404" | "403" | "500";
 
 export type ResultProps = {
   /**
-   * Semantic intent — determines the icon and color.
+   * Semantic intent — determines the icon and color. `default` draws no icon unless `icon` is passed.
    * @default "default"
    */
   intent?: ResultIntent;
@@ -81,7 +81,7 @@ const DefaultIcon = ({
       return <Icon component={InfoCircleIcon} color="info" className={className} />;
     case "default":
     default:
-      return <Icon component={CircleIcon} color="text-tertiary" className={className} />;
+      return null;
   }
 };
 
@@ -96,9 +96,18 @@ export const Result = ({
   className,
   children,
 }: ResultProps) => {
+  // `default` は、渡された `icon` が無ければアイコンの枠ごと描かない（T326）。
+  // 以前は意味を持たない灰色の円を描いていた。要素を渡すと、中身が null でも
+  // InteractiveArea が空の枠を描くので、ここで undefined にする。
+  const hasDefaultIcon = Boolean(status) || intent !== "default";
   return (
     <InteractiveArea
-      icon={icon || <DefaultIcon intent={intent} status={status} className={styles.icon} />}
+      icon={
+        icon ||
+        (hasDefaultIcon ? (
+          <DefaultIcon intent={intent} status={status} className={styles.icon} />
+        ) : undefined)
+      }
       title={title ?? undefined}
       description={description ?? undefined}
       actions={extra}
