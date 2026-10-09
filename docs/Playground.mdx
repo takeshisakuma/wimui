@@ -24,8 +24,11 @@ import { Playground } from "../sandbox/Playground";
     max-width: none;
   }
 
+  /* Block padding only: .sbdocs-wrapper already supplies the 20px side gutter.
+     Adding inline padding here stacked on it and made this page narrower than
+     every other MDX page on small screens. */
   .playground-doc {
-    padding: var(--wim-spacing-4xl);
+    padding-block: var(--wim-spacing-4xl);
     max-width: var(--wim-breakpoint-xl);
     margin: 0 auto;
     font-family: var(--wim-font-family-default, sans-serif);
