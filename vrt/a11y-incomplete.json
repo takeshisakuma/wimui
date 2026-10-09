@@ -377,30 +377,6 @@
         "frame-tested"
       ]
     },
-    "components-layout-dashboard--default": {
-      "light": [
-        "color-contrast"
-      ],
-      "dark": [
-        "color-contrast"
-      ]
-    },
-    "components-layout-dashboard--editable": {
-      "light": [
-        "color-contrast"
-      ],
-      "dark": [
-        "color-contrast"
-      ]
-    },
-    "components-layout-dashboard--two-columns": {
-      "light": [
-        "color-contrast"
-      ],
-      "dark": [
-        "color-contrast"
-      ]
-    },
     "components-loading-states-loadingoverlay--backdrop-variants": {
       "light": [
         "color-contrast"
