@@ -26,7 +26,7 @@ minor / patch はグループ PR をマージしてよい（`AGENTS.md` の委�
 
 ### 2. ブロック中の依存を、版番号ではなく**ブロッカーの実体**で再確認する
 
-**最後に実体で確認した日: 2026-10-07**（`vitest` 5 が解けていたので上げた ── 下の「解除したもの」。`eslint` 10・`typescript` 7・FullCalendar 7・`marked` 18 は解けていない。addon-mcp の行は 2026-10-02 の実測のまま）。**確認は `npm view <ブロッカー> peerDependencies` で、
+**最後に実体で確認した日: 2026-10-09**（2026-10-09 は宣言を読み直しただけで、どれも解けていない。`eslint` 10 は、peer を外して実際に流した ── 下の注記。以下は 2026-10-07 の記録: `vitest` 5 が解けていたので上げた ── 下の「解除したもの」。`eslint` 10・`typescript` 7・FullCalendar 7・`marked` 18 は解けていない。addon-mcp の行は 2026-10-02 の実測のまま）。**確認は `npm view <ブロッカー> peerDependencies` で、
 宣言の実物を読む** ── 「まだ無理だろう」で飛ばすと、解けたことに気づかないまま何か月も止まる。
 実際この日、`i18next-http-backend` は**解けていた**（`storybook-react-i18next` の peer が `^2 || ^3` から
 `^2 || ^3 || ^4` へ動いていた。メモには「2026-07-06 再確認、変化なし」と書いたまま放置されていた）。
@@ -41,7 +41,7 @@ minor / patch はグループ PR をマージしてよい（`AGENTS.md` の委�
 | 依存 | 止めている理由 | 再開の判定材料 |
 |---|---|---|
 | `@storybook/addon-mcp` | ライブ MCP サーバの instructions がハードコードで第三者拡張が不可（T23） | `dist/preset.js` の `instructions` getter が外部のメタデータを受けるようになったか。**2026-09-28（10.6.0）: 一部だけ動いた。** ライブのサーバ（`initializeMCPServer` の `get instructions()`）は今も `buildServerInstructions` の結果だけを返す＝閉じたまま。一方、新しく **`experimental_storybookAi` プリセット**ができ、addon-mcp の実装（`buildStorybookAiMetadata`）は前のプリセットの `existingMetadata.instructions` を `joinInstructions` で**つなぐ**。読むのは Storybook の CLI 側の MCP（`storybook/dist/bin/core.js` の `src/cli/ai/mcp/local-metadata.ts`）。**CLI 経由のエージェントには WIM の合成ルールを届けられる道ができた**が、名前が `experimental_` で、開発サーバの MCP には効かない。T23 を進めるなら、まずこの道で `.storybook/main.ts` から instructions を足して CLI の MCP に出るかを実測する。**2026-10-02 に実測した（10.6.0。10.6.1 と 11.0.0-alpha.1 は getter だけ確認）: 採らない。** この道で足した instructions が出るのは `storybook ai --help` だけ（`STORYBOOK_FEATURE_AI_CLI=1` が要り、非推奨と表示される）。`storybook skills` / `storybook tools` / 開発サーバの MCP には出ない。**次に見るのは、`storybook skills` か `get instructions()` が、外から足した instructions を読むようになったか** |
-| `eslint` 10 | `eslint-plugin-jsx-a11y` / `eslint-plugin-react` の peer が `^9` まで | 両プラグインの peer 宣言 |
+| `eslint` 10 | `eslint-plugin-jsx-a11y` / `eslint-plugin-react` の peer が `^9` まで。**宣言だけの壁ではない**（2026-10-09 に実測。`eslint-plugin-react@7.37.5` は、今の設定のまま ESLint 10 で例外を投げる。下の注記） | 両プラグインの peer 宣言。`eslint-plugin-react` は、宣言に加えて `lib/util/version.js` が `getFilename` を呼ばなくなったか |
 | `typescript` 7 | **`typescript-eslint` の peer が `>=4.8.4 <6.1.0`**（8.67.0 時点。TS 7 どころか 6.1 も範囲外） | `npm view typescript-eslint peerDependencies.typescript` の上限が動いたか |
 | `marked` 18 | `@tiptap/markdown@3.31.4` が dependencies に `marked: ^17.0.1` を持つ。こちらだけ上げると marked が 2 つ入り、RichTextEditor が作った `Marked` のインスタンス（18）を 17 向けの実装へ渡す形になる（2026-10-07・#883 は型チェックが TS2322 で落ちた。major の ignore は #884） | `npm view @tiptap/markdown dependencies.marked` が 18 を含んだか（含んだら、marked の devDependencies と peer のレンジ、`@tiptap/markdown` を 1 PR で） |
 | `@fullcalendar/*` 7 | プラグイン 3 つ（daygrid / timegrid / interaction）の `latest` が 6.1.21 のまま（2026-10-07。core だけ 7.1.1）。#598 の経緯は `dependabot.yml` のコメント | 3 つのプラグインの `latest` が 7 になったか（なったら、5 パッケージを 1 PR で） |
@@ -79,7 +79,17 @@ minor / patch はグループ PR をマージしてよい（`AGENTS.md` の委�
 
 > **`typescript` 7 の判定材料を差し替えた（2026-08-16）。** それまでの根拠は「#14 が CI 全滅」という**再現に CI 1 周が要り、何が直れば解けるのかを示さない**観測だった。いまは `typescript-eslint` の peer 上限 1 つで判定できる。**古い根拠を残すと、次に見る人が同じ 1 周を回す。**
 >
-> **`eslint` 10 は「宣言だけの壁」かどうかを一度試す価値がある（未実施・低優先）。** 止めているのは `eslint-plugin-jsx-a11y` / `eslint-plugin-react` の peer 宣言だが、**宣言が古いだけで実際は動く**可能性がある。両プラグインは devDependency なので、`overrides` で peer を外して `npm run lint` を全量流せば 10 分で分かる（出荷物に入らないため利用者への影響は無い）。動けば override + 根拠つきで上げる道が開き、落ちれば「宣言だけでなく実体としても未対応」という**いまより強い根拠**が残る。どちらに転んでも収穫がある。
+> **`eslint` 10 は「宣言だけの壁」ではなかった（2026-10-09 に実測）。** 別の作業ツリーで `eslint@10.12.0` と `@eslint/js@10.0.1` を入れ、`overrides` で 2 つのプラグインの peer を外して（`npm ls eslint` で 10.12.0 が 1 つだけ入ったことを確認）、`eslint src stories --max-warnings=0` を流した。対照は main の 9.39.5（1091 ファイル・エラー 0・警告 0）。
+>
+> | やったこと | 結果 |
+> |---|---|
+> | 今の設定のまま | **1 ファイル目で例外**（`react/display-name` の読み込みで `contextOrFilename.getFilename is not a function`）。`settings.react.version: "detect"` が通る `eslint-plugin-react/lib/util/version.js` が、ESLint 10 で消えた `context.getFilename()` を呼ぶ |
+> | React の版を設定に直に書く（`"19.3.0"`） | 最後まで走る。1091 ファイルで、エラーは `no-useless-assignment` の 2 件だけ（`Terminal.tsx` 90 行目・`Toolbar.tsx` 168 行目。ESLint 10 の `recommended` に入った規則で、プラグインとは関係が無い） |
+> | 3 つのプラグイン（react / jsx-a11y / react-hooks）の、非推奨でない規則を全部 `warn` にして、9 と 10 の報告を比べる | `eslint-plugin-react` の **6 規則が ESLint 10 で例外**（`forward-ref-uses-ref` / `jsx-filename-extension` / `jsx-equals-spacing` / `jsx-tag-spacing` / `jsx-curly-spacing` / `jsx-one-expression-per-line`。消えた `getSourceCode` / `getFilename` / `isSpaceBetweenTokens` を呼ぶ）。**6 つとも `recommended` には入っていない**（この repo は使っていない）。6 つを外すと、報告は 9 が 51,234 件・10 が 51,236 件で、差は上の `no-useless-assignment` の 2 件。プラグイン別の件数は同じ（react 43 規則・50,760 件 / jsx-a11y 5 規則・179 件 / react-hooks 3 規則・330 件）。`react-hooks` の 34 件は文言に作業ツリーの絶対パスが入るので突き合わせからは外れたが、規則ごとの件数は両方で同じ |
+>
+> **確かめていないこと**: どちらの版でも 1 件も報告しなかった規則（jsx-a11y で報告を出したのは 5 規則だけ）は、例外を投げなかったことしか見ていない ── 違反を見つけられるかは測っていない。lint-staged の経路（`--fix --cache`）と、CI の Lint ジョブも通していない。
+>
+> **判断: 上げない（保留のまま）。** 上げるには、`overrides` 2 つ・React の版の直書き（`detect` をやめる）・2 件の修正が要り、プラグインの作者が動作を保証していない組み合わせに乗る。得るものは、今のところ無い（ESLint 9 は npm の `maintenance` タグに残っている。2026-10-09 時点で 9.39.5）。**見直す条件**: ①`eslint-plugin-react` の peer が `^10` を含んだ ②ESLint 9 に修正が出なくなり、直したい欠陥が 10 にしか無い ── ②のときは、上の 3 点で上げられる。試した作業ツリーは残していない。
 
 **版番号だけを見ると判定を誤る。** 2026-08-07 に `@storybook/addon-mcp` を再確認したとき、`latest` は 0.7.0 のままだったが `10.6.0-alpha.4` が出ていた ── これは Storybook 10.x に揃える**改番**であって、Dependabot には **major の PR として来る**。中身を見ると getter は閉じたままだった。**見るべきは版番号ではなく、止めている理由がまだ成立するか。**
 
