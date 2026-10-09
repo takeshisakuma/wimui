@@ -6117,6 +6117,10 @@
         }
       }
     },
+    "Leaderboard.showMedals": {
+      "required": false,
+      "type": "boolean"
+    },
     "Leaderboard.size": {
       "required": false,
       "type": "Extract<ComponentSize, \"sm\" | \"md\" | \"lg\">"

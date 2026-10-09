@@ -57,6 +57,15 @@ export const WithHighlight: Story = {
   },
 };
 
+// メダル色は opt-in（T326）。この 1 本が無いと、金・銀・銅の色はどの絵にも写らない。
+export const WithMedals: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    const entries = useEntries();
+    return <Leaderboard {...args} entries={entries} unit={t("story.lb_unit_pts")} size="md" showMedals />;
+  },
+};
+
 export const Small: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);

@@ -117,7 +117,7 @@
     "reaction_desc": "Display emoji reaction buttons with toggleable state and counts",
     "keyboardShortcuts_desc": "Display a structured list of keyboard shortcuts",
     "autosave_desc": "Inline status indicator for automatic save state",
-    "leaderboard_desc": "Display a ranked list of entries with scores and medal highlights for the top three positions.",
+    "leaderboard_desc": "Display a ranked list of entries with scores. Medal colors for the top three are opt-in.",
     "gallery_desc": "Displays a responsive image grid with configurable columns, aspect ratios, multi-select, and an optional lightbox.",
     "dashboard_desc": "Arranges widgets in a configurable grid with an edit mode for adding, removing, and resizing them.",
     "field_character_count_desc": "Standardizes the display of character counts and limit indicators across text-based form inputs.",

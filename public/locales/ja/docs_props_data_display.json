@@ -188,6 +188,7 @@
     "kanban_prop_onCardMove": "カードの移動が発生した時のコールバック (Legacy/Alternative name)。",
     "kanban_prop_onMove": "カードの移動が発生した時のコールバック。",
     "leaderboard_prop_entries": "ランキングエントリー一覧",
+    "leaderboard_prop_showMedals": "上位3件の順位の丸を金・銀・銅で塗るかどうか。既定はオフです（順位は数字と並び順が既に伝えているため）。",
     "leaderboard_prop_size": "サイズ",
     "leaderboard_prop_unit": "スコア単位ラベル",
     "listItem_prop_asChild": "子要素としてレンダリングするかどうか。",

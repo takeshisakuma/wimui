@@ -2000,7 +2000,7 @@ type therefore requires one of `label` / `aria-label` / `aria-labelledby`.
     - `indeterminate: boolean` = false — If true, shows an indeterminate animation instead of a value.
 @default false
 - **Result** — Task status indicator
-    - `intent: Extract< WimIntent, "default" | "success" | "danger" | "info" | "warning" >` = "default" — Semantic intent — determines the icon and color.
+    - `intent: Extract< WimIntent, "default" | "success" | "danger" | "info" | "warning" >` = "default" — Semantic intent — determines the icon and color. `default` draws no icon unless `icon` is passed.
 @default "default"
     - `status: "404" | "403" | "500"` — HTTP error status — adds a status-specific CSS class and shows a neutral icon.
 Use for error pages (404, 403, 500).
@@ -2483,10 +2483,11 @@ in; use `"center"` only when the empty state is the only thing in its region.
     - `onCardMove: (itemId: string, fromColumnId: string, toColumnId: string) => void` — Callback when a card is moved (legacy / alternative name).
     - `forceMobileUI: boolean` = false — Whether to force the touch-device UI.
     - `asChild: boolean` = false — Whether to render as a child element.
-- **Leaderboard** — Display a ranked list of entries with scores and medal highlights for the top three positions.
+- **Leaderboard** — Display a ranked list of entries with scores. Medal colors for the top three are opt-in.
     - `entries: LeaderboardEntry[]` (required) — List of ranking entries
     - `unit: string` — Label for the score unit
     - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size
+    - `showMedals: boolean` = false — Whether to paint the rank badges of the top three in gold, silver and bronze (off by default: the number and the order already say the rank)
 - **List** — Structurally organized items in bullet points or numbered formats
     - `asChild: boolean` = false — Whether to render as a child element.
     - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size of the list items

@@ -49,6 +49,19 @@ describe("Result", () => {
     expect(screen.getByTestId("my-icon")).toBeInTheDocument();
   });
 
+  // `default` は意味を持たない円を描かない（T326）。枠ごと出さない。
+  it("draws no icon for the default intent", () => {
+    const { container } = render(<Result title="Request received" />);
+    expect(container.querySelector("svg")).toBeNull();
+  });
+
+  it("still draws the intent's icon and the status icon", () => {
+    const { container: success } = render(<Result intent="success" />);
+    expect(success.querySelector("svg")).not.toBeNull();
+    const { container: notFound } = render(<Result status="404" />);
+    expect(notFound.querySelector("svg")).not.toBeNull();
+  });
+
   it("renders extra content", () => {
     render(<Result extra={<button>Retry</button>} />);
     expect(screen.getByText("Retry")).toBeInTheDocument();

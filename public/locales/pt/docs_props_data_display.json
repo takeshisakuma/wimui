@@ -188,6 +188,7 @@
     "kanban_prop_onCardMove": "Callback quando um card é movido (nome legado / alternativo).",
     "kanban_prop_onMove": "Callback quando um card é movido.",
     "leaderboard_prop_entries": "Lista de entradas do ranking",
+    "leaderboard_prop_showMedals": "Se deve pintar os emblemas de posição dos três primeiros em ouro, prata e bronze. Desativado por padrão: o número e a ordem já indicam a posição.",
     "leaderboard_prop_size": "Tamanho",
     "leaderboard_prop_unit": "Rótulo da unidade de pontuação",
     "listItem_prop_asChild": "Se deve renderizar como o elemento filho.",
