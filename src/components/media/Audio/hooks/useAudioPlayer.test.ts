@@ -245,6 +245,8 @@ describe("useAudioPlayer", () => {
     });
 
     act(() => { result.current.toggleSleepTimer(); });
+    // 前提: タイマーが動き出している。初期値が null なので、ここを見ないと何も起きなくても通る（CI-17）
+    expect(result.current.remainingSleepTime).toBe(15 * 60);
 
     await act(async () => {
       vi.advanceTimersByTime(900 * 1000);
@@ -340,8 +342,14 @@ describe("useAudioPlayer", () => {
       (result.current.nextAudioRef as React.MutableRefObject<HTMLAudioElement | null>).current = document.createElement("audio");
     });
 
-    act(() => { result.current.playNext(1); }); // index 0 → 1
-    act(() => { result.current.playNext(1); }); // index 1 → no more (no repeat)
+    // 前提: 再生中にしてから進める。初期値の false のままだと、何も起きなくても通る（CI-17）
+    await act(async () => { result.current.togglePlay(); });
+    expect(result.current.isPlaying).toBe(true);
+
+    await act(async () => { result.current.playNext(1); }); // index 0 → 1
+    expect(result.current.currentTrackIndex).toBe(1);
+    await act(async () => { result.current.playNext(1); }); // index 1 → no more (no repeat)
+    expect(result.current.currentTrackIndex).toBe(1);
     expect(result.current.isPlaying).toBe(false);
   });
 

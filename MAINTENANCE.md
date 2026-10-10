@@ -380,6 +380,7 @@ git branch -vv | grep ": gone]"   # 追跡先が消えたローカルブラン�
 
 **観点の候補**（測り終えたら消し、思いついたら足す。2026-10-04 に 13 観点、2026-10-05 に 4 観点を測ったので、下は次の回の分）
 
+- **題が言う結果を見ていないテスト**（変更のときに気づいた・2026-10-11・CI-17）。`Cascader.test.tsx` の「navigates to first item with Home key」「navigates to last item with End key」「ArrowUp does not go below index 0」は、どれも「開いたままである」ことしか見ていない ── Home や End が何もしなくても通る。**数え方**: 題に `navigates` / `moves` / `focuses` / `selects` などの動詞を持つ `it` のうち、期待が「開いている」「在る」だけのもの（動いた先 ── フォーカス・`aria-activedescendant`・選択の値 ── を見ていないもの）。件数は未計測。「無いこと」だけを見る形（CI-17）とは別の弱さで、あちらの数え方では拾えない
 - **2026-10-10 の一巡の測り残し**: ①渡した属性の行き先は、入力系（`wimui/form` の 36 部品）と、スプレッドのあとに固定の属性を書く 19 か所だけを測った。ほかのカテゴリの部品に `aria-label` / `aria-describedby` を渡したとき、操作要素に届くかは測っていない ②`Mentions` は、測る側の渡し方が合わずに例外になった ③`ScrollProgress` は、スクロールせずに中身の高さだけが変わったときの値を、ブラウザでは測っていない（コードを読んだだけ）
 - 省略記号なしで切れる文字のうち、2026-10-08 に測っていないもの ── 閉じている面の中（`Open` のストーリーが無い部品のメニューやリスト）、dark と compact、pt。文字の無い 123 ストーリー（図・キャンバス・アイコンだけのもの）は対象外
 - 開いた面の枠と影のうち、2026-10-05 に測れなかった 5 部品（Dialog・Lightbox は画面いっぱいの入れ物を面として拾った。Tour・HoverCard・HamburgerMenu は役割から面を見つけられなかった）。面を部品ごとに名指しして測る
@@ -419,6 +420,7 @@ git branch -vv | grep ": gone]"   # 追跡先が消えたローカルブラン�
 | 2026-10-10 | 許可リストの `color-contrast` の incomplete を、axe が挙げる理由で分ける | 許可 225 通り（story × theme）を手元で開き直した（開けず 0。225 通りとも、いまも incomplete が出る＝許可リストと一致） | ノードの内訳: 画像の上 776・背景の重なり 374・短い文字 144・絵文字など 112・覆われている 58・グラデーション 38・疑似要素 34・ほかの要素が一部を覆う 6・背景画像 2。**要素の重なりだけが理由の通りは 10（5 ストーリー）**: `modelselector--open` / `virtuallist--with-overscan` / `tour--open` / `patterns-captions--discard-take` / `audit-patternfamily--overview`。配置で消せるかは、1 つずつは確かめていない（#917 の `AlertDialogOpen` は、同じ理由で、引き金を真裏から外して消せた） | CI-18 |
 | 2026-10-10 | 未実装のまま残したことを書いたコメント（変更のときに気づいた・T330。ImageCropper の「実際にはここで Canvas 等を使用してクロップ処理を行いますが、今回は…」） | `src/components` の `.tsx`（テストとストーリーを除く）で、`実際には` / `今回は` / `TODO` / `FIXME` / `would be used` / `not implemented` / `未実装` / `仮実装` / `ダミー` を含む行: 5 行・3 ファイル。1 行ずつ読んだ | 1（ImageCropper。切り抜きを行わず、元の画像の URL を返している）。外れなし: InputMask（処理の説明で、実装はある）・WaterfallChart（文中の「実際には」）。**語の一覧に無い書き方は拾えない** | T334 |
 | 2026-10-10 | マウスのイベントだけでドラッグを実装している部品（変更のときに気づいた・T330） | `mousemove` を扱う部品のうち、`touchstart` / `touchmove` / `pointerdown` / `pointermove` を同じファイルで扱っていないもの | 1（ImageCropper。タッチ端末では画像の位置を動かせない。`components.json` は `mobile: true`）。ほかに `mousemove` でドラッグを組む部品は、タッチかポインタの口を持っていた | T335 |
+| 2026-10-11 | 「無いこと」だけを見るテストの仕分け（CI-17 の続き） | 数え方を直した: `.not.toBeNull()` のような二重否定は「在る」側なので外した（2026-10-10 の数え方は、これを「無い」側に数えていた）。`it` 2,926 件のうち、操作を含み、期待が全部「無い」側のもの **83**（2026-10-10 は 100）。多い 6 ファイル・35 件を 1 件ずつ読んだ（`useVideoPlayer` 10・ContextMenu 8・`useAudioPlayer` 5・TreeView 4・Cascader 4・SmartSearchInput 4） | **何も起きなくても通るもの 6**: `useVideoPlayer` 3（`isPlaying` や `loop` が初期値の false のまま「false である」を見ていた）・`useAudioPlayer` 2（同じ形と、タイマーが動き出したことを見ていない）・Cascader 1（「消すボタンが在れば押す」と書いていて、無効のときはボタンが無いので何も押していなかった）。**正当 29**: 対になる「起きる」側の検査が同じファイルにある（SmartSearchInput の 4 件は、直前に「Enter で送る」がある）か、操作の途中で要素を引いていて、無ければ落ちる。**対照**: 強くした検査のうち 3 件は、実装の該当の行を外すと落ちることを確かめた（強くする前は通っていた）。**読んでいない**: 残りの 48 件（37 ファイル。1 ファイルあたり 1〜3 件） | CI-17（済にするのは別の PR） |
 
 ---
 
