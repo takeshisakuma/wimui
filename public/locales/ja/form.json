@@ -61,6 +61,8 @@
     "confirm_message": "この範囲で画像を保存しますか？",
     "confirm_title": "クロップの適用",
     "no_image": "画像が選択されていません",
+    "position_hint": "矢印キーで画像を動かします。Shift を押しながらだと大きく動きます。Home で中央に戻ります。",
+    "position_label": "画像の位置",
     "rotate": "回転",
     "zoom": "ズーム"
   },

@@ -21,6 +21,12 @@
     &:active {
       cursor: grabbing;
     }
+
+    /* 根が `overflow: hidden` なので、外側の輪は切れる。線幅ぶん内側に描く。 */
+    &:focus-visible {
+      outline: var(--wim-focus-outline-width) solid var(--wim-color-focus-outline);
+      outline-offset: calc(-1 * var(--wim-focus-outline-width));
+    }
   }
 
   .imageContainer {

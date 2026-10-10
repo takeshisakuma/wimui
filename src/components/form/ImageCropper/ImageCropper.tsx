@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback } from "react";
+import React, { useState, useRef, useEffect, useCallback, useId } from "react";
 import classNames from "classnames";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { commonNs } from "@/i18n/generated/common";
@@ -15,7 +15,12 @@ import {
   DialogFooter,
   DialogClose
 } from "../../overlay/Dialog/Dialog";
+import { VisuallyHidden } from "../../layout/VisuallyHidden/VisuallyHidden";
 import styles from "./image-cropper.module.scss";
+
+/** 矢印キー 1 回で画像が動く量（px）。Shift を押しているときは大きいほう。 */
+const KEY_STEP = 10;
+const KEY_STEP_LARGE = 50;
 
 export interface ImageCropperProps extends React.ComponentPropsWithoutRef<"div"> {
   /** URL or data URL of the image to crop */
@@ -68,6 +73,7 @@ export const ImageCropper = React.forwardRef<HTMLDivElement, ImageCropperProps>(
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const imageRef = useRef<HTMLImageElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
+    const hintId = useId();
 
     // 画像が読み込まれたら位置をリセット
     useEffect(() => {
@@ -110,6 +116,27 @@ export const ImageCropper = React.forwardRef<HTMLDivElement, ImageCropperProps>(
       };
     }, [isDragging, handleMouseMove, handleMouseUp]);
 
+    // 位置を動かす口は、以前はドラッグにしか無かった（T330）。キーボードだけの利用者は、
+    // 画像の中央しか切り抜けなかった。矢印キーで同じことができるようにする。
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+      const step = e.shiftKey ? KEY_STEP_LARGE : KEY_STEP;
+      const moves: Record<string, [number, number]> = {
+        ArrowLeft: [-step, 0],
+        ArrowRight: [step, 0],
+        ArrowUp: [0, -step],
+        ArrowDown: [0, step],
+      };
+      const move = moves[e.key];
+      if (move) {
+        // ページのスクロールに取られないようにする
+        e.preventDefault();
+        setPosition((prev) => ({ x: prev.x + move[0], y: prev.y + move[1] }));
+      } else if (e.key === "Home") {
+        e.preventDefault();
+        setPosition({ x: 0, y: 0 });
+      }
+    };
+
     const handleRotate = () => {
       setRotation((prev) => (prev + 90) % 360);
     };
@@ -145,12 +172,22 @@ export const ImageCropper = React.forwardRef<HTMLDivElement, ImageCropperProps>(
 
     return (
       <div ref={ref} className={classNames("wim-image-cropper", styles.root, className)} {...props}>
-        <div 
+        {/* `application` は、キーを自前で扱う要素のためのロール。規則の一覧には操作要素として載っていない。 */}
+        {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
+        <div
           ref={containerRef}
           className={styles.viewer} 
           onMouseDown={handleMouseDown}
-          role="presentation"
+          onKeyDown={handleKeyDown}
+          // Tab で届き、矢印キーを受ける（以前は `presentation`）。ロールは `application` ── 矢印キーを
+          // 自前で扱う部品で、当てはまるウィジェットのロールが無い。`group` だと、スクリーンリーダーの
+          // 閲覧モードが矢印キーを取ってしまい、部品に届かない。
+          role="application"
+          tabIndex={0}
+          aria-label={t("image_cropper.position_label")}
+          aria-describedby={hintId}
         >
+          <VisuallyHidden id={hintId}>{t("image_cropper.position_hint")}</VisuallyHidden>
           <div className={styles.imageContainer}>
             <img
               ref={imageRef}
