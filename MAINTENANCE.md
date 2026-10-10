@@ -673,15 +673,18 @@ ls vrt/vrt.spec.ts-snapshots/ | grep -c '^light-'; ls vrt/vrt.spec.ts-snapshots/
 やること:
 
 1. 主要なライブラリの部品一覧を取る。**一覧は記憶で書かない** ── `llms.txt` を置いているものは、そこから取れる（2026-10-10 に取れたもの: `https://ant.design/llms.txt` / `https://mantine.dev/llms.txt` / `https://ui.shadcn.com/llms.txt` / `https://mui.com/material-ui/llms.txt`。Chakra UI と React Aria は、この形では一覧を取れなかった）
-2. `src/data/components.json` の `name` と `aliases`、`src/data/not-planned.json` に当たらない名前だけを残す
-3. 残った名前を、**ソースで不在を確かめてから** 3 つに分ける。名前で探して無くても、別の部品の prop や内側に在ることがある（`aria-pressed` は `ToggleGroup` の内側に、素の `<select>` は `Pagination` の内側に在った）
+2. `src/data/components.json` の `name` と `aliases`、`src/data/not-planned.json`、下の「需要待ちの一覧」に当たらない名前だけを残す
+3. 残った名前を、**ソースで不在を確かめてから** 4 つに分ける。名前で探して無くても、別の部品の prop や内側に在ることがある（`aria-pressed` は `ToggleGroup` の内側に、素の `<select>` は `Pagination` の内側に在った）
 
 | 分け先 | 当てはまるもの | 書く場所 |
 |---|---|---|
 | **別名** | 同じものが別の名前で在る | `components.json` の `aliases`（他所では別の意味を持つ語は `disambiguation`）。`check:aliases` が衝突を見る |
 | **採らない** | あっても入れない（演出系など） | `not-planned.json`（理由と代わりを書く） |
 | **候補** | 無くて、足す価値がある | `IMPROVEMENTS.md` に起票（**足すかどうかはユーザーが決める**） |
+| **需要待ち** | 無いが、困った人がまだいない | 下の「需要待ちの一覧」に足す（起票しない。要る画面か要望が出たら起票する） |
 
-**3 つのどれかに書くこと。** どこにも書かないと、次の回に同じ名前がまた上がる。
+**4 つのどれかに書くこと。** どこにも書かないと、次の回に同じ名前がまた上がる。
 
-> **2026-10-10 の実測**: 4 ライブラリの一覧と突き合わせた。**別名**を 7 部品に足した（`Combobox` に Autocomplete、`OtpInput` に Pin Input / Input OTP、`Toast` に Message / Sonner、`Stats` に Statistic、`Splitter` に Resizable、`FileUpload` に Upload、`TabBar` に Bottom Navigation）。**候補**として挙がったのは、DateTimePicker / MonthPicker / YearPicker、`Dialog` の `role="alertdialog"`、選べるカード（RadioCard / CheckboxCard）、NativeSelect、単体の Toggle、単体の Collapsible、OverflowList、NavigationMenu、棒と線の複合チャート、RTL（`.scss` の物理方向 171 か所・論理プロパティ 20 か所）。**候補は、この時点では起票していない**（どれを起票するかは、ユーザーの判断待ち）。
+> **2026-10-10 の実測**: 4 ライブラリの一覧と突き合わせた。**別名**を 7 部品に足した（`Combobox` に Autocomplete、`OtpInput` に Pin Input / Input OTP、`Toast` に Message / Sonner、`Stats` に Statistic、`Splitter` に Resizable、`FileUpload` に Upload、`TabBar` に Bottom Navigation）。**候補**として挙がったのは、DateTimePicker / MonthPicker / YearPicker、`Dialog` の `role="alertdialog"`、選べるカード（RadioCard / CheckboxCard）、NativeSelect、単体の Toggle、単体の Collapsible、OverflowList、NavigationMenu、棒と線の複合チャート、RTL（`.scss` の物理方向 171 か所・論理プロパティ 20 か所）。**起票したのは `Dialog` の `alertdialog` だけ**（T327。新しい部品ではなく a11y の不足で、prop 1 つで済む）。**残りは「需要待ち」と決めた**（2026-10-10・ユーザー判断）── 根拠が「他所にある」だけで、使う人が困ったという事実がまだ無い。部品を 1 つ足すと、VRT・a11y・3 言語の docs・サイズ予算が乗り続ける。
+>
+> **需要待ちの一覧**（次の回は、**ここに無い名前だけ**を見る。ここにある名前は、実際に要る画面か利用者の要望が出たときに起票する）: DateTimePicker / MonthPicker / YearPicker ・ RadioCard / CheckboxCard ・ NativeSelect ・ 単体の Toggle ・ 単体の Collapsible ・ OverflowList ・ NavigationMenu ・ 棒と線の複合チャート ・ RTL。このうち、利用者が既存の部品から組めないのは日時・月・年の選択と RTL で、ほかは組める（NativeSelect は素の `<select>`、Toggle は `ToggleGroup`、Collapsible は `Accordion`、選べるカードは `Radio` と `Card`）。
