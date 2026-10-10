@@ -110,6 +110,14 @@
         "color-contrast"
       ]
     },
+    "components-advanced-inputs-imagecropper--crop-result": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
     "components-advanced-inputs-imagecropper--default": {
       "light": [
         "color-contrast"

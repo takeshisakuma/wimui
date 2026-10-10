@@ -1,6 +1,5 @@
 {
   "doc": {
-    "fieldError_desc": "バリデーションメッセージ",
     "checkboxGroup_desc": "状態共有チェックボックス",
     "checkbox_a11y_keyboard": "Spaceキーで選択状態を切り替えます。",
     "checkbox_a11y_label": "ラベルテキストとインプットを明示的に紐付け、スクリーンリーダーが読み上げ可能にします。",
@@ -62,6 +61,7 @@
     "datagrid_keyboard_desc": "Tabでインタラクティブ要素間をフォーカス移動します。矢印キーでセルを移動します。Enterでセルのアクションを実行します。Escapeで編集をキャンセルします。",
     "dialog_best_practice_1": "Dialogはユーザーの完全な注意が必要な重要なインタラクションにのみ使用してください。重要でない情報にはPopoverやToastを使用してください。",
     "dialog_best_practice_2": "ユーザーがアクションを完了せずにDialogを閉じられるよう、明確にラベル付けされた閉じるアクション（Xボタンまたは'キャンセル'ボタン）を必ず提供してください。",
+    "fieldError_desc": "バリデーションメッセージ",
     "fieldLabelContent_desc": "ラベルテキストと必須/任意バッジの表示コンポーネント",
     "fieldLabelContent_long_desc": "FieldLabelContent は、ラベルテキストと必須または任意のステータスバッジをレンダリングします。",
     "fieldLabelContent_summary": "ラベルテキストと必須/任意バッジを表示するコンポーネント",
@@ -110,6 +110,11 @@
     "fieldset_with_legend": "Legend（凡例）付き",
     "fieldset_with_legend_desc": "Fieldset.Legend サブコンポーネントを使用して、グループに明確なタイトルを付けます。",
     "imagecropper_circular_crop": "円形クロップ",
+    "imagecropper_circular_desc": "アバターのように丸く切り抜くときは、circular prop を使います。",
+    "imagecropper_crop_cors_desc": "ブラウザは、別のオリジンの画像を、そのオリジンが許可していない限り、Canvas から読み出させません。そうした画像を切り抜くには、crossOrigin を指定して、画像を CORS のヘッダーつきで配信します。画像を作れなかったときは、onCropError が理由と同じ数値を引数に呼び出されるので、サーバーの側で切り抜き直せます。",
+    "imagecropper_crop_result": "切り抜いた画像を受け取る",
+    "imagecropper_crop_result_desc": "onCrop と onApply は、切り抜いた画像を data URL で受け取ります。切り抜きは、画面に出ている大きさではなく、元の画像の解像度で行います。長いほうの辺の上限は maxOutputSize で決めます。第 2 引数は切り抜きの数値（位置・拡大・回転・枠と出力の大きさ）です。circular のときも、出力は円を囲む正方形です。丸くするのは、表示する側で行います。",
+    "imagecropper_landscape_desc": "縦横比を 16:9 に固定した例です。",
     "imagecropper_landscape_ratio": "横長比率",
     "indicatorSlider_desc": "Tabs、SegmentedControlなど向けのスライディングインジケーター",
     "indicatorSlider_long_desc": "IndicatorSlider は、アクティブ要素を追跡してスムーズに移動するアニメーション付きの選択ハイライトコンポーネントです。",
@@ -313,6 +318,7 @@
     "searchinput_anatomy_icon_label": "検索アイコン",
     "searchinput_best_practice_1": "入力の目的を明確に伝えるため、可視の検索アイコンとプレースホルダーテキストを含めましょう。",
     "searchinput_best_practice_2": "検索クエリをすばやくクリアできるクリア/リセットボタンを提供しましょう。",
+    "searchinput_choice_alt": "代わりの手段",
     "searchinput_choice_alt_when": "入力が複雑なフィルターフォームの一部である場合（カスタムアイコン付きInputを使用）。",
     "searchinput_choice_matrix_desc": "必要な検索インタラクションモデルに基づいて選択してください。",
     "searchinput_choice_self_when": "クリアボタンと検索アイコンを備えた専用の検索フィールドが必要な場合。",
@@ -441,7 +447,9 @@
     "switchgroup_title": "状態共有スイッチ",
     "switchgroup_with_disabled_option": "無効オプション付き",
     "taginput_controlled": "制御あり",
+    "taginput_controlled_desc": "タグを外部の状態で管理します。",
     "taginput_maximum_tags": "最大タグ数",
+    "taginput_maximum_tags_desc": "追加できるタグの数を制限します。",
     "textarea_a11y_desc": "長い文章を入力する際、自身の入力位置を見失わないよう、フォーカス状態を明確にし、必要に応じて aria-describedby で入力制限などを伝えます。",
     "textarea_anatomy_field": "複数行のテキストを受け付ける編集可能領域。",
     "textarea_anatomy_field_label": "テキストエリア",
@@ -473,9 +481,6 @@
     "themetoggle_scenario_1_desc": "コンパクトなアイコン版をトップバーに置き、ワンクリックでライトとダークを切り替える。",
     "themetoggle_scenario_1_title": "アプリのヘッダー",
     "themetoggle_scenario_2_desc": "セグメント版で、ライト・ダーク・システムを明示的で見つけやすい選択肢として提示する。",
-    "themetoggle_scenario_2_title": "設定画面",
-    "searchinput_choice_alt": "代わりの手段",
-    "taginput_controlled_desc": "タグを外部の状態で管理します。",
-    "taginput_maximum_tags_desc": "追加できるタグの数を制限します。"
+    "themetoggle_scenario_2_title": "設定画面"
   }
 }

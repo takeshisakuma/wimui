@@ -5216,13 +5216,40 @@
       "required": false,
       "type": "boolean"
     },
+    "ImageCropper.crossOrigin": {
+      "required": false,
+      "values": [
+        "anonymous",
+        "use-credentials"
+      ]
+    },
+    "ImageCropper.maxOutputSize": {
+      "required": false,
+      "type": "number"
+    },
     "ImageCropper.onApply": {
       "required": false,
-      "type": "(dataUrl: string) => void"
+      "type": "(dataUrl: string, detail: ImageCropDetail) => void"
     },
     "ImageCropper.onCrop": {
       "required": false,
-      "type": "(dataUrl: string) => void"
+      "type": "(dataUrl: string, detail: ImageCropDetail) => void"
+    },
+    "ImageCropper.onCropError": {
+      "required": false,
+      "type": "(error: Error, detail: ImageCropDetail) => void"
+    },
+    "ImageCropper.outputQuality": {
+      "required": false,
+      "type": "number"
+    },
+    "ImageCropper.outputType": {
+      "required": false,
+      "values": [
+        "image/jpeg",
+        "image/png",
+        "image/webp"
+      ]
     },
     "ImageCropper.showApplyButton": {
       "required": false,

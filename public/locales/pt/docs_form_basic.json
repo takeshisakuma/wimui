@@ -1,6 +1,5 @@
 {
   "doc": {
-    "fieldError_desc": "Mensagens de validação",
     "checkboxGroup_desc": "Caixas de seleção com estado compartilhado",
     "checkbox_a11y_keyboard": "Alterne o estado de marcação utilizando a tecla Espaço.",
     "checkbox_a11y_label": "Ligue explicitamente o texto do rótulo à entrada para que possa ser anunciado pelos leitores de tela.",
@@ -62,6 +61,7 @@
     "datagrid_keyboard_desc": "O Tab move o foco entre elementos interativos. As teclas de seta navegam pelas células. Enter ativa as ações da célula. Escape cancela a edição.",
     "dialog_best_practice_1": "Utilize um Diálogo apenas para interações críticas que exijam a atenção total do usuário. Para informações não críticas, prefira Popover ou Toast.",
     "dialog_best_practice_2": "Forneça sempre uma ação de fecho claramente rotulada (um botão X ou um botão 'Cancelar') para que os usuários possam dispensar o Diálogo sem concluir a ação.",
+    "fieldError_desc": "Mensagens de validação",
     "fieldLabelContent_desc": "Texto do rótulo combinado com o crachá de obrigatório/opcional",
     "fieldLabelContent_long_desc": "O FieldLabelContent renderiza o texto do rótulo juntamente com os crachás de estado obrigatório ou opcional.",
     "fieldLabelContent_summary": "Componente para exibir o texto do rótulo e crachás de obrigatório/opcional",
@@ -110,6 +110,11 @@
     "fieldset_with_legend": "Com Legenda",
     "fieldset_with_legend_desc": "Utilize o subcomponente Fieldset.Legend para fornecer um título claro para o grupo.",
     "imagecropper_circular_crop": "Corte circular",
+    "imagecropper_circular_desc": "Use a prop circular para recortes no estilo de avatar.",
+    "imagecropper_crop_cors_desc": "Um navegador não permite que uma página leia de volta, a partir de um canvas, uma imagem de outra origem, a menos que essa origem permita. Para recortar uma imagem assim, defina crossOrigin e sirva-a com cabeçalhos CORS. Quando a imagem não pode ser produzida, onCropError é chamado com o motivo e os mesmos detalhes do recorte, para que o recorte possa ser refeito no servidor.",
+    "imagecropper_crop_result": "Obter a imagem recortada",
+    "imagecropper_crop_result_desc": "onCrop e onApply recebem a imagem recortada como data URL, feita na resolução da imagem de origem e não no tamanho em que ela aparece na tela. Defina maxOutputSize para limitar o lado maior. O segundo argumento descreve o recorte (deslocamento, zoom, rotação, moldura e tamanho de saída). Com circular, a saída continua sendo o quadrado em volta do círculo: arredonde-a onde for exibida.",
+    "imagecropper_landscape_desc": "Exemplo de uma proporção fixa de 16:9.",
     "imagecropper_landscape_ratio": "Proporção paisagem",
     "indicatorSlider_desc": "Indicador de destaque deslizante para Tabs, SegmentedControl, etc.",
     "indicatorSlider_long_desc": "O IndicatorSlider é um componente de destaque deslizante animado que segue um elemento ativo e move-se suavemente para indicar a seleção atual.",
@@ -313,6 +318,7 @@
     "searchinput_anatomy_icon_label": "Ícone de Pesquisa",
     "searchinput_best_practice_1": "Inclua um ícone de pesquisa visível e texto de marcador de posição para comunicar claramente a finalidade da entrada.",
     "searchinput_best_practice_2": "Forneça um botão de limpar/redefinição para permitir aos usuários limpar rapidamente a consulta de pesquisa.",
+    "searchinput_choice_alt": "Alternativa",
     "searchinput_choice_alt_when": "Quando a entrada faz parte de um formulário de filtro complexo (utilize Input com ícones personalizados).",
     "searchinput_choice_matrix_desc": "Selecione com base no modelo de interação de pesquisa necessário.",
     "searchinput_choice_self_when": "Quando precisa de um campo de pesquisa dedicado com botão de limpar e ícone de pesquisa.",
@@ -441,7 +447,9 @@
     "switchgroup_title": "Grupo de Interruptores",
     "switchgroup_with_disabled_option": "Com opção desabilitada",
     "taginput_controlled": "Controlado",
+    "taginput_controlled_desc": "Gerenciando tags por meio de estado externo.",
     "taginput_maximum_tags": "Máximo de tags",
+    "taginput_maximum_tags_desc": "Limite o número de tags que podem ser adicionadas.",
     "textarea_a11y_desc": "Ao introduzir frases longas, clarifique o estado do foco para que os usuários não percam de vista a sua posição de entrada, e comunique os limites de entrada, etc., com aria-describedby conforme necessário.",
     "textarea_anatomy_field": "Uma área editável que aceita várias linhas de texto.",
     "textarea_anatomy_field_label": "Área de Texto",
@@ -473,9 +481,6 @@
     "themetoggle_scenario_1_desc": "A variante de ícone compacta fica na barra superior e alterna claro e escuro com um clique.",
     "themetoggle_scenario_1_title": "Cabeçalho do app",
     "themetoggle_scenario_2_desc": "A variante segmentada oferece claro, escuro e sistema como uma escolha explícita e descobrível.",
-    "themetoggle_scenario_2_title": "Tela de configurações",
-    "searchinput_choice_alt": "Alternativa",
-    "taginput_controlled_desc": "Gerenciando tags por meio de estado externo.",
-    "taginput_maximum_tags_desc": "Limite o número de tags que podem ser adicionadas."
+    "themetoggle_scenario_2_title": "Tela de configurações"
   }
 }

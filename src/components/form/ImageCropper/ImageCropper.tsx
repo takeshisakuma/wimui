@@ -16,7 +16,10 @@ import {
   DialogClose
 } from "../../overlay/Dialog/Dialog";
 import { VisuallyHidden } from "../../layout/VisuallyHidden/VisuallyHidden";
+import { cropImage, resolveCropDetail, type CropGeometry, type ImageCropDetail, type ImageCropOutputType } from "./cropImage";
 import styles from "./image-cropper.module.scss";
+
+export type { ImageCropDetail, ImageCropOutputType };
 
 /** 矢印キー 1 回で画像が動く量（px）。Shift を押しているときは大きいほう。 */
 const KEY_STEP = 10;
@@ -29,8 +32,11 @@ export interface ImageCropperProps extends React.ComponentPropsWithoutRef<"div">
   aspectRatio?: number;
   /** Whether to display a circular crop area (for profile images) */
   circular?: boolean;
-  /** Callback when the crop result is finalized */
-  onCrop?: (dataUrl: string) => void;
+  /**
+   * Called with the cropped image as a data URL once the crop is confirmed. The second argument
+   * describes the crop (offset, zoom, rotation, frame and output size) so it can be redone elsewhere.
+   */
+  onCrop?: (dataUrl: string, detail: ImageCropDetail) => void;
   /** Whether to show the rotation button */
   showRotation?: boolean;
   /** Whether to show the zoom slider */
@@ -39,8 +45,35 @@ export interface ImageCropperProps extends React.ComponentPropsWithoutRef<"div">
   showApplyButton?: boolean;
   /** Label of the apply button */
   applyLabel?: string;
-  /** Callback when the crop is applied (after confirming in the dialog) */
-  onApply?: (dataUrl: string) => void;
+  /** Called with the cropped image and the crop detail when the crop is applied (after confirming in the dialog) */
+  onApply?: (dataUrl: string, detail: ImageCropDetail) => void;
+  /**
+   * Called instead of onCrop and onApply when the image cannot be produced, with the crop detail.
+   * The usual cause is an image from another origin drawn without CORS approval: the browser then
+   * refuses to read the canvas. Set crossOrigin and serve the image with CORS headers, or crop on
+   * the server from the detail.
+   */
+  onCropError?: (error: Error, detail: ImageCropDetail) => void;
+  /**
+   * Upper bound, in px, for the longer side of the output image. The crop is taken at the
+   * resolution of the source image; without a bound a large photo produces a large data URL.
+   */
+  maxOutputSize?: number;
+  /**
+   * Image format of the output. "image/png" keeps transparency where the image does not cover the frame.
+   * @default "image/png"
+   */
+  outputType?: ImageCropOutputType;
+  /**
+   * Quality from 0 to 1 for "image/jpeg" and "image/webp". Ignored for "image/png".
+   * @default 0.92
+   */
+  outputQuality?: number;
+  /**
+   * CORS mode used to load the image. Needed to crop an image served from another origin;
+   * the server must send matching CORS headers or the image will not load at all.
+   */
+  crossOrigin?: "anonymous" | "use-credentials";
 }
 
 /**
@@ -59,6 +92,11 @@ export const ImageCropper = React.forwardRef<HTMLDivElement, ImageCropperProps>(
       showApplyButton = true,
       applyLabel,
       onApply,
+      onCropError,
+      maxOutputSize,
+      outputType = "image/png",
+      outputQuality = 0.92,
+      crossOrigin,
       className,
       ...props
     },
@@ -73,6 +111,7 @@ export const ImageCropper = React.forwardRef<HTMLDivElement, ImageCropperProps>(
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const imageRef = useRef<HTMLImageElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
+    const frameRef = useRef<HTMLDivElement>(null);
     const hintId = useId();
 
     // 画像が読み込まれたら位置をリセット
@@ -146,19 +185,36 @@ export const ImageCropper = React.forwardRef<HTMLDivElement, ImageCropperProps>(
     };
 
     const handleConfirmApply = () => {
-      // 実際にはここでCanvas等を使用してクロップ処理を行いますが、
-      // 今回は現在のパラメータを返すか、srcをそのまま返してコールバックを呼び出します。
-      const dataUrl = src || "";
-      onCrop?.(dataUrl);
-      onApply?.(dataUrl);
+      // 以前は切り抜かず、`src` をそのまま返していた（T334）。画面に見えている枠の中を、元の画像の
+      // 解像度で Canvas に描いて返す。
+      const image = imageRef.current;
+      const frame = frameRef.current;
       setIsDialogOpen(false);
+      if (!image || !frame) return;
+      const geometry: CropGeometry = {
+        x: position.x,
+        y: position.y,
+        zoom,
+        rotation,
+        // 枠の線の内側（利用者に見えている範囲）
+        frameWidth: frame.clientWidth,
+        frameHeight: frame.clientHeight,
+        // `transform` の前の大きさ。拡大と回転は、上の値で別に持つ
+        layoutWidth: image.offsetWidth,
+        layoutHeight: image.offsetHeight,
+        naturalWidth: image.naturalWidth,
+        naturalHeight: image.naturalHeight,
+        maxOutputSize,
+      };
+      try {
+        const { dataUrl, detail } = cropImage(image, geometry, outputType, outputQuality);
+        onCrop?.(dataUrl, detail);
+        onApply?.(dataUrl, detail);
+      } catch (error) {
+        // 画像は作れなくても、数値は必ず返す（サーバーの側で切り抜き直せる）
+        onCropError?.(error instanceof Error ? error : new Error(String(error)), resolveCropDetail(geometry).detail);
+      }
     };
-
-    // getCroppedImage would be used here if exposed via ref
-
-
-    // プロフィール画像などの用途では「保存」ボタンなどを外部に置くことが多いですが、
-    // コンポーネント単体で動作確認できるように、ストーリー等でこの関数を呼び出せるようにします。
 
     if (!src) {
       return (
@@ -193,6 +249,7 @@ export const ImageCropper = React.forwardRef<HTMLDivElement, ImageCropperProps>(
               ref={imageRef}
               src={src}
               alt={t("a11y.crop_target")}
+              crossOrigin={crossOrigin}
               className={styles.image}
               style={{
                 transform: `translate(${position.x}px, ${position.y}px) rotate(${rotation}deg) scale(${zoom})`,
@@ -202,6 +259,7 @@ export const ImageCropper = React.forwardRef<HTMLDivElement, ImageCropperProps>(
           </div>
           <div className={styles.overlay}>
             <div 
+              ref={frameRef}
               className={classNames(styles.cropArea, { [styles.circular]: circular })}
               style={{ aspectRatio }}
             />

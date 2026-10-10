@@ -61,6 +61,8 @@
     "fileupload_label_image_only": "Upload Images Only",
     "fileupload_label_profile": "Profile Picture",
     "fileupload_no_file": "No file selected",
+    "imagecropper_result_alt": "Cropped result",
+    "imagecropper_result_size": "Output: {{width}} × {{height}} px",
     "inlineedit_controlled_value": "Controlled Value",
     "inlineedit_default_value": "Hello, WIM UI!",
     "inlineedit_disabled_value": "Cannot edit this text",

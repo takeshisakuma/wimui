@@ -1260,12 +1260,25 @@ text to take a name from, and the icon name is not used as one.
     - `src: string` — URL or data URL of the image to crop
     - `aspectRatio: number` = 1 — Aspect ratio (width / height); 1 produces a square
     - `circular: boolean` = false — Whether to display a circular crop area (for profile images)
-    - `onCrop: (dataUrl: string) => void` — Callback when the crop result is finalized
+    - `onCrop: (dataUrl: string, detail: ImageCropDetail) => void` — Called with the cropped image as a data URL once the crop is confirmed. The second argument
+describes the crop (offset, zoom, rotation, frame and output size) so it can be redone elsewhere.
     - `showRotation: boolean` = true — Whether to show the rotation button
     - `showZoom: boolean` = true — Whether to show the zoom slider
     - `showApplyButton: boolean` = true — Whether to show the apply button
     - `applyLabel: string` — Label of the apply button
-    - `onApply: (dataUrl: string) => void` — Callback when the crop is applied (after confirming in the dialog)
+    - `onApply: (dataUrl: string, detail: ImageCropDetail) => void` — Called with the cropped image and the crop detail when the crop is applied (after confirming in the dialog)
+    - `onCropError: (error: Error, detail: ImageCropDetail) => void` — Called instead of onCrop and onApply when the image cannot be produced, with the crop detail.
+The usual cause is an image from another origin drawn without CORS approval: the browser then
+refuses to read the canvas. Set crossOrigin and serve the image with CORS headers, or crop on
+the server from the detail.
+    - `maxOutputSize: number` — Upper bound, in px, for the longer side of the output image. The crop is taken at the
+resolution of the source image; without a bound a large photo produces a large data URL.
+    - `outputType: "image/png" | "image/jpeg" | "image/webp"` = "image/png" — Image format of the output. "image/png" keeps transparency where the image does not cover the frame.
+@default "image/png"
+    - `outputQuality: number` = 0.92 — Quality from 0 to 1 for "image/jpeg" and "image/webp". Ignored for "image/png".
+@default 0.92
+    - `crossOrigin: "anonymous" | "use-credentials"` — CORS mode used to load the image. Needed to crop an image served from another origin;
+the server must send matching CORS headers or the image will not load at all.
 - **InlineEdit** — A component that allows users to switch between a view-only mode and an editable mode in-place. (aka Editable Text)
     - `value: string` — Current text (controlled)
     - `defaultValue: string` — Initial text (uncontrolled)
