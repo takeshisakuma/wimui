@@ -146,10 +146,31 @@ describe("ImageCropper", () => {
 
     it("ドラッグでも、これまでどおり動く", () => {
       const { viewer, position } = setup();
-      fireEvent.mouseDown(viewer, { clientX: 100, clientY: 100 });
-      fireEvent.mouseMove(window, { clientX: 130, clientY: 80 });
-      fireEvent.mouseUp(window);
+      fireEvent.pointerDown(viewer, { clientX: 100, clientY: 100, pointerType: "mouse", button: 0 });
+      fireEvent.pointerMove(window, { clientX: 130, clientY: 80 });
+      fireEvent.pointerUp(window);
       expect(position()).toEqual([30, -20]);
+      // 離したあとは、動かしても付いてこない
+      fireEvent.pointerMove(window, { clientX: 300, clientY: 300 });
+      expect(position()).toEqual([30, -20]);
+    });
+
+    it("タッチでも動く（T335）", () => {
+      const { viewer, position } = setup();
+      fireEvent.pointerDown(viewer, { clientX: 50, clientY: 50, pointerType: "touch" });
+      fireEvent.pointerMove(window, { clientX: 20, clientY: 90, pointerType: "touch" });
+      expect(position()).toEqual([-30, 40]);
+      // ブラウザが操作を取り上げたとき（pointercancel）も、掴んだままにならない
+      fireEvent.pointerCancel(window);
+      fireEvent.pointerMove(window, { clientX: 200, clientY: 200, pointerType: "touch" });
+      expect(position()).toEqual([-30, 40]);
+    });
+
+    it("マウスの主ボタン以外では掴まない", () => {
+      const { viewer, position } = setup();
+      fireEvent.pointerDown(viewer, { clientX: 100, clientY: 100, pointerType: "mouse", button: 2 });
+      fireEvent.pointerMove(window, { clientX: 130, clientY: 80 });
+      expect(position()).toEqual([0, 0]);
     });
   });
 });
