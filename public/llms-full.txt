@@ -1949,7 +1949,8 @@ When a function is passed, it is called as (error, errorInfo, reset) => ReactNod
 @default "dark"
     - `blur: "none" | "sm" | "md" | "lg"` = "sm" — Strength of the backdrop blur effect.
 @default "sm"
-    - `message: string` — Loading message displayed below the indicator.
+    - `message: string` — Loading message displayed below the indicator. Without a message (and without children),
+a built-in "Loading" text is read to assistive technology in its place.
     - `fixed: boolean` = false — Whether to use position: fixed (covers the whole screen).
 
 When `false` (the default) the overlay is `position: absolute`, so it covers

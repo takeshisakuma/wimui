@@ -42,7 +42,7 @@
     "loadingOverlay_prop_loaderColor": "ローディングインジケーターの色。\n@default \"primary\"",
     "loadingOverlay_prop_loaderSize": "ローディングインジケーターのサイズ。\n@default \"lg\"",
     "loadingOverlay_prop_loaderType": "ローディングインジケーターのタイプ。\n@default \"spinner\"",
-    "loadingOverlay_prop_message": "インジケーターの下に表示するローディングメッセージ。",
+    "loadingOverlay_prop_message": "インジケーターの下に表示するローディングメッセージ。渡さないとき（children も無いとき）は、内蔵の「読み込み中」の文言が、支援技術に向けて代わりに読まれます。",
     "loadingOverlay_prop_visible": "オーバーレイを表示するかどうか。\n@default false",
     "loadingOverlay_prop_zIndex": "オーバーレイの z-index。",
     "notification_prop_className": "追加のクラス名",
