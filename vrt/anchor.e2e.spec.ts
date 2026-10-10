@@ -47,4 +47,39 @@ test.describe("Anchor", () => {
       activeNoMarker: 0,
     });
   });
+
+  // T331: 印の位置と大きさは、現在地が変わったときにしか測り直していなかった。現在地が同じままでも、
+  // リンクの大きさは変わる（フォントの読み込み・表示言語の切り替え・入れ物の幅）。そのたびに、印が
+  // リンクからずれたまま残っていた（実測: リンクの幅 152px に対して、印は 87px のまま）。
+  const markerOffset = (page: import("@playwright/test").Page) =>
+    page.evaluate(() => {
+      const root = document.querySelector(".wim-anchor")!;
+      const active = root.querySelector('[aria-current="location"]');
+      const marker = [...root.querySelectorAll<HTMLElement>("span")].find((el) => el.style.opacity === "1");
+      if (!active || !marker) return null;
+      const a = active.getBoundingClientRect();
+      const m = marker.getBoundingClientRect();
+      const horizontal = a.width > 0 && Math.abs(m.width - a.width) < Math.abs(m.height - a.height);
+      // 印は、縦並びではリンクと同じ高さ・同じ上端、横並びでは同じ幅・同じ左端に置かれる
+      return {
+        size: Math.round(horizontal ? a.width : a.height),
+        off: horizontal
+          ? Math.abs(m.left - a.left) + Math.abs(m.width - a.width)
+          : Math.abs(m.top - a.top) + Math.abs(m.height - a.height),
+      };
+    });
+
+  test("the marker follows the active link when the links change size", async ({ page }) => {
+    await page.goto(STORY_URL, { waitUntil: "domcontentloaded" });
+    await waitForStoryReady(page);
+    await expect.poll(async () => (await markerOffset(page))?.off ?? null).toBeLessThanOrEqual(1);
+    const before = await markerOffset(page);
+
+    // 現在地は変えずに、リンクの文字だけを大きくする（フォントの差し替えや、長い訳文と同じ種類の変化）
+    await page.addStyleTag({ content: ".wim-anchor a { font-size: 28px !important; line-height: 2 !important; }" });
+    // 対照: リンクの大きさが実際に変わっている。変わっていなければ、下の検査は何も確かめない
+    await expect.poll(async () => (await markerOffset(page))?.size ?? 0).not.toBe(before!.size);
+    await expect.poll(async () => (await markerOffset(page))?.off ?? null).toBeLessThanOrEqual(1);
+  });
+
 });

@@ -150,6 +150,81 @@ describe("Anchor", () => {
     expect(ball).toHaveStyle({ opacity: "1" });
   });
 
+  describe("リンクの大きさが変わったら、印を測り直す（T331）", () => {
+    afterEach(() => vi.unstubAllGlobals());
+
+    /** jsdom は ResizeObserver を持たない。見ている要素と、呼び戻しを取り出せる差し替え。 */
+    const stubResizeObserver = () => {
+      const observed: Element[] = [];
+      let notify: () => void = () => undefined;
+      let disconnected = 0;
+      vi.stubGlobal(
+        "ResizeObserver",
+        class {
+          constructor(callback: () => void) {
+            notify = callback;
+          }
+          observe(el: Element) {
+            observed.push(el);
+          }
+          disconnect() {
+            disconnected += 1;
+          }
+        },
+      );
+      return { observed, notify: () => notify(), disconnected: () => disconnected };
+    };
+
+    const activate = () => {
+      Object.defineProperty(document.documentElement, "scrollHeight", { value: 5000, configurable: true });
+      Object.defineProperty(document.documentElement, "clientHeight", { value: 1000, configurable: true });
+      vi.spyOn(document, "getElementById").mockImplementation((id) => {
+        const top = id === "section1" ? 0 : 1000;
+        return { getBoundingClientRect: () => ({ top, bottom: top + 100, height: 100 }) } as unknown as HTMLElement;
+      });
+      act(() => {
+        fireEvent.scroll(window);
+      });
+    };
+
+    it("現在地が同じままでも、リンクの大きさが変わると、印の位置と高さが追う", () => {
+      const ro = stubResizeObserver();
+      const { container } = render(<Anchor items={items} />);
+      activate();
+      const ball = container.querySelector<HTMLElement>(`.${styles.inkBall}`)!;
+      expect(ball).toHaveStyle({ top: "10px", height: "30px" });
+
+      // 文字が大きくなって、リンクが下へずれ、背が伸びた
+      vi.spyOn(Element.prototype, "getBoundingClientRect").mockImplementation(function (this: HTMLElement) {
+        if (this.tagName === "A" && this.getAttribute("href") === "#section1") {
+          return { top: 24, left: 10, width: 160, height: 52 } as DOMRect;
+        }
+        return { top: 0, left: 0, width: 1000, height: 1000 } as DOMRect;
+      });
+      // 対照: 知らせが来るまでは、古い位置のまま
+      expect(ball).toHaveStyle({ top: "10px", height: "30px" });
+      act(() => ro.notify());
+      expect(ball).toHaveStyle({ top: "24px", height: "52px" });
+    });
+
+    it("根と、すべてのリンクの大きさを見る。外すときに見るのをやめる", () => {
+      const ro = stubResizeObserver();
+      const { container, unmount } = render(<Anchor items={items} />);
+      expect(ro.observed).toContain(container.querySelector(".wim-anchor"));
+      // 入れ子のリンクも含めて 3 本
+      expect(ro.observed.filter((el) => el.tagName === "A")).toHaveLength(3);
+      unmount();
+      expect(ro.disconnected()).toBeGreaterThan(0);
+    });
+
+    it("ResizeObserver が無い環境でも、これまでどおり描ける", () => {
+      vi.stubGlobal("ResizeObserver", undefined);
+      const { container } = render(<Anchor items={items} />);
+      activate();
+      expect(container.querySelector(`.${styles.inkBall}`)).toHaveStyle({ opacity: "1" });
+    });
+  });
+
   it("handles empty items array", () => {
     const { container } = render(<Anchor items={[]} />);
     expect(container.querySelector(`.${styles.list}`)).toBeEmptyDOMElement();
