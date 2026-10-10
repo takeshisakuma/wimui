@@ -54,6 +54,8 @@ type ToggleGroupProps = {
   "aria-label"?: string;
   /** ID of the element that labels the group */
   "aria-labelledby"?: string;
+  /** ID of the element that describes the group, such as help text */
+  "aria-describedby"?: string;
 };
 
 /**
@@ -70,6 +72,7 @@ export const ToggleGroup = forwardRef<HTMLDivElement, ToggleGroupProps>(({
   className,
   "aria-label": ariaLabel,
   "aria-labelledby": ariaLabelledBy,
+  "aria-describedby": ariaDescribedBy,
   disabled = false,
   label,
   error,
@@ -221,7 +224,7 @@ export const ToggleGroup = forwardRef<HTMLDivElement, ToggleGroupProps>(({
         aria-labelledby={label ? labelId : ariaLabelledBy}
         aria-orientation="horizontal"
         aria-invalid={error ? true : undefined}
-        aria-describedby={error ? errorId : undefined}
+        aria-describedby={[ariaDescribedBy, error ? errorId : undefined].filter(Boolean).join(" ") || undefined}
       >
       <div
         className={classNames(

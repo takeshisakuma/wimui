@@ -694,6 +694,7 @@
     "timePicker_prop_styles": "Custom styles for internal parts",
     "timePicker_prop_variant": "Visual style variant of the field",
     "timePicker_prop_width": "Fixed width of the field (width token, CSS value, or number in px)",
+    "toggleGroup_prop_aria-describedby": "ID of the element that describes the group, such as help text",
     "toggleGroup_prop_aria-label": "Accessible label when no visible label is provided",
     "toggleGroup_prop_aria-labelledby": "ID of the element that labels the group",
     "toggleGroup_prop_asChild": "If true, merge group props onto the child element.",

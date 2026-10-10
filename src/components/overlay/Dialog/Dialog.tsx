@@ -204,8 +204,9 @@ export const DialogContent = ({
       overlayClassName={styles.overlay}
       // ここへ直に渡した role も捨てない（型は受けるのに、これまで黙って "dialog" に上書きしていた）。
       role={propsRole ?? contextRole}
-      aria-labelledby={titleId}
-      aria-describedby={descriptionId}
+      // 利用者が渡した参照を、自分のタイトルと説明の id で上書きしない（T328）
+      aria-labelledby={props["aria-labelledby"] ?? titleId}
+      aria-describedby={[props["aria-describedby"], descriptionId].filter(Boolean).join(" ")}
     >
       <Component className={classNames("wim-dialog", styles.content, className)}>
         <Slottable>{children}</Slottable>

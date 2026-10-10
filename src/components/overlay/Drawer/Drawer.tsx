@@ -241,9 +241,10 @@ export const DrawerContent = ({
         enterPreset: slideIn ? undefined : "none",
         leavePreset: slideOut ? undefined : "none",
       }}
-      role="dialog"
-      aria-labelledby={titleId}
-      aria-describedby={descriptionId}
+      role={props.role ?? "dialog"}
+      // 利用者が渡した参照を、自分のタイトルと説明の id で上書きしない（T328）
+      aria-labelledby={props["aria-labelledby"] ?? titleId}
+      aria-describedby={[props["aria-describedby"], descriptionId].filter(Boolean).join(" ")}
       data-side={side}
     >
       <Component data-testid="drawer-content" data-side={side}>

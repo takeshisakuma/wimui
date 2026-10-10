@@ -88,8 +88,9 @@ export const CounterTextarea = React.forwardRef<HTMLTextAreaElement, CounterText
             label={undefined}
             error={undefined}
             className={styles.textarea}
-            aria-labelledby={labelId}
-            aria-describedby={errorId}
+            // 利用者が渡した参照を捨てない（T328）
+            aria-labelledby={labelId ?? props["aria-labelledby"]}
+            aria-describedby={[props["aria-describedby"], errorId].filter(Boolean).join(" ") || undefined}
           >
             {children}
           </Textarea>

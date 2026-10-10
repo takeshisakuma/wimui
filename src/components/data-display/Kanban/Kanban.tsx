@@ -162,7 +162,8 @@ export const Kanban = forwardRef<HTMLDivElement, KanbanProps>(
             className,
           )}
           role="region"
-          aria-label={t("a11y.kanban_board")}
+          // 利用者の名前を、内蔵の名前で上書きしない（T328）。盤を 2 つ置くと、同じ名前が並んでいた。
+          aria-label={props["aria-labelledby"] ? undefined : (props["aria-label"] ?? t("a11y.kanban_board"))}
           /*
            * 根は `overflow-x: auto` の**スクロール領域**なので、キーボードで
            * スクロールできるようフォーカスを受け取る（axe の

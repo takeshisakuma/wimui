@@ -1818,6 +1818,7 @@ so the unit does not have to be repeated in the label.
     - `children: React.ReactNode` — Optional children used when asChild is true
     - `aria-label: string` — Accessible label when no visible label is provided
     - `aria-labelledby: string` — ID of the element that labels the group
+    - `aria-describedby: string` — ID of the element that describes the group, such as help text
 - **Transfer** — Move items between lists
     - `dataSource: TransferItem[]` = [] — All items shown across the two lists
     - `targetKeys: string[]` — Keys of the items in the target (right) list
