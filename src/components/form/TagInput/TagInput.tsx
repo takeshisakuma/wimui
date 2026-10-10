@@ -64,6 +64,10 @@ export const TagInput = React.forwardRef<HTMLDivElement, TagInputProps>(
       allowDelete = true,
       maxTags,
       className,
+      id: customId,
+      "aria-label": ariaLabel,
+      "aria-labelledby": ariaLabelledBy,
+      "aria-describedby": ariaDescribedBy,
       ...props
     },
     ref,
@@ -122,7 +126,7 @@ export const TagInput = React.forwardRef<HTMLDivElement, TagInputProps>(
 
     const { t } = useWimTranslation(formNs);
     const generatedId = useId();
-    const id = props.id || `wim-tag-input-${generatedId}`;
+    const id = customId || `wim-tag-input-${generatedId}`;
     const errorId = error ? `${id}-error` : undefined;
     const labelId = label ? `${id}-label` : undefined;
 
@@ -130,6 +134,9 @@ export const TagInput = React.forwardRef<HTMLDivElement, TagInputProps>(
 
     return (
       <FieldTemplate
+        // 型は `div` の属性を受けるのに、以前はどこにも渡していなかった（T328）。
+        // 名前と説明は入力欄へ、残りは根へ。
+        {...props}
         ref={ref}
         label={label}
         error={error}
@@ -190,11 +197,11 @@ export const TagInput = React.forwardRef<HTMLDivElement, TagInputProps>(
                 placeholder={tags.length === 0 ? resolvedPlaceholder : ""}
                 className={styles.input}
                 aria-invalid={currentIntent === "danger"}
-                aria-describedby={errorId}
-                aria-labelledby={label ? labelId : undefined}
+                aria-describedby={[ariaDescribedBy, errorId].filter(Boolean).join(" ") || undefined}
+                aria-labelledby={label ? labelId : ariaLabelledBy}
                 // タグ入力中は placeholder が空になるため、label 未指定でも
                 // 内蔵ラベルでアクセシブルネームを保証する（axe: label）
-                aria-label={label ? undefined : t("tag_input.input_label")}
+                aria-label={label || ariaLabelledBy ? undefined : (ariaLabel ?? t("tag_input.input_label"))}
                 aria-required={required}
               />
             </div>

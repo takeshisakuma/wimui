@@ -99,8 +99,10 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(
             direction === "horizontal" && styles.horizontal,
           )}
           role="radiogroup"
-          aria-labelledby={label ? labelId : undefined}
-          aria-describedby={errorId}
+          // 利用者が渡した参照を捨てない（T328）。以前はここで固定の値を書いていて、ラベルやエラーを
+          // prop で渡さないとき、外の見出しや説明文への参照が `undefined` で上書きされていた。
+          aria-labelledby={label ? labelId : props["aria-labelledby"]}
+          aria-describedby={[props["aria-describedby"], errorId].filter(Boolean).join(" ") || undefined}
           aria-required={required}
           aria-invalid={!!error}
         >

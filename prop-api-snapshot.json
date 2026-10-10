@@ -11249,6 +11249,9 @@
     "ToastProvider.position": {
       "type": "| \"top-right\" | \"top-left\" | \"top-center\" | \"bottom-right\" | \"bottom-left\" | \"bottom-center\""
     },
+    "ToggleGroup.aria-describedby": {
+      "type": "string"
+    },
     "ToggleGroup.aria-label": {
       "type": "string"
     },
