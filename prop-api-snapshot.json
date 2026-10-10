@@ -3647,6 +3647,13 @@
       "required": true,
       "type": "boolean"
     },
+    "Dialog.role": {
+      "required": true,
+      "values": [
+        "alertdialog",
+        "dialog"
+      ]
+    },
     "Divider.orientation": {
       "required": false,
       "values": [

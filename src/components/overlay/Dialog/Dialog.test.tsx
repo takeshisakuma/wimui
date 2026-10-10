@@ -1,3 +1,4 @@
+import React from "react";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import {
@@ -86,6 +87,62 @@ describe("Dialog", () => {
     fireEvent.click(screen.getByTestId("overlay"));
 
     expect(screen.getByText("Dialog Body")).toBeInTheDocument();
+  });
+
+  describe("role", () => {
+    const renderOpen = (props: Partial<React.ComponentProps<typeof Dialog>> = {}, contentRole?: string) =>
+      render(
+        <Dialog defaultOpen={true} {...props}>
+          <DialogContent role={contentRole}>
+            <DialogTitle>Delete project?</DialogTitle>
+            <DialogDescription>This cannot be undone.</DialogDescription>
+          </DialogContent>
+        </Dialog>,
+      );
+
+    it("既定は dialog", () => {
+      renderOpen();
+      expect(screen.getByRole("dialog", { name: "Delete project?" })).toBeInTheDocument();
+      expect(screen.queryByRole("alertdialog")).not.toBeInTheDocument();
+    });
+
+    it("alertdialog を渡すと、名前と説明を持つ alertdialog になる", () => {
+      renderOpen({ role: "alertdialog" });
+      const dialog = screen.getByRole("alertdialog", { name: "Delete project?" });
+      expect(dialog).toHaveAccessibleDescription("This cannot be undone.");
+      expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+    });
+
+    it("alertdialog は、外側を押しても閉じない", () => {
+      renderOpen({ role: "alertdialog" });
+      fireEvent.click(screen.getByTestId("overlay"));
+      expect(screen.getByRole("alertdialog")).toBeInTheDocument();
+    });
+
+    it("alertdialog でも、closeOnOverlayClick を明示すれば外側で閉じる", async () => {
+      renderOpen({ role: "alertdialog", closeOnOverlayClick: true });
+      // 開いた姿が alertdialog であることを先に見る（無いものが「消えた」と数えない）
+      expect(screen.getByRole("alertdialog")).toBeInTheDocument();
+      fireEvent.click(screen.getByTestId("overlay"));
+      await waitFor(() => {
+        expect(screen.queryByRole("alertdialog")).not.toBeInTheDocument();
+      });
+    });
+
+    it("alertdialog も、Escape で閉じる", async () => {
+      renderOpen({ role: "alertdialog" });
+      // 開いた姿が alertdialog であることを先に見る（無いものが「消えた」と数えない）
+      expect(screen.getByRole("alertdialog")).toBeInTheDocument();
+      fireEvent.keyDown(document, { key: "Escape" });
+      await waitFor(() => {
+        expect(screen.queryByRole("alertdialog")).not.toBeInTheDocument();
+      });
+    });
+
+    it("DialogContent に直に渡した role も捨てない", () => {
+      renderOpen({}, "alertdialog");
+      expect(screen.getByRole("alertdialog")).toBeInTheDocument();
+    });
   });
 
   it("respects controlled open=true", () => {

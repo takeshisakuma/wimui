@@ -119,7 +119,7 @@
     "contextmenu_title": "Context Menu",
     "dialog_a11y": "Accessibility Considerations",
     "dialog_a11y_1": "Correctly manages focus on open/close (Focus Trapping).",
-    "dialog_a11y_2": "Root element uses role='dialog' or role='alertdialog'.",
+    "dialog_a11y_2": "The content has role=\"dialog\". For a dialog that needs a response before the user can continue, such as confirming a deletion, pass role=\"alertdialog\" to Dialog: screen readers then treat it as an alert and read its description when it opens, and clicking outside no longer closes it by default.",
     "dialog_a11y_3": "Linked to titles and descriptions via aria-labelledby and aria-describedby.",
     "dialog_a11y_4": "Supports closing the dialog via the Escape key.",
     "dialog_a11y_trap": "Enables a focus trap to keep keyboard navigation within the dialog, ensuring accessibility for assistive technology users.",

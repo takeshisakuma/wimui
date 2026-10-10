@@ -2773,8 +2773,13 @@ anything is measured; long text is truncated and read in full by assistive techn
     - `defaultOpen: boolean` = false — Initial open state for uncontrolled usage.
 @default false
     - `className: string` — Additional CSS class name.
-    - `closeOnOverlayClick: boolean` = true — Whether clicking the overlay closes the dialog.
-@default true
+    - `closeOnOverlayClick: boolean` = role !== "alertdialog" — Whether clicking the overlay closes the dialog. Defaults to true, except
+when role is "alertdialog", where it defaults to false.
+    - `role: "dialog" | "alertdialog"` = "dialog" — ARIA role of the dialog content. Use "alertdialog" for a dialog that
+interrupts the user and needs a response before they can continue, such as
+confirming a destructive action. An alert dialog does not close when the
+overlay is clicked unless closeOnOverlayClick is set; Escape still closes it.
+@default "dialog"
 - **Drawer** — Slide-out detail panels (aka Navigation Drawer)
     - `children: React.ReactNode` (required) — Drawer parts (DrawerTrigger, DrawerContent, etc.).
     - `open: boolean` — Controlled open state. Use together with onOpenChange.

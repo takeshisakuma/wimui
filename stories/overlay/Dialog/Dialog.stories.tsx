@@ -33,6 +33,11 @@ const meta: Meta<typeof Dialog> = {
       control: "boolean",
       description: "Whether clicking the overlay backdrop closes the dialog.",
     },
+    role: {
+      control: "inline-radio",
+      options: ["dialog", "alertdialog"],
+      description: "ARIA role of the dialog content.",
+    },
   },
 };
 
@@ -193,6 +198,69 @@ export const Stacked: Story = {
 
 // 開いた姿。ほかのストーリーは閉じたまま撮られるので、開いた中身を変えても VRT と a11y の CI が
 // 動かなかった（T293）。docs ページには載せない（play は docs では走らず、defaultOpen はページを開いた瞬間に開く）。
+const AlertDialogBody = () => {
+  const { t } = useTranslation(ALL_NAMESPACES);
+  return (
+    <DialogContent>
+      <DialogHeader>
+        <DialogTitle>{t("story.dialog_alert_title")}</DialogTitle>
+        <DialogDescription>{t("story.dialog_alert_desc")}</DialogDescription>
+      </DialogHeader>
+      <DialogFooter>
+        <DialogClose asChild>
+          <Button variant="outline">{t("story.dialog_cancel")}</Button>
+        </DialogClose>
+        <DialogClose asChild>
+          <Button variant="solid" intent="danger">{t("story.dialog_alert_confirm")}</Button>
+        </DialogClose>
+      </DialogFooter>
+    </DialogContent>
+  );
+};
+
+/**
+ * 応答するまで先へ進めないダイアログ。`role="alertdialog"` を渡すと、外側のクリックでは
+ * 閉じなくなる（Escape と取り消しのボタンでは閉じる）。
+ */
+export const AlertDialog: Story = {
+  args: {
+    role: "alertdialog",
+    // meta の `closeOnOverlayClick: true` を外して、alertdialog の既定（閉じない）を見せる
+    closeOnOverlayClick: undefined,
+  },
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <Dialog {...args}>
+        <DialogTrigger asChild>
+          <Button variant="outline" intent="danger">{t("story.dialog_alert_open")}</Button>
+        </DialogTrigger>
+        <AlertDialogBody />
+      </Dialog>
+    );
+  },
+};
+
+/**
+ * 開いた姿（自動検査用）。**引き金を中央に置かない**（`layout: "padded"`）── このダイアログは
+ * 背が低く、中央に置いた引き金がちょうど説明文の真裏に来る。axe は背後の要素が重なると背景色を
+ * 決められず、説明文のコントラストを「判定不能」にする（引き金を消すと判定でき、合格する。
+ * 2026-10-10 に実測）。引き金そのものは消せない ── 検査は `#storybook-root` に中身が入るのを
+ * 待つので、ポータルに出るダイアログだけだと、描画を待ち切れずに落ちる。
+ */
+export const AlertDialogOpen: Story = {
+  ...AlertDialog,
+  // docs ページは <Stories /> で全ストーリーを並べる。載せると、ページを開いた瞬間に開いてしまう。
+  tags: ["!autodocs"],
+  parameters: {
+    layout: "padded",
+  },
+  args: {
+    ...AlertDialog.args,
+    defaultOpen: true,
+  },
+};
+
 export const Open: Story = {
   ...Default,
   // docs ページは <Stories /> で全ストーリーを並べる。載せると、ページを開いた瞬間に開いてしまう。

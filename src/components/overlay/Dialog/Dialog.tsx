@@ -4,6 +4,9 @@ import { Slot, Slottable } from "@radix-ui/react-slot";
 import { OverlayBase } from "../../_internal/OverlayBase";
 import styles from "./dialog.module.scss";
 
+/** The ARIA role the dialog content announces itself with. */
+export type DialogRole = "dialog" | "alertdialog";
+
 // --- Dialog Context ---
 type DialogContextType = {
   titleId: string;
@@ -11,6 +14,7 @@ type DialogContextType = {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   closeOnOverlayClick: boolean;
+  role: DialogRole;
 };
 
 const DialogContext = createContext<DialogContextType | undefined>(undefined);
@@ -47,10 +51,18 @@ export interface DialogProps {
    */
   className?: string;
   /**
-   * Whether clicking the overlay closes the dialog.
-   * @default true
+   * Whether clicking the overlay closes the dialog. Defaults to true, except
+   * when role is "alertdialog", where it defaults to false.
    */
   closeOnOverlayClick?: boolean;
+  /**
+   * ARIA role of the dialog content. Use "alertdialog" for a dialog that
+   * interrupts the user and needs a response before they can continue, such as
+   * confirming a destructive action. An alert dialog does not close when the
+   * overlay is clicked unless closeOnOverlayClick is set; Escape still closes it.
+   * @default "dialog"
+   */
+  role?: DialogRole;
 }
 
 const DialogInner = ({
@@ -58,7 +70,10 @@ const DialogInner = ({
   open: controlledOpen,
   onOpenChange,
   defaultOpen = false,
-  closeOnOverlayClick = true,
+  role = "dialog",
+  // 応答が必須のダイアログは、外側を押しただけで消えてはいけない（答えずに先へ進める）。
+  // 明示した値はそのまま通す。
+  closeOnOverlayClick = role !== "alertdialog",
 }: DialogProps) => {
   const [uncontrolledOpen, setUncontrolledOpen] = useState(defaultOpen);
   const isControlled = controlledOpen !== undefined;
@@ -77,7 +92,7 @@ const DialogInner = ({
   const descriptionId = `${id}-description`;
 
   return (
-    <DialogContext.Provider value={{ titleId, descriptionId, open, onOpenChange: handleOpenChange, closeOnOverlayClick }}>
+    <DialogContext.Provider value={{ titleId, descriptionId, open, onOpenChange: handleOpenChange, closeOnOverlayClick, role }}>
       {children}
     </DialogContext.Provider>
   );
@@ -170,9 +185,10 @@ export const DialogContent = ({
   asChild = false,
   open: propsOpen,
   onOpenChange: propsOnOpenChange,
+  role: propsRole,
   ...props
 }: DialogContentProps) => {
-  const { open: contextOpen, onOpenChange: contextOnOpenChange, titleId, descriptionId, closeOnOverlayClick } = useDialog();
+  const { open: contextOpen, onOpenChange: contextOnOpenChange, titleId, descriptionId, closeOnOverlayClick, role: contextRole } = useDialog();
 
   const open = propsOpen !== undefined ? propsOpen : contextOpen;
   const onOpenChange = propsOnOpenChange !== undefined ? propsOnOpenChange : contextOnOpenChange;
@@ -186,7 +202,8 @@ export const DialogContent = ({
       onOpenChange={onOpenChange}
       closeOnOverlayClick={closeOnOverlayClick}
       overlayClassName={styles.overlay}
-      role="dialog"
+      // ここへ直に渡した role も捨てない（型は受けるのに、これまで黙って "dialog" に上書きしていた）。
+      role={propsRole ?? contextRole}
       aria-labelledby={titleId}
       aria-describedby={descriptionId}
     >
