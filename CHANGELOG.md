@@ -1,5 +1,28 @@
 # wimui
 
+## 0.55.0
+
+### Minor Changes
+
+- e3930a7: `ImageCropper` の画像の位置を、キーボードで動かせるようになりました（T330）。これまで位置を動かす手段はドラッグだけで、キーボードだけの利用者は、画像の中央しか切り抜けませんでした。
+
+  - 画像の領域に Tab で届きます。矢印キーで 10px、Shift を押しながらだと 50px 動きます。Home で中央に戻ります。
+  - 領域は `role="application"` で、名前（「Image position」）と、キーの使い方の説明を持ちます。文言は en / ja / pt を内蔵しています。
+  - フォーカスしているあいだ、領域の内側に輪が出ます。
+  - ドラッグの動きと、フォーカスしていないときの見た目は、これまでと同じです。
+
+### Patch Changes
+
+- 33e44aa: 利用者が渡した `aria-labelledby` / `aria-describedby` / `aria-label` が、出力から消えていたのを直しました（T328）。ラベルやエラーを部品の prop で渡さず、外の見出しや説明文を参照で結び付ける使い方が、これまでは効いていませんでした。見た目は変わりません。
+
+  - **CheckboxGroup / SwitchGroup / RadioGroup / CounterTextarea**: `label` を渡さないとき、`aria-labelledby` がそのまま出ます。`aria-describedby` は、部品のエラーの参照と並べて出ます。
+  - **ToggleGroup**: `aria-describedby` を受けるようになりました。
+  - **TagInput**: `aria-label` / `aria-labelledby` / `aria-describedby` が入力欄に出ます。そのほかの属性（`data-*` など）は根の要素に出ます。これまでは、型では受けるのに、どこにも出ていませんでした。
+  - **Kanban**: `aria-label` か `aria-labelledby` を渡すと、盤の名前になります。これまでは内蔵の名前で上書きしていたので、盤を 2 つ置くと同じ名前が並びました。
+  - **Dialog / Drawer**: `DialogContent` / `DrawerContent` に渡した `aria-labelledby` を、自分のタイトルの id で上書きしなくなりました。`aria-describedby` は、自分の説明の参照と並べて出ます。`DrawerContent` に渡した `role` も、そのまま出ます。
+
+  何も渡さないときの出力は、これまでと同じです。
+
 ## 0.54.0
 
 ### Minor Changes
