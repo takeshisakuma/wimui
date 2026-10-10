@@ -183,3 +183,51 @@ test.describe("ImageCropper returns what the frame shows", () => {
     expect(await maxCellDiff(page, before.dataUrl, out.src)).toBeGreaterThan(TOLERANCE * 2);
   });
 });
+
+// T335: ドラッグをマウスのイベントで組んでいて、タッチでは画像を動かせなかった。
+// 本物のタッチ（CDP の `Input.dispatchTouchEvent`）で動かす ── 合成したイベントでは、ブラウザが
+// 縦のなぞりをページのスクロールに取り上げる動き（`touch-action`）を確かめられない。
+test.describe("ImageCropper can be dragged by touch", () => {
+  // 背の低い画面にして、ページが縦にスクロールできる状態で試す
+  test.use({ hasTouch: true, viewport: { width: 600, height: 320 } });
+
+  const translate = (page: Page) =>
+    page.evaluate(() => {
+      const img = document.querySelector<HTMLImageElement>('[role="application"] img')!;
+      const m = img.style.transform.match(/translate\((-?[\d.]+)px, (-?[\d.]+)px\)/)!;
+      return [Number(m[1]), Number(m[2])];
+    });
+
+  test("a vertical swipe moves the image instead of scrolling the page", async ({ page }) => {
+    await open(page);
+    // 対照: ページは縦にスクロールできる。できなければ、「スクロールしなかった」は何も確かめない
+    expect(await page.evaluate(() => document.documentElement.scrollHeight > window.innerHeight)).toBe(true);
+    expect(await translate(page)).toEqual([0, 0]);
+
+    const box = (await viewer(page).boundingBox())!;
+    const start = { x: box.x + box.width / 2, y: box.y + box.height / 2 };
+    const client = await page.context().newCDPSession(page);
+    await client.send("Input.dispatchTouchEvent", { type: "touchStart", touchPoints: [start] });
+    for (let step = 1; step <= 6; step += 1) {
+      await client.send("Input.dispatchTouchEvent", {
+        type: "touchMove",
+        touchPoints: [{ x: start.x + 5 * step, y: start.y - 10 * step }],
+      });
+    }
+    await client.send("Input.dispatchTouchEvent", { type: "touchEnd", touchPoints: [] });
+
+    expect(await translate(page)).toEqual([30, -60]);
+    expect(await page.evaluate(() => window.scrollY)).toBe(0);
+  });
+
+  test("a mouse drag still moves the image", async ({ page }) => {
+    await open(page);
+    const box = (await viewer(page).boundingBox())!;
+    const start = { x: box.x + box.width / 2, y: box.y + box.height / 2 };
+    await page.mouse.move(start.x, start.y);
+    await page.mouse.down();
+    await page.mouse.move(start.x - 25, start.y + 15, { steps: 4 });
+    await page.mouse.up();
+    expect(await translate(page)).toEqual([-25, 15]);
+  });
+});

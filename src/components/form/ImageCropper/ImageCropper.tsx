@@ -121,13 +121,17 @@ export const ImageCropper = React.forwardRef<HTMLDivElement, ImageCropperProps>(
       setRotation(0);
     }, [src]);
 
-    const handleMouseDown = (e: React.MouseEvent) => {
+    // ドラッグは、以前はマウスのイベントで組んでいて、タッチでは画像を動かせなかった（T335）。
+    // ポインタのイベントは、マウス・タッチ・ペンを 1 つの口で受ける。
+    const handlePointerDown = (e: React.PointerEvent) => {
+      // マウスは主ボタンだけ（右クリックのメニューや中ボタンで掴まない）
+      if (e.pointerType === "mouse" && e.button !== 0) return;
       setIsDragging(true);
       setDragStart({ x: e.clientX - position.x, y: e.clientY - position.y });
     };
 
-    const handleMouseMove = useCallback(
-      (e: MouseEvent) => {
+    const handlePointerMove = useCallback(
+      (e: PointerEvent) => {
         if (!isDragging) return;
         setPosition({
           x: e.clientX - dragStart.x,
@@ -137,23 +141,22 @@ export const ImageCropper = React.forwardRef<HTMLDivElement, ImageCropperProps>(
       [isDragging, dragStart],
     );
 
-    const handleMouseUp = useCallback(() => {
+    const handlePointerUp = useCallback(() => {
       setIsDragging(false);
     }, []);
 
     useEffect(() => {
-      if (isDragging) {
-        window.addEventListener("mousemove", handleMouseMove);
-        window.addEventListener("mouseup", handleMouseUp);
-      } else {
-        window.removeEventListener("mousemove", handleMouseMove);
-        window.removeEventListener("mouseup", handleMouseUp);
-      }
+      if (!isDragging) return;
+      window.addEventListener("pointermove", handlePointerMove);
+      window.addEventListener("pointerup", handlePointerUp);
+      // タッチは、ブラウザが操作を取り上げると `pointerup` の代わりに `pointercancel` が来る
+      window.addEventListener("pointercancel", handlePointerUp);
       return () => {
-        window.removeEventListener("mousemove", handleMouseMove);
-        window.removeEventListener("mouseup", handleMouseUp);
+        window.removeEventListener("pointermove", handlePointerMove);
+        window.removeEventListener("pointerup", handlePointerUp);
+        window.removeEventListener("pointercancel", handlePointerUp);
       };
-    }, [isDragging, handleMouseMove, handleMouseUp]);
+    }, [isDragging, handlePointerMove, handlePointerUp]);
 
     // 位置を動かす口は、以前はドラッグにしか無かった（T330）。キーボードだけの利用者は、
     // 画像の中央しか切り抜けなかった。矢印キーで同じことができるようにする。
@@ -233,7 +236,7 @@ export const ImageCropper = React.forwardRef<HTMLDivElement, ImageCropperProps>(
         <div
           ref={containerRef}
           className={styles.viewer} 
-          onMouseDown={handleMouseDown}
+          onPointerDown={handlePointerDown}
           onKeyDown={handleKeyDown}
           // Tab で届き、矢印キーを受ける（以前は `presentation`）。ロールは `application` ── 矢印キーを
           // 自前で扱う部品で、当てはまるウィジェットのロールが無い。`group` だと、スクリーンリーダーの
