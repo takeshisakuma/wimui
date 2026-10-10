@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect, useRef } from "react";
+import React, { useState, useCallback, useEffect, useLayoutEffect, useRef } from "react";
 import classNames from "classnames";
 import styles from "./anchor.module.scss";
 
@@ -130,7 +130,7 @@ export const Anchor = ({
     return () => window.removeEventListener("scroll", handleScroll);
   }, [items, offset, bounds, activeId, direction]);
 
-  useLayoutEffect(() => {
+  const measureMarker = useCallback(() => {
     if (!activeId || !containerRef.current) return;
     const activeLink = containerRef.current.querySelector(
       `a[href="${activeId}"]`,
@@ -196,6 +196,22 @@ export const Anchor = ({
       setMarkerStyle({ opacity: 0 });
     }
   }, [activeId, direction]);
+
+  useLayoutEffect(() => {
+    measureMarker();
+  }, [measureMarker]);
+
+  // 印の位置と大きさは、以前は現在地が変わったときにしか測り直さなかった（T331）。リンクの大きさや
+  // 位置は、現在地が同じままでも変わる ── フォントの読み込み・表示言語の切り替え・入れ物の幅。
+  // そのたびに、印がリンクからずれたまま残っていた。根と各リンクの大きさを見て、変わったら測り直す。
+  useEffect(() => {
+    const root = containerRef.current;
+    if (!root || typeof ResizeObserver === "undefined") return;
+    const observer = new ResizeObserver(() => measureMarker());
+    observer.observe(root);
+    root.querySelectorAll("a").forEach((link) => observer.observe(link));
+    return () => observer.disconnect();
+  }, [measureMarker, items]);
 
   const renderLinks = (links: AnchorLinkItem[]) => {
     return (
