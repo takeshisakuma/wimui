@@ -270,10 +270,15 @@ describe("Cascader", () => {
         onChange={onChange}
       />,
     );
-    // handleClear guards on disabled
-    const clearButton = screen.queryByLabelText(/clear input/i);
-    if (clearButton) fireEvent.click(clearButton);
+    // 無効のときは、消すボタンそのものを出さない。以前は「在れば押す」と書いていて、ボタンが無いので
+    // 何も押さず、何も確かめていなかった（CI-17）
+    expect(screen.queryByLabelText(/clear input/i)).not.toBeInTheDocument();
     expect(onChange).not.toHaveBeenCalled();
+  });
+
+  it("shows the clear button when enabled, so the disabled case above is not vacuous", () => {
+    render(<Cascader options={options} defaultValue={["zhejiang", "hangzhou", "west_lake"]} allowClear />);
+    expect(screen.getByLabelText(/clear input/i)).toBeInTheDocument();
   });
 
   it("renders aria-label on trigger when no visible label provided", () => {

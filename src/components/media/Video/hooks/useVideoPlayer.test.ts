@@ -272,8 +272,14 @@ describe("useVideoPlayer - handleLoadedMetadata", () => {
 });
 
 describe("useVideoPlayer - handleEnded", () => {
-  it("sets isPlaying to false when no playlist autoplay", () => {
+  it("sets isPlaying to false when no playlist autoplay", async () => {
     const { result } = renderHook(() => useVideoPlayer(baseOptions));
+    await act(async () => {
+      (result.current.videoRef as React.MutableRefObject<HTMLVideoElement | null>).current = makeVideoEl();
+    });
+    // 前提: 再生中にしてから終わらせる。初期値の false のままだと、何も起きなくても通る（CI-17）
+    act(() => { result.current.togglePlay(); });
+    expect(result.current.isPlaying).toBe(true);
 
     act(() => { result.current.handleEnded(); });
 
@@ -314,6 +320,8 @@ describe("useVideoPlayer - handleEnded", () => {
     act(() => { result.current.setCurrentPlayIndex(1); });
     act(() => { result.current.handleEnded(); });
 
+    // 題のとおり「進まない」を見る。isPlaying は初期値が false なので、それだけでは何も確かめない（CI-17）
+    expect(result.current.currentPlayIndex).toBe(1);
     expect(result.current.isPlaying).toBe(false);
   });
 
@@ -939,6 +947,8 @@ describe("useVideoPlayer - loop effect", () => {
     );
 
     const videoEl = makeVideoEl();
+    // 前提: 要素の側は loop が立っている。初期値の false のままだと、何も起きなくても通る（CI-17）
+    videoEl.loop = true;
     await act(async () => {
       (result.current.videoRef as React.MutableRefObject<HTMLVideoElement | null>).current =
         videoEl;
