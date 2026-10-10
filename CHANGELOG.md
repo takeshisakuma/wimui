@@ -1,5 +1,24 @@
 # wimui
 
+## 0.53.1
+
+### Patch Changes
+
+- 2e345df: ドキュメントが書いていたのに実装に無かった、読み上げ向けの情報を 2 つ足しました。見た目は変わりません。
+
+  - **Anchor**: 現在地のリンクに `aria-current="location"` が付くようになりました。これまで現在地は、色と印でしか示していませんでした。
+  - **Kanban**: 列の中身がカードだけのとき、列の本体が `role="list"`、各カードが `role="listitem"` になりました。カードの枚数と、何枚目かが読み上げられます。空の列と、カード以外（追加ボタンなど）を混ぜた列、カードを自前の部品で包んだ列は、これまでどおりです。
+
+- 3d5c6ca: `llms.txt` / `llms-full.txt` に、他のライブラリでの呼び名を別名として足しました。他所の語彙で探した人と AI が、既にある部品へたどり着けます。部品の API は変わりません。
+
+  - `Combobox`: Autocomplete
+  - `OtpInput`: Pin Input / Input OTP
+  - `Toast`: Message / Sonner
+  - `Stats`: Statistic / Stat
+  - `Splitter`: Resizable / Split Pane
+  - `FileUpload`: Upload / File Input
+  - `TabBar`: Bottom Navigation
+
 ## 0.53.0
 
 ### Minor Changes
