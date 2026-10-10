@@ -4262,7 +4262,7 @@
       "ganttchart_token_text": "The color of task labels and header dates.",
       "ganttchart_week_view": "Week View",
       "ganttchart_with_click": "With Click Handler",
-      "kanban_a11y_desc": "KanbanBoard uses role=\"region\". Cards use role=\"listitem\" with aria-disabled for disabled state. Column titles serve as accessible labels for each drop zone.",
+      "kanban_a11y_desc": "KanbanBoard uses role=\"region\". Each column is a role=\"group\" named by its title. When a column holds only cards, its body becomes a role=\"list\" and each card a role=\"listitem\", so the number of cards and the position of each one are announced; an empty column, or one that mixes in other content, carries no list role. A disabled card cannot be dragged and its move button is disabled.",
       "kanban_anatomy_board": "The root container that provides drag-and-drop context and holds all columns in a horizontal layout.",
       "kanban_anatomy_card": "A draggable item within a column. Becomes non-draggable when disabled.",
       "kanban_anatomy_column": "A vertical lane with a header (title + card count badge) and a body that acts as a drop target.",

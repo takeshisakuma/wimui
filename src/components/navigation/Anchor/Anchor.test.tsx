@@ -86,6 +86,31 @@ describe("Anchor", () => {
     expect(activeItem?.querySelector("a")?.getAttribute("href")).toBe("#section1");
   });
 
+  it("現在地のリンクだけが aria-current を持つ", () => {
+    render(<Anchor items={items} offset={0} bounds={5} />);
+
+    Object.defineProperty(document.documentElement, "scrollHeight", { value: 5000, configurable: true });
+    Object.defineProperty(document.documentElement, "clientHeight", { value: 1000, configurable: true });
+
+    vi.spyOn(document, "getElementById").mockImplementation((id) => {
+      if (id === "section1")
+        return {
+          getBoundingClientRect: () => ({ top: 0, bottom: 100, height: 100 }),
+        } as unknown as HTMLElement;
+      return {
+        getBoundingClientRect: () => ({ top: 1000, bottom: 1100, height: 100 }),
+      } as unknown as HTMLElement;
+    });
+
+    act(() => {
+      fireEvent.scroll(window);
+    });
+
+    expect(screen.getByRole("link", { name: "Section 1" })).toHaveAttribute("aria-current", "location");
+    expect(screen.getByRole("link", { name: "Section 2" })).not.toHaveAttribute("aria-current");
+    expect(screen.getByRole("link", { name: "Sub Section 1.1" })).not.toHaveAttribute("aria-current");
+  });
+
   it("highlights the last link when scrolled to bottom", () => {
     const { container } = render(<Anchor items={items} />);
     

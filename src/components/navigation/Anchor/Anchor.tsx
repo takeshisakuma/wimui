@@ -216,6 +216,8 @@ export const Anchor = ({
             <a
               href={item.href}
               className={styles.link}
+              // 現在地は色と印でしか示していなかった。ページの中の位置なので `location`。
+              aria-current={activeId === item.href ? "location" : undefined}
               onClick={(e) => handleClick(e, item.href)}
               title={typeof item.title === "string" ? item.title : undefined}
             >

@@ -82,7 +82,7 @@
     "ganttchart_token_text": "タスクラベルとヘッダーの日付の色。",
     "ganttchart_week_view": "週表示",
     "ganttchart_with_click": "クリックハンドラーあり",
-    "kanban_a11y_desc": "KanbanBoard は role=\"region\" を使用。カードは role=\"listitem\" と aria-disabled で無効状態を伝えます。列タイトルは各ドロップゾーンのアクセシブルラベルとして機能します。",
+    "kanban_a11y_desc": "KanbanBoard は role=\"region\" を使用します。各列は role=\"group\" で、タイトルが名前になります。列の中身がカードだけのとき、列の本体は role=\"list\"、各カードは role=\"listitem\" になり、カードの枚数と何枚目かが読み上げられます。空の列と、カード以外を混ぜた列には、リストのロールは付きません。無効のカードはドラッグできず、移動ボタンも無効になります。",
     "kanban_anatomy_board": "ドラッグ＆ドロップのコンテキストを提供し、全列を横並びに保持するルートコンテナ。",
     "kanban_anatomy_card": "列内のドラッグ可能なアイテム。disabled 時はドラッグ不可になる。",
     "kanban_anatomy_column": "ヘッダー（タイトル＋カード枚数バッジ）とドロップターゲットとなるボディを持つ縦のレーン。",

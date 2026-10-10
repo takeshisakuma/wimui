@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { render, screen, fireEvent, waitFor, within } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { KanbanBoard } from "./Kanban";
 import styles from "./kanban.module.scss";
@@ -56,6 +56,36 @@ describe("KanbanBoard", () => {
     render(<DefaultBoard />);
     expect(screen.getByRole("group", { name: "To Do" })).toBeInTheDocument();
     expect(screen.getByRole("group", { name: "Done" })).toBeInTheDocument();
+  });
+
+  it("カードだけの列は、カードをリストの項目として出す", () => {
+    render(<DefaultBoard />);
+    const todo = screen.getByRole("group", { name: "To Do" });
+    const list = within(todo).getByRole("list");
+    expect(within(list).getAllByRole("listitem")).toHaveLength(2);
+  });
+
+  it("columns で渡した列も、カードをリストの項目として出す", () => {
+    render(
+      <KanbanBoard
+        columns={[{ id: "todo", title: "To Do", items: [{ id: "a", content: "A" }] }]}
+      />,
+    );
+    expect(screen.getAllByRole("listitem")).toHaveLength(1);
+  });
+
+  it("空の列と、カード以外が混ざる列は、リストにしない", () => {
+    render(
+      <KanbanBoard>
+        <KanbanBoard.Column id="empty" title="Empty" />
+        <KanbanBoard.Column id="mixed" title="Mixed">
+          <KanbanBoard.Card id="card">Card</KanbanBoard.Card>
+          <button type="button">Add</button>
+        </KanbanBoard.Column>
+      </KanbanBoard>,
+    );
+    expect(screen.queryByRole("list")).not.toBeInTheDocument();
+    expect(screen.queryByRole("listitem")).not.toBeInTheDocument();
   });
 
   it("renders columns with titles", () => {

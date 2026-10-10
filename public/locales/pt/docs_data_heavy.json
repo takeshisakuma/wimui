@@ -82,7 +82,7 @@
     "ganttchart_token_text": "A cor das etiquetas das tarefas e das datas do cabeçalho.",
     "ganttchart_week_view": "Visualização Semanal",
     "ganttchart_with_click": "Com Manipulador de Clique",
-    "kanban_a11y_desc": "KanbanBoard usa role=\"region\". Os cartões usam role=\"listitem\" com aria-disabled para o estado desabilitado. Os títulos das colunas servem como labels acessíveis para cada zona de drop.",
+    "kanban_a11y_desc": "KanbanBoard usa role=\"region\". Cada coluna é um role=\"group\" nomeado pelo seu título. Quando uma coluna contém apenas cartões, o corpo da coluna passa a ser role=\"list\" e cada cartão role=\"listitem\", de modo que a quantidade de cartões e a posição de cada um são anunciadas; uma coluna vazia, ou que misture outro conteúdo, não recebe o role de lista. Um cartão desabilitado não pode ser arrastado e seu botão de mover fica desabilitado.",
     "kanban_anatomy_board": "O contêiner raiz que fornece o contexto de drag-and-drop e mantém todas as colunas em layout horizontal.",
     "kanban_anatomy_card": "Um item arrastável dentro de uma coluna. Torna-se não arrastável quando desabilitado.",
     "kanban_anatomy_column": "Uma faixa vertical com um cabeçalho (título + badge de contagem) e um corpo que atua como alvo de drop.",

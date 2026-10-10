@@ -238,6 +238,13 @@ export const KanbanColumn = ({
   // `region` ではなく `group` にするのは、列の数だけランドマークが増えるのを避けるため。
   // タイトルは `aria-hidden` にして二重読みを防ぐ（名前は `aria-labelledby` が運ぶ）。
   const labelId = React.useId();
+  // カードの並びをリストにする（枚数と「何枚目か」が読まれる）。**中身がカードだけのときに限る** ──
+  // `list` の直下に `listitem` 以外があると壊れた構造になり、空の `list` は axe が判定を保留する。
+  // 追加ボタンや空の表示を混ぜた列、カードを自前の部品で包んだ列は、これまでどおりロールなし。
+  const items = React.Children.toArray(children);
+  const isCardList =
+    items.length > 0 &&
+    items.every((child) => React.isValidElement(child) && child.type === KanbanCard);
   return (
     <div
       className={classNames(
@@ -269,7 +276,9 @@ export const KanbanColumn = ({
           </div>
         )}
       </div>
-      <div className={styles.columnBody}>{children}</div>
+      <div className={styles.columnBody} role={isCardList ? "list" : undefined}>
+        <CardListContext.Provider value={isCardList}>{children}</CardListContext.Provider>
+      </div>
     </div>
   );
 };
@@ -299,9 +308,11 @@ export const KanbanCard = ({
   } = useKanban();
 
   const colId = React.useContext(ColumnContext);
+  const inCardList = React.useContext(CardListContext);
 
   return (
     <div
+      role={inCardList ? "listitem" : undefined}
       className={classNames(
         styles.card,
         {
@@ -356,6 +367,8 @@ export const KanbanCard = ({
 };
 
 const ColumnContext = React.createContext<string | null>(null);
+/** 列の中身がリスト（カードだけ）として描かれているか。カードが `listitem` を名乗るかを決める。 */
+const CardListContext = React.createContext(false);
 
 // Wrapper for Column to provide ID to cards
 const KanbanColumnWrapper = (props: KanbanColumnProps) => {
