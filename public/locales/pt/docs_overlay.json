@@ -120,7 +120,7 @@
     "contextmenu_title": "Menu de Contexto",
     "dialog_a11y": "Considerações de Acessibilidade",
     "dialog_a11y_1": "Gerencia corretamente o foco ao abrir/fechar (Focus Trapping).",
-    "dialog_a11y_2": "O elemento raiz usa role='dialog' ou role='alertdialog'.",
+    "dialog_a11y_2": "O conteúdo tem role=\"dialog\". Para um diálogo que exige uma resposta antes de o usuário continuar, como a confirmação de uma exclusão, passe role=\"alertdialog\" ao Dialog: os leitores de tela passam a tratá-lo como um alerta e leem sua descrição ao abrir, e clicar fora deixa de fechá-lo por padrão.",
     "dialog_a11y_3": "Vinculado a títulos e descrições via aria-labelledby e aria-describedby.",
     "dialog_a11y_4": "Suporta o fechamento do diálogo via tecla Escape.",
     "dialog_a11y_trap": "Ativa uma armadilha de foco para manter a navegação pelo teclado dentro do diálogo, garantindo acessibilidade para usuários de tecnologia assistiva.",

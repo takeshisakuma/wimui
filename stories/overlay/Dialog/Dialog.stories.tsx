@@ -33,6 +33,11 @@ const meta: Meta<typeof Dialog> = {
       control: "boolean",
       description: "Whether clicking the overlay backdrop closes the dialog.",
     },
+    role: {
+      control: "inline-radio",
+      options: ["dialog", "alertdialog"],
+      description: "ARIA role of the dialog content.",
+    },
   },
 };
 
@@ -193,6 +198,52 @@ export const Stacked: Story = {
 
 // 開いた姿。ほかのストーリーは閉じたまま撮られるので、開いた中身を変えても VRT と a11y の CI が
 // 動かなかった（T293）。docs ページには載せない（play は docs では走らず、defaultOpen はページを開いた瞬間に開く）。
+/**
+ * 応答するまで先へ進めないダイアログ。`role="alertdialog"` を渡すと、外側のクリックでは
+ * 閉じなくなる（Escape と取り消しのボタンでは閉じる）。
+ */
+export const AlertDialog: Story = {
+  args: {
+    role: "alertdialog",
+    // meta の `closeOnOverlayClick: true` を外して、alertdialog の既定（閉じない）を見せる
+    closeOnOverlayClick: undefined,
+  },
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <Dialog {...args}>
+        <DialogTrigger asChild>
+          <Button variant="outline" intent="danger">{t("story.dialog_alert_open")}</Button>
+        </DialogTrigger>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>{t("story.dialog_alert_title")}</DialogTitle>
+            <DialogDescription>{t("story.dialog_alert_desc")}</DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <DialogClose asChild>
+              <Button variant="outline">{t("story.dialog_cancel")}</Button>
+            </DialogClose>
+            <DialogClose asChild>
+              <Button variant="solid" intent="danger">{t("story.dialog_alert_confirm")}</Button>
+            </DialogClose>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    );
+  },
+};
+
+export const AlertDialogOpen: Story = {
+  ...AlertDialog,
+  // docs ページは <Stories /> で全ストーリーを並べる。載せると、ページを開いた瞬間に開いてしまう。
+  tags: ["!autodocs"],
+  args: {
+    ...AlertDialog.args,
+    defaultOpen: true,
+  },
+};
+
 export const Open: Story = {
   ...Default,
   // docs ページは <Stories /> で全ストーリーを並べる。載せると、ページを開いた瞬間に開いてしまう。
