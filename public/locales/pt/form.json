@@ -61,6 +61,8 @@
     "confirm_message": "Deseja salvar a imagem com este recorte?",
     "confirm_title": "Aplicar recorte",
     "no_image": "Nenhuma imagem selecionada",
+    "position_hint": "Use as setas para mover a imagem. Segure Shift para passos maiores. Home centraliza a imagem.",
+    "position_label": "Posição da imagem",
     "rotate": "Rodar",
     "zoom": "Zoom"
   },

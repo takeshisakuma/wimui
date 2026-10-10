@@ -87,6 +87,8 @@
   },
   "image_cropper": {
     "no_image": "No image selected",
+    "position_label": "Image position",
+    "position_hint": "Use the arrow keys to move the image. Hold Shift for larger steps. Home centers it.",
     "zoom": "Zoom",
     "rotate": "Rotate",
     "apply": "Apply Crop",

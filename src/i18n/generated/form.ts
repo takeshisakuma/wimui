@@ -44,6 +44,8 @@ export type FormKey =
   | "image_cropper.confirm_message"
   | "image_cropper.confirm_title"
   | "image_cropper.no_image"
+  | "image_cropper.position_hint"
+  | "image_cropper.position_label"
   | "image_cropper.rotate"
   | "image_cropper.zoom"
   | "markdown.task_done"
@@ -170,6 +172,8 @@ export const formNs: WimNamespace<"form", FormKey> = {
       },
       "image_cropper": {
         "no_image": "No image selected",
+        "position_label": "Image position",
+        "position_hint": "Use the arrow keys to move the image. Hold Shift for larger steps. Home centers it.",
         "zoom": "Zoom",
         "rotate": "Rotate",
         "apply": "Apply Crop",
@@ -260,6 +264,8 @@ export const formNs: WimNamespace<"form", FormKey> = {
         "confirm_message": "この範囲で画像を保存しますか？",
         "confirm_title": "クロップの適用",
         "no_image": "画像が選択されていません",
+        "position_hint": "矢印キーで画像を動かします。Shift を押しながらだと大きく動きます。Home で中央に戻ります。",
+        "position_label": "画像の位置",
         "rotate": "回転",
         "zoom": "ズーム"
       },
@@ -376,6 +382,8 @@ export const formNs: WimNamespace<"form", FormKey> = {
         "confirm_message": "Deseja salvar a imagem com este recorte?",
         "confirm_title": "Aplicar recorte",
         "no_image": "Nenhuma imagem selecionada",
+        "position_hint": "Use as setas para mover a imagem. Segure Shift para passos maiores. Home centraliza a imagem.",
+        "position_label": "Posição da imagem",
         "rotate": "Rodar",
         "zoom": "Zoom"
       },
