@@ -380,6 +380,7 @@ git branch -vv | grep ": gone]"   # 追跡先が消えたローカルブラン�
 
 **観点の候補**（測り終えたら消し、思いついたら足す。2026-10-04 に 13 観点、2026-10-05 に 4 観点を測ったので、下は次の回の分）
 
+- **渡した属性が、黙って捨てられる箇所**（変更のときに気づいた・2026-10-10・#917）。`{...props}` のあとに固定の属性を書くと、利用者が渡した同じ名前の属性は上書きされる ── 型では受けるのに、出力には出ない。`DialogContent` の `role` がそうだった。**数え方**: `src/components` の `.tsx`（テストとストーリーを除く 231 ファイル）で、1 つの開きタグの中に `{...props}` / `{...rest}` があり、そのあとに `role` / `type` / `tabIndex` / `aria-*` / `id` / `title` を固定で書いているもの。2026-10-10 に数えて、スプレッドを持つ開きタグ 232 のうち **17 か所**（`Drawer`・`CheckboxGroup`・`SwitchGroup`・`RadioGroup` の `role` と `aria-labelledby`、`Menubar`・`Dropdown` の `id` と `role`、`Lightbox` の `role` と `aria-label`、`Textarea` の `aria-label`、`CounterTextarea`・`Kanban`・`VoiceVisualizer`、`PasswordInput`・`NumberInput`・`CreditCardInput` の `type`）。**17 は候補で、欠陥と確かめた数ではない** ── 固定するのが正しいもの（`PasswordInput` の `type`）が混ざる。仕分けは、部品ごとに「その属性を利用者が変えたい場面があるか」と「型がその属性を受けているか」で行う。数え方が届かないのは、スプレッドの名前がこの 5 つ（`props` / `rest` / `restProps` / `other` / `others`）以外のものと、分割代入で取り出してから捨てているもの
 - 省略記号なしで切れる文字のうち、2026-10-08 に測っていないもの ── 閉じている面の中（`Open` のストーリーが無い部品のメニューやリスト）、dark と compact、pt。文字の無い 123 ストーリー（図・キャンバス・アイコンだけのもの）は対象外
 - 開いた面の枠と影のうち、2026-10-05 に測れなかった 5 部品（Dialog・Lightbox は画面いっぱいの入れ物を面として拾った。Tour・HoverCard・HamburgerMenu は役割から面を見つけられなかった）。面を部品ごとに名指しして測る
 - 項目を選んで閉じたあとのフォーカスの行き先のうち、引き金に `aria-haspopup` / `aria-expanded` / `role="combobox"` が無くて測れなかった部品（TimePicker・ColorInput・Tour。ContextMenu と CommandPalette は既存の E2E がある）
