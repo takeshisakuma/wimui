@@ -191,7 +191,7 @@
     "loadingOverlay_desc": "Bloqueia a interface com um indicador de progresso central",
     "loadingoverlay_a11y_1": "O componente inclui `role=\"status\"` e `aria-live=\"polite\"` para anúncios de leitores de tela.",
     "loadingoverlay_a11y_2": "O atributo `aria-busy=\"true\"` indica que o conteúdo está sendo carregado.",
-    "loadingoverlay_a11y_3": "Certifique-se de que as mensagens de carregamento sejam descritivas e úteis para usuários que dependem de tecnologias assistivas.",
+    "loadingoverlay_a11y_3": "O overlay é uma região role=\"status\", portanto o que ele contém é o que é lido. Com uma message, a mensagem é lida. Sem ela, um texto interno \"Carregando\" é lido em seu lugar (o spinner em si é decoração e não tem texto). Ao passar seus próprios children, inclua neles o texto a ser lido: nada é adicionado.",
     "loadingoverlay_a11y_busy": "Define `aria-busy='true'` para informar tecnologias assistivas que a região está sendo atualizada no momento.",
     "loadingoverlay_anatomy_backdrop": "Escurece ou clareia o fundo e aplica um desfoque para focar a atenção no carregador frontal.",
     "loadingoverlay_anatomy_backdrop_label": "Backdrop",

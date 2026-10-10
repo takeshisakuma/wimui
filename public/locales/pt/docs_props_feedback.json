@@ -42,7 +42,7 @@
     "loadingOverlay_prop_loaderColor": "Cor do indicador de carregamento.\n@default \"primary\"",
     "loadingOverlay_prop_loaderSize": "Tamanho do indicador de carregamento.\n@default \"lg\"",
     "loadingOverlay_prop_loaderType": "Tipo do indicador de carregamento.\n@default \"spinner\"",
-    "loadingOverlay_prop_message": "Mensagem de carregamento exibida abaixo do indicador.",
+    "loadingOverlay_prop_message": "Mensagem de carregamento exibida abaixo do indicador. Sem uma message (e sem children), um texto interno \"Carregando\" é lido para as tecnologias assistivas em seu lugar.",
     "loadingOverlay_prop_visible": "Se o overlay é exibido.\n@default false",
     "loadingOverlay_prop_zIndex": "z-index do overlay.",
     "notification_prop_className": "Nome de classe adicional",

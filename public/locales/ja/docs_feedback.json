@@ -191,7 +191,7 @@
     "loadingOverlay_desc": "ローディング表示付きオーバーレイ",
     "loadingoverlay_a11y_1": "コンポーネントには、スクリーンリーダーの読み上げ用に `role=\"status\"` と `aria-live=\"polite\"` が含まれています。",
     "loadingoverlay_a11y_2": "`aria-busy=\"true\"` 属性は、コンテンツが読み込み中であることを示します。",
-    "loadingoverlay_a11y_3": "支援技術を利用するユーザーにとって、ローディングメッセージがわかりやすく役立つものであることを確認してください。",
+    "loadingoverlay_a11y_3": "オーバーレイは role=\"status\" の領域なので、中身がそのまま読み上げられます。message を渡したときは、その文言が読まれます。渡さないときは、内蔵の「読み込み中」の文言が代わりに読まれます（スピナーそのものは飾りで、文字を持ちません）。自前の中身（children）を渡すときは、読ませる文言もその中に入れてください。部品の側では何も足しません。",
     "loadingoverlay_a11y_busy": "`aria-busy='true'` を設定し、支援技術に対してその領域が現在更新中であることを伝えます。",
     "loadingoverlay_anatomy_backdrop": "背景を暗く（または明るく）し、ブラーをかけることで、前面のローダーに視線を集中させます。",
     "loadingoverlay_anatomy_backdrop_label": "バックドロップ",

@@ -98,6 +98,33 @@ describe("LoadingOverlay", () => {
     expect(overlay).toHaveAttribute("aria-busy", "true");
   });
 
+  describe("読み上げる中身（T332）", () => {
+    it("文言を渡さなくても、status の中身が空にならない", () => {
+      render(<LoadingOverlay visible={true} />);
+      // 対照: 以前は、ここが空文字だった（Spinner は飾りで、文字を持たない）
+      expect(screen.getByRole("status")).toHaveTextContent("Loading");
+    });
+
+    it("どの種類の飾りでも同じ", () => {
+      render(<LoadingOverlay visible={true} loaderType="dots" />);
+      expect(screen.getByRole("status")).toHaveTextContent("Loading");
+    });
+
+    it("文言を渡したときは、その文言だけを読ませる（内蔵の文言を重ねない）", () => {
+      render(<LoadingOverlay visible={true} message="Saving your changes" />);
+      expect(screen.getByRole("status")).toHaveTextContent(/^Saving your changes$/);
+    });
+
+    it("自前の中身を渡したときは、内蔵の文言を足さない（読ませる文言は、渡した側が持つ）", () => {
+      render(
+        <LoadingOverlay visible={true}>
+          <span>Uploading 3 of 10</span>
+        </LoadingOverlay>,
+      );
+      expect(screen.getByRole("status")).toHaveTextContent(/^Uploading 3 of 10$/);
+    });
+  });
+
   // T228: 自身が live region なので、中の `Spinner` / `Loader` が持っていた
   // role="status" と二重になっていた。読み上げる領域はここ 1 つに保つ。
   it("holds the only live region, whatever the indicator is", () => {

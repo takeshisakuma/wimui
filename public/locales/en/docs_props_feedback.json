@@ -42,7 +42,7 @@
     "loadingOverlay_prop_loaderColor": "Color of the loading indicator.\n@default \"primary\"",
     "loadingOverlay_prop_loaderSize": "Size of the loading indicator.\n@default \"lg\"",
     "loadingOverlay_prop_loaderType": "Type of the loading indicator.\n@default \"spinner\"",
-    "loadingOverlay_prop_message": "Loading message displayed below the indicator.",
+    "loadingOverlay_prop_message": "Loading message displayed below the indicator. Without a message (and without children), a built-in \"Loading\" text is read to assistive technology in its place.",
     "loadingOverlay_prop_visible": "Whether the overlay is shown.\n@default false",
     "loadingOverlay_prop_zIndex": "z-index of the overlay.",
     "notification_prop_className": "Additional class name",
