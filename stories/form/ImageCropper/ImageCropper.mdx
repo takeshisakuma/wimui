@@ -94,9 +94,27 @@ import { Docgen } from "../../Docgen";
 <Canvas of={ImageCropperStories.Default} />
 
 ### <T k="doc.imagecropper_landscape_ratio" />
-<p>Example of a fixed 16:9 aspect ratio.</p>
+<p><T k="doc.imagecropper_landscape_desc" /></p>
 <Canvas of={ImageCropperStories.Landscape} />
 
 ### <T k="doc.imagecropper_circular_crop" />
-<p>Use the <code>circular</code> prop for avatar-style cropping.</p>
+<p><T k="doc.imagecropper_circular_desc" /></p>
 <Canvas of={ImageCropperStories.Circular} />
+
+### <T k="doc.imagecropper_crop_result" />
+<p><T k="doc.imagecropper_crop_result_desc" /></p>
+<p><T k="doc.imagecropper_crop_cors_desc" /></p>
+
+```tsx
+import { ImageCropper } from "wimui";
+
+<ImageCropper
+  src="/avatars/original.png"
+  circular
+  maxOutputSize={512}
+  onApply={(dataUrl, detail) => uploadAvatar(dataUrl, detail)}
+  onCropError={(error, detail) => cropOnServer(detail)}
+/>;
+```
+
+<Canvas of={ImageCropperStories.CropResult} />
