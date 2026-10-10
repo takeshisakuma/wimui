@@ -228,7 +228,7 @@
     "textarea_variant_desc": "Você pode alterar os estilos usando a propriedade `variant`.",
     "typescript_support": "Support",
     "typescript_support_desc": "Support Desc",
-    "virtuallist_a11y_desc": "Usa role=\"list\" e role=\"listitem\" com atributos aria-rowcount e aria-rowindex para informar tecnologias assistivas sobre o número total de itens e a posição atual.",
+    "virtuallist_a11y_desc": "Usa role=\"list\" e role=\"listitem\" com aria-setsize e aria-posinset, para que as tecnologias assistivas saibam o número total de itens e a posição de cada um, mesmo que apenas as linhas visíveis estejam no DOM.",
     "virtuallist_anatomy_inner": "Um contêiner de altura total que estabelece a altura rolável correspondente ao total de itens.",
     "virtuallist_anatomy_item": "Um wrapper de altura fixa para cada item renderizado, posicionado via CSS transform.",
     "virtuallist_anatomy_root": "O contêiner externo rolável com altura de exibição fixa.",

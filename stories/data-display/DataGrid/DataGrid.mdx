@@ -175,34 +175,35 @@ import { Docgen } from "../../Docgen";
 ## <T k="doc.datagrid_usage_typescript" />
 
 ```tsx
-import { DataGrid, DataGridColumn } from './DataGrid';
+import { useState } from "react";
+import { Badge, DataGrid, type DataGridColumn } from "wimui";
 
-interface User {
-  id: number;
+type User = {
+  id: string;
   name: string;
   email: string;
   role: string;
-}
+};
 
 const columns: DataGridColumn<User>[] = [
-  { key: 'id', header: 'ID', width: 80, sortable: true },
-  { key: 'name', header: 'Name', sortable: true },
-  { key: 'email', header: 'Email', sortable: true },
+  { key: 'id', title: 'ID', width: 80, sortable: true },
+  { key: 'name', title: 'Name', sortable: true },
+  { key: 'email', title: 'Email', sortable: true },
   {
     key: 'role',
-    header: 'Role',
-    render: (value) => <Badge content={value} />
+    title: 'Role',
+    render: (value) => <Badge content={String(value)} />
   },
 ];
 
 function UserTable() {
   const [users, setUsers] = useState<User[]>([]);
-  const [selectedKeys, setSelectedKeys] = useState<React.Key[]>([]);
+  const [selectedKeys, setSelectedKeys] = useState<string[]>([]);
 
   return (
     <DataGrid
       columns={columns}
-      rows={users}
+      data={users}
       selection
       selectedRowKeys={selectedKeys}
       onSelectionChange={setSelectedKeys}

@@ -389,6 +389,7 @@
     "a11y:incomplete:update": "node scripts/update-a11y-incomplete.js",
     "a11y:incomplete:measure": "node scripts/measure-a11y-incomplete.mjs",
     "measure:focus-forced-colors": "node scripts/measure-focus-forced-colors.mjs",
+    "measure:doc-aria-claims": "node scripts/measure-doc-aria-claims.mjs",
     "smoke": "npm run build && node scripts/smoke/run.mjs",
     "smoke:full": "npm run build && node scripts/smoke/run.mjs --full",
     "smoke:pnpm": "npm run build && node scripts/smoke/run.mjs --pm pnpm",
@@ -444,6 +445,7 @@
     "prove:opacity-forwards": "node scripts/prove-opacity-forwards.mjs",
     "prove:vrt-update-scope": "node scripts/prove-vrt-update-scope.mjs",
     "prove:prop-api": "node scripts/prove-prop-api.mjs",
+    "prove:examples": "node scripts/prove-code-examples.mjs",
     "skills:link": "node scripts/link-skills.mjs",
     "check:skills-mirror": "node scripts/link-skills.mjs --check",
     "prove:skills": "node scripts/prove-skills-mirror.mjs",
@@ -806,7 +808,7 @@
     "{scripts/composition-rules.json,DESIGN.md}": [
       "node scripts/check-composition-rules.js"
     ],
-    "{README.md,README.ja.md,public/llms.txt,public/llms-full.txt}": [
+    "{README.md,README.ja.md,public/llms.txt,public/llms-full.txt,stories/**/*.mdx,docs/**/*.mdx}": [
       "node scripts/check-code-examples.js"
     ],
     "{README.md,README.ja.md,scripts/check-readme-parity.mjs}": [

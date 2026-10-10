@@ -8,7 +8,11 @@
         "name": "FileUpload",
         "descKey": "doc.file_upload_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Upload",
+          "File Input"
+        ]
       },
       {
         "name": "Dropzone",
@@ -111,7 +115,11 @@
         "name": "Toast",
         "descKey": "doc.toast_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Message",
+          "Sonner"
+        ]
       },
       {
         "name": "Popconfirm",
@@ -170,7 +178,11 @@
         "name": "TabBar",
         "descKey": "doc.tabBar_desc",
         "pc": false,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Bottom Navigation",
+          "Bottom Tab Bar"
+        ]
       }
     ]
   },
@@ -242,7 +254,12 @@
         "name": "OtpInput",
         "descKey": "doc.otpInput_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Pin Input",
+          "Input OTP",
+          "PIN Code Input"
+        ]
       },
       {
         "name": "InputMask",
@@ -530,7 +547,11 @@
         "name": "Stats",
         "descKey": "doc.stats_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Statistic",
+          "Stat"
+        ]
       },
       {
         "name": "TreeView",
@@ -712,7 +733,12 @@
         "name": "Splitter",
         "descKey": "doc.splitter_desc",
         "pc": true,
-        "mobile": false
+        "mobile": false,
+        "aliases": [
+          "Resizable",
+          "Resizable Panels",
+          "Split Pane"
+        ]
       },
       {
         "name": "InteractiveArea",
@@ -1212,7 +1238,11 @@
         "name": "Combobox",
         "descKey": "doc.combobox_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Autocomplete",
+          "Auto Complete"
+        ]
       }
     ]
   },

@@ -254,7 +254,7 @@
   "doc.terminal_scenario_1_title": "Agentic Shell Execution",
   "doc.terminal_scenario_2_desc": "Displaying build and deploy steps in a CI/CD workflow embedded in a developer dashboard.",
   "doc.terminal_scenario_2_title": "Deployment Log",
-  "doc.thoughtprocess_a11y": "The container uses role='region' with an aria-label. Individual steps are announced as they complete.",
+  "doc.thoughtprocess_a11y": "When collapsible, the header is a button with aria-expanded and aria-controls pointing at the steps; otherwise the title is exposed as a level-3 heading. A pending step carries aria-busy. Nothing is announced on its own: wrap the component in a live region if the completion of a step has to be read out.",
   "doc.thoughtprocess_a11y_1": "The container has role=\"region\" with an accessible name.",
   "doc.thoughtprocess_a11y_2": "Steps use semantic list markup (li).",
   "doc.thoughtprocess_a11y_3": "Status changes are announced via aria-live in the parent if critical.",

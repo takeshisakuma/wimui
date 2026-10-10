@@ -126,7 +126,7 @@
     "promptinput_choice_textarea": "Normal form textarea",
     "promptinput_choice_input": "Single-line text input",
     "promptinput_choice_rte": "Rich text editing",
-    "promptinput_a11y_aria": "The textarea has aria-label and aria-multiline=\"true\".",
+    "promptinput_a11y_aria": "The textarea is named by the label prop through aria-labelledby, or by a built-in aria-label when no label is given.",
     "promptinput_a11y_live": "The character counter uses aria-live=\"polite\" for updates.",
     "promptinput_a11y_button": "Submit and attach buttons have descriptive aria-labels.",
     "promptinput_a11y_disabled": "All interactive elements are disabled in the disabled state.",

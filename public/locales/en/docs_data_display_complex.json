@@ -228,7 +228,7 @@
     "textarea_variant_desc": "You can change styles using the `variant` property.",
     "typescript_support": "TypeScript Support",
     "typescript_support_desc": "The Calendar component is written in TypeScript and provides full type safety.",
-    "virtuallist_a11y_desc": "Uses role=\"list\" and role=\"listitem\" with aria-rowcount and aria-rowindex attributes to inform assistive technologies about the total number of items and current position.",
+    "virtuallist_a11y_desc": "Uses role=\"list\" and role=\"listitem\" with aria-setsize and aria-posinset, so assistive technologies know the total number of items and the position of each one even though only the visible rows are in the DOM.",
     "virtuallist_anatomy_inner": "A full-height container that establishes the scrollable height matching the total items count.",
     "virtuallist_anatomy_item": "A fixed-height wrapper for each rendered item, positioned via CSS transform.",
     "virtuallist_anatomy_root": "The scrollable outer container with a fixed display height.",
