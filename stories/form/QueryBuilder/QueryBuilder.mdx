@@ -128,15 +128,16 @@ import { Docgen } from "../../Docgen";
 ## <T k="doc.basic_usage" />
 
 ```tsx
-import { QueryBuilder } from "wimui";
+import { useState } from "react";
+import { QueryBuilder, type QueryField, type QueryGroup } from "wimui";
 
-const fields = [
+const fields: QueryField[] = [
   { name: "firstName", label: "First Name", type: "string" },
   { name: "age", label: "Age", type: "number" },
 ];
 
 const MyComponent = () => {
-  const [query, setQuery] = useState();
+  const [query, setQuery] = useState<QueryGroup>();
   return <QueryBuilder fields={fields} query={query} onChange={setQuery} />;
 }
 ```

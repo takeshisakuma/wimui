@@ -187,6 +187,20 @@ npm run check:doc-drift
 grep -rn "does not\|has no\|は持たない\|を持っていない" src/components/**/*.tsx | grep -i "card\|button\|input\|dialog"
 ```
 
+**a11y の記述は、道具で候補を出してから読む。** docs の a11y 節が名指しする ARIA 属性と role を、その部品の実装と突き合わせる:
+
+```bash
+npm run measure:doc-aria-claims
+```
+
+出るのは「実装のソースに同じ文字列が無い主張」の一覧で、**ガードではない**（落とさない）。docs の文には、実装についての主張（「`aria-current` で現在地を示す」）と、利用者への助言（「`aria-label` を付けること」）が混ざっていて、機械では分けられない。読んで、実装についての主張だけを拾う。外れたら、**docs と実装のどちらが正しいかを先に決める** ── docs が正しければ実装を足し、実装が正しければ docs を直す。
+
+> **2026-10-10 の実測**: 127 部品・357 件のうち、文字列で見つからないものが 41 件。読むと本物は 5 件だった（残りは助言・複数形の `aria-labels`・どの MDX からも参照されていないキー）。`Anchor`（`aria-current`）と `Kanban`（`list` / `listitem`）は docs が正しく、実装を足した（#913）。`VirtualList`（実装は `aria-setsize` / `aria-posinset`）・`ThoughtProcess`（`role="region"` は無い）・`PromptInput`（`aria-multiline` は無い）と、`Kanban` の `aria-disabled` は docs を直した。直したあとの候補は 34 件で、どれも読み終えたもの ── **次に数えて 34 から増えていたら、増えた分を読む**。
+>
+> **届かないもの**: キー操作の記述（「矢印キーで移動」）と実際の挙動（7-4 の E2E の領分）、ja / pt にしか無い主張（en だけを読む）、外部ライブラリが付ける属性（一覧の `ext=[…]` を見て、ライブラリ側を読む）。
+
+**コード例は、2026-10-10 からガードが見る**（`check:examples` が MDX のコードフェンスもコンパイルする）。ここで手で見る必要は無い。ガードが見ないのは、部品もフックも出てこない断片（型だけの例など）と、`code-example: skip` を付けた例 ── 件数は実行のたびに出る。
+
 ### 6. VRT / a11y に写っていない variant・状態を洗う
 
 写っていないものは、**変えても壊しても赤が出ない**。
@@ -651,3 +665,23 @@ ls vrt/vrt.spec.ts-snapshots/ | grep -c '^light-'; ls vrt/vrt.spec.ts-snapshots/
 - **見るのは人**（ユーザー）。エージェントは「問題なし」と報告しない（`AGENTS.md`「委任時の 2 つの約束」の 2）。エージェントが添えるのは、前回から見た目が変わった部品の一覧（その四半期にベースラインが動いた部品）と、隔週の 7-4 で外れが出た部品族
 - 気づいた不揃いは、**直す**（起票）か **揃えない**（`DESIGN.md` の「揃えていない差（意図したもの）」に理由つきで足す）かを決める。どちらにも書かないと、次の点検で同じ指摘が上がる
 - Audit の画面は VRT から外してある（`vrt/vrt.spec.ts` の除外。ページが大きくジッタが累積するため）。**絵の変化は CI では分からない**ので、この項目でしか見られない
+
+### 15. 他のライブラリの部品一覧と突き合わせる
+
+**「無い」のか「名前が違って見つからない」のかは、並べないと分からない。** 外から来た人と AI は、他所の語彙で探す。見つからなければ「無い」と判断して自作に進む（T46 で、穴の大半は名前の違いだった）。
+
+やること:
+
+1. 主要なライブラリの部品一覧を取る。**一覧は記憶で書かない** ── `llms.txt` を置いているものは、そこから取れる（2026-10-10 に取れたもの: `https://ant.design/llms.txt` / `https://mantine.dev/llms.txt` / `https://ui.shadcn.com/llms.txt` / `https://mui.com/material-ui/llms.txt`。Chakra UI と React Aria は、この形では一覧を取れなかった）
+2. `src/data/components.json` の `name` と `aliases`、`src/data/not-planned.json` に当たらない名前だけを残す
+3. 残った名前を、**ソースで不在を確かめてから** 3 つに分ける。名前で探して無くても、別の部品の prop や内側に在ることがある（`aria-pressed` は `ToggleGroup` の内側に、素の `<select>` は `Pagination` の内側に在った）
+
+| 分け先 | 当てはまるもの | 書く場所 |
+|---|---|---|
+| **別名** | 同じものが別の名前で在る | `components.json` の `aliases`（他所では別の意味を持つ語は `disambiguation`）。`check:aliases` が衝突を見る |
+| **採らない** | あっても入れない（演出系など） | `not-planned.json`（理由と代わりを書く） |
+| **候補** | 無くて、足す価値がある | `IMPROVEMENTS.md` に起票（**足すかどうかはユーザーが決める**） |
+
+**3 つのどれかに書くこと。** どこにも書かないと、次の回に同じ名前がまた上がる。
+
+> **2026-10-10 の実測**: 4 ライブラリの一覧と突き合わせた。**別名**を 7 部品に足した（`Combobox` に Autocomplete、`OtpInput` に Pin Input / Input OTP、`Toast` に Message / Sonner、`Stats` に Statistic、`Splitter` に Resizable、`FileUpload` に Upload、`TabBar` に Bottom Navigation）。**候補**として挙がったのは、DateTimePicker / MonthPicker / YearPicker、`Dialog` の `role="alertdialog"`、選べるカード（RadioCard / CheckboxCard）、NativeSelect、単体の Toggle、単体の Collapsible、OverflowList、NavigationMenu、棒と線の複合チャート、RTL（`.scss` の物理方向 171 か所・論理プロパティ 20 か所）。**候補は、この時点では起票していない**（どれを起票するかは、ユーザーの判断待ち）。

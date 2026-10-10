@@ -96,6 +96,9 @@ import { Docgen } from "../../Docgen";
 ## <T k="doc.usage" />
 
 ```tsx
+import { ErrorBoundary } from "wimui";
+import { MyBuggyComponent } from "./MyBuggyComponent";
+
 <ErrorBoundary
   fallback={<div>Something went wrong</div>}
   onError={(error) => console.log(error)}

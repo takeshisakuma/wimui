@@ -169,7 +169,7 @@
     "multiselect_scenario_admin": "権限管理: ユーザーに付与する複数のロール（役割）の割り当て。",
     "multiselect_scenario_skill": "ユーザー設定: スキルや興味のあるカテゴリーの選択。",
     "multiselect_title": "複数項目選択ボックス",
-    "promptinput_a11y_aria": "textarea には aria-label と aria-multiline=\"true\" が付与されています。",
+    "promptinput_a11y_aria": "textarea の名前は、label prop を渡したときは aria-labelledby で、渡さないときは内蔵の aria-label で付きます。",
     "promptinput_a11y_button": "送信ボタンと添付ボタンには、説明的な aria-label が付与されています。",
     "promptinput_a11y_disabled": "無効状態（disabled）では、すべてのインタラクティブ要素が無効化されます。",
     "promptinput_a11y_live": "文字数カウンターは、更新時に aria-live=\"polite\" を使用します。",

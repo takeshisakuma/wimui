@@ -116,7 +116,7 @@ const MyTree = () => (
 <p><T k="doc.treeview_checkbox_mode_desc" /></p>
 
 ```tsx
-const [checked, setChecked] = useState([]);
+const [checked, setChecked] = useState<string[]>([]);
 
 <TreeView checkable defaultCheckedValues={checked} onCheckedChange={setChecked}>
   <TreeView.Item value="1" label="System">
@@ -186,7 +186,7 @@ const [checked, setChecked] = useState([]);
 ### <T k="doc.treeview_combined_features" />
 
 ```tsx
-const [checked, setChecked] = useState([]);
+const [checked, setChecked] = useState<string[]>([]);
 
 <TreeView
   multiSelect

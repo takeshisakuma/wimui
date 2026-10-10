@@ -165,16 +165,20 @@ import { Docgen } from "../../Docgen";
 ### <T k="doc.commandpalette_usage_2" />
 
 ```tsx
-const [open, setOpen] = useState(false);
+function Example() {
+  const [open, setOpen] = useState(false);
 
-return (
-  <>
-    <button onClick={() => setOpen(true)}>Open</button>
-    <CommandPalette open={open} onOpenChange={setOpen}>
-      <CommandPaletteContent>{/* ... */}</CommandPaletteContent>
-    </CommandPalette>
-  </>
-);
+  return (
+    <>
+      <button onClick={() => setOpen(true)}>Open</button>
+      <CommandPalette open={open} onOpenChange={setOpen}>
+        <CommandPaletteContent>
+          <CommandPaletteInput />
+        </CommandPaletteContent>
+      </CommandPalette>
+    </>
+  );
+}
 ```
 
 <Primary />

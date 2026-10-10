@@ -129,6 +129,7 @@ import { Docgen } from "../../Docgen";
 
 ```tsx
 import { motion, AnimatePresence } from "framer-motion";
+import { Table } from "wimui";
 
 <Table.Body asChild>
   <AnimatePresence>
@@ -310,14 +311,13 @@ const {
 <p><T k="doc.table_ts_support_desc" /></p>
 
 ```typescript
-import { Table, useTableSort, SortDirection, SortConfig } from "./Table";
-import { T } from "../../T";
+import { useTableSort } from "wimui";
 
-interface User {
+type User = {
   id: number;
   name: string;
   email: string;
-}
+};
 
 const { sortedData } = useTableSort<User>(users);
 ```

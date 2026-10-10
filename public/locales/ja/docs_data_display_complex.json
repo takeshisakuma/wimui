@@ -228,7 +228,7 @@
     "textarea_variant_desc": "`variant` プロパティでスタイルを変更できます。",
     "typescript_support": "TypeScript サポート",
     "typescript_support_desc": "Calendar コンポーネントは TypeScript に対応しており、型安全に利用できます。",
-    "virtuallist_a11y_desc": "role=\"list\" と role=\"listitem\" を使用し、aria-rowcount・aria-rowindex 属性でアシスティブテクノロジーにアイテム総数と現在位置を伝えます。",
+    "virtuallist_a11y_desc": "role=\"list\" と role=\"listitem\" を使用し、aria-setsize と aria-posinset を付けます。DOM にあるのが見えている行だけでも、支援技術には項目の総数と、それぞれが何番目かが伝わります。",
     "virtuallist_anatomy_inner": "アイテム総数に対応したスクロール可能な高さを確保するフルハイトコンテナ。",
     "virtuallist_anatomy_item": "CSSトランスフォームで配置される各アイテムの固定高さラッパー。",
     "virtuallist_anatomy_root": "固定表示高さを持つスクロール可能な外側コンテナ。",

@@ -854,7 +854,7 @@ number of pixels. Prefer the token so the gap follows the theme.
 @default "2xl"
     - `verticalSpacing: number | string` — Vertical spacing between rows (defaults to `spacing`)
     - `minChildWidth: number | string` — Minimum width of each child; columns wrap automatically to fit
-- **Splitter** — Split and resize panels
+- **Splitter** — Split and resize panels (aka Resizable, Resizable Panels, Split Pane)
     - `orientation: "horizontal" | "vertical"` = "horizontal" — The orientation of the splitter.
     - `children: React.ReactNode` (required) — The components to render within the splitter. Usually a combination of `Splitter.Panel` and `Splitter.Handle`.
 - **Stack** — Vertical/Horizontal alignment
@@ -1051,7 +1051,7 @@ Use it when the field already does the same thing from the keyboard.
 so the unit does not have to be repeated in the label.
     - `styles: { root?: string; inner?: string; icon?: string; icons?: string; iconItem?: string; iconButton?: string; }` — Custom styles for internal parts
     - `asChild: boolean` = false — Whether to render as a child element.
-- **Combobox** — Select with search
+- **Combobox** — Select with search (aka Autocomplete, Auto Complete)
     - `options: ComboboxOption[]` = [] — List of suggestion options
     - `onChange: (option: ComboboxOption) => void` — Callback when an option is selected
     - `placeholder: string` — Placeholder for the input
@@ -1198,7 +1198,7 @@ still do their job for assistive technology.
     - `htmlFor: string` — ID of the element the label points to
     - `errorId: string` — ID of the error message element
     - `styles: { root?: string; labelWrapper?: string; label?: string; content?: string; error?: string; }` — Custom styles for internal parts
-- **FileUpload** — File selection
+- **FileUpload** — File selection (aka Upload, File Input)
     - `label: React.ReactNode` — Field label
     - `buttonLabel: React.ReactNode` — Label of the file selection button
     - `noFileLabel: React.ReactNode` — Text shown when no file is selected
@@ -1407,7 +1407,7 @@ so the unit does not have to be repeated in the label.
     - `allowDecimal: boolean` = false — Whether to allow decimal points (effective only when mode="number")
     - `allowNegative: boolean` = false — Whether to allow negative numbers (effective only when mode="number")
     - `asChild: boolean` = false — Whether to render as a child element.
-- **OtpInput** — One-time password fields
+- **OtpInput** — One-time password fields (aka Pin Input, Input OTP, PIN Code Input)
     - `length: number` = 6 — Number of digits
     - `value: string` = "" — Current value (controlled)
     - `onChange: (value: string) => void` — Callback when the value changes
@@ -2061,7 +2061,7 @@ follows the theme and never needs a hand-mixed colour.
     - `label: string` — Text label displayed next to the spinner.
     - `labelPosition: "right" | "bottom"` = "right" — Position of the label relative to the spinner.
 @default "right"
-- **Toast** — Non-intrusive floating messages that provide feedback on system operations
+- **Toast** — Non-intrusive floating messages that provide feedback on system operations (aka Message, Sonner)
     - `id: string` — Identifier of the toast, passed to onClose. Used by ToastProvider to manage a stack.
     - `title: string` — Title of the toast.
     - `description: string` — Description text displayed below the title.
@@ -2208,7 +2208,7 @@ Defaults to a translated "Open menu" / "Close menu" (en / ja / pt), following th
     - `ariaLabel: string` — Accessibility label for the navigation
     - `onChange: (current: number) => void` — Callback function when a step is clicked (if applicable)
     - `asChild: boolean` — Whether to use the Radix Slot pattern
-- **TabBar** — Mobile bottom navigation
+- **TabBar** — Mobile bottom navigation (aka Bottom Navigation, Bottom Tab Bar)
     - `fixed: boolean` = true — Pins the bar to the bottom of the **viewport**. Defaults to `true`.
 
 The pin is `position: fixed`, so the bar leaves whatever container you put
@@ -2642,7 +2642,7 @@ renders inline, next to whatever follows it.
     - `asChild: boolean` = false — If true, the component will be rendered as its child.
     - `onSortEnd: (oldIndex: number, newIndex: number) => void` — Callback called when reordering is completed.
     - `disabled: boolean` = false — Whether the entire list is disabled.
-- **Stats** — A component to highlight key performance indicators and metrics
+- **Stats** — A component to highlight key performance indicators and metrics (aka Statistic, Stat)
     - `variant: React.ComponentProps<typeof Card>["variant"]` = "outline" — Visual style variant of the card
     - `asChild: boolean` = false — If true, the card will be rendered as its child, merging its props onto that child.
     - `interactive: boolean` = false — Whether the card is clickable: shows hover and press feedback and a pointer cursor

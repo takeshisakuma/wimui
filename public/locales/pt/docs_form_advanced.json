@@ -169,7 +169,7 @@
     "multiselect_scenario_admin": "Gestão de Permissões: Atribuir várias funções a um usuário.",
     "multiselect_scenario_skill": "Definições de Usuário: Selecionar competências ou categorias de interesse.",
     "multiselect_title": "Multi Seleção",
-    "promptinput_a11y_aria": "A área de texto possui aria-label e aria-multiline=\"true\".",
+    "promptinput_a11y_aria": "A área de texto recebe o nome da prop label por meio de aria-labelledby, ou de um aria-label interno quando nenhuma label é informada.",
     "promptinput_a11y_button": "Os botões de envio e anexo têm aria-labels descritivos.",
     "promptinput_a11y_disabled": "Todos os elementos interativos são desativados no estado desativado.",
     "promptinput_a11y_live": "O contador de caracteres usa aria-live=\"polite\" para atualizações.",

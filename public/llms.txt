@@ -221,7 +221,7 @@ export function BillingOverview() {
 - **ScrollArea** — A custom scrollbar component that provides high-performance, cross-browser consistent themes while maintaining a native-like feel.
 - **Sidebar** — A collapsible navigation or informational panel on the side of the screen (aka Source List, Inspector)
 - **SimpleGrid** — Responsive fixed grid
-- **Splitter** — Split and resize panels
+- **Splitter** — Split and resize panels (aka Resizable, Resizable Panels, Split Pane)
 - **Stack** — Vertical/Horizontal alignment
 - **Toolbar** — Action strip for IconButton, ToggleGroup, and related controls with toolbar keyboard navigation. (aka Action Bar)
 - **Transition** — Utilities for managing smooth enter and leave animations with CSS classes
@@ -237,7 +237,7 @@ export function BillingOverview() {
 - **CheckboxGroup** — Shared state checkboxes
 - **ColorInput** — Input with color preview (aka Color Well, Color Field)
 - **ColorPicker** — Color selection picker
-- **Combobox** — Select with search
+- **Combobox** — Select with search (aka Autocomplete, Auto Complete)
 - **CopyButton** — Copy to clipboard
 - **CounterTextarea** — Textarea with character count display
 - **CreditCardInput** — Payment card input with brand detection
@@ -247,7 +247,7 @@ export function BillingOverview() {
 - **FieldError** — Validation messages
 - **Fieldset** — Form grouping
 - **FieldTemplate** — Standardizes label placement, required markings, and error message display for all form-related components.
-- **FileUpload** — File selection
+- **FileUpload** — File selection (aka Upload, File Input)
 - **FloatButton** — Floating action buttons
 - **IconButton** — A square button containing only an icon without a text label.
 - **ImageCropper** — Front-end image cropping and rotation tool.
@@ -260,7 +260,7 @@ export function BillingOverview() {
 - **Mentions** — @ / # suggestions
 - **MultiSelect** — Multiple selection
 - **NumberInput** — Input with step adjustments (aka Spin Button, Numeric Stepper)
-- **OtpInput** — One-time password fields
+- **OtpInput** — One-time password fields (aka Pin Input, Input OTP, PIN Code Input)
 - **PasswordInput** — Password with toggle
 - **PasswordStrength** — Visual meter to indicate password security level. (aka Strength Meter)
 - **PhoneInput** — International phone number input
@@ -305,7 +305,7 @@ export function BillingOverview() {
 - **Skeleton** — Placeholder for content loading states. (aka Shimmer)
 - **Snackbar** — Bottom notifications
 - **Spinner** — A rotating icon indicating background activity or data fetching (aka Activity Indicator)
-- **Toast** — Non-intrusive floating messages that provide feedback on system operations
+- **Toast** — Non-intrusive floating messages that provide feedback on system operations (aka Message, Sonner)
 - **Tour** — Sequential guided walkthroughs to onboard users or highlight features
 
 ### navigation — `import { … } from "wimui/navigation"`
@@ -323,7 +323,7 @@ export function BillingOverview() {
 - **SpeedDial** — Floating action button that expands sub-actions on hover or click.
 - **Stepper** — Visual sequence steps
   - ⚠️ Not the same as elsewhere: In Apple HIG and macOS, a "Stepper" is the control that increments a number — that is `NumberInput` here. WIM's `Stepper` shows progress through a sequence of steps, which is what Material calls a Stepper.
-- **TabBar** — Mobile bottom navigation
+- **TabBar** — Mobile bottom navigation (aka Bottom Navigation, Bottom Tab Bar)
 - **TabNavigation** — Tab-based navigation
 - **Tabs** — A container to organize related content into switchable view panels
 
@@ -363,7 +363,7 @@ export function BillingOverview() {
 - **RelativeTime** — Display a timestamp as a localized relative phrase ("3 minutes ago", "yesterday") that updates automatically as time passes.
 - **ScheduleView** — Displays tasks or events on a chronological timeline or calendar view.
 - **SortableList** — Item rearrangement and reordering
-- **Stats** — A component to highlight key performance indicators and metrics
+- **Stats** — A component to highlight key performance indicators and metrics (aka Statistic, Stat)
 - **SwipeableList** — Container for SwipeAction rows that keeps at most one row open at a time. (aka Swipeable List)
 - **SwipeAction** — Mobile-friendly swipe actions (delete, archive) for list items.
 - **Table** — Rows and columns for displaying structured data efficiently

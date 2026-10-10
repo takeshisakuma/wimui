@@ -100,8 +100,8 @@ import { Calendar } from "wimui";
 
 <p><T k="doc.calendar_range_mode_desc" /></p>
 
-```jsx
-const [range, setRange] = useState({ start: null, end: null });
+```tsx
+const [range, setRange] = useState<CalendarRange>({ start: null, end: null });
 
 <Calendar rangeMode range={range} onRangeChange={setRange} />;
 ```
@@ -189,8 +189,8 @@ nextMonth.setMonth(today.getMonth() + 1);
 
 ### <T k="doc.calendar_combine_features" />
 
-```jsx
-const [range, setRange] = useState({ start: null, end: null });
+```tsx
+const [range, setRange] = useState<CalendarRange>({ start: null, end: null });
 
 <Calendar
   rangeMode

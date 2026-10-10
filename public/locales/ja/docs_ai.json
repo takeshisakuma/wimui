@@ -254,7 +254,7 @@
   "doc.terminal_scenario_1_title": "エージェントシェル実行",
   "doc.terminal_scenario_2_desc": "開発者ダッシュボードに組み込まれたCI/CDワークフローのビルド・デプロイステップを表示します。",
   "doc.terminal_scenario_2_title": "デプロイログ",
-  "doc.thoughtprocess_a11y": "コンテナはaria-labelを持つrole='region'を使用します。個々のステップは完了時にアナウンスされます。",
+  "doc.thoughtprocess_a11y": "折りたためるとき、見出しは aria-expanded と、ステップの領域を指す aria-controls を持つボタンになります。折りたためないとき、タイトルはレベル 3 の見出しとして伝わります。進行中のステップには aria-busy が付きます。部品が自分から読み上げることはありません。ステップの完了を読み上げたいときは、部品をライブリージョンで包みます。",
   "doc.thoughtprocess_a11y_1": "コンテナーには、アクセシブルな名前を持つrole=\"region\"があります。",
   "doc.thoughtprocess_a11y_2": "ステップにはセマンティックなリストマークアップ（li）を使用しています。",
   "doc.thoughtprocess_a11y_3": "ステータスの変更は、重要な場合に親コンポーネントのaria-liveを介して通知されます。",

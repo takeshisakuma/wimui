@@ -207,7 +207,8 @@ const checks = [
     // 上が README の「表」の主張を見るのに対し、こちらは**コード例そのもの**を
     // コンパイルする（T37 の残り）。llms.txt のレシピは generate-llms.js の中に
     // 手書きで存在し、「実 API に対して検証済み」とコメントされているだけだった。
-    name: "README / llms.txt code examples compile",
+    // 2026-10-10 から、部品の docs ページ（MDX）のコードフェンスも同じ検査に通す。
+    name: "README / llms.txt / MDX code examples compile",
     command: "node scripts/check-code-examples.js",
   },
   {

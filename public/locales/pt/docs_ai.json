@@ -254,7 +254,7 @@
   "doc.terminal_scenario_1_title": "Execução de Shell Agêntica",
   "doc.terminal_scenario_2_desc": "Exibindo etapas de build e deploy em um workflow CI/CD embutido em um painel de desenvolvedor.",
   "doc.terminal_scenario_2_title": "Log de Implantação",
-  "doc.thoughtprocess_a11y": "O contêiner usa role='region' com um aria-label. As etapas individuais são anunciadas à medida que são concluídas.",
+  "doc.thoughtprocess_a11y": "Quando recolhível, o cabeçalho é um botão com aria-expanded e aria-controls apontando para as etapas; caso contrário, o título é exposto como um cabeçalho de nível 3. Uma etapa pendente recebe aria-busy. Nada é anunciado por conta própria: envolva o componente em uma região ativa se a conclusão de uma etapa precisar ser lida.",
   "doc.thoughtprocess_a11y_1": "O contêiner tem role=\"region\" com um nome acessível.",
   "doc.thoughtprocess_a11y_2": "As etapas usam marcação de lista semântica (li).",
   "doc.thoughtprocess_a11y_3": "Mudanças de status são anunciadas via aria-live no pai, se críticas.",
