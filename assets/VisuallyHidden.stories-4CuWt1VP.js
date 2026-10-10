@@ -1,0 +1,11 @@
+"use client";
+import{n as e,r as t}from"./rolldown-runtime-DkW27tQK.js";import{t as n}from"./react-Q1GcV6wX.js";import{n as r,t as i}from"./useTranslation-BDKsuBAo.js";import{n as a,t as o}from"./i18nConstants-BhvmnjLS.js";import{t as s}from"./jsx-runtime-DeHZSEgm.js";import{n as c,t as l}from"./VisuallyHidden-CwYq18nd.js";import{n as u,t as d}from"./Button-DSrkNfg0.js";var f=t({Primary:()=>h,WithinButton:()=>g,__namedExportsOrder:()=>_,default:()=>m}),p,m,h,g,_;function v(){return(v=e((()=>{n(),i(),a(),u(),c(),p=s(),m={title:`Components/Internal/VisuallyHidden`,component:l,tags:[],parameters:{layout:`centered`}},h={render:function(e){let{t}=r(o);return(0,p.jsx)(l,{...e,children:t(`story.visuallyhidden_accessible`)})}},g={render:function(){let{t:e}=r(o);return(0,p.jsxs)(d,{children:[(0,p.jsx)(`span`,{"aria-hidden":`true`,children:`×`}),(0,p.jsx)(l,{children:e(`story.visuallyhidden_close`)})]})}},_=[`Primary`,`WithinButton`],h.parameters={...h.parameters,docs:{...h.parameters?.docs,source:{originalSource:`{
+  render: function Render(args) {
+    const {
+      t
+    } = useTranslation(ALL_NAMESPACES);
+    return <VisuallyHidden {...args}>
+        {t("story.visuallyhidden_accessible")}
+      </VisuallyHidden>;
+  }
+}`,...h.parameters?.docs?.source}}},g.parameters={...g.parameters,docs:{...g.parameters?.docs,source:{originalSource:'{\n  render: function Render() {\n    const {\n      t\n    } = useTranslation(ALL_NAMESPACES);\n    return (\n      // T108: 以前は素の `<button>` で、ライブラリの色が当たらず**ダークで黒文字が\n      // `#262626` の面に載っていた**（実測 1.38、基準 4.5）。`×` が 1 文字なので\n      // axe は `too short` として測っておらず、a11y は緑のままだった。\n      // 素の要素をストーリーで使うのは T12 が記録している型（「ストーリー直書き」）。\n      // **`aria-label` は付けない。** 以前は付いていたが、アクセシブル名の計算では\n      // `aria-label` が内容より優先されるため、**`VisuallyHidden` は無視されていた** ──\n      // つまり `VisuallyHidden` を紹介するストーリーが、その効果を示せていなかった。\n      // 実測: `aria-label` を外しても名前は `button "Close"` のままで、\n      // 供給しているのが `VisuallyHidden` であることが確かめられる。\n      <Button>\n        <span aria-hidden="true">×</span>\n        <VisuallyHidden>{t("story.visuallyhidden_close")}</VisuallyHidden>\n      </Button>\n    );\n  }\n}',...g.parameters?.docs?.source}}}})))()}export{v as i,f as n,g as r,h as t};

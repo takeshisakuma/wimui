@@ -1,0 +1,2 @@
+"use client";
+import{n as e}from"./rolldown-runtime-DkW27tQK.js";import{t}from"./react-Q1GcV6wX.js";var n,r,i;function a(){return(a=e((()=>{n=t(),r=(e,t,n)=>Math.max(t,Math.min(e,n)),i=(e,t,i)=>{let a=(0,n.useCallback)(n=>{let a=Math.round((n-e)/i);return r(e+a*i,e,t)},[e,t,i]),o=(0,n.useCallback)((n,i)=>{if(!i)return e;let o=i.getBoundingClientRect(),s=e+r((n-o.left)/o.width,0,1)*(t-e);return a(s)},[a,t,e]);return{clamp:r,alignToStep:a,calculateValue:o}}})))()}export{i as n,a as t};

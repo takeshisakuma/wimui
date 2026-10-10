@@ -1,0 +1,2 @@
+"use client";
+import{a as e,n as t}from"./rolldown-runtime-DkW27tQK.js";import{t as n}from"./react-Q1GcV6wX.js";function r(...e){let t=i.useRef(e);return i.useLayoutEffect(()=>{t.current=e}),i.useCallback(e=>{t.current.forEach(t=>{if(t){if(typeof t==`function`)t(e);else try{t.current=e}catch(e){console.error(`Failed to assign ref: ${e}`)}}})},[])}var i;function a(){return(a=t((()=>{i=e(n(),1)})))()}export{r as n,a as t};

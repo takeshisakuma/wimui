@@ -1,0 +1,30 @@
+"use client";
+import{a as e,n as t}from"./rolldown-runtime-DkW27tQK.js";import{t as n}from"./react-Q1GcV6wX.js";import{t as r}from"./jsx-runtime-DeHZSEgm.js";import{B as i,Jt as a,a as o}from"./iframe-Dbq8JC-l.js";import{t as s}from"./classnames-D09xBJOL.js";import{n as c,t as l}from"./useWimTranslation-DkW6YDva.js";import{n as u,t as d}from"./common-BvPUqJnw.js";import{n as f,t as p}from"./Icon-TGLZuM2d.js";var m,h,g,_,v,y,b,x,S,C,w,T,E,D,O,k;function A(){return(A=t((()=>{m=`_root_1kevj_24`,h=`_newButton_1kevj_39`,g=`_empty_1kevj_79`,_=`_list_1kevj_86`,v=`_item_1kevj_94`,y=`_deleteButton_1kevj_99`,b=`_thread_1kevj_102`,x=`_active_1kevj_118`,S=`_icon_1kevj_124`,C=`_body_1kevj_131`,w=`_titleRow_1kevj_138`,T=`_unread_1kevj_144`,E=`_title_1kevj_138`,D=`_timestamp_1kevj_160`,O=`_preview_1kevj_165`,k={root:m,newButton:h,empty:g,list:_,item:v,deleteButton:y,thread:b,active:x,icon:S,body:C,titleRow:w,unread:T,title:E,timestamp:D,preview:O}})))()}var j,M,N,P;function F(){return(F=t((()=>{j=e(n(),1),l(),u(),M=e(s(),1),f(),o(),A(),N=r(),P=j.forwardRef(({threads:e,activeId:t,onSelect:n,onDelete:r,onNewThread:o,labels:s,className:l,...u},f)=>{let{t:m}=c(d),{newThread:h=m(`threadList.new_thread`),empty:g=m(`threadList.empty`),delete:_=m(`threadList.delete`),listAriaLabel:v=m(`threadList.label`)}=s??{};return(0,N.jsxs)(`nav`,{ref:f,className:(0,M.default)(`wim-thread-list`,k.root,l),"aria-label":v,...u,children:[o&&(0,N.jsxs)(`button`,{type:`button`,className:k.newButton,onClick:o,children:[(0,N.jsx)(p,{component:i,size:`sm`}),(0,N.jsx)(`span`,{children:h})]}),e.length===0?(0,N.jsx)(`p`,{className:k.empty,children:g}):(0,N.jsx)(`ul`,{className:k.list,children:e.map(e=>{let i=e.id===t;return(0,N.jsxs)(`li`,{className:k.item,children:[(0,N.jsxs)(`button`,{type:`button`,className:(0,M.default)(k.thread,i&&k.active),"aria-current":i||void 0,onClick:()=>n?.(e.id),children:[e.iconName&&(0,N.jsx)(`span`,{className:k.icon,"aria-hidden":`true`,children:(0,N.jsx)(p,{name:e.iconName,size:`sm`})}),(0,N.jsxs)(`span`,{className:k.body,children:[(0,N.jsxs)(`span`,{className:k.titleRow,children:[e.unread&&(0,N.jsx)(`span`,{className:k.unread,"aria-hidden":`true`}),(0,N.jsx)(`span`,{className:k.title,children:e.title}),e.timestamp&&(0,N.jsx)(`span`,{className:k.timestamp,children:e.timestamp})]}),e.preview&&(0,N.jsx)(`span`,{className:k.preview,children:e.preview})]})]}),r&&(0,N.jsx)(`button`,{type:`button`,className:k.deleteButton,"aria-label":_,onClick:()=>r(e.id),children:(0,N.jsx)(p,{component:a,size:`sm`})})]},e.id)})})]})}),P.displayName=`ThreadList`,P.__docgenInfo={description:`ThreadList renders a conversation-history sidebar for AI chat apps — a
+scrollable list of past threads with an optional "new conversation" action
+and per-thread deletion. Pairs naturally with Sidebar and Drawer.
+
+Composition Contract:
+- Managed by: App consumption
+- Scroll lock: No`,methods:[],displayName:`ThreadList`,props:{threads:{required:!0,tsType:{name:`Array`,elements:[{name:`signature`,type:`object`,raw:`{
+  /** Unique identifier of the thread */
+  id: string;
+  /** Title of the conversation */
+  title: string;
+  /** Short preview of the last message */
+  preview?: string;
+  /** Pre-formatted timestamp string shown on the right */
+  timestamp?: string;
+  /** Icon name shown before the title */
+  iconName?: React.ComponentProps<typeof Icon>["name"];
+  /** Whether the thread has unread activity (shows a dot) */
+  unread?: boolean;
+}`,signature:{properties:[{key:`id`,value:{name:`string`,required:!0},description:`Unique identifier of the thread`},{key:`title`,value:{name:`string`,required:!0},description:`Title of the conversation`},{key:`preview`,value:{name:`string`,required:!1},description:`Short preview of the last message`},{key:`timestamp`,value:{name:`string`,required:!1},description:`Pre-formatted timestamp string shown on the right`},{key:`iconName`,value:{name:`ReactComponentProps["name"]`,raw:`React.ComponentProps<typeof Icon>["name"]`,required:!1},description:`Icon name shown before the title`},{key:`unread`,value:{name:`boolean`,required:!1},description:`Whether the thread has unread activity (shows a dot)`}]}}],raw:`Thread[]`},description:`Conversations to display, ordered newest first`},activeId:{required:!1,tsType:{name:`string`},description:`Id of the currently active thread`},onSelect:{required:!1,tsType:{name:`signature`,type:`function`,raw:`(id: string) => void`,signature:{arguments:[{type:{name:`string`},name:`id`}],return:{name:`void`}}},description:`Callback when a thread is selected`},onDelete:{required:!1,tsType:{name:`signature`,type:`function`,raw:`(id: string) => void`,signature:{arguments:[{type:{name:`string`},name:`id`}],return:{name:`void`}}},description:`Callback when a thread's delete button is clicked (shows the button when set)`},onNewThread:{required:!1,tsType:{name:`signature`,type:`function`,raw:`() => void`,signature:{arguments:[],return:{name:`void`}}},description:`Callback when the new-conversation button is clicked (shows the button when set)`},labels:{required:!1,tsType:{name:`signature`,type:`object`,raw:`{
+  /** Label of the new-conversation button */
+  newThread?: string;
+  /** Text shown when there are no threads */
+  empty?: string;
+  /** Accessible label for each delete button */
+  delete?: string;
+  /** Accessible label for the list */
+  listAriaLabel?: string;
+}`,signature:{properties:[{key:`newThread`,value:{name:`string`,required:!1},description:`Label of the new-conversation button`},{key:`empty`,value:{name:`string`,required:!1},description:`Text shown when there are no threads`},{key:`delete`,value:{name:`string`,required:!1},description:`Accessible label for each delete button`},{key:`listAriaLabel`,value:{name:`string`,required:!1},description:`Accessible label for the list`}]}},description:`Labels for internationalization`},className:{required:!1,tsType:{name:`string`},description:`Additional class names`}},composes:[`Omit`]}})))()}export{F as n,P as t};

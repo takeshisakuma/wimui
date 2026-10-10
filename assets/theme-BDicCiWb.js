@@ -1,0 +1,2 @@
+"use client";
+import{n as e}from"./rolldown-runtime-DkW27tQK.js";function t(e=void 0){if(typeof document>`u`)return`system`;let t=(e??document.documentElement).getAttribute?.(r);return t===`light`||t===`dark`?t:`system`}function n(e,t=void 0){if(typeof document>`u`)return;let n=t??document.documentElement;e===`system`?n.removeAttribute(r):n.setAttribute(r,e)}var r;function i(){return(i=e((()=>{r=`data-theme`})))()}export{i as n,n as r,t};

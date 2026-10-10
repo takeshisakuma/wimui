@@ -1,0 +1,42 @@
+{
+  "sizes": {
+    "title": "Sizes",
+    "desc": "47 components take a `size`, and 34 of them take the same three values. The prop is not really a question of how big something should look — it is a question of how much of the screen a control has earned, and whether a finger can still hit it. Both of those have numbers behind them.",
+
+    "scale_title": "One scale, one default",
+    "scale_desc": "34 of the 47 accept `sm` / `md` / `lg`, and 40 of them default to `md`. That default is the answer unless something argues otherwise, and the argument should be about the control's role, not about how the screen looks with it. Three exceptions are deliberate: `Tag` defaults to `sm` because tags are read in groups, `Container` to `lg` because it sets the measure of a page, and `Title` to `xl` because it is the heading. Typography (`Text`, `Span`) uses a wider `xs`–`xl` scale, and `Container`, `QRCode` and `Splitter.Panel` take a number instead.",
+
+    "choose_title": "Choosing between sm, md and lg",
+    "col_size": "Size",
+    "col_when": "Reach for it when",
+    "col_not": "Not when",
+
+    "sm_when": "The control is secondary to something else on the same row — a filter beside a table, a tag inside a cell, an action inside a list item.",
+    "sm_not": "It is the only thing the user came to do. A small primary action reads as optional.",
+    "md_when": "The default. The control stands on its own and the user is expected to act on it.",
+    "md_not": "You are shrinking a row that is already crowded — that is what density is for.",
+    "lg_when": "The control is the point of the screen, or a finger has to find it without looking — a submit button in a mobile footer, a single call to action.",
+    "lg_not": "Several controls sit together. Everything large is the same as nothing large.",
+
+    "measured_title": "What the sizes actually are",
+    "measured_desc": "The heights come from `--wim-height-*`, and the density setting rewrites them. Both columns ship; neither is hypothetical.",
+
+    "col_token": "Token",
+    "col_default": "Default / comfortable",
+    "col_compact": "compact",
+
+    "tap_title": "Where the tap-target floors fall",
+    "tap_desc": "WCAG 2.5.8 (AA, WCAG 2.2) asks for 24×24 CSS pixels. WCAG 2.5.5 (AAA) asks for 44×44, which is also what Apple's guidance uses. Reading those against the table above gives three facts worth knowing before choosing a size.",
+    "tap_1": "`md` misses the AAA target by 2 pixels",
+    "tap_1_desc": "42px against 44. The default size of most controls is just under the comfortable-thumb threshold. `lg` (48px) is the only size that clears it.",
+    "tap_2": "Under `compact`, nothing clears 44px",
+    "tap_2_desc": "`lg` drops to 40px. A layout that relies on `lg` for reachability loses it the moment the app switches density, and no component can see that switch coming.",
+    "tap_3": "Controls built on `xs` fall under the AA floor in compact",
+    "tap_3_desc": "`Rating` sizes its stars from `--wim-height-xs` and `Slider` sets its whole height from it. That is 24px by default — exactly the AA minimum — and 20px under `compact`. Nothing measures this: axe does not check target size, and a screenshot of a smaller star looks fine.",
+
+    "density_title": "Size and density are not the same lever",
+    "density_desc": "`size` is a per-component statement about one control's importance. Density is an application-wide setting that rewrites every control at once. They compose — a `compact` `lg` button is still the largest thing on its row — but they are not interchangeable. Reaching for `size=\"sm\"` to fit more rows moves a global decision into one component, where the next screen cannot inherit it and where the tap-target consequence is invisible to whoever set the density.",
+
+    "density_link": "Density is documented separately."
+  }
+}
