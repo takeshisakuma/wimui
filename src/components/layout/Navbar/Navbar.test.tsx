@@ -7,11 +7,31 @@ import {
   NavbarItem,
   NavbarLink,
   NavbarToggle,
+  NavbarMenu,
   NavbarMenuItem,
 } from "./Navbar";
 import styles from "./navbar.module.scss";
 
 describe("Navbar", () => {
+  // NavbarMenu は div の属性を型で受けるのに、以前は全部捨てていた（書いても、出力のどこにも出ない）。
+  it("NavbarMenu に渡した属性が、開いた面（dialog）に届く", () => {
+    const onClick = vi.fn();
+    render(
+      <Navbar>
+        <NavbarToggle />
+        <NavbarMenu id="site-menu" aria-label="Site menu" data-testid="menu" onClick={onClick}>
+          <NavbarMenuItem>Docs</NavbarMenuItem>
+        </NavbarMenu>
+      </Navbar>,
+    );
+    fireEvent.click(screen.getByRole("button"));
+    const dialog = screen.getByRole("dialog", { name: "Site menu" });
+    expect(dialog).toHaveAttribute("id", "site-menu");
+    expect(dialog).toHaveAttribute("data-testid", "menu");
+    fireEvent.click(dialog);
+    expect(onClick).toHaveBeenCalled();
+  });
+
   it("renders children content", () => {
     render(
       <Navbar>
