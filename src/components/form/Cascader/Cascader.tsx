@@ -4,6 +4,8 @@ import { Transition } from "../../layout/Transition/Transition";
 import { Icon } from "../../media/Icon/Icon";
 import { BaseListItem } from "../../_internal/BaseListItem";
 import { InputBase } from "../InputBase";
+import { useInlineFloating } from "../../_internal/useInlineFloating";
+import { useMergedRef } from "../../../hooks/useMergedRef";
 import styles from "./cascader.module.scss";
 import { FieldTemplate } from "../FieldTemplate";
 import { FieldWidth } from "../../../types/tokens";
@@ -355,6 +357,11 @@ export const Cascader = ({
     return labelTexts.join(separator);
   };
 
+  // 下に余地が無ければ上へ開き、画面の端からはみ出す分は内側へ寄せる（T342）。面は引き金の隣に
+  // 描いたままで、向きと横のずれだけを受け取る。
+  const { setReference: setFloatingReference, setFloating, floatingProps } = useInlineFloating({ open: isOpen && !disabled });
+  const setRootRef = useMergedRef(containerRef, setFloatingReference);
+
   return (
     <FieldTemplate
       label={label}
@@ -367,7 +374,7 @@ export const Cascader = ({
     >
       <div
         className={styles.root}
-        ref={containerRef}
+        ref={setRootRef}
         onMouseMove={() => setIsKeyboardNavigating(false)}
         data-keyboard-nav={isKeyboardNavigating}
         {...props}
@@ -427,6 +434,8 @@ export const Cascader = ({
           preset="fade"
           id={popupId}
           className={styles.dropdown}
+          ref={setFloating}
+          {...floatingProps}
         >
           {menus.map((menuOptions, level) => (
             <div

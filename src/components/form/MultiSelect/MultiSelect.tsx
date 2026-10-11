@@ -4,6 +4,8 @@ import { Icon } from "../../media/Icon/Icon";
 import { Chip } from "../../data-display/Chip/Chip";
 import { BaseListItem } from "../../_internal/BaseListItem";
 import { InputBase } from "../InputBase";
+import { useInlineFloating } from "../../_internal/useInlineFloating";
+import { useMergedRef } from "../../../hooks/useMergedRef";
 import styles from "./multiselect.module.scss";
 import { FieldTemplate } from "../FieldTemplate";
 import { FieldWidth } from "../../../types/tokens";
@@ -243,6 +245,12 @@ export const MultiSelect = ({
     ...wrapperProps
   } = props;
 
+  // 下に余地が無ければ上へ開き、画面の端からはみ出す分は内側へ寄せる（T342）。面は引き金の隣に
+  // 描いたままで、向きと横のずれだけを受け取る。
+  const { setReference: setFloatingReference, setFloating, floatingProps } = useInlineFloating({ open: isOpen && !disabled });
+  const setRootRef = useMergedRef(containerRef, setFloatingReference);
+  const setListRef = useMergedRef(listRef, setFloating);
+
   return (
     <FieldTemplate
       label={label}
@@ -256,7 +264,7 @@ export const MultiSelect = ({
     >
       <div
         className={classNames("wim-multi-select", styles.root, fullWidth && styles.fullWidth)}
-        ref={containerRef}
+        ref={setRootRef}
         onMouseMove={() => setIsKeyboardNavigating(false)}
         data-keyboard-nav={isKeyboardNavigating}
         {...wrapperProps}
@@ -335,8 +343,9 @@ export const MultiSelect = ({
         {isOpen && !disabled && (
           <ul
             id={listId}
-            ref={listRef}
+            ref={setListRef}
             className={styles.list}
+            {...floatingProps}
             role="listbox"
             aria-multiselectable="true"
             aria-labelledby={labelId || ariaLabelledBy || undefined}

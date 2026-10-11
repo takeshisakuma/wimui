@@ -6,6 +6,8 @@ import { Icon } from "../../media/Icon/Icon";
 import { Transition } from "../../layout/Transition/Transition";
 import { ComponentSizeBasic } from "../../../types/tokens";
 import { ChevronDownIcon, CheckIcon } from "@/icon";
+import { useInlineFloating } from "../../_internal/useInlineFloating";
+import { useMergedRef } from "../../../hooks/useMergedRef";
 import styles from "./model-selector.module.scss";
 
 /** Pricing metadata for a model, expressed per 1M tokens in the given currency. */
@@ -273,9 +275,14 @@ export const ModelSelector = React.forwardRef<HTMLDivElement, ModelSelectorProps
       return <span className={styles.metaRow}>{spaced}</span>;
     };
 
+    // 下に余地が無ければ上へ開き、画面の端からはみ出す分は内側へ寄せる（T342）。面は引き金の隣に
+    // 描いたままで、向きと横のずれだけを受け取る。
+    const { setReference: setFloatingReference, setFloating, floatingProps } = useInlineFloating({ open: open });
+    const setRootRef = useMergedRef(mergedRef, setFloatingReference);
+
     return (
       <div
-        ref={mergedRef}
+        ref={setRootRef}
         className={classNames("wim-model-selector", 
           styles.root,
           styles[size],
@@ -334,7 +341,7 @@ export const ModelSelector = React.forwardRef<HTMLDivElement, ModelSelectorProps
           />
         </button>
 
-        <Transition show={open} preset="scale" unmount className={styles.dropdownWrapper}>
+        <Transition show={open} preset="scale" unmount className={styles.dropdownWrapper} ref={setFloating} {...floatingProps}>
           <ul
             ref={listRef}
             id={listboxId}

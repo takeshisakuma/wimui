@@ -3,6 +3,8 @@ import classNames from "classnames";
 import { BaseListItem } from "../../_internal/BaseListItem";
 import { InputBase } from "../InputBase";
 import { FieldTemplate } from "../FieldTemplate";
+import { useInlineFloating } from "../../_internal/useInlineFloating";
+import { useMergedRef } from "../../../hooks/useMergedRef";
 import styles from "./combobox.module.scss";
 
 export type ComboboxOption = {
@@ -148,6 +150,11 @@ export const Combobox = ({
     }
   };
 
+    // 下に余地が無ければ上へ開き、画面の端からはみ出す分は内側へ寄せる（T342）。面は引き金の隣に
+    // 描いたままで、向きと横のずれだけを受け取る。
+    const { setReference: setFloatingReference, setFloating, floatingProps } = useInlineFloating({ open: isOpen });
+    const setRootRef = useMergedRef(containerRef, setFloatingReference);
+
     return (
       <FieldTemplate
         label={label}
@@ -161,7 +168,7 @@ export const Combobox = ({
       >
         <div
           className={classNames("wim-combobox", styles.root, fullWidth && styles.fullWidth)}
-          ref={containerRef}
+          ref={setRootRef}
           onMouseMove={() => setIsKeyboardNavigating(false)}
           data-keyboard-nav={isKeyboardNavigating}
         >
@@ -212,7 +219,7 @@ export const Combobox = ({
             />
           </InputBase>
         {isOpen && filteredOptions.length > 0 && (
-          <div className={styles.dropdown}>
+          <div className={styles.dropdown} ref={setFloating} {...floatingProps}>
             <ul
               id={listboxId}
               className={styles.list}
@@ -241,7 +248,7 @@ export const Combobox = ({
           </div>
         )}
         {isOpen && filteredOptions.length === 0 && (
-          <div className={styles.dropdown}>
+          <div className={styles.dropdown} ref={setFloating} {...floatingProps}>
             <div className={styles.empty} role="region" aria-live="polite">
               {noResults}
             </div>

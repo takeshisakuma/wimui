@@ -1,4 +1,4 @@
-import React, { useId, forwardRef } from "react";
+import React, { useId, useMemo, forwardRef } from "react";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { formNs } from "@/i18n/generated/form";
 import classNames from "classnames";
@@ -6,6 +6,7 @@ import { Slot, Slottable } from "@radix-ui/react-slot";
 import { Transition } from "../../layout/Transition/Transition";
 import { BaseListItem } from "../../_internal/BaseListItem";
 import { mergeRefs } from "../../_internal/mergeRefs";
+import { useInlineFloating } from "../../_internal/useInlineFloating";
 import { FieldTemplate } from "../FieldTemplate";
 import { InputBase } from "../InputBase";
 import localStyles from "./select.module.scss";
@@ -160,8 +161,13 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
       filterOption,
     });
 
-    // Combine refs for the container
-    const combinedRef = mergeRefs(containerRef, ref);
+    // 下に余地が無ければ上へ開き、画面の端からはみ出す分は内側へ寄せる（T342）。面は引き金の隣に
+    // 描いたままで、向きと横のずれだけを受け取る。
+    const { setReference: setFloatingReference, setFloating, floatingProps } = useInlineFloating({ open: isOpen && !disabled });
+
+    // Combine refs for the container。**毎回作り直さない** ── ref の関数が変わるたびに React は
+    // null → 要素の順で呼び直すので、位置の計算の側が「基準が消えた・戻った」と受け取り続ける。
+    const combinedRef = useMemo(() => mergeRefs(containerRef, ref, setFloatingReference), [containerRef, ref, setFloatingReference]);
 
     const renderOptions = () => {
       let flatIndex = 0;
@@ -378,6 +384,8 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
             show={isOpen && !disabled}
             preset="fade"
             className={classNames(localStyles.dropdown, stylesProp?.dropdown)}
+            ref={setFloating}
+            {...floatingProps}
           >
             {searchable && (
               <div className={classNames(localStyles.search, stylesProp?.search)}>

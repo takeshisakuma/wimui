@@ -3,6 +3,8 @@ import classNames from "classnames";
 import { FieldTemplate } from "../FieldTemplate/FieldTemplate";
 import { Icon } from "../../media/Icon/Icon";
 import { Transition } from "../../layout/Transition/Transition";
+import { useInlineFloating } from "../../_internal/useInlineFloating";
+import { useMergedRef } from "../../../hooks/useMergedRef";
 import styles from "./phone-input.module.scss";
 import { ChevronDownIcon } from "@/icon";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
@@ -262,6 +264,11 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
       }
     }, [activeIndex, isOpen]);
 
+    // 下に余地が無ければ上へ開き、画面の端からはみ出す分は内側へ寄せる（T342）。面は引き金の隣に
+    // 描いたままで、向きと横のずれだけを受け取る。
+    const { setReference: setFloatingReference, setFloating, floatingProps } = useInlineFloating({ open: isOpen });
+    const setRootRef = useMergedRef(containerRef, setFloatingReference);
+
     return (
       <FieldTemplate
         label={label}
@@ -274,7 +281,7 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
         className={className}
       >
         <div
-          ref={containerRef}
+          ref={setRootRef}
           className={classNames("wim-phone-input", 
             styles.root,
             fullWidth && styles.fullWidth,
@@ -321,7 +328,7 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
               />
             </button>
 
-            <Transition show={isOpen} preset="fade" className={styles.dropdown}>
+            <Transition show={isOpen} preset="fade" className={styles.dropdown} ref={setFloating} {...floatingProps}>
               {/* リストにも名前を付ける（引き金と同じ）。名前の無い listbox は axe の aria-input-field-name（serious）。
                   フォーカスは引き金に残すので、項目は Tab の停止点にしない（押してもフォーカスを奪わないよう、
                   mousedown の既定の動作を止める）。 */}

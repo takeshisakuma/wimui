@@ -123,6 +123,16 @@
     z-index: var(--wim-z-overlay);
     min-width: 100%;
     transform-origin: top center;
+
+    /* 画面の端からはみ出す分だけ、内側へ寄せる（T342。値は `useInlineFloating` が入れる）。 */
+    translate: var(--wim-floating-shift-x, 0) 0;
+
+    /* 下に余地が無いときは、上へ開く（T342）。間隔は、下へ開くときと同じトークン。 */
+    &[data-side="top"] {
+      top: auto;
+      bottom: calc(100% + var(--wim-spacing-xs));
+      transform-origin: bottom center;
+    }
   }
 
   .dropdown {
