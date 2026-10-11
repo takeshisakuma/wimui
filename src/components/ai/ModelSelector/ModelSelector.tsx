@@ -111,6 +111,11 @@ export const ModelSelector = React.forwardRef<HTMLDivElement, ModelSelectorProps
       showContext = true,
       labels,
       className,
+      // 名前と説明の参照は、包みではなく引き金（combobox）へ届ける（T340 の測り残し）。標準の属性は、
+      // labels.triggerAriaLabel に勝つ。
+      "aria-label": ariaLabelAttr,
+      "aria-labelledby": ariaLabelledBy,
+      "aria-describedby": ariaDescribedBy,
       ...props
     },
     ref,
@@ -308,7 +313,9 @@ export const ModelSelector = React.forwardRef<HTMLDivElement, ModelSelectorProps
           aria-activedescendant={
             open && activeIndex >= 0 ? `${generatedId}-opt-${activeIndex}` : undefined
           }
-          aria-label={triggerAriaLabel}
+          aria-label={ariaLabelledBy ? undefined : (ariaLabelAttr ?? triggerAriaLabel)}
+          aria-labelledby={ariaLabelledBy}
+          aria-describedby={ariaDescribedBy}
           disabled={disabled}
           onClick={() => {
             if (disabled) return;
@@ -348,7 +355,8 @@ export const ModelSelector = React.forwardRef<HTMLDivElement, ModelSelectorProps
             role="listbox"
             /* 名前は引き金と同じ。フォーカスは引き金に残すので、リストは Tab の停止点にしない
                （押してもフォーカスを奪わないよう、mousedown の既定の動作を止める）。 */
-            aria-label={triggerAriaLabel}
+            aria-label={ariaLabelledBy ? undefined : (ariaLabelAttr ?? triggerAriaLabel)}
+            aria-labelledby={ariaLabelledBy}
             // スクロールする要素は、Chrome では tabindex が無くても Tab の停止点になる。-1 で外す
             // （外さないと、Tab がこのリストへ入り、閉じるアニメーションの終わりでリストごと消えて
             // フォーカスが body へ落ちる）。

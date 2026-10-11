@@ -7,6 +7,8 @@
     "affix_prop_onChange": "Callback when the affix state changes",
     "affix_prop_style": "Style attribute",
     "affix_prop_target": "Target container that will be scrolled",
+    "anchor_prop_aria-label": "Accessible name. When set, the anchor is exposed as a navigation landmark with this name.",
+    "anchor_prop_aria-labelledby": "ID of the element that labels the anchor. Takes precedence over `aria-label`.",
     "anchor_prop_bounds": "Bounding distance (in pixels) for triggering active state",
     "anchor_prop_className": "Additional class names",
     "anchor_prop_direction": "Orientation of the anchor links",

@@ -216,6 +216,12 @@
         "strong"
       ]
     },
+    "Anchor.aria-label": {
+      "type": "string"
+    },
+    "Anchor.aria-labelledby": {
+      "type": "string"
+    },
     "Anchor.bounds": {
       "required": false,
       "type": "number"
@@ -1043,6 +1049,15 @@
       "type": "React.ReactNode"
     },
     "BottomSheetClose.className": {
+      "type": "string"
+    },
+    "BottomSheetContent.aria-describedby": {
+      "type": "string"
+    },
+    "BottomSheetContent.aria-label": {
+      "type": "string"
+    },
+    "BottomSheetContent.aria-labelledby": {
       "type": "string"
     },
     "BottomSheetContent.children": {

@@ -2143,6 +2143,8 @@ follows the theme and never needs a hand-mixed colour.
     - `direction: "vertical" | "horizontal"` = "vertical" — Orientation of the anchor links
     - `className: string` — Additional class names
     - `style: React.CSSProperties` — Style attribute
+    - `aria-label: string` — Accessible name. When set, the anchor is exposed as a navigation landmark with this name.
+    - `aria-labelledby: string` — ID of the element that labels the anchor. Takes precedence over `aria-label`.
 - **BackTop** — Back to top button (aka Back to Top)
     - `target: () => HTMLElement | Window | Document | null` = () => window — Target container that will be scrolled
     - `visibilityHeight: number` = 400 — Scroll height after which the button becomes visible
