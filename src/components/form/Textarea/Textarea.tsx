@@ -96,6 +96,14 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
             widthClassName,
             fieldSizing === "content" && styles.fieldSizingContent,
           )}
+          disabled={isDisabled}
+          aria-invalid={currentIntent === "danger"}
+          aria-describedby={errorId}
+          aria-labelledby={label ? labelId : undefined}
+          aria-required={required}
+          {...props}
+          // style は、props を広げたあとに置く。先に置くと、広げた props の中の style（利用者が渡したもの）が、
+          // ここで組んだ style を丸ごと置き換える（部品が入れた値が消える）。
           style={{
             ...(effectiveHasCustomWidth
               ? ({
@@ -104,12 +112,6 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
               : {}),
             ...props.style,
           }}
-          disabled={isDisabled}
-          aria-invalid={currentIntent === "danger"}
-          aria-describedby={errorId}
-          aria-labelledby={label ? labelId : undefined}
-          aria-required={required}
-          {...props}
           placeholder={props.placeholder}
           aria-label={props["aria-label"]}
         >

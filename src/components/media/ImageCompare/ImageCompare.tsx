@@ -176,11 +176,13 @@ export const ImageCompare = React.forwardRef<HTMLDivElement, ImageCompareProps>(
           styles[`radius-${radius}`],
           className,
         )}
-        style={{ width, height }}
         onPointerDown={handlePointerDown}
         onPointerMove={handlePointerMove}
         onPointerUp={handlePointerUp}
         {...props}
+        // style は、props を広げたあとに置く。先に置くと、広げた props の中の style（利用者が渡したもの）が、
+        // ここで組んだ style を丸ごと置き換える（部品が入れた値が消える）。
+        style={{ width, height, ...props.style }}
       >
         <img className={styles.image} src={after} alt={afterAlt} draggable={false} />
         {afterLabel && <span className={classNames(styles.label, styles.afterLabel)}>{afterLabel}</span>}

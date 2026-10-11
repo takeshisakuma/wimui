@@ -177,6 +177,24 @@ export const Button = React.forwardRef<
       <Root
         ref={mergedRef}
         type={asChild ? undefined : "button"}
+        className={classNames("wim-button", 
+          localStyles.root,
+          localStyles[size],
+          localStyles[variant],
+          localStyles[intent],
+          loading && localStyles.loading,
+          animateWidth && localStyles.animatedWidth,
+          fullWidth && localStyles.fullWidth,
+          !children && !!icon && localStyles.iconOnly,
+          className,
+          stylesProp?.root,
+        )}
+        disabled={(isDisabled || loading) && !asChild ? true : undefined}
+        aria-label={resolvedAriaLabel}
+        aria-busy={loading || undefined}
+        {...(asChild ? props : { ...props })}
+        // style は、props を広げたあとに置く。先に置くと、広げた props の中の style（利用者が渡したもの）が、
+        // ここで組んだ style を丸ごと置き換える（部品が入れた値が消える）。
         style={{
           ...props.style,
           justifyContent: justifyStyle,
@@ -195,22 +213,6 @@ export const Button = React.forwardRef<
               }
             : {}),
         }}
-        className={classNames("wim-button", 
-          localStyles.root,
-          localStyles[size],
-          localStyles[variant],
-          localStyles[intent],
-          loading && localStyles.loading,
-          animateWidth && localStyles.animatedWidth,
-          fullWidth && localStyles.fullWidth,
-          !children && !!icon && localStyles.iconOnly,
-          className,
-          stylesProp?.root,
-        )}
-        disabled={(isDisabled || loading) && !asChild ? true : undefined}
-        aria-label={resolvedAriaLabel}
-        aria-busy={loading || undefined}
-        {...(asChild ? props : { ...props })}
       >
         {asChild && iconContent && iconPosition === "left" ? iconContent : null}
         {asChild ? (
