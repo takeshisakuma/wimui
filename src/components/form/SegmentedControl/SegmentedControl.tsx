@@ -43,6 +43,12 @@ type SegmentedControlProps = {
   asChild?: boolean;
   /** Optional children used when asChild is true */
   children?: React.ReactNode;
+  /** Accessible name for the radio group when no visible `label` is provided. */
+  "aria-label"?: string;
+  /** ID of the element that labels the radio group when no visible `label` is provided. */
+  "aria-labelledby"?: string;
+  /** ID of the element that describes the radio group. Announced together with the error message. */
+  "aria-describedby"?: string;
   /**
    * Unique ID for the component
    */
@@ -74,6 +80,11 @@ export const SegmentedControl = forwardRef<HTMLDivElement, SegmentedControlProps
   children,
   id: customId,
   styles: stylesProp,
+  // 見えるラベルを置かないときに、`role="radiogroup"` へ名前と説明を付ける口（T329）。
+  // 以前は受ける口が無く、渡しても黙って捨てられていた。
+  "aria-label": ariaLabel,
+  "aria-labelledby": ariaLabelledBy,
+  "aria-describedby": ariaDescribedBy,
 }, ref) => {
   const itemRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const generatedId = useId();
@@ -144,10 +155,11 @@ export const SegmentedControl = forwardRef<HTMLDivElement, SegmentedControlProps
             stylesProp?.root,
           )}
           role="radiogroup"
-          aria-labelledby={label ? labelId : undefined}
+          aria-labelledby={label ? labelId : ariaLabelledBy}
+          aria-label={label || ariaLabelledBy ? undefined : ariaLabel}
           aria-required={required}
           aria-invalid={error ? true : undefined}
-          aria-describedby={error ? errorId : undefined}
+          aria-describedby={[ariaDescribedBy, error ? errorId : undefined].filter(Boolean).join(" ") || undefined}
         >
           <div
             className={classNames(localStyles.slider, stylesProp?.slider)}

@@ -1153,6 +1153,9 @@ so the unit does not have to be repeated in the label.
     - `error: string` — Error message
     - `required: boolean` — Whether to show the required indicator
     - `layout: "vertical" | "horizontal"` = "vertical" — Layout direction of label and field
+    - `aria-label: string` — Accessible name for the group of the two date fields when no visible `label` is provided.
+    - `aria-labelledby: string` — ID of the element that labels the group of the two date fields when no visible `label` is provided.
+    - `aria-describedby: string` — ID of the element that describes the group. Announced together with the error message.
 - **Dropzone** — Drag & drop files
     - `label: React.ReactNode` — Field label.
     - `description: React.ReactNode` — Description text shown in the drag-and-drop area.
@@ -1489,6 +1492,9 @@ so the unit does not have to be repeated in the label.
     - `layout: "vertical" | "horizontal"` = "vertical" — Layout direction of label and field.
     - `className: string` — Additional class names.
     - `fullWidth: boolean` = false — Whether to take full width of parent.
+    - `aria-label: string` — Accessible name for the phone number input when no visible `label` is provided.
+    - `aria-labelledby: string` — ID of the element that labels the phone number input when no visible `label` is provided.
+    - `aria-describedby: string` — ID of the element that describes the phone number input. Announced together with the error message.
 - **QueryBuilder** — Visual builder for constructing complex search queries.
     - `fields: QueryField[]` (required) — Field definitions
     - `query: QueryGroup` — Current query state (controlled)
@@ -1640,6 +1646,9 @@ so the unit does not have to be repeated in the label.
     - `disabled: boolean` = false — Whether the control is disabled
     - `asChild: boolean` = false — If true, merge radiogroup props onto the child element.
     - `children: React.ReactNode` — Optional children used when asChild is true
+    - `aria-label: string` — Accessible name for the radio group when no visible `label` is provided.
+    - `aria-labelledby: string` — ID of the element that labels the radio group when no visible `label` is provided.
+    - `aria-describedby: string` — ID of the element that describes the radio group. Announced together with the error message.
     - `id: string` — Unique ID for the component
     - `styles: { root?: string; item?: string; slider?: string; label?: string; }` — Custom styles for internal parts
 - **Select** — A dropdown menu for selecting one option from a predefined list (aka Pop-Up Button, Select Menu)
@@ -1845,6 +1854,9 @@ so the unit does not have to be repeated in the label.
     - `required: boolean` — Whether to show the required indicator
     - `layout: "vertical" | "horizontal"` = "vertical" — Layout direction of label and field
     - `labels: { noData?: React.ReactNode; moveToTarget?: string; moveToSource?: string; statusMovedToTarget?: (count: number) => string; statusMovedToSource?: (count: number) => string; }` = {} — Labels for internationalization
+    - `aria-label: string` — Accessible name for the group of the two lists when no visible `label` is provided.
+    - `aria-labelledby: string` — ID of the element that labels the group of the two lists when no visible `label` is provided.
+    - `aria-describedby: string` — ID of the element that describes the group. Announced together with the error message.
 - **TreeSelect** — Select from tree structure
     - `treeData: TreeSelectNode[]` = [] — Tree nodes to select from
     - `value: string | string[]` — Selected value(s) (controlled)

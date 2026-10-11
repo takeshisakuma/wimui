@@ -70,6 +70,8 @@ export const RangeSlider = ({
   id: customId,
   "aria-label": ariaLabel,
   "aria-labelledby": ariaLabelledBy,
+  // 説明の参照は、包みではなく 2 つのつまみへ届ける（T329）。エラーの参照と同じ行き先。
+  "aria-describedby": ariaDescribedBy,
   asChild = false,
   children,
   ...props
@@ -80,6 +82,18 @@ export const RangeSlider = ({
   const id = customId || generatedId;
   const labelId = `wim-range-slider-label-${id}`;
   const errorId = `wim-range-slider-error-${id}`;
+  const describedBy = [ariaDescribedBy, error ? errorId : undefined].filter(Boolean).join(" ") || undefined;
+
+  // 2 つのつまみに、区別できる名前を付ける（T329 の実装で測った）。以前は、`label` があると両方に
+  // 同じ `aria-labelledby` が付き、「開始」「終了」を区別する `aria-label` より優先されて、どちらも
+  // 同じ名前（例: "Price"）で読まれていた。`aria-label` だけを渡したときも、両方がその名前になっていた。
+  // - 文字の名前（`label` / `aria-label`）があるとき: 参照は付けず、「開始 + 名前」を `aria-label` にする
+  // - 外の要素への参照だけがあるとき: 参照のあとに自分自身を並べ、「外の名前 + 開始」にする
+  const baseName = label || ariaLabel;
+  const startId = `wim-range-slider-start-${id}`;
+  const endId = `wim-range-slider-end-${id}`;
+  const thumbNameRef = (thumbId: string) =>
+    !baseName && ariaLabelledBy ? `${ariaLabelledBy} ${thumbId}` : undefined;
 
   const { clamp, calculateValue } = useSliderCommon(min, max, step);
 
@@ -308,9 +322,10 @@ export const RangeSlider = ({
             aria-valuemax={currentValue[1]}
             aria-valuenow={currentValue[0]}
             aria-disabled={disabled}
-            aria-labelledby={label ? labelId : ariaLabelledBy}
-            aria-label={label ? t("rangeSlider.start_of", { label }) : ariaLabel || t("rangeSlider.start")}
-            aria-describedby={error ? errorId : undefined}
+            id={startId}
+            aria-labelledby={thumbNameRef(startId)}
+            aria-label={baseName ? t("rangeSlider.start_of", { label: baseName }) : t("rangeSlider.start")}
+            aria-describedby={describedBy}
             aria-invalid={error ? true : undefined}
             tabIndex={disabled ? -1 : 0}
             onMouseDown={(e) => handleMouseDown(e, "min")}
@@ -326,9 +341,10 @@ export const RangeSlider = ({
             aria-valuemax={max}
             aria-valuenow={currentValue[1]}
             aria-disabled={disabled}
-            aria-labelledby={label ? labelId : ariaLabelledBy}
-            aria-label={label ? t("rangeSlider.end_of", { label }) : ariaLabel || t("rangeSlider.end")}
-            aria-describedby={error ? errorId : undefined}
+            id={endId}
+            aria-labelledby={thumbNameRef(endId)}
+            aria-label={baseName ? t("rangeSlider.end_of", { label: baseName }) : t("rangeSlider.end")}
+            aria-describedby={describedBy}
             aria-invalid={error ? true : undefined}
             tabIndex={disabled ? -1 : 0}
             onMouseDown={(e) => handleMouseDown(e, "max")}

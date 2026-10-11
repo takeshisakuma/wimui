@@ -54,6 +54,12 @@ export type TransferProps = {
   layout?: "vertical" | "horizontal";
   /** Labels for internationalization */
   labels?: TransferLabels;
+  /** Accessible name for the group of the two lists when no visible `label` is provided. */
+  "aria-label"?: string;
+  /** ID of the element that labels the group of the two lists when no visible `label` is provided. */
+  "aria-labelledby"?: string;
+  /** ID of the element that describes the group. Announced together with the error message. */
+  "aria-describedby"?: string;
 };
 
 /** アイテム1件の固定高さ（px）。BaseListItem の padding + line-height から算出。 */
@@ -259,6 +265,11 @@ export const Transfer = ({
   required,
   layout = "vertical",
   labels = {},
+  // 見えるラベルを置かないときに、まとまり（`role="group"`）へ名前と説明を付ける口（T329）。
+  // 以前は受ける口が無く、渡しても黙って捨てられていた。
+  "aria-label": ariaLabel,
+  "aria-labelledby": ariaLabelledBy,
+  "aria-describedby": ariaDescribedBy,
 }: TransferProps) => {
   const { t } = useWimTranslation(formNs);
   const titles = titlesProp ?? [t("transfer.source"), t("transfer.target")];
@@ -440,8 +451,9 @@ export const Transfer = ({
           )}
           style={style}
           role="group"
-          aria-labelledby={label ? labelId : undefined}
-          aria-describedby={errorId}
+          aria-labelledby={label ? labelId : ariaLabelledBy}
+          aria-label={label || ariaLabelledBy ? undefined : ariaLabel}
+          aria-describedby={[ariaDescribedBy, errorId].filter(Boolean).join(" ") || undefined}
         >
           <TransferList
             className="wim-transfer__list"

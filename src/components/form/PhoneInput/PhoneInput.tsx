@@ -60,6 +60,12 @@ export type PhoneInputProps = {
   className?: string;
   /** Whether to take full width of parent. */
   fullWidth?: boolean;
+  /** Accessible name for the phone number input when no visible `label` is provided. */
+  "aria-label"?: string;
+  /** ID of the element that labels the phone number input when no visible `label` is provided. */
+  "aria-labelledby"?: string;
+  /** ID of the element that describes the phone number input. Announced together with the error message. */
+  "aria-describedby"?: string;
 };
 
 /**
@@ -81,6 +87,11 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
       layout = "vertical",
       className,
       fullWidth = false,
+      // 名前と説明の参照は、ロールの無い包みではなく番号の入力欄へ届ける（T329）。国の引き金は、
+      // 内蔵の名前（「国を選択」）を持つので、ここでは触らない。
+      "aria-label": ariaLabel,
+      "aria-labelledby": ariaLabelledBy,
+      "aria-describedby": ariaDescribedBy,
       ...props
     },
     ref,
@@ -365,7 +376,10 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
             disabled={disabled}
             className={styles.number}
             aria-invalid={!!error}
-            aria-describedby={errorId}
+            // 見えるラベルがあるときは、`htmlFor` で結んだラベルが名前になる。無いときだけ、利用者の名前を通す。
+            aria-label={label ? undefined : ariaLabel}
+            aria-labelledby={label ? undefined : ariaLabelledBy}
+            aria-describedby={[ariaDescribedBy, errorId].filter(Boolean).join(" ") || undefined}
           />
         </div>
       </FieldTemplate>

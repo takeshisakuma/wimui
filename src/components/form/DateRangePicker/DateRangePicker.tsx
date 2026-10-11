@@ -22,6 +22,12 @@ type DateRangePickerProps = {
   required?: boolean;
   /** Layout direction of label and field */
   layout?: "vertical" | "horizontal";
+  /** Accessible name for the group of the two date fields when no visible `label` is provided. */
+  "aria-label"?: string;
+  /** ID of the element that labels the group of the two date fields when no visible `label` is provided. */
+  "aria-labelledby"?: string;
+  /** ID of the element that describes the group. Announced together with the error message. */
+  "aria-describedby"?: string;
 };
 
 /**
@@ -35,6 +41,11 @@ export const DateRangePicker = ({
   error,
   required,
   layout = "vertical",
+  // 見えるラベルを置かないときに、まとまり（`role="group"`）へ名前と説明を付ける口（T329）。
+  // 以前は受ける口が無く、渡しても黙って捨てられていた。
+  "aria-label": ariaLabel,
+  "aria-labelledby": ariaLabelledBy,
+  "aria-describedby": ariaDescribedBy,
 }: DateRangePickerProps) => {
   const { t } = useWimTranslation(componentsNs);
   const generatedId = useId();
@@ -72,8 +83,9 @@ export const DateRangePicker = ({
       <div
         className={styles.root}
         role="group"
-        aria-labelledby={labelId}
-        aria-describedby={errorId}
+        aria-labelledby={labelId ?? ariaLabelledBy}
+        aria-label={label || ariaLabelledBy ? undefined : ariaLabel}
+        aria-describedby={[ariaDescribedBy, errorId].filter(Boolean).join(" ") || undefined}
       >
         <div className={styles.pickerWrapper}>
           <DatePicker

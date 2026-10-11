@@ -81,6 +81,9 @@ export const Cascader = ({
   separator = " / ",
   allowClear = false,
   "aria-label": ariaLabel,
+  // 名前と説明の参照は、包みではなく引き金（combobox）へ届ける（T329）。
+  "aria-labelledby": ariaLabelledBy,
+  "aria-describedby": ariaDescribedBy,
   width,
   fullWidth = false,
   ...props
@@ -89,6 +92,8 @@ export const Cascader = ({
   const id = customId || `wim-cascader-${generatedId}`;
   const labelId = label ? `${id}-label` : undefined;
   const errorId = error ? `${id}-error` : undefined;
+  // 名前の参照。部品のラベルがあればそれ、無ければ利用者が渡した参照（T328 と同じ決め方）。
+  const nameRef = labelId ?? ariaLabelledBy;
   const triggerId = `${id}-trigger`;
   const popupId = `${id}-popup`;
 
@@ -397,9 +402,9 @@ export const Cascader = ({
             aria-controls={isOpen ? popupId : undefined}
             aria-haspopup="listbox"
             aria-disabled={disabled}
-            aria-labelledby={labelId}
-            aria-label={!labelId ? (ariaLabel || getSelectedLabelStr() || getLabelText(placeholder)) : undefined}
-            aria-describedby={errorId}
+            aria-labelledby={nameRef}
+            aria-label={!nameRef ? (ariaLabel || getSelectedLabelStr() || getLabelText(placeholder)) : undefined}
+            aria-describedby={[ariaDescribedBy, errorId].filter(Boolean).join(" ") || undefined}
             aria-required={required}
             aria-invalid={!!error}
             aria-activedescendant={
@@ -430,8 +435,8 @@ export const Cascader = ({
               role="listbox"
               /* 各段のリストにも名前を付ける（引き金と同じ）。名前の無い listbox は axe の
                  aria-input-field-name（serious）。開いた姿のストーリーが無く、CI に写っていなかった。 */
-              aria-labelledby={labelId}
-              aria-label={!labelId ? (ariaLabel || getSelectedLabelStr() || getLabelText(placeholder)) : undefined}
+              aria-labelledby={nameRef}
+              aria-label={!nameRef ? (ariaLabel || getSelectedLabelStr() || getLabelText(placeholder)) : undefined}
             >
               {menuOptions.map((option, index) => {
                 const isActive = activePath[level] === option.value;
