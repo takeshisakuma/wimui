@@ -60,8 +60,29 @@ export const ScrollProgress = ({
     scrollTarget.addEventListener("scroll", handleScroll);
     handleScroll(); // Initial calc
 
+    // スクロールしなくても、進み具合は変わる ── 中身の高さが変わったとき（遅れて読み込まれる画像・
+    // 開いたアコーディオン）と、窓の大きさが変わったとき。以前は scroll しか聞いておらず、半分まで
+    // 送ったあとに中身が 2 倍に伸びても、50% のままだった（実際は 18%。2026-10-11 に実測）。
+    // 入れ物の箱は中身が伸びても変わらないので、見るのは中身の側（入れ物の子）。子が足されたら、
+    // 見る相手を取り直す。
+    window.addEventListener("resize", handleScroll);
+    const container = target && target.current ? target.current : document.body;
+    const resizeObserver = typeof ResizeObserver !== "undefined" ? new ResizeObserver(handleScroll) : null;
+    const observeContent = () => {
+      resizeObserver?.disconnect();
+      resizeObserver?.observe(container);
+      for (const child of Array.from(container.children)) resizeObserver?.observe(child);
+      handleScroll();
+    };
+    const mutationObserver = typeof MutationObserver !== "undefined" ? new MutationObserver(observeContent) : null;
+    mutationObserver?.observe(container, { childList: true });
+    observeContent();
+
     return () => {
       scrollTarget.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+      resizeObserver?.disconnect();
+      mutationObserver?.disconnect();
     };
   }, [target]);
 
