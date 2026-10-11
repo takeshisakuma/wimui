@@ -213,7 +213,7 @@ export interface NavbarMenuProps extends React.ComponentPropsWithoutRef<"div"> {
 }
 
 export const NavbarMenu = React.forwardRef<HTMLDivElement, NavbarMenuProps>(
-  ({ className, children, position = "top", ..._props }, _ref) => {
+  ({ className, children, position = "top", ...props }, _ref) => {
     const context = useContext(NavbarContext);
     if (!context) {
       throw new Error("NavbarMenu must be used within a Navbar");
@@ -222,7 +222,9 @@ export const NavbarMenu = React.forwardRef<HTMLDivElement, NavbarMenuProps>(
 
     return (
       <Drawer open={isMenuOpen} onOpenChange={setIsMenuOpen} side={position}>
-        <DrawerContent className={classNames(styles.menu, className)}>
+        {/* 渡した属性（id・aria-*・data-*・イベント）は、開いた面へ届ける。以前は受けるだけで、
+            全部捨てていた（型は div の属性を受けるので、書いても何も起きなかった）。 */}
+        <DrawerContent {...props} className={classNames(styles.menu, className)}>
           {children}
         </DrawerContent>
       </Drawer>
