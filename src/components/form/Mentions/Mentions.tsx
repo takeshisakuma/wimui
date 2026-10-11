@@ -194,10 +194,10 @@ export const Mentions = forwardRef<HTMLDivElement, MentionsProps>(
     // Textarea / Input と同じく、外のラベルが `htmlFor` で結べる側に寄せる。
     delete wrapperOnlyProps.id;
 
-    const wrapperSpread = (asChild
-      ? { ...textareaOnlyProps, ...divProps }
-      : wrapperOnlyProps
-    ) as unknown as React.HTMLAttributes<HTMLElement>;
+    // asChild のときも、根（利用者の要素）に広げるのは包み用の props だけ（T337）。以前は、入力欄用の
+    // props（`label` / `placeholder` / `rows` など）と `id` まで根に広げていた ── asChild の根が入力欄だった
+    // 頃の名残で、根が利用者の要素になった今は、入力欄と根の両方に同じ値が出てしまう。
+    const wrapperSpread = wrapperOnlyProps as unknown as React.HTMLAttributes<HTMLElement>;
 
     return (
       <Component
@@ -205,53 +205,54 @@ export const Mentions = forwardRef<HTMLDivElement, MentionsProps>(
         ref={combinedRef}
         {...wrapperSpread}
       >
-        <Slottable>
-          <Textarea
-            {...divProps}
-            {...textareaOnlyProps}
-            ref={textareaRef}
-            value={currentValue}
-            onChange={handleInputChange}
-            onKeyDown={handleKeyDown}
-            // aria-expanded / aria-haspopup は textbox ロールでは不許可属性
-            // （axe: aria-allowed-attr）。textarea ベースの補完は
-            // aria-autocomplete + aria-controls で表現する
-            aria-autocomplete="list"
-            aria-controls={isOpen ? `${id}-list` : undefined}
-            onBlur={(e) => {
-              // フォーカスがコンテナ外へ移ったときのみ閉じる。
-              // リスト項目クリック時は項目側 onMouseDown の preventDefault で
-              // フォーカスが textarea から移らないため、この blur 自体が発火しない。
-              // （旧実装は setTimeout(200ms) でクリックイベントを待つハックだった）
-              if (
-                !containerRef.current?.contains(e.relatedTarget as Node | null)
-              ) {
-                setIsOpen(false);
-              }
-            }}
-          />
-          {isOpen && filteredOptions.length > 0 && (
-            <div id={`${id}-list`} className={styles.list} role="listbox">
-              {filteredOptions.map((opt, index) => (
-                <BaseListItem
-                  key={opt.id}
-                  active={index === selectedIndex}
-                  // クリックでの選択時に textarea のフォーカス（と blur）を発生させない。
-                  // これにより onClick が確実に発火する（旧 setTimeout ハック不要）。
-                  onMouseDown={(e) => e.preventDefault()}
-                  onClick={() => insertMention(opt)}
-                  onMouseEnter={() => setSelectedIndex(index)}
-                  role="option"
-                  aria-selected={index === selectedIndex}
-                  tabIndex={-1}
-                >
-                  {opt.display}
-                </BaseListItem>
-              ))}
-            </div>
-          )}
-        </Slottable>
-        {asChild ? children : null}
+        <Textarea
+          {...divProps}
+          {...textareaOnlyProps}
+          ref={textareaRef}
+          value={currentValue}
+          onChange={handleInputChange}
+          onKeyDown={handleKeyDown}
+          // aria-expanded / aria-haspopup は textbox ロールでは不許可属性
+          // （axe: aria-allowed-attr）。textarea ベースの補完は
+          // aria-autocomplete + aria-controls で表現する
+          aria-autocomplete="list"
+          aria-controls={isOpen ? `${id}-list` : undefined}
+          onBlur={(e) => {
+            // フォーカスがコンテナ外へ移ったときのみ閉じる。
+            // リスト項目クリック時は項目側 onMouseDown の preventDefault で
+            // フォーカスが textarea から移らないため、この blur 自体が発火しない。
+            // （旧実装は setTimeout(200ms) でクリックイベントを待つハックだった）
+            if (
+              !containerRef.current?.contains(e.relatedTarget as Node | null)
+            ) {
+              setIsOpen(false);
+            }
+          }}
+        />
+        {isOpen && filteredOptions.length > 0 && (
+          <div id={`${id}-list`} className={styles.list} role="listbox">
+            {filteredOptions.map((opt, index) => (
+              <BaseListItem
+                key={opt.id}
+                active={index === selectedIndex}
+                // クリックでの選択時に textarea のフォーカス（と blur）を発生させない。
+                // これにより onClick が確実に発火する（旧 setTimeout ハック不要）。
+                onMouseDown={(e) => e.preventDefault()}
+                onClick={() => insertMention(opt)}
+                onMouseEnter={() => setSelectedIndex(index)}
+                role="option"
+                aria-selected={index === selectedIndex}
+                tabIndex={-1}
+              >
+                {opt.display}
+              </BaseListItem>
+            ))}
+          </div>
+        )}
+        {/* 利用者の要素（asChild の子）を Slottable に入れる。Slot はこれを根にして、上の中身をその中に描く。
+            以前は逆（中身を Slottable に入れていた）で、asChild を付けると描画で例外になるか、部品の
+            クラスが利用者の要素に付かなかった（T337）。 */}
+        {asChild ? <Slottable>{children}</Slottable> : null}
       </Component>
     );
   },

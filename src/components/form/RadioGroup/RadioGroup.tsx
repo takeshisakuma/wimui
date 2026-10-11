@@ -106,22 +106,23 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(
           aria-required={required}
           aria-invalid={!!error}
         >
-          <Slottable>
-            {options.map((option) => (
-              <Radio
-                key={option.value}
-                value={option.value}
-                checked={currentValue === option.value}
-                disabled={disabled || option.disabled}
-                error={!!error}
-                name={name}
-                onChange={() => handleChange(option.value)}
-              >
-                {option.label}
-              </Radio>
-            ))}
-          </Slottable>
-          {children}
+          {options.map((option) => (
+            <Radio
+              key={option.value}
+              value={option.value}
+              checked={currentValue === option.value}
+              disabled={disabled || option.disabled}
+              error={!!error}
+              name={name}
+              onChange={() => handleChange(option.value)}
+            >
+              {option.label}
+            </Radio>
+          ))}
+          {/* 利用者の要素（asChild の子）を Slottable に入れる。Slot はこれを根にして、上の中身をその中に描く。
+              以前は逆（中身を Slottable に入れていた）で、asChild を付けると描画で例外になるか、部品の
+              クラスが利用者の要素に付かなかった（T337）。 */}
+          <Slottable>{children}</Slottable>
         </Component>
       </FieldTemplate>
     );

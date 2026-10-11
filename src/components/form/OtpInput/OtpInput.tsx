@@ -201,47 +201,48 @@ export const OtpInput = forwardRef<HTMLDivElement, OtpInputProps>(
           ref={ref}
           {...props}
         >
-          <Slottable>
-            <div
-              className={classNames(
-                styles.container,
-                disabled && styles.disabled,
-              )}
-              role="group"
-              aria-labelledby={groupNameRef}
-              aria-label={groupNameRef ? undefined : ariaLabel}
-              data-testid="otp-input-container"
-              data-disabled={disabled}
-            >
-              {Array.from({ length }).map((_, index) => (
-                <input
-                  key={index}
-                  id={index === 0 ? id : undefined}
-                  ref={(el) => {
-                    inputRefs.current[index] = el;
-                  }}
-                  data-testid="otp-input"
-                  className={classNames(
-                    styles.input,
-                    error && styles.danger,
-                    disabled && styles.disabled,
-                  )}
-                  type="text"
-                  maxLength={1}
-                  value={internalValues[index]}
-                  onChange={(e) => handleInputChange(e, index)}
-                  onKeyDown={(e) => handleKeyDown(e, index)}
-                  onPaste={handlePaste}
-                  disabled={disabled}
-                  aria-label={digitAriaLabel(index + 1)}
-                  aria-invalid={error ? "true" : "false"}
-                  aria-describedby={describedBy}
-                  aria-required={required ? "true" : undefined}
-                />
-              ))}
-            </div>
-          </Slottable>
-          {children}
+          <div
+            className={classNames(
+              styles.container,
+              disabled && styles.disabled,
+            )}
+            role="group"
+            aria-labelledby={groupNameRef}
+            aria-label={groupNameRef ? undefined : ariaLabel}
+            data-testid="otp-input-container"
+            data-disabled={disabled}
+          >
+            {Array.from({ length }).map((_, index) => (
+              <input
+                key={index}
+                id={index === 0 ? id : undefined}
+                ref={(el) => {
+                  inputRefs.current[index] = el;
+                }}
+                data-testid="otp-input"
+                className={classNames(
+                  styles.input,
+                  error && styles.danger,
+                  disabled && styles.disabled,
+                )}
+                type="text"
+                maxLength={1}
+                value={internalValues[index]}
+                onChange={(e) => handleInputChange(e, index)}
+                onKeyDown={(e) => handleKeyDown(e, index)}
+                onPaste={handlePaste}
+                disabled={disabled}
+                aria-label={digitAriaLabel(index + 1)}
+                aria-invalid={error ? "true" : "false"}
+                aria-describedby={describedBy}
+                aria-required={required ? "true" : undefined}
+              />
+            ))}
+          </div>
+          {/* 利用者の要素（asChild の子）を Slottable に入れる。Slot はこれを根にして、上の中身をその中に描く。
+              以前は逆（中身を Slottable に入れていた）で、asChild を付けると描画で例外になるか、部品の
+              クラスが利用者の要素に付かなかった（T337）。 */}
+          <Slottable>{children}</Slottable>
         </Component>
       </FieldTemplate>
     );

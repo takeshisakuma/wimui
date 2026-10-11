@@ -1298,6 +1298,10 @@
       "required": false,
       "type": "boolean"
     },
+    "Breadcrumb.children": {
+      "required": false,
+      "type": "React.ReactNode"
+    },
     "Breadcrumb.className": {
       "required": false,
       "type": "string"
@@ -10131,6 +10135,10 @@
     "Stepper.asChild": {
       "required": false,
       "type": "boolean"
+    },
+    "Stepper.children": {
+      "required": false,
+      "type": "React.ReactNode"
     },
     "Stepper.className": {
       "required": false,

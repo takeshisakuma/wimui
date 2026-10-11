@@ -109,22 +109,23 @@ export const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(
           aria-labelledby={label ? labelId : props["aria-labelledby"]}
           aria-describedby={[props["aria-describedby"], errorId].filter(Boolean).join(" ") || undefined}
         >
-          <Slottable>
-            {options.map((option) => (
-              <Checkbox
-                key={option.value}
-                value={option.value}
-                checked={currentValue.includes(option.value)}
-                disabled={disabled || option.disabled}
-                error={!!error}
-                name={name}
-                onChange={(e) => handleChange(option.value, e.target.checked)}
-              >
-                {option.label}
-              </Checkbox>
-            ))}
-          </Slottable>
-          {children}
+          {options.map((option) => (
+            <Checkbox
+              key={option.value}
+              value={option.value}
+              checked={currentValue.includes(option.value)}
+              disabled={disabled || option.disabled}
+              error={!!error}
+              name={name}
+              onChange={(e) => handleChange(option.value, e.target.checked)}
+            >
+              {option.label}
+            </Checkbox>
+          ))}
+          {/* 利用者の要素（asChild の子）を Slottable に入れる。Slot はこれを根にして、上の中身をその中に描く。
+              以前は逆（中身を Slottable に入れていた）で、asChild を付けると描画で例外になるか、部品の
+              クラスが利用者の要素に付かなかった（T337）。 */}
+          <Slottable>{children}</Slottable>
         </Component>
       </FieldTemplate>
     );

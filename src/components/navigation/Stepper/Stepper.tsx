@@ -1,5 +1,5 @@
 import React, { forwardRef } from "react";
-import { Slot } from "@radix-ui/react-slot";
+import { Slot, Slottable } from "@radix-ui/react-slot";
 import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
 import styles from "./stepper.module.scss";
@@ -39,6 +39,11 @@ export interface StepperProps {
   onChange?: (current: number) => void;
   /** Whether to use the Radix Slot pattern */
   asChild?: boolean;
+  /**
+   * The element that becomes the stepper's root when `asChild` is set
+   * (the steps are rendered inside it). Ignored without `asChild`.
+   */
+  children?: React.ReactNode;
 }
 
 export const Stepper = forwardRef<HTMLDivElement, StepperProps>(({
@@ -51,6 +56,8 @@ export const Stepper = forwardRef<HTMLDivElement, StepperProps>(({
   ariaLabel,
   onChange,
   asChild,
+  // asChild の子（根になる利用者の要素）。`...props` に混ぜたままだと、下の JSX の子に上書きされて消える。
+  children,
   ...props
 }, ref) => {
   const Component = asChild ? Slot : "div";
@@ -181,6 +188,9 @@ export const Stepper = forwardRef<HTMLDivElement, StepperProps>(({
             </div>
           );
         })}
+        {/* asChild のときは、利用者の要素を根にして、ステップをその中に描く（T337）。以前は、Slot の子が
+            ステップの配列だけで、「子が 1 つの要素ではない」と例外になっていた。 */}
+        {asChild ? <Slottable>{children}</Slottable> : null}
       </Component>
     </div>
   );
