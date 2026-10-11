@@ -202,12 +202,10 @@
     },
     "components-ai-modelselector--open": {
       "light": [
-        "aria-valid-attr-value",
-        "color-contrast"
+        "aria-valid-attr-value"
       ],
       "dark": [
-        "aria-valid-attr-value",
-        "color-contrast"
+        "aria-valid-attr-value"
       ]
     },
     "components-ai-sourcecitation--default": {
