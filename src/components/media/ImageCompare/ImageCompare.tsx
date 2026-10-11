@@ -76,6 +76,10 @@ export const ImageCompare = React.forwardRef<HTMLDivElement, ImageCompareProps>(
       radius = "md",
       labels,
       className,
+      // 名前と説明の参照は、包みではなく操作要素（slider）へ届ける（T340）。
+      "aria-label": ariaLabel,
+      "aria-labelledby": ariaLabelledBy,
+      "aria-describedby": ariaDescribedBy,
       ...props
     },
     ref,
@@ -192,7 +196,9 @@ export const ImageCompare = React.forwardRef<HTMLDivElement, ImageCompareProps>(
             type="button"
             className={styles.handle}
             role="slider"
-            aria-label={handleAriaLabel}
+            aria-label={ariaLabelledBy ? undefined : (ariaLabel ?? handleAriaLabel)}
+            aria-labelledby={ariaLabelledBy}
+            aria-describedby={ariaDescribedBy}
             aria-orientation={orientation}
             aria-valuenow={Math.round(pos)}
             aria-valuemin={0}

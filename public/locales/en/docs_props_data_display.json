@@ -373,6 +373,7 @@
     "treeView_prop_styles": "Custom styles for internal parts",
     "treeView_prop_virtualThreshold": "Node count threshold at which virtualization kicks in.",
     "treeView_prop_width": "Width of the tree (CSS value or number in px)",
+    "virtualList_prop_aria-describedby": "ID of the element that describes the list",
     "virtualList_prop_aria-label": "Accessible label",
     "virtualList_prop_aria-labelledby": "ID of the element that labels the list",
     "virtualList_prop_className": "Additional class names",

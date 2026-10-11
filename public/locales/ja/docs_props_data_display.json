@@ -384,6 +384,7 @@
     "treeView_prop_styles": "内部パーツのカスタムスタイル",
     "treeView_prop_virtualThreshold": "仮想化を開始するしきい値。",
     "treeView_prop_width": "ツリーの幅（CSS 値または px 単位の数値）",
+    "virtualList_prop_aria-describedby": "リストを説明する要素の ID",
     "virtualList_prop_aria-label": "アクセシビリティ用のラベル",
     "virtualList_prop_aria-labelledby": "アクセシビリティ用のラベル参照",
     "virtualList_prop_className": "追加のクラス名",

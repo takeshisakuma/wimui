@@ -121,6 +121,11 @@ export const Terminal = React.forwardRef<HTMLDivElement, TerminalProps>(
       onClear,
       className,
       style,
+      // 名前と説明の参照は、包みではなくログ（role="log"）へ届ける（T340）。名前は、渡したものが
+      // あればそれ、無ければこれまでどおり title。
+      "aria-label": ariaLabel,
+      "aria-labelledby": ariaLabelledBy,
+      "aria-describedby": ariaDescribedBy,
       ...props
     },
     ref
@@ -192,7 +197,7 @@ export const Terminal = React.forwardRef<HTMLDivElement, TerminalProps>(
 
         {/* スクロール可能なログはキーボードで到達可能にする（axe: scrollable-region-focusable。
             オーバーフローの有無はフォントメトリクス依存で CI Linux のみ発生し得る） */}
-        <div ref={bodyRef} className={styles.body} role="log" aria-live="polite" aria-label={title} tabIndex={0}>
+        <div ref={bodyRef} className={styles.body} role="log" aria-live="polite" aria-label={ariaLabelledBy ? undefined : (ariaLabel ?? title)} aria-labelledby={ariaLabelledBy} aria-describedby={ariaDescribedBy} tabIndex={0}>
           {lines.map((line, i) => (
             <div
               key={line.id ?? i}

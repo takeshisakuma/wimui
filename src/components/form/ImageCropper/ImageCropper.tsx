@@ -98,10 +98,14 @@ export const ImageCropper = React.forwardRef<HTMLDivElement, ImageCropperProps>(
       outputQuality = 0.92,
       crossOrigin,
       className,
+      // 名前を渡したときは、根を group にする（T340）。渡す名前は「何の画像を切り抜くか」で、中の
+      // 操作（位置・拡大・回転）の 1 つの名前ではない。操作は、内蔵の名前のまま。以前は、ロールの無い
+      // div に付いて読まれなかった。
       ...props
     },
     ref,
   ) => {
+    const role = props.role ?? (props["aria-label"] || props["aria-labelledby"] ? "group" : undefined);
     const { t } = useWimTranslation([formNs, commonNs]);
     const [zoom, setZoom] = useState(1);
     const [rotation, setRotation] = useState(0);
@@ -221,7 +225,7 @@ export const ImageCropper = React.forwardRef<HTMLDivElement, ImageCropperProps>(
 
     if (!src) {
       return (
-        <div ref={ref} className={classNames("wim-image-cropper", styles.root, styles.empty, className)} {...props}>
+        <div ref={ref} role={role} className={classNames("wim-image-cropper", styles.root, styles.empty, className)} {...props}>
           <div className={styles.emptyContent}>
             {t("image_cropper.no_image")}
           </div>
@@ -230,7 +234,7 @@ export const ImageCropper = React.forwardRef<HTMLDivElement, ImageCropperProps>(
     }
 
     return (
-      <div ref={ref} className={classNames("wim-image-cropper", styles.root, className)} {...props}>
+      <div ref={ref} role={role} className={classNames("wim-image-cropper", styles.root, className)} {...props}>
         {/* `application` は、キーを自前で扱う要素のためのロール。規則の一覧には操作要素として載っていない。 */}
         {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
         <div

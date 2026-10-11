@@ -784,7 +784,13 @@
       "required": false,
       "type": "number"
     },
+    "BackTop.aria-describedby": {
+      "type": "string"
+    },
     "BackTop.aria-label": {
+      "type": "string"
+    },
+    "BackTop.aria-labelledby": {
       "type": "string"
     },
     "BackTop.asChild": {
@@ -2929,7 +2935,13 @@
     "ContextMenuItem.onClick": {
       "type": "() => void"
     },
+    "CopyButton.aria-describedby": {
+      "type": "string"
+    },
     "CopyButton.aria-label": {
+      "type": "string"
+    },
+    "CopyButton.aria-labelledby": {
       "type": "string"
     },
     "CopyButton.asChild": {
@@ -3829,6 +3841,15 @@
       "required": false,
       "type": "string"
     },
+    "Dropzone.aria-describedby": {
+      "type": "string"
+    },
+    "Dropzone.aria-label": {
+      "type": "string"
+    },
+    "Dropzone.aria-labelledby": {
+      "type": "string"
+    },
     "Dropzone.className": {
       "required": false,
       "type": "string"
@@ -4075,6 +4096,15 @@
     },
     "FileUpload.accept": {
       "required": false,
+      "type": "string"
+    },
+    "FileUpload.aria-describedby": {
+      "type": "string"
+    },
+    "FileUpload.aria-label": {
+      "type": "string"
+    },
+    "FileUpload.aria-labelledby": {
       "type": "string"
     },
     "FileUpload.buttonLabel": {
@@ -7992,6 +8022,15 @@
     },
     "QRCode.value": {
       "required": true,
+      "type": "string"
+    },
+    "QueryBuilder.aria-describedby": {
+      "type": "string"
+    },
+    "QueryBuilder.aria-label": {
+      "type": "string"
+    },
+    "QueryBuilder.aria-labelledby": {
       "type": "string"
     },
     "QueryBuilder.className": {
@@ -12924,6 +12963,9 @@
     "VideoControls.volume": {
       "required": false,
       "type": "number"
+    },
+    "VirtualList.aria-describedby": {
+      "type": "string"
     },
     "VirtualList.aria-label": {
       "type": "string"
