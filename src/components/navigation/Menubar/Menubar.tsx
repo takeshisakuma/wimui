@@ -13,6 +13,7 @@ import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import { BaseListItem, type BaseListItemProps } from "../../_internal/BaseListItem";
 import { Transition } from "../../layout/Transition/Transition";
+import { useInlineFloating } from "../../_internal/useInlineFloating";
 import localStyles from "./menubar.module.scss";
 
 type MenubarContextValue = {
@@ -329,13 +330,19 @@ const MenubarContent = React.forwardRef<HTMLDivElement, MenubarContentProps>(
       setFocusedIndex(isOpen ? 0 : -1);
     }
 
+    // 下に余地が無ければ上へ開き、画面の端からはみ出す分は内側へ寄せる（T342）。位置の基準は、
+    // この面を包む Menubar.Menu（面の親。面は、その下に CSS で置かれている）。
+    const { setReference, setFloating, floatingProps } = useInlineFloating({ open: isOpen });
+
     const setRefs = useCallback(
       (node: HTMLDivElement | null) => {
         contentRef.current = node;
+        setFloating(node);
+        setReference(node?.parentElement ?? null);
         if (typeof ref === "function") ref(node);
         else if (ref) ref.current = node;
       },
-      [ref],
+      [ref, setFloating, setReference],
     );
 
     useEffect(() => {
@@ -398,6 +405,8 @@ const MenubarContent = React.forwardRef<HTMLDivElement, MenubarContentProps>(
           className,
         )}
         onKeyDown={handleKeyDown}
+        data-side={floatingProps["data-side"]}
+        style={{ ...props.style, ...floatingProps.style }}
       >
         {children}
       </Transition>

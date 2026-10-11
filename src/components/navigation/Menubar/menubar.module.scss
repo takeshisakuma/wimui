@@ -76,6 +76,15 @@
     border: var(--wim-border-width-thin) solid var(--wim-color-border);
     border-radius: var(--wim-radius-overlay);
     box-shadow: var(--wim-shadow-overlay);
+
+    /* 画面の端からはみ出す分だけ、内側へ寄せる（T342。値は `useInlineFloating` が入れる）。 */
+    translate: var(--wim-floating-shift-x, 0) 0;
+
+    /* 下に余地が無いときは、上へ開く（T342）。間隔は、下へ開くときと同じトークン。 */
+    &[data-side="top"] {
+      top: auto;
+      bottom: calc(100% + var(--wim-spacing-2xs));
+    }
   }
 
   .alignStart {

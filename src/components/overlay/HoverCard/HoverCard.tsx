@@ -8,6 +8,8 @@ import {
   safePolygon,
 } from "@floating-ui/react";
 import classNames from "classnames";
+import { useInlineFloating } from "../../_internal/useInlineFloating";
+import { useMergedRef } from "../../../hooks/useMergedRef";
 import styles from "./hover-card.module.scss";
 
 /**
@@ -168,6 +170,11 @@ export const HoverCardContent = ({
 }: HoverCardContentProps & React.HTMLAttributes<HTMLDivElement>) => {
   const { isOpen, refs, getFloatingProps } = React.useContext(HoverCardContext);
 
+  // 画面の端からはみ出す分だけ、内側へ寄せる（T342）。向きは、利用者が `side` で決めるので変えない ──
+  // 使うのは横のずれだけ（基準と面の両方に、このカードを渡す）。
+  const { setReference, setFloating, floatingProps } = useInlineFloating({ open: isOpen });
+  const setRefs = useMergedRef<HTMLDivElement>(refs?.setFloating, setReference, setFloating);
+
   if (!isOpen) return null;
 
   const sideClass = styles[side];
@@ -177,7 +184,7 @@ export const HoverCardContent = ({
     <div
       // `safePolygon()` はここを「向かっている先」として読む。ref を渡さないと
       // 三角形が作れず、ホバーは従来どおり素朴な離脱判定に戻る。
-      ref={refs?.setFloating}
+      ref={setRefs}
       className={classNames(
         styles.content,
         sideClass,
@@ -187,6 +194,7 @@ export const HoverCardContent = ({
       data-side={side}
       data-align={align}
       {...(getFloatingProps(props) as React.HTMLAttributes<HTMLDivElement>)}
+      style={{ ...props.style, ...floatingProps.style }}
     >
       {children}
     </div>

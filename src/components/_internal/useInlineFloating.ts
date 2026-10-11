@@ -106,7 +106,11 @@ export const useInlineFloating = ({ open }: InlineFloatingOptions) => {
     const observer = typeof ResizeObserver !== "undefined" ? new ResizeObserver(update) : null;
     observer?.observe(floating);
     observer?.observe(reference);
+    // 開くアニメーションが面を縮めて描く部品（HoverCard の scale(0.95)）は、1 回目の計測が小さく出る。
+    // 変形は ResizeObserver に届かないので、終わったところで測り直す。
+    floating.addEventListener("animationend", update);
     return () => {
+      floating.removeEventListener("animationend", update);
       view.removeEventListener("resize", update);
       view.removeEventListener("scroll", update, true);
       observer?.disconnect();

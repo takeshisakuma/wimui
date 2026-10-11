@@ -28,6 +28,8 @@ const cases: Case[] = [
   { name: "DatePicker", id: "components-pickers-sliders-datepicker--default", surface: '#storybook-root [class*="_dropdown_"]', opener: DEFAULT_OPENER },
   { name: "ModelSelector", id: "components-ai-modelselector--default", surface: '#storybook-root [class*="_dropdownWrapper_"]', opener: DEFAULT_OPENER },
   { name: "PhoneInput", id: "components-basic-inputs-phoneinput--default", surface: '#storybook-root [class*="_dropdown_"]', opener: "#storybook-root [role=combobox]" },
+  // 入力ではないが、面を引き金の隣に CSS で置くのは同じ（T342 の対象外だったもの）
+  { name: "Menubar", id: "components-navigation-elements-menubar--default", surface: '#storybook-root [role="menu"]', opener: '#storybook-root [role="menuitem"]' },
 ];
 
 /** ストーリーの根を、画面の隅へ寄せる（余白を消し、根を中身の幅にする ── 引き金が端に来る）。 */
@@ -89,6 +91,45 @@ test.describe("引き金の隣に描く面が、画面の端で外へ出ない�
         right: true,
         bottom: true,
       });
+    });
+  }
+});
+
+// HoverCard は、向きを利用者が `side` で決める。変えるのは横のずれだけなので、上の表には入れない。
+test.describe("HoverCard のカードが、画面の左右の端で外へ出ない（T342）", () => {
+  const url = "/iframe.html?id=components-overlays-hovercard--default&viewMode=story&globals=locale:en";
+  const surface = '#storybook-root [class*="_content_"]';
+  const trigger = "#storybook-root .wim-hover-card > *";
+
+  test("寄せずに開くと、カードは横へ動かない（対照）", async ({ page }) => {
+    await page.goto(url, { waitUntil: "domcontentloaded" });
+    await waitForStoryReady(page);
+    await page.locator(trigger).first().hover();
+    await expect(page.locator(surface).first()).toBeVisible();
+    const m = await page.evaluate(measure, surface);
+    expect(m).not.toBeNull();
+    expect(m!.shift).toBe("");
+  });
+
+  for (const [label, corner] of [
+    ["左", "top:0;left:0;"],
+    ["右", "top:0;right:0;"],
+  ] as const) {
+    test(`画面の${label}端では、内側へ寄って、画面に収まる`, async ({ page }) => {
+      await page.goto(url, { waitUntil: "domcontentloaded" });
+      await waitForStoryReady(page);
+      await page.addStyleTag({ content: pinTo(corner) });
+      await page.locator(trigger).first().hover({ force: true });
+      await expect(page.locator(surface).first()).toBeVisible();
+      await expect
+        .poll(async () => {
+          const m = await page.evaluate(measure, surface);
+          return m ? m.left >= 0 && m.right <= m.viewportWidth : false;
+        })
+        .toBe(true);
+      // 対照: 寄せる仕組みが無ければ、カードは引き金の中央に置かれて 129px はみ出す（2026-10-11 に実測）
+      const m = (await page.evaluate(measure, surface))!;
+      expect(m.shift).not.toBe("");
     });
   }
 });
