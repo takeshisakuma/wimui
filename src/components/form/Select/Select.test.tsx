@@ -231,6 +231,10 @@ describe("Select", () => {
     await waitFor(() => expect(screen.queryByRole("listbox")).not.toBeNull());
 
     fireEvent.keyDown(trigger, { key: "End" });
+    // 動いた先を見る（CI-19）。以前は「onChange が呼ばれない」だけを見ていた。
+    const activeId = trigger.getAttribute("aria-activedescendant");
+    expect(activeId).toBeTruthy();
+    expect(document.getElementById(activeId as string)).toHaveTextContent("Orange");
     fireEvent.keyDown(trigger, { key: "Enter" });
 
     // Orange (index 2) is disabled, so End focuses it but Enter should not select it

@@ -134,26 +134,42 @@ describe("GanttChart", () => {
     render(<GanttChart tasks={tasks} startDate={today} onTaskClick={vi.fn()} />);
     const bars = screen.getAllByRole("gridcell");
     fireEvent.keyDown(bars[0], { key: "ArrowDown" });
-    expect(bars[0]).toHaveAttribute("aria-selected", "false"); // Default or not focused
+    // 動いた先を見る（CI-19）。以前は「元のバーが選択中でない」だけを見ていて、キーが何もしなくても通った。
+    expect(bars[1]).toHaveFocus();
+    expect(bars[1]).toHaveAttribute("aria-selected", "true");
   });
 
   it("moves focus to previous bar on ArrowUp", () => {
     render(<GanttChart tasks={tasks} startDate={today} onTaskClick={vi.fn()} />);
     const bars = screen.getAllByRole("gridcell");
     fireEvent.keyDown(bars[1], { key: "ArrowUp" });
+    // 以前は、期待が 1 つも無かった（CI-19）。
+    expect(bars[0]).toHaveFocus();
+    expect(bars[0]).toHaveAttribute("aria-selected", "true");
   });
 
   it("ArrowDown at last bar stays at last bar", () => {
     render(<GanttChart tasks={tasks} startDate={today} onTaskClick={vi.fn()} />);
     const bars = screen.getAllByRole("gridcell");
     const last = bars[bars.length - 1];
-    expect(() => fireEvent.keyDown(last, { key: "ArrowDown" })).not.toThrow();
+    // 対照: まず 1 つ上から ArrowDown で最後のバーへ来られること（キーが効いていること）を見てから、
+    // 端でもう一度押す。以前は「例外が出ない」だけを見ていた（CI-19）。
+    fireEvent.keyDown(bars[bars.length - 2], { key: "ArrowDown" });
+    expect(last).toHaveFocus();
+    fireEvent.keyDown(last, { key: "ArrowDown" });
+    expect(last).toHaveFocus();
+    expect(last).toHaveAttribute("aria-selected", "true");
   });
 
   it("ArrowUp at first bar stays at first bar", () => {
     render(<GanttChart tasks={tasks} startDate={today} onTaskClick={vi.fn()} />);
     const bars = screen.getAllByRole("gridcell");
-    expect(() => fireEvent.keyDown(bars[0], { key: "ArrowUp" })).not.toThrow();
+    // 対照: まず 1 つ下から ArrowUp で最初のバーへ来られることを見てから、端でもう一度押す（CI-19）。
+    fireEvent.keyDown(bars[1], { key: "ArrowUp" });
+    expect(bars[0]).toHaveFocus();
+    fireEvent.keyDown(bars[0], { key: "ArrowUp" });
+    expect(bars[0]).toHaveFocus();
+    expect(bars[0]).toHaveAttribute("aria-selected", "true");
   });
 
   it("sets focusedIndex on bar focus", () => {
