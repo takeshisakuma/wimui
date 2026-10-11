@@ -14,6 +14,9 @@ const DropdownContext = React.createContext<{
   close: () => void;
   menuId: string;
   triggerId: string;
+  /** 利用者が引き金・メニューに渡した id を、対応の相手へ伝える（T346）。 */
+  setTriggerIdOverride: (id: string | undefined) => void;
+  setMenuIdOverride: (id: string | undefined) => void;
   focusedIndex: number;
   setFocusedIndex: (index: number) => void;
   registerItem: () => number;
@@ -29,6 +32,8 @@ const DropdownContext = React.createContext<{
   close: () => { },
   menuId: "",
   triggerId: "",
+  setTriggerIdOverride: () => { },
+  setMenuIdOverride: () => { },
   focusedIndex: -1,
   setFocusedIndex: () => { },
   registerItem: () => 0,
@@ -126,8 +131,12 @@ const DropdownInner = forwardRef<HTMLDivElement, DropdownProps>(
     };
 
     const generatedId = useId();
-    const menuId = `wim-dropdown-menu-${generatedId}`;
-    const triggerId = `wim-dropdown-trigger-${generatedId}`;
+    // 利用者が引き金・メニューに id を渡したら、内部の id の代わりにそれを使う（T346）。以前は、
+    // 渡した id を黙って内部の値で上書きしていた。対応（aria-controls / aria-labelledby）も、同じ値で張る。
+    const [triggerIdOverride, setTriggerIdOverride] = useState<string | undefined>(undefined);
+    const [menuIdOverride, setMenuIdOverride] = useState<string | undefined>(undefined);
+    const menuId = menuIdOverride ?? `wim-dropdown-menu-${generatedId}`;
+    const triggerId = triggerIdOverride ?? `wim-dropdown-trigger-${generatedId}`;
 
     const toggle = () => {
       const nextOpen = !isOpen;
@@ -231,7 +240,7 @@ const DropdownInner = forwardRef<HTMLDivElement, DropdownProps>(
     return (
       <DropdownContext.Provider
         value={{
-          isOpen, toggle, close, menuId, triggerId, focusedIndex, setFocusedIndex, registerItem, containerRef,
+          isOpen, toggle, close, menuId, triggerId, setTriggerIdOverride, setMenuIdOverride, focusedIndex, setFocusedIndex, registerItem, containerRef,
           setReference: refs.setReference,
           setFloating: refs.setFloating,
           floatingStyles,
@@ -260,8 +269,13 @@ export interface DropdownTriggerProps extends React.ComponentPropsWithoutRef<"di
 }
 
 export const DropdownTrigger = forwardRef<HTMLDivElement, DropdownTriggerProps>(
-  ({ children, className, asChild = false, ...props }, ref) => {
-    const { toggle, isOpen, menuId, triggerId, setReference } = React.useContext(DropdownContext);
+  ({ children, className, asChild = false, id: idProp, ...props }, ref) => {
+    const { toggle, isOpen, menuId, triggerId, setTriggerIdOverride, setReference } = React.useContext(DropdownContext);
+
+    useEffect(() => {
+      setTriggerIdOverride(idProp);
+      return () => setTriggerIdOverride(undefined);
+    }, [idProp, setTriggerIdOverride]);
 
     const Component = asChild ? Slot : "div";
     // トリガーは floating-ui の基準要素でもある（メニューはここを基準に配置される）。
@@ -271,7 +285,7 @@ export const DropdownTrigger = forwardRef<HTMLDivElement, DropdownTriggerProps>(
       <Component
         {...props}
         ref={combinedRef}
-        id={triggerId}
+        id={idProp ?? triggerId}
         className={classNames(styles.trigger, className)}
         onClick={toggle}
         aria-haspopup="menu"
@@ -306,9 +320,14 @@ export interface DropdownMenuProps extends Omit<React.ComponentPropsWithoutRef<t
 }
 
 export const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
-  ({ children, className, align = "left", show: forceShow, style, ...props }, ref) => {
-    const { isOpen, menuId, triggerId, setFloating, floatingStyles, setAlign } =
+  ({ children, className, align = "left", show: forceShow, style, id: idProp, "aria-labelledby": ariaLabelledBy, ...props }, ref) => {
+    const { isOpen, menuId, triggerId, setMenuIdOverride, setFloating, floatingStyles, setAlign } =
       React.useContext(DropdownContext);
+
+    useEffect(() => {
+      setMenuIdOverride(idProp);
+      return () => setMenuIdOverride(undefined);
+    }, [idProp, setMenuIdOverride]);
 
     // align は配置の指定なので、位置計算を持つルートへ伝える。
     useEffect(() => {
@@ -327,11 +346,12 @@ export const DropdownMenu = forwardRef<HTMLDivElement, DropdownMenuProps>(
           ref={combinedRef}
           show={forceShow !== undefined ? forceShow : isOpen}
           preset="fade"
-          id={menuId}
+          id={idProp ?? menuId}
           style={{ ...floatingStyles, ...style }}
           className={classNames(styles.menu, className)}
           role="menu"
-          aria-labelledby={triggerId}
+          // 渡した名前の参照を優先する。無ければ、引き金が名前になる（これまでどおり）。
+          aria-labelledby={ariaLabelledBy ?? triggerId}
         >
           {children}
         </Transition>

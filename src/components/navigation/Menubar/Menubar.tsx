@@ -30,6 +30,9 @@ type MenubarMenuContextValue = {
   menuId: string;
   triggerId: string;
   contentId: string;
+  /** 利用者が引き金・面に渡した id を、対応の相手へ伝える（T346）。 */
+  setTriggerIdOverride: (id: string | undefined) => void;
+  setContentIdOverride: (id: string | undefined) => void;
   isOpen: boolean;
   open: () => void;
   close: () => void;
@@ -200,8 +203,12 @@ const MenubarMenu = React.forwardRef<HTMLDivElement, MenubarMenuProps>(
   ({ value, disabled = false, className, children, ...props }, ref) => {
     const { openMenuId, setOpenMenuId, focusTrigger } = useMenubar();
     const reactId = useId();
-    const triggerId = `wim-menubar-trigger-${value}-${reactId}`;
-    const contentId = `wim-menubar-content-${value}-${reactId}`;
+    // 利用者が引き金・面に id を渡したら、内部の id の代わりにそれを使う（T346）。以前は、渡した id を
+    // 黙って内部の値で上書きしていた。対応（aria-controls / aria-labelledby）も、同じ値で張る。
+    const [triggerIdOverride, setTriggerIdOverride] = useState<string | undefined>(undefined);
+    const [contentIdOverride, setContentIdOverride] = useState<string | undefined>(undefined);
+    const triggerId = triggerIdOverride ?? `wim-menubar-trigger-${value}-${reactId}`;
+    const contentId = contentIdOverride ?? `wim-menubar-content-${value}-${reactId}`;
     const isOpen = openMenuId === value;
 
     const open = () => {
@@ -223,6 +230,8 @@ const MenubarMenu = React.forwardRef<HTMLDivElement, MenubarMenuProps>(
         menuId: value,
         triggerId,
         contentId,
+        setTriggerIdOverride,
+        setContentIdOverride,
         isOpen,
         open,
         close,
@@ -256,9 +265,14 @@ export type MenubarTriggerProps = React.ComponentPropsWithoutRef<"button"> & {
 };
 
 const MenubarTrigger = React.forwardRef<HTMLButtonElement, MenubarTriggerProps>(
-  ({ asChild = false, className, children, onKeyDown, onMouseEnter, ...props }, ref) => {
+  ({ asChild = false, className, children, onKeyDown, onMouseEnter, id: idProp, ...props }, ref) => {
     const { openMenuId, registerTrigger } = useMenubar();
-    const { triggerId, contentId, isOpen, open, toggle, menuId } = useMenubarMenu();
+    const { triggerId, contentId, isOpen, open, toggle, menuId, setTriggerIdOverride } = useMenubarMenu();
+
+    useEffect(() => {
+      setTriggerIdOverride(idProp);
+      return () => setTriggerIdOverride(undefined);
+    }, [idProp, setTriggerIdOverride]);
     const disabled = Boolean(props.disabled);
 
     const setRefs = useCallback(
@@ -291,7 +305,7 @@ const MenubarTrigger = React.forwardRef<HTMLButtonElement, MenubarTriggerProps>(
         {...props}
         ref={setRefs}
         type={asChild ? undefined : "button"}
-        id={triggerId}
+        id={idProp ?? triggerId}
         role="menuitem"
         aria-haspopup="menu"
         aria-expanded={isOpen}
@@ -319,8 +333,13 @@ export type MenubarContentProps = React.ComponentPropsWithoutRef<"div"> & {
 };
 
 const MenubarContent = React.forwardRef<HTMLDivElement, MenubarContentProps>(
-  ({ align = "start", className, children, ...props }, ref) => {
-    const { contentId, triggerId, isOpen, close } = useMenubarMenu();
+  ({ align = "start", className, children, id: idProp, "aria-labelledby": ariaLabelledBy, ...props }, ref) => {
+    const { contentId, triggerId, isOpen, close, setContentIdOverride } = useMenubarMenu();
+
+    useEffect(() => {
+      setContentIdOverride(idProp);
+      return () => setContentIdOverride(undefined);
+    }, [idProp, setContentIdOverride]);
     const [focusedIndex, setFocusedIndex] = useState(-1);
     const [wasOpen, setWasOpen] = useState(isOpen);
     const contentRef = useRef<HTMLDivElement | null>(null);
@@ -396,9 +415,10 @@ const MenubarContent = React.forwardRef<HTMLDivElement, MenubarContentProps>(
         ref={setRefs}
         show={isOpen}
         preset="fade"
-        id={contentId}
+        id={idProp ?? contentId}
         role="menu"
-        aria-labelledby={triggerId}
+        // 渡した名前の参照を優先する。無ければ、引き金が名前になる（これまでどおり）。
+        aria-labelledby={ariaLabelledBy ?? triggerId}
         className={classNames(
           localStyles.content,
           align === "end" ? localStyles.alignEnd : localStyles.alignStart,
