@@ -27,6 +27,14 @@ describe("Gallery", () => {
     expect(images).toHaveLength(3);
   });
 
+  // 0 以下の列数は、行に分けるループを止めなくしていた（描画が戻らない）。1 列として描く。
+  it.each([0, -2, Number.NaN, 2.7])("columns=%s でも描ける（1 以上の整数にそろえる）", (columns) => {
+    render(<Gallery items={sampleItems} columns={columns} />);
+    expect(screen.getAllByRole("img")).toHaveLength(3);
+    // 3 枚が、行に 1 回ずつだけ入っている
+    expect(screen.getAllByRole("gridcell")).toHaveLength(3);
+  });
+
   it("renders image alt text", () => {
     render(<Gallery items={sampleItems} />);
     expect(screen.getByAltText("Image 1")).toBeInTheDocument();
