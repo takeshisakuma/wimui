@@ -7,6 +7,8 @@
     "affix_prop_onChange": "アフィックスの状態が変化した時に呼び出されるコールバック",
     "affix_prop_style": "スタイル属性",
     "affix_prop_target": "スクロール対象となるコンテナ",
+    "anchor_prop_aria-label": "アンカーの名前。渡すと、この名前の navigation ランドマークとして公開されます。",
+    "anchor_prop_aria-labelledby": "アンカーの名前になる要素の ID。`aria-label` より優先されます。",
     "anchor_prop_bounds": "アクティブ状態をトリガーする境界距離（ピクセル）",
     "anchor_prop_className": "追加のクラス名",
     "anchor_prop_direction": "アンカーリンクの向き",

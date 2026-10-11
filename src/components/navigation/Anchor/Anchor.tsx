@@ -26,6 +26,10 @@ export interface AnchorProps {
   className?: string;
   /** Style attribute */
   style?: React.CSSProperties;
+  /** Accessible name. When set, the anchor is exposed as a navigation landmark with this name. */
+  "aria-label"?: string;
+  /** ID of the element that labels the anchor. Takes precedence over `aria-label`. */
+  "aria-labelledby"?: string;
 }
 
 export const Anchor = ({
@@ -35,6 +39,11 @@ export const Anchor = ({
   direction = "vertical",
   className,
   style,
+  // 名前を渡したときは、根を navigation のランドマークにして、そこへ付ける（T341 の測り残し）。以前は
+  // 受ける口が無く、渡しても捨てられていた。名前を渡さなければ、これまでどおりロールを付けない
+  // （名前の無い navigation を増やさない）。
+  "aria-label": ariaLabel,
+  "aria-labelledby": ariaLabelledBy,
 }: AnchorProps) => {
   const [activeId, setActiveId] = useState<string>("");
   const [markerStyle, setMarkerStyle] = useState<React.CSSProperties>({});
@@ -257,6 +266,9 @@ export const Anchor = ({
       )}
       style={style}
       ref={containerRef}
+      role={ariaLabel || ariaLabelledBy ? "navigation" : undefined}
+      aria-label={ariaLabelledBy ? undefined : ariaLabel}
+      aria-labelledby={ariaLabelledBy}
     >
       <div className={styles.ink}>
         <span className={styles.inkBall} style={markerStyle} />

@@ -7,6 +7,8 @@
     "affix_prop_onChange": "Callback quando o estado do affix muda",
     "affix_prop_style": "Atributo de estilo",
     "affix_prop_target": "Contêiner alvo que será rolado",
+    "anchor_prop_aria-label": "Nome acessível. Quando definido, a âncora é exposta como um marco de navegação com este nome.",
+    "anchor_prop_aria-labelledby": "ID do elemento que rotula a âncora. Tem precedência sobre `aria-label`.",
     "anchor_prop_bounds": "Distância limite (em pixels) para acionar o estado ativo",
     "anchor_prop_className": "Nomes de classe adicionais",
     "anchor_prop_direction": "Orientação dos links de âncora",

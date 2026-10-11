@@ -197,11 +197,22 @@ export const BottomSheetClose = ({
 export interface BottomSheetContentProps {
   children: React.ReactNode;
   className?: string;
+  /** Accessible name for the sheet when it has no `BottomSheetTitle`. */
+  "aria-label"?: string;
+  /** ID of the element that labels the sheet. Takes precedence over the built-in title reference. */
+  "aria-labelledby"?: string;
+  /** ID of the element that describes the sheet. Announced together with `BottomSheetDescription`. */
+  "aria-describedby"?: string;
 }
 
 export const BottomSheetContent = ({
   children,
   className,
+  // 利用者が渡した名前と説明を捨てない（Dialog / Drawer の T328 と同じ形）。以前は受ける口が無く、
+  // BottomSheetTitle を置かないシートは、名前を付ける手段が無かった。
+  "aria-label": ariaLabel,
+  "aria-labelledby": ariaLabelledBy,
+  "aria-describedby": ariaDescribedBy,
 }: BottomSheetContentProps) => {
   const { open, onOpenChange, titleId, descriptionId } = useBottomSheet();
 
@@ -223,8 +234,9 @@ export const BottomSheetContent = ({
       overlayClassName={styles.overlay}
       contentClassName={classNames("wim-bottom-sheet", styles.content, className)}
       transitionProps={slideTransition}
-      aria-labelledby={titleId}
-      aria-describedby={descriptionId}
+      aria-label={ariaLabel}
+      aria-labelledby={ariaLabelledBy ?? titleId}
+      aria-describedby={[ariaDescribedBy, descriptionId].filter(Boolean).join(" ") || undefined}
     >
       <div className={styles.handle} />
       {children}

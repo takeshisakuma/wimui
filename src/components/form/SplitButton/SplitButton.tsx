@@ -87,9 +87,14 @@ export const SplitButton = React.forwardRef<HTMLDivElement, SplitButtonProps>(
     },
     ref,
   ) => {
+    // 名前を渡したときは、根を group にする（T340 の測り残し。ImageCropper と同じ決め方）。渡す名前は
+    // 2 つのボタンのまとまりのもので、どちらか 1 つの名前ではない。以前は、ロールの無い div に付いて
+    // 読まれなかった。
+    const groupRole = props.role ?? (props["aria-label"] || props["aria-labelledby"] ? "group" : undefined);
     return (
       <div
         ref={ref}
+        role={groupRole}
         className={classNames("wim-split-button", styles.root, styles[size], styles[variant], className)}
         {...props}
       >
