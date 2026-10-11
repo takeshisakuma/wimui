@@ -4,7 +4,8 @@ import { Slot, Slottable } from "@radix-ui/react-slot";
 import { Calendar } from "../../data-display/Calendar/Calendar";
 import { InputBase } from "../InputBase";
 import { Transition } from "../../layout/Transition/Transition";
-import { mergeRefs } from "../../_internal/mergeRefs";
+import { useInlineFloating } from "../../_internal/useInlineFloating";
+import { useMergedRef } from "../../../hooks/useMergedRef";
 import { FocusTrap } from "../../overlay/FocusTrap/FocusTrap";
 import { FieldTemplate } from "../FieldTemplate";
 import { FieldIntent, FieldVariant, FieldWidth } from "../../../types/tokens";
@@ -102,8 +103,6 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
     const containerRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
 
-    // Combine multiple refs for the root
-    const combinedRef = mergeRefs(containerRef, ref);
 
     const { t } = useWimTranslation(componentsNs);
     const generatedId = useId();
@@ -223,6 +222,11 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
 
     const RootComponent = asChild ? Slot : "div";
 
+    // 下に余地が無ければ上へ開き、画面の端からはみ出す分は内側へ寄せる（T342）。面は引き金の隣に
+    // 描いたままで、向きと横のずれだけを受け取る。
+    const { setReference: setFloatingReference, setFloating, floatingProps } = useInlineFloating({ open: isOpen && !disabled });
+    const setRootRef = useMergedRef(containerRef, ref, setFloatingReference);
+
     return (
       <FieldTemplate
         label={label}
@@ -235,7 +239,7 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
         className={className}
       >
         <RootComponent
-          ref={combinedRef}
+          ref={setRootRef}
           className={classNames("wim-date-picker", 
             styles.root,
             fullWidth && styles.fullWidth,
@@ -290,6 +294,8 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
             preset="fade"
             id={dropdownId}
             className={styles.dropdown}
+            ref={setFloating}
+            {...floatingProps}
           >
             <FocusTrap active={isOpen} initialFocus={false}>
               {/* パネルにも名前を付ける。見える label が無いとき（外側の <Label> で包む使い方・aria-label だけを
