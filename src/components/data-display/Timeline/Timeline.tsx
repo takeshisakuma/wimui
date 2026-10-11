@@ -1,6 +1,6 @@
 import React, { forwardRef } from "react";
 import type { IndicatorIntent } from "../../../types/tokens";
-import { Slot } from "@radix-ui/react-slot";
+import { Slot, Slottable } from "@radix-ui/react-slot";
 import classNames from "classnames";
 import styles from "./timeline.module.scss";
 
@@ -23,24 +23,30 @@ export const Timeline = forwardRef<HTMLDivElement, TimelineProps>(({
   ...props
 }, ref) => {
   const Component = asChild ? Slot : "div";
+  // 項目（TimelineItem）に、並びの向きを配る。
+  const withAlign = (items: React.ReactNode) =>
+    React.Children.map(items, (child) => {
+      if (React.isValidElement(child)) {
+        return React.cloneElement(child as React.ReactElement<{ align?: "left" | "right" | "alternate" }>, {
+          align,
+        });
+      }
+      return child;
+    });
+
   return (
     <Component
       ref={ref}
-      className={classNames("wim-timeline", 
+      className={classNames("wim-timeline",
         styles.root,
         styles[align],
         className,
       )}
       {...props}
     >
-      {React.Children.map(children, (child) => {
-        if (React.isValidElement(child)) {
-          return React.cloneElement(child as React.ReactElement<{ align?: "left" | "right" | "alternate" }>, {
-            align,
-          });
-        }
-        return child;
-      })}
+      {/* asChild のときは、利用者の要素を根にして、その子を項目として扱う（T337）。以前は、利用者の
+          要素そのものを項目として配列に包んでいて、Slot が「子が 1 つの要素ではない」と例外を出していた。 */}
+      {asChild ? <Slottable child={children}>{(items) => withAlign(items)}</Slottable> : withAlign(children)}
     </Component>
   );
 });

@@ -241,76 +241,77 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
             fullWidth && styles.fullWidth,
           )}
         >
-          <Slottable>
-            <InputBase
-              intent={currentIntent}
-              variant={variant}
-              width={width}
-              fullWidth={fullWidth}
+          <InputBase
+            intent={currentIntent}
+            variant={variant}
+            width={width}
+            fullWidth={fullWidth}
+            disabled={isDisabled}
+            allowClear={clearable}
+            hasValue={!!currentValue}
+            onClear={handleClear}
+            rightIcons={[
+              {
+                name: "ChevronDownIcon",
+                rotated: isOpen,
+                onClick: handleInputClick,
+                // 開閉は入力欄の Enter / Space / ↓ が持つ。山形はポインタ用
+                decorative: true,
+              },
+            ]}
+          >
+            <input
+              id={id}
+              ref={inputRef}
+              type="text"
+              readOnly
+              role="combobox"
+              className={classNames(
+                inputStyles.root,
+                styles.input,
+              )}
+              value={formatDate(currentValue)}
+              placeholder={actualPlaceholder}
               disabled={isDisabled}
-              allowClear={clearable}
-              hasValue={!!currentValue}
-              onClear={handleClear}
-              rightIcons={[
-                {
-                  name: "ChevronDownIcon",
-                  rotated: isOpen,
-                  onClick: handleInputClick,
-                  // 開閉は入力欄の Enter / Space / ↓ が持つ。山形はポインタ用
-                  decorative: true,
-                },
-              ]}
-            >
-              <input
-                id={id}
-                ref={inputRef}
-                type="text"
-                readOnly
-                role="combobox"
-                className={classNames(
-                  inputStyles.root,
-                  styles.input,
-                )}
-                value={formatDate(currentValue)}
-                placeholder={actualPlaceholder}
-                disabled={isDisabled}
-                onClick={handleInputClick}
-                onKeyDown={handleInputKeyDown}
-                aria-haspopup="dialog"
-                aria-expanded={isOpen}
-                aria-controls={isOpen ? dropdownId : undefined}
-                aria-invalid={currentIntent === "danger"}
-                aria-describedby={errorId}
+              onClick={handleInputClick}
+              onKeyDown={handleInputKeyDown}
+              aria-haspopup="dialog"
+              aria-expanded={isOpen}
+              aria-controls={isOpen ? dropdownId : undefined}
+              aria-invalid={currentIntent === "danger"}
+              aria-describedby={errorId}
+              aria-labelledby={labelId}
+              aria-required={required}
+              {...props}
+            />
+          </InputBase>
+          <Transition
+            show={isOpen && !disabled}
+            preset="fade"
+            id={dropdownId}
+            className={styles.dropdown}
+          >
+            <FocusTrap active={isOpen} initialFocus={false}>
+              {/* パネルにも名前を付ける。見える label が無いとき（外側の <Label> で包む使い方・aria-label だけを
+                  渡す使い方）は aria-labelledby が空になり、名前の無い dialog になっていた（axe の
+                  aria-dialog-name・serious）。開いた姿のストーリーが無く、CI に写っていなかった。 */}
+              <div
+                role="dialog"
+                aria-modal="true"
                 aria-labelledby={labelId}
-                aria-required={required}
-                {...props}
-              />
-            </InputBase>
-            <Transition
-              show={isOpen && !disabled}
-              preset="fade"
-              id={dropdownId}
-              className={styles.dropdown}
-            >
-              <FocusTrap active={isOpen} initialFocus={false}>
-                {/* パネルにも名前を付ける。見える label が無いとき（外側の <Label> で包む使い方・aria-label だけを
-                    渡す使い方）は aria-labelledby が空になり、名前の無い dialog になっていた（axe の
-                    aria-dialog-name・serious）。開いた姿のストーリーが無く、CI に写っていなかった。 */}
-                <div
-                  role="dialog"
-                  aria-modal="true"
-                  aria-labelledby={labelId}
-                  aria-label={labelId ? undefined : (props["aria-label"] ?? t("datepicker.dialog"))}
-                >
-                  <Calendar
-                    value={currentValue ?? undefined}
-                    onChange={handleDateChange}
-                  />
-                </div>
-              </FocusTrap>
-            </Transition>
-          </Slottable>
-          {children}
+                aria-label={labelId ? undefined : (props["aria-label"] ?? t("datepicker.dialog"))}
+              >
+                <Calendar
+                  value={currentValue ?? undefined}
+                  onChange={handleDateChange}
+                />
+              </div>
+            </FocusTrap>
+          </Transition>
+          {/* 利用者の要素（asChild の子）を Slottable に入れる。Slot はこれを根にして、上の中身をその中に描く。
+              以前は逆（中身を Slottable に入れていた）で、asChild を付けると描画で例外になるか、部品の
+              クラスが利用者の要素に付かなかった（T337）。 */}
+          <Slottable>{children}</Slottable>
         </RootComponent>
       </FieldTemplate>
     );

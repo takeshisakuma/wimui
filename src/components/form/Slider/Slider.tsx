@@ -212,38 +212,39 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(
           ref={ref}
           {...props}
         >
-          <Slottable>
-            <div className={styles.trackContainer} ref={trackContainerRef}>
-              <div
-                ref={trackFillRef}
-                className={styles.track}
-                style={{ width: `${percentage}%` }}
-              />
-              <div
-                ref={thumbRef}
-                className={styles.thumb}
-                style={{ left: `${percentage}%` }}
-                role="slider"
-                aria-valuemin={min}
-                aria-valuemax={max}
-                aria-valuenow={currentValue}
-                aria-disabled={disabled}
-                aria-labelledby={label ? labelId : ariaLabelledBy}
-                aria-label={label ? undefined : ariaLabel}
-                aria-describedby={[ariaDescribedBy, error ? errorId : undefined].filter(Boolean).join(" ") || undefined}
-                aria-invalid={error ? true : undefined}
-                tabIndex={disabled ? -1 : 0}
-                onKeyDown={handleKeyDown}
-              />
-            </div>
-            <input
-              ref={hiddenInputRef}
-              type="hidden"
-              name={name}
-              value={currentValue}
+          <div className={styles.trackContainer} ref={trackContainerRef}>
+            <div
+              ref={trackFillRef}
+              className={styles.track}
+              style={{ width: `${percentage}%` }}
             />
-          </Slottable>
-          {asChild ? children : null}
+            <div
+              ref={thumbRef}
+              className={styles.thumb}
+              style={{ left: `${percentage}%` }}
+              role="slider"
+              aria-valuemin={min}
+              aria-valuemax={max}
+              aria-valuenow={currentValue}
+              aria-disabled={disabled}
+              aria-labelledby={label ? labelId : ariaLabelledBy}
+              aria-label={label ? undefined : ariaLabel}
+              aria-describedby={[ariaDescribedBy, error ? errorId : undefined].filter(Boolean).join(" ") || undefined}
+              aria-invalid={error ? true : undefined}
+              tabIndex={disabled ? -1 : 0}
+              onKeyDown={handleKeyDown}
+            />
+          </div>
+          <input
+            ref={hiddenInputRef}
+            type="hidden"
+            name={name}
+            value={currentValue}
+          />
+          {/* 利用者の要素（asChild の子）を Slottable に入れる。Slot はこれを根にして、上の中身をその中に描く。
+              以前は逆（中身を Slottable に入れていた）で、asChild を付けると描画で例外になるか、部品の
+              クラスが利用者の要素に付かなかった（T337）。 */}
+          {asChild ? <Slottable>{children}</Slottable> : null}
         </Component>
       </FieldTemplate>
     );

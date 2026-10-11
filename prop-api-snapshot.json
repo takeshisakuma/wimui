@@ -10132,6 +10132,10 @@
       "required": false,
       "type": "boolean"
     },
+    "Stepper.children": {
+      "required": false,
+      "type": "React.ReactNode"
+    },
     "Stepper.className": {
       "required": false,
       "type": "string"

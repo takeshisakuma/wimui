@@ -2238,6 +2238,8 @@ Defaults to a translated "Open menu" / "Close menu" (en / ja / pt), following th
     - `ariaLabel: string` — Accessibility label for the navigation
     - `onChange: (current: number) => void` — Callback function when a step is clicked (if applicable)
     - `asChild: boolean` — Whether to use the Radix Slot pattern
+    - `children: React.ReactNode` — The element that becomes the stepper's root when `asChild` is set
+(the steps are rendered inside it). Ignored without `asChild`.
 - **TabBar** — Mobile bottom navigation (aka Bottom Navigation, Bottom Tab Bar)
     - `fixed: boolean` = true — Pins the bar to the bottom of the **viewport**. Defaults to `true`.
 

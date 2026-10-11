@@ -6,7 +6,7 @@ import React, {
   useMemo,
   forwardRef,
 } from "react";
-import { Slot } from "@radix-ui/react-slot";
+import { Slot, Slottable } from "@radix-ui/react-slot";
 import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
 import styles from "./carousel.module.scss";
@@ -111,7 +111,10 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
     ...labels,
   };
 
-  const items = useMemo(() => React.Children.toArray(children), [children]);
+  // asChild のときは、利用者の要素が根になるので、スライドはその子から取る（T337）。
+  const slideSource =
+    asChild && React.isValidElement<{ children?: React.ReactNode }>(children) ? children.props.children : children;
+  const items = useMemo(() => React.Children.toArray(slideSource), [slideSource]);
   const originalItemCount = items.length;
 
   const [windowWidth, setWindowWidth] = useState(
@@ -244,25 +247,9 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
   const slideWidth = 100 / displaySlides;
   const offsetX = -currentIndex * slideWidth;
 
-  return (
-    <Component
-      ref={ref}
-      className={classNames(
-        "wim-carousel",
-        styles.root,
-        controlsPlacement === "outside" && styles.controlsOutside,
-        className,
-      )}
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
-      onFocus={() => setIsPaused(true)}
-      onBlur={() => setIsPaused(false)}
-      onKeyDown={handleKeyDown}
-      tabIndex={0}
-      role="region"
-      aria-roledescription={t("carousel.roledescription")}
-      {...props}
-    >
+  // 根の中身（スライドの枠・前後のボタン・インジケーター）。
+  const body = (
+    <>
       <div className={styles.viewport}>
         <div
           ref={trackRef}
@@ -351,6 +338,31 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
           })}
         </div>
       )}
+    </>
+  );
+
+  return (
+    <Component
+      ref={ref}
+      className={classNames(
+        "wim-carousel",
+        styles.root,
+        controlsPlacement === "outside" && styles.controlsOutside,
+        className,
+      )}
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      onFocus={() => setIsPaused(true)}
+      onBlur={() => setIsPaused(false)}
+      onKeyDown={handleKeyDown}
+      tabIndex={0}
+      role="region"
+      aria-roledescription={t("carousel.roledescription")}
+      {...props}
+    >
+      {/* asChild のときは、利用者の要素を根にして、その子をスライドとして扱う（T337）。以前は、Slot の子が
+          部品の中身（複数の要素）で、「子が 1 つの要素ではない」と例外になっていた。 */}
+      {asChild ? <Slottable child={children}>{() => body}</Slottable> : body}
     </Component>
   );
 });

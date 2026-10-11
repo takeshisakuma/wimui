@@ -319,108 +319,109 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
           data-keyboard-nav={isKeyboardNavigating}
           {...wrapperProps}
         >
-          <Slottable>
-            <InputBase
-              disabled={disabled}
-              allowClear={allowClear}
-              hasValue={!!currentValue}
-              onClear={handleClear}
-              intent={currentIntent}
-              rightIcons={[{ name: "ChevronDownIcon", rotated: isOpen }]}
-              width={width}
-              fullWidth={fullWidth}
-              styles={stylesProp?.inputBase}
+          <InputBase
+            disabled={disabled}
+            allowClear={allowClear}
+            hasValue={!!currentValue}
+            onClear={handleClear}
+            intent={currentIntent}
+            rightIcons={[{ name: "ChevronDownIcon", rotated: isOpen }]}
+            width={width}
+            fullWidth={fullWidth}
+            styles={stylesProp?.inputBase}
+          >
+            <div
+              id={triggerId}
+              className={classNames(
+                localStyles.trigger,
+                isOpen && localStyles.open,
+                disabled && localStyles.disabled,
+                stylesProp?.trigger,
+              )}
+              onClick={handleToggle}
+              onKeyDown={handleKeyDown}
+              tabIndex={disabled ? -1 : 0}
+              role="combobox"
+              aria-expanded={isOpen}
+              aria-haspopup="listbox"
+              aria-controls={isOpen ? listId : undefined}
+              aria-disabled={disabled}
+              aria-labelledby={labelId || ariaLabelledBy}
+              aria-label={
+                label
+                  ? undefined
+                  : typeof ariaLabel === "string"
+                  ? ariaLabel
+                  : typeof placeholder === "string"
+                  ? placeholder
+                  : undefined
+              }
+              aria-describedby={errorId || ariaDescribedBy}
+              aria-required={required ? "true" : undefined}
+              aria-invalid={currentIntent === "danger" ? "true" : "false"}
+              aria-activedescendant={isOpen ? activeDescendant : undefined}
+              ref={triggerRef}
             >
               <div
-                id={triggerId}
                 className={classNames(
-                  localStyles.trigger,
-                  isOpen && localStyles.open,
-                  disabled && localStyles.disabled,
-                  stylesProp?.trigger,
+                  localStyles.value,
+                  !selectedOption && localStyles.placeholder,
+                  stylesProp?.value,
                 )}
-                onClick={handleToggle}
-                onKeyDown={handleKeyDown}
-                tabIndex={disabled ? -1 : 0}
-                role="combobox"
-                aria-expanded={isOpen}
-                aria-haspopup="listbox"
-                aria-controls={isOpen ? listId : undefined}
-                aria-disabled={disabled}
-                aria-labelledby={labelId || ariaLabelledBy}
-                aria-label={
-                  label
-                    ? undefined
-                    : typeof ariaLabel === "string"
-                    ? ariaLabel
-                    : typeof placeholder === "string"
-                    ? placeholder
-                    : undefined
-                }
-                aria-describedby={errorId || ariaDescribedBy}
-                aria-required={required ? "true" : undefined}
-                aria-invalid={currentIntent === "danger" ? "true" : "false"}
-                aria-activedescendant={isOpen ? activeDescendant : undefined}
-                ref={triggerRef}
               >
-                <div
-                  className={classNames(
-                    localStyles.value,
-                    !selectedOption && localStyles.placeholder,
-                    stylesProp?.value,
-                  )}
-                >
-                  {selectedOption ? selectedOption.label : placeholder}
-                </div>
+                {selectedOption ? selectedOption.label : placeholder}
               </div>
-            </InputBase>
+            </div>
+          </InputBase>
 
-            <Transition
-              show={isOpen && !disabled}
-              preset="fade"
-              className={classNames(localStyles.dropdown, stylesProp?.dropdown)}
+          <Transition
+            show={isOpen && !disabled}
+            preset="fade"
+            className={classNames(localStyles.dropdown, stylesProp?.dropdown)}
+          >
+            {searchable && (
+              <div className={classNames(localStyles.search, stylesProp?.search)}>
+                <input
+                  ref={searchInputRef}
+                  type="text"
+                  className={classNames(localStyles.searchInput, stylesProp?.searchInput)}
+                  placeholder={searchPlaceholder}
+                  value={searchValue}
+                  onChange={(e) => {
+                    setSearchValue(e.target.value);
+                    setFocusedIndex(-1);
+                  }}
+                  onClick={(e) => e.stopPropagation()}
+                  onKeyDown={handleKeyDown}
+                  aria-label={searchPlaceholder}
+                  aria-controls={listId}
+                  aria-activedescendant={activeDescendant}
+                />
+              </div>
+            )}
+            <ul
+              id={listId}
+              className={classNames(localStyles.list, stylesProp?.list)}
+              role="listbox"
+              aria-labelledby={label ? labelId : ariaLabelledBy || undefined}
             >
-              {searchable && (
-                <div className={classNames(localStyles.search, stylesProp?.search)}>
-                  <input
-                    ref={searchInputRef}
-                    type="text"
-                    className={classNames(localStyles.searchInput, stylesProp?.searchInput)}
-                    placeholder={searchPlaceholder}
-                    value={searchValue}
-                    onChange={(e) => {
-                      setSearchValue(e.target.value);
-                      setFocusedIndex(-1);
-                    }}
-                    onClick={(e) => e.stopPropagation()}
-                    onKeyDown={handleKeyDown}
-                    aria-label={searchPlaceholder}
-                    aria-controls={listId}
-                    aria-activedescendant={activeDescendant}
-                  />
-                </div>
+              {filteredOptions.length === 0 ? (
+                <li
+                  className={classNames(localStyles.empty, stylesProp?.empty)}
+                  role="option"
+                  aria-selected="false"
+                >
+                  {noOptionsFoundLabel ?? t("select.no_options")}
+                </li>
+              ) : (
+                renderOptions()
               )}
-              <ul
-                id={listId}
-                className={classNames(localStyles.list, stylesProp?.list)}
-                role="listbox"
-                aria-labelledby={label ? labelId : ariaLabelledBy || undefined}
-              >
-                {filteredOptions.length === 0 ? (
-                  <li
-                    className={classNames(localStyles.empty, stylesProp?.empty)}
-                    role="option"
-                    aria-selected="false"
-                  >
-                    {noOptionsFoundLabel ?? t("select.no_options")}
-                  </li>
-                ) : (
-                  renderOptions()
-                )}
-              </ul>
-            </Transition>
-          </Slottable>
-          {children}
+            </ul>
+          </Transition>
+          {/* 利用者の要素（asChild の子）を Slottable に入れる。Slot はこれを根にして、上の中身をその中に描く。
+              以前は逆（中身を Slottable に入れていた）で、asChild を付けると描画で例外になるか、部品の
+              クラスが利用者の要素に付かなかった（T337）。 */}
+          <Slottable>{children}</Slottable>
         </RootComponent>
       </FieldTemplate>
     );
