@@ -109,7 +109,9 @@ export const Toast = ({
         </div>
       )}
       <div className={styles.content}>
-        {title && <h5 className={styles.title}>{title}</h5>}
+        {/* 題は見出しにしない（T333）。以前は `h5` で、出て消えるたびにページの見出しの一覧が変わり、
+            置いたページの見出しの順とも合わなかった。`role="status"` の中身なので、見出しでなくても読まれる。 */}
+        {title && <div className={styles.title}>{title}</div>}
         {description && <p className={styles.description}>{description}</p>}
       </div>
       <FeedbackCloseButton

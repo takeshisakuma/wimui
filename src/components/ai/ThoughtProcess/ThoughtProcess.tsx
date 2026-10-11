@@ -66,11 +66,21 @@ export const ThoughtStep = ({
   );
 };
 
+/** 見出しの段。`Dashboard` の `titleLevel` と同じ語彙に揃えてある（T333）。 */
+export type ThoughtProcessTitleLevel = 2 | 3 | 4 | 5 | 6;
+
 export interface ThoughtProcessProps {
   /** Reasoning steps to display (typically ThoughtStep elements) */
   children: React.ReactNode;
   /** Header title */
   title?: string;
+  /**
+   * Heading level of the title when `isCollapsible` is false. Match it to the
+   * page: under an `h1` use `2`, under an `h3` use `4`. Has no effect when
+   * `isCollapsible` is true, where the title is a toggle button, not a heading.
+   * @default 3
+   */
+  titleLevel?: ThoughtProcessTitleLevel;
   /** Additional CSS class */
   className?: string;
   /** Whether the body can be collapsed */
@@ -92,6 +102,8 @@ export interface ThoughtProcessProps {
 export const ThoughtProcess = ({
   children,
   title = "Thinking Process",
+  // 段を決め打つと、置いたページの見出しの順と合わないときに段が飛ぶ（T333）。
+  titleLevel = 3,
   className,
   isCollapsible = true,
   defaultExpanded = true,
@@ -119,7 +131,7 @@ export const ThoughtProcess = ({
           <span className={styles.title}>{title}</span>
         </button>
       ) : (
-        <div className={styles.header} role="heading" aria-level={3}>
+        <div className={styles.header} role="heading" aria-level={titleLevel}>
           <span className={styles.title}>{title}</span>
         </div>
       )}

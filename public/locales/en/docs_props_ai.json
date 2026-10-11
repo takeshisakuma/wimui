@@ -110,6 +110,7 @@
     "thoughtProcess_prop_isCollapsible": "Whether the body can be collapsed",
     "thoughtProcess_prop_isThinking": "Whether the AI is currently thinking (shows a pulsating background)",
     "thoughtProcess_prop_title": "Header title",
+    "thoughtProcess_prop_titleLevel": "Heading level of the title when isCollapsible is false. Match it to the page: under an h1 use 2, under an h3 use 4. Has no effect when isCollapsible is true, where the title is a toggle button, not a heading.",
     "thoughtStep_prop_children": "Content of this reasoning step",
     "thoughtStep_prop_isLast": "Hides the connector line below this step — use on the last step",
     "thoughtStep_prop_isStreaming": "Whether the text is currently streaming (shows a typing cursor)",

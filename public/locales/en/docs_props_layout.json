@@ -89,7 +89,7 @@
     "dashboard_prop_defaultEditable": "Initial edit mode state (uncontrolled). Default: false.",
     "dashboard_prop_editable": "Whether the dashboard is in edit mode (controlled).",
     "dashboard_prop_gap": "Gap between widgets. Default: \"md\".",
-    "dashboard_prop_label": "Dashboard heading label.",
+    "dashboard_prop_label": "Dashboard heading label. Rendered one level above titleLevel (h2 by default, and h2 at the highest).",
     "dashboard_prop_onAdd": "Called when the \"Add Widget\" button is clicked.",
     "dashboard_prop_onEditChange": "Called when edit mode changes.",
     "dashboard_prop_onRemove": "Called when a widget is removed.",

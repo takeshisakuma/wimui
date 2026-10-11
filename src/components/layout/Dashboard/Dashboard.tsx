@@ -65,10 +65,15 @@ export interface DashboardProps
   /**
    * Heading level for the widget titles. Match it to the page: a dashboard
    * under an `h1` needs `2`, one under an `h2` section keeps `3`.
+   * The `label` heading sits one level above the widget titles, and never
+   * above `h2`.
    * @default 3
    */
   titleLevel?: DashboardTitleLevel;
-  /** Dashboard heading label. */
+  /**
+   * Dashboard heading label. Rendered one level above `titleLevel` (`h2` by
+   * default, and `h2` at the highest).
+   */
   label?: string;
 }
 
@@ -130,6 +135,11 @@ export const Dashboard = React.forwardRef<HTMLDivElement, DashboardProps>(
       [editable, onRemove, titleLevel],
     );
 
+    // ダッシュボードの題は、ウィジェットの題の 1 つ上の段に置く（T333）。以前は `h2` 固定で、
+    // `titleLevel` に 4 以上を渡すと `h2` の次が `h4` になり、段が飛んでいた。`h1` はページの題のもの
+    // なので、2 より上へは行かない（既定の 3 と、2 を渡したときは、前と同じ `h2`）。
+    const LabelHeading = `h${Math.max(2, titleLevel - 1)}` as "h2" | "h3" | "h4" | "h5";
+
     return (
       <DashboardContext.Provider value={contextValue}>
         <div
@@ -149,7 +159,7 @@ export const Dashboard = React.forwardRef<HTMLDivElement, DashboardProps>(
               教えてくれた）。 */}
           {(label || showToggle) && (
             <div className={styles.header}>
-              {label && <h2 className={styles.heading}>{label}</h2>}
+              {label && <LabelHeading className={styles.heading}>{label}</LabelHeading>}
               {showToggle && (
               <Button
                 size="sm"

@@ -10911,6 +10911,16 @@
       "required": false,
       "type": "string"
     },
+    "ThoughtProcess.titleLevel": {
+      "required": false,
+      "values": [
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ]
+    },
     "ThoughtStep.children": {
       "type": "React.ReactNode"
     },

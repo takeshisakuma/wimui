@@ -117,6 +117,28 @@ describe("ThoughtProcess", () => {
     expect(screen.getByRole("heading", { level: 3 })).toBeInTheDocument();
   });
 
+  // T333: 段はページ側の構造で決まるので、呼び出し元が決められる。
+  it("titleLevel で見出しの段を変えられる", () => {
+    render(
+      <ThoughtProcess isCollapsible={false} titleLevel={4}>
+        {steps}
+      </ThoughtProcess>,
+    );
+    expect(screen.getByRole("heading", { level: 4 })).toBeInTheDocument();
+    // 対照: 以前は、何を渡しても 3 だった
+    expect(screen.queryByRole("heading", { level: 3 })).not.toBeInTheDocument();
+  });
+
+  it("isCollapsible のときは、titleLevel を渡しても題はボタンのまま", () => {
+    render(
+      <ThoughtProcess isCollapsible titleLevel={4}>
+        {steps}
+      </ThoughtProcess>,
+    );
+    expect(screen.getByRole("button")).toBeInTheDocument();
+    expect(screen.queryByRole("heading")).not.toBeInTheDocument();
+  });
+
   it("always shows body content when isCollapsible is false", () => {
     render(<ThoughtProcess isCollapsible={false}>{steps}</ThoughtProcess>);
     expect(screen.getByText("First step")).toBeVisible();

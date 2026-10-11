@@ -89,7 +89,7 @@
     "dashboard_prop_defaultEditable": "初期の編集モード状態（非制御）。デフォルト: false。",
     "dashboard_prop_editable": "ダッシュボードが編集モードかどうか（制御）。",
     "dashboard_prop_gap": "ウィジェット間の間隔。デフォルト: \"md\"。",
-    "dashboard_prop_label": "ダッシュボードの見出しラベル。",
+    "dashboard_prop_label": "ダッシュボードの見出しラベル。titleLevel の 1 つ上の段で出ます（既定は h2。h2 より上にはなりません）。",
     "dashboard_prop_onAdd": "\"ウィジェットを追加\" ボタンがクリックされた時に呼び出されます。",
     "dashboard_prop_onEditChange": "編集モードが変化した時に呼び出されます。",
     "dashboard_prop_onRemove": "ウィジェットが削除された時に呼び出されます。",

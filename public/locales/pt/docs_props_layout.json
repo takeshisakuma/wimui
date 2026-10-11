@@ -89,7 +89,7 @@
     "dashboard_prop_defaultEditable": "Estado inicial do modo de edição (não controlado). Padrão: false.",
     "dashboard_prop_editable": "Se o dashboard está em modo de edição (controlado).",
     "dashboard_prop_gap": "Espaçamento entre widgets. Padrão: \"md\".",
-    "dashboard_prop_label": "Rótulo de título do dashboard.",
+    "dashboard_prop_label": "Rótulo de título do dashboard. Renderizado um nível acima de titleLevel (h2 por padrão e, no máximo, h2).",
     "dashboard_prop_onAdd": "Chamado quando o botão \"Adicionar Widget\" é clicado.",
     "dashboard_prop_onEditChange": "Chamado quando o modo de edição muda.",
     "dashboard_prop_onRemove": "Chamado quando um widget é removido.",
