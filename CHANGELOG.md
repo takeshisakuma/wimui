@@ -1,5 +1,27 @@
 # wimui
 
+## 0.61.0
+
+### Minor Changes
+
+- 5637843: 渡した `aria-label` / `aria-labelledby` / `aria-describedby` が読まれる要素に届かなかった 4 部品を直しました（定期点検で描けずに残っていた部品を、描き直して見つけたもの）。
+
+  - `BottomSheetContent`: `aria-label` / `aria-labelledby` / `aria-describedby` を受けるようにしました。`BottomSheetTitle` を置かないシートに、名前を付けられます。渡した説明は、`BottomSheetDescription` と一緒に読まれます
+  - `ModelSelector`: 名前と説明が、包みの `div` ではなく、引き金（combobox）に付くようにしました。標準の `aria-label` は、`labels.triggerAriaLabel` より優先されます
+  - `SplitButton`: `aria-label` か `aria-labelledby` を渡すと、根が `role="group"` になり、名前がそこに付きます（これまでは、ロールの無い包みに付いて、読まれませんでした）
+  - `Anchor`: `aria-label` / `aria-labelledby` を受けるようにしました。渡すと、根が `navigation` のランドマークになります
+
+  どれも、名前を渡していないときの出力は変わりません。
+
+### Patch Changes
+
+- f0a33ad: `Menubar` のメニューと `HoverCard` のカードが、画面の端で外へ出ないようにしました。
+
+  - `Menubar.Content`: 下に余地が無いときは上へ開き、左右の端からはみ出す分は内側へ寄せます（これまでは、右下の隅で右へ 26px・下へ 186px はみ出していました）
+  - `HoverCard.Content`: 左右の端からはみ出す分を内側へ寄せます（これまでは、左右の端で 129px はみ出していました）。向きは `side` で指定したままで、変えません
+
+  画面に収まっているときの位置は、これまでと同じです。
+
 ## 0.60.1
 
 ### Patch Changes
