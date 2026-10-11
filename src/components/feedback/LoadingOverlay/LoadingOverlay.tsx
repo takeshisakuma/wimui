@@ -136,7 +136,9 @@ export const LoadingOverlay = ({
       role="status"
       data-testid="loading-overlay"
       aria-live="polite"
-      aria-busy="true"
+      // `aria-busy` はここに付けない（T336）。読み上げる領域に付けると、支援技術に「更新が終わるまで
+      // 伝えるのを待ってよい」と伝えることになる。この面は表示が終わると要素ごと消えるので、待ちが
+      // 解ける瞬間が無い。付けるなら覆われている側の要素で、それを知っているのは呼び出し元。
       {...props}
     >
       <div
