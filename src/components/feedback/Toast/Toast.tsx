@@ -56,6 +56,10 @@ export type ToastProps = {
    * Additional CSS class name.
    */
   className?: string;
+  /** Accessible name for the toast. */
+  "aria-label"?: string;
+  /** ID of the element that labels the toast. Takes precedence over `aria-label`. */
+  "aria-labelledby"?: string;
 };
 
 /**
@@ -70,6 +74,9 @@ export const Toast = ({
   open = true,
   onClose,
   className,
+  // 標準の属性でも名前を付けられる（T341）。以前は受ける口が無く、渡しても黙って捨てられていた。
+  "aria-label": ariaLabelAttr,
+  "aria-labelledby": ariaLabelledBy,
 }: ToastProps) => {
   const [internalVisible, setInternalVisible] = useState(true);
 
@@ -99,6 +106,8 @@ export const Toast = ({
       className={classNames("wim-toast", styles.root, styles[intent], className)}
       role="status"
       aria-live="polite"
+      aria-label={ariaLabelledBy ? undefined : ariaLabelAttr}
+      aria-labelledby={ariaLabelledBy}
     >
       {(intent === "success" ||
         intent === "warning" ||

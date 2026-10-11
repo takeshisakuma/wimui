@@ -2656,6 +2656,12 @@
     "CommandPaletteItem.shortcut": {
       "type": "string[]"
     },
+    "CommandPaletteList.aria-label": {
+      "type": "string"
+    },
+    "CommandPaletteList.aria-labelledby": {
+      "type": "string"
+    },
     "CommandPaletteList.children": {
       "type": "ReactNode"
     },
@@ -3243,6 +3249,12 @@
     },
     "DashboardWidgetCard.widget": {
       "type": "DashboardWidget"
+    },
+    "DataGrid.aria-label": {
+      "type": "string"
+    },
+    "DataGrid.aria-labelledby": {
+      "type": "string"
     },
     "DataGrid.ariaLabel": {
       "required": false,
@@ -3974,6 +3986,12 @@
     "FAQSection.accordionProps": {
       "required": false,
       "type": "Omit<AccordionProps, \"children\">"
+    },
+    "FAQSection.aria-label": {
+      "type": "string"
+    },
+    "FAQSection.aria-labelledby": {
+      "type": "string"
     },
     "FAQSection.className": {
       "required": false,
@@ -6660,6 +6678,12 @@
       "required": false,
       "type": "string"
     },
+    "Menu.aria-label": {
+      "type": "string"
+    },
+    "Menu.aria-labelledby": {
+      "type": "string"
+    },
     "Menu.asChild": {
       "required": false,
       "type": "boolean"
@@ -6689,6 +6713,12 @@
       ]
     },
     "MenuDivider.className": {
+      "type": "string"
+    },
+    "MenuInner.aria-label": {
+      "type": "string"
+    },
+    "MenuInner.aria-labelledby": {
       "type": "string"
     },
     "MenuInner.asChild": {
@@ -7122,6 +7152,12 @@
       "required": false,
       "type": "boolean"
     },
+    "Notification.aria-label": {
+      "type": "string"
+    },
+    "Notification.aria-labelledby": {
+      "type": "string"
+    },
     "Notification.className": {
       "required": false,
       "type": "string"
@@ -7234,6 +7270,12 @@
     },
     "OtpInput.value": {
       "required": false,
+      "type": "string"
+    },
+    "Pagination.aria-label": {
+      "type": "string"
+    },
+    "Pagination.aria-labelledby": {
       "type": "string"
     },
     "Pagination.asChild": {
@@ -9316,6 +9358,12 @@
       "required": false,
       "type": "number | string"
     },
+    "SignaturePad.aria-label": {
+      "type": "string"
+    },
+    "SignaturePad.aria-labelledby": {
+      "type": "string"
+    },
     "SignaturePad.canvasAriaLabel": {
       "required": false,
       "type": "string"
@@ -9669,6 +9717,12 @@
     "SortableList.onSortEnd": {
       "required": false,
       "type": "(oldIndex: number, newIndex: number) => void"
+    },
+    "SourceCitation.aria-label": {
+      "type": "string"
+    },
+    "SourceCitation.aria-labelledby": {
+      "type": "string"
     },
     "SourceCitation.className": {
       "required": false,
@@ -11322,6 +11376,12 @@
         "h6"
       ]
     },
+    "Toast.aria-label": {
+      "type": "string"
+    },
+    "Toast.aria-labelledby": {
+      "type": "string"
+    },
     "Toast.className": {
       "required": false,
       "type": "string"
@@ -12056,6 +12116,12 @@
     },
     "TreeView.Item.value": {
       "required": true,
+      "type": "string"
+    },
+    "TreeView.aria-label": {
+      "type": "string"
+    },
+    "TreeView.aria-labelledby": {
       "type": "string"
     },
     "TreeView.checkStrategy": {

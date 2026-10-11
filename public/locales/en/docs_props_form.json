@@ -598,6 +598,8 @@
     "select_prop_styles": "Custom styles for internal parts",
     "select_prop_value": "Selected value (controlled)",
     "select_prop_width": "Fixed width of the field (width token, CSS value, or number in px)",
+    "signaturePad_prop_aria-label": "Accessible name for the canvas when no visible `label` is provided. Takes precedence over `canvasAriaLabel`.",
+    "signaturePad_prop_aria-labelledby": "ID of the element that labels the canvas when no visible `label` is provided.",
     "signaturePad_prop_canvasAriaLabel": "Aria label for the canvas",
     "signaturePad_prop_className": "CSS class name",
     "signaturePad_prop_clearLabel": "Custom label for the clear button",

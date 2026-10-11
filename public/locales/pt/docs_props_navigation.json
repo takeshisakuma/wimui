@@ -66,6 +66,8 @@
     "paginationPage_prop_asChild": "Se true, mescla as props do botão de página no filho.",
     "paginationPage_prop_isActive": "Se esta página é a página atual",
     "paginationPage_prop_page": "Número da página que este controle representa",
+    "pagination_prop_aria-label": "Nome acessível para o marco de navegação. Tem precedência sobre `labels.navAriaLabel`.",
+    "pagination_prop_aria-labelledby": "ID do elemento que rotula o marco de navegação. Tem precedência sobre `aria-label`.",
     "pagination_prop_asChild": "Se true, mescla as props de nav no elemento filho.",
     "pagination_prop_children": "Filho opcional usado quando asChild é true",
     "pagination_prop_className": "Nomes de classe adicionais",

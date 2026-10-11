@@ -260,6 +260,10 @@ export type TreeViewProps = {
   labels?: TreeViewLabels;
   /** Accessibility label ID */
   labelId?: string;
+  /** Accessible name for the tree. Takes precedence over `labels.treeAriaLabel`. */
+  "aria-label"?: string;
+  /** ID of the element that labels the tree. Takes precedence over `aria-label`. */
+  "aria-labelledby"?: string;
   /** Custom styles for internal parts */
   styles?: {
     root?: string;
@@ -292,6 +296,9 @@ const TreeView = ({
   labels = {},
   labelId,
   styles: stylesProp,
+  // 標準の属性でも名前を付けられる（T341）。以前は受ける口が無く、渡しても黙って捨てられていた。
+  "aria-label": ariaLabelAttr,
+  "aria-labelledby": ariaLabelledBy,
 }: TreeViewProps) => {
   const { t } = useWimTranslation(componentsNs);
   const {
@@ -682,8 +689,8 @@ const TreeView = ({
         data-testid="tree-view-root"
         className={classNames("wim-tree-view", localStyles.root, !!nodes && localStyles.dataDriven, className, stylesProp?.root)}
         role="tree"
-        aria-label={labels.treeAriaLabel}
-        aria-labelledby={!labels.treeAriaLabel ? labelId : undefined}
+        aria-label={ariaLabelledBy ? undefined : (ariaLabelAttr ?? labels.treeAriaLabel)}
+        aria-labelledby={ariaLabelledBy ?? (!ariaLabelAttr && !labels.treeAriaLabel ? labelId : undefined)}
         style={{ width, maxWidth: "100%" }}
         tabIndex={focusedValue ? -1 : 0}
         onFocus={(e) => {

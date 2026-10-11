@@ -598,6 +598,8 @@
     "select_prop_styles": "内部パーツのカスタムスタイル",
     "select_prop_value": "選択された値（制御時）",
     "select_prop_width": "フィールドの固定幅（width トークン、CSS 値、または px 単位の数値）",
+    "signaturePad_prop_aria-label": "見えるラベル（`label`）を渡さないときの、キャンバスの名前。`canvasAriaLabel` より優先されます。",
+    "signaturePad_prop_aria-labelledby": "見えるラベル（`label`）を渡さないときに、キャンバスの名前になる要素の ID。",
     "signaturePad_prop_canvasAriaLabel": "キャンバス用の Aria ラベル",
     "signaturePad_prop_className": "CSS クラス名",
     "signaturePad_prop_clearLabel": "クリアボタン用のカスタムラベル",

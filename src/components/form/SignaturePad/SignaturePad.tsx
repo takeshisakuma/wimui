@@ -37,6 +37,10 @@ export type SignaturePadProps = {
   layout?: "vertical" | "horizontal";
   /** Aria label for the canvas */
   canvasAriaLabel?: string;
+  /** Accessible name for the canvas when no visible `label` is provided. Takes precedence over `canvasAriaLabel`. */
+  "aria-label"?: string;
+  /** ID of the element that labels the canvas when no visible `label` is provided. */
+  "aria-labelledby"?: string;
 };
 
 /**
@@ -57,6 +61,9 @@ export const SignaturePad = ({
   required,
   layout = "vertical",
   canvasAriaLabel,
+  // 標準の属性でも名前を付けられる（T341）。以前は受ける口が無く、渡しても黙って捨てられていた。
+  "aria-label": ariaLabelAttr,
+  "aria-labelledby": ariaLabelledBy,
 }: SignaturePadProps) => {
   const { t } = useWimTranslation([commonNs, componentsNs, formNs]);
   const resolvedClearLabel = clearLabel ?? t("signature.clear", { ns: "components", defaultValue: t("button.clear") });
@@ -239,10 +246,11 @@ export const SignaturePad = ({
             onTouchStart={startDrawing}
             onTouchMove={draw}
             onTouchEnd={stopDrawing}
-            aria-labelledby={label ? labelId : undefined}
+            // 見えるラベルがあるときは、それが名前（T328 と同じ決め方）。無いときは、標準の属性 → canvasAriaLabel → 内蔵の名前。
+            aria-labelledby={label ? labelId : ariaLabelledBy}
             aria-describedby={errorId}
             role="img"
-            aria-label={label ? undefined : resolvedCanvasAriaLabel}
+            aria-label={label || ariaLabelledBy ? undefined : (ariaLabelAttr ?? resolvedCanvasAriaLabel)}
           />
         </div>
         <div className={styles.footer}>

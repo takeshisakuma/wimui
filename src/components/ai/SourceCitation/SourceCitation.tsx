@@ -19,6 +19,10 @@ export interface SourceCitationProps {
   domain?: string;
   /** Additional CSS class */
   className?: string;
+  /** Accessible name for the citation. */
+  "aria-label"?: string;
+  /** ID of the element that labels the citation. Takes precedence over `aria-label`. */
+  "aria-labelledby"?: string;
 }
 
 function extractDomain(url: string): string {
@@ -44,10 +48,14 @@ export const SourceCitation = ({
   index,
   domain: domainProp,
   className,
+  // 標準の属性でも名前を付けられる（T341）。以前は受ける口が無く、渡しても黙って捨てられていた。
+  "aria-label": ariaLabelAttr,
+  "aria-labelledby": ariaLabelledBy,
 }: SourceCitationProps) => {
   const { t } = useWimTranslation(formNs);
   const displayDomain = domainProp ?? (url ? extractDomain(url) : undefined);
-  const ariaLabel = index != null ? t("source_citation.source_label", { index }) : title;
+  const builtInName = index != null ? t("source_citation.source_label", { index }) : title;
+  const ariaLabel = ariaLabelledBy ? undefined : (ariaLabelAttr ?? builtInName);
 
   const content = (
     <>
@@ -80,6 +88,7 @@ export const SourceCitation = ({
         rel="noopener noreferrer"
         className={classNames("wim-source-citation", styles.root, styles.link, className)}
         aria-label={ariaLabel}
+        aria-labelledby={ariaLabelledBy}
       >
         {content}
       </a>
@@ -90,7 +99,7 @@ export const SourceCitation = ({
     /* T205: リンクのとき（`<a href>`）と違い、素の `div` は generic ＝ 名前を
        付けられないロールなので `aria-label` が読み上げられない可能性がある
        （axe `aria-prohibited-attr`）。出典 1 件は「まとまり」なので `group`。 */
-    <div className={classNames("wim-source-citation", styles.root, className)} role="group" aria-label={ariaLabel}>
+    <div className={classNames("wim-source-citation", styles.root, className)} role="group" aria-label={ariaLabel} aria-labelledby={ariaLabelledBy}>
       {content}
     </div>
   );

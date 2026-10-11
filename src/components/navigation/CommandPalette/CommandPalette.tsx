@@ -365,12 +365,27 @@ export const CommandPaletteInput = ({
 };
 
 // --- List ---
-export const CommandPaletteList = ({ children }: { children: ReactNode }) => {
+export const CommandPaletteList = ({
+  children,
+  "aria-label": ariaLabelAttr,
+  "aria-labelledby": ariaLabelledBy,
+}: {
+  children: ReactNode;
+  /** Accessible name for the list of results. Defaults to the built-in command palette label. */
+  "aria-label"?: string;
+  /** ID of the element that labels the list of results. Takes precedence over `aria-label`. */
+  "aria-labelledby"?: string;
+}) => {
+  // listbox は名前が要るロール。以前は名前なしで出ていた（T341）。何も渡さなければ、パレットと同じ
+  // 内蔵の名前を付ける。
+  const { t } = useWimTranslation(componentsNs);
   return (
     <div
       className={styles.list}
       role="listbox"
       id="wim-command-palette-listbox"
+      aria-label={ariaLabelledBy ? undefined : (ariaLabelAttr ?? t("command_palette.label"))}
+      aria-labelledby={ariaLabelledBy}
     >
       {children}
     </div>

@@ -109,6 +109,10 @@ export type DataGridProps<T> = {
   className?: string;
   /** Accessibility label for the grid */
   ariaLabel?: string;
+  /** Accessible name for the grid. Takes precedence over `ariaLabel`. */
+  "aria-label"?: string;
+  /** ID of the element that labels the grid. Takes precedence over `aria-label`. */
+  "aria-labelledby"?: string;
 };
 
 export function DataGrid<T extends Record<string, unknown>>({
@@ -133,6 +137,9 @@ export function DataGrid<T extends Record<string, unknown>>({
   infiniteScroll,
   className,
   ariaLabel,
+  // 標準の属性でも名前を付けられる（T341）。以前は受ける口が無く、渡しても黙って捨てられていた。
+  "aria-label": ariaLabelAttr,
+  "aria-labelledby": ariaLabelledBy,
 }: DataGridProps<T>) {
   const { t } = useWimTranslation(commonNs);
   // "refresh" は読める・触れるまま更新中であることだけを伝える。従来の boolean は
@@ -259,7 +266,8 @@ export function DataGrid<T extends Record<string, unknown>>({
           onKeyDown={handleKeyDown}
           tabIndex={0}
           role="grid"
-          aria-label={ariaLabel ?? t("a11y.data_grid")}
+          aria-label={ariaLabelledBy ? undefined : (ariaLabelAttr ?? ariaLabel ?? t("a11y.data_grid"))}
+          aria-labelledby={ariaLabelledBy}
           aria-rowcount={data.length + 1}
           aria-colcount={colCount}
           striped={striped}

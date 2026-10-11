@@ -74,6 +74,8 @@
     "menuInner_prop_mode": "メニューのモード",
     "menuItem_prop_asChild": "true の場合、アイテムの props を子要素にマージします（有効なメニューマークアップのため、ラッパーの `<li role=\"none\">` は残してください）。",
     "menuItem_prop_itemKey": "この項目の一意なキー",
+    "menu_prop_aria-label": "メニューの名前。",
+    "menu_prop_aria-labelledby": "メニューの名前になる要素の ID。`aria-label` より優先されます。",
     "menu_prop_asChild": "true の場合、メニューのルートは子要素としてレンダリングされ、props がその子要素にマージされます。",
     "menu_prop_children": "メニューのアイテム（MenuItem、MenuItemGroup、SubMenu、MenuDivider）。",
     "menu_prop_className": "コンテナに追加する CSS クラス名。",

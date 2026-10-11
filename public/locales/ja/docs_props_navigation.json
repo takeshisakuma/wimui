@@ -66,6 +66,8 @@
     "paginationPage_prop_asChild": "true の場合、ページボタンの props を子要素にマージします。",
     "paginationPage_prop_isActive": "このページが現在のページかどうか",
     "paginationPage_prop_page": "このコントロールが表すページ番号",
+    "pagination_prop_aria-label": "ナビゲーションのランドマークの名前。`labels.navAriaLabel` より優先されます。",
+    "pagination_prop_aria-labelledby": "ナビゲーションのランドマークの名前になる要素の ID。`aria-label` より優先されます。",
     "pagination_prop_asChild": "true の場合、nav の props を子要素にマージします。",
     "pagination_prop_children": "asChild が true のときに使用する任意の子要素",
     "pagination_prop_className": "追加のクラス名",

@@ -74,6 +74,8 @@
     "menuInner_prop_mode": "Modo do menu",
     "menuItem_prop_asChild": "Se true, mescla as props do item no filho (mantenha um `<li role=\"none\">` envolvente para marcação de menu válida).",
     "menuItem_prop_itemKey": "Chave única para este item",
+    "menu_prop_aria-label": "Nome acessível para o menu.",
+    "menu_prop_aria-labelledby": "ID do elemento que rotula o menu. Tem precedência sobre `aria-label`.",
     "menu_prop_asChild": "Se true, a raiz do menu será renderizada como seu filho, mesclando suas props nesse filho.",
     "menu_prop_children": "Itens do menu (MenuItem, MenuItemGroup, SubMenu, MenuDivider).",
     "menu_prop_className": "Nome de classe CSS adicional para o contêiner.",
