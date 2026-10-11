@@ -13,6 +13,13 @@ describe("Toast", () => {
     expect(screen.getByText("Toast description")).toBeInTheDocument();
   });
 
+  // T333: 題は見出しにしない（以前は h5 で、置いたページの見出しの順と合わなかった）。
+  it("題を見出しとして出さない。読み上げの領域の中身としては残る", () => {
+    render(<Toast title="Message" description="Toast description" />);
+    expect(screen.queryByRole("heading")).not.toBeInTheDocument();
+    expect(screen.getByRole("status")).toHaveTextContent("Message");
+  });
+
   it("calls onClose after duration", () => {
     const handleClose = vi.fn();
     render(<Toast title="Message" duration={1000} onClose={handleClose} />);

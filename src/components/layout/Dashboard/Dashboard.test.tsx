@@ -155,4 +155,28 @@ describe("Dashboard", () => {
     expect(screen.getByRole("heading", { level: 2, name: "Roasted today" })).toBeInTheDocument();
     expect(screen.queryByRole("heading", { level: 3 })).not.toBeInTheDocument();
   });
+
+  // T333: ダッシュボードの題は、ウィジェットの題の 1 つ上の段（2 より上へは行かない）。
+  describe("label の見出しの段（T333）", () => {
+    const widgets = [{ id: "w1", title: "Roasted today", content: <p>1,624 kg</p> }];
+
+    it("既定では h2 のまま", () => {
+      render(<Dashboard label="Operations" widgets={widgets} />);
+      expect(screen.getByRole("heading", { level: 2, name: "Operations" })).toBeInTheDocument();
+    });
+
+    it("titleLevel が 2 のときも h2（h1 にはしない）", () => {
+      render(<Dashboard label="Operations" titleLevel={2} widgets={widgets} />);
+      expect(screen.getByRole("heading", { level: 2, name: "Operations" })).toBeInTheDocument();
+      expect(screen.queryByRole("heading", { level: 1 })).not.toBeInTheDocument();
+    });
+
+    it("titleLevel が 4 なら h3 になり、段が飛ばない", () => {
+      render(<Dashboard label="Operations" titleLevel={4} widgets={widgets} />);
+      // 対照: 以前は h2 固定で、h2 の次が h4 だった
+      expect(screen.getByRole("heading", { level: 3, name: "Operations" })).toBeInTheDocument();
+      expect(screen.getByRole("heading", { level: 4, name: "Roasted today" })).toBeInTheDocument();
+      expect(screen.queryByRole("heading", { level: 2 })).not.toBeInTheDocument();
+    });
+  });
 });

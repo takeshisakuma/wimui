@@ -110,6 +110,7 @@
     "thoughtProcess_prop_isCollapsible": "本体を折りたためるかどうか",
     "thoughtProcess_prop_isThinking": "AI が現在思考中かどうか（脈打つ背景を表示）",
     "thoughtProcess_prop_title": "ヘッダーのタイトル",
+    "thoughtProcess_prop_titleLevel": "isCollapsible が false のときの、タイトルの見出しの段。ページに合わせます（h1 の下なら 2、h3 の下なら 4）。isCollapsible が true のときは効きません（タイトルは開閉のボタンで、見出しではありません）。",
     "thoughtStep_prop_children": "この推論ステップの内容",
     "thoughtStep_prop_isLast": "このステップの下のコネクター線を隠します — 最後のステップで使用します",
     "thoughtStep_prop_isStreaming": "テキストが現在ストリーミング中かどうか（タイピングカーソルを表示）",

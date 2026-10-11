@@ -110,6 +110,7 @@
     "thoughtProcess_prop_isCollapsible": "Se o corpo pode ser recolhido",
     "thoughtProcess_prop_isThinking": "Se a IA está pensando no momento (exibe um fundo pulsante)",
     "thoughtProcess_prop_title": "Título do cabeçalho",
+    "thoughtProcess_prop_titleLevel": "Nível do cabeçalho do título quando isCollapsible é false. Ajuste-o à página: abaixo de um h1 use 2, abaixo de um h3 use 4. Não tem efeito quando isCollapsible é true, caso em que o título é um botão de alternância, não um cabeçalho.",
     "thoughtStep_prop_children": "Conteúdo desta etapa de raciocínio",
     "thoughtStep_prop_isLast": "Oculta a linha conectora abaixo desta etapa — use na última etapa",
     "thoughtStep_prop_isStreaming": "Se o texto está sendo transmitido no momento (exibe um cursor de digitação)",
