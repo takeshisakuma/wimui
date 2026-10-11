@@ -8,6 +8,7 @@ import { useAudioPlayer } from "./hooks/useAudioPlayer";
 import { useAudioMetadata } from "./hooks/useAudioMetadata";
 import { AudioCustomControls, type AudioLabels } from "./components/AudioCustomControls";
 import styles from "./audio.module.scss";
+import { composeEventHandlers } from "../../_internal/composeEventHandlers";
 
 export type { AudioLabels };
 
@@ -217,9 +218,9 @@ export const Audio = ({
               controls={!customControls && controls}
               preload={preload}
               crossOrigin="anonymous"
-              onTimeUpdate={handleTimeUpdate}
-              onEnded={handleEnded}
               {...props}
+              onTimeUpdate={composeEventHandlers(props.onTimeUpdate, handleTimeUpdate)}
+              onEnded={composeEventHandlers(props.onEnded, handleEnded)}
               onLoadedMetadata={(e) => {
                 setDuration(e.currentTarget.duration);
                 notifyLoaded();

@@ -7,6 +7,7 @@ import React, {
 } from "react";
 import classNames from "classnames";
 import styles from "./transition.module.scss";
+import { composeEventHandlers } from "../../_internal/composeEventHandlers";
 
 /** `"none"` は「その相はアニメーションしない」の意味で、`enterPreset` / `leavePreset` に渡す。 */
 export type TransitionPreset =
@@ -247,8 +248,8 @@ export const Transition = React.forwardRef<HTMLDivElement, TransitionProps>(
           animState === "leaving" &&
             (phase === "from" ? effectiveLeaveFrom : effectiveLeaveTo),
         )}
-        onTransitionEnd={handleTransitionEnd}
         {...props}
+        onTransitionEnd={composeEventHandlers(props.onTransitionEnd, handleTransitionEnd)}
       >
         {children}
       </div>

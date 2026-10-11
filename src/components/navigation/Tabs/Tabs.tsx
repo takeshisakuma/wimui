@@ -10,6 +10,7 @@ import { Slot, Slottable } from "@radix-ui/react-slot";
 import { useIndicator } from "../../_internal/useIndicator";
 import { useMergedRef } from "../../../hooks/useMergedRef";
 import styles from "./tabs.module.scss";
+import { composeEventHandlers } from "../../_internal/composeEventHandlers";
 
 type TabsContextType = {
   value?: string;
@@ -230,12 +231,12 @@ export const TabsList = React.forwardRef<HTMLDivElement, TabsListProps>(
           isReady && styles.ready,
           className,
         )}
-        onMouseDown={handleMouseDown}
-        onMouseUp={handleMouseUp}
-        onMouseLeave={handleMouseUp}
-        onMouseMove={handleMouseMove}
-        onKeyDown={handleKeyDown}
         {...props}
+        onMouseDown={(event) => composeEventHandlers(props.onMouseDown, handleMouseDown)(event)}
+        onMouseUp={composeEventHandlers(props.onMouseUp, handleMouseUp)}
+        onMouseLeave={composeEventHandlers(props.onMouseLeave, handleMouseUp)}
+        onMouseMove={(event) => composeEventHandlers(props.onMouseMove, handleMouseMove)(event)}
+        onKeyDown={(event) => composeEventHandlers(props.onKeyDown, handleKeyDown)(event)}
       >
         <div
           className={styles.slider}
@@ -303,8 +304,8 @@ export const TabsTrigger = React.forwardRef<HTMLButtonElement, TabsTriggerProps>
           isActive && styles.active,
           className,
         )}
-        onClick={() => onValueChange(value)}
         {...props}
+        onClick={composeEventHandlers(props.onClick, () => onValueChange(value))}
       >
         <Slottable>{children}</Slottable>
       </Component>

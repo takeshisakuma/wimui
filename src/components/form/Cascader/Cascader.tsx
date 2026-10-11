@@ -10,6 +10,7 @@ import styles from "./cascader.module.scss";
 import { FieldTemplate } from "../FieldTemplate";
 import { FieldWidth } from "../../../types/tokens";
 import { ChevronRightIcon } from "@/icon";
+import { composeEventHandlers } from "../../_internal/composeEventHandlers";
 
 function getLabelText(label: React.ReactNode): string {
   if (typeof label === "string") return label;
@@ -375,9 +376,9 @@ export const Cascader = ({
       <div
         className={styles.root}
         ref={setRootRef}
-        onMouseMove={() => setIsKeyboardNavigating(false)}
         data-keyboard-nav={isKeyboardNavigating}
         {...props}
+        onMouseMove={composeEventHandlers(props.onMouseMove, () => setIsKeyboardNavigating(false))}
       >
         <InputBase
           disabled={disabled}

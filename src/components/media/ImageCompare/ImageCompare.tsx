@@ -6,6 +6,7 @@ import { Icon } from "../Icon/Icon";
 import { ChevronLeftIcon, ChevronRightIcon } from "@/icon";
 import type { MediaRadius } from "../../../types/tokens";
 import styles from "./image-compare.module.scss";
+import { composeEventHandlers } from "../../_internal/composeEventHandlers";
 
 /** Labels for internationalization. */
 export type ImageCompareLabels = {
@@ -176,10 +177,10 @@ export const ImageCompare = React.forwardRef<HTMLDivElement, ImageCompareProps>(
           styles[`radius-${radius}`],
           className,
         )}
-        onPointerDown={handlePointerDown}
-        onPointerMove={handlePointerMove}
-        onPointerUp={handlePointerUp}
         {...props}
+        onPointerDown={composeEventHandlers(props.onPointerDown, handlePointerDown)}
+        onPointerMove={composeEventHandlers(props.onPointerMove, handlePointerMove)}
+        onPointerUp={composeEventHandlers(props.onPointerUp, handlePointerUp)}
         // style は、props を広げたあとに置く。先に置くと、広げた props の中の style（利用者が渡したもの）が、
         // ここで組んだ style を丸ごと置き換える（部品が入れた値が消える）。
         style={{ width, height, ...props.style }}

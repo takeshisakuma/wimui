@@ -9,6 +9,7 @@ import { useVideoPlayer } from "./hooks/useVideoPlayer";
 import { VideoAdvancedMenu } from "./components/VideoAdvancedMenu";
 import { VideoControls, type VideoLabels } from "./components/VideoControls";
 import styles from "./video.module.scss";
+import { composeEventHandlers } from "../../_internal/composeEventHandlers";
 
 export type { VideoLabels };
 
@@ -203,15 +204,15 @@ export const Video = ({
             poster={activePoster}
             preload={preload}
             playsInline
-            onTimeUpdate={player.handleTimeUpdate}
-            onLoadedMetadata={player.handleLoadedMetadata}
-            onLoadedData={notifyLoaded}
-            onEnded={player.handleEnded}
-            onPlay={() => {}}
-            onPause={() => {}}
-            onClick={player.handleVideoClick}
             data-testid="video-element"
             {...props}
+            onTimeUpdate={composeEventHandlers(props.onTimeUpdate, player.handleTimeUpdate)}
+            onLoadedMetadata={composeEventHandlers(props.onLoadedMetadata, player.handleLoadedMetadata)}
+            onLoadedData={composeEventHandlers(props.onLoadedData, notifyLoaded)}
+            onEnded={composeEventHandlers(props.onEnded, player.handleEnded)}
+            onPlay={composeEventHandlers(props.onPlay, () => {})}
+            onPause={composeEventHandlers(props.onPause, () => {})}
+            onClick={composeEventHandlers(props.onClick, player.handleVideoClick)}
           >
             {tracks?.map((track, i) => <track key={i} {...track} />)}
           </video>

@@ -4,6 +4,7 @@ import { Slot, Slottable } from "@radix-ui/react-slot";
 import { useSliderCommon } from "../../../utilities/slider-utils";
 import { FieldTemplate } from "../FieldTemplate";
 import styles from "./slider.module.scss";
+import { composeEventHandlers } from "../../_internal/composeEventHandlers";
 
 export interface SliderProps extends Omit<React.ComponentPropsWithoutRef<"div">, "onChange" | "defaultValue"> {
   /** Current value (controlled) */
@@ -207,10 +208,10 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(
         <Component
           role="presentation"
           className={classNames("wim-slider", styles.root, disabled && styles.disabled, error && styles.danger)}
-          onMouseDown={handleMouseDown}
-          onTouchStart={handleMouseDown}
           ref={ref}
           {...props}
+          onMouseDown={composeEventHandlers(props.onMouseDown, handleMouseDown)}
+          onTouchStart={composeEventHandlers(props.onTouchStart, handleMouseDown)}
         >
           <div className={styles.trackContainer} ref={trackContainerRef}>
             <div

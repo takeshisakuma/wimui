@@ -6,6 +6,7 @@ import { Icon } from "../../media/Icon/Icon";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { commonNs } from "@/i18n/generated/common";
 import { LoadingIcon, ChevronDownIcon } from "@/icon";
+import { composeEventHandlers } from "../../_internal/composeEventHandlers";
 
 export interface PullToRefreshProps extends React.HTMLAttributes<HTMLDivElement> {
   /** Callback when refresh is triggered. Should return a promise. */
@@ -157,9 +158,9 @@ export const PullToRefresh = React.forwardRef<HTMLDivElement, PullToRefreshProps
       <div
         className={classNames("wim-pull-to-refresh", localStyles.container, className)}
         role="none"
-        onTouchStart={handleStart}
-        onMouseDown={handleStart}
         {...props}
+        onTouchStart={composeEventHandlers(props.onTouchStart, handleStart)}
+        onMouseDown={composeEventHandlers(props.onMouseDown, handleStart)}
       >
         <div
           className={classNames(localStyles.indicator, localStyles[state])}

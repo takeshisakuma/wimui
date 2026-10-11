@@ -13,6 +13,7 @@ import styles from "./date-picker.module.scss";
 import inputStyles from "../../form/Input/input.module.scss";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { componentsNs } from "@/i18n/generated/components";
+import { composeEventHandlers } from "../../_internal/composeEventHandlers";
 
 export type DatePickerLabels = {
   placeholder?: string;
@@ -277,8 +278,6 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
               value={formatDate(currentValue)}
               placeholder={actualPlaceholder}
               disabled={isDisabled}
-              onClick={handleInputClick}
-              onKeyDown={handleInputKeyDown}
               aria-haspopup="dialog"
               aria-expanded={isOpen}
               aria-controls={isOpen ? dropdownId : undefined}
@@ -287,6 +286,8 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
               aria-labelledby={labelId}
               aria-required={required}
               {...props}
+              onClick={composeEventHandlers(props.onClick, handleInputClick)}
+              onKeyDown={composeEventHandlers(props.onKeyDown, handleInputKeyDown)}
             />
           </InputBase>
           <Transition

@@ -3,6 +3,7 @@ import classNames from "classnames";
 import { HamburgerMenu } from "../../navigation/HamburgerMenu/HamburgerMenu";
 import { Drawer, DrawerContent } from "../../overlay/Drawer/Drawer";
 import styles from "./navbar.module.scss";
+import { composeEventHandlers } from "../../_internal/composeEventHandlers";
 
 type NavbarContextType = {
   isMenuOpen: boolean;
@@ -258,11 +259,12 @@ export const NavbarMenuItem = React.forwardRef<
         active && styles.active,
         className,
       )}
-      onClick={handleClick}
       role="button"
       tabIndex={0}
-      onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.currentTarget.click(); } }}
       {...props}
+      // スプレッドのあとに置く。handleClick は、中で props.onClick を呼ぶ（T347）。
+      onClick={handleClick}
+      onKeyDown={composeEventHandlers(props.onKeyDown, (e) => { if (e.key === "Enter" || e.key === " ") { e.currentTarget.click(); } })}
     >
       {children}
     </div>

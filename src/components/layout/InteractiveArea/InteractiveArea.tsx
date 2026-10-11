@@ -128,6 +128,8 @@ export const InteractiveArea = React.forwardRef<HTMLDivElement, InteractiveAreaP
         }
         tabIndex={isClickable && !disabled ? 0 : undefined}
         aria-disabled={disabled || undefined}
+        {...props}
+        // スプレッドのあとに置く。この処理は、中で props.onKeyDown を呼ぶ（T347）。
         onKeyDown={(e) => {
           if (isClickable && !disabled && (e.key === "Enter" || e.key === " ")) {
             e.preventDefault();
@@ -135,7 +137,6 @@ export const InteractiveArea = React.forwardRef<HTMLDivElement, InteractiveAreaP
           }
           props.onKeyDown?.(e);
         }}
-        {...props}
         onClick={(e) => {
           if (disabled) {
             e.preventDefault();

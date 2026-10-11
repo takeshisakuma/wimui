@@ -7,6 +7,7 @@ import { Icon } from "../../media/Icon/Icon";
 import { SendIcon, PaperclipIcon } from "@/icon";
 import { useAutoResize } from "../../../hooks/useAutoResize";
 import styles from "./chat-ui.module.scss";
+import { composeEventHandlers } from "../../_internal/composeEventHandlers";
 
 export interface ChatContainerProps extends React.ComponentPropsWithoutRef<"div"> {
   /** Chat content (message list, input, etc.) */
@@ -255,11 +256,12 @@ export const ChatInput = forwardRef<HTMLTextAreaElement, ChatInputProps>(
             ref={textareaRef}
             className={styles.field}
             value={value}
-            onChange={handleInputChange}
-            onKeyDown={handleKeyDown}
             placeholder={props.placeholder || "Type a message..."}
             rows={1}
             {...props}
+            // スプレッドのあとに置く。handleInputChange は、中で props.onChange を呼ぶ（T347）。
+            onChange={handleInputChange}
+            onKeyDown={composeEventHandlers(props.onKeyDown, handleKeyDown)}
           />
           {showSendButton && (
             <button

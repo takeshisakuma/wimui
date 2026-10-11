@@ -5,6 +5,7 @@ import localStyles from "./swipe-action.module.scss";
 import { Icon } from "../../media/Icon/Icon";
 import { IconName } from "../../../icon";
 import { useSwipeableList } from "./SwipeableList";
+import { composeEventHandlers } from "../../_internal/composeEventHandlers";
 
 export interface SwipeActionItem {
   /** Icon to display */
@@ -241,9 +242,9 @@ export const SwipeAction = React.forwardRef<SwipeActionRef, SwipeActionProps>(
       <Component
         ref={containerRef}
         className={classNames("wim-swipe-action", localStyles.container, className)}
-        onMouseLeave={() => handleEnd(false)}
-        onBlur={handleBlur}
         {...props}
+        onMouseLeave={composeEventHandlers(props.onMouseLeave, () => handleEnd(false))}
+        onBlur={composeEventHandlers(props.onBlur, handleBlur)}
       >
         {/* 内容を先、操作を後に置く。見た目の位置は position / z-index で決まるので変わらない。
             以前は操作が先にあり、読み上げとフォーカスの順が「削除・編集 → 行の中身」になっていた。 */}

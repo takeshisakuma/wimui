@@ -6,6 +6,7 @@ import { Slot, Slottable } from "@radix-ui/react-slot";
 import { useSliderCommon } from "../../../utilities/slider-utils";
 import { FieldTemplate } from "../FieldTemplate";
 import styles from "./range-slider.module.scss";
+import { composeEventHandlers } from "../../_internal/composeEventHandlers";
 
 type RangeSliderProps = Omit<React.HTMLAttributes<HTMLDivElement>, "onChange" | "defaultValue"> & {
   /** Current value [min, max] (controlled) */
@@ -300,9 +301,9 @@ export const RangeSlider = ({
           disabled && styles.disabled,
           error && styles.danger,
         )}
-        onMouseDown={handleTrackMouseDown}
-        onTouchStart={handleTrackMouseDown}
         {...props}
+        onMouseDown={(event) => composeEventHandlers(props.onMouseDown, handleTrackMouseDown)(event)}
+        onTouchStart={(event) => composeEventHandlers(props.onTouchStart, handleTrackMouseDown)(event)}
       >
         <div className={styles.trackContainer} ref={trackRef}>
           <div
