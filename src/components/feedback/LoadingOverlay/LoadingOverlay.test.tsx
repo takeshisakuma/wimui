@@ -95,7 +95,19 @@ describe("LoadingOverlay", () => {
     render(<LoadingOverlay visible={true} />);
     const overlay = screen.getByTestId("loading-overlay");
     expect(overlay).toHaveAttribute("aria-live", "polite");
-    expect(overlay).toHaveAttribute("aria-busy", "true");
+  });
+
+  describe("aria-busy（T336）", () => {
+    it("読み上げる領域そのものには、aria-busy を付けない", () => {
+      render(<LoadingOverlay visible={true} />);
+      // 対照: 以前は、ここに `aria-busy="true"` が固定で付いていた
+      expect(screen.getByRole("status")).not.toHaveAttribute("aria-busy");
+    });
+
+    it("呼び出し元が渡した aria-busy は、そのまま出る", () => {
+      render(<LoadingOverlay visible={true} aria-busy="true" />);
+      expect(screen.getByRole("status")).toHaveAttribute("aria-busy", "true");
+    });
   });
 
   describe("読み上げる中身（T332）", () => {
