@@ -76,7 +76,6 @@ const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
         )}
         <aside
           ref={ref}
-          style={style}
           className={classNames("wim-sidebar", 
             styles.root,
             fixed && styles.fixed,
@@ -88,6 +87,8 @@ const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
           )}
           data-collapsed={collapsed}
           {...props}
+          // style は、props を広げたあとに置く。先に置くと、利用者が渡した style が、幅の変数を消す。
+          style={{ ...style, ...props.style }}
         >
 
           <div className={styles.container}>{children}</div>

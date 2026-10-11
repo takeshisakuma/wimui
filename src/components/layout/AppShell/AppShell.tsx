@@ -126,8 +126,9 @@ export const AppShellRoot = React.forwardRef<HTMLDivElement, AppShellProps>(
           !!navbar && styles.withNavbar,
           className,
         )}
-        style={style}
         {...props}
+        // style は、props を広げたあとに置く。先に置くと、利用者が渡した style が、幅の変数を消す。
+        style={{ ...style, ...props.style }}
       >
         {header && <div className={styles.header}>{header}</div>}
 
