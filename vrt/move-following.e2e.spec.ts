@@ -75,4 +75,39 @@ test.describe("位置を測って置く部品が、スクロールせずに動�
     // 対照: 以前は、ハイライトは元の場所に残った（対象だけが 120px 下がる）
     await expect.poll(top).toBe(before + 120);
   });
+
+  test("Anchor: 途中に中身が足されて、節が画面の下へ動いたら、現在地が前の節に戻る", async ({ page }) => {
+    await page.goto(url("components-navigation-elements-anchor--default"), { waitUntil: "domcontentloaded" });
+    await waitForStoryReady(page);
+    const current = () =>
+      page.evaluate(() => {
+        const link = [...document.querySelectorAll(".wim-anchor a")].find(
+          (a) => a.getAttribute("aria-current") && a.getAttribute("aria-current") !== "false",
+        );
+        return link?.textContent?.trim() ?? null;
+      });
+    const labels = await page.locator(".wim-anchor a").allTextContents();
+    expect(labels.length).toBeGreaterThanOrEqual(3);
+
+    // 3 つ目の節まで送る
+    await page.evaluate(() => {
+      const link = document.querySelectorAll(".wim-anchor a")[2];
+      const section = document.getElementById((link.getAttribute("href") ?? "").replace("#", ""))!;
+      window.scrollBy(0, section.getBoundingClientRect().top - 4);
+    });
+    await expect.poll(current).toBe(labels[2].trim());
+
+    // スクロールせずに、3 つ目の節の前に中身を足す（3 つ目は、画面の下へ動く）
+    await disableScrollAnchoring(page);
+    await page.evaluate(() => {
+      const link = document.querySelectorAll(".wim-anchor a")[2];
+      const section = document.getElementById((link.getAttribute("href") ?? "").replace("#", ""))!;
+      const filler = document.createElement("div");
+      filler.style.height = "500px";
+      section.parentElement!.insertBefore(filler, section);
+    });
+
+    // 対照: 以前は、次に scroll が起きるまで、3 つ目のままだった
+    await expect.poll(current).toBe(labels[1].trim());
+  });
 });

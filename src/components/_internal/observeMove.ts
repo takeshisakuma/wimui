@@ -16,7 +16,9 @@
 export const observeMove = (element: Element, onMove: () => void): (() => void) => {
   if (typeof IntersectionObserver === "undefined") return () => {};
 
-  const root = element.ownerDocument.documentElement;
+  // 文書につながっていない相手（テストで差し替えた要素など）は、見張れない。
+  const root = element.ownerDocument?.documentElement;
+  if (!root) return () => {};
   let observer: IntersectionObserver | null = null;
   let timer: ReturnType<typeof setTimeout> | undefined;
 

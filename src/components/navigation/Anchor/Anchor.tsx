@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useEffect, useLayoutEffect, useRef } from "react";
 import classNames from "classnames";
 import styles from "./anchor.module.scss";
+import { observeMove } from "../../_internal/observeMove";
 
 export interface AnchorLinkItem {
   /** Unique key for the link */
@@ -134,9 +135,23 @@ export const Anchor = ({
     };
 
     window.addEventListener("scroll", handleScroll);
+    // スクロールしなくても、節の位置は変わる ── 途中の中身の高さが変わったとき（開いたアコーディオン・
+    // 遅れて読み込まれる画像）と、窓の大きさが変わって文が折り返したとき。以前は scroll しか聞いて
+    // おらず、節が画面の下へ動いても、現在地は元の節のままだった（2026-10-12 に実測）。
+    window.addEventListener("resize", handleScroll);
+    const allHrefs = (links: AnchorLinkItem[]): string[] =>
+      links.flatMap((link) => [link.href, ...(link.children ? allHrefs(link.children) : [])]);
+    const stopObservingMoves = allHrefs(items)
+      .map((href) => document.getElementById(href.replace("#", "")))
+      .filter((element): element is HTMLElement => element !== null)
+      .map((element) => observeMove(element, handleScroll));
     handleScroll(); // Initialize
 
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+      stopObservingMoves.forEach((stop) => stop());
+    };
   }, [items, offset, bounds, activeId, direction]);
 
   const measureMarker = useCallback(() => {
