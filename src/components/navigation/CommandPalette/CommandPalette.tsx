@@ -211,12 +211,19 @@ export interface CommandPaletteContentProps {
    * (serious), and the palette has no heading to borrow one from.
    */
   "aria-label"?: string;
+  /** ID of the element that labels the dialog. Takes precedence over `aria-label` and the built-in name. */
+  "aria-labelledby"?: string;
+  /** ID of the element that describes the dialog. */
+  "aria-describedby"?: string;
 }
 
 export const CommandPaletteContent = ({
   children,
   className,
   "aria-label": ariaLabel,
+  // 参照で付ける名前と説明も受ける（T340 / T341 の測り残し）。以前は型にも口が無く、渡しても捨てていた。
+  "aria-labelledby": ariaLabelledBy,
+  "aria-describedby": ariaDescribedBy,
 }: CommandPaletteContentProps) => {
   const { t } = useWimTranslation(componentsNs);
   const { open, onOpenChange, activeIndex, setActiveIndex, isKeyboardNavigating, setIsKeyboardNavigating } = useCommandPalette();
@@ -265,7 +272,9 @@ export const CommandPaletteContent = ({
                 <div
                   role="dialog"
                   aria-modal="true"
-                  aria-label={ariaLabel ?? t("command_palette.label")}
+                  aria-label={ariaLabelledBy ? undefined : (ariaLabel ?? t("command_palette.label"))}
+                  aria-labelledby={ariaLabelledBy}
+                  aria-describedby={ariaDescribedBy}
                   className={classNames("wim-command-palette", styles.content, className)}
                   onClick={(e) => e.stopPropagation()}
                   onMouseMove={handleMouseMove}
