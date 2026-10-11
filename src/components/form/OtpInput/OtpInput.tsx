@@ -74,6 +74,11 @@ export const OtpInput = forwardRef<HTMLDivElement, OtpInputProps>(
       asChild = false,
       fullWidth = false,
       children,
+      // 名前と説明の参照は、ロールの無い包みではなく、読まれる要素へ届ける（T329）。
+      // 名前は桁をまとめる `role="group"` へ、説明はエラーと同じく全部の桁へ。
+      "aria-label": ariaLabel,
+      "aria-labelledby": ariaLabelledBy,
+      "aria-describedby": ariaDescribedBy,
       ...props
     },
     ref,
@@ -95,6 +100,9 @@ export const OtpInput = forwardRef<HTMLDivElement, OtpInputProps>(
     const id = `wim-otp-input-${generatedId}`;
     const labelId = label ? `${id}-label` : undefined;
     const errorId = error ? `${id}-error` : undefined;
+    // 部品のラベルがあればそれ、無ければ利用者が渡した参照（T328 と同じ決め方）。
+    const groupNameRef = labelId ?? ariaLabelledBy;
+    const describedBy = [ariaDescribedBy, errorId].filter(Boolean).join(" ") || undefined;
 
     // value propsが変更されたら内部状態を同期 (Derived State Pattern)
     if (value !== prevValue) {
@@ -200,7 +208,8 @@ export const OtpInput = forwardRef<HTMLDivElement, OtpInputProps>(
                 disabled && styles.disabled,
               )}
               role="group"
-              aria-labelledby={labelId}
+              aria-labelledby={groupNameRef}
+              aria-label={groupNameRef ? undefined : ariaLabel}
               data-testid="otp-input-container"
               data-disabled={disabled}
             >
@@ -226,7 +235,7 @@ export const OtpInput = forwardRef<HTMLDivElement, OtpInputProps>(
                   disabled={disabled}
                   aria-label={digitAriaLabel(index + 1)}
                   aria-invalid={error ? "true" : "false"}
-                  aria-describedby={errorId}
+                  aria-describedby={describedBy}
                   aria-required={required ? "true" : undefined}
                 />
               ))}

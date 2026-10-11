@@ -52,6 +52,9 @@ export const InlineEdit = React.forwardRef<HTMLDivElement, InlineEditProps>(
       label,
       className,
       "aria-label": ariaLabel,
+      // 名前と説明の参照は、包みではなく操作要素（表示中はボタン、編集中は入力欄）へ届ける（T329）。
+      "aria-labelledby": ariaLabelledBy,
+      "aria-describedby": ariaDescribedBy,
       ...props
     },
     ref
@@ -137,6 +140,8 @@ export const InlineEdit = React.forwardRef<HTMLDivElement, InlineEditProps>(
               disabled={disabled}
               placeholder={placeholder}
               aria-label={ariaLabel}
+              aria-labelledby={ariaLabelledBy}
+              aria-describedby={ariaDescribedBy}
               fullWidth={fullWidth}
               className={localStyles.input}
             />
@@ -172,6 +177,8 @@ export const InlineEdit = React.forwardRef<HTMLDivElement, InlineEditProps>(
             tabIndex={disabled ? -1 : 0}
             role="button"
             aria-label={ariaLabel}
+            aria-labelledby={ariaLabelledBy}
+            aria-describedby={ariaDescribedBy}
             aria-disabled={disabled}
           >
             <span className={classNames(localStyles.text, !currentValue && localStyles.placeholder)}>

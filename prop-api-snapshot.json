@@ -3488,6 +3488,15 @@
       "required": false,
       "type": "FieldWidth | string | number"
     },
+    "DateRangePicker.aria-describedby": {
+      "type": "string"
+    },
+    "DateRangePicker.aria-label": {
+      "type": "string"
+    },
+    "DateRangePicker.aria-labelledby": {
+      "type": "string"
+    },
     "DateRangePicker.className": {
       "required": false,
       "type": "string"
@@ -7434,6 +7443,15 @@
       "required": false,
       "type": "boolean"
     },
+    "PhoneInput.aria-describedby": {
+      "type": "string"
+    },
+    "PhoneInput.aria-label": {
+      "type": "string"
+    },
+    "PhoneInput.aria-labelledby": {
+      "type": "string"
+    },
     "PhoneInput.className": {
       "required": false,
       "type": "string"
@@ -8971,6 +8989,15 @@
     },
     "SearchInput.width": {
       "type": "FieldWidth | string | number"
+    },
+    "SegmentedControl.aria-describedby": {
+      "type": "string"
+    },
+    "SegmentedControl.aria-label": {
+      "type": "string"
+    },
+    "SegmentedControl.aria-labelledby": {
+      "type": "string"
     },
     "SegmentedControl.asChild": {
       "required": false,
@@ -11505,6 +11532,15 @@
           "type": "string"
         }
       }
+    },
+    "Transfer.aria-describedby": {
+      "type": "string"
+    },
+    "Transfer.aria-label": {
+      "type": "string"
+    },
+    "Transfer.aria-labelledby": {
+      "type": "string"
     },
     "Transfer.className": {
       "required": false,

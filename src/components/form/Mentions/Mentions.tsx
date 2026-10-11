@@ -183,9 +183,16 @@ export const Mentions = forwardRef<HTMLDivElement, MentionsProps>(
     // MentionsProps event handlers are typed for HTMLTextAreaElement (via extending TextareaProps).
     // Asserting to HTMLElement (common base for div and Slot) satisfies both union members;
     // bivariance makes ClipboardEventHandler<HTMLTextAreaElement> compatible at runtime.
+    // 名前と説明の属性は、入力欄（textarea）にだけ付ける（T329）。以前は包みの `div` にも同じ値が
+    // 付いていた。包みはロールを持たず、フォーカスも当たらないので、そこに付いても読まれない。
+    const wrapperOnlyProps: Record<string, unknown> = { ...divProps };
+    delete wrapperOnlyProps["aria-label"];
+    delete wrapperOnlyProps["aria-labelledby"];
+    delete wrapperOnlyProps["aria-describedby"];
+
     const wrapperSpread = (asChild
       ? { ...textareaOnlyProps, ...divProps }
-      : divProps
+      : wrapperOnlyProps
     ) as unknown as React.HTMLAttributes<HTMLElement>;
 
     return (

@@ -63,6 +63,9 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(
       id: customId,
       "aria-label": ariaLabel,
       "aria-labelledby": ariaLabelledBy,
+      // 説明の参照は、包みではなくつまみへ届ける（T329）。包みは `role="presentation"` で、
+      // フォーカスが当たらないので、そこに付いても読まれない。
+      "aria-describedby": ariaDescribedBy,
       asChild = false,
       styles: stylesProp,
       children,
@@ -227,7 +230,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(
                 aria-disabled={disabled}
                 aria-labelledby={label ? labelId : ariaLabelledBy}
                 aria-label={label ? undefined : ariaLabel}
-                aria-describedby={error ? errorId : undefined}
+                aria-describedby={[ariaDescribedBy, error ? errorId : undefined].filter(Boolean).join(" ") || undefined}
                 aria-invalid={error ? true : undefined}
                 tabIndex={disabled ? -1 : 0}
                 onKeyDown={handleKeyDown}
