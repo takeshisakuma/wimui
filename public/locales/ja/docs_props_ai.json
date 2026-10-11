@@ -85,6 +85,8 @@
     "promptInput_prop_value": "現在のテキスト値（制御）",
     "sourceCitationList_prop_className": "追加の CSS クラス",
     "sourceCitationList_prop_sources": "表示するソースの配列",
+    "sourceCitation_prop_aria-label": "出典の名前。",
+    "sourceCitation_prop_aria-labelledby": "出典の名前になる要素の ID。`aria-label` より優先されます。",
     "sourceCitation_prop_className": "追加の CSS クラス",
     "sourceCitation_prop_description": "ソースの短い抜粋または説明",
     "sourceCitation_prop_domain": "タイトルの下に表示されるドメインラベル（指定しない場合は url から自動導出）",

@@ -74,6 +74,8 @@
     "menuInner_prop_mode": "Mode of the menu",
     "menuItem_prop_asChild": "If true, merge item props onto the child (keep a wrapping `<li role=\"none\">` for valid menu markup).",
     "menuItem_prop_itemKey": "Unique key for this item",
+    "menu_prop_aria-label": "Accessible name for the menu.",
+    "menu_prop_aria-labelledby": "ID of the element that labels the menu. Takes precedence over `aria-label`.",
     "menu_prop_asChild": "If true, the menu root will be rendered as its child, merging its props onto that child.",
     "menu_prop_children": "Menu items (MenuItem, MenuItemGroup, SubMenu, MenuDivider).",
     "menu_prop_className": "Additional CSS class name for the container.",

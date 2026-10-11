@@ -85,6 +85,8 @@
     "promptInput_prop_value": "Current text value (controlled)",
     "sourceCitationList_prop_className": "Additional CSS class",
     "sourceCitationList_prop_sources": "Array of sources to display",
+    "sourceCitation_prop_aria-label": "Accessible name for the citation.",
+    "sourceCitation_prop_aria-labelledby": "ID of the element that labels the citation. Takes precedence over `aria-label`.",
     "sourceCitation_prop_className": "Additional CSS class",
     "sourceCitation_prop_description": "Brief excerpt or description of the source",
     "sourceCitation_prop_domain": "Domain label shown below the title (auto-derived from url when omitted)",

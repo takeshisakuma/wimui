@@ -51,6 +51,10 @@ export type NotificationProps = {
    * Additional class name
    */
   className?: string;
+  /** Accessible name for the notification. */
+  "aria-label"?: string;
+  /** ID of the element that labels the notification. Takes precedence over `aria-label`. */
+  "aria-labelledby"?: string;
 };
 
 export const Notification = ({
@@ -62,6 +66,9 @@ export const Notification = ({
   onClose,
   closable = true,
   className,
+  // 標準の属性でも名前を付けられる（T341）。以前は受ける口が無く、渡しても黙って捨てられていた。
+  "aria-label": ariaLabelAttr,
+  "aria-labelledby": ariaLabelledBy,
 }: NotificationProps) => {
   const [isVisible, setIsVisible] = React.useState(true);
 
@@ -88,6 +95,8 @@ export const Notification = ({
         className,
       )}
       role="alert"
+      aria-label={ariaLabelledBy ? undefined : ariaLabelAttr}
+      aria-labelledby={ariaLabelledBy}
     >
       <div className={styles.content}>
         {showIcon && (

@@ -99,6 +99,10 @@ export interface PaginationProps {
     navAriaLabel?: string;
     totalLabel?: string;
   };
+  /** Accessible name for the navigation landmark. Takes precedence over `labels.navAriaLabel`. */
+  "aria-label"?: string;
+  /** ID of the element that labels the navigation landmark. Takes precedence over `aria-label`. */
+  "aria-labelledby"?: string;
 }
 
 const ELLIPSIS = "...";
@@ -121,6 +125,9 @@ export const Pagination = ({
   showTotal,
   showQuickJumper = false,
   labels = {},
+  // 標準の属性でも名前を付けられる（T341）。以前は受ける口が無く、渡しても黙って捨てられていた。
+  "aria-label": ariaLabelAttr,
+  "aria-labelledby": ariaLabelledBy,
 }: PaginationProps) => {
   const { t } = useWimTranslation(commonNs);
   const {
@@ -249,7 +256,8 @@ export const Pagination = ({
           styles.simple,
           className,
         )}
-        aria-label={navAriaLabel}
+        aria-label={ariaLabelledBy ? undefined : (ariaLabelAttr ?? navAriaLabel)}
+        aria-labelledby={ariaLabelledBy}
       >
         <Slottable>{children}</Slottable>
         <ul className={styles.root}>
@@ -301,7 +309,7 @@ export const Pagination = ({
             {showTotal(total, [startItem, endItem])}
           </div>
         )}
-        <Nav className={styles.root} aria-label={navAriaLabel}>
+        <Nav className={styles.root} aria-label={ariaLabelledBy ? undefined : (ariaLabelAttr ?? navAriaLabel)} aria-labelledby={ariaLabelledBy}>
           <Slottable>{children}</Slottable>
           <ul className={styles.root}>
             {/* Previous Button */}

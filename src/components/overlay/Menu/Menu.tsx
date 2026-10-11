@@ -53,6 +53,10 @@ export type MenuProps = {
   defaultSelectedKeys?: string[];
   /** Default opened submenu keys */
   defaultOpenKeys?: string[];
+  /** Accessible name for the menu. */
+  "aria-label"?: string;
+  /** ID of the element that labels the menu. Takes precedence over `aria-label`. */
+  "aria-labelledby"?: string;
 };
 
 const MenuInner = ({
@@ -61,6 +65,9 @@ const MenuInner = ({
   asChild = false,
   mode = "vertical",
   defaultOpenKeys = [],
+  // 標準の属性でも名前を付けられる（T341）。以前は受ける口が無く、渡しても黙って捨てられていた。
+  "aria-label": ariaLabelAttr,
+  "aria-labelledby": ariaLabelledBy,
 }: MenuProps) => {
   const [expandedItems, setExpandedItems] = useState<Set<string>>(
     new Set(defaultOpenKeys),
@@ -166,6 +173,8 @@ const MenuInner = ({
         ref={containerRef}
         className={classNames("wim-menu", styles.root, styles[mode], className)}
         role="menu"
+        aria-label={ariaLabelledBy ? undefined : ariaLabelAttr}
+        aria-labelledby={ariaLabelledBy}
         onKeyDown={handleKeyDown}
       >
         <Slottable>{children}</Slottable>

@@ -598,6 +598,8 @@
     "select_prop_styles": "Estilos personalizados para partes internas",
     "select_prop_value": "Valor selecionado (controlado)",
     "select_prop_width": "Largura fixa do campo (token de width, valor CSS ou número em px)",
+    "signaturePad_prop_aria-label": "Nome acessível para o canvas quando nenhum `label` visível é fornecido. Tem precedência sobre `canvasAriaLabel`.",
+    "signaturePad_prop_aria-labelledby": "ID do elemento que rotula o canvas quando nenhum `label` visível é fornecido.",
     "signaturePad_prop_canvasAriaLabel": "Rótulo Aria para o canvas",
     "signaturePad_prop_className": "Nome de classe CSS",
     "signaturePad_prop_clearLabel": "Rótulo personalizado para o botão de limpar",

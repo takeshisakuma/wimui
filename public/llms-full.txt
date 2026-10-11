@@ -1703,6 +1703,8 @@ so the unit does not have to be repeated in the label.
     - `required: boolean` — Whether to show the required indicator
     - `layout: "vertical" | "horizontal"` = "vertical" — Layout direction of label and field
     - `canvasAriaLabel: string` — Aria label for the canvas
+    - `aria-label: string` — Accessible name for the canvas when no visible `label` is provided. Takes precedence over `canvasAriaLabel`.
+    - `aria-labelledby: string` — ID of the element that labels the canvas when no visible `label` is provided.
 - **Slider** — An input to capture a numeric value from a specified range by dragging a knob
     - `value: number` — Current value (controlled)
     - `defaultValue: number` = 0 — Default value (uncontrolled)
@@ -2001,6 +2003,8 @@ origin while the card it was meant to cover was 1248x75.
     - `onClose: (id?: string) => void` — Callback when notification is closed
     - `closable: boolean` = true — Whether to show close button
     - `className: string` — Additional class name
+    - `aria-label: string` — Accessible name for the notification.
+    - `aria-labelledby: string` — ID of the element that labels the notification. Takes precedence over `aria-label`.
 - **Progress** — Progress bar
   - ⚠️ Not the same as elsewhere: Material's "Progress Indicator" covers indeterminate spinners as well. WIM's `Progress` is determinate and linear only — for the indeterminate case use `Spinner`.
     - `value: number` = 0 — Current value of the progress bar.
@@ -2114,6 +2118,8 @@ follows the theme and never needs a hand-mixed colour.
 @default true
     - `onClose: (id?: string) => void` — Called with the toast id when the toast is closed.
     - `className: string` — Additional CSS class name.
+    - `aria-label: string` — Accessible name for the toast.
+    - `aria-labelledby: string` — ID of the element that labels the toast. Takes precedence over `aria-label`.
 - **Tour** — Sequential guided walkthroughs to onboard users or highlight features
     - `steps: TourStep[]` (required) — Steps of the tour. Each step targets an element via a CSS selector.
     - `open: boolean` (required) — Whether the tour is shown.
@@ -2222,6 +2228,8 @@ Useful for URL-based pagination (e.g. wrap with a Link via PaginationPage asChil
     - `showTotal: (total: number, range: [number, number]) => React.ReactNode` — Function to display the total count
     - `showQuickJumper: boolean` = false — Whether to show quick jumper
     - `labels: { prevPage?: string; nextPage?: string; pageAriaLabel?: (page: number) => string; itemsPerPage?: string; goTo?: string; go?: string; pageSizeAriaLabel?: string; jumpToPageAriaLabel?: string; navAriaLabel?: string; totalLabel?: string; }` = {} — Labels for internationalization
+    - `aria-label: string` — Accessible name for the navigation landmark. Takes precedence over `labels.navAriaLabel`.
+    - `aria-labelledby: string` — ID of the element that labels the navigation landmark. Takes precedence over `aria-label`.
 - **SpeedDial** — Floating action button that expands sub-actions on hover or click.
     - `actions: SpeedDialAction[]` (required) — Actions to display when SpeedDial is open
     - `icon: keyof typeof ALL_ICONS` = "PlusIcon" — Icon name for the main button when closed
@@ -2479,6 +2487,8 @@ drops secondary text below the AA contrast floor.
     - `infiniteScroll: { hasMore: boolean; onLoadMore: () => void; threshold?: number; }` — Infinite-scroll configuration for dynamic loading
     - `className: string` — Additional class names
     - `ariaLabel: string` — Accessibility label for the grid
+    - `aria-label: string` — Accessible name for the grid. Takes precedence over `ariaLabel`.
+    - `aria-labelledby: string` — ID of the element that labels the grid. Takes precedence over `aria-label`.
 - **DescriptionList** — Key-value pairs
     - `children: React.ReactNode` (required) — DescriptionListItem elements
     - `className: string` — Additional class names
@@ -2503,6 +2513,8 @@ in; use `"center"` only when the empty state is the only thing in its region.
 - left: title and description on the left, accordion on the right (desktop and up).
     - `accordionProps: Omit<AccordionProps, "children">` — Props passed to the inner Accordion component.
     - `className: string` — Additional class names.
+    - `aria-label: string` — Accessible name for the section. A named section is exposed as a region landmark.
+    - `aria-labelledby: string` — ID of the element that labels the section. Takes precedence over `aria-label`.
 - **InfiniteScroll** — Infinite scroll control
     - `children: React.ReactNode` (required) — Content to display.
     - `hasMore: boolean` = false — Whether there is more data to load.
@@ -2786,6 +2798,8 @@ anything is measured; long text is truncated and read in full by assistive techn
     - `virtualThreshold: number` = 100 — Node count threshold at which virtualization kicks in.
     - `labels: { searchPlaceholder?: string; searchAriaLabel?: string; expandLabel?: (label: string) => string; collapseLabel?: (label: string) => string; treeAriaLabel?: string; }` = {} — Labels for internationalization
     - `labelId: string` — Accessibility label ID
+    - `aria-label: string` — Accessible name for the tree. Takes precedence over `labels.treeAriaLabel`.
+    - `aria-labelledby: string` — ID of the element that labels the tree. Takes precedence over `aria-label`.
     - `styles: { root?: string; item?: string; search?: string; searchInput?: string; labelContainer?: string; iconWrapper?: string; expandBtn?: string; checkbox?: string; icon?: string; }` — Custom styles for internal parts
 - **VirtualList** — Efficiently renders large lists by virtualizing off-screen items
     - `items: T[]` (required) — Array of items to display
@@ -2869,6 +2883,8 @@ dismissed by an outside click or Escape.
     - `mode: "vertical" | "horizontal" | "inline"` = "vertical" — Mode of the menu
     - `defaultSelectedKeys: string[]` — Default selected keys
     - `defaultOpenKeys: string[]` = [] — Default opened submenu keys
+    - `aria-label: string` — Accessible name for the menu.
+    - `aria-labelledby: string` — ID of the element that labels the menu. Takes precedence over `aria-label`.
 - **Popconfirm** — Confirmation overlay
     - `title: ReactNode` (required) — The title of the confirmation box
     - `description: ReactNode` — The description of the confirmation box
@@ -3484,6 +3500,8 @@ written in the markdown. Default `"2xl"` keeps the historical mapping
     - `index: number` — Numeric citation index shown as a badge (e.g. 1, 2, 3)
     - `domain: string` — Domain label shown below the title (auto-derived from url when omitted)
     - `className: string` — Additional CSS class
+    - `aria-label: string` — Accessible name for the citation.
+    - `aria-labelledby: string` — ID of the element that labels the citation. Takes precedence over `aria-label`.
 - **StreamingText** — Renders text with a typewriter-like animation, ideal for AI chat responses.
     - `content: string` (required) — The markdown text content to render
     - `isStreaming: boolean` = false — When true, a blinking cursor is shown at the end of the content

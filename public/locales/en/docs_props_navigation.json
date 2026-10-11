@@ -66,6 +66,8 @@
     "paginationPage_prop_asChild": "If true, merge page button props onto the child.",
     "paginationPage_prop_isActive": "Whether this page is the current page",
     "paginationPage_prop_page": "Page number this control represents",
+    "pagination_prop_aria-label": "Accessible name for the navigation landmark. Takes precedence over `labels.navAriaLabel`.",
+    "pagination_prop_aria-labelledby": "ID of the element that labels the navigation landmark. Takes precedence over `aria-label`.",
     "pagination_prop_asChild": "If true, merge nav props onto the child element.",
     "pagination_prop_children": "Optional child used when asChild is true",
     "pagination_prop_className": "Additional class names",

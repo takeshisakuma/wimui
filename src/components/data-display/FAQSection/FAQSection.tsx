@@ -29,6 +29,10 @@ export interface FAQSectionProps {
   accordionProps?: Omit<AccordionProps, "children">;
   /** Additional class names. */
   className?: string;
+  /** Accessible name for the section. A named section is exposed as a region landmark. */
+  "aria-label"?: string;
+  /** ID of the element that labels the section. Takes precedence over `aria-label`. */
+  "aria-labelledby"?: string;
 }
 
 /**
@@ -42,6 +46,9 @@ export const FAQSection = ({
   layout = "top",
   accordionProps,
   className,
+  // 標準の属性でも名前を付けられる（T341）。以前は受ける口が無く、渡しても黙って捨てられていた。
+  "aria-label": ariaLabelAttr,
+  "aria-labelledby": ariaLabelledBy,
 }: FAQSectionProps) => {
   const hasHeader = !!(title || description);
 
@@ -52,6 +59,8 @@ export const FAQSection = ({
         styles[`layout-${layout}`],
         className
       )}
+      aria-label={ariaLabelledBy ? undefined : ariaLabelAttr}
+      aria-labelledby={ariaLabelledBy}
     >
       {hasHeader && (
         <div className={styles.header}>
