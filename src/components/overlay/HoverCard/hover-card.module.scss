@@ -34,6 +34,10 @@
     border-radius: var(--wim-radius-overlay);
     box-shadow: var(--wim-shadow-overlay);
 
+    /* 画面の端からはみ出す分だけ、内側へ寄せる（T342。値は `useInlineFloating` が入れる）。
+       向きごとの `transform` とは別のプロパティなので、重ねて効く。 */
+    translate: var(--wim-floating-shift-x, 0) 0;
+
     /* 既定は「見えている」（Tooltip と同じ理由。アニメーションが止められても消えたままにしない）。 */
     animation: fadeIn var(--wim-duration-fast);
   
