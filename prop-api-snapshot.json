@@ -1298,6 +1298,10 @@
       "required": false,
       "type": "boolean"
     },
+    "Breadcrumb.children": {
+      "required": false,
+      "type": "React.ReactNode"
+    },
     "Breadcrumb.className": {
       "required": false,
       "type": "string"

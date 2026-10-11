@@ -12,4 +12,5 @@
 - `FieldTemplate`: 渡した要素の子（入力欄）が、ラベルとエラーのあいだの枠に入る
 - `Timeline` / `Carousel`: 渡した要素の子を、項目・スライドとして描く
 - `Stepper`: `children` を受けるようになった（`asChild` のときに根になる要素。`asChild` を付けないときは使わない）。これまでは、型が子を受けなかった
+- `Breadcrumb`: `asChild` を付けると、渡した要素が根（`nav` の代わり）になり、項目のリストがその中に描かれる。これまでは、中の `ol` が根になって `nav` が消え、渡した要素は使われなかった。`children` を受けるようになった（Stepper と同じ）
 - `Mentions`: `asChild` のとき、入力欄用の props（`label` / `placeholder` など）と `id` を、根の要素には広げなくなった（入力欄にだけ付く）

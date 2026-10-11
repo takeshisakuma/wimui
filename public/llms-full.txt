@@ -2143,6 +2143,8 @@ follows the theme and never needs a hand-mixed colour.
     - `className: string` — Additional CSS class name for the container.
     - `ariaLabel: string` — Accessible label of the navigation landmark. Defaults to a localized "breadcrumb" label.
     - `asChild: boolean` — If true, the breadcrumb will be rendered as its child, merging its props onto that child.
+    - `children: React.ReactNode` — The element that becomes the breadcrumb's root (in place of `nav`) when
+`asChild` is set. The list of items is rendered inside it. Ignored without `asChild`.
 - **CommandPalette** — Cmd+K search overlay (aka Command Bar, Quick Open)
     - `children: ReactNode` (required) — Palette parts (CommandPaletteTrigger, CommandPaletteContent, etc.).
     - `open: boolean` — Controlled open state. Use together with onOpenChange.

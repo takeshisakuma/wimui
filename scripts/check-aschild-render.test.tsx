@@ -59,7 +59,7 @@ const CASES: Case[] = [
   { name: "Code", Component: Code },
   { name: "Blockquote", Component: Blockquote },
   { name: "Link", Component: Link, props: { href: "#" } },
-  // Breadcrumb は items 必須でルート asChild の形が違う（子の Link 側）。ここでは見ない。
+  // Breadcrumb は items が要るので、下の NAMED_CASES で見る（T338）。
   { name: "BackTop", Component: BackTop },
   { name: "Button", Component: Button },
   { name: "IconButton", Component: IconButton, props: { "aria-label": "icon" } },
@@ -181,6 +181,8 @@ const NAMED_CASES: Record<string, { props?: Record<string, unknown>; inner?: Rea
   FieldTemplate: { props: { label: "Label", error: "Error" }, inner: <input /> },
   Timeline: { inner: [<div key="1">one</div>, <div key="2">two</div>] },
   Carousel: { inner: [<img key="1" alt="one" />, <img key="2" alt="two" />] },
+  // T338: 渡した要素を根（nav の代わり）にして、項目のリストをその中に描く
+  Breadcrumb: { props: { items: [{ label: "Home", href: "/" }, { label: "Current" }] } },
   // 前から正しく描けていたが、検査が見ていなかった 23 部品
   Dropdown: {},
   Menu: {},
@@ -227,8 +229,6 @@ const NOT_ROOT_SLOT: Record<string, string> = {
   SwipeAction: "差し替わるのは中身の枠（content）。根は、スワイプを受ける入れ物",
   PullToRefresh: "差し替わるのは中身の枠（content）。根は、引っ張りを受ける入れ物",
   Pagination: "差し替わるのは nav。`wim-pagination` は、その外の包みに付く（Textarea / Grid と同じく外側に 1 枚包む）",
-  // 判断待ち（T337 の残り）
-  Breadcrumb: "`items` で描く部品で、asChild を付けると nav が消えて中の ol が根になり、渡した子は描かれない。どうあるべきかが未決定",
 };
 
 const namedExports: Record<string, unknown> = {
@@ -283,6 +283,21 @@ describe("asChild render smoke: 名前で引く部品（T337）", () => {
     expect(root).toContainElement(screen.getByText("Label"));
     expect(root).toContainElement(screen.getByTestId("field-input"));
     expect(root).toContainElement(screen.getByText("Error"));
+  });
+
+  it("Breadcrumb は asChild で、利用者の要素を根にして、名前と項目のリストをそこに持たせる（T338）", () => {
+    render(
+      <navigationExports.Breadcrumb asChild items={[{ label: "Home", href: "/" }, { label: "Current" }]}>
+        <section data-testid="breadcrumb-root" />
+      </navigationExports.Breadcrumb>,
+    );
+    const root = screen.getByTestId("breadcrumb-root");
+    // 対照: 以前は、中の ol が根になり、渡した要素は描かれなかった
+    expect(root.tagName).toBe("SECTION");
+    expect(root).toHaveAttribute("aria-label");
+    expect(root.querySelector("ol")).not.toBeNull();
+    expect(root).toHaveTextContent("Home");
+    expect(root).toHaveTextContent("Current");
   });
 
   it("Timeline と Carousel は asChild で、利用者の要素の子を、項目・スライドとして描く", () => {

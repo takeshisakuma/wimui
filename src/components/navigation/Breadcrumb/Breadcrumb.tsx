@@ -1,5 +1,5 @@
 import React, { forwardRef } from "react";
-import { Slot } from "@radix-ui/react-slot";
+import { Slot, Slottable } from "@radix-ui/react-slot";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { commonNs } from "@/i18n/generated/common";
 import classNames from "classnames";
@@ -41,6 +41,11 @@ type BreadcrumbProps = {
    * If true, the breadcrumb will be rendered as its child, merging its props onto that child.
    */
   asChild?: boolean;
+  /**
+   * The element that becomes the breadcrumb's root (in place of `nav`) when
+   * `asChild` is set. The list of items is rendered inside it. Ignored without `asChild`.
+   */
+  children?: React.ReactNode;
 };
 
 export const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(({
@@ -50,6 +55,7 @@ export const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(({
   className,
   ariaLabel,
   asChild,
+  children,
   ...props
 }, ref) => {
   const { t } = useWimTranslation(commonNs);
@@ -142,6 +148,10 @@ export const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(({
           );
         })}
       </ol>
+      {/* asChild のときは、利用者の要素を根（`nav` の代わり）にして、項目のリストをその中に描く（T338）。
+          以前は、Slot の子がリストの `ol` 1 つだったので、`ol` が根になって `nav` が消え、利用者が渡した
+          要素は使われなかった（例外は出ない）。 */}
+      {asChild ? <Slottable>{children}</Slottable> : null}
     </Component>
   );
 });
