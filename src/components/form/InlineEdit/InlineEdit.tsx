@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useId } from "react";
 import classNames from "classnames";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { commonNs } from "@/i18n/generated/common";
@@ -61,6 +61,12 @@ export const InlineEdit = React.forwardRef<HTMLDivElement, InlineEditProps>(
   ) => {
     const { t } = useWimTranslation(commonNs);
     const [isEditing, setIsEditing] = useState(false);
+    // 見えるラベルを、操作要素の名前にする（T339）。以前は、FieldTemplate にラベルを渡すだけで、
+    // ボタンとも入力欄とも結んでいなかった ── label を渡しても、編集中の入力欄は名前が空だった。
+    // 部品のラベルがあるときは、それが名前になる（利用者の aria-label / aria-labelledby は、無いときだけ通す。T328 と同じ決め方）。
+    const generatedId = useId();
+    const labelId = label ? `wim-inline-edit-${generatedId}-label` : undefined;
+    const textId = `wim-inline-edit-${generatedId}-text`;
     const [savedValue, setSavedValue] = useState(defaultValue ?? "");
     const [internalValue, setInternalValue] = useState(defaultValue ?? "");
     const inputRef = useRef<HTMLInputElement>(null);
@@ -120,7 +126,7 @@ export const InlineEdit = React.forwardRef<HTMLDivElement, InlineEditProps>(
     }, [isEditing]);
 
     return (
-      <FieldTemplate label={label} className={className}>
+      <FieldTemplate label={label} labelId={labelId} className={className}>
       <div
         ref={ref}
         className={classNames("wim-inline-edit", 
@@ -139,8 +145,8 @@ export const InlineEdit = React.forwardRef<HTMLDivElement, InlineEditProps>(
               onKeyDown={handleKeyDown}
               disabled={disabled}
               placeholder={placeholder}
-              aria-label={ariaLabel}
-              aria-labelledby={ariaLabelledBy}
+              aria-label={labelId ? undefined : ariaLabel}
+              aria-labelledby={labelId ?? ariaLabelledBy}
               aria-describedby={ariaDescribedBy}
               fullWidth={fullWidth}
               className={localStyles.input}
@@ -176,12 +182,14 @@ export const InlineEdit = React.forwardRef<HTMLDivElement, InlineEditProps>(
             }}
             tabIndex={disabled ? -1 : 0}
             role="button"
-            aria-label={ariaLabel}
-            aria-labelledby={ariaLabelledBy}
+            aria-label={labelId ? undefined : ariaLabel}
+            // 表示中は、ラベルのあとに中身の文字を並べる（「Title Draft」）。ラベルだけを参照すると、
+            // ボタンの中身（いまの値）が名前から消える。
+            aria-labelledby={labelId ? `${labelId} ${textId}` : ariaLabelledBy}
             aria-describedby={ariaDescribedBy}
             aria-disabled={disabled}
           >
-            <span className={classNames(localStyles.text, !currentValue && localStyles.placeholder)}>
+            <span id={textId} className={classNames(localStyles.text, !currentValue && localStyles.placeholder)}>
               {currentValue || placeholder || "\u00A0"}
             </span>
             <span className={localStyles.editIconWrapper}>

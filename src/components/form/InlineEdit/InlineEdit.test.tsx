@@ -188,6 +188,37 @@ describe("InlineEdit", () => {
     expect(screen.getByText("Nickname")).toBeInTheDocument();
   });
 
+  describe("見えるラベルが、操作要素の名前になる（T339）", () => {
+    it("表示中のボタンは、ラベルと中身の文字の両方が名前になる", () => {
+      render(<InlineEdit defaultValue="Draft" label="Title" />);
+      // 対照: 以前は、名前が中身の文字（"Draft"）だけで、ラベルと結ばれていなかった
+      expect(screen.getByRole("button")).toHaveAccessibleName("Title Draft");
+    });
+
+    it("編集中の入力欄は、ラベルが名前になる", async () => {
+      const user = userEvent.setup();
+      render(<InlineEdit defaultValue="Draft" label="Title" />);
+      await user.click(screen.getByRole("button", { name: "Title Draft" }));
+      // 対照: 以前は、名前が空だった
+      expect(screen.getByRole("textbox")).toHaveAccessibleName("Title");
+    });
+
+    it("label があるときは、渡した aria-label より、見えるラベルが名前になる", async () => {
+      const user = userEvent.setup();
+      render(<InlineEdit defaultValue="Draft" label="Title" aria-label="Ignored" />);
+      await user.click(screen.getByRole("button", { name: "Title Draft" }));
+      expect(screen.getByRole("textbox")).toHaveAccessibleName("Title");
+      expect(screen.getByRole("textbox")).not.toHaveAttribute("aria-label");
+    });
+
+    it("label が無いときは、渡した aria-label がこれまでどおり名前になる", async () => {
+      const user = userEvent.setup();
+      render(<InlineEdit defaultValue="Draft" aria-label="Title" />);
+      await user.click(screen.getByRole("button", { name: "Title" }));
+      expect(screen.getByRole("textbox")).toHaveAccessibleName("Title");
+    });
+  });
+
   it("renders in fullWidth mode in both preview and edit states", async () => {
     const user = userEvent.setup();
     render(<InlineEdit defaultValue="Text" fullWidth />);
