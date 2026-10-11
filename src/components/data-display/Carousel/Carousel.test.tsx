@@ -223,18 +223,27 @@ describe("Carousel", () => {
     // Indices: 0, 1, 2, 3, 4, 5
     // Initial: 2
     
-    const track = screen.getByRole("region").querySelector(`.${styles.track}`)!;
+    const track = screen.getByRole("region").querySelector(`.${styles.track}`) as HTMLElement;
+    // 動いた先（トラックの位置）を見る（CI-19）。以前は、期待が 1 つも無かった。
+    const initial = track.style.transform;
     
-    // Trigger transition end at end boundary
-    // Simulate being at index 4 (last original item + 1)
-    fireEvent.click(screen.getByRole("button", { name: /next/i })); // 2 -> 3
-    fireEvent.click(screen.getByRole("button", { name: /next/i })); // 3 -> 4 (start of clone start)
-    
-    // TransitionEnd should jump back to index 2
+    // 位置は、複製を含む並びの中の番号 × 100%。最初は 2 番目（Orig1）＝ -200%。
+    expect(initial).toBe("translateX(-200%)");
+
+    // 動いている最中のクリックは捨てられるので、1 回ごとにトランジションを終わらせる。
+    // **以前のテストは、続けて 2 回クリックしていた** ── 2 回目が捨てられて端に届かず、
+    // 「端で元の位置へ飛ぶ」という題の動きは、一度も起きていなかった。
+    fireEvent.click(screen.getByRole("button", { name: /next/i })); // 2 -> 3（Orig2）
+    expect(track.style.transform).toBe("translateX(-300%)");
+    fireEvent.transitionEnd(track); // 端ではないので、飛ばない
+    expect(track.style.transform).toBe("translateX(-300%)");
+
+    fireEvent.click(screen.getByRole("button", { name: /next/i })); // 3 -> 4（先頭の複製）
+    expect(track.style.transform).toBe("translateX(-400%)");
+
+    // 端（複製）で動き終わると、同じ中身の元の位置（2 番目）へ飛ぶ
     fireEvent.transitionEnd(track);
-    // After jump, index should be 2 again.
-    // We can't easily check state, but we can check if it's transitioning
-    // Actually, Carousel sets isTransitioning(false) in handleTransitionEnd
+    expect(track.style.transform).toBe(initial);
   });
 
   // T263: 操作の置き場。**jsdom で確かめられるのはクラスが付くところまで**で、

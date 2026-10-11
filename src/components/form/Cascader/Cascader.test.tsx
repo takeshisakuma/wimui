@@ -38,6 +38,14 @@ const options: CascaderOption[] = [
   },
 ];
 
+/** 引き金の `aria-activedescendant` が指している項目（＝いまキーボードで指している項目）。 */
+const activeOption = (trigger: HTMLElement) => {
+  const id = trigger.getAttribute("aria-activedescendant");
+  const el = id ? document.getElementById(id) : null;
+  if (!el) throw new Error(`aria-activedescendant（${id}）が指す要素が無い`);
+  return el;
+};
+
 describe("Cascader", () => {
   it("renders with placeholder", () => {
     render(<Cascader options={options} placeholder="Please select" />);
@@ -222,19 +230,22 @@ describe("Cascader", () => {
     fireEvent.click(trigger);
     // Move to last item first
     fireEvent.keyDown(trigger, { key: "End" });
+    // 動いた先（いま指している項目）を見る（CI-19）。以前は「開いたままである」だけを見ていて、
+    // Home や End が何もしなくても通った。
+    expect(activeOption(trigger)).toHaveTextContent("Jiangsu");
     // Then Home to go back to first
     fireEvent.keyDown(trigger, { key: "Home" });
-    // Verify dropdown still open (focus is on first item)
-    await waitFor(() => expect(screen.queryByText("Zhejiang")).not.toBeNull());
+    expect(activeOption(trigger)).toHaveTextContent("Zhejiang");
   });
 
   it("navigates to last item with End key", async () => {
     render(<Cascader options={options} />);
     const trigger = screen.getByRole("combobox");
     fireEvent.click(trigger);
+    // 対照: 開いた直後は、最後の項目を指していない
+    expect(activeOption(trigger)).not.toHaveTextContent("Jiangsu");
     fireEvent.keyDown(trigger, { key: "End" });
-    // Dropdown stays open
-    await waitFor(() => expect(screen.queryByText("Jiangsu")).not.toBeNull());
+    expect(activeOption(trigger)).toHaveTextContent("Jiangsu");
   });
 
   it("opens dropdown with Space key when closed", async () => {
@@ -291,19 +302,27 @@ describe("Cascader", () => {
     render(<Cascader options={options} />);
     const trigger = screen.getByRole("combobox");
     fireEvent.click(trigger);
-    // Press ArrowUp multiple times from the top
+    // 対照: まず下へ動けること、ArrowUp で戻れることを見てから、先頭でもう一度押す（CI-19）。
+    fireEvent.keyDown(trigger, { key: "ArrowDown" });
+    expect(activeOption(trigger)).toHaveTextContent("Jiangsu");
     fireEvent.keyDown(trigger, { key: "ArrowUp" });
+    expect(activeOption(trigger)).toHaveTextContent("Zhejiang");
     fireEvent.keyDown(trigger, { key: "ArrowUp" });
-    // Dropdown still open (no crash)
-    await waitFor(() => expect(screen.queryByText("Zhejiang")).not.toBeNull());
+    expect(activeOption(trigger)).toHaveTextContent("Zhejiang");
+    expect(screen.getByRole("combobox")).toHaveAttribute("aria-expanded", "true");
   });
 
   it("ArrowLeft at level 0 does not decrease focusedLevel below 0", async () => {
     render(<Cascader options={options} />);
     const trigger = screen.getByRole("combobox");
     fireEvent.click(trigger);
+    // 対照: まず ArrowRight で次の段へ入れること、ArrowLeft で戻れることを見てから、最初の段でもう一度押す（CI-19）。
+    fireEvent.keyDown(trigger, { key: "ArrowRight" });
+    expect(activeOption(trigger)).toHaveTextContent("Hangzhou");
     fireEvent.keyDown(trigger, { key: "ArrowLeft" });
-    // Dropdown stays open (level 0, ArrowLeft is ignored)
-    await waitFor(() => expect(screen.queryByText("Zhejiang")).not.toBeNull());
+    expect(activeOption(trigger)).toHaveTextContent("Zhejiang");
+    fireEvent.keyDown(trigger, { key: "ArrowLeft" });
+    expect(activeOption(trigger)).toHaveTextContent("Zhejiang");
+    expect(screen.getByRole("combobox")).toHaveAttribute("aria-expanded", "true");
   });
 });
