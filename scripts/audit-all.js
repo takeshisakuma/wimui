@@ -345,6 +345,13 @@ const checks = [
     command: "node scripts/check-aschild.js",
   },
   {
+    // 部品のイベントと style を、props のスプレッドより前に書くと、利用者が同じ名前を渡した時点で
+    // 部品の処理や値が消える（T347・#981）。型もテストも通るので、赤が出ない。
+    category: "lib",
+    name: "Event handlers / style placed after the props spread",
+    command: "node scripts/check-spread-order.js",
+  },
+  {
     category: "lib",
     name: "Hardcoded Values (colors / px ratchet)",
     command: "node scripts/check-hardcoded-values.js",

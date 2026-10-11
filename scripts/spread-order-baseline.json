@@ -1,0 +1,16 @@
+{
+  "comment": "部品のイベント・style を props のスプレッドより前に書いているが、直さないと決めたもの（scripts/check-spread-order.js）。増やさない。理由の無いものを足さない。",
+  "known": [
+    "src/components/data-display/Calendar/Calendar.tsx :: <div> :: onKeyDown",
+    "src/components/data-display/Carousel/Carousel.tsx :: <Component> :: onBlur",
+    "src/components/data-display/Carousel/Carousel.tsx :: <Component> :: onFocus",
+    "src/components/data-display/Carousel/Carousel.tsx :: <Component> :: onKeyDown",
+    "src/components/data-display/Carousel/Carousel.tsx :: <Component> :: onMouseEnter",
+    "src/components/data-display/Carousel/Carousel.tsx :: <Component> :: onMouseLeave",
+    "src/components/form/Combobox/Combobox.tsx :: <input> :: onFocus",
+    "src/components/form/Combobox/Combobox.tsx :: <input> :: onKeyDown",
+    "src/components/layout/Navbar/Navbar.tsx :: <HamburgerMenu> :: onOpenChange",
+    "src/components/navigation/Breadcrumb/Breadcrumb.tsx :: <Component> :: onKeyDown",
+    "src/components/navigation/Stepper/Stepper.tsx :: <Component> :: onKeyDown"
+  ]
+}

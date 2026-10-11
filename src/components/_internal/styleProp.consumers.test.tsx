@@ -11,6 +11,8 @@ import { Button } from "../form/Button/Button";
 import { Textarea } from "../form/Textarea/Textarea";
 import { ImageCompare } from "../media/ImageCompare/ImageCompare";
 import { Dashboard, DashboardWidgetCard } from "../layout/Dashboard/Dashboard";
+import { AppShell } from "../layout/AppShell/AppShell";
+import { Sidebar } from "../layout/Sidebar/Sidebar";
 
 vi.mock("react-i18next", async () => ({
   I18nContext: (await import("react")).createContext(null),
@@ -58,6 +60,29 @@ describe("style を渡しても、部品が入れた値が残る", () => {
     const style = container.querySelector('[style*="outline-color"]')?.getAttribute("style") ?? "";
     expect(style).toContain("--widget-span: 2");
     expect(style).toContain("--widget-row-span: 2");
+  });
+
+  // この 2 つは、検査（scripts/check-spread-order.js）を書いて流したときに出た。style の値が変数（`style`）
+  // だったので、属性の中身を読む数え方では拾えていなかった。
+  it("AppShell: maxWidth で入れた幅の変数が残る", () => {
+    const { container } = render(
+      <AppShell maxWidth={960} style={USER_STYLE}>
+        body
+      </AppShell>,
+    );
+    const style = container.querySelector('[style*="outline-color"]')?.getAttribute("style") ?? "";
+    expect(style).toContain("--wim-appshell-max-width: 960px");
+  });
+
+  it("Sidebar: width で入れた幅の変数が残る", () => {
+    const { container } = render(
+      <Sidebar width={280} style={USER_STYLE}>
+        nav
+      </Sidebar>,
+    );
+    const style = container.querySelector("aside")!.getAttribute("style") ?? "";
+    expect(style).toContain("--wim-sidebar-width: 280px");
+    expect(style).toContain("outline-color: red");
   });
 
   it("利用者の style は、同じ性質では部品の値に勝つ（ImageCompare の width）", () => {
