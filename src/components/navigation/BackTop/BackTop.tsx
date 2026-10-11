@@ -22,6 +22,10 @@ export interface BackTopProps {
   style?: React.CSSProperties;
   /** Accessible label for the button */
   "aria-label"?: string;
+  /** ID of the element that labels the button. Takes precedence over `aria-label`. */
+  "aria-labelledby"?: string;
+  /** ID of the element that describes the button. */
+  "aria-describedby"?: string;
   /** Whether to render as a child element. */
   asChild?: boolean;
 }
@@ -36,6 +40,9 @@ export const BackTop = React.forwardRef<HTMLDivElement, BackTopProps>(
       className,
       style,
       "aria-label": ariaLabel,
+      // 参照で付ける名前と説明も、ボタンへ届ける（T340）。以前は受ける口が無く、渡しても捨てられていた。
+      "aria-labelledby": ariaLabelledBy,
+      "aria-describedby": ariaDescribedBy,
       asChild = false,
     },
     ref,
@@ -122,7 +129,9 @@ export const BackTop = React.forwardRef<HTMLDivElement, BackTopProps>(
         onClick={scrollToTop}
         role="button"
         tabIndex={0}
-        aria-label={ariaLabel ?? t("a11y.back_to_top")}
+        aria-label={ariaLabelledBy ? undefined : (ariaLabel ?? t("a11y.back_to_top"))}
+        aria-labelledby={ariaLabelledBy}
+        aria-describedby={ariaDescribedBy}
         onKeyDown={(e) => {
           if (e.key === "Enter" || e.key === " ") {
             e.currentTarget.click();

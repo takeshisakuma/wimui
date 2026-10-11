@@ -23,6 +23,8 @@ export interface VirtualListProps<T> {
   "aria-label"?: string;
   /** ID of the element that labels the list */
   "aria-labelledby"?: string;
+  /** ID of the element that describes the list */
+  "aria-describedby"?: string;
 }
 
 const VirtualListInner = <T,>(
@@ -37,6 +39,8 @@ const VirtualListInner = <T,>(
     role = "list",
     "aria-label": ariaLabel,
     "aria-labelledby": ariaLabelledby,
+    // 説明の参照も、リストへ届ける（T340）。以前は受ける口が無く、渡しても捨てられていた。
+    "aria-describedby": ariaDescribedby,
   }: VirtualListProps<T>,
   ref: React.ForwardedRef<HTMLDivElement>
 ) => {
@@ -85,6 +89,7 @@ const VirtualListInner = <T,>(
       tabIndex={0}
       aria-label={ariaLabel}
       aria-labelledby={ariaLabelledby}
+      aria-describedby={ariaDescribedby}
     >
       <div
         className={styles.viewport}

@@ -87,6 +87,12 @@ export interface QueryBuilderProps {
    * Labels for internationalization
    */
   labels?: QueryBuilderLabels;
+  /** Accessible name for the query builder region. Takes precedence over `labels.regionAriaLabel`. */
+  "aria-label"?: string;
+  /** ID of the element that labels the query builder region. Takes precedence over `aria-label`. */
+  "aria-labelledby"?: string;
+  /** ID of the element that describes the query builder region. */
+  "aria-describedby"?: string;
 }
 
 // VRT 環境（vrt.spec.ts が window.__VRT__ を注入）ではスクリーンショットに
@@ -163,6 +169,11 @@ export const QueryBuilder = ({
   className,
   id: customId,
   labels = {},
+  // 標準の属性でも、領域（role="region"）に名前と説明を付けられる（T340）。以前は受ける口が無く、
+  // 渡しても黙って捨てられていた。名前は、標準の属性が labels.regionAriaLabel に勝つ。
+  "aria-label": ariaLabel,
+  "aria-labelledby": ariaLabelledBy,
+  "aria-describedby": ariaDescribedBy,
 }: QueryBuilderProps) => {
   const { t } = useWimTranslation(componentsNs);
   const {
@@ -515,7 +526,9 @@ export const QueryBuilder = ({
     <div
       id={id}
       role="region"
-      aria-label={regionAriaLabel}
+      aria-label={ariaLabelledBy ? undefined : (ariaLabel ?? regionAriaLabel)}
+      aria-labelledby={ariaLabelledBy}
+      aria-describedby={ariaDescribedBy}
       className={classNames("wim-query-builder", styles.root, className)}
     >
       <div

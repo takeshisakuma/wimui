@@ -1075,6 +1075,8 @@ so the unit does not have to be repeated in the label.
     - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size of the button
     - `className: string` — Additional class names
     - `aria-label: string` — Accessible label for the button
+    - `aria-labelledby: string` — ID of the element that labels the button. Takes precedence over `aria-label`.
+    - `aria-describedby: string` — ID of the element that describes the button.
     - `copyLabel: string` — Tooltip label before copying
     - `copiedLabel: string` — Tooltip label after copying
     - `asChild: boolean` = false — Whether to render as a child element.
@@ -1178,6 +1180,9 @@ them. Leave it undefined to let the area track its own selection.
     - `required: boolean` — Whether to show the required indicator
     - `layout: "vertical" | "horizontal"` = "vertical" — Layout direction of label and field
     - `size: InteractiveAreaProps["size"]` = "md" — Size of the drop area
+    - `aria-label: string` — Accessible name for the drop area when no visible `label` is provided.
+    - `aria-labelledby: string` — ID of the element that labels the drop area when no visible `label` is provided.
+    - `aria-describedby: string` — ID of the element that describes the drop area. Announced together with the error message.
 - **FieldError** — Validation messages
     - `content: string` (required) — Error message text
     - `className: string` — Additional class names
@@ -1225,6 +1230,9 @@ it undefined to let the field track its own selection.
     - `error: string` — Error message
     - `required: boolean` — Whether to show the required indicator
     - `layout: "vertical" | "horizontal"` = "vertical" — Layout direction of label and field
+    - `aria-label: string` — Accessible name for the choose-file button when no visible `label` is provided.
+    - `aria-labelledby: string` — ID of the element that labels the choose-file button when no visible `label` is provided.
+    - `aria-describedby: string` — ID of the element that describes the choose-file button. Announced together with the error message.
 - **FloatButton** — Floating action buttons
     - `asChild: boolean` = false — If true, the button will be rendered as its child, merging its props onto that child.
     - `iconName: "CircleIcon" | "SquareIcon" | "LoadingIcon" | "ExternalLinkIcon" | "ArrowUpIcon" | string` = "CircleIcon" — Icon name from the library
@@ -1507,6 +1515,9 @@ so the unit does not have to be repeated in the label.
     - `className: string` — Additional class name
     - `id: string` — Unique ID for the component
     - `labels: QueryBuilderLabels` = {} — Labels for internationalization
+    - `aria-label: string` — Accessible name for the query builder region. Takes precedence over `labels.regionAriaLabel`.
+    - `aria-labelledby: string` — ID of the element that labels the query builder region. Takes precedence over `aria-label`.
+    - `aria-describedby: string` — ID of the element that describes the query builder region.
 - **Radio** — Single choice
     - `asChild: boolean` = false — Whether to render as a child element.
     - `children: React.ReactNode` — Label content rendered next to the radio
@@ -2134,6 +2145,8 @@ follows the theme and never needs a hand-mixed colour.
     - `className: string` — Additional class names
     - `style: React.CSSProperties` — Style attribute
     - `aria-label: string` — Accessible label for the button
+    - `aria-labelledby: string` — ID of the element that labels the button. Takes precedence over `aria-label`.
+    - `aria-describedby: string` — ID of the element that describes the button.
     - `asChild: boolean` = false — Whether to render as a child element.
 - **Breadcrumb** — Location trace (aka Path Bar, Path Control)
     - `items: BreadcrumbItem[]` (required) — Items to display, from the root to the current page.
@@ -2785,6 +2798,7 @@ anything is measured; long text is truncated and read in full by assistive techn
     - `role: string` = "list" — Role of the whole list (for accessibility)
     - `aria-label: string` — Accessible label
     - `aria-labelledby: string` — ID of the element that labels the list
+    - `aria-describedby: string` — ID of the element that describes the list
 
 ### overlay — `import { … } from "wimui/overlay"`
 

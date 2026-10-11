@@ -384,6 +384,7 @@
     "treeView_prop_styles": "Estilos personalizados para partes internas",
     "treeView_prop_virtualThreshold": "Limite de contagem de nós a partir do qual a virtualização é ativada.",
     "treeView_prop_width": "Largura da árvore (valor CSS ou número em px)",
+    "virtualList_prop_aria-describedby": "ID do elemento que descreve a lista",
     "virtualList_prop_aria-label": "Rótulo acessível",
     "virtualList_prop_aria-labelledby": "ID do elemento que rotula a lista",
     "virtualList_prop_className": "Nomes de classe adicionais",

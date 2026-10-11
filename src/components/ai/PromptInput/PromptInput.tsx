@@ -72,6 +72,10 @@ export const PromptInput = React.forwardRef<HTMLTextAreaElement, PromptInputProp
       required,
       layout,
       id: customId,
+      // 名前と説明の参照は、包みではなく入力欄へ届ける（T340）。以前は、包みの div に付いて読まれなかった。
+      "aria-label": ariaLabel,
+      "aria-labelledby": ariaLabelledBy,
+      "aria-describedby": ariaDescribedBy,
       ...props
     },
     ref
@@ -169,10 +173,10 @@ export const PromptInput = React.forwardRef<HTMLTextAreaElement, PromptInputProp
               disabled={disabled || loading}
               maxLength={maxLength}
               aria-invalid={!!error}
-              aria-describedby={errorId}
-              aria-labelledby={label ? labelId : undefined}
+              aria-describedby={[ariaDescribedBy, errorId].filter(Boolean).join(" ") || undefined}
+              aria-labelledby={label ? labelId : ariaLabelledBy}
               // placeholder 未指定のストーリー/利用でも名無しにならないよう内蔵ラベル（axe: label）
-              aria-label={label ? undefined : t("prompt_input.aria_label")}
+              aria-label={label || ariaLabelledBy ? undefined : (ariaLabel ?? t("prompt_input.aria_label"))}
               aria-required={required}
             />
 

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useId, useState } from "react";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { commonNs } from "@/i18n/generated/common";
 import classNames from "classnames";
@@ -88,6 +88,11 @@ export const ThemeToggle = React.forwardRef<HTMLDivElement, ThemeToggleProps>(
       className,
       asChild = false,
       children,
+      // 名前と説明の参照は、読まれる要素へ届ける（T340）。分割の形では group、アイコンの形ではボタン。
+      // 以前は、アイコンの形で包みの div に付いて読まれなかった。
+      "aria-label": ariaLabel,
+      "aria-labelledby": ariaLabelledBy,
+      "aria-describedby": ariaDescribedBy,
       ...props
     },
     ref,
@@ -134,14 +139,18 @@ export const ThemeToggle = React.forwardRef<HTMLDivElement, ThemeToggleProps>(
       selectMode(next);
     };
 
+    const generatedId = useId();
     const Component = asChild ? Slot : "div";
+    const buttonId = `wim-theme-toggle-${generatedId}`;
 
     if (variant === "segmented") {
       return (
         <Component
           ref={ref}
           role="group"
-          aria-label={toggle}
+          aria-label={ariaLabelledBy ? undefined : (ariaLabel ?? toggle)}
+          aria-labelledby={ariaLabelledBy}
+          aria-describedby={ariaDescribedBy}
           className={classNames("wim-theme-toggle", styles.segmented, styles[size], className)}
           {...props}
         >
@@ -175,7 +184,12 @@ export const ThemeToggle = React.forwardRef<HTMLDivElement, ThemeToggleProps>(
         <button
           type="button"
           className={classNames(styles.iconButton, styles[size])}
-          aria-label={`${toggle} (${modeLabels[current]})`}
+          // いまのモードは、名前の後ろに必ず付ける（利用者の名前だけにすると、状態が読まれなくなる）。
+          // 参照で名前を付けるときは、参照のあとに自分自身を並べて、「外の名前 + モード」にする。
+          id={buttonId}
+          aria-label={ariaLabelledBy ? modeLabels[current] : `${ariaLabel ?? toggle} (${modeLabels[current]})`}
+          aria-labelledby={ariaLabelledBy ? `${ariaLabelledBy} ${buttonId}` : undefined}
+          aria-describedby={ariaDescribedBy}
           title={modeLabels[current]}
           onClick={cycle}
         >

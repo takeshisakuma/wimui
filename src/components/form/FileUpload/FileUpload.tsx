@@ -47,6 +47,12 @@ type FileUploadProps = {
   required?: boolean;
   /** Layout direction of label and field */
   layout?: "vertical" | "horizontal";
+  /** Accessible name for the choose-file button when no visible `label` is provided. */
+  "aria-label"?: string;
+  /** ID of the element that labels the choose-file button when no visible `label` is provided. */
+  "aria-labelledby"?: string;
+  /** ID of the element that describes the choose-file button. Announced together with the error message. */
+  "aria-describedby"?: string;
 };
 
 /**
@@ -68,6 +74,11 @@ export const FileUpload = ({
   error,
   required,
   layout = "vertical",
+  // 見えるラベルを置かないときに、操作要素へ名前と説明を付ける口（T340）。以前は受ける口が無く、
+  // 渡しても黙って捨てられていた。
+  "aria-label": ariaLabel,
+  "aria-labelledby": ariaLabelledBy,
+  "aria-describedby": ariaDescribedBy,
 }: FileUploadProps) => {
   const { t } = useWimTranslation(formNs);
   const generatedId = React.useId();
@@ -78,7 +89,7 @@ export const FileUpload = ({
   // aria-allowed-attr）。必須であることは説明として渡す。可視の必須バッジは
   // FieldTemplate 側で aria-hidden なので、これが唯一の読み上げ経路になる。
   const requiredId = required ? `${id}-required` : undefined;
-  const describedBy = [errorId, requiredId].filter(Boolean).join(" ") || undefined;
+  const describedBy = [ariaDescribedBy, errorId, requiredId].filter(Boolean).join(" ") || undefined;
 
   const inputRef = useRef<HTMLInputElement>(null);
   const [selectedFiles, setSelectedFiles] = useState<FileList | null>(null);
@@ -143,7 +154,8 @@ export const FileUpload = ({
           icon={iconName}
           iconPosition={iconPosition}
           size={size}
-          aria-labelledby={labelId}
+          aria-labelledby={labelId ?? ariaLabelledBy}
+          aria-label={labelId || ariaLabelledBy ? undefined : ariaLabel}
           aria-describedby={describedBy}
           aria-invalid={error ? true : undefined}
         >{buttonLabel ?? t("fileupload.button")}</Button>

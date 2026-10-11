@@ -41,6 +41,12 @@ type DropzoneProps = {
   layout?: "vertical" | "horizontal";
   /** Size of the drop area */
   size?: InteractiveAreaProps["size"];
+  /** Accessible name for the drop area when no visible `label` is provided. */
+  "aria-label"?: string;
+  /** ID of the element that labels the drop area when no visible `label` is provided. */
+  "aria-labelledby"?: string;
+  /** ID of the element that describes the drop area. Announced together with the error message. */
+  "aria-describedby"?: string;
 };
 
 /**
@@ -60,6 +66,11 @@ export const Dropzone = ({
   required,
   layout = "vertical",
   size = "md",
+  // 見えるラベルを置かないときに、操作要素へ名前と説明を付ける口（T340）。以前は受ける口が無く、
+  // 渡しても黙って捨てられていた。
+  "aria-label": ariaLabel,
+  "aria-labelledby": ariaLabelledBy,
+  "aria-describedby": ariaDescribedBy,
 }: DropzoneProps) => {
   const { t } = useWimTranslation(formNs);
   const resolvedDescription = description ?? t("dropzone.description");
@@ -152,8 +163,9 @@ export const Dropzone = ({
             handleClick();
           }
         }}
-        aria-labelledby={labelId}
-        aria-describedby={errorId}
+        aria-labelledby={labelId ?? ariaLabelledBy}
+        aria-label={labelId || ariaLabelledBy ? undefined : ariaLabel}
+        aria-describedby={[ariaDescribedBy, errorId].filter(Boolean).join(" ") || undefined}
         aria-required={required}
         aria-invalid={!!error}
         icon={
