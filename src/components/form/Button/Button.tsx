@@ -9,6 +9,7 @@ import type { WimColor, ComponentSizeBasic, ButtonVariant, ButtonIntent } from "
 import { getColorValue } from "../../../utilities/style-utils";
 import { useMergedRef } from "../../../hooks/useMergedRef";
 import { LoadingIcon } from "@/icon";
+import { isDev } from "@/utilities/dev-utils";
 
 export type ButtonProps = React.ComponentPropsWithoutRef<"button"> & {
   /**
@@ -24,7 +25,7 @@ export type ButtonProps = React.ComponentPropsWithoutRef<"button"> & {
   variant?: ButtonVariant;
   /** Design intent of the button (visual / semantic state). Unrelated to the ARIA role attribute. */
   intent?: ButtonIntent;
-  /** Icon name or custom icon element */
+  /** Icon name or custom icon element. An icon-only button (no children) needs `aria-label` or `aria-labelledby`: the icon name is not used as the accessible name. */
   icon?: React.ComponentProps<typeof Icon>["name"] | React.ReactNode;
   /** Position of the icon relative to the label */
   iconPosition?: "left" | "right";
@@ -115,12 +116,30 @@ export const Button = React.forwardRef<
     if (typeof ariaLabelProp === "string") {
       resolvedAriaLabel = ariaLabelProp;
     } else if (ariaLabelProp !== false) {
-      if (!children && typeof icon === "string") {
-        resolvedAriaLabel = icon;
-      } else if (loading) {
+      // アイコンだけのボタンに、アイコン名（「CopyIcon」など）を名前として付けない（T345）。空ではないので
+      // axe は通るが、「CopyIcon、ボタン」と読まれるだけで、何のボタンかは伝わらない。名前を付けずに、
+      // 検査に落とさせる（FloatButton の T319 と同じ判断）。
+      if (loading && (children || typeof icon !== "string")) {
         resolvedAriaLabel = t("a11y.loading");
       }
     }
+
+    // 名前の出どころが 1 つも無いアイコンだけのボタンは、開発時に知らせる。asChild のときは、名前は
+    // 子の要素が持つので、ここでは判定しない。
+    const isNameless =
+      !asChild &&
+      !children &&
+      !!icon &&
+      typeof ariaLabelProp !== "string" &&
+      !props["aria-labelledby"] &&
+      !props.title;
+    React.useEffect(() => {
+      if (isDev && isNameless) {
+        console.warn(
+          "[wimui] Button has an icon but no accessible name. Pass `aria-label` (or `aria-labelledby`) that describes the action.",
+        );
+      }
+    }, [isNameless]);
 
     const justifyStyle =
       justify === "start"

@@ -12,7 +12,7 @@
     "button_prop_backgroundColor": "ボタンの背景色をデザイントークンで上書きする。通常は `variant` prop で対応できるため、このpropは最終手段として使用してください。",
     "button_prop_className": "追加のクラス名",
     "button_prop_fullWidth": "ボタンがコンテナの全幅を占めるかどうか",
-    "button_prop_icon": "アイコン名またはカスタムアイコン要素",
+    "button_prop_icon": "アイコン名またはカスタムアイコン要素。アイコンだけのボタン（子が無い）には、`aria-label` か `aria-labelledby` が必要です。アイコン名は、アクセシブル名には使われません。",
     "button_prop_iconPosition": "ラベルに対するアイコンの位置",
     "button_prop_intent": "ボタンのデザイン上の意味（視覚・意味的状態）。ARIAの role 属性とは無関係。",
     "button_prop_justify": "ボタンコンテンツの水平方向の配置",
