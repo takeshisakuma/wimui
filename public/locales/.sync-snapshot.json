@@ -14807,7 +14807,7 @@
       "button_prop_backgroundColor": "Overrides the button background color with a design token. Usually the `variant` prop is enough; use this prop only as a last resort.",
       "button_prop_className": "Additional class names",
       "button_prop_fullWidth": "Whether the button should take up the full width of its container",
-      "button_prop_icon": "Icon name or custom icon element",
+      "button_prop_icon": "Icon name or custom icon element. An icon-only button (no children) needs `aria-label` or `aria-labelledby`: the icon name is not used as the accessible name.",
       "button_prop_iconPosition": "Position of the icon relative to the label",
       "button_prop_intent": "Design intent of the button (visual / semantic state). Unrelated to the ARIA role attribute.",
       "button_prop_justify": "Horizontal alignment of the button content",

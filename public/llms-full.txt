@@ -938,7 +938,7 @@ Useful for using the button styles with Link components (e.g. from React Router 
     - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size of the button
     - `variant: "solid" | "outline" | "ghost"` = "outline" — Visual style variant of the button
     - `intent: ButtonIntent` = "default" — Design intent of the button (visual / semantic state). Unrelated to the ARIA role attribute.
-    - `icon: React.ComponentProps<typeof Icon>["name"] | React.ReactNode` — Icon name or custom icon element
+    - `icon: React.ComponentProps<typeof Icon>["name"] | React.ReactNode` — Icon name or custom icon element. An icon-only button (no children) needs `aria-label` or `aria-labelledby`: the icon name is not used as the accessible name.
     - `iconPosition: "left" | "right"` = "left" — Position of the icon relative to the label
     - `loading: boolean` = false — Whether to show a loading indicator and disable interaction
     - `justify: "start" | "center" | "end" | "between"` = "center" — Horizontal alignment of the button content
@@ -1263,7 +1263,7 @@ text to take a name from, and the icon name is not used as one.
     - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size of the button
     - `variant: "solid" | "outline" | "ghost"` = "outline" — Visual style variant of the button
     - `intent: ButtonIntent` = "default" — Design intent of the button (visual / semantic state). Unrelated to the ARIA role attribute.
-    - `icon: React.ComponentProps<typeof Icon>["name"] | React.ReactNode` — Icon name or custom icon element
+    - `icon: React.ComponentProps<typeof Icon>["name"] | React.ReactNode` — Icon name or custom icon element. An icon-only button (no children) needs `aria-label` or `aria-labelledby`: the icon name is not used as the accessible name.
     - `loading: boolean` = false — Whether to show a loading indicator and disable interaction
     - `justify: "start" | "center" | "end" | "between"` = "center" — Horizontal alignment of the button content
     - `animateWidth: boolean` = false — Whether to animate the width change when label changes

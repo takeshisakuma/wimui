@@ -114,4 +114,42 @@ describe("Button", () => {
     render(<Button>Children</Button>);
     expect(screen.getByText(/Children/)).toBeInTheDocument();
   });
+
+  // T345: アイコンだけ・名前なしのボタンに、アイコン名（"CopyIcon"）を名前として付けない。
+  describe("アイコンだけのボタンの名前", () => {
+    it("名前を渡さなければ、aria-label を付けない（アイコン名を名前にしない）", () => {
+      const warn = vi.spyOn(console, "warn").mockImplementation(() => {});
+      render(<Button icon="CopyIcon" />);
+      // 対照: 以前は aria-label="CopyIcon" が付き、「CopyIcon、ボタン」と読まれていた
+      expect(screen.getByRole("button")).not.toHaveAttribute("aria-label");
+      warn.mockRestore();
+    });
+
+    it("名前が無いと、開発時に 1 回だけ警告する（描き直しても増えない）", () => {
+      const warn = vi.spyOn(console, "warn").mockImplementation(() => {});
+      const { rerender } = render(<Button icon="CopyIcon" />);
+      rerender(<Button icon="CopyIcon" />);
+      expect(warn).toHaveBeenCalledTimes(1);
+      expect(warn.mock.calls[0][0]).toContain("Button has an icon but no accessible name");
+      warn.mockRestore();
+    });
+
+    it.each([
+      ["aria-label", <Button key="a" icon="CopyIcon" aria-label="Copy" />],
+      ["aria-labelledby", <Button key="b" icon="CopyIcon" aria-labelledby="ext" />],
+      ["title", <Button key="c" icon="CopyIcon" title="Copy" />],
+      ["文字の子", <Button key="d" icon="CopyIcon">Copy</Button>],
+      ["アイコンなし", <Button key="e">Copy</Button>],
+    ])("%s があれば、警告しない", (_label, element) => {
+      const warn = vi.spyOn(console, "warn").mockImplementation(() => {});
+      render(element);
+      expect(warn).not.toHaveBeenCalled();
+      warn.mockRestore();
+    });
+
+    it("渡した aria-label は、そのまま名前になる", () => {
+      render(<Button icon="CopyIcon" aria-label="Copy link" />);
+      expect(screen.getByRole("button", { name: "Copy link" })).toBeInTheDocument();
+    });
+  });
 });
