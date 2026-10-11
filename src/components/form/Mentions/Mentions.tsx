@@ -189,6 +189,10 @@ export const Mentions = forwardRef<HTMLDivElement, MentionsProps>(
     delete wrapperOnlyProps["aria-label"];
     delete wrapperOnlyProps["aria-labelledby"];
     delete wrapperOnlyProps["aria-describedby"];
+    // `id` も入力欄にだけ付ける。以前は包みにも同じ値が出て、同じ `id` の要素が 2 つあった
+    // （HTML として不正で、`htmlFor` や `aria-labelledby` の参照先がブラウザ任せになる）。
+    // Textarea / Input と同じく、外のラベルが `htmlFor` で結べる側に寄せる。
+    delete wrapperOnlyProps.id;
 
     const wrapperSpread = (asChild
       ? { ...textareaOnlyProps, ...divProps }

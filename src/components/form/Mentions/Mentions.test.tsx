@@ -142,4 +142,33 @@ describe("Mentions", () => {
     // preventDefault() returns false from fireEvent when default was prevented.
     expect(mousedown).toBe(false);
   });
+
+  describe("id の行き先", () => {
+    it("渡した id は入力欄にだけ付き、同じ id の要素が 2 つにならない", () => {
+      const { container } = render(<Mentions options={options} id="note" />);
+      // 対照: 以前は、包みの div と入力欄の両方に id="note" が出ていた
+      expect(container.querySelectorAll("#note")).toHaveLength(1);
+      expect(screen.getByRole("textbox")).toHaveAttribute("id", "note");
+      expect(container.querySelector(".wim-mentions")).not.toHaveAttribute("id");
+    });
+
+    it("外に置いたラベルを、htmlFor で入力欄に結べる", () => {
+      render(
+        <>
+          <label htmlFor="note">Meeting note</label>
+          <Mentions options={options} id="note" />
+        </>,
+      );
+      expect(screen.getByRole("textbox", { name: "Meeting note" })).toBeInTheDocument();
+    });
+
+    it("候補のリストの id は、渡した id から作る（これまでどおり）", async () => {
+      render(<Mentions options={options} id="note" />);
+      const textarea = screen.getByRole("textbox");
+      fireEvent.change(textarea, { target: { value: "@", selectionStart: 1 } });
+      const listbox = await screen.findByRole("listbox");
+      expect(listbox).toHaveAttribute("id", "note-list");
+      expect(textarea).toHaveAttribute("aria-controls", "note-list");
+    });
+  });
 });
