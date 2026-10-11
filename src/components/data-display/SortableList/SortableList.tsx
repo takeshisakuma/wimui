@@ -7,6 +7,7 @@ import { Icon } from "../../media/Icon/Icon";
 import { mergeRefs } from "../../_internal/mergeRefs";
 import styles from "./sortable-list.module.scss";
 import { GripVerticalIcon } from "@/icon";
+import { composeEventHandlers } from "../../_internal/composeEventHandlers";
 
 // --- Context ---
 interface SortableListContextType {
@@ -172,15 +173,15 @@ export const SortableListItem = React.forwardRef<HTMLLIElement, SortableListItem
           className
         )}
         draggable={!disabled}
-        onDragStart={handleDragStart}
-        onDragOver={handleDragOver}
-        onDragEnd={handleDragEnd}
-        onDrop={handleDrop}
-        onKeyDown={handleKeyDown}
         tabIndex={disabled ? -1 : 0}
         role="listitem"
         aria-label={t("sortable_list.drag_handle_label")}
         {...props}
+        onDragStart={(event) => composeEventHandlers(props.onDragStart, handleDragStart)(event)}
+        onDragOver={composeEventHandlers(props.onDragOver, handleDragOver)}
+        onDragEnd={composeEventHandlers(props.onDragEnd, handleDragEnd)}
+        onDrop={composeEventHandlers(props.onDrop, handleDrop)}
+        onKeyDown={composeEventHandlers(props.onKeyDown, handleKeyDown)}
       >
         <Slottable>{children}</Slottable>
       </ItemRoot>

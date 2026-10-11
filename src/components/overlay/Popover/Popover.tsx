@@ -294,9 +294,10 @@ export const PopoverClose = ({
     <button
       type="button"
       className={classNames(styles.close, className)}
-      onClick={handleClick}
       aria-label={resolvedAriaLabel}
       {...props}
+      // スプレッドのあとに置く。handleClick は、中で props.onClick を呼ぶ（T347）。
+      onClick={handleClick}
     >
       {children || <Icon component={CloseIcon} size="sm" />}
     </button>

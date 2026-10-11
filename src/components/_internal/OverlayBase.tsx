@@ -4,6 +4,7 @@ import { Transition } from "../layout/Transition/Transition";
 import { FocusTrap } from "../overlay/FocusTrap/FocusTrap";
 import classNames from "classnames";
 import styles from "./overlay-base.module.scss";
+import { composeEventHandlers } from "./composeEventHandlers";
 
 /**
  * Props for the OverlayBase component.
@@ -138,7 +139,6 @@ export const OverlayBase = ({
           data-testid="overlay-content"
           role={role}
           aria-modal={ariaModal}
-          onClick={(e) => e.stopPropagation()}
           preset="scale"
           // **`appear` が要る。** この Transition はオーバーレイ Transition の子なので、
           // 閉じている間はマウントされておらず、開いた瞬間に `show=true` の状態で
@@ -149,6 +149,7 @@ export const OverlayBase = ({
           appear
           {...transitionProps}
           {...rest}
+          onClick={composeEventHandlers(rest.onClick, (e) => e.stopPropagation())}
         >
 
           <FocusTrap active={open}>

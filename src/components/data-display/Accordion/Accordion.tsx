@@ -12,6 +12,7 @@ import classNames from "classnames";
 import styles from "./accordion.module.scss";
 import { Icon } from "../../media/Icon/Icon";
 import { ChevronDownIcon } from "@/icon";
+import { composeEventHandlers } from "../../_internal/composeEventHandlers";
 
 type AccordionContextType = {
   value: string[];
@@ -269,9 +270,10 @@ export const AccordionTrigger = forwardRef<HTMLButtonElement, AccordionTriggerPr
       aria-controls={item.contentId}
       aria-disabled={item.disabled}
       disabled={item.disabled}
-      onClick={handleClick}
-      onKeyDown={handleKeyDown}
       {...props}
+      // スプレッドのあとに置く。handleKeyDown は、中で props.onKeyDown を呼ぶ（T347）。
+      onKeyDown={handleKeyDown}
+      onClick={composeEventHandlers(props.onClick, handleClick)}
     >
       <span className={styles.triggerContent}>{children}</span>
       <Icon

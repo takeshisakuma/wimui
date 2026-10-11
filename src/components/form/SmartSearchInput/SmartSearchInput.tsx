@@ -8,6 +8,7 @@ import { useAutoResize } from "../../../hooks/useAutoResize";
 import { FieldIntent, FieldVariant, FieldWidth } from "../../../types/tokens";
 import { FieldCharacterCount } from "../../_internal/FieldCharacterCount/FieldCharacterCount";
 import styles from "./smart-search-input.module.scss";
+import { composeEventHandlers } from "../../_internal/composeEventHandlers";
 
 export interface SmartSearchInputProps extends Omit<React.ComponentPropsWithoutRef<"textarea">, "onChange" | "onSubmit"> {
   /** Semantic intent of the field (e.g. error state) */
@@ -153,7 +154,6 @@ export const SmartSearchInput = forwardRef<HTMLTextAreaElement, SmartSearchInput
               className={classNames(styles.textarea, styles[variant])}
               value={currentValue}
               onChange={handleChange}
-              onKeyDown={handleKeyDown}
               placeholder={placeholder}
               rows={1}
               disabled={disabled}
@@ -161,6 +161,7 @@ export const SmartSearchInput = forwardRef<HTMLTextAreaElement, SmartSearchInput
               // label も placeholder も無い利用で名無しにならないよう内蔵ラベル（axe: label）
               aria-label={ariaLabel ?? (label ? undefined : t("smart_search.input_label"))}
               {...props}
+              onKeyDown={composeEventHandlers(props.onKeyDown, handleKeyDown)}
             />
           </InputBase>
           <FieldCharacterCount

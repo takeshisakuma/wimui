@@ -5,6 +5,7 @@ import classNames from "classnames";
 import localStyles from "./speed-dial.module.scss";
 import { FloatButton } from "../../form/FloatButton/FloatButton";
 import { IconName } from "../../../icon";
+import { composeEventHandlers } from "../../_internal/composeEventHandlers";
 
 export interface SpeedDialAction {
   icon: IconName;
@@ -151,11 +152,11 @@ export const SpeedDial = React.forwardRef<HTMLDivElement, SpeedDialProps>(
           open && localStyles.open,
           className
         )}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        onKeyDown={handleKeyDown}
-        onBlur={handleBlur}
         {...props}
+        onMouseEnter={composeEventHandlers(props.onMouseEnter, handleMouseEnter)}
+        onMouseLeave={composeEventHandlers(props.onMouseLeave, handleMouseLeave)}
+        onKeyDown={composeEventHandlers(props.onKeyDown, handleKeyDown)}
+        onBlur={composeEventHandlers(props.onBlur, handleBlur)}
       >
         {/* 閉じているあいだは、アクションを操作と読み上げの対象から外す。見た目は opacity: 0 で消して
             いるだけなので、外さないと Tab で見えないボタンに着き、Enter でそのまま実行される（T306）。 */}

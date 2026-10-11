@@ -11,6 +11,7 @@ import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { commonNs } from "@/i18n/generated/common";
 import classNames from "classnames";
 import styles from "./splitter.module.scss";
+import { composeEventHandlers } from "../../_internal/composeEventHandlers";
 
 type SplitterContextType = {
   orientation: "horizontal" | "vertical";
@@ -287,14 +288,14 @@ const SplitterHandle = ({
         className,
       )}
       data-testid="splitter-handle"
-      onMouseDown={(e) => index !== undefined && onResizeStart(index, e)}
-      onTouchStart={(e) => index !== undefined && onResizeStart(index, e)}
-      onKeyDown={(e) => {
+      {...props}
+      onMouseDown={composeEventHandlers(props.onMouseDown, (e) => index !== undefined && onResizeStart(index, e))}
+      onTouchStart={composeEventHandlers(props.onTouchStart, (e) => index !== undefined && onResizeStart(index, e))}
+      onKeyDown={composeEventHandlers(props.onKeyDown, (e) => {
         if (e.key === "ArrowLeft" || e.key === "ArrowUp" || e.key === "ArrowRight" || e.key === "ArrowDown") {
           e.preventDefault();
         }
-      }}
-      {...props}
+      })}
     />
   );
   /* eslint-enable jsx-a11y/no-noninteractive-element-interactions */

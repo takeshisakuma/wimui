@@ -1,5 +1,6 @@
 import React, { useState, useRef, forwardRef } from "react";
 import classNames from "classnames";
+import { composeEventHandlers } from "../../_internal/composeEventHandlers";
 import inputStyles from "../../form/Input/input.module.scss";
 import styles from "./time-picker.module.scss";
 import { useMergedRef } from "../../../hooks/useMergedRef";
@@ -71,10 +72,14 @@ export const TimePicker = forwardRef<HTMLInputElement, TimePickerProps>(({
       onChange={handleChange}
       rightIcon={rightIcon}
       rightIconColor={disabled || showClearButton ? undefined : "primary"}
-      onRightIconClick={showClearButton ? undefined : handleClockClick}
       // 時計はブラウザの選択画面を開くだけ。時刻そのものは入力欄のキー操作で入れられる
       rightIconDecorative
       {...props}
+      // スプレッドのあとに置き、利用者の処理と両方を呼ぶ（T347）。消すボタンが出ているあいだは、
+      // 時計の処理は付けない（これまでどおり）。
+      onRightIconClick={
+        showClearButton ? props.onRightIconClick : composeEventHandlers(props.onRightIconClick, handleClockClick)
+      }
     />
   );
 });

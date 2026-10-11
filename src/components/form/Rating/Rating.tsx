@@ -6,6 +6,7 @@ import { FieldTemplate } from "../FieldTemplate";
 import { ComponentSizeBasic } from "../../../types/tokens";
 import styles from "./rating.module.scss";
 import { StarIcon } from "@/icon";
+import { composeEventHandlers } from "../../_internal/composeEventHandlers";
 
 export type RatingLabels = {
   star?: (count: number) => string;
@@ -229,7 +230,6 @@ export const Rating = ({
           styles[size],
           disabled && styles.disabled,
         )}
-        onMouseLeave={readOnly ? undefined : handleMouseLeave}
         role={readOnly ? "img" : "radiogroup"}
         aria-label={
           readOnly
@@ -242,6 +242,7 @@ export const Rating = ({
         aria-describedby={!readOnly && error ? errorId : undefined}
         aria-invalid={!readOnly && error ? true : undefined}
         {...props}
+        onMouseLeave={composeEventHandlers(props.onMouseLeave, readOnly ? undefined : handleMouseLeave)}
       >
         {stars}
         <Slottable>{children}</Slottable>

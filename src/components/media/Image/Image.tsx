@@ -5,6 +5,7 @@ import { Icon } from "../Icon/Icon";
 import type { ComponentSize, MediaRadius } from "../../../types/tokens";
 import styles from "./image.module.scss";
 import { ImageIcon } from "@/icon";
+import { composeEventHandlers } from "../../_internal/composeEventHandlers";
 
 /**
  * フィルタの強さを定義する型
@@ -401,8 +402,6 @@ export const Image = ({
           <img
             src={src}
             alt={alt}
-            onLoad={notifyLoaded}
-            onError={() => setHasError(true)}
             className={classNames(
               styles.image,
               (filter || hoverFilter || duotone) && styles.hasFilter,
@@ -412,6 +411,8 @@ export const Image = ({
             fetchPriority={priority ? "high" : undefined}
             data-testid="image-element"
             {...props}
+            onLoad={composeEventHandlers(props.onLoad, notifyLoaded)}
+            onError={composeEventHandlers(props.onError, () => setHasError(true))}
           />
         )}
         {hasError && (
