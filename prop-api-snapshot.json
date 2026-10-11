@@ -2623,7 +2623,13 @@
       "required": true,
       "type": "boolean"
     },
+    "CommandPaletteContent.aria-describedby": {
+      "type": "string"
+    },
     "CommandPaletteContent.aria-label": {
+      "type": "string"
+    },
+    "CommandPaletteContent.aria-labelledby": {
       "type": "string"
     },
     "CommandPaletteContent.children": {
