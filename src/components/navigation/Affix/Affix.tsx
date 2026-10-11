@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import classNames from "classnames";
 import { mergeRefs } from "../../_internal/mergeRefs";
 import styles from "./affix.module.scss";
+import { observeMove } from "../../_internal/observeMove";
 
 export interface AffixProps {
   /** Offset distance from the top of the window (in pixels) */
@@ -135,12 +136,17 @@ export const Affix = React.forwardRef<HTMLDivElement, AffixProps>(function Affix
     targetElement.addEventListener("scroll", handleScroll);
     window.addEventListener("resize", handleScroll);
 
+    // スクロールしなくても、置き場の位置は変わる（上にある中身の高さが変わったとき）。以前は scroll と
+    // resize しか聞いておらず、置き場が画面の中へ戻っても、固定が解けなかった（T344）。
+    const stopObservingMove = placeholderRef.current ? observeMove(placeholderRef.current, handleScroll) : undefined;
+
     // Initial check
     updatePosition();
 
     return () => {
       targetElement.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleScroll);
+      stopObservingMove?.();
       if (timeoutRef.current) {
         window.cancelAnimationFrame(timeoutRef.current);
       }

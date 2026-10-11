@@ -12,6 +12,7 @@ import { Button } from "../../form/Button/Button";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { commonNs } from "@/i18n/generated/common";
 import styles from "./tour.module.scss";
+import { observeMove } from "../../_internal/observeMove";
 
 type TourStep = {
   target: string; // CSS selector
@@ -133,9 +134,15 @@ export const Tour = ({ steps, open, onClose, onFinish }: TourProps) => {
       apply(element ? element.getBoundingClientRect() : null);
     };
 
+    // スクロールしなくても、対象の位置は変わる（上にある中身の高さが変わったとき）。以前は resize と
+    // scroll しか聞いておらず、対象が下がっても、ハイライトと吹き出しは元の場所に残った（T344）。
+    let stopObservingMove: (() => void) | undefined;
+
     const bind = () => {
       window.addEventListener("resize", measure);
       window.addEventListener("scroll", measure, true);
+      const observed = document.querySelector(target);
+      if (observed) stopObservingMove = observeMove(observed, measure);
     };
 
     const start = async () => {
@@ -160,6 +167,7 @@ export const Tour = ({ steps, open, onClose, onFinish }: TourProps) => {
       cancelled = true;
       window.removeEventListener("resize", measure);
       window.removeEventListener("scroll", measure, true);
+      stopObservingMove?.();
     };
   }, [open, currentStep, target]);
 
