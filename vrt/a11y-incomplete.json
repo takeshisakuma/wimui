@@ -67,14 +67,6 @@
         "color-contrast"
       ]
     },
-    "audit-patternfamily--overview": {
-      "light": [
-        "color-contrast"
-      ],
-      "dark": [
-        "color-contrast"
-      ]
-    },
     "audit-skeletonfamily--overview": {
       "light": [
         "color-contrast"

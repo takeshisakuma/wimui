@@ -30,7 +30,10 @@ export const Overview: StoryObj = {
         {/* ArtifactsCanvas Audit */}
         <ComparisonGrid title={t("audit:label_artifacts_canvas")}>
           <ComponentGroup label={t("audit:pattern_artifacts_layout")} noStack>
-             <Box style={{ height: "600px", overflow: "hidden" }}>
+             {/* 高さは、中の画面と同じ 100vh にする（CI-18）。以前は 600px で切っていたので、中の画面
+                 （高さ 100vh）の下が隠れ、隠れた部分の箱が次の節のラベルに重なっていた。見た目では
+                 切り取られているが、axe は箱の位置で重なりを見るので、ラベルのコントラストを測らなかった。 */}
+             <Box style={{ height: "100vh", overflow: "hidden" }}>
                 {/* @ts-expect-error - Storybook render function */}
                 <ArtifactsStories.ArtifactsCanvas.render />
              </Box>
