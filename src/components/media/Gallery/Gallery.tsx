@@ -76,7 +76,7 @@ export const Gallery = React.forwardRef<HTMLDivElement, GalleryProps>(
   (
     {
       items,
-      columns = 3,
+      columns: columnsProp = 3,
       gap = "md",
       aspect = "square",
       selectable = false,
@@ -97,6 +97,10 @@ export const Gallery = React.forwardRef<HTMLDivElement, GalleryProps>(
     const [uncontrolledSelected, setUncontrolledSelected] = useState<
       Set<string>
     >(() => new Set(defaultSelected));
+    // 列数は 1 以上の整数にそろえる。0 以下をそのまま使うと、行に分けるループ（i += 列数）が進まず、
+    // 描画が戻ってこない（Node はメモリを使い切って落ちた。2026-10-11 の定期点検で出た）。
+    const columns = Math.max(1, Math.floor(columnsProp) || 1);
+
     const [focusedIndex, setFocusedIndex] = useState(0);
     const lastClickedIndex = useRef<number | null>(null);
 
