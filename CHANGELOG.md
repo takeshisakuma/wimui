@@ -1,5 +1,46 @@
 # wimui
 
+## 0.63.0
+
+### Minor Changes
+
+- b8593a0: `Button` は、アイコンだけ・名前なしのとき、アイコン名を名前として付けなくなりました（T345）。
+
+  これまで `<Button icon="CopyIcon" />` は `aria-label="CopyIcon"` で出て、スクリーンリーダーでは「CopyIcon、ボタン」と読まれていました。名前が付いている扱いになるので、検査（axe の `button-name`）は通り、書いた側は気づけませんでした。
+
+  - アイコンだけのボタンには、`aria-label`（または `aria-labelledby`）を渡してください
+  - 名前の無いアイコンだけのボタンは、開発時に `console.warn` で知らせます（本番では出ません）
+  - **既存のコードへの影響**: 名前を渡していないアイコンだけの `Button` は、名前なしのボタンになります。axe などの検査で、新しく `button-name` が出ることがあります ── それが、直す場所です
+
+  文字の子があるボタン、`aria-label` / `aria-labelledby` / `title` を渡しているボタンは、変わりません。
+
+### Patch Changes
+
+- 6c4070e: `Affix` と `Tour` が、スクロールせずに動いた相手に付いていくようにしました（T344）。
+
+  これまでは scroll と resize でしか位置を測り直さず、上にある中身の高さが変わったとき（遅れて読み込まれる画像・開いたアコーディオン）に、固定された要素が元の場所に残っていました。
+
+  - `Affix`: 置き場が画面の中へ戻ったら、固定が解けます
+  - `Tour`: 対象が動いたら、ハイライトと吹き出しも付いていきます
+
+- 0b73593: `Dropdown` と `Menubar` の、引き金と面に渡した `id` / `aria-labelledby` が、黙って内部の値に置き換わるのを直しました（T346）。
+
+  - `DropdownTrigger` / `Menubar.Trigger` に渡した `id` は、そのまま付きます。面の `aria-labelledby` も、その `id` を指します
+  - `DropdownMenu` / `Menubar.Content` に渡した `id` は、そのまま付きます。引き金の `aria-controls` も、その `id` を指します
+  - `DropdownMenu` / `Menubar.Content` に渡した `aria-labelledby` は、引き金の名前より優先されます（外の見出しで、メニューを名付けられます）
+
+  何も渡していないときの出力は変わりません。
+
+- 2c55d09: `Navbar.Menu`（`NavbarMenu`）に渡した属性（`id`・`aria-*`・`data-*`・イベント）が、開いた面に届くようにしました。これまでは、型では `div` の属性を受けるのに、全部捨てていました（`aria-label` を渡しても、メニューの名前は変わりませんでした）。
+- e572955: `style` を渡すと、部品が自分で入れた値が消える 4 部品を直しました。
+
+  - `Button`: `justify` / `backgroundColor` / `animateWidth` が効かなくなっていました
+  - `Textarea`: `width`（数値・CSS の値）が効かなくなっていました
+  - `ImageCompare`: `width` / `height` が効かなくなっていました
+  - `DashboardWidgetCard`: 幅と行の指定（`span` / `rowSpan`）が効かなくなっていました
+
+  どれも、渡した `style` と、部品の値の両方が残るようになります。`style` を渡していないときの出力は変わりません。
+
 ## 0.62.2
 
 ### Patch Changes
