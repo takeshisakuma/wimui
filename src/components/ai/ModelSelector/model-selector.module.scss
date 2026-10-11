@@ -206,9 +206,13 @@
     margin-top: var(--wim-spacing-3xs);
   }
 
+  /* 行間を自分で持つ（継承の 1.4 では足りない）。札は背景を持つので、箱が文字の矩形より低いと、
+     文字が背景から上下にはみ出す ── 実測で箱 17.7px に対して文字の矩形が 18px。axe は「背景が文字を
+     含みきらない」と見て、札の文字のコントラストを測らなくなる（color-contrast が incomplete に落ちる）。 */
   .meta {
     padding: 0 var(--wim-spacing-xs);
     font-size: var(--wim-font-size-xs);
+    line-height: var(--wim-line-height-snug-jp);
     color: var(--wim-color-text-tertiary);
     white-space: nowrap;
     background: var(--wim-color-surface-variant);
