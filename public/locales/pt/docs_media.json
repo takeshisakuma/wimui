@@ -149,7 +149,7 @@
     "carousel_title": "Apresentação de slides de conteúdo",
     "carousel_what_is": "What Is",
     "carousel_what_is_desc": "What Is Desc",
-    "icon_a11y_desc": "O ícone renderiza um SVG puro, sem aria-hidden e sem nome próprio, e cada prop que você passa é espalhada nele. Isso significa que você decide o que ele é: adicione aria-hidden quando o ícone apenas decora um texto que já diz a mesma coisa, e dê role=\"img\" com aria-label quando o ícone for a única coisa a carregar o significado. Um ícone deixado como está é um gráfico sem rótulo, o que é o pior dos dois.",
+    "icon_a11y_desc": "Um ícone sem nome próprio é decoração, por isso é renderizado com aria-hidden: os leitores de tela o ignoram e leem o texto ao lado, ou o nome do botão em que ele está. Quando o ícone for a única coisa a carregar o significado, passe aria-label (ou aria-labelledby) e ele será exposto como uma imagem com esse nome (role=\"img\"). Cada prop que você passa é espalhada no SVG e tem prioridade, então aria-hidden e role ainda podem ser definidos manualmente.",
     "icon_adv_1": "Consistência no design, pois todos os ícones podem ser gerenciados centralmente",
     "icon_adv_2": "Encapsular formatos de arquivo e estilos facilita as alterações",
     "icon_adv_3": "Reutilize facilmente os mesmos ícones em vários componentes, como botões, itens de lista e campos de formulário",
