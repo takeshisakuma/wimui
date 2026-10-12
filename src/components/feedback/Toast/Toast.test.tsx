@@ -47,7 +47,25 @@ describe("Toast", () => {
 
   it("applies status class", () => {
     const { container } = render(<Toast title="Message" intent="success" />);
-    expect(container.firstChild).toHaveClass(/success/);
+    expect(container.querySelector(".wim-toast")).toHaveClass(/success/);
+  });
+
+  it("announces through a status region that is there before the toast opens", () => {
+    const { rerender } = render(<Toast title="Saved" description="Your changes are in." open={false} />);
+    // 読み上げの領域は、閉じているあいだも在る（空）。見えているトーストごと差し込むと、読まれない
+    const region = screen.getByRole("status");
+    expect(region).toBeEmptyDOMElement();
+
+    rerender(<Toast title="Saved" description="Your changes are in." open={true} />);
+    expect(screen.getByRole("status")).toBe(region);
+    expect(region).toHaveTextContent("Saved: Your changes are in.");
+  });
+
+  it("names the toast as a group only when a name is given", () => {
+    const { container, rerender } = render(<Toast title="Saved" />);
+    expect(container.querySelector(".wim-toast")).not.toHaveAttribute("role");
+    rerender(<Toast title="Saved" aria-label="Save result" />);
+    expect(screen.getByRole("group", { name: "Save result" })).toBe(container.querySelector(".wim-toast"));
   });
 });
 
@@ -76,6 +94,26 @@ describe("ToastProvider", () => {
       vi.advanceTimersByTime(10);
     });
 
-    expect(screen.getByText("Live Message")).toBeInTheDocument();
+    expect(document.querySelector(".wim-toast")).toHaveTextContent("Live Message");
+  });
+
+  it("adds the toast to a live region that was there before the toast", () => {
+    const { container } = render(
+      <ToastProvider>
+        <ToastConsumer />
+      </ToastProvider>,
+    );
+    // 対照: トーストを出す前から、領域は在る（空）
+    const region = screen.getByRole("status");
+    expect(region).toBeEmptyDOMElement();
+
+    fireEvent.click(screen.getByText("Show Toast"));
+    act(() => {
+      vi.advanceTimersByTime(10);
+    });
+    expect(screen.getByRole("status")).toBe(region);
+    expect(region).toHaveTextContent("Live Message");
+    // 領域はプロバイダーの 1 つだけ。トーストごとには持たない（二重に読まれる）
+    expect(container.ownerDocument.querySelectorAll('[role="status"]')).toHaveLength(1);
   });
 });

@@ -56,7 +56,8 @@ const cases: Case[] = [
   ["SourceCitation", "group", (p) => <SourceCitation title="Old way" {...p} />, {}],
   ["FAQSection", "region", (p) => <FAQSection items={[{ question: "Q", answer: "A" }]} {...p} />, null],
   ["Notification", "alert", (p) => <Notification title="Saved" {...p} />, null],
-  ["Toast", "status", (p) => <Toast title="Saved" duration={0} {...p} />, null],
+  // 名前を渡された Toast は、まとまり（group）として名乗る。読み上げは、画面に見えない別の領域が受け持つ。
+  ["Toast", "group", (p) => <Toast title="Saved" duration={0} {...p} />, null],
   [
     "Menu",
     "menu",

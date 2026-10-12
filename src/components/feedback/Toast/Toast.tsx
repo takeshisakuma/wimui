@@ -7,6 +7,7 @@ import React, {
 } from "react";
 import classNames from "classnames";
 import { Transition } from "../../layout/Transition/Transition";
+import { VisuallyHidden } from "../../layout/VisuallyHidden/VisuallyHidden";
 import { FeedbackIcon } from "../../_internal/FeedbackIcon";
 import { FeedbackCloseButton } from "../../_internal/FeedbackCloseButton";
 import { FeedbackIntent } from "../../../types/tokens";
@@ -94,7 +95,9 @@ export const Toast = ({
     }
   }, [open, duration, id, onClose, internalVisible, handleClose]);
 
-  return (
+  const announcedByProvider = useContext(ToastAnnouncedByProviderContext);
+
+  const toast = (
     <Transition
       show={open && internalVisible}
       enter={styles.enter}
@@ -104,8 +107,8 @@ export const Toast = ({
       leaveFrom={styles.leaveFrom}
       leaveTo={styles.leaveTo}
       className={classNames("wim-toast", styles.root, styles[intent], className)}
-      role="status"
-      aria-live="polite"
+      // 名前を渡されたときだけ、まとまりとして名乗る（役割の無い要素には、名前を付けられない）。
+      role={ariaLabelAttr || ariaLabelledBy ? "group" : undefined}
       aria-label={ariaLabelledBy ? undefined : ariaLabelAttr}
       aria-labelledby={ariaLabelledBy}
     >
@@ -131,7 +134,25 @@ export const Toast = ({
       />
     </Transition>
   );
+
+  // 読むのは、画面に見えない読み上げの領域（先に在って、文字だけが書き換わる）。見えているトーストを
+  // 読み上げの領域にして中身ごと差し込むと、スクリーンリーダーは文を読まない（ナレーター + Chrome の
+  // 実機で、2 通りの置き方を試して、どちらも無音だった）。ToastProvider の中では、プロバイダーが
+  // 領域を 1 つ持つ。単体で `open` を切り替えて使うときは、ここに置く（包みは display: contents で、
+  // レイアウトには出ない）。
+  if (announcedByProvider) return toast;
+  return (
+    <div className={styles.live}>
+      <VisuallyHidden role="status" aria-atomic="true">
+        {open && internalVisible ? toastAnnouncement(title, description) : ""}
+      </VisuallyHidden>
+      {toast}
+    </div>
+  );
 };
+
+/** 読み上げる文。題と説明を、区切って 1 つにする。 */
+const toastAnnouncement = (title?: string, description?: string) => [title, description].filter(Boolean).join(": ");
 
 // --- Toast System (Provider & Hook) ---
 
@@ -150,6 +171,9 @@ type ToastContextType = {
 
 const ToastContext = createContext<ToastContextType | undefined>(undefined);
 
+/** ToastProvider の中にいるか（読み上げは、プロバイダーの領域が受け持つ）。 */
+const ToastAnnouncedByProviderContext = createContext(false);
+
 export const ToastProvider = ({
   children,
   position = "top-right",
@@ -158,14 +182,19 @@ export const ToastProvider = ({
   position?: ToastPosition;
 }) => {
   const [toasts, setToasts] = useState<ToastItem[]>([]);
+  // 読み上げるのは、出したばかりのトースト。そのトーストが消えたら、領域を空に戻す。
+  // 「残っている中でいちばん新しいもの」にはしない ── 新しいほうが先に消えると、前のトーストを読み直す。
+  const [announced, setAnnounced] = useState<ToastItem | null>(null);
 
   const show = useCallback((toast: Omit<ToastItem, "id">) => {
     const id = Math.random().toString(36).substr(2, 9);
     setToasts((prev) => [...prev, { ...toast, id }]);
+    setAnnounced({ ...toast, id });
   }, []);
 
   const remove = useCallback((id: string) => {
     setToasts((prev) => prev.filter((t) => t.id !== id));
+    setAnnounced((prev) => (prev?.id === id ? null : prev));
   }, []);
 
   return (
@@ -177,9 +206,15 @@ export const ToastProvider = ({
           styles[position],
         )}
       >
-        {toasts.map((toast) => (
-          <Toast key={toast.id} {...toast} onClose={() => remove(toast.id)} />
-        ))}
+        {/* 最初から置いておく、画面に見えない読み上げの領域。トーストが出るたびに、文字が書き換わる。 */}
+        <VisuallyHidden role="status" aria-atomic="true">
+          {announced ? toastAnnouncement(announced.title, announced.description) : ""}
+        </VisuallyHidden>
+        <ToastAnnouncedByProviderContext.Provider value={true}>
+          {toasts.map((toast) => (
+            <Toast key={toast.id} {...toast} onClose={() => remove(toast.id)} />
+          ))}
+        </ToastAnnouncedByProviderContext.Provider>
       </div>
     </ToastContext.Provider>
   );
