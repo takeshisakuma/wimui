@@ -58,8 +58,16 @@ export const Icon = ({
   const useClassNameForColor =
     typeof color === "string" && SEMANTIC_ICON_COLORS.includes(color);
 
+  // 名前を渡されていないアイコンは飾りなので、読み上げの対象から外す。外さないと、ボタンの中の
+  // アイコンが「名前の無い画像」として残り、スクリーンリーダーの項目移動で「グラフィック」とだけ
+  // 読まれる（ナレーター + Chrome の実機で、Toolbar の中の IconButton と ToggleGroup）。
+  // 名前を渡されたアイコンは、画像として読ませる。どちらも、渡された属性が優先する。
+  const named = props["aria-label"] != null || props["aria-labelledby"] != null;
+
   return (
     <IconComponent
+      aria-hidden={named ? undefined : true}
+      role={named ? "img" : undefined}
       style={
         !useClassNameForColor && color
           ? { color: getColorValue(color), ...(style as React.CSSProperties) }

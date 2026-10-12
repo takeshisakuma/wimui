@@ -14,6 +14,27 @@ describe("Icon", () => {
     expect(svg).toHaveClass(styles.root);
   });
 
+  it("hides an unnamed icon from assistive technology", () => {
+    const { container } = render(<Icon name="CircleIcon" />);
+    const svg = container.querySelector("svg");
+    // 飾りのアイコンが読み上げの対象に残ると、ボタンの中で「グラフィック」とだけ読まれる
+    expect(svg).toHaveAttribute("aria-hidden", "true");
+    expect(svg).not.toHaveAttribute("role");
+  });
+
+  it("exposes a named icon as an image", () => {
+    const { container, getByRole } = render(<Icon name="CircleIcon" aria-label="Status" />);
+    expect(getByRole("img", { name: "Status" })).toBe(container.querySelector("svg"));
+    expect(container.querySelector("svg")).not.toHaveAttribute("aria-hidden");
+  });
+
+  it("lets the caller override aria-hidden and role", () => {
+    const { container } = render(<Icon name="CircleIcon" aria-hidden={false} role="presentation" />);
+    const svg = container.querySelector("svg");
+    expect(svg).toHaveAttribute("aria-hidden", "false");
+    expect(svg).toHaveAttribute("role", "presentation");
+  });
+
   it("applies size and color", () => {
     const { container } = render(
       <Icon name="CircleIcon" size="lg" color="primary" />,

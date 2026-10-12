@@ -9422,7 +9422,7 @@
       "carousel_title": "Content slideshow",
       "carousel_what_is": "What is a Carousel?",
       "carousel_what_is_desc": "A Carousel is a UI component that scrolls through multiple items horizontally, helping to save screen space.",
-      "icon_a11y_desc": "The icon renders a bare SVG with no aria-hidden and no name of its own, and every prop you pass is spread onto it. That means you decide what it is: add aria-hidden when the icon merely decorates text that already says the same thing, and give it role=\"img\" with aria-label when the icon is the only thing carrying the meaning. An icon left as-is is an unlabelled graphic, which is the worst of both.",
+      "icon_a11y_desc": "An icon with no name of its own is decoration, so it is rendered with aria-hidden: screen readers skip it and read the text beside it, or the name of the button it sits in. When the icon is the only thing carrying the meaning, pass aria-label (or aria-labelledby) and it is exposed as an image with that name (role=\"img\"). Every prop you pass is spread onto the SVG and wins, so aria-hidden and role can still be set by hand.",
       "icon_adv_1": "Consistency in design as all icons can be centrally managed",
       "icon_adv_2": "Encapsulating file formats and styling makes changes easier",
       "icon_adv_3": "Easily reuse the same icons in various components like buttons, list items, and form fields",
