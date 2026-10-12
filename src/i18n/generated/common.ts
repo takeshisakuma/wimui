@@ -486,6 +486,7 @@ export type CommonKey =
   | "pagination.go"
   | "pagination.go_to"
   | "pagination.items_per_page"
+  | "pagination.page_status"
   | "placeholder.email"
   | "placeholder.name"
   | "placeholder.search"
@@ -735,7 +736,8 @@ export const commonNs: WimNamespace<"common", CommonKey> = {
       "pagination": {
         "go": "Go",
         "go_to": "Go to",
-        "items_per_page": "items per page"
+        "items_per_page": "items per page",
+        "page_status": "Page {{current}} of {{total}}"
       },
       "playback": {
         "speed": "Playback Speed"
@@ -952,7 +954,8 @@ export const commonNs: WimNamespace<"common", CommonKey> = {
       "pagination": {
         "go": "移動",
         "go_to": "移動",
-        "items_per_page": "件 / ページ"
+        "items_per_page": "件 / ページ",
+        "page_status": "{{total}} ページ中 {{current}} ページ目"
       },
       "playback": {
         "speed": "再生速度"
@@ -1149,7 +1152,8 @@ export const commonNs: WimNamespace<"common", CommonKey> = {
       "pagination": {
         "go": "Ir",
         "go_to": "Ir para",
-        "items_per_page": "itens / página"
+        "items_per_page": "itens / página",
+        "page_status": "Página {{current}} de {{total}}"
       },
       "playback": {
         "speed": "Velocidade de reprodução"

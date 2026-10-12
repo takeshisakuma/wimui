@@ -1128,7 +1128,8 @@
     "pagination": {
       "go": "Go",
       "go_to": "Go to",
-      "items_per_page": "items per page"
+      "items_per_page": "items per page",
+      "page_status": "Page {{current}} of {{total}}"
     },
     "placeholder": {
       "email": "example@email.com",

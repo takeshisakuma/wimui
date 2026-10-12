@@ -494,7 +494,8 @@
   "pagination": {
     "go": "移動",
     "go_to": "移動",
-    "items_per_page": "件 / ページ"
+    "items_per_page": "件 / ページ",
+    "page_status": "{{total}} ページ中 {{current}} ページ目"
   },
   "placeholder": {
     "email": "example@email.com",

@@ -7320,7 +7320,7 @@
       "type": "boolean"
     },
     "Pagination.labels": {
-      "type": "{ prevPage?: string; nextPage?: string; pageAriaLabel?: (page: number) => string; itemsPerPage?: string; goTo?: string; go?: string; pageSizeAriaLabel?: string; jumpToPageAriaLabel?: string; navAriaLabel?: string; totalLabel?: string; }",
+      "type": "{ prevPage?: string; nextPage?: string; pageAriaLabel?: (page: number) => string; itemsPerPage?: string; goTo?: string; go?: string; pageSizeAriaLabel?: string; jumpToPageAriaLabel?: string; navAriaLabel?: string; totalLabel?: string; /** Announced to screen readers when the page changes. Receives the current page and the page count. */ pageStatus?: (current: number, totalPages: number) => string; }",
       "shape": {
         "go": {
           "required": false,
@@ -7353,6 +7353,10 @@
         "pageSizeAriaLabel": {
           "required": false,
           "type": "string"
+        },
+        "pageStatus": {
+          "required": false,
+          "type": "(current: number, totalPages: number) => string"
         },
         "prevPage": {
           "required": false,
