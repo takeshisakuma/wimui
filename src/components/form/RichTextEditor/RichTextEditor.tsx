@@ -508,7 +508,19 @@ export const RichTextEditor = ({
   const run = React.useCallback(
     (command: (ed: Editor) => void) => {
       if (isDisabled || !editor) return;
+      // キーボードでツールバーのボタンを押したときは、フォーカスをボタンに残す。命令は編集欄へフォーカスを
+      // 移すので（選択範囲に書式を当てるため）、そのままだと、押したボタンの状態（オン・オフ）が
+      // 読まれず、続けて別のボタンを押すにも、ツールバーへ戻り直すことになる（ナレーター + Chrome の
+      // 実機で、太字を Enter で押すと編集欄へ移り、何も読まれなかった）。マウスで押したときは、
+      // mousedown を止めているのでフォーカスは編集欄に残っており、ここは何もしない。
+      const pressed = document.activeElement;
       command(editor);
+      if (!(pressed instanceof HTMLElement) || !pressed.closest('[role="toolbar"]')) return;
+      // 編集欄は、次の描画のフレームでフォーカスを取る（Tiptap の focus は requestAnimationFrame の中）。
+      // その場で戻しても取り返されるので、同じフレームの、そのあとで戻す。
+      requestAnimationFrame(() => {
+        if (pressed.isConnected && document.activeElement !== pressed) pressed.focus({ preventScroll: true });
+      });
     },
     [editor, isDisabled],
   );

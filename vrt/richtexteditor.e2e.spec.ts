@@ -34,6 +34,35 @@ test.describe("RichTextEditor (Tiptap)", () => {
     await expect(page.locator(editorLocator)).toBeVisible();
   });
 
+  // キーボードでツールバーのボタンを押したら、フォーカスはボタンに残る。編集欄へ移ると、押した状態
+  // （オン・オフ）がスクリーンリーダーに読まれない（ナレーター + Chrome の実機で、無音だった）。
+  test("pressing a toolbar button from the keyboard keeps focus on the button", async ({ page }) => {
+    const boldBtn = page.getByRole("button", { name: "Bold" });
+    const italicBtn = page.getByRole("button", { name: "Italic" });
+    await boldBtn.focus();
+    await page.keyboard.press("Enter");
+    await expect(boldBtn).toHaveAttribute("aria-pressed", "true");
+    // 編集欄は、少し遅れてフォーカスを取りに来る。取られていないことを、取りに来たあとの時点で見る
+    await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+    await expect(boldBtn).toBeFocused();
+
+    // 続けて、矢印キーで隣のボタンへ移って押せる（ツールバーへ戻り直さない）
+    await page.keyboard.press("ArrowRight");
+    await expect(italicBtn).toBeFocused();
+    await page.keyboard.press("Space");
+    await expect(italicBtn).toHaveAttribute("aria-pressed", "true");
+    await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+    await expect(italicBtn).toBeFocused();
+  });
+
+  // マウスで押したときは、これまでどおり編集欄にフォーカスが残る（選択範囲を保ったまま、打ち続けられる）。
+  test("pressing a toolbar button with the mouse leaves focus in the editor", async ({ page }) => {
+    await selectInEditor(page, 0, 5);
+    await page.getByRole("button", { name: "Bold" }).click();
+    await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+    await expect(page.locator(editorLocator)).toBeFocused();
+  });
+
   test("bold toggles <strong> on the selection and toolbar shows active state", async ({ page }) => {
     await selectInEditor(page, 0, 5);
     const boldBtn = page.getByRole("button", { name: "Bold" });
