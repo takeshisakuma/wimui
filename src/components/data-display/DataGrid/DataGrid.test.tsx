@@ -519,6 +519,45 @@ describe("DataGrid", () => {
      * 記号・`aria-sort`・フォーカスが付き、**押しても何も起きなかった**。
      * 見た目だけの話ではない ── 読み上げには「並べ替え可能」と伝わる。
      */
+    it("names each row checkbox after its row, so they can be told apart", () => {
+      render(<DataGrid columns={mockColumns} data={mockRows} selection={{ selectedRowKeys: [], onChange: () => {} }} />);
+      // 以前は、どの行も同じ「Select row」だった
+      expect(screen.getByRole("checkbox", { name: "Select row 1" })).toBeInTheDocument();
+      expect(screen.getByRole("checkbox", { name: "Select row 3" })).toBeInTheDocument();
+      expect(screen.queryByRole("checkbox", { name: "Select row" })).not.toBeInTheDocument();
+    });
+
+    it("announces the new sort order through a status region that was already there", async () => {
+      const user = userEvent.setup();
+      const Harness = () => {
+        const [sort, setSort] = React.useState<{ key: string; direction: "asc" | "desc" | "none" }>({
+          key: "id",
+          direction: "none",
+        });
+        return (
+          <DataGrid
+            columns={mockColumns}
+            data={mockRows}
+            sortConfig={sort}
+            onSortChange={(key, direction) => setSort({ key, direction })}
+          />
+        );
+      };
+      const { container } = render(<Harness />);
+      const status = container.querySelector('.wim-data-grid > [role="status"]') as HTMLElement;
+      // 対照: 並べ替える前から、領域は在る（空）
+      expect(status).toBeEmptyDOMElement();
+
+      const idHeader = screen.getByText("ID").closest("th") as HTMLElement;
+      // 見出しを押してもフォーカスは見出しに残る。ここが空のままだと、昇順・降順が読まれない
+      await user.click(idHeader);
+      expect(status).toHaveTextContent("Sorted by ID, ascending");
+      await user.click(idHeader);
+      expect(status).toHaveTextContent("Sorted by ID, descending");
+      await user.click(idHeader);
+      expect(status).toHaveTextContent("Sorting by ID cleared");
+    });
+
     it("does not advertise sorting when there is no handler", () => {
       render(<DataGrid columns={mockColumns} data={mockRows} />);
       expect(

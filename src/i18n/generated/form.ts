@@ -36,6 +36,7 @@ export type FormKey =
   | "dropzone.description"
   | "fileupload.button"
   | "fileupload.no_file"
+  | "fileupload.selected"
   | "form.optional"
   | "form.required"
   | "image_cropper.apply"
@@ -120,7 +121,8 @@ export const formNs: WimNamespace<"form", FormKey> = {
       },
       "fileupload": {
         "button": "Choose file",
-        "no_file": "No file selected"
+        "no_file": "No file selected",
+        "selected": "Selected: {{files}}"
       },
       "form": {
         "optional": "Optional",
@@ -251,7 +253,8 @@ export const formNs: WimNamespace<"form", FormKey> = {
       },
       "fileupload": {
         "button": "ファイルを選択",
-        "no_file": "選択されていません"
+        "no_file": "選択されていません",
+        "selected": "選択したファイル: {{files}}"
       },
       "form": {
         "optional": "任意",
@@ -369,7 +372,8 @@ export const formNs: WimNamespace<"form", FormKey> = {
       },
       "fileupload": {
         "button": "Selecionar arquivo",
-        "no_file": "Nenhum arquivo selecionado"
+        "no_file": "Nenhum arquivo selecionado",
+        "selected": "Selecionado: {{files}}"
       },
       "form": {
         "optional": "Opcional",

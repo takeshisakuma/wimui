@@ -48,7 +48,8 @@
   },
   "fileupload": {
     "button": "ファイルを選択",
-    "no_file": "選択されていません"
+    "no_file": "選択されていません",
+    "selected": "選択したファイル: {{files}}"
   },
   "form": {
     "optional": "任意",

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { formNs } from "@/i18n/generated/form";
 import classNames from "classnames";
@@ -89,10 +89,21 @@ export const FileUpload = ({
   // aria-allowed-attr）。必須であることは説明として渡す。可視の必須バッジは
   // FieldTemplate 側で aria-hidden なので、これが唯一の読み上げ経路になる。
   const requiredId = required ? `${id}-required` : undefined;
-  const describedBy = [ariaDescribedBy, errorId, requiredId].filter(Boolean).join(" ") || undefined;
+  // 選んだファイルの名前は、ボタンの説明として結び付ける（ボタンに着いたとき）。以前は、名前の文字が
+  // ボタンと結び付いておらず、ファイルを選んでも、ボタンの名前しか読まれなかった（ナレーター + Chrome
+  // の実機）。選んだ直後に告げるのは、下の「選んだことを告げる領域」。
+  const fileNamesId = `${id}-files`;
+  const describedBy = [ariaDescribedBy, fileNamesId, errorId, requiredId].filter(Boolean).join(" ");
 
   const inputRef = useRef<HTMLInputElement>(null);
   const [selectedFiles, setSelectedFiles] = useState<FileList | null>(null);
+
+  // 選んだことを告げる領域（画面には見えない）。**少し待ってから**文字を入れる ── ファイルを選ぶ
+  // 画面が閉じた直後は、フォーカスがボタンへ戻る読み上げが走っていて、同時に書き換えた文字は
+  // 読まれない（名前の表示そのものを読み上げの領域にした 1 回目の直しは、実機で読まれなかった）。
+  const [announcement, setAnnouncement] = useState("");
+  const announceTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  useEffect(() => () => clearTimeout(announceTimer.current), []);
 
   const handleClick = () => {
     inputRef.current?.click();
@@ -101,6 +112,14 @@ export const FileUpload = ({
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
     setSelectedFiles(files);
+    clearTimeout(announceTimer.current);
+    setAnnouncement("");
+    if (files && files.length > 0) {
+      const names = Array.from(files)
+        .map((file) => file.name)
+        .join(", ");
+      announceTimer.current = setTimeout(() => setAnnouncement(t("fileupload.selected", { files: names })), 700);
+    }
     if (onChange) {
       onChange(files);
     }
@@ -160,12 +179,18 @@ export const FileUpload = ({
           aria-invalid={error ? true : undefined}
         >{buttonLabel ?? t("fileupload.button")}</Button>
         {required && <VisuallyHidden id={requiredId}>{t("form.required")}</VisuallyHidden>}
+        <VisuallyHidden role="status" aria-atomic="true">
+          {announcement}
+        </VisuallyHidden>
         <span
+          id={fileNamesId}
           className={classNames(
             styles.fileNames,
             styles[size],
             disabled && styles.disabled,
           )}
+          // 無効のときの薄い文字は、コントラストの基準の対象外（WCAG 1.4.3 の例外）。この印が無いと、
+          // axe は無効だと分からず、color-contrast で落とす（外して、a11y の CI が落ちた）。
           aria-disabled={disabled || undefined}
         >
           {fileNames}

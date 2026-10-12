@@ -1,10 +1,11 @@
-import React, { useMemo, useCallback } from "react";
+import React, { useMemo, useCallback, useState } from "react";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { commonNs } from "@/i18n/generated/common";
 import classNames from "classnames";
 import { Table } from "../Table/Table";
 import { Checkbox } from "../../form/Checkbox/Checkbox";
 import { Pagination } from "../../navigation/Pagination/Pagination";
+import { VisuallyHidden } from "../../layout/VisuallyHidden/VisuallyHidden";
 import { useFixedColumns, type FixedColumnInfo } from "./useFixedColumns";
 import { useDataGridKeyboard } from "./useDataGridKeyboard";
 import { useInfiniteScroll } from "./useInfiniteScroll";
@@ -241,6 +242,11 @@ export function DataGrid<T extends Record<string, unknown>>({
 
   const colCount = columns.length + (selection ? 1 : 0);
 
+  // 並べ替えたことを、読み上げで告げる。見出しを押してもフォーカスは同じ見出しに残り、変わるのは
+  // `aria-sort` と行の並びだけなので、告げないと何も読まれない（ナレーター + Chrome の実機で、
+  // 昇順・降順が読まれなかった）。先に在る領域の文字を書き換える（Pagination と同じ形）。
+  const [sortAnnouncement, setSortAnnouncement] = useState("");
+
   return (
     <div
       className={classNames(
@@ -254,6 +260,9 @@ export function DataGrid<T extends Record<string, unknown>>({
       )}
       aria-busy={isBusy || undefined}
     >
+      <VisuallyHidden role="status" aria-atomic="true">
+        {sortAnnouncement}
+      </VisuallyHidden>
       <div
         className={styles.container}
         style={{ height, maxHeight }}
@@ -327,6 +336,14 @@ export function DataGrid<T extends Record<string, unknown>>({
                               ? "none"
                               : "asc"
                           : "asc";
+                      const column = typeof col.title === "string" ? col.title : col.key;
+                      setSortAnnouncement(
+                        nextDir === "asc"
+                          ? t("dataGrid.sorted_ascending", { column })
+                          : nextDir === "desc"
+                            ? t("dataGrid.sorted_descending", { column })
+                            : t("dataGrid.sort_cleared", { column }),
+                      );
                       onSortChange(col.key, nextDir);
                     }}
                     {...stickyProps}
@@ -361,7 +378,9 @@ export function DataGrid<T extends Record<string, unknown>>({
                       <Checkbox
                         checked={isSelected}
                         onChange={(e) => handleSelectRow(record, e)}
-                        aria-label={t("a11y.select_row")}
+                        // 行ごとに違う名前にする。以前は、どの行も同じ「行を選択」で、読み上げでは
+                        // どの行のチェックなのかが分からなかった。
+                        aria-label={t("a11y.select_row_numbered", { row: rowIndex + 1 })}
                       />
                     </Table.Cell>
                   )}

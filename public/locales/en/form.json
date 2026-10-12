@@ -33,7 +33,8 @@
   },
   "fileupload": {
     "button": "Choose file",
-    "no_file": "No file selected"
+    "no_file": "No file selected",
+    "selected": "Selected: {{files}}"
   },
   "form": {
     "optional": "Optional",

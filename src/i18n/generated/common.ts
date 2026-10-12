@@ -57,6 +57,7 @@ export type CommonKey =
   | "a11y.seek"
   | "a11y.select_all_rows"
   | "a11y.select_row"
+  | "a11y.select_row_numbered"
   | "a11y.settings"
   | "a11y.show_password"
   | "a11y.signature_canvas"
@@ -176,6 +177,9 @@ export type CommonKey =
   | "dataGrid.displaying"
   | "dataGrid.loading_more"
   | "dataGrid.rows_selected"
+  | "dataGrid.sort_cleared"
+  | "dataGrid.sorted_ascending"
+  | "dataGrid.sorted_descending"
   | "doc.a11y_spec_title"
   | "doc.anatomy_module_note"
   | "doc.anatomy_title"
@@ -691,7 +695,7 @@ export const commonNs: WimNamespace<"common", CommonKey> = {
         "scroll_progress": "Scroll progress",
         "seek": "Seek",
         "select_all_rows": "Select all rows",
-        "select_row": "Select row",
+        "select_row_numbered": "Select row {{row}}",
         "settings": "Settings",
         "show_password": "Show password",
         "signature_canvas": "Signature canvas",
@@ -782,7 +786,10 @@ export const commonNs: WimNamespace<"common", CommonKey> = {
       "dataGrid": {
         "displaying": "Showing {{shown}} of {{total}}",
         "loading_more": "Loading more…",
-        "rows_selected": "({{selected}} selected)"
+        "rows_selected": "({{selected}} selected)",
+        "sort_cleared": "Sorting by {{column}} cleared",
+        "sorted_ascending": "Sorted by {{column}}, ascending",
+        "sorted_descending": "Sorted by {{column}}, descending"
       },
       "presence": {
         "online": "Online",
@@ -889,7 +896,7 @@ export const commonNs: WimNamespace<"common", CommonKey> = {
         "scroll_progress": "スクロール進捗",
         "seek": "シーク",
         "select_all_rows": "すべての行を選択",
-        "select_row": "行を選択",
+        "select_row_numbered": "{{row}} 行目を選択",
         "settings": "設定",
         "show_password": "パスワードを表示",
         "signature_canvas": "署名キャンバス",
@@ -980,7 +987,10 @@ export const commonNs: WimNamespace<"common", CommonKey> = {
       "dataGrid": {
         "displaying": "{{total}} 件中 {{shown}} 件を表示",
         "loading_more": "さらに読み込み中…",
-        "rows_selected": "（{{selected}} 件を選択中）"
+        "rows_selected": "（{{selected}} 件を選択中）",
+        "sort_cleared": "{{column}} の並べ替えを解除しました",
+        "sorted_ascending": "{{column}} を昇順で並べ替えました",
+        "sorted_descending": "{{column}} を降順で並べ替えました"
       },
       "presence": {
         "online": "オンライン",
@@ -1087,7 +1097,7 @@ export const commonNs: WimNamespace<"common", CommonKey> = {
         "scroll_progress": "Progresso de rolagem",
         "seek": "Procurar",
         "select_all_rows": "Selecionar todas as linhas",
-        "select_row": "Selecionar linha",
+        "select_row_numbered": "Selecionar linha {{row}}",
         "settings": "Configurações",
         "show_password": "Mostrar senha",
         "signature_canvas": "Tela de assinatura",
@@ -1178,7 +1188,10 @@ export const commonNs: WimNamespace<"common", CommonKey> = {
       "dataGrid": {
         "displaying": "Exibindo {{shown}} de {{total}}",
         "loading_more": "Carregando mais…",
-        "rows_selected": "({{selected}} selecionados)"
+        "rows_selected": "({{selected}} selecionados)",
+        "sort_cleared": "Ordenação por {{column}} removida",
+        "sorted_ascending": "Ordenado por {{column}}, crescente",
+        "sorted_descending": "Ordenado por {{column}}, decrescente"
       },
       "presence": {
         "online": "Online",
