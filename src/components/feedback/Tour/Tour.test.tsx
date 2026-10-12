@@ -190,6 +190,19 @@ describe("Tour", () => {
       expect(onClose).not.toHaveBeenCalled();
     });
 
+    it("builds a new dialog for each step and moves focus into it", () => {
+      render(<Harness />);
+      start();
+      const first = screen.getByRole("dialog", { name: steps[0].title });
+      fireEvent.click(screen.getByRole("button", { name: "Next" }));
+      // 同じ要素のまま名前だけ変わると、フォーカスが動かず、スクリーンリーダーは次のステップを読まない
+      const second = screen.getByRole("dialog", { name: steps[1].title });
+      expect(second).not.toBe(first);
+      expect(first).not.toBeInTheDocument();
+      expect(second).toContainElement(document.activeElement as HTMLElement);
+      expect(screen.getByRole("button", { name: "Finish" })).toHaveFocus();
+    });
+
     it("keeps focus inside when Back disappears on the first step", () => {
       render(<Harness />);
       start();

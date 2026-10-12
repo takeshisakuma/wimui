@@ -276,8 +276,13 @@ export const Tour = ({ steps, open, onClose, onFinish }: TourProps) => {
       {/* 閉じたときのフォーカスの戻り先（開始のボタン）は、FocusTrap が覚える。 */}
       <FocusTrap initialFocus={false}>
         {/* 入れ物は位置を持たない（中身は全部 fixed）。名前はステップの題。対象を測る前（マスクだけの
-          あいだ）は題の要素がまだ無いので、aria-labelledby ではなく文字列で渡す。 */}
+          あいだ）は題の要素がまだ無いので、aria-labelledby ではなく文字列で渡す。
+          ステップごとに、ダイアログを作り直す（key）。同じ要素のまま題と説明だけを差し替えると、
+          フォーカスが「次へ」に残ったままなので、スクリーンリーダーは新しいステップを読まない
+          （ナレーター + Chrome の実機で、次のステップへ進んでも、前のステップの文が読まれた）。
+          作り直すと、フォーカスは新しいダイアログの進むボタンへ入り直す（上の effect）。 */}
         <div
+          key={currentStep}
           role="dialog"
           aria-modal="true"
           aria-label={step.title}
