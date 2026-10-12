@@ -9,6 +9,7 @@ import React, {
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
+import { useMergedRef } from "../../../hooks/useMergedRef";
 import { VisuallyHidden } from "../../layout/VisuallyHidden/VisuallyHidden";
 import styles from "./carousel.module.scss";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
@@ -137,7 +138,8 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
   const touchEndX = useRef<number | null>(null);
   const prevButtonRef = useRef<HTMLButtonElement>(null);
   const nextButtonRef = useRef<HTMLButtonElement>(null);
-  const focusAfterMove = useRef<"prev" | "next" | null>(null);
+  const rootRef = useRef<HTMLDivElement>(null);
+  const mergedRootRef = useMergedRef(ref, rootRef);
 
   // レスポンシブ対応
   useEffect(() => {
@@ -233,26 +235,20 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
     goToSlide(index);
   };
   // 端に着くと、押したボタンは無効になって消える。フォーカスを持ったまま消えると body へ落ちるので、
-  // 反対側のボタンへ移す（ループしないときだけ起きる）。移すのは描画のあと ── 反対側のボタンは、
-  // 端を離れるまで無効で、その場では focus() が効かない。
+  // 先にスライドの領域（根）へ移す（ループしないときだけ起きる）。反対側のボタンへは移さない ──
+  // 押し続けると、端で向きが変わって戻っていくため（2026-10-12・ユーザー判断）。領域では ← → が効く。
   const userPrev = () => {
     const target = loop ? (logicalIndex - 1 + originalItemCount) % originalItemCount : Math.max(logicalIndex - 1, 0);
     announce(target);
-    if (!loop && target === 0 && document.activeElement === prevButtonRef.current) focusAfterMove.current = "next";
+    if (!loop && target === 0 && document.activeElement === prevButtonRef.current) rootRef.current?.focus();
     prevSlide();
   };
   const userNext = () => {
     const target = loop ? (logicalIndex + 1) % originalItemCount : Math.min(logicalIndex + 1, lastIndex);
     announce(target);
-    if (!loop && target === lastIndex && document.activeElement === nextButtonRef.current) focusAfterMove.current = "prev";
+    if (!loop && target === lastIndex && document.activeElement === nextButtonRef.current) rootRef.current?.focus();
     nextSlide();
   };
-  useEffect(() => {
-    const side = focusAfterMove.current;
-    if (!side) return;
-    focusAfterMove.current = null;
-    (side === "prev" ? prevButtonRef : nextButtonRef).current?.focus();
-  }, [currentIndex]);
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "ArrowLeft") {
@@ -391,7 +387,7 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
 
   return (
     <Component
-      ref={ref}
+      ref={mergedRootRef}
       className={classNames(
         "wim-carousel",
         styles.root,

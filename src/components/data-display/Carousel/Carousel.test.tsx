@@ -73,22 +73,39 @@ describe("Carousel", () => {
       expect(screen.getByLabelText("Next slide")).not.toHaveAttribute("tabindex");
     });
 
-    it("moves focus to the other button when the pressed one reaches the end and disappears", () => {
+    it("moves focus to the slide region when the pressed button reaches the end and disappears", () => {
       render(<Carousel loop={false}>{slides}</Carousel>);
+      const region = screen.getByRole("region");
       const next = screen.getByLabelText("Next slide");
       const prev = screen.getByLabelText("Previous slide");
       act(() => next.focus());
       act(() => {
         fireEvent.click(next);
       });
-      // 端に着いたボタンは無効になって消える。フォーカスを持ったままだと body へ落ちる
+      // 端に着いたボタンは無効になって消える。フォーカスを持ったままだと body へ落ちる。
+      // 反対側のボタンへは移さない（押し続けると、端で向きが変わって戻っていく）
       expect(next).toBeDisabled();
-      expect(prev).toHaveFocus();
+      expect(region).toHaveFocus();
 
+      act(() => prev.focus());
       act(() => {
         fireEvent.click(prev);
       });
       expect(prev).toBeDisabled();
+      expect(region).toHaveFocus();
+    });
+
+    it("keeps focus on the button while there are slides left in that direction", () => {
+      render(
+        <Carousel loop={false}>
+          {[...slides, <div key="3">Slide 3</div>]}
+        </Carousel>,
+      );
+      const next = screen.getByLabelText("Next slide");
+      act(() => next.focus());
+      act(() => {
+        fireEvent.click(next);
+      });
       expect(next).toHaveFocus();
     });
   });
