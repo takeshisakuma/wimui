@@ -1708,7 +1708,7 @@
     },
     "Carousel.labels": {
       "required": false,
-      "type": "{ slideLabel?: (number: number) => string; prevSlide?: string; nextSlide?: string; goToSlide?: (number: number) => string; }",
+      "type": "{ slideLabel?: (number: number) => string; prevSlide?: string; nextSlide?: string; goToSlide?: (number: number) => string; /** Announced to screen readers when the user changes the slide. Receives the slide number and the slide count. */ slideStatus?: (current: number, total: number) => string; }",
       "shape": {
         "goToSlide": {
           "required": false,
@@ -1725,6 +1725,10 @@
         "slideLabel": {
           "required": false,
           "type": "(number: number) => string"
+        },
+        "slideStatus": {
+          "required": false,
+          "type": "(current: number, total: number) => string"
         }
       }
     },

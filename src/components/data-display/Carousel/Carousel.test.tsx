@@ -64,6 +64,63 @@ describe("Carousel", () => {
     expect(indicators[0]).toHaveAttribute("aria-current", "false");
   });
 
+  describe("slide status announcement", () => {
+    const labels = { slideStatus: (current: number, total: number) => `Slide ${current} of ${total}` };
+    const slides = [<div key="1">Slide 1</div>, <div key="2">Slide 2</div>, <div key="3">Slide 3</div>];
+
+    it("announces the slide the user moved to (indicator, button, arrow key)", () => {
+      const { container } = render(
+        <Carousel loop={false} labels={labels}>
+          {slides}
+        </Carousel>,
+      );
+      const status = screen.getByRole("status");
+      expect(status).toBeEmptyDOMElement();
+
+      // 押してもフォーカスは同じボタンに残り、スライドは位置が動くだけ。ここが空のままだと、何も読まれない
+      act(() => {
+        fireEvent.click(container.querySelectorAll(`.${styles.indicator}`)[2]);
+      });
+      expect(status).toHaveTextContent("Slide 3 of 3");
+
+      act(() => {
+        fireEvent.click(screen.getByLabelText("Previous slide"));
+      });
+      expect(status).toHaveTextContent("Slide 2 of 3");
+
+      act(() => {
+        fireEvent.keyDown(container.firstChild as HTMLElement, { key: "ArrowLeft" });
+      });
+      expect(status).toHaveTextContent("Slide 1 of 3");
+    });
+
+    it("wraps around in loop mode", () => {
+      render(
+        <Carousel loop labels={labels}>
+          {slides}
+        </Carousel>,
+      );
+      act(() => {
+        fireEvent.click(screen.getByLabelText("Previous slide"));
+      });
+      expect(screen.getByRole("status")).toHaveTextContent("Slide 3 of 3");
+    });
+
+    it("stays silent while auto-playing", () => {
+      render(
+        <Carousel autoPlay interval={1000} loop={false} labels={labels}>
+          {slides}
+        </Carousel>,
+      );
+      act(() => {
+        vi.advanceTimersByTime(1000);
+      });
+      // 対照: スライドは進んでいる
+      expect(screen.getByLabelText("Go to slide 2")).toHaveAttribute("aria-current", "true");
+      expect(screen.getByRole("status")).toBeEmptyDOMElement();
+    });
+  });
+
   it("handles autoPlay", () => {
     const { container } = render(
       <Carousel autoPlay interval={1000} loop={false}>

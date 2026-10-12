@@ -333,6 +333,7 @@
   "lightbox": {
     "close": "Fechar",
     "counter": "{{current}} / {{total}}",
+    "image_status": "Imagem {{current}} de {{total}}",
     "next": "Próximo",
     "previous": "Anterior",
     "zoom_in": "Aumentar zoom",
@@ -699,6 +700,7 @@
     "next_slide": "Próximo slide",
     "go_to_slide": "Ir para o slide {{number}}",
     "roledescription": "carrossel",
-    "slide_roledescription": "slide"
+    "slide_roledescription": "slide",
+    "slide_status": "Slide {{current}} de {{total}}"
   }
 }

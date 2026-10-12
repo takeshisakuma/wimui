@@ -9,6 +9,7 @@ import React, {
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
+import { VisuallyHidden } from "../../layout/VisuallyHidden/VisuallyHidden";
 import styles from "./carousel.module.scss";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { componentsNs } from "@/i18n/generated/components";
@@ -27,6 +28,8 @@ export type CarouselLabels = {
   prevSlide?: string;
   nextSlide?: string;
   goToSlide?: (number: number) => string;
+  /** Announced to screen readers when the user changes the slide. Receives the slide number and the slide count. */
+  slideStatus?: (current: number, total: number) => string;
 };
 
 export type CarouselProps = {
@@ -108,6 +111,7 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
     prevSlide: t("carousel.prev_slide"),
     nextSlide: t("carousel.next_slide"),
     goToSlide: (number) => t("carousel.go_to_slide", { number }),
+    slideStatus: (current, total) => t("carousel.slide_status", { current, total }),
     ...labels,
   };
 
@@ -211,11 +215,34 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
     isPaused,
   ]);
 
+  // 利用者がスライドを送ったことを、読み上げで告げる。押してもフォーカスは同じボタンに残り、
+  // スライドは最初から全部描いてあって位置が動くだけなので、告げないと何も読まれない
+  // （ナレーター + Chrome の実機で、インジケーターで送っても無音だった）。自動再生では告げない。
+  const [announcement, setAnnouncement] = useState("");
+  const logicalIndex = loop ? currentIndex % originalItemCount : currentIndex;
+  const lastIndex = loop ? originalItemCount - 1 : Math.max(originalItemCount - displaySlides, 0);
+  const announce = (index: number) => {
+    if (isTransitioning || index === logicalIndex) return;
+    setAnnouncement(mergedLabels.slideStatus(index + 1, originalItemCount));
+  };
+  const userGoTo = (index: number) => {
+    announce(index);
+    goToSlide(index);
+  };
+  const userPrev = () => {
+    announce(loop ? (logicalIndex - 1 + originalItemCount) % originalItemCount : Math.max(logicalIndex - 1, 0));
+    prevSlide();
+  };
+  const userNext = () => {
+    announce(loop ? (logicalIndex + 1) % originalItemCount : Math.min(logicalIndex + 1, lastIndex));
+    nextSlide();
+  };
+
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "ArrowLeft") {
-      prevSlide();
+      userPrev();
     } else if (e.key === "ArrowRight") {
-      nextSlide();
+      userNext();
     }
   };
 
@@ -250,6 +277,9 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
   // 根の中身（スライドの枠・前後のボタン・インジケーター）。
   const body = (
     <>
+      <VisuallyHidden role="status" aria-atomic="true">
+        {announcement}
+      </VisuallyHidden>
       <div className={styles.viewport}>
         <div
           ref={trackRef}
@@ -295,7 +325,7 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
         <>
           <button
             className={classNames(styles.control, styles.prev)}
-            onClick={prevSlide}
+            onClick={userPrev}
             aria-label={mergedLabels.prevSlide}
             disabled={!loop && currentIndex === 0}
             tabIndex={-1}
@@ -304,7 +334,7 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
           </button>
           <button
             className={classNames(styles.control, styles.next)}
-            onClick={nextSlide}
+            onClick={userNext}
             aria-label={mergedLabels.nextSlide}
             disabled={
               !loop && currentIndex >= originalItemCount - displaySlides
@@ -330,7 +360,7 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
                   styles.indicator,
                   isActive && styles.active,
                 )}
-                onClick={() => goToSlide(index)}
+                onClick={() => userGoTo(index)}
                 aria-label={mergedLabels.goToSlide(index + 1)}
                 aria-current={isActive ? "true" : "false"}
               />

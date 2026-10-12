@@ -333,6 +333,7 @@
   "lightbox": {
     "close": "閉じる",
     "counter": "{{current}} / {{total}}",
+    "image_status": "{{total}} 枚中 {{current}} 枚目",
     "next": "次へ",
     "previous": "前へ",
     "zoom_in": "拡大",
@@ -699,6 +700,7 @@
     "next_slide": "次のスライド",
     "go_to_slide": "スライド {{number}} へ移動",
     "roledescription": "カルーセル",
-    "slide_roledescription": "スライド"
+    "slide_roledescription": "スライド",
+    "slide_status": "{{total}} 枚中 {{current}} 枚目のスライド"
   }
 }

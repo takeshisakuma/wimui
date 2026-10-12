@@ -48,6 +48,7 @@ export type ComponentsKey =
   | "carousel.roledescription"
   | "carousel.slide"
   | "carousel.slide_roledescription"
+  | "carousel.slide_status"
   | "cat.ai"
   | "chat.placeholder"
   | "chat.placeholder_interactive"
@@ -295,6 +296,7 @@ export type ComponentsKey =
   | "lightbox.close"
   | "lightbox.counter"
   | "lightbox.dialog"
+  | "lightbox.image_status"
   | "lightbox.next"
   | "lightbox.open"
   | "lightbox.open_named"
@@ -659,6 +661,7 @@ export const componentsNs: WimNamespace<"components", ComponentsKey> = {
         "zoom_in": "Zoom in",
         "zoom_out": "Zoom out",
         "counter": "{{current}} / {{total}}",
+        "image_status": "Image {{current}} of {{total}}",
         "open": "Open image",
         "open_named": "Open image: {{name}}",
         "dialog": "Image viewer"
@@ -716,7 +719,8 @@ export const componentsNs: WimNamespace<"components", ComponentsKey> = {
         "next_slide": "Next slide",
         "go_to_slide": "Go to slide {{number}}",
         "roledescription": "carousel",
-        "slide_roledescription": "slide"
+        "slide_roledescription": "slide",
+        "slide_status": "Slide {{current}} of {{total}}"
       }
     },
     "ja": {
@@ -771,6 +775,7 @@ export const componentsNs: WimNamespace<"components", ComponentsKey> = {
       "lightbox": {
         "close": "閉じる",
         "counter": "{{current}} / {{total}}",
+        "image_status": "{{total}} 枚中 {{current}} 枚目",
         "next": "次へ",
         "previous": "前へ",
         "zoom_in": "拡大",
@@ -858,7 +863,8 @@ export const componentsNs: WimNamespace<"components", ComponentsKey> = {
         "next_slide": "次のスライド",
         "go_to_slide": "スライド {{number}} へ移動",
         "roledescription": "カルーセル",
-        "slide_roledescription": "スライド"
+        "slide_roledescription": "スライド",
+        "slide_status": "{{total}} 枚中 {{current}} 枚目のスライド"
       }
     },
     "pt": {
@@ -913,6 +919,7 @@ export const componentsNs: WimNamespace<"components", ComponentsKey> = {
       "lightbox": {
         "close": "Fechar",
         "counter": "{{current}} / {{total}}",
+        "image_status": "Imagem {{current}} de {{total}}",
         "next": "Próximo",
         "previous": "Anterior",
         "zoom_in": "Aumentar zoom",
@@ -1000,7 +1007,8 @@ export const componentsNs: WimNamespace<"components", ComponentsKey> = {
         "next_slide": "Próximo slide",
         "go_to_slide": "Ir para o slide {{number}}",
         "roledescription": "carrossel",
-        "slide_roledescription": "slide"
+        "slide_roledescription": "slide",
+        "slide_status": "Slide {{current}} de {{total}}"
       }
     }
   },

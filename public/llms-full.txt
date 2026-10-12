@@ -2397,7 +2397,7 @@ and the indicators below it, so they never cover a slide made of text.
     - `slidesToShow: number | Breakpoints` = 1 — Number of slides to show at once. A number or an object per breakpoint.
     - `aspectRatio: string` — Aspect ratio (e.g. '16/9', '4/3', '1/1').
     - `objectFit: "fill" | "contain" | "cover" | "none" | "scale-down"` = "cover" — How the image fits. Effective when aspectRatio is set. (default: 'cover')
-    - `labels: { slideLabel?: (number: number) => string; prevSlide?: string; nextSlide?: string; goToSlide?: (number: number) => string; }` — Labels for manual translation.
+    - `labels: { slideLabel?: (number: number) => string; prevSlide?: string; nextSlide?: string; goToSlide?: (number: number) => string; /** Announced to screen readers when the user changes the slide. Receives the slide number and the slide count. */ slideStatus?: (current: number, total: number) => string; }` — Labels for manual translation.
     - `className: string` — Additional class names
     - `asChild: boolean` — Whether to use the Radix Slot pattern
 - **Chip** — Filter/Selection tokens (aka Pill, Token)
