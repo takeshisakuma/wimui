@@ -4,15 +4,31 @@ import { describe, it, expect, vi } from "vitest";
 import { Snackbar, SnackbarProvider, useSnackbar } from "./Snackbar";
 import styles from "./snackbar.module.scss";
 
+// 見えているスナックバー。文は、画面に見えない読み上げの領域にも入るので、文字では 1 つに決まらない。
+const visibleSnackbar = () => document.querySelector(".wim-snackbar");
+
 describe("Snackbar", () => {
-  it("does not render when open is false", () => {
-    const { container } = render(<Snackbar message="Test" open={false} />);
-    expect(container.firstChild).toBeNull();
+  it("renders only the empty status region when open is false", () => {
+    render(<Snackbar message="Test" open={false} />);
+    // 読み上げの領域は、閉じているあいだも在る（空）。見えているスナックバーは無い
+    expect(screen.getByRole("status")).toBeEmptyDOMElement();
+    expect(screen.queryByText("Test")).not.toBeInTheDocument();
+    expect(document.querySelector(".wim-snackbar")).toBeNull();
+  });
+
+  it("writes the message into the status region that was already there", () => {
+    const { rerender } = render(<Snackbar message="Saved" open={false} />);
+    const region = screen.getByRole("status");
+    rerender(<Snackbar message="Saved" open={true} />);
+    // 同じ要素のまま、文字だけが入る。見えているスナックバーごと差し込むと、読まれない
+    expect(screen.getByRole("status")).toBe(region);
+    expect(region).toHaveTextContent("Saved");
+    expect(document.querySelector(".wim-snackbar")).not.toHaveAttribute("role");
   });
 
   it("renders message when open is true", async () => {
     render(<Snackbar message="Hello World" open={true} />);
-    expect(screen.getByText("Hello World")).toBeInTheDocument();
+    expect(visibleSnackbar()).toHaveTextContent("Hello World");
   });
 
   it("calls onClose after timeout", async () => {
@@ -39,22 +55,22 @@ describe("Snackbar", () => {
     render(<Snackbar message="Success" open={true} intent="success" />);
     const el = document.querySelector(`.${styles.success}`);
     expect(el).toBeInTheDocument();
-    expect(el).toHaveAttribute("role", "status");
+    expect(screen.getByRole("status")).toHaveTextContent("Success");
   });
 
   it("renders with error intent and role=alert", () => {
     render(<Snackbar message="Error" open={true} intent="danger" />);
     const el = document.querySelector(`.${styles.danger}`);
     expect(el).toBeInTheDocument();
-    expect(el).toHaveAttribute("role", "alert");
-    expect(el).toHaveAttribute("aria-live", "assertive");
+    expect(screen.getByRole("alert")).toHaveTextContent("Error");
+    expect(screen.getByRole("alert")).not.toBe(el);
   });
 
   it("renders with warning intent and role=alert", () => {
     render(<Snackbar message="Warning" open={true} intent="warning" />);
     const el = document.querySelector(`.${styles.warning}`);
-    expect(el).toHaveAttribute("role", "alert");
-    expect(el).toHaveAttribute("aria-live", "assertive");
+    expect(el).toBeInTheDocument();
+    expect(screen.getByRole("alert")).toHaveTextContent("Warning");
   });
 
   it("renders with info intent", () => {
@@ -115,7 +131,7 @@ describe("Snackbar", () => {
       />,
     );
 
-    const snackbar = document.querySelector(`.${styles.root}`) as HTMLElement;
+    const snackbar = visibleSnackbar() as HTMLElement;
 
     act(() => { vi.advanceTimersByTime(500); });
     fireEvent.mouseEnter(snackbar);
@@ -158,7 +174,7 @@ describe("SnackbarProvider and useSnackbar", () => {
     fireEvent.click(screen.getByText("Show String"));
     act(() => { vi.runAllTimers(); });
 
-    expect(screen.getByText("Hello")).toBeInTheDocument();
+    expect(visibleSnackbar()).toHaveTextContent("Hello");
     vi.useRealTimers();
   });
 
@@ -173,7 +189,7 @@ describe("SnackbarProvider and useSnackbar", () => {
     fireEvent.click(screen.getByText("Show Object"));
     act(() => { vi.runAllTimers(); });
 
-    expect(screen.getByText("Object")).toBeInTheDocument();
+    expect(visibleSnackbar()).toHaveTextContent("Object");
     vi.useRealTimers();
   });
 
@@ -187,7 +203,7 @@ describe("SnackbarProvider and useSnackbar", () => {
 
     fireEvent.click(screen.getByText("Show String"));
     act(() => { vi.runAllTimers(); });
-    expect(screen.getByText("Hello")).toBeInTheDocument();
+    expect(visibleSnackbar()).toHaveTextContent("Hello");
 
     fireEvent.click(screen.getByText("Hide"));
     vi.useRealTimers();

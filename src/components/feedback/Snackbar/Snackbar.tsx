@@ -6,6 +6,7 @@ import React, {
   useContext,
 } from "react";
 import { Button } from "../../form/Button/Button";
+import { VisuallyHidden } from "../../layout/VisuallyHidden/VisuallyHidden";
 import classNames from "classnames";
 import { FeedbackIcon } from "../../_internal/FeedbackIcon";
 import { FeedbackCloseButton } from "../../_internal/FeedbackCloseButton";
@@ -137,18 +138,23 @@ export const Snackbar = ({
       if (onAction) onAction();
     };
 
-    if (!isRendered && !open) return null;
-
     const role = intent === "danger" || intent === "warning" ? "alert" : "status";
-    const ariaLive = intent === "danger" || intent === "warning" ? "assertive" : "polite";
 
     return (
+      // 包みは、閉じているあいだも置いておく（透明で、クリックも通す）。中に、画面に見えない
+      // 読み上げの領域を持つ。見えているスナックバーを読み上げの領域にして中身ごと差し込むと、
+      // スクリーンリーダーは「領域が現れた」としか見ず、文を読まない（ナレーター + Chrome の実機で、
+      // 2 通りの置き方を試して、どちらも無音だった）。先に在る領域の文字を書き換える形だけが読まれる。
       <div
         className={classNames(
           styles.wrapper,
           styles[position],
         )}
       >
+        <VisuallyHidden role={role} aria-atomic="true">
+          {open ? message : ""}
+        </VisuallyHidden>
+        {(isRendered || open) && (
         <div
           className={classNames("wim-snackbar", 
             styles.root,
@@ -157,8 +163,6 @@ export const Snackbar = ({
             showCloseButton && styles.hasCloseButton,
             className,
           )}
-          role={role}
-          aria-live={ariaLive}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
           onFocus={handleMouseEnter}
@@ -191,6 +195,7 @@ export const Snackbar = ({
             />
           </div>
         </div>
+        )}
       </div>
     );
   };
@@ -247,16 +252,17 @@ export const SnackbarProvider = ({
   return (
     <SnackbarContext.Provider value={{ showMessage, hideMessage }}>
       {children}
-      {snackbar && (
-        <Snackbar
-          {...snackbar}
-          open={open}
-          onClose={() => {
-            setOpen(false);
-            if (snackbar.onClose) snackbar.onClose();
-          }}
-        />
-      )}
+      {/* 最初のメッセージの前から置いておく。メッセージが来てから置くと、読み上げの領域が中身ごと
+          差し込まれて、最初の 1 件が読まれない（Snackbar の包みのコメント）。 */}
+      <Snackbar
+        message=""
+        {...snackbar}
+        open={open && snackbar !== null}
+        onClose={() => {
+          setOpen(false);
+          if (snackbar?.onClose) snackbar.onClose();
+        }}
+      />
     </SnackbarContext.Provider>
   );
 };
