@@ -189,6 +189,9 @@ export const FileUpload = ({
             styles[size],
             disabled && styles.disabled,
           )}
+          // 無効のときの薄い文字は、コントラストの基準の対象外（WCAG 1.4.3 の例外）。この印が無いと、
+          // axe は無効だと分からず、color-contrast で落とす（外して、a11y の CI が落ちた）。
+          aria-disabled={disabled || undefined}
         >
           {fileNames}
         </span>
