@@ -11,6 +11,29 @@ describe("Pagination", () => {
     expect(screen.queryByText("6")).not.toBeInTheDocument();
   });
 
+  describe("page status announcement", () => {
+    const labels = { pageStatus: (current: number, totalPages: number) => `Page ${current} of ${totalPages}` };
+
+    it("stays silent on the first render", () => {
+      render(<Pagination total={50} current={2} labels={labels} />);
+      expect(screen.getByRole("status")).toBeEmptyDOMElement();
+    });
+
+    it("announces the new page when current changes", () => {
+      const { rerender } = render(<Pagination total={50} current={1} labels={labels} />);
+      rerender(<Pagination total={50} current={2} labels={labels} />);
+      // 「次へ」を押してもフォーカスは同じボタンに残る。ここが空のままだと、押しても何も読まれない
+      expect(screen.getByRole("status")).toHaveTextContent("Page 2 of 5");
+      expect(screen.getByRole("status")).toHaveAttribute("aria-atomic", "true");
+    });
+
+    it("announces in the simple layout too", () => {
+      const { rerender } = render(<Pagination total={50} current={1} simple labels={labels} />);
+      rerender(<Pagination total={50} current={3} simple labels={labels} />);
+      expect(screen.getByRole("status")).toHaveTextContent("Page 3 of 5");
+    });
+  });
+
   it("calls onChange when a page number is clicked", () => {
     const handleChange = vi.fn();
     render(<Pagination total={50} current={1} onChange={handleChange} />);

@@ -7,6 +7,7 @@ import { Icon } from "../../media/Icon/Icon";
 import { Select } from "../../form/Select/Select";
 import { Input } from "../../form/Input/Input";
 import { Button } from "../../form/Button/Button";
+import { VisuallyHidden } from "../../layout/VisuallyHidden/VisuallyHidden";
 import styles from "./pagination.module.scss";
 import { ChevronLeftIcon, ChevronRightIcon } from "@/icon";
 
@@ -98,6 +99,8 @@ export interface PaginationProps {
     jumpToPageAriaLabel?: string;
     navAriaLabel?: string;
     totalLabel?: string;
+    /** Announced to screen readers when the page changes. Receives the current page and the page count. */
+    pageStatus?: (current: number, totalPages: number) => string;
   };
   /** Accessible name for the navigation landmark. Takes precedence over `labels.navAriaLabel`. */
   "aria-label"?: string;
@@ -140,6 +143,8 @@ export const Pagination = ({
     pageSizeAriaLabel = t("a11y.items_per_page"),
     jumpToPageAriaLabel = t("a11y.jump_to_page"),
     navAriaLabel = t("a11y.pagination_nav"),
+    pageStatus = (page: number, pages: number) =>
+      t("pagination.page_status", { current: String(page), total: String(pages) }),
   } = labels;
 
   const [internalPageSize, setInternalPageSize] = useState(pageSize);
@@ -147,6 +152,21 @@ export const Pagination = ({
 
   const currentPageSize = internalPageSize;
   const totalPages = Math.ceil(total / currentPageSize);
+
+  // ページが変わったことを、読み上げで告げる。「次へ」を押してもフォーカスは同じボタンに残り、
+  // 変わるのは利用者が置いた中身（表の行など）なので、告げないと、押して何が起きたかが分からない
+  // （ナレーター + Chrome の実機で、DataGrid のページ送りが無音だった）。最初の描画では告げない。
+  const [announcedPage, setAnnouncedPage] = useState(current);
+  const [announcement, setAnnouncement] = useState("");
+  if (current !== announcedPage) {
+    setAnnouncedPage(current);
+    setAnnouncement(pageStatus(current, totalPages));
+  }
+  const status = (
+    <VisuallyHidden role="status" aria-atomic="true">
+      {announcement}
+    </VisuallyHidden>
+  );
 
   const paginationRange = useMemo(() => {
     // totalPages + siblingCount + firstPage + lastPage + 2*ellipses
@@ -260,6 +280,7 @@ export const Pagination = ({
         aria-labelledby={ariaLabelledBy}
       >
         <Slottable>{children}</Slottable>
+        {status}
         <ul className={styles.root}>
           <li
             className={classNames(
@@ -311,6 +332,7 @@ export const Pagination = ({
         )}
         <Nav className={styles.root} aria-label={ariaLabelledBy ? undefined : (ariaLabelAttr ?? navAriaLabel)} aria-labelledby={ariaLabelledBy}>
           <Slottable>{children}</Slottable>
+        {status}
           <ul className={styles.root}>
             {/* Previous Button */}
             <li

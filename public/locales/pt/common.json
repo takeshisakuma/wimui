@@ -494,7 +494,8 @@
   "pagination": {
     "go": "Ir",
     "go_to": "Ir para",
-    "items_per_page": "itens / página"
+    "items_per_page": "itens / página",
+    "page_status": "Página {{current}} de {{total}}"
   },
   "placeholder": {
     "email": "example@email.com",

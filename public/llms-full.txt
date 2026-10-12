@@ -2229,7 +2229,7 @@ Useful for URL-based pagination (e.g. wrap with a Link via PaginationPage asChil
     - `pageSizeOptions: number[]` = [10, 20, 50, 100] — Page size options for the page size changer
     - `showTotal: (total: number, range: [number, number]) => React.ReactNode` — Function to display the total count
     - `showQuickJumper: boolean` = false — Whether to show quick jumper
-    - `labels: { prevPage?: string; nextPage?: string; pageAriaLabel?: (page: number) => string; itemsPerPage?: string; goTo?: string; go?: string; pageSizeAriaLabel?: string; jumpToPageAriaLabel?: string; navAriaLabel?: string; totalLabel?: string; }` = {} — Labels for internationalization
+    - `labels: { prevPage?: string; nextPage?: string; pageAriaLabel?: (page: number) => string; itemsPerPage?: string; goTo?: string; go?: string; pageSizeAriaLabel?: string; jumpToPageAriaLabel?: string; navAriaLabel?: string; totalLabel?: string; /** Announced to screen readers when the page changes. Receives the current page and the page count. */ pageStatus?: (current: number, totalPages: number) => string; }` = {} — Labels for internationalization
     - `aria-label: string` — Accessible name for the navigation landmark. Takes precedence over `labels.navAriaLabel`.
     - `aria-labelledby: string` — ID of the element that labels the navigation landmark. Takes precedence over `aria-label`.
 - **SpeedDial** — Floating action button that expands sub-actions on hover or click.
