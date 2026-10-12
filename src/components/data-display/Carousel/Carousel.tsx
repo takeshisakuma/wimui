@@ -135,6 +135,9 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
   const trackRef = useRef<HTMLDivElement>(null);
   const touchStartX = useRef<number | null>(null);
   const touchEndX = useRef<number | null>(null);
+  const prevButtonRef = useRef<HTMLButtonElement>(null);
+  const nextButtonRef = useRef<HTMLButtonElement>(null);
+  const focusAfterMove = useRef<"prev" | "next" | null>(null);
 
   // レスポンシブ対応
   useEffect(() => {
@@ -229,14 +232,27 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
     announce(index);
     goToSlide(index);
   };
+  // 端に着くと、押したボタンは無効になって消える。フォーカスを持ったまま消えると body へ落ちるので、
+  // 反対側のボタンへ移す（ループしないときだけ起きる）。移すのは描画のあと ── 反対側のボタンは、
+  // 端を離れるまで無効で、その場では focus() が効かない。
   const userPrev = () => {
-    announce(loop ? (logicalIndex - 1 + originalItemCount) % originalItemCount : Math.max(logicalIndex - 1, 0));
+    const target = loop ? (logicalIndex - 1 + originalItemCount) % originalItemCount : Math.max(logicalIndex - 1, 0);
+    announce(target);
+    if (!loop && target === 0 && document.activeElement === prevButtonRef.current) focusAfterMove.current = "next";
     prevSlide();
   };
   const userNext = () => {
-    announce(loop ? (logicalIndex + 1) % originalItemCount : Math.min(logicalIndex + 1, lastIndex));
+    const target = loop ? (logicalIndex + 1) % originalItemCount : Math.min(logicalIndex + 1, lastIndex);
+    announce(target);
+    if (!loop && target === lastIndex && document.activeElement === nextButtonRef.current) focusAfterMove.current = "prev";
     nextSlide();
   };
+  useEffect(() => {
+    const side = focusAfterMove.current;
+    if (!side) return;
+    focusAfterMove.current = null;
+    (side === "prev" ? prevButtonRef : nextButtonRef).current?.focus();
+  }, [currentIndex]);
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "ArrowLeft") {
@@ -323,23 +339,25 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
 
       {showControls && originalItemCount > displaySlides && (
         <>
+          {/* 前へ・次へも Tab で届く（2026-10-12・ユーザー判断。それまでは tabIndex=-1 で、スライドの
+              領域で ← → を押す形だけだった。スクリーンリーダーで使うと、ボタンに届かないのが分かりにくい）。 */}
           <button
+            ref={prevButtonRef}
             className={classNames(styles.control, styles.prev)}
             onClick={userPrev}
             aria-label={mergedLabels.prevSlide}
             disabled={!loop && currentIndex === 0}
-            tabIndex={-1}
           >
             <Icon component={ChevronLeftIcon} size="md" />
           </button>
           <button
+            ref={nextButtonRef}
             className={classNames(styles.control, styles.next)}
             onClick={userNext}
             aria-label={mergedLabels.nextSlide}
             disabled={
               !loop && currentIndex >= originalItemCount - displaySlides
             }
-            tabIndex={-1}
           >
             <Icon component={ChevronRightIcon} size="md" />
           </button>

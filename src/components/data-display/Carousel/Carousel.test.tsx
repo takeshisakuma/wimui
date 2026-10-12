@@ -64,6 +64,35 @@ describe("Carousel", () => {
     expect(indicators[0]).toHaveAttribute("aria-current", "false");
   });
 
+  describe("previous / next buttons as Tab stops", () => {
+    const slides = [<div key="1">Slide 1</div>, <div key="2">Slide 2</div>];
+
+    it("leaves the buttons in the Tab order", () => {
+      render(<Carousel>{slides}</Carousel>);
+      expect(screen.getByLabelText("Previous slide")).not.toHaveAttribute("tabindex");
+      expect(screen.getByLabelText("Next slide")).not.toHaveAttribute("tabindex");
+    });
+
+    it("moves focus to the other button when the pressed one reaches the end and disappears", () => {
+      render(<Carousel loop={false}>{slides}</Carousel>);
+      const next = screen.getByLabelText("Next slide");
+      const prev = screen.getByLabelText("Previous slide");
+      act(() => next.focus());
+      act(() => {
+        fireEvent.click(next);
+      });
+      // 端に着いたボタンは無効になって消える。フォーカスを持ったままだと body へ落ちる
+      expect(next).toBeDisabled();
+      expect(prev).toHaveFocus();
+
+      act(() => {
+        fireEvent.click(prev);
+      });
+      expect(prev).toBeDisabled();
+      expect(next).toHaveFocus();
+    });
+  });
+
   describe("slide status announcement", () => {
     const labels = { slideStatus: (current: number, total: number) => `Slide ${current} of ${total}` };
     const slides = [<div key="1">Slide 1</div>, <div key="2">Slide 2</div>, <div key="3">Slide 3</div>];
