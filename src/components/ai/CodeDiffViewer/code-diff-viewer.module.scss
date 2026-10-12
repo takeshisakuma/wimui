@@ -72,9 +72,11 @@
       @include pressed.ghost;
     }
 
+    // 選択中は、ホバーより 1 段濃い地にする。同じ地だと、選択中でないボタンをホバーしたときに、
+    // どちらが選ばれているかが見分けられない。
     &.active {
       color: var(--wim-color-text-primary);
-      background: var(--wim-color-ghost-bg-hover);
+      background: var(--wim-color-ghost-bg-active);
     }
 
     & + & {
