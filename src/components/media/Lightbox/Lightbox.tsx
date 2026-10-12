@@ -5,6 +5,7 @@ import { componentsNs } from "@/i18n/generated/components";
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import { OverlayBase } from "../../_internal/OverlayBase";
 import { Icon } from "../Icon/Icon";
+import { VisuallyHidden } from "../../layout/VisuallyHidden/VisuallyHidden";
 import { ChevronLeftIcon, ChevronRightIcon, CloseIcon, PlusIcon, MinusIcon } from "@/icon";
 import styles from "./lightbox.module.scss";
 
@@ -228,15 +229,31 @@ export const LightboxContent = ({
   const { t } = useWimTranslation(componentsNs);
   const [zoom, setZoom] = useState(1);
 
+  // 画像を送ったことを、読み上げで告げる。「次へ」を押してもフォーカスは同じボタンに残り、
+  // ダイアログの名前が差し替わるだけなので、告げないと何も読まれない（ナレーター + Chrome の
+  // 実機で無音だった）。開いたときは告げない（ダイアログの名前が読まれる）。
+  const [announcement, setAnnouncement] = useState("");
+  if (!open && announcement) setAnnouncement("");
+
+  const goTo = useCallback(
+    (index: number) => {
+      const item = items[index];
+      const name = item?.title || item?.alt;
+      const status = t("lightbox.image_status", { current: index + 1, total: items.length });
+      setAnnouncement(name ? `${status}: ${name}` : status);
+      setCurrentIndex(index);
+      setZoom(1);
+    },
+    [items, setCurrentIndex, t],
+  );
+
   const handlePrev = useCallback(() => {
-    setCurrentIndex((currentIndex - 1 + items.length) % items.length);
-    setZoom(1);
-  }, [currentIndex, items.length, setCurrentIndex]);
+    goTo((currentIndex - 1 + items.length) % items.length);
+  }, [currentIndex, items.length, goTo]);
 
   const handleNext = useCallback(() => {
-    setCurrentIndex((currentIndex + 1) % items.length);
-    setZoom(1);
-  }, [currentIndex, items.length, setCurrentIndex]);
+    goTo((currentIndex + 1) % items.length);
+  }, [currentIndex, items.length, goTo]);
 
   const toggleZoom = () => {
     setZoom((prev) => (prev === 1 ? 2 : 1));
@@ -283,6 +300,9 @@ export const LightboxContent = ({
       }}
     >
       <div className={styles.container}>
+        <VisuallyHidden role="status" aria-atomic="true">
+          {announcement}
+        </VisuallyHidden>
         {/* Header/Controls */}
         <div className={styles.header}>
           {showCounter && items.length > 1 && (

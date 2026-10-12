@@ -105,6 +105,17 @@ describe("Lightbox", () => {
     expect(screen.getByAltText("image-c")).toBeInTheDocument();
   });
 
+  it("announces the image it moved to, and stays silent when it opens", () => {
+    renderGallery({ defaultOpen: true });
+    // 開いたときは告げない（ダイアログの名前が読まれる）
+    expect(screen.getByRole("status")).toBeEmptyDOMElement();
+    fireEvent.click(screen.getByLabelText("Next"));
+    // 「次へ」を押してもフォーカスは同じボタンに残る。ここが空のままだと、押しても何も読まれない
+    expect(screen.getByRole("status")).toHaveTextContent("Image 2 of 3: image-b");
+    fireEvent.keyDown(window, { key: "ArrowLeft" });
+    expect(screen.getByRole("status")).toHaveTextContent("Image 1 of 3: Title A");
+  });
+
   it("supports keyboard navigation and Escape to close", async () => {
     renderGallery({ defaultOpen: true });
     fireEvent.keyDown(window, { key: "ArrowRight" });

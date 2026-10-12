@@ -641,6 +641,7 @@
     "zoom_in": "Zoom in",
     "zoom_out": "Zoom out",
     "counter": "{{current}} / {{total}}",
+    "image_status": "Image {{current}} of {{total}}",
     "open": "Open image",
     "open_named": "Open image: {{name}}",
     "dialog": "Image viewer"
@@ -699,6 +700,7 @@
     "next_slide": "Next slide",
     "go_to_slide": "Go to slide {{number}}",
     "roledescription": "carousel",
-    "slide_roledescription": "slide"
+    "slide_roledescription": "slide",
+    "slide_status": "Slide {{current}} of {{total}}"
   }
 }

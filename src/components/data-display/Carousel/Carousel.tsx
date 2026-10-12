@@ -9,6 +9,8 @@ import React, {
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
+import { useMergedRef } from "../../../hooks/useMergedRef";
+import { VisuallyHidden } from "../../layout/VisuallyHidden/VisuallyHidden";
 import styles from "./carousel.module.scss";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { componentsNs } from "@/i18n/generated/components";
@@ -27,6 +29,8 @@ export type CarouselLabels = {
   prevSlide?: string;
   nextSlide?: string;
   goToSlide?: (number: number) => string;
+  /** Announced to screen readers when the user changes the slide. Receives the slide number and the slide count. */
+  slideStatus?: (current: number, total: number) => string;
 };
 
 export type CarouselProps = {
@@ -108,6 +112,7 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
     prevSlide: t("carousel.prev_slide"),
     nextSlide: t("carousel.next_slide"),
     goToSlide: (number) => t("carousel.go_to_slide", { number }),
+    slideStatus: (current, total) => t("carousel.slide_status", { current, total }),
     ...labels,
   };
 
@@ -131,6 +136,10 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
   const trackRef = useRef<HTMLDivElement>(null);
   const touchStartX = useRef<number | null>(null);
   const touchEndX = useRef<number | null>(null);
+  const prevButtonRef = useRef<HTMLButtonElement>(null);
+  const nextButtonRef = useRef<HTMLButtonElement>(null);
+  const rootRef = useRef<HTMLDivElement>(null);
+  const mergedRootRef = useMergedRef(ref, rootRef);
 
   // レスポンシブ対応
   useEffect(() => {
@@ -211,11 +220,41 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
     isPaused,
   ]);
 
+  // 利用者がスライドを送ったことを、読み上げで告げる。押してもフォーカスは同じボタンに残り、
+  // スライドは最初から全部描いてあって位置が動くだけなので、告げないと何も読まれない
+  // （ナレーター + Chrome の実機で、インジケーターで送っても無音だった）。自動再生では告げない。
+  const [announcement, setAnnouncement] = useState("");
+  const logicalIndex = loop ? currentIndex % originalItemCount : currentIndex;
+  const lastIndex = loop ? originalItemCount - 1 : Math.max(originalItemCount - displaySlides, 0);
+  const announce = (index: number) => {
+    if (isTransitioning || index === logicalIndex) return;
+    setAnnouncement(mergedLabels.slideStatus(index + 1, originalItemCount));
+  };
+  const userGoTo = (index: number) => {
+    announce(index);
+    goToSlide(index);
+  };
+  // 端に着くと、押したボタンは無効になって消える。フォーカスを持ったまま消えると body へ落ちるので、
+  // 先にスライドの領域（根）へ移す（ループしないときだけ起きる）。反対側のボタンへは移さない ──
+  // 押し続けると、端で向きが変わって戻っていくため（2026-10-12・ユーザー判断）。領域では ← → が効く。
+  const userPrev = () => {
+    const target = loop ? (logicalIndex - 1 + originalItemCount) % originalItemCount : Math.max(logicalIndex - 1, 0);
+    announce(target);
+    if (!loop && target === 0 && document.activeElement === prevButtonRef.current) rootRef.current?.focus();
+    prevSlide();
+  };
+  const userNext = () => {
+    const target = loop ? (logicalIndex + 1) % originalItemCount : Math.min(logicalIndex + 1, lastIndex);
+    announce(target);
+    if (!loop && target === lastIndex && document.activeElement === nextButtonRef.current) rootRef.current?.focus();
+    nextSlide();
+  };
+
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "ArrowLeft") {
-      prevSlide();
+      userPrev();
     } else if (e.key === "ArrowRight") {
-      nextSlide();
+      userNext();
     }
   };
 
@@ -250,6 +289,9 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
   // 根の中身（スライドの枠・前後のボタン・インジケーター）。
   const body = (
     <>
+      <VisuallyHidden role="status" aria-atomic="true">
+        {announcement}
+      </VisuallyHidden>
       <div className={styles.viewport}>
         <div
           ref={trackRef}
@@ -293,23 +335,25 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
 
       {showControls && originalItemCount > displaySlides && (
         <>
+          {/* 前へ・次へも Tab で届く（2026-10-12・ユーザー判断。それまでは tabIndex=-1 で、スライドの
+              領域で ← → を押す形だけだった。スクリーンリーダーで使うと、ボタンに届かないのが分かりにくい）。 */}
           <button
+            ref={prevButtonRef}
             className={classNames(styles.control, styles.prev)}
-            onClick={prevSlide}
+            onClick={userPrev}
             aria-label={mergedLabels.prevSlide}
             disabled={!loop && currentIndex === 0}
-            tabIndex={-1}
           >
             <Icon component={ChevronLeftIcon} size="md" />
           </button>
           <button
+            ref={nextButtonRef}
             className={classNames(styles.control, styles.next)}
-            onClick={nextSlide}
+            onClick={userNext}
             aria-label={mergedLabels.nextSlide}
             disabled={
               !loop && currentIndex >= originalItemCount - displaySlides
             }
-            tabIndex={-1}
           >
             <Icon component={ChevronRightIcon} size="md" />
           </button>
@@ -330,7 +374,7 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
                   styles.indicator,
                   isActive && styles.active,
                 )}
-                onClick={() => goToSlide(index)}
+                onClick={() => userGoTo(index)}
                 aria-label={mergedLabels.goToSlide(index + 1)}
                 aria-current={isActive ? "true" : "false"}
               />
@@ -343,7 +387,7 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
 
   return (
     <Component
-      ref={ref}
+      ref={mergedRootRef}
       className={classNames(
         "wim-carousel",
         styles.root,
