@@ -24,6 +24,8 @@ interface LightboxContextType {
   currentIndex: number;
   setCurrentIndex: (index: number | ((prev: number) => number)) => void;
   items: LightboxItem[];
+  /** Open on the item with this `src`, adding it when it is not registered yet. */
+  openItem: (item: LightboxItem) => void;
   setItems: React.Dispatch<React.SetStateAction<LightboxItem[]>>;
   registerItem: (item: LightboxItem) => number;
   unregisterItem: (index: number) => void;
@@ -66,6 +68,18 @@ export const Lightbox = ({
   const [uncontrolledOpen, setUncontrolledOpen] = useState(defaultOpen);
   const [currentIndex, setCurrentIndex] = useState(defaultIndex);
   const [items, setItems] = useState<LightboxItem[]>([]);
+  // `src` で開くときは、「どの画像を開くか」を src のまま持っておき、items が決まった描画で
+  // 位置に直す。引き金の側で `items` を見て位置を決めると、古い `items` を見ることがある ──
+  // 表示の直後に押すと、LightboxGallery の登録がまだ描画に届いておらず、同じ画像が 2 回登録
+  // された（1 枚しか無いのに、前へ・次へが出る）。
+  const [pendingSrc, setPendingSrc] = useState<string | null>(null);
+  if (pendingSrc !== null) {
+    const index = items.findIndex((item) => item.src === pendingSrc);
+    if (index !== -1) {
+      setPendingSrc(null);
+      if (index !== currentIndex) setCurrentIndex(index);
+    }
+  }
 
   const isControlled = controlledOpen !== undefined;
   const open = isControlled ? controlledOpen : uncontrolledOpen;
@@ -89,6 +103,16 @@ export const Lightbox = ({
     return index; // Note: This doesn't work perfectly for dynamic registration, but for static it's fine.
   }, []);
 
+  const openItem = useCallback(
+    (item: LightboxItem) => {
+      // 登録済みかどうかは、その時点の最新の一覧（prev）で見る。
+      setItems((prev) => (prev.some((existing) => existing.src === item.src) ? prev : [...prev, item]));
+      setPendingSrc(item.src);
+      handleOpenChange(true);
+    },
+    [handleOpenChange],
+  );
+
   const unregisterItem = useCallback((_index: number) => {
     // Basic implementation
   }, []);
@@ -101,6 +125,7 @@ export const Lightbox = ({
         currentIndex,
         setCurrentIndex,
         items,
+        openItem,
         setItems,
         registerItem,
         unregisterItem,
@@ -136,26 +161,18 @@ export const LightboxTrigger = ({
   caption,
   ...props
 }: LightboxTriggerProps) => {
-  const { setOpen, setCurrentIndex, items, setItems } = useLightbox();
+  const { setOpen, setCurrentIndex, items, openItem } = useLightbox();
   const { t } = useWimTranslation(componentsNs);
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     onClick?.(e);
     
-    if (index !== undefined) {
-      setCurrentIndex(index);
-    } else if (src) {
-      // If src is provided directly, we check if it exists or add it
-      const existingIndex = items.findIndex((item) => item.src === src);
-      if (existingIndex !== -1) {
-        setCurrentIndex(existingIndex);
-      } else {
-        const newIndex = items.length;
-        setItems((prev) => [...prev, { src, alt, caption }]);
-        setCurrentIndex(newIndex);
-      }
+    if (src && index === undefined) {
+      // src で開く。登録済みならその画像へ、無ければ足して開く（位置は Lightbox が決める）。
+      openItem({ src, alt, caption });
+      return;
     }
-    
+    if (index !== undefined) setCurrentIndex(index);
     setOpen(true);
   };
 
