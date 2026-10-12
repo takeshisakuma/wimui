@@ -54,6 +54,7 @@
     "seek": "Procurar",
     "select_all_rows": "Selecionar todas as linhas",
     "select_row": "Selecionar linha",
+    "select_row_numbered": "Selecionar linha {{row}}",
     "settings": "Configurações",
     "show_password": "Mostrar senha",
     "signature_canvas": "Tela de assinatura",
@@ -655,7 +656,10 @@
   "dataGrid": {
     "displaying": "Exibindo {{shown}} de {{total}}",
     "loading_more": "Carregando mais…",
-    "rows_selected": "({{selected}} selecionados)"
+    "rows_selected": "({{selected}} selecionados)",
+    "sort_cleared": "Ordenação por {{column}} removida",
+    "sorted_ascending": "Ordenado por {{column}}, crescente",
+    "sorted_descending": "Ordenado por {{column}}, decrescente"
   },
   "presence": {
     "online": "Online",

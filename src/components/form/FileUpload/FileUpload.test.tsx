@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, act } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { FileUpload } from "./FileUpload";
 
@@ -11,6 +11,33 @@ describe("FileUpload", () => {
   it("shows 'No file selected' initially", () => {
     render(<FileUpload />);
     expect(screen.getByText(/No file selected/i)).toBeInTheDocument();
+  });
+
+  it("announces the chosen file a moment after it is picked, through a status region that was already there", () => {
+    vi.useFakeTimers();
+    render(<FileUpload />);
+    const status = screen.getByRole("status");
+    expect(status).toBeEmptyDOMElement();
+
+    const input = document.querySelector('input[type="file"]') as HTMLInputElement;
+    const file = new File(["x"], "report.pdf", { type: "application/pdf" });
+    fireEvent.change(input, { target: { files: [file] } });
+    // 選んだ直後は、フォーカスがボタンへ戻る読み上げが走っている。そこで書き換えても読まれないので、待つ
+    expect(status).toBeEmptyDOMElement();
+    act(() => {
+      vi.advanceTimersByTime(700);
+    });
+    expect(screen.getByRole("status")).toBe(status);
+    expect(status).toHaveTextContent("Selected: report.pdf");
+    vi.useRealTimers();
+  });
+
+  it("describes the button with the chosen file names", () => {
+    render(<FileUpload value={["contract.pdf"]} />);
+    const button = screen.getByRole("button");
+    const ids = (button.getAttribute("aria-describedby") ?? "").split(" ");
+    const names = screen.getByText("contract.pdf");
+    expect(ids).toContain(names.id);
   });
 
   it("triggers input click when button is clicked", () => {

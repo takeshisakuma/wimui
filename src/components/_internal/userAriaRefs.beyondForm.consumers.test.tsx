@@ -84,7 +84,9 @@ describe("利用者が渡した参照が、読まれる要素に届く（T340・
       render(make({}));
       const el = screen.getAllByRole(role)[0];
       expect(el).toHaveAccessibleName();
-      expect(el).not.toHaveAttribute("aria-describedby");
+      // FileUpload だけは、部品が説明を 1 つ持つ（選んだファイルの名前。ボタンに着いたときに読まれる）。
+      if (_name === "FileUpload") expect(el).toHaveAccessibleDescription(/No file selected/i);
+      else expect(el).not.toHaveAttribute("aria-describedby");
     });
   });
 

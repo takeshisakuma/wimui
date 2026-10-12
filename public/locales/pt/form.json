@@ -48,7 +48,8 @@
   },
   "fileupload": {
     "button": "Selecionar arquivo",
-    "no_file": "Nenhum arquivo selecionado"
+    "no_file": "Nenhum arquivo selecionado",
+    "selected": "Selecionado: {{files}}"
   },
   "form": {
     "optional": "Opcional",

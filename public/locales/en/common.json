@@ -54,6 +54,7 @@
     "seek": "Seek",
     "select_all_rows": "Select all rows",
     "select_row": "Select row",
+    "select_row_numbered": "Select row {{row}}",
     "settings": "Settings",
     "show_password": "Show password",
     "signature_canvas": "Signature canvas",
@@ -655,7 +656,10 @@
   "dataGrid": {
     "displaying": "Showing {{shown}} of {{total}}",
     "loading_more": "Loading more…",
-    "rows_selected": "({{selected}} selected)"
+    "rows_selected": "({{selected}} selected)",
+    "sort_cleared": "Sorting by {{column}} cleared",
+    "sorted_ascending": "Sorted by {{column}}, ascending",
+    "sorted_descending": "Sorted by {{column}}, descending"
   },
   "presence": {
     "online": "Online",
