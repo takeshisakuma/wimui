@@ -1,0 +1,2 @@
+"use client";
+import{a as e,n as t}from"./rolldown-runtime-DkW27tQK.js";import{t as n}from"./react-Q1GcV6wX.js";import{t as r}from"./react-dom-BXgx-GBU.js";var i,a,o,s;function c(){return(c=t((()=>{i=e(n(),1),a=r(),o=()=>()=>{},s=({children:e,container:t})=>i.useSyncExternalStore(o,()=>!0,()=>!1)?(0,a.createPortal)(e,t||document.body):null})))()}export{c as n,s as t};

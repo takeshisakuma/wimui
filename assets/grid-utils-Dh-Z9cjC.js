@@ -1,0 +1,2 @@
+"use client";
+import{n as e}from"./rolldown-runtime-DkW27tQK.js";var t;function n(){return(n=e((()=>{t=(e,t,n)=>{if(e===void 0)return{};let r=n||(e=>String(e));if(typeof e==`object`&&e&&!Array.isArray(e)){let n={},i=e;return i.base!==void 0&&(n[t]=r(i.base)),i.sm!==void 0&&(n[`${t}-sm`]=r(i.sm)),i.md!==void 0&&(n[`${t}-md`]=r(i.md)),i.lg!==void 0&&(n[`${t}-lg`]=r(i.lg)),i.xl!==void 0&&(n[`${t}-xl`]=r(i.xl)),n}return{[t]:r(e)}}})))()}export{n,t};

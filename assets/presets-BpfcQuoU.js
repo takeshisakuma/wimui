@@ -1,0 +1,2 @@
+"use client";
+import{n as e}from"./rolldown-runtime-DkW27tQK.js";var t;function n(){return(n=e((()=>{t=[{name:`minimal`,label:`Minimal`,description:`Sharp corners and restrained emphasis. Keeps the default accent.`},{name:`soft`,label:`Soft`,description:`Rounded, friendly shapes with a calm violet accent.`},{name:`bold`,label:`Bold`,description:`Confident radius and a high-impact red accent.`}]})))()}export{n,t};
