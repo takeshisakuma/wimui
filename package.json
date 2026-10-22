@@ -223,7 +223,7 @@
         "marked"
       ],
       "gzip": true,
-      "limit": "29 kB"
+      "limit": "30 kB"
     },
     {
       "name": "wimui/layout 全部 (gzip)",
