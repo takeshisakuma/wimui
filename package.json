@@ -587,7 +587,7 @@
     "sass": "^1.98.0",
     "sharp": "0.35.5",
     "size-limit": "^14.0.0",
-    "storybook": "10.6.1",
+    "storybook": "10.6.3",
     "storybook-react-i18next": "10.1.4",
     "style-dictionary": "5.6.1",
     "stylelint": "^17.6.0",
