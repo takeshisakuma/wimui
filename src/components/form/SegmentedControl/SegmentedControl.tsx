@@ -196,7 +196,9 @@ export const SegmentedControl = forwardRef<HTMLDivElement, SegmentedControlProps
                 role="radio"
                 aria-checked={isSelected}
                 tabIndex={isTabbable ? 0 : -1}
-                aria-label={option.label || option.value}
+                // 見えている文字があるときは付けない（名前は中身から付く）。同じ文字を重ねると、1 文字の選択肢（「A」）で
+                // axe が見えている文字と名前を突き合わせられず、incomplete になる（axe 4.14: label-content-name-mismatch）
+                aria-label={option.label ? undefined : option.value}
                 disabled={disabled}
               >
                 {option.iconName && <Icon name={option.iconName} size={size} className={localStyles.icon} />}

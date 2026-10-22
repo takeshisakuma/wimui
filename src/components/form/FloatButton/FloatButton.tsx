@@ -129,7 +129,10 @@ export const FloatButton = React.forwardRef<HTMLButtonElement, FloatButtonProps>
 
     // 名前が無いときに、アイコン名（「PlusIcon」など）を名前にしない（T319）。空ではないので
     // axe は通るが、利用者には何のボタンか伝わらない。名前を付けずに、検査に落とさせる。
-    const accessibleName = ariaLabel || (typeof label === "string" ? label : undefined);
+    const baseName = ariaLabel || (typeof label === "string" ? label : undefined);
+    // バッジの数は見えている文字なので、名前の後ろにも足す。足さないと、見えている数で音声操作できない
+    // （WCAG 2.5.3 / axe: label-content-name-mismatch）。
+    const accessibleName = baseName && typeof badge === "number" ? `${baseName} ${badge}` : baseName;
     const hasName =
       !!accessibleName ||
       !!label ||
@@ -202,6 +205,8 @@ export const FloatButton = React.forwardRef<HTMLButtonElement, FloatButtonProps>
               <span className={styles.label}>{label}</span>
             </span>
           )}
+          {/* 見た目には出ない空白。axe は子要素の文字を空白なしでつなぐので、無いとラベルと数が 1 語になる */}
+          {typeof badge === "number" && " "}
           {badge && (
             <span
               className={classNames(

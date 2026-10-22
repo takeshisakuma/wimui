@@ -69,7 +69,7 @@ describe("TreeDiagram", () => {
     fireEvent.click(screen.getByRole("button", { name: "Collapse Grace" }));
     expect(screen.queryByRole("treeitem", { name: /Linus/ })).not.toBeInTheDocument();
     expect(item("Grace")).toHaveAttribute("aria-expanded", "false");
-    const expand = screen.getByRole("button", { name: "Expand Grace" });
+    const expand = screen.getByRole("button", { name: "Expand Grace +2" });
     expect(expand).toHaveTextContent("+2");
     expect(expand).toHaveAttribute("tabindex", "-1"); // キーボードは矢印キーで開閉する
   });
@@ -83,7 +83,7 @@ describe("TreeDiagram", () => {
   it("follows expandedValues when controlled and reports changes", () => {
     const onExpandedChange = vi.fn();
     const { rerender } = render(<TreeDiagram nodes={ORG} expandedValues={["ceo"]} onExpandedChange={onExpandedChange} />);
-    fireEvent.click(screen.getByRole("button", { name: "Expand Grace" }));
+    fireEvent.click(screen.getByRole("button", { name: /^Expand Grace \+\d+$/ }));
     expect(onExpandedChange).toHaveBeenCalledWith(["ceo", "cto"]);
     expect(screen.queryByRole("treeitem", { name: /Linus/ })).not.toBeInTheDocument(); // 親が渡すまで開かない
     rerender(<TreeDiagram nodes={ORG} expandedValues={["ceo", "cto"]} onExpandedChange={onExpandedChange} />);

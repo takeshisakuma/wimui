@@ -87,7 +87,9 @@ export const SourceCitation = ({
         target="_blank"
         rel="noopener noreferrer"
         className={classNames("wim-source-citation", styles.root, styles.link, className)}
-        aria-label={ariaLabel}
+        // リンクは中身の文字で名前が付くので、内蔵の名前（「ソース 1」）は付けない。付けると、見えている題名・
+        // ドメインが名前から消え、見えている文字で音声操作できない（WCAG 2.5.3 / axe: label-content-name-mismatch）。
+        aria-label={ariaLabelledBy ? undefined : ariaLabelAttr}
         aria-labelledby={ariaLabelledBy}
       >
         {content}

@@ -81,8 +81,15 @@ describe("Button", () => {
     const button = container.querySelector("button")!;
     expect(button).toHaveClass(styles.loading);
     expect(button).toHaveAttribute("aria-busy", "true");
-    expect(button).toHaveAttribute("aria-label", "Loading");
+    // 見えている文字を名前に残し、読み込み中は後ろに足す（WCAG 2.5.3）
+    expect(button).not.toHaveAttribute("aria-label");
+    expect(button).toHaveAccessibleName("Load Loading");
     expect(button).toBeDisabled();
+  });
+
+  it("names an icon-only loading button Loading", () => {
+    const { container } = render(<Button loading icon={<span />} />);
+    expect(container.querySelector("button")).toHaveAttribute("aria-label", "Loading");
   });
 
   it("calculates animated width on label change", () => {

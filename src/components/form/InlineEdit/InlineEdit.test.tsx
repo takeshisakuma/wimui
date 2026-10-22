@@ -214,7 +214,8 @@ describe("InlineEdit", () => {
     it("label が無いときは、渡した aria-label がこれまでどおり名前になる", async () => {
       const user = userEvent.setup();
       render(<InlineEdit defaultValue="Draft" aria-label="Title" />);
-      await user.click(screen.getByRole("button", { name: "Title" }));
+      // 表示中のボタンは、見えている値を名前の後ろに残す（WCAG 2.5.3 / axe: label-content-name-mismatch）
+      await user.click(screen.getByRole("button", { name: "Title Draft" }));
       expect(screen.getByRole("textbox")).toHaveAccessibleName("Title");
     });
   });
