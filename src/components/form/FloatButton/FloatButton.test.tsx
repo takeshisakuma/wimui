@@ -71,6 +71,20 @@ describe("FloatButton", () => {
     expect(screen.getByText("5")).toBeInTheDocument();
   });
 
+  it("hides the badge at 0 instead of rendering a bare 0", () => {
+    const { container } = render(<FloatButton aria-label="Notifications" badge={0} />);
+    const button = container.querySelector("button")!;
+    // 対照: 以前は `{badge && …}` で、0 のときに素の「0」が描かれ、名前も「Notifications 0」だった
+    expect(button.textContent?.trim()).toBe("");
+    expect(container.querySelector(`.${styles.badge}`)).toBeNull();
+    expect(button).toHaveAccessibleName("Notifications");
+  });
+
+  it("adds a positive count to the accessible name", () => {
+    render(<FloatButton aria-label="Notifications" badge={3} />);
+    expect(screen.getByRole("button")).toHaveAccessibleName("Notifications 3");
+  });
+
   it("renders dot badge", () => {
     const { container } = render(<FloatButton badge={true} />);
     expect(container.querySelector(`.${styles.dot}`)).toBeInTheDocument();

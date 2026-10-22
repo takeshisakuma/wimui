@@ -52,7 +52,7 @@ export interface FloatButtonProps extends React.ButtonHTMLAttributes<HTMLButtonE
     | "inline";
   /** Description for tooltip */
   description?: React.ReactNode;
-  /** Badge content (number or dot) */
+  /** Badge content (number or dot). A count of `0` (or less) hides the badge. */
   badge?: number | boolean;
   /** If true, the button will scroll to the top of the page when clicked */
   backTop?: boolean;
@@ -132,7 +132,11 @@ export const FloatButton = React.forwardRef<HTMLButtonElement, FloatButtonProps>
     const baseName = ariaLabel || (typeof label === "string" ? label : undefined);
     // バッジの数は見えている文字なので、名前の後ろにも足す。足さないと、見えている数で音声操作できない
     // （WCAG 2.5.3 / axe: label-content-name-mismatch）。
-    const accessibleName = baseName && typeof badge === "number" ? `${baseName} ${badge}` : baseName;
+    // 0 件のバッジは出さない。以前は `{badge && …}` で、0 のときに React が素の「0」を描き、名前も
+    // 「Notifications 0」になっていた（#1023 の作業中に気づいた）。
+    const badgeCount = typeof badge === "number" && badge > 0 ? badge : undefined;
+    const showBadge = badge === true || badgeCount !== undefined;
+    const accessibleName = baseName && badgeCount !== undefined ? `${baseName} ${badgeCount}` : baseName;
     const hasName =
       !!accessibleName ||
       !!label ||
@@ -206,15 +210,15 @@ export const FloatButton = React.forwardRef<HTMLButtonElement, FloatButtonProps>
             </span>
           )}
           {/* 見た目には出ない空白。axe は子要素の文字を空白なしでつなぐので、無いとラベルと数が 1 語になる */}
-          {typeof badge === "number" && " "}
-          {badge && (
+          {badgeCount !== undefined && " "}
+          {showBadge && (
             <span
               className={classNames(
                 styles.badge,
                 badge === true && styles.dot,
               )}
             >
-              {typeof badge === "number" ? badge : ""}
+              {badgeCount ?? ""}
             </span>
           )}
         </span>

@@ -1249,7 +1249,7 @@ SCSS には誰も付けない `.default_intent` が「temporary name」のまま
     - `shrink: boolean` = false — Whether to shrink the extended FAB (hide label)
     - `position: "bottom-right" | "bottom-left" | "bottom-center" | "top-right" | "top-left" | "inline"` = "bottom-right" — Position of the button
     - `description: React.ReactNode` — Description for tooltip
-    - `badge: number | boolean` — Badge content (number or dot)
+    - `badge: number | boolean` — Badge content (number or dot). A count of `0` (or less) hides the badge.
     - `backTop: boolean` = false — If true, the button will scroll to the top of the page when clicked
     - `visibilityHeight: number` = 400 — Visibility threshold for backTop (in pixels)
     - `className: string` — Additional class names
