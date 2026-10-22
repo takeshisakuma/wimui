@@ -196,7 +196,37 @@ export function auditReleaseYaml(yaml) {
     if (name === "publish") {
       if (!env) {
         errors.push(
-          "`publish` に `environment: release` が無い ── NPM_TOKEN の承認ゲートが外れる",
+          "`publish` に `environment: release` が無い ── 公開前の承認ゲートが外れ、" +
+            "npm の Trusted Publisher に登録した環境名とも合わなくなる",
+        );
+      }
+      // Trusted Publishing（2026-10-22 に NPM_TOKEN から移した）の 3 条件。どれが欠けても、
+      // npm に何も出ないまま E404 で落ちる（公開は Version PR のマージ後にしか走らないので、
+      // そこまで気づけない）。
+      const lines = uncommentedLines(body).join("\n");
+      if (!/^\s+id-token:\s+write\b/m.test(lines)) {
+        errors.push(
+          "`publish` に `id-token: write` が無い ── Trusted Publishing の OIDC トークンが取れない",
+        );
+      }
+      const npmPin = lines.match(/npm install -g npm@(\d+)\.(\d+)\.(\d+)/);
+      if (!npmPin) {
+        errors.push(
+          "`publish` に npm を上げる手順（`npm install -g npm@x.y.z`）が無い ── " +
+            "Node 22 に付く npm 10 は Trusted Publishing を使わない",
+        );
+      } else {
+        const [maj, min, pat] = npmPin.slice(1).map(Number);
+        if (maj < 11 || (maj === 11 && (min < 5 || (min === 5 && pat < 1)))) {
+          errors.push(
+            `\`publish\` で上げる npm が ${maj}.${min}.${pat} ── Trusted Publishing は 11.5.1 以上`,
+          );
+        }
+      }
+      if (/secrets\.NPM_TOKEN/.test(lines)) {
+        errors.push(
+          "`publish` が `secrets.NPM_TOKEN` を読んでいる ── 公開は Trusted Publishing に移した。" +
+            "トークンは 90 日で切れ、切れると E404 で止まる（2026-10-22 の 0.64.5）",
         );
       }
     } else if (env) {

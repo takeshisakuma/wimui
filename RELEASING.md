@@ -27,11 +27,13 @@
 ## 1. 初回だけの準備（人間）
 
 1. **npm アカウント + 2FA**（Google Authenticator 等。"Authorization and writes" で publish も保護）。
-2. **トークン発行**: npmjs.com → Access Tokens → **Granular Access Token**（対象 `wimui`・**Read and write**・期限付き）。
-3. **GitHub 側**: リポジトリ → Settings → Environments → **`release`** 環境を作成 → その環境の **Secrets** に **`NPM_TOKEN`**（= 上のトークン）を登録。
-4. **（推奨）`release` 環境に Required reviewers = 自分**を設定 → publish 前に手動承認が要る（NPM_TOKEN 流出耐性）。
+2. **Trusted Publisher の登録**: npmjs.com → `wimui` の Settings → **Trusted Publisher** → GitHub Actions を選び、Organization or user `takeshisakuma`・Repository `wimui`・Workflow filename `release.yml`・Environment name `release` を入れる。**トークンは作らない。**
+3. **GitHub 側**: リポジトリ → Settings → Environments → **`release`** 環境を作成する（Secrets は要らない）。
+4. **（推奨）`release` 環境に Required reviewers = 自分**を設定 → publish 前に手動承認が要る。
 
-> `NPM_TOKEN` は必ず **`release` 環境の Secret** に置く（リポジトリ直下の Secret ではなく）。`release.yml` が `environment: release` を参照している。
+> **公開は Trusted Publishing（OIDC）で行う**（2026-10-22 に移した）。それまでは Granular Access Token を `release` 環境の Secret（`NPM_TOKEN`）に置いていたが、publish 用のトークンは最長 90 日で切れる。0.64.5 では、切れたトークンで公開が `E404 Not Found - PUT https://registry.npmjs.org/wimui` で止まった（npm は認証が通らない publish に 404 を返す）。しかも同名の Secret がリポジトリ直下にもあり、そちらだけを更新したので、再実行も同じ E404 で落ちた（環境の Secret が優先される）。
+>
+> Trusted Publishing には **npm 11.5.1 以上**が要る。Node 22 に付く npm 10 は OIDC を使わないので、`publish` ジョブは公開の直前に npm を上げている。`id-token: write`・npm を上げる手順・`secrets.NPM_TOKEN` を読まないことは、`npm run check:release-workflow` が見ている。
 
 > **承認が要るのは publish のジョブだけ**（2026-08-09 に分割。T116）。`release.yml` は `decide` →
 > `version` / `publish` の 3 ジョブで、`environment: release` が付くのは `publish` だけ。
@@ -124,7 +126,7 @@ optional 機能は対応する peer が必要（「オプショナルな peerDep
 
 ## 6. 手動フォールバック（CI が使えない緊急時のみ）
 
-通常は §2 の CI ルートを使う。**GitHub Actions 障害・NPM_TOKEN 不調・緊急ホットフィックス**などで CI から publish できないときだけ、ローカルから同じ publish コマンドを実行する。
+通常は §2 の CI ルートを使う。**GitHub Actions 障害・Trusted Publishing の不調・緊急ホットフィックス**などで CI から publish できないときだけ、ローカルから同じ publish コマンドを実行する。
 
 ```bash
 npm login                 # 対話で 2FA 込みログイン（Google Authenticator の 6 桁）

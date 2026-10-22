@@ -108,7 +108,7 @@ jobs:
   # Version PR が既に消化した changeset が残っているので、それを使うと
   # 公開済みの版を Version PR に載せ直す。
   #
-  # `environment: release` は付けない。NPM_TOKEN も渡さない。
+  # `environment: release` は付けない。
   # `publish:` も渡さない。取り残しを Version PR にするだけで、npm には触らない。
   recover-version:
     name: Recover Version PR after ref race
@@ -166,18 +166,21 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  # 実際に npm へ出す経路だけを `release` 環境で守る。NPM_TOKEN もここだけ。
+  # 実際に npm へ出す経路だけを `release` 環境で守る。
   publish:
     name: Publish to npm
     needs: decide
     if: needs.decide.outputs.has_changesets == 'false'
     runs-on: ubuntu-latest
-    # publish 用 Secret（NPM_TOKEN）はこの Environment に置く。GitHub 側で
-    # `release` Environment に required reviewer を設定すると、publish 前に
-    # 手動承認が必須になる（悪意ある PR による NPM_TOKEN 流出への耐性）。
+    # npm へは Trusted Publishing（OIDC）で出す。トークンは持たない（2026-10-22 に移した。
+    # それまでの NPM_TOKEN は 90 日で切れ、0.64.5 の公開が E404 で止まった）。npm 側の
+    # Trusted Publisher には、このワークフロー名（release.yml）と環境名（release）を登録してある ──
+    # この環境の外のジョブからは公開できない。`release` 環境の required reviewer が、公開前の
+    # 手動承認になる。
     environment: release
     permissions:
       contents: write
+      # Trusted Publishing の OIDC トークンと provenance に要る
       id-token: write
 
     steps:
@@ -194,16 +197,18 @@ jobs:
       - name: Install dependencies
         run: npm ci --ignore-scripts
 
+      # Trusted Publishing は npm 11.5.1 以上が要る。Node 22 に付く npm 10 は OIDC を使わず、
+      # トークンの無い publish が E404 で落ちる。依存の install（上の npm ci）は lockfile と同じ
+      # npm 10 のまま行い（lockfile の判定は npm 10 と 11 で違う）、公開の直前だけ上げる。
+      - name: Upgrade npm for trusted publishing
+        run: npm install -g npm@11.21.1
+
       - name: Publish
         uses: changesets/action@v2
         with:
           publish-script: npm run release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          # setup-node の registry-url が生成する .npmrc は NODE_AUTH_TOKEN を
-          # 参照するため、これがないと npm publish が E404 で失敗する
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           # npm provenance を有効化（id-token: write と組で機能）。公開物に
           # 「この GitHub リポジトリの該当 commit / Actions で作られた」ことの
           # 証明が付き、npm ページに Provenance バッジが出る＝なりすまし publish
