@@ -1,0 +1,42 @@
+{
+  "sizes": {
+    "title": "Tamanhos",
+    "desc": "47 componentes aceitam `size`, e 34 deles aceitam os mesmos três valores. A prop não é bem uma questão de quão grande algo deve parecer — é uma questão de quanto da tela aquele controle merece ocupar, e se um dedo ainda consegue acertá-lo. As duas coisas têm números por trás.",
+
+    "scale_title": "Uma escala, um padrão",
+    "scale_desc": "34 dos 47 aceitam `sm` / `md` / `lg`, e 40 deles usam `md` como padrão. Esse padrão é a resposta a menos que algo argumente o contrário, e o argumento deve ser sobre o papel do controle, não sobre a aparência da tela. Três exceções são deliberadas: `Tag` usa `sm` porque tags são lidas em grupo, `Container` usa `lg` porque define a medida da página, e `Title` usa `xl` porque é o título. A tipografia (`Text`, `Span`) usa a escala mais ampla `xs`–`xl`, e `Container`, `QRCode` e `Splitter.Panel` recebem um número.",
+
+    "choose_title": "Escolhendo entre sm, md e lg",
+    "col_size": "Tamanho",
+    "col_when": "Use quando",
+    "col_not": "Não use quando",
+
+    "sm_when": "O controle é secundário a outra coisa na mesma linha — um filtro ao lado de uma tabela, uma tag dentro de uma célula, uma ação dentro de um item de lista.",
+    "sm_not": "É a única coisa que o usuário veio fazer. Uma ação principal pequena é lida como opcional.",
+    "md_when": "O padrão. O controle se sustenta sozinho e espera-se que o usuário aja sobre ele.",
+    "md_not": "Você está tentando apertar uma linha que já está cheia — isso é trabalho da densidade.",
+    "lg_when": "O controle é o objetivo da tela, ou um dedo precisa encontrá-lo sem olhar — um botão de envio no rodapé mobile, uma única chamada para ação.",
+    "lg_not": "Vários controles ficam juntos. Tudo grande é o mesmo que nada grande.",
+
+    "measured_title": "Quais são os tamanhos de fato",
+    "measured_desc": "As alturas vêm de `--wim-height-*`, e a configuração de densidade as reescreve. As duas colunas são valores realmente publicados.",
+
+    "col_token": "Token",
+    "col_default": "Padrão / comfortable",
+    "col_compact": "compact",
+
+    "tap_title": "Onde ficam os limites de área de toque",
+    "tap_desc": "A WCAG 2.5.8 (AA, WCAG 2.2) pede 24×24 pixels CSS. A WCAG 2.5.5 (AAA) pede 44×44, que é também o valor da orientação da Apple. Cruzando isso com a tabela acima, surgem três fatos que vale conhecer antes de escolher um tamanho.",
+    "tap_1": "`md` fica 2 pixels abaixo do alvo AAA",
+    "tap_1_desc": "42px contra 44. O tamanho padrão da maioria dos controles fica logo abaixo do limiar confortável para o polegar. `lg` (48px) é o único que o ultrapassa.",
+    "tap_2": "Em `compact`, nenhum tamanho passa de 44px",
+    "tap_2_desc": "`lg` cai para 40px. Um layout que depende de `lg` para ser alcançável perde isso no instante em que o app troca a densidade, e nenhum componente enxerga essa troca.",
+    "tap_3": "Controles construídos sobre `xs` ficam abaixo do piso AA em compact",
+    "tap_3_desc": "`Rating` dimensiona suas estrelas a partir de `--wim-height-xs` e `Slider` define toda a sua altura a partir dele. São 24px por padrão — exatamente o mínimo AA — e 20px em `compact`. Nada mede isso: o axe não verifica área de toque, e uma captura de tela com estrelas menores parece perfeitamente normal.",
+
+    "density_title": "Tamanho e densidade não são a mesma alavanca",
+    "density_desc": "`size` é uma afirmação, componente a componente, sobre a importância de um controle. Densidade é uma configuração de aplicação inteira que reescreve todos os controles de uma vez. Elas se combinam — um botão `lg` em `compact` continua sendo o maior da linha — mas não se substituem. Recorrer a `size=\"sm\"` para caber mais linhas move uma decisão global para dentro de um componente, onde a próxima tela não a herda e onde a consequência para a área de toque fica invisível para quem definiu a densidade.",
+
+    "density_link": "A densidade é documentada separadamente."
+  }
+}

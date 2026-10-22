@@ -1,0 +1,2 @@
+"use client";
+import{n as e}from"./rolldown-runtime-sJBDdmOt.js";import{u as t}from"./ID3v2Token-DSIIkvcB.js";var n,r;function i(){return(i=e((()=>{t(),n={video:1,audio:2,complex:3,logo:4,subtitle:17,button:18,control:32,metadata:33},r={[n.video]:`video`,[n.audio]:`audio`,[n.complex]:`complex`,[n.logo]:`logo`,[n.subtitle]:`subtitle`,[n.button]:`button`,[n.control]:`control`,[n.metadata]:`metadata`}})))()}export{r as n,i as r,n as t};

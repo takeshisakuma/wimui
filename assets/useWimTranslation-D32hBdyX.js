@@ -1,0 +1,2 @@
+"use client";
+import{n as e}from"./rolldown-runtime-sJBDdmOt.js";import{t}from"./react-BGJ90fIb.js";import{Fn as n,Mn as r,Nn as i,Pn as a,jn as o}from"./iframe-DBOxP6v-.js";function s(e){let t=(0,c.useSyncExternalStore)(a,o,o),r=e==null?l:Array.isArray(e)?e:[e],s=r.map(e=>e.name).join(`,`);return{t:(0,c.useCallback)((e,t)=>n(r,e,t),[s]),i18n:{language:t,changeLanguage:i}}}var c,l;function u(){return(u=e((()=>{c=t(),r(),l=[]})))()}export{s as n,u as t};

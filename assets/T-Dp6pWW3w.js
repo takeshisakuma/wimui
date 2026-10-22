@@ -1,0 +1,4 @@
+"use client";
+import{n as e}from"./rolldown-runtime-sJBDdmOt.js";import{n as t,t as n}from"./useTranslation-MNZnjzfn.js";import{n as r,t as i}from"./i18nConstants-Dz9WmqoW.js";import{t as a}from"./jsx-runtime-MKhVqBIO.js";import{In as o,Ln as s}from"./iframe-DBOxP6v-.js";var c,l;function u(){return(u=e((()=>{n(),s(),r(),c=a(),l=({k:e})=>{let{t:n}=t(i,{i18n:o}),r=e=>{if(typeof e!=`string`)return e==null?``:String(e);let t=e=>e.replace(/&/g,`&amp;`).replace(/</g,`&lt;`).replace(/>/g,`&gt;`).replace(/"/g,`&quot;`).replace(/'/g,`&#039;`);return e.replace(/\\n/g,`
+`).replace(/\n\s+/g,`
+`).replace(/`([^`]+)`/g,(e,n)=>`<code>${t(n)}</code>`).replace(/\n/g,`<br />`)},a=n(e);return(0,c.jsx)(`span`,{className:`wim-t`,dangerouslySetInnerHTML:{__html:r(a)}})},l.__docgenInfo={description:``,methods:[],displayName:`T`,props:{k:{required:!0,tsType:{name:`string`},description:``}}}})))()}export{u as n,l as t};
