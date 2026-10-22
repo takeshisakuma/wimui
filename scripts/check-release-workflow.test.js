@@ -96,6 +96,50 @@ describe("check-release-workflow (T116 / T170)", () => {
     const errors = auditReleaseYaml(mutated);
     expect(errors.some((e) => e.includes("`version`") && e.includes("environment"))).toBe(true);
   });
+
+  // Trusted Publishing（2026-10-22）。公開は Version PR のマージ後にしか走らないので、
+  // 崩れた形はここで止める。
+  it("publish から id-token: write を外すと鳴る", () => {
+    const mutated = real.replace(/\n {6}id-token: write\n/, "\n");
+    expect(mutated).not.toBe(real);
+    const errors = auditReleaseYaml(mutated);
+    expect(errors.some((e) => e.includes("id-token: write"))).toBe(true);
+  });
+
+  it("npm を上げる手順を消すと鳴る（npm 10 は OIDC を使わない）", () => {
+    const mutated = real.replace(/ +run: npm install -g npm@[\d.]+\n/, "");
+    expect(mutated).not.toBe(real);
+    const errors = auditReleaseYaml(mutated);
+    expect(errors.some((e) => e.includes("npm を上げる手順"))).toBe(true);
+  });
+
+  it("上げる npm が 11.5.1 より古いと鳴る", () => {
+    const mutated = real.replace(/npm install -g npm@[\d.]+/, "npm install -g npm@11.5.0");
+    const errors = auditReleaseYaml(mutated);
+    expect(errors.some((e) => e.includes("11.5.0"))).toBe(true);
+    // 境界: 11.5.1 は通る
+    const ok = real.replace(/npm install -g npm@[\d.]+/, "npm install -g npm@11.5.1");
+    expect(auditReleaseYaml(ok)).toEqual([]);
+  });
+
+  it("publish に NPM_TOKEN を戻すと鳴る", () => {
+    const mutated = real.replace(
+      "          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}\n          # npm provenance",
+      "          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}\n          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}\n          # npm provenance",
+    );
+    expect(mutated).not.toBe(real);
+    const errors = auditReleaseYaml(mutated);
+    expect(errors.some((e) => e.includes("secrets.NPM_TOKEN"))).toBe(true);
+  });
+
+  it("コメントに NPM_TOKEN と書いてあるだけでは鳴らない", () => {
+    const mutated = real.replace(
+      "          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}\n          # npm provenance",
+      "          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}\n          # 以前は secrets.NPM_TOKEN を渡していた\n          # npm provenance",
+    );
+    expect(mutated).not.toBe(real);
+    expect(auditReleaseYaml(mutated)).toEqual([]);
+  });
 });
 
 /**
