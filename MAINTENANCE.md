@@ -384,6 +384,7 @@ git branch -vv | grep ": gone]"   # 追跡先が消えたローカルブラン�
 
 - `Icon` を通さずに描いている SVG が、飾りなのに読み上げの対象に残っていないか（変更のときに気づいた・#996）。`Icon` は、名前の無いアイコンに `aria-hidden` を付けるようになったが、`<svg>` を直接書いている部品は別。数え方: `src/components` で `<svg` を書いているのは 6 ファイル（VoiceVisualizer / Barcode / TreeDiagram / Spinner / Image / ProgressRing）。それぞれ、`aria-hidden` か、名前（`role="img"` ＋ `aria-label`）のどちらかを持つかを見る。意味を持つ図（バーコードなど）が混ざるので、1 つずつ読む
 - 操作の結果を告げる部品が、「先に在る `role="status"` の文字を書き換える」形になっているか（2026-10-12 の実機の確認で分かった型）。数え方: `role="status"` / `role="alert"` / `aria-live` を持つ要素を全部拾い、①その要素が、告げたい文と同時に描かれ始めるか（条件付きの描画の中にあるか）②読み上げの領域が入れ子になっていないか、を見る。①か②に当たるものは、ナレーターでは読まれない見込み。当たったら、実機で聞いてから直す（`docs/rules/implementation.md` の「操作の結果を、読み上げで告げる」）
+- 数を取る prop を `{n && <要素>}` で描いて、`0` のときに「0」の文字だけが出ていないか（変更のときに気づいた・axe 4.14 の `label-content-name-mismatch` の修正）。FloatButton の `badge` は `number | boolean` で、`{badge && (…)}` と書いてある ── `badge={0}` で、バッジの代わりに素の「0」が描かれる見込み。数え方: `src/components` の `.tsx` で、型に `number` を含む prop を `&&` の左に置いている箇所を拾い、`0` を渡して描く
 - 実機のスクリーンリーダーで、まだ聞いていない部品（**人の手が要る**）。2026-10-12 にナレーター + Chrome で 28 部品を聞いた（下の表）。残り: Dropdown / Menubar / ContextMenu / TreeView / Tooltip / Popover / CommandPalette / MultiSelect / DatePicker / Cascader / TreeSelect。聞けるストーリーが無いもの: Alert が「あとから現れる」とき・Autosave が切り替わるとき（切り替わるストーリーを足せば聞ける）。**外れが出やすいのは、押してもフォーカスが動かず、中身だけが変わる操作**（28 部品中の外れ 11 のうち 8）
 
 **測り終えた観点の分け先**（2026-10-10・ユーザーとの相談で決めた）。観点は、基本的に 1 回きりの掃除である。直したあとに同じ手順を隔週で流し直しても、ほぼ毎回 0 件になる。**毎回流す価値があるものは、人ではなく CI に流させる。** 測り終えたら、次の 3 つのどれかに分ける。

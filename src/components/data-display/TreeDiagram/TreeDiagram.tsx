@@ -302,12 +302,15 @@ export const TreeDiagram = React.forwardRef<HTMLDivElement, TreeDiagramProps>(
                 aria-selected={onSelect ? selected : undefined}
                 tabIndex={n.value === tabStop ? 0 : -1}
                 data-value={n.value}
-                // 名前はカードの中身だけ（名前と説明を別々に指し、間に空白を入れる）。開閉ボタンの名前は混ぜない
-                aria-labelledby={
-                  renderNode || !data.description
-                    ? `${idBase}-${index}`
-                    : `${idBase}-${index} ${idBase}-${index}-d`
-                }
+                // 名前はカードに見えている文字を、見えている順に並べる（アバター・名前・説明・閉じているときの「+3」）。
+                // 別々に指し、間に空白を入れる。開閉ボタンの名前（「Expand …」）は混ぜず、見えている数だけを指す。
+                // 見えている文字が名前から欠けると、見えている文字で音声操作できない（WCAG 2.5.3 / axe: label-content-name-mismatch）
+                aria-labelledby={[
+                  !renderNode && data.avatar && `${idBase}-${index}-a`,
+                  `${idBase}-${index}`,
+                  !renderNode && data.description && `${idBase}-${index}-d`,
+                  n.hasChildren && !isOpen && `${idBase}-${index}-c`,
+                ].filter(Boolean).join(" ")}
                 className={classNames(localStyles.node, selected && localStyles.selected, onSelect && localStyles.selectable)}
                 style={{ left: n.x, top: n.y, width: nodeWidth, height: nodeHeight }}
                 title={text}
@@ -321,11 +324,16 @@ export const TreeDiagram = React.forwardRef<HTMLDivElement, TreeDiagramProps>(
                   </span>
                 ) : (
                   <span className={localStyles.content}>
-                    {data.avatar && <span className={localStyles.avatar}>{data.avatar}</span>}
+                    {data.avatar && <span id={`${idBase}-${index}-a`} className={localStyles.avatar}>{data.avatar}</span>}
+                    {/* 見た目には出ない空白。axe は子要素の文字を空白なしでつなぐ（下の説明の前と同じ） */}
+                    {data.avatar && " "}
                     <span className={localStyles.text}>
                       <span id={`${idBase}-${index}`} className={localStyles.label}>
                         {data.label}
                       </span>
+                      {/* 見た目には出ない空白。axe は子要素の文字を空白なしでつなぐので、無いと「名前説明」が 1 語に
+                          なり、名前（間に空白がある）と食い違う（axe 4.14: label-content-name-mismatch） */}
+                      {data.description && " "}
                       {data.description && (
                         <span id={`${idBase}-${index}-d`} className={localStyles.description}>
                           {data.description}
@@ -334,18 +342,20 @@ export const TreeDiagram = React.forwardRef<HTMLDivElement, TreeDiagramProps>(
                     </span>
                   </span>
                 )}
+                {n.hasChildren && " "}
                 {n.hasChildren && (
                   <button
                     type="button"
                     tabIndex={-1}
                     className={localStyles.toggle}
-                    aria-label={isOpen ? collapseLabel(text) : expandLabel(text)}
+                    // 閉じているときは、見えている数（「+3」）を名前の後ろに足す（WCAG 2.5.3 / axe: label-content-name-mismatch）
+                    aria-label={isOpen ? collapseLabel(text) : `${expandLabel(text)} +${n.hiddenCount}`}
                     onClick={(e) => {
                       e.stopPropagation();
                       toggle(n.value);
                     }}
                   >
-                    {isOpen ? <Icon component={MinusIcon} size="xs" /> : `+${n.hiddenCount}`}
+                    {isOpen ? <Icon component={MinusIcon} size="xs" /> : <span id={`${idBase}-${index}-c`}>+{n.hiddenCount}</span>}
                   </button>
                 )}
               </div>

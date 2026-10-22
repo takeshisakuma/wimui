@@ -5,6 +5,7 @@ import { commonNs } from "@/i18n/generated/common";
 import { Input } from "../Input/Input";
 import { IconButton } from "../IconButton/IconButton";
 import { FieldTemplate } from "../FieldTemplate";
+import { VisuallyHidden } from "../../layout/VisuallyHidden/VisuallyHidden";
 import localStyles from "./inline-edit.module.scss";
 
 export type InlineEditProps = Omit<React.ComponentPropsWithoutRef<"div">, "onChange" | "defaultValue"> & {
@@ -67,6 +68,11 @@ export const InlineEdit = React.forwardRef<HTMLDivElement, InlineEditProps>(
     const generatedId = useId();
     const labelId = label ? `wim-inline-edit-${generatedId}-label` : undefined;
     const textId = `wim-inline-edit-${generatedId}-text`;
+    // 表示中のボタンは、どの名前の付け方でも、いまの値（見えている文字）を名前の後ろに並べる。aria-label を
+    // そのまま付けると、見えている値が名前から消え、値で音声操作できない（WCAG 2.5.3 /
+    // axe: label-content-name-mismatch）。aria-label の文字は、見えない要素に置いて参照する。
+    const nameId = `wim-inline-edit-${generatedId}-name`;
+    const displayNameSource = labelId ?? ariaLabelledBy ?? (ariaLabel ? nameId : undefined);
     const [savedValue, setSavedValue] = useState(defaultValue ?? "");
     const [internalValue, setInternalValue] = useState(defaultValue ?? "");
     const inputRef = useRef<HTMLInputElement>(null);
@@ -136,6 +142,7 @@ export const InlineEdit = React.forwardRef<HTMLDivElement, InlineEditProps>(
         )}
         {...props}
       >
+        {!isEditing && displayNameSource === nameId && <VisuallyHidden id={nameId}>{ariaLabel}</VisuallyHidden>}
         {isEditing ? (
           <div className={localStyles.editWrapper}>
             <Input
@@ -182,10 +189,9 @@ export const InlineEdit = React.forwardRef<HTMLDivElement, InlineEditProps>(
             }}
             tabIndex={disabled ? -1 : 0}
             role="button"
-            aria-label={labelId ? undefined : ariaLabel}
             // 表示中は、ラベルのあとに中身の文字を並べる（「Title Draft」）。ラベルだけを参照すると、
             // ボタンの中身（いまの値）が名前から消える。
-            aria-labelledby={labelId ? `${labelId} ${textId}` : ariaLabelledBy}
+            aria-labelledby={displayNameSource ? `${displayNameSource} ${textId}` : undefined}
             aria-describedby={ariaDescribedBy}
             aria-disabled={disabled}
           >

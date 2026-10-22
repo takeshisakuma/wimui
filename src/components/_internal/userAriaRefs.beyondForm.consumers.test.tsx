@@ -67,7 +67,9 @@ describe("利用者が渡した参照が、読まれる要素に届く（T340・
   describe.each(single)("%s", (_name, role, wrapperSelector, make) => {
     it("外の見出しと説明文が、操作要素の名前と説明になる", () => {
       const { container } = render(<Outside>{make(refs)}</Outside>);
-      const el = screen.getByRole(role, { name: "Release notes" });
+      // Dropzone / FileUpload は、見えている文字（説明・ボタンの文字）を名前の後ろに残す（WCAG 2.5.3）
+      const keepsVisibleText = _name === "Dropzone" || _name === "FileUpload";
+      const el = screen.getByRole(role, { name: keepsVisibleText ? /^Release notes .+/ : "Release notes" });
       expect(el).toHaveAccessibleDescription(/Visible to the whole team\./);
       // 参照が名前になるときは、内蔵の名前（aria-label）を並べない。CopyButton だけは残す ── 外すと、
       // Button がアイコン名を名前として付けるので（名前は、参照が勝つので変わらない）。
@@ -77,7 +79,8 @@ describe("利用者が渡した参照が、読まれる要素に届く（T340・
 
     it("aria-label を渡すと、それが操作要素の名前になる", () => {
       render(make({ "aria-label": "Changelog" }));
-      expect(screen.getByRole(role, { name: "Changelog" })).toBeInTheDocument();
+      const keepsVisibleText = _name === "Dropzone" || _name === "FileUpload";
+      expect(screen.getByRole(role, { name: keepsVisibleText ? /^Changelog .+/ : "Changelog" })).toBeInTheDocument();
     });
 
     it("何も渡さなければ、内蔵の名前のまま（これまでどおり）", () => {

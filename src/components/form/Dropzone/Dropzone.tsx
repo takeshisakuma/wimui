@@ -5,6 +5,7 @@ import { formNs } from "@/i18n/generated/form";
 import { Icon } from "../../media/Icon/Icon";
 import { InteractiveArea, InteractiveAreaProps } from "../../layout/InteractiveArea/InteractiveArea";
 import { FieldTemplate } from "../FieldTemplate";
+import { VisuallyHidden } from "../../layout/VisuallyHidden/VisuallyHidden";
 import styles from "./dropzone.module.scss";
 
 type DropzoneProps = {
@@ -78,6 +79,13 @@ export const Dropzone = ({
   const id = `wim-dropzone-${generatedId}`;
   const labelId = label ? `${id}-label` : undefined;
   const errorId = error ? `${id}-error` : undefined;
+  // ラベルや aria-label で名前を付けるときも、領域に見えている文字（説明と選んだファイル名）を名前の後ろに
+  // 残す。それだけを名前にすると、見えている文字で音声操作できない（WCAG 2.5.3 /
+  // axe: label-content-name-mismatch）。aria-label の文字は、見えない要素に置いて参照する。
+  const descriptionId = `${id}-description`;
+  const fileListId = `${id}-files`;
+  const nameId = `${id}-name`;
+  const nameSource = labelId ?? ariaLabelledBy ?? (ariaLabel ? nameId : undefined);
 
   const inputRef = useRef<HTMLInputElement>(null);
   const [isDragging, setIsDragging] = useState(false);
@@ -149,6 +157,7 @@ export const Dropzone = ({
         aria-hidden="true"
         tabIndex={-1}
       />
+      {nameSource === nameId && <VisuallyHidden id={nameId}>{ariaLabel}</VisuallyHidden>}
       <InteractiveArea
         size={size}
         isDragging={isDragging}
@@ -163,8 +172,11 @@ export const Dropzone = ({
             handleClick();
           }
         }}
-        aria-labelledby={labelId ?? ariaLabelledBy}
-        aria-label={labelId || ariaLabelledBy ? undefined : ariaLabel}
+        aria-labelledby={
+          nameSource
+            ? [nameSource, descriptionId, displayNames.length > 0 && fileListId].filter(Boolean).join(" ")
+            : undefined
+        }
         aria-describedby={[ariaDescribedBy, errorId].filter(Boolean).join(" ") || undefined}
         aria-required={required}
         aria-invalid={!!error}
@@ -176,10 +188,10 @@ export const Dropzone = ({
             />
           )
         }
-        description={resolvedDescription}
+        description={<span id={descriptionId}>{resolvedDescription}</span>}
       >
         {displayNames.length > 0 ? (
-          <div className={styles.fileList}>
+          <div id={fileListId} className={styles.fileList}>
             {displayNames.map((name, index) => (
               <span key={index} className={styles.fileName}>
                 {name}

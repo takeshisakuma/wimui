@@ -239,6 +239,9 @@ type ToolbarButtonProps = {
   active?: boolean;
   disabled?: boolean;
   title: string;
+  // 見えている文字（H1 など）。名前の先頭に置き、見えている文字を名前に含める（WCAG 2.5.3 / axe: label-content-name-mismatch）
+  /** Visible text of the button (e.g. `H1`). Prepended to the accessible name. */
+  label?: string;
   tabIndex: number;
   onFocus: () => void;
   buttonRef: (el: HTMLButtonElement | null) => void;
@@ -246,7 +249,7 @@ type ToolbarButtonProps = {
 };
 
 const ToolbarButton = React.memo(
-  ({ onClick, active, disabled, title, tabIndex, onFocus, buttonRef, children }: ToolbarButtonProps) => (
+  ({ onClick, active, disabled, title, label, tabIndex, onFocus, buttonRef, children }: ToolbarButtonProps) => (
     <button
       ref={buttonRef}
       type="button"
@@ -255,7 +258,7 @@ const ToolbarButton = React.memo(
       onFocus={onFocus}
       disabled={disabled}
       title={title}
-      aria-label={title}
+      aria-label={label ? `${label} ${title}` : title}
       aria-pressed={active}
       tabIndex={tabIndex}
     >
@@ -672,14 +675,14 @@ export const RichTextEditor = ({
     e.preventDefault();
   }, []);
 
-  const commands: Record<Exclude<RichTextEditorToolbarItem, "separator">, { title: string; icon: React.ReactNode; onClick: () => void }> = {
+  const commands: Record<Exclude<RichTextEditorToolbarItem, "separator">, { title: string; label?: string; icon: React.ReactNode; onClick: () => void }> = {
     bold: { title: bold, icon: <Icon component={BoldIcon} size="sm" />, onClick: () => run((ed) => ed.chain().focus().toggleBold().run()) },
     italic: { title: italic, icon: <Icon component={ItalicIcon} size="sm" />, onClick: () => run((ed) => ed.chain().focus().toggleItalic().run()) },
     underline: { title: underline, icon: <Icon component={UnderlineIcon} size="sm" />, onClick: () => run((ed) => ed.chain().focus().toggleUnderline().run()) },
     strikethrough: { title: strikethrough, icon: <Icon component={StrikethroughIcon} size="sm" />, onClick: () => run((ed) => ed.chain().focus().toggleStrike().run()) },
-    h1: { title: h1, icon: <span aria-hidden="true">H1</span>, onClick: () => run((ed) => ed.chain().focus().toggleHeading({ level: 1 }).run()) },
-    h2: { title: h2, icon: <span aria-hidden="true">H2</span>, onClick: () => run((ed) => ed.chain().focus().toggleHeading({ level: 2 }).run()) },
-    h3: { title: h3, icon: <span aria-hidden="true">H3</span>, onClick: () => run((ed) => ed.chain().focus().toggleHeading({ level: 3 }).run()) },
+    h1: { title: h1, label: "H1", icon: <span aria-hidden="true">H1</span>, onClick: () => run((ed) => ed.chain().focus().toggleHeading({ level: 1 }).run()) },
+    h2: { title: h2, label: "H2", icon: <span aria-hidden="true">H2</span>, onClick: () => run((ed) => ed.chain().focus().toggleHeading({ level: 2 }).run()) },
+    h3: { title: h3, label: "H3", icon: <span aria-hidden="true">H3</span>, onClick: () => run((ed) => ed.chain().focus().toggleHeading({ level: 3 }).run()) },
     ul: { title: ul, icon: <Icon component={ListIcon} size="sm" />, onClick: () => run((ed) => ed.chain().focus().toggleBulletList().run()) },
     ol: { title: ol, icon: <Icon component={ListOrderedIcon} size="sm" />, onClick: () => run((ed) => ed.chain().focus().toggleOrderedList().run()) },
     link: { title: link, icon: <Icon component={LinkIcon} size="sm" />, onClick: handleInsertLink },
@@ -746,6 +749,7 @@ export const RichTextEditor = ({
                 disabled={isDisabled}
                 active={active}
                 title={command.title}
+                label={command.label}
                 onClick={command.onClick}
               >
                 {command.icon}

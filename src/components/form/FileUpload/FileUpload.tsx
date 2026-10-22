@@ -94,6 +94,13 @@ export const FileUpload = ({
   // の実機）。選んだ直後に告げるのは、下の「選んだことを告げる領域」。
   const fileNamesId = `${id}-files`;
   const describedBy = [ariaDescribedBy, fileNamesId, errorId, requiredId].filter(Boolean).join(" ");
+  // ラベルや aria-label で名前を付けるときも、ボタンに見えている文字（「ファイルを選択」）を名前の後ろに残す。
+  // それだけを名前にすると、見えている文字で音声操作できない（WCAG 2.5.3 / axe: label-content-name-mismatch）。
+  // aria-label の文字は、見えない要素に置いて参照する。
+  const buttonId = `${id}-button`;
+  const nameId = `${id}-name`;
+  const nameSource = labelId ?? ariaLabelledBy ?? (ariaLabel ? nameId : undefined);
+  const labelledBy = nameSource ? `${nameSource} ${buttonId}` : undefined;
 
   const inputRef = useRef<HTMLInputElement>(null);
   const [selectedFiles, setSelectedFiles] = useState<FileList | null>(null);
@@ -173,11 +180,12 @@ export const FileUpload = ({
           icon={iconName}
           iconPosition={iconPosition}
           size={size}
-          aria-labelledby={labelId ?? ariaLabelledBy}
-          aria-label={labelId || ariaLabelledBy ? undefined : ariaLabel}
+          id={buttonId}
+          aria-labelledby={labelledBy}
           aria-describedby={describedBy}
           aria-invalid={error ? true : undefined}
         >{buttonLabel ?? t("fileupload.button")}</Button>
+        {nameSource === nameId && <VisuallyHidden id={nameId}>{ariaLabel}</VisuallyHidden>}
         {required && <VisuallyHidden id={requiredId}>{t("form.required")}</VisuallyHidden>}
         <VisuallyHidden role="status" aria-atomic="true">
           {announcement}

@@ -210,7 +210,8 @@ describe("利用者が渡した参照が、読まれる要素に届く（T329）
           <InlineEdit defaultValue="09:00-12:00" {...refs} />
         </Outside>,
       );
-      const preview = screen.getByRole("button", { name: "Delivery window" });
+      // 表示中のボタンは、いまの値を名前の後ろに残す（WCAG 2.5.3）
+      const preview = screen.getByRole("button", { name: "Delivery window 09:00-12:00" });
       expect(preview).toHaveAccessibleDescription("Shown to the courier.");
       expectWrapperClean(container.querySelector(".wim-inline-edit"));
     });
@@ -221,7 +222,7 @@ describe("利用者が渡した参照が、読まれる要素に届く（T329）
           <InlineEdit defaultValue="09:00-12:00" {...refs} />
         </Outside>,
       );
-      fireEvent.click(screen.getByRole("button", { name: "Delivery window" }));
+      fireEvent.click(screen.getByRole("button", { name: "Delivery window 09:00-12:00" }));
       const input = screen.getByRole("textbox", { name: "Delivery window" });
       expect(input).toHaveAccessibleDescription("Shown to the courier.");
     });

@@ -5,6 +5,7 @@ import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import localStyles from "./button.module.scss";
 import { Icon } from "../../media/Icon/Icon";
+import { VisuallyHidden } from "../../layout/VisuallyHidden/VisuallyHidden";
 import type { WimColor, ComponentSizeBasic, ButtonVariant, ButtonIntent } from "../../../types/tokens";
 import { getColorValue } from "../../../utilities/style-utils";
 import { useMergedRef } from "../../../hooks/useMergedRef";
@@ -119,7 +120,9 @@ export const Button = React.forwardRef<
       // アイコンだけのボタンに、アイコン名（「CopyIcon」など）を名前として付けない（T345）。空ではないので
       // axe は通るが、「CopyIcon、ボタン」と読まれるだけで、何のボタンかは伝わらない。名前を付けずに、
       // 検査に落とさせる（FloatButton の T319 と同じ判断）。
-      if (loading && (children || typeof icon !== "string")) {
+      // 文字のあるボタンは、名前を「Loading」に置き換えない。見えている文字が名前から消える（WCAG 2.5.3 /
+      // axe: label-content-name-mismatch）。読み込み中であることは、下の見えない文字で名前の後ろに足す。
+      if (loading && !children && typeof icon !== "string") {
         resolvedAriaLabel = t("a11y.loading");
       }
     }
@@ -170,6 +173,8 @@ export const Button = React.forwardRef<
     };
 
     const iconContent = renderIcon();
+    // 前の空白は、名前の中で見えている文字と「Loading」を分けるため（flex の中の空白だけの文字は描かれない）
+    const loadingText = loading && children ? <>{" "}<VisuallyHidden>{t("a11y.loading")}</VisuallyHidden></> : null;
 
     const Root = asChild ? Slot : "button";
 
@@ -221,9 +226,11 @@ export const Button = React.forwardRef<
           <span className={localStyles.content}>
             {iconContent && iconPosition === "left" && iconContent}
             {children}
+            {loadingText}
             {iconContent && iconPosition === "right" && iconContent}
           </span>
         )}
+        {asChild ? loadingText : null}
         {asChild && iconContent && iconPosition === "right" ? iconContent : null}
       </Root>
     );

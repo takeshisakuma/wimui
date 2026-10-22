@@ -263,7 +263,9 @@ export const ToggleGroup = forwardRef<HTMLDivElement, ToggleGroupProps>(({
           role={selectionMode === "single" ? "radio" : "button"}
           aria-checked={selectionMode === "single" ? isSelected(option.value) : undefined}
           aria-pressed={selectionMode === "multiple" ? isSelected(option.value) : undefined}
-          aria-label={option.label || option.value}
+          // 見えている文字があるときは付けない（名前は中身から付く）。同じ文字を重ねると、1 文字の選択肢（「A」）で
+          // axe が見えている文字と名前を突き合わせられず、incomplete になる（axe 4.14: label-content-name-mismatch）
+          aria-label={option.label ? undefined : option.value}
           tabIndex={!option.disabled && index === focusedIndex ? 0 : -1}
         >
           {option.iconName && <Icon name={option.iconName} size={size} className={styles.icon} />}

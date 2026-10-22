@@ -121,6 +121,9 @@ export const ScheduleView = React.forwardRef<HTMLDivElement, ScheduleViewProps>(
     //   aria-allowed-attr 違反 → role="button" を付与
     // - 時刻グリッドの .fc-scroller は overflow: scroll なのに tabindex が無い
     //   → scrollable-region-focusable（T189。親が短いと格子が内側スクロールする）
+    // - 月表示の日のセルは、日付のリンク（aria-label「October 22, 2026」）だけを指して名前を付ける。
+    //   予定のある日は、見えている予定が名前から消える → label-content-name-mismatch（axe 4.14）。
+    //   予定のある日だけ指す先を外し、中身（日付と予定）で名前を付ける
     // ビュー切替やイベント再描画で再生成されるため MutationObserver で追従する。
     useEffect(() => {
       const root = rootRef.current;
@@ -129,6 +132,11 @@ export const ScheduleView = React.forwardRef<HTMLDivElement, ScheduleViewProps>(
         root
           .querySelectorAll('.fc-icon[role="img"]:not([aria-hidden])')
           .forEach((el) => el.setAttribute("aria-hidden", "true"));
+        root
+          .querySelectorAll("td.fc-daygrid-day[aria-labelledby]")
+          .forEach((el) => {
+            if (el.querySelector(".fc-daygrid-event")) el.removeAttribute("aria-labelledby");
+          });
         root
           .querySelectorAll("a.fc-more-link:not([role])")
           .forEach((el) => el.setAttribute("role", "button"));

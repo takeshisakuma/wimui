@@ -11577,6 +11577,9 @@
     "ToolbarButton.disabled": {
       "type": "boolean"
     },
+    "ToolbarButton.label": {
+      "type": "string"
+    },
     "ToolbarButton.onClick": {
       "type": "() => void"
     },
