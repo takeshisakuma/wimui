@@ -1,5 +1,12 @@
 # wimui
 
+## 0.64.7
+
+### Patch Changes
+
+- 54bce52: `wimui/rhf` の optional peer `@hookform/resolvers` の範囲を `^5.1.0 || ^6.0.0` に広げた。6.0.0 の破壊的変更は effect-ts リゾルバーだけで、`wimui/rhf` が使う zod リゾルバーには当たらない。開発とテストは 6 で行う。
+- c4ac970: `wimui/rhf` の optional peer `react-hook-form` の下限を `^7.55.0` に上げた。`wimui/rhf` が許す `@hookform/resolvers`（5.1.0 以降・6 系）はどの版も `react-hook-form ^7.55.0` を要求するため、これまでの `^7.43.0` のうち 7.43〜7.54 は実際には組み合わせて入れられなかった。動いていた組み合わせは外れない。
+
 ## 0.64.6
 
 ### Patch Changes
