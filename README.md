@@ -42,7 +42,7 @@ Supported version ranges for public peers. Wider ranges are unsupported.
 | `react` / `react-dom` | **19** | `^19.0.0` | Development, tests, and published types target React 19. React 18 is unsupported |
 | `zod` (when using `wimui/rhf`) | **3.25+ / 4** | `^3.25.0 \|\| ^4.0.0` | Range mirrors `@hookform/resolvers` so a zod-3 ecosystem resolves without `ERESOLVE`. Development and tests target zod 4 |
 | `@hookform/resolvers` | **5.1+ / 6** | `^5.1.0 \|\| ^6.0.0` | When using `wimui/rhf` |
-| `react-hook-form` | **7.43+** | `^7.43.0` | Only when using `wimui/rhf` |
+| `react-hook-form` | **7.55+** | `^7.55.0` | Only when using `wimui/rhf` |
 
 Core (the root `wimui`) needs neither zod nor RHF. For optional peers such as charts, see the table below.
 
@@ -312,7 +312,7 @@ Each peer-dependent component has its **own subpath** whose name documents its p
 | CodeDiffViewer | `wimui/ai/code-diff-viewer` | `diff` |
 | InteractiveGraph | `wimui/ai/interactive-graph` | `@xyflow/react` |
 | Audio (only when `showMetadata`) | `wimui` or `wimui/media` | `music-metadata` |
-| FormField / zodResolver | `wimui/rhf` | `react-hook-form` `^7.43` / `@hookform/resolvers` `^5.1 \|\| ^6` / `zod` `^3.25 \|\| ^4` |
+| FormField / zodResolver | `wimui/rhf` | `react-hook-form` `^7.55` / `@hookform/resolvers` `^5.1 \|\| ^6` / `zod` `^3.25 \|\| ^4` |
 
 Source of truth: `src/data/peer-imports.json` (CI's `check:imports` also reads this). Audio's metadata peer is a dynamic optional import, so it also lives at the root.
 
@@ -334,7 +334,7 @@ The UI-empty state of string fields is usually `""`. Do not treat a clearable sc
 The core form components stay framework-agnostic. To wire them to RHF, use the optional entry `wimui/rhf`. Matching the ClearedValue / `error` split in the table above, `FormField` passes both `error` (string) and `invalid` (boolean).
 
 ```bash
-npm i react-hook-form@^7.43 @hookform/resolvers@^5.1 zod@^4
+npm i react-hook-form@^7.55 @hookform/resolvers@^5.1 zod@^4
 ```
 
 ```tsx
