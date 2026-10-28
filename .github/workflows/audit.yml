@@ -43,3 +43,13 @@ jobs:
       - name: 検証していない peer major が出ていないか（週次のみ）
         if: ${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}
         run: npm run check:peer-majors
+
+      # 宣言した peer の範囲に、**ほかの peer と一緒には入れられない版**が無いかを見る。
+      # 実例は #1043 ── react-hook-form を `^7.43.0` と宣言していたが、許している
+      # @hookform/resolvers はどの版も `^7.55.0` を要求していた。
+      #
+      # **PR でも走らせる。** 鳴る条件は「こちらが範囲を広げた / 下限を下げた」で、その PR の変更そのもの。
+      # 上流が新しい版を出しても受け付ける側が増えるだけなので、無関係な PR は赤くならない
+      # （例外は上流の版の取り下げで、それは週次で拾う）。
+      - name: peer の範囲に、一緒には入れられない版が無いか
+        run: npm run check:peer-floors
