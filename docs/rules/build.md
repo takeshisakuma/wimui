@@ -54,6 +54,7 @@ rolldown ベースの Vite 8 には、エントリモジュール直下の CSS i
 - 該当コンポーネントを使う利用者は、対応するライブラリを自分でインストールする必要があります。
 - 新しい重量級ライブラリを追加する場合は、(1) `peerDependencies` + `peerDependenciesMeta`（optional）に追加、(2) リポジトリ内の開発用に `devDependencies` にも追加、(3) `vite.config.ts` の `rollupOptions.external` と UMD の `globals` に追加、の3点をセットで行ってください。
 - `music-metadata`（Audio のタグ読み取り）も optional の peer です。`showMetadata` を渡したときだけ、動的 `import()` で読み込みます。レンジは、実際に動かして確かめた major だけを並べます（`^11.0.0 || ^12.0.0`。12 は 2026-10-07 に、タグ付きの mp3 を Node と Chromium で読んで確かめた）。上限の無いレンジにすると、次の major が出たときに `npm run check:peer-majors` が落ちます。
+- peer の下限は、**ほかの peer と一緒に入れられる版**まで上げます。peer どうしにも peer の関係があり（`@hookform/resolvers` は `react-hook-form` を、`@tiptap/markdown` は `@tiptap/core` を要求する）、こちらが許す B のどの版も受け付けない A の版を A の範囲に含めると、その版は宣言しているのに入れられません。`npm run check:peer-floors` が、レジストリの全版を読んで落とします（PR と週次。実証は `npm run prove:peer-floors`）。実例は #1043（react-hook-form `^7.43.0` → `^7.55.0`）と、このガードで見つかった tiptap（`^3.0.0` → `^3.7.0`。`@tiptap/markdown` の最初の stable が 3.7.0）。
 
 ### peer サポート行列（一点集中）
 
