@@ -41,7 +41,7 @@ import { BarChart } from "wimui/charts";
 |---|---|---|---|
 | `react` / `react-dom` | **19** | `^19.0.0` | 開発・テスト・公開型は React 19。React 18 は非対応 |
 | `zod`（`wimui/rhf` 利用時） | **4** | `^4.0.0` | 開発・テストは zod 4。zod 3 は非対応 |
-| `@hookform/resolvers` | **5.1+** | `^5.1.0` | `wimui/rhf` 利用時 |
+| `@hookform/resolvers` | **5.1+ / 6** | `^5.1.0 \|\| ^6.0.0` | `wimui/rhf` 利用時 |
 | `react-hook-form` | **7.43+** | `^7.43.0` | `wimui/rhf` 利用時のみ |
 
 Core（ルート `wimui`）に zod / RHF は不要です。charts 等の optional peer は下表を参照。
@@ -314,7 +314,7 @@ peer 依存コンポーネントは**コンポーネント別の専用サブパ�
 | CodeDiffViewer | `wimui/ai/code-diff-viewer` | `diff` |
 | InteractiveGraph | `wimui/ai/interactive-graph` | `@xyflow/react` |
 | Audio（`showMetadata` 時のみ） | `wimui` または `wimui/media` | `music-metadata` |
-| FormField / zodResolver | `wimui/rhf` | `react-hook-form` `^7.43` / `@hookform/resolvers` `^5.1` / `zod` `^4` |
+| FormField / zodResolver | `wimui/rhf` | `react-hook-form` `^7.43` / `@hookform/resolvers` `^5.1 \|\| ^6` / `zod` `^4` |
 
 正本マップ: `src/data/peer-imports.json`（CI の `check:imports` もこれを参照）。Audio の metadata peer は optional 動的 import のためルートにも居ます。
 
