@@ -278,6 +278,7 @@
     font-family: inherit;
     font-size: var(--wim-font-size-md);
     line-height: normal;
+    text-box-trim: none;
     color: var(--wim-color-text-primary);
     appearance: none;
     resize: none;
@@ -285,7 +286,6 @@
     background-color: transparent;
     border: none;
     box-shadow: none !important;
-    text-box-trim: none;
   
     &::placeholder {
       color: var(--wim-color-text-tertiary);
