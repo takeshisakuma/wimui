@@ -61,7 +61,7 @@ rolldown ベースの Vite 8 には、エントリモジュール直下の CSS i
 |---|---|---|
 | `react` / `react-dom` | 19 のみ | `^19.0.0` |
 | `zod`（rhf） | 4 のみ | `^4.0.0` |
-| `@hookform/resolvers` | 5.1+ | `^5.1.0` |
+| `@hookform/resolvers` | 5.1+ / 6 | `^5.1.0 \|\| ^6.0.0` |
 | `react-hook-form` | 7.43+ | `^7.43.0` |
 
 React 18 / zod 3 は非対応。詳細は README。
