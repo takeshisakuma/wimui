@@ -636,6 +636,8 @@
     "type_lh_latn_tight": "Compacto (1.2)\nProjetado especificamente para títulos e cabeçalhos.",
     "type_lineheight": "Alturas de Linha (Line Heights)",
     "type_lineheight_lang_desc": "Decida quais tokens de altura de linha/família de fonte usar nesta prioridade: (1) delegue a uma prop do componente quando disponível (ex.: `lineHeight` do `Text`); (2) para texto de corpo ou de várias linhas, use por padrão a variante mais ampla `-jp`, pois os glifos CJK precisam de mais espaço vertical; (3) para alternar automaticamente, baseie-se no atributo `lang` propagado a partir de `<html lang>`, e não em um `:root[lang]` global. Nunca escreva verificações de idioma do i18next dentro do SCSS do componente.",
+    "type_lineheight_title_title": "Títulos com Title",
+    "type_lineheight_title_desc": "O Title não usa esses tokens para a altura de linha. Cada tamanho tem sua própria proporção sem unidade, que diminui conforme o tamanho aumenta (alfabeto latino de 1,35 no xs a 1,11 no 4xl; japonês de 1,50 a 1,18), porque uma proporção fixa abre o espaço entre as linhas na mesma proporção do tamanho da fonte. Os elementos h1–h6 simples usam snug / snug-jp.",
     "type_lineheight_lang_title": "Escolhendo Altura de Linha e Fonte por Idioma",
     "type_size": "Tamanhos de Fonte",
     "type_text_ex_large": "Texto Extra Grande (20.25px)\nUsa a proporção de 1.125 ao quadrado ($font-size-2).",

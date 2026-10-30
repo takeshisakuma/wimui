@@ -99,10 +99,10 @@
    * UA 既定が 2em＝32px なので **行送りが 45px（ja 51px）** になり、字の見た目の高さ
    * 約 22px の 2 倍以上まで開く（実測: `Foundation/Voice & Tone` の h1・幅 760px で 2 行）。
    *
-   * 値は `Title`（`title.module.scss`）の判断をそのまま借りる ── あちらは欧文 `snug`、
-   * 和文 `snug-jp` を既定にし、`tight` 系はディスプレイ段（`.xl`＝max 2.6rem ≒ 41.6px）
-   * から使う。**素の見出しの UA 既定は h1 の 32px が最大で、これは `Title` の `.lg`
-   * （2rem）と同じ帯＝`snug` の側**なので、h1 だけ `tight` にはしない。
+   * `Title` は段ごとの比率（大きい段ほど小さい）を持つが、ここは段ごとにしない ── 要素名で
+   * 当たる規則は実際の font-size を知らない（`Dialog` の題は `<h2>` でも 18px 前後）。
+   * `snug`（1.33 / ja 1.5）は `Title` の小さい段（xs 1.35 / sm 1.29、和文 1.50 / 1.42）と
+   * ほぼ同じなので、全段これで揃える（docs/design/typography.md の T208）。
    *
    * `@layer base` に置くのは、`component` 層のクラスが自前で `line-height` を宣言して
    * いればそちらを勝たせるため。宣言が無いクラス（実測で `Dialog` / `Drawer` /

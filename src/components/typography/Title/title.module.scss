@@ -1,3 +1,5 @@
+@use "sass:list";
+
 /* Display Title sizes: interpolate between font-size tokens from
    --wim-breakpoint-xs → --wim-breakpoint-xl. Max stays the existing
    Title→token mapping; min is one step down (xl / 2xl) or two (3xl / 4xl)
@@ -10,6 +12,22 @@
   );
 }
 
+/* 段ごとの行高（欧文, 和文）。大きい段ほど比率を下げる ── 比率を固定すると、字が大きいほど
+   行の間の空きも比例して開き、間延びして見えるため。値は「1.05em + 0.3rem」（和文は
+   「1.1em + 0.4rem」）を各段の最大の font-size で評価し、小数 2 桁に丸めたもの。
+   式（calc）のまま当てないのは、長さになり子孫へ px で受け継がれるため。
+   比較は Storybook の Token/Line Height。公開トークンにはしない（Title だけの値） */
+$line-heights: (
+  xs: (1.35, 1.5),
+  sm: (1.29, 1.42),
+  md: (1.24, 1.35),
+  lg: (1.2, 1.3),
+  xl: (1.17, 1.26),
+  xl2: (1.14, 1.22),
+  xl3: (1.12, 1.2),
+  xl4: (1.11, 1.18),
+);
+
 @layer component {
   .root {
     width: 100%;
@@ -18,7 +36,8 @@
     font-weight: var(--wim-font-weight-bold);
 
     /* 欧文見出しは font metrics（normal ≈ 1.36+）だと間延びするためトークンで詰める。
-       日本語は字形が仮想ボディを満たし詰まって見えるため -jp（広いほう）に出し分け（DESIGN.md 規約3） */
+       日本語は字形が仮想ボディを満たし詰まって見えるため -jp（広いほう）に出し分け（DESIGN.md 規約3）。
+       段のクラスが付くときは下の $line-heights が勝つ。ここは段が無いときの受け皿 */
     line-height: var(--wim-line-height-snug);
 
     /* 欧文見出しは大きいほど字面が空くため負トラッキングで締める（主張強化 T10）。
@@ -39,17 +58,27 @@
       letter-spacing: var(--wim-letter-spacing-normal);
     }
 
-    /* ディスプレイサイズは行高をさらに詰め、字間も最も締める */
+    /* ディスプレイサイズは字間を最も締める */
     &.xl,
     &.xl2,
     &.xl3,
     &.xl4 {
-      line-height: var(--wim-line-height-tight);
       letter-spacing: var(--wim-letter-spacing-tighter);
 
       :global([lang="ja"]) & {
-        line-height: var(--wim-line-height-tight-jp);
         letter-spacing: var(--wim-letter-spacing-normal);
+      }
+    }
+
+    /* 段ごとの行高（$line-heights）。xl〜 は font-size が viewport で縮むが、比率は最大の端で決めている
+       （小さい端ではやや緩くなる側にずれる） */
+    @each $size, $pair in $line-heights {
+      &.#{$size} {
+        line-height: list.nth($pair, 1);
+
+        :global([lang="ja"]) & {
+          line-height: list.nth($pair, 2);
+        }
       }
     }
 
