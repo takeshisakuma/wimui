@@ -25,9 +25,10 @@
  *      （base が届かないので本文比率のまま残る）
  *   C. `src/base.scss` から素の見出しの規則そのものが消えている（①の土台が抜ける）
  *
- * 見出し用トークンは `Title`（`title.module.scss`）の判断に合わせる ── 欧文 `snug` /
- * 和文 `snug-jp` を既定、`tight` 系はディスプレイ段。素の見出しの UA 既定は h1 の 32px が
- * 最大で `Title` の `.lg`（2rem）と同じ帯なので、`snug` 側が既定になる。
+ * 見出し用トークンは欧文 `snug` / 和文 `snug-jp` が既定、`tight` 系は大きい表示用。
+ * `Title` 自身は 2026-10-30 から段ごとの比率（`title.module.scss` の `$line-heights`）を
+ * 持ち、トークンを使わない。このガードが見るのは `Title` 以外の見出し役なので、許す値は
+ * トークンのまま（`Title` の小さい段の比率は `snug` / `snug-jp` とほぼ同じ）。
  *
  * **見えない範囲（既知）**: 別コンポーネントが描く見出しへ `className` を渡す書き方
  * （`<Drawer.Title className={styles.title}>` は `Drawer` 側で `<h2>` になる）は、
