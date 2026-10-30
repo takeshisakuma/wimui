@@ -233,6 +233,7 @@
     "stories/Patterns/Playground/Playground.stories.tsx",
     "stories/Patterns/Roastery/Operations.stories.tsx",
     "stories/Token/Density.stories.tsx",
+    "stories/Token/LineHeight.stories.tsx",
     "stories/data-display/NodeGraph/NodeGraphComposed.stories.tsx",
     "stories/navigation/SpeedDial/SpeedDial.realistic.stories.tsx"
   ]
