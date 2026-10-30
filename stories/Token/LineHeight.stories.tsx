@@ -9,6 +9,7 @@ import { ALL_NAMESPACES } from "../i18nConstants";
  * 見出しの行高の比較（2026-10-30）。現在は段ごとに比率を固定している
  * （title.module.scss: xs〜lg は snug、xl〜 は tight）。案は「字の大きさ × 係数 ＋ 一定の空き」で、
  * 大きくなるほど比率が自動で下がる。Title の xl〜 は viewport で伸縮するため、段のトークンでは追えない。
+ * 3 列目は、その式を段ごとに評価して丸めた単位のない比率（出荷するならこちら。式は長さになり子孫へ px で受け継がれる）。
  * 案はインラインの style で当てるだけで、トークンにもコンポーネントにも入れていない。
  */
 
@@ -29,6 +30,26 @@ const SIZES: NonNullable<TitleProps["size"]>[] = [
   "3xl",
   "4xl",
 ];
+
+/* 各段の最大の font-size（rem）。title.module.scss の対応（xs → md 〜 4xl → 7xl）と
+   tokens/typography.json の値の写し。xl〜 は viewport で縮むが、比率は最大の端で決める */
+const MAX_REM: Record<NonNullable<TitleProps["size"]>, number> = {
+  xs: 1,
+  sm: 1.266,
+  md: 1.602,
+  lg: 2.027,
+  xl: 2.566,
+  "2xl": 3.247,
+  "3xl": 4.11,
+  "4xl": 5.202,
+};
+
+/** 式を段の最大の大きさで評価し、単位のない比率に丸める（出荷するならこの値をトークンにする） */
+const stepRatio = (
+  size: NonNullable<TitleProps["size"]>,
+  em: number,
+  gap: number,
+) => (Math.round((em + gap / MAX_REM[size]) * 100) / 100).toString();
 
 const meta: Meta<Args> = {
   title: "Token/Line Height",
@@ -102,13 +123,16 @@ function Script({
   lang,
   heading,
   sample,
-  lineHeight,
+  em,
+  gap,
 }: {
   lang: "en" | "ja";
   heading: string;
   sample: string;
-  lineHeight: string;
+  em: number;
+  gap: number;
 }) {
+  const lineHeight = `calc(${em}em + ${gap}rem)`;
   const { t } = useTranslation(ALL_NAMESPACES);
   const fontFamily =
     lang === "ja" ? "var(--wim-font-family-ja)" : "var(--wim-font-family-en)";
@@ -128,16 +152,22 @@ function Script({
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
+            gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
             gap: "var(--wim-spacing-xl)",
           }}
         >
           <Text content={t("story.line_height_current")} size="sm" weight="bold" />
           <Text content={`${t("story.line_height_proposed")}: ${lineHeight}`} size="sm" weight="bold" />
+          <Text content={t("story.line_height_stepped")} size="sm" weight="bold" />
           {SIZES.map((size) => (
             <React.Fragment key={size}>
               <Measured size={size} text={sample} />
               <Measured size={size} text={sample} lineHeight={lineHeight} />
+              <Measured
+                size={size}
+                text={sample}
+                lineHeight={stepRatio(size, em, gap)}
+              />
             </React.Fragment>
           ))}
         </div>
@@ -165,13 +195,15 @@ export const Headings: Story = {
           lang="en"
           heading={t("story.line_height_latin")}
           sample={tEn("story.line_height_sample")}
-          lineHeight={`calc(${latinEm}em + ${latinGap}rem)`}
+          em={latinEm}
+          gap={latinGap}
         />
         <Script
           lang="ja"
           heading={t("story.line_height_japanese")}
           sample={tJa("story.line_height_sample")}
-          lineHeight={`calc(${jaEm}em + ${jaGap}rem)`}
+          em={jaEm}
+          gap={jaGap}
         />
       </Stack>
     );

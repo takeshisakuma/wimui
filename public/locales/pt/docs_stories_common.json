@@ -119,6 +119,7 @@
     "line_height_note": "Cada linha quebra o mesmo título em várias linhas. Os números são medidos: tamanho da fonte / altura da linha (proporção).",
     "line_height_proposed": "Proposta (acompanha o tamanho)",
     "line_height_sample": "Títulos ficam mais legíveis quando o espaçamento entre linhas diminui conforme o tamanho aumenta",
+    "line_height_stepped": "Por etapa (proporção arredondada a partir da fórmula)",
     "loading_overlay_blur": "Blur",
     "loading_overlay_content_desc": "Este é o conteúdo que será sobreposto durante o carregamento.",
     "loading_overlay_content_title": "Content Area",
