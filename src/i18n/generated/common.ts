@@ -628,8 +628,6 @@ export type CommonKey =
   | "token.type_lineheight"
   | "token.type_lineheight_lang_desc"
   | "token.type_lineheight_lang_title"
-  | "token.type_lineheight_title_desc"
-  | "token.type_lineheight_title_title"
   | "token.type_size"
   | "token.type_text_ex_large"
   | "token.type_text_ex_small"

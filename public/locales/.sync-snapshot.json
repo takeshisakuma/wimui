@@ -1256,8 +1256,6 @@
       "type_lineheight": "Line Heights",
       "type_lineheight_lang_title": "Choosing Line Height & Font by Language",
       "type_lineheight_lang_desc": "Decide which line-height/font-family tokens to use in this priority: (1) delegate to a component prop when available (e.g. `Text`'s `lineHeight`); (2) for body or multi-line text, default to the wider `-jp` variant, since CJK glyphs need more vertical breathing room; (3) to switch automatically, key off the `lang` attribute propagated from `<html lang>` rather than a global `:root[lang]`. Never write i18next language checks inside component SCSS.",
-      "type_lineheight_title_title": "Headings set with Title",
-      "type_lineheight_title_desc": "Title does not use these tokens for its line height. Each size has its own unitless ratio that gets smaller as the size grows (Latin 1.35 at xs down to 1.11 at 4xl; Japanese 1.50 down to 1.18), because a fixed ratio opens up the gap between lines in proportion to the font size. Plain h1–h6 elements use snug / snug-jp.",
       "type_size": "Font Sizes",
       "type_text_ex_large": "Extra Large Text (20.25px)\nUses a ratio of 1.125^2 ($font-size-2).",
       "type_text_ex_small": "Extra Small Text (12.64px)\nUses a ratio of 1.125^-2 ($font-size-minus-2).",
@@ -8306,7 +8304,9 @@
       "lh_jpan_loose": "Loose (1.8)\nProvides a spacious line height, making it easier to read on small screens like mobile devices. It gives a relaxed impression and ensures smooth eye movement.",
       "lh_jpan_normal": "Normal (1.6)\nThe standard line height for WIM UI. It offers the best balance between readability and information density, ideal for general articles.",
       "lh_jpan_snug": "Snug (1.5)\nSits between tight and normal. Optimal for concise body text, labels, and short UI descriptions in Japanese. Balances density with readability.",
-      "lh_jpan_tight": "Tight (1.4)\nUsed for headings and labels where high information density is required. Suitable for conveying a lot of information in limited space."
+      "lh_jpan_tight": "Tight (1.4)\nUsed for headings and labels where high information density is required. Suitable for conveying a lot of information in limited space.",
+      "lh_title_title": "Headings set with Title",
+      "lh_title_desc": "Title does not use these tokens for its line height. Each size has its own unitless ratio that gets smaller as the size grows (Latin 1.35 at xs down to 1.11 at 4xl; Japanese 1.50 down to 1.18), because a fixed ratio opens up the gap between lines in proportion to the font size. Plain h1–h6 elements use snug / snug-jp."
     }
   },
   "docs_guide_visualization": {

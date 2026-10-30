@@ -38,6 +38,8 @@
     "lh_jpan_loose": "Loose (1.8)\nProvides a spacious line height, making it easier to read on small screens like mobile devices. It gives a relaxed impression and ensures smooth eye movement.",
     "lh_jpan_normal": "Normal (1.6)\nThe standard line height for WIM UI. It offers the best balance between readability and information density, ideal for general articles.",
     "lh_jpan_snug": "Snug (1.5)\nSits between tight and normal. Optimal for concise body text, labels, and short UI descriptions in Japanese. Balances density with readability.",
-    "lh_jpan_tight": "Tight (1.4)\nUsed for headings and labels where high information density is required. Suitable for conveying a lot of information in limited space."
+    "lh_jpan_tight": "Tight (1.4)\nUsed for headings and labels where high information density is required. Suitable for conveying a lot of information in limited space.",
+    "lh_title_title": "Headings set with Title",
+    "lh_title_desc": "Title does not use these tokens for its line height. Each size has its own unitless ratio that gets smaller as the size grows (Latin 1.35 at xs down to 1.11 at 4xl; Japanese 1.50 down to 1.18), because a fixed ratio opens up the gap between lines in proportion to the font size. Plain h1–h6 elements use snug / snug-jp."
   }
 }

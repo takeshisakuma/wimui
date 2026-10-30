@@ -636,8 +636,6 @@
     "type_lh_latn_tight": "Tight (1.2)\n見出しに特に設計されています。",
     "type_lineheight": "行間 (Line Heights)",
     "type_lineheight_lang_desc": "行高・フォントファミリーのトークン選択は次の優先順位で判断します。(1) コンポーネントに該当する prop があればそれに委ねる（例: `Text` の `lineHeight`）。(2) 本文や複数行テキストは、CJK の字形が縦の余白を必要とするため、既定で広いほうの `-jp` バリアントを使う。(3) 自動で切り替えたい場合は、グローバルな `:root[lang]` ではなく `<html lang>` から伝播する `lang` 属性を起点にする。コンポーネントの SCSS 内に i18next の言語判定を書いてはいけません。",
-    "type_lineheight_title_title": "Title の見出しの行高",
-    "type_lineheight_title_desc": "Title は行高にこれらのトークンを使いません。段ごとに単位のない比率を持ち、大きい段ほど比率が下がります（欧文は xs の 1.35 から 4xl の 1.11、和文は 1.50 から 1.18）。比率を固定すると、字が大きいほど行の間の空きも比例して開くためです。素の h1〜h6 は snug / snug-jp を使います。",
     "type_lineheight_lang_title": "言語による行高・フォントの出し分け",
     "type_size": "フォントサイズ (Font Sizes)",
     "type_text_ex_large": "Extra Large Text (20.25px)\n1.125の2乗の比率（$font-size-2）を使用しています。",
