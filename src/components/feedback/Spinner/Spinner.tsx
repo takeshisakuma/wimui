@@ -69,6 +69,9 @@ export const Spinner = ({
         viewBox="0 0 50 50"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
+        // 回る図形は飾り。告げる文は `label`（role="status"）が持つ。付けないと、名前の無い
+        // 「画像」として読み上げの木に残る（T351。axe は role="img" を書いた svg しか見ない）
+        aria-hidden="true"
       >
         <circle
           className={styles.track}

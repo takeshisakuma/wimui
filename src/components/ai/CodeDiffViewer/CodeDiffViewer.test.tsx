@@ -69,4 +69,14 @@ describe("CodeDiffViewer", () => {
     fireEvent.click(unifiedBtn);
     expect(unifiedBtn).toHaveAttribute("aria-pressed", "true");
   });
+
+  // T360: ファイル名に小文字化を当てていて、`Button.tsx` が `button.tsx` と見えていた。
+  // 小文字にするのは言語名のときだけ（CSS Modules は vitest でクラス名がそのまま返る）
+  it("does not lowercase a filename, only a language name", () => {
+    const { unmount } = render(<CodeDiffViewer before={before} after={after} filename="Button.tsx" language="tsx" />);
+    expect(screen.getByText("Button.tsx")).not.toHaveClass("language");
+    unmount();
+    render(<CodeDiffViewer before={before} after={after} language="TypeScript" />);
+    expect(screen.getByText("TypeScript")).toHaveClass("language");
+  });
 });

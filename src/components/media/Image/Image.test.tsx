@@ -189,4 +189,11 @@ describe("Image", () => {
     const figure = screen.getByTestId("image-root");
     expect(figure.getAttribute("style")).toContain("--wim-image-transition-duration: 0s");
   });
+
+  // T351: フィルタの定義だけを持つ幅 0 の svg。名前の無い「画像」として読み上げの木に残っていた
+  it("hides the duotone filter svg from assistive technology", () => {
+    const { container } = render(<Image src="test.jpg" alt="Test" duotone={{ light: "#ffffff", dark: "#000000" }} />);
+    const filterSvg = container.querySelector("filter")?.closest("svg");
+    expect(filterSvg).toHaveAttribute("aria-hidden", "true");
+  });
 });

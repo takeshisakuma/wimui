@@ -42,4 +42,23 @@ describe("TabBar", () => {
     expect(link).toHaveAttribute("aria-pressed", "true");
     expect(link).toHaveClass(styles.active);
   });
+
+  // T352: `{badge && …}` は 0 を素の「0」として描いていた（FloatButton と同じ形・#1023）
+  it("does not render a bare 0 when badge is 0", () => {
+    render(
+      <TabBar>
+        <TabBar.Item label="Inbox" badge={0} />
+      </TabBar>,
+    );
+    expect(screen.getByRole("button")).toHaveTextContent(/^Inbox$/);
+  });
+
+  it("still renders a positive badge", () => {
+    render(
+      <TabBar>
+        <TabBar.Item label="Inbox" badge={3} />
+      </TabBar>,
+    );
+    expect(screen.getByText("3")).toBeInTheDocument();
+  });
 });

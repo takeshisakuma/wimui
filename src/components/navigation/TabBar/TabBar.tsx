@@ -98,7 +98,11 @@ export const TabBarItem = React.forwardRef<HTMLButtonElement, TabBarItemProps>(
         aria-pressed={active}
         {...props}
       >
-        {badge && <span className={styles.badge}>{badge}</span>}
+        {/* `{badge && …}` は 0 を素の「0」として、バッジの枠の外に描いていた（T352）。
+            FloatButton と同じく、0 件のバッジは出さない。 */}
+        {badge != null && badge !== false && badge !== 0 && badge !== "" && (
+          <span className={styles.badge}>{badge}</span>
+        )}
         {icon && <span className={styles.icon}>{icon}</span>}
         {label && <span className={styles.label}>{label}</span>}
         <Slottable>{children}</Slottable>
