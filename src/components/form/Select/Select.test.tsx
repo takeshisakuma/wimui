@@ -83,7 +83,8 @@ describe("Select", () => {
     render(<Select options={groupedOptions} grouped />);
     
     fireEvent.click(screen.getByRole("combobox"));
-    await waitFor(() => expect(screen.queryByText(/Group A/i)).not.toBeNull());
+    // 見出しは見た目だけ大文字。読み上げ用の文字は元の大小のまま（VisualUppercase）
+    await waitFor(() => expect(screen.queryAllByText("Group A")).toHaveLength(2));
     expect(screen.getByText(/A1/i)).toBeInTheDocument();
   });
 

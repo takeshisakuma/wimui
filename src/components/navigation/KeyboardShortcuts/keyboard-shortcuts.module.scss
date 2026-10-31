@@ -12,8 +12,9 @@
     font-size: var(--wim-font-size-sm);
     font-weight: var(--wim-font-weight-semibold);
     color: var(--wim-color-text-secondary);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+
+    // 大文字は中の `VisualUppercase` が当てる（ここに書くと、支援技術に渡す元の文字まで大文字になる）。
+    letter-spacing: var(--wim-letter-spacing-wide);
   }
 
   .list {

@@ -46,7 +46,7 @@
     font-weight: var(--wim-font-weight-medium);
     color: var(--wim-color-text-secondary);
     text-transform: lowercase;
-    letter-spacing: 0.05em;
+    letter-spacing: var(--wim-letter-spacing-wide);
   }
 
   .headerActions {

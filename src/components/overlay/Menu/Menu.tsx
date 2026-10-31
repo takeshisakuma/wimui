@@ -264,18 +264,19 @@ export const MenuItemGroup = ({
   title,
   className,
 }: MenuItemGroupProps) => {
-  const labelId = React.useId();
+  // 見出しは `aria-hidden` にして二重読みを防ぐ。名前は元の文字から `aria-label` で付ける。以前は `aria-labelledby` で見出しを指していたが、見出しは
+  // `text-transform: uppercase` なので、Chrome は大文字に変えた文字（「EDIT ACTIONS」）を名前として渡していた（2026-10-31 に実測）。
   return (
     <li className={classNames(styles.itemGroup, className)} role="none">
       {title && (
-        <div id={labelId} className={styles.itemGroupTitle} aria-hidden="true">
+        <div className={styles.itemGroupTitle} aria-hidden="true">
           {title}
         </div>
       )}
       <ul
         className={styles.itemGroupList}
         role="group"
-        aria-labelledby={title ? labelId : undefined}
+        aria-label={title || undefined}
       >
         {children}
       </ul>

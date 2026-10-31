@@ -23,7 +23,8 @@ beforeEach(() => {
 describe("JsonViewer", () => {
   it("renders correctly", () => {
     render(<JsonViewer data={{ key: "value" }} />);
-    expect(screen.getByText("JSON Viewer")).toBeInTheDocument();
+    // 題は見た目だけ大文字。名前は元の大小のまま（VisualUppercase）
+    expect(screen.getByRole("group", { name: "JSON Viewer" })).toBeInTheDocument();
     expect(screen.getByText("key:")).toBeInTheDocument();
     expect(screen.getByText(/"value"/)).toBeInTheDocument();
   });
@@ -94,7 +95,7 @@ describe("JsonViewer", () => {
   describe("editable mode", () => {
     it("shows edit title", () => {
       render(<JsonViewer data={{}} editable />);
-      expect(screen.getByText("Edit JSON")).toBeInTheDocument();
+      expect(screen.getByRole("group", { name: "Edit JSON" })).toBeInTheDocument();
     });
 
     it("edits a string value via input and Enter", () => {

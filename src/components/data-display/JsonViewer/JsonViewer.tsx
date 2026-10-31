@@ -6,6 +6,7 @@ import { IconButton } from "../../form/IconButton/IconButton";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { commonNs } from "@/i18n/generated/common";
 import { PlusIcon, TrashIcon, ChevronDownIcon, ChevronRightIcon } from "@/icon";
+import { VisualUppercase } from "../../_internal/VisualUppercase";
 
 export interface JsonViewerProps extends React.HTMLAttributes<HTMLDivElement> {
   /** The JSON data to display */
@@ -371,7 +372,7 @@ export const JsonViewer = React.forwardRef<HTMLDivElement, JsonViewerProps>(
       >
         {showToolbar && (
           <div className={localStyles.toolbar}>
-            <span id={titleId} className={localStyles.title}>{editable ? t("jsonViewer.edit") : t("jsonViewer.title")}</span>
+            <span id={titleId} className={localStyles.title}><VisualUppercase>{editable ? t("jsonViewer.edit") : t("jsonViewer.title")}</VisualUppercase></span>
             {showCopy && (
               <IconButton
                 iconName="CopyIcon"

@@ -30,9 +30,10 @@ describe("KeyboardShortcuts", () => {
 
   it("renders title when provided", () => {
     render(
-      <KeyboardShortcuts shortcuts={mockShortcuts} title="Shortcuts" />,
+      <KeyboardShortcuts shortcuts={mockShortcuts} title="Shortcuts" titleLevel={2} />,
     );
-    expect(screen.getByText("Shortcuts")).toBeInTheDocument();
+    // 題は見た目だけ大文字。名前は元の大小のまま（VisualUppercase）
+    expect(screen.getByRole("heading", { name: "Shortcuts" })).toBeInTheDocument();
   });
 
   it("renders custom separator", () => {
@@ -44,7 +45,7 @@ describe("KeyboardShortcuts", () => {
   // 段が飛び、axe の `heading-order` が鳴る（T191 で `Footer` が実際に踏んだ）。
   it("既定では title を見出しにしない", () => {
     render(<KeyboardShortcuts shortcuts={mockShortcuts} title="Shortcuts" />);
-    expect(screen.getByText("Shortcuts").tagName).toBe("P");
+    expect(screen.getByText("Shortcuts", { selector: "[aria-hidden]" }).closest("p")).not.toBeNull();
     expect(screen.queryByRole("heading")).not.toBeInTheDocument();
   });
 
