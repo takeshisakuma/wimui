@@ -26,7 +26,7 @@ minor / patch はグループ PR をマージしてよい（`AGENTS.md` の委�
 
 ### 2. ブロック中の依存を、版番号ではなく**ブロッカーの実体**で再確認する
 
-**最後に実体で確認した日: 2026-10-09**（2026-10-09 は宣言を読み直しただけで、どれも解けていない。`eslint` 10 は、peer を外して実際に流した ── 下の注記。以下は 2026-10-07 の記録: `vitest` 5 が解けていたので上げた ── 下の「解除したもの」。`eslint` 10・`typescript` 7・FullCalendar 7・`marked` 18 は解けていない。addon-mcp の行は 2026-10-02 の実測のまま）。**確認は `npm view <ブロッカー> peerDependencies` で、
+**最後に実体で確認した日: 2026-10-31**（どれも解けていない: `eslint-plugin-jsx-a11y` 6.10.2 は `^9` まで・`eslint-plugin-react` 7.37.5 は `^9.7` まで（eslint の `latest` は 10.14.0、9 は `maintenance` タグの 9.39.5）・`typescript-eslint` 8.72.1 は `<6.1.0`（TS の `latest` は 7.0.2）・`@tiptap/markdown` 3.32.2 は `marked: ^17.0.1`・FullCalendar のプラグイン 3 つは 6.1.22（core と react は 7.1.3）・`@storybook/addon-mcp` 10.6.5 の `get instructions()` は今も `buildServerInstructions` だけを返す。以下は前回の記録。2026-10-09: 2026-10-09 は宣言を読み直しただけで、どれも解けていない。`eslint` 10 は、peer を外して実際に流した ── 下の注記。以下は 2026-10-07 の記録: `vitest` 5 が解けていたので上げた ── 下の「解除したもの」。`eslint` 10・`typescript` 7・FullCalendar 7・`marked` 18 は解けていない。addon-mcp の行は 2026-10-02 の実測のまま）。**確認は `npm view <ブロッカー> peerDependencies` で、
 宣言の実物を読む** ── 「まだ無理だろう」で飛ばすと、解けたことに気づかないまま何か月も止まる。
 実際この日、`i18next-http-backend` は**解けていた**（`storybook-react-i18next` の peer が `^2 || ^3` から
 `^2 || ^3 || ^4` へ動いていた。メモには「2026-07-06 再確認、変化なし」と書いたまま放置されていた）。
@@ -151,7 +151,9 @@ for (const n of Object.keys(pkg.scripts).filter(k=>/^(check|audit)/.test(k))) {
 }'
 ```
 
-**2026-09-29 時点の実測**: CI で走る **81 件** ／ lint-staged だけ **0 件** ／ 失敗できない **0 件** ／ どこからも呼ばれない **1 件**（同じ `check:skills-mirror`。架空の `check:zzz-fake` を足すと「どこからも呼ばれない」に出ることを確かめてから数えた）。
+**2026-10-31 時点の実測**: CI で走る **86 件** ／ lint-staged だけ **0 件** ／ 失敗できない **0 件** ／ どこからも呼ばれない **1 件**（`check:skills-mirror`）。架空の `check:zzz-fake` を足した版で「どこからも呼ばれない」に出ることを先に確かめた。
+
+**旧: 2026-09-29 時点の実測**: CI で走る **81 件** ／ lint-staged だけ **0 件** ／ 失敗できない **0 件** ／ どこからも呼ばれない **1 件**（同じ `check:skills-mirror`。架空の `check:zzz-fake` を足すと「どこからも呼ばれない」に出ることを確かめてから数えた）。
 
 **旧: 2026-09-20 時点の実測**: CI で走る **74 件** ／ lint-staged だけ **0 件** ／ 失敗できない **0 件** ／ どこからも呼ばれない **1 件**。
 
@@ -197,6 +199,8 @@ npm run measure:doc-aria-claims
 
 > **2026-10-10 の実測**: 127 部品・357 件のうち、文字列で見つからないものが 41 件。読むと本物は 5 件だった（残りは助言・複数形の `aria-labels`・どの MDX からも参照されていないキー）。`Anchor`（`aria-current`）と `Kanban`（`list` / `listitem`）は docs が正しく、実装を足した（#913）。`VirtualList`（実装は `aria-setsize` / `aria-posinset`）・`ThoughtProcess`（`role="region"` は無い）・`PromptInput`（`aria-multiline` は無い）と、`Kanban` の `aria-disabled` は docs を直した。直したあとの候補は 34 件で、どれも読み終えたもの ── **次に数えて 34 から増えていたら、増えた分を読む**。
 >
+> **2026-10-31 の実測**: 127 部品・366 件のうち、文字列で見つからないもの 30 件（前回の 34 から増えていない＝読む分は無い）。`check:doc-drift` もズレ 0。直近に変えた部品（Title / FloatButton と、#1050 の 4 部品）の JSDoc に、ほかの部品を名指しする記述は無かった。**この回で別の形の乖離が出た**: JSDoc で説明している prop を、分割代入で `_name` に受けて捨てている（`DatePicker` の `minDate` ほか。T349 / T350）。数え方は 7-4 の表の 2026-10-31 の行
+>
 > **届かないもの**: キー操作の記述（「矢印キーで移動」）と実際の挙動（7-4 の E2E の領分）、ja / pt にしか無い主張（en だけを読む）、外部ライブラリが付ける属性（一覧の `ext=[…]` を見て、ライブラリ側を読む）。
 
 **コード例は、2026-10-10 からガードが見る**（`check:examples` が MDX のコードフェンスもコンパイルする）。ここで手で見る必要は無い。ガードが見ないのは、部品もフックも出てこない断片（型だけの例など）と、`code-example: skip` を付けた例 ── 件数は実行のたびに出る。
@@ -209,6 +213,8 @@ npm run measure:doc-aria-claims
 # variant / intent の値ごとに、ストーリーで使われている回数を数える
 for v in solid outline subtle; do printf "%-10s %s\n" "$v" "$(grep -rho "variant=\"$v\"" stories/ sandbox/ | wc -l)"; done
 ```
+
+> **2026-10-31 の実測**: 文字列の合併型の prop（variant / intent / size / appearance / shape / orientation / placement / position / side / align）を、自分のストーリーを持つ 37 部品・135 値で数えた。どのストーリーにも出ない値は 28、うち既定値（既定のストーリーに写る）13・Patterns で使われているもの 2・ほかの部品へ素通しで写っているもの 3（Navbar.Menu → Drawer）を除いて **11 値**（T354）。数え方: 部品の `.tsx` から合併型を読み、`stories/` の中で部品名のディレクトリにあるファイルに、その値の文字列が 1 回も出ないものを拾う → 既定値（分割代入の `prop = "値"`）と、`stories/` 全体で `<部品 prop="値"` と書いた箇所を除く
 
 > 実例: `Chip` の `subtle` は 3 つの variant のうちここだけ**どのストーリーにも出ていなかった**（2026-08-07 に追加）。`LoadingOverlay` は 8 ストーリーすべてが `position: relative` の親で包んでおり、**素直に書いたときの姿を一度も撮っていなかった**。
 
@@ -305,6 +311,8 @@ EOF
 >
 > **2026-09-29 の実測**: 同じ 116 通りで **0 件**。今回は「潰れ」も数えた（直下に 4 文字以上のテキストを持ち、幅が 2em 未満で高さが 3em を超える要素）。**4 判定とも、注入した 1 通りで鳴ることを先に確かめた**。ただし **102 通りは `header` を持たず、③は判定不能**（「鳴らなかった」ではなく「見ていない」）。
 
+> **2026-10-31 の実測**: `patterns-*` 58 ストーリー × 390 / 768 = 116 通りで **0 件**（はみ出し・犯人・ヘッダ・潰れの 4 判定。先に 1 ストーリーへ 3000px の要素・ヘッダの外へ出る要素・幅 10px の文字を入れ、4 判定とも鳴ることを確かめた）。1 通り（`patterns-marketing--feature-comparison` の 390px）は 1 回目に開けず、開き直して測った。**102 通りは `header` を持たず、③は判定不能**のまま
+
 > **この 3 つは「はみ出し」しか見ていない。「潰れ」は緑で通る。**（2026-08-11・9 枚目）
 > `Dashboard` が狭い幅で列を減らすのに span を畳まず、grid が
 > `0px 186.188px 151.812px` に壊れて**幅 30px のカードに 1 文字ずつ縦に折れて**いたが、
@@ -342,7 +350,9 @@ git branch -vv | grep ": gone]"   # 追跡先が消えたローカルブラン�
 - `REVIEW` … PR が無い／閉じただけ。**途中で止めた作業の可能性がある**ので中身を見る
 - `changeset-release/main` と `gh-pages` は**自動生成なので消さない**
 
-**削除はユーザー判断**（一覧を出して提案するところまで）。PR 作成時に `--delete-branch` を付けておけば、そもそも溜まらない。
+**削除はユーザー判断**（一覧を出して提案するところまで）。
+
+> **2026-10-31**: リモートは `main` と `gh-pages` だけ（PR 作成時の `--delete-branch` が効いている）。手元に、PR がマージ済みで追跡先が消えたブランチが 5 本あった（#1038 / #1039 / #1043 / #1044 / #1047）。PR 作成時に `--delete-branch` を付けておけば、そもそも溜まらない。
 
 ### 7-4. 観点を 1 つ決めて、全部品を同じ手順で測る（デザインと操作の一貫性）
 
@@ -382,9 +392,7 @@ git branch -vv | grep ": gone]"   # 追跡先が消えたローカルブラン�
 
 **2026-10-11 の回で測り残した 5 つの候補**（省略記号の残り・開いた面の 5 部品・フォーカスの行き先の 3 部品・選択中の要素のホバー・ScrollProgress）は、2026-10-12 に測り終えた（下の表）。欠陥は ScrollProgress の 1 件。 残っていた候補 5 行も、同じ日に測った（表の下の 4 行。欠陥は Gallery の 1 件と、Affix / Tour の 2 件）。
 
-- `Icon` を通さずに描いている SVG が、飾りなのに読み上げの対象に残っていないか（変更のときに気づいた・#996）。`Icon` は、名前の無いアイコンに `aria-hidden` を付けるようになったが、`<svg>` を直接書いている部品は別。数え方: `src/components` で `<svg` を書いているのは 6 ファイル（VoiceVisualizer / Barcode / TreeDiagram / Spinner / Image / ProgressRing）。それぞれ、`aria-hidden` か、名前（`role="img"` ＋ `aria-label`）のどちらかを持つかを見る。意味を持つ図（バーコードなど）が混ざるので、1 つずつ読む
-- 操作の結果を告げる部品が、「先に在る `role="status"` の文字を書き換える」形になっているか（2026-10-12 の実機の確認で分かった型）。数え方: `role="status"` / `role="alert"` / `aria-live` を持つ要素を全部拾い、①その要素が、告げたい文と同時に描かれ始めるか（条件付きの描画の中にあるか）②読み上げの領域が入れ子になっていないか、を見る。①か②に当たるものは、ナレーターでは読まれない見込み。当たったら、実機で聞いてから直す（`docs/rules/implementation.md` の「操作の結果を、読み上げで告げる」）
-- 数を取る prop を `{n && <要素>}` で描いて、`0` のときに「0」の文字だけが出ていないか（変更のときに気づいた・axe 4.14 の `label-content-name-mismatch` の修正）。FloatButton の `badge` は `number | boolean` で、`{badge && (…)}` と書いてある ── `badge={0}` で、バッジの代わりに素の「0」が描かれる見込み。数え方: `src/components` の `.tsx` で、型に `number` を含む prop を `&&` の左に置いている箇所を拾い、`0` を渡して描く
+- 型が `ReactNode` の prop を `{prop && …}` で描き、数の `0` を渡すと素の「0」が出るか（2026-10-31 の回で、`number` 型だけを数えた数え方から漏れた。TabBar の `badge` は名前で拾った）。数え方: `src/components` の `.tsx` で、型に `ReactNode` を含む prop を `&&` の左に置く箇所を拾い、数を入れそうな名前（badge / count / extra / suffix など）から `0` を渡して描く
 - 実機のスクリーンリーダーで、まだ聞いていない部品（**人の手が要る**）。2026-10-12 にナレーター + Chrome で 28 部品を聞いた（下の表）。残り: Dropdown / Menubar / ContextMenu / TreeView / Tooltip / Popover / CommandPalette / MultiSelect / DatePicker / Cascader / TreeSelect。聞けるストーリーが無いもの: Alert が「あとから現れる」とき・Autosave が切り替わるとき（切り替わるストーリーを足せば聞ける）。**外れが出やすいのは、押してもフォーカスが動かず、中身だけが変わる操作**（28 部品中の外れ 11 のうち 8）
 
 **測り終えた観点の分け先**（2026-10-10・ユーザーとの相談で決めた）。観点は、基本的に 1 回きりの掃除である。直したあとに同じ手順を隔週で流し直しても、ほぼ毎回 0 件になる。**毎回流す価値があるものは、人ではなく CI に流させる。** 測り終えたら、次の 3 つのどれかに分ける。
@@ -443,6 +451,10 @@ git branch -vv | grep ": gone]"   # 追跡先が消えたローカルブラン�
 | 2026-10-12 | 位置を測って決める部品が、スクロールせずに動いた相手に付いていくか（T344 の残り） | `src/components` と `src/hooks` で、要素の位置を読む（`getBoundingClientRect`）のは 15 ファイル。読んで 4 つに分けた: 位置を覚えて、別の要素を置く・状態を決める（Affix・Tour・Anchor）/ floating-ui か、大きさの見張りを持つ（ContextMenu・PivotTable・VoiceVisualizer・`useInlineFloating`）/ イベントが来たその場で読むだけ（Rating・SignaturePad・Splitter・ImageCompare・Image・Video・Button）/ 道具そのもの（`observeMove`）。Anchor を、ブラウザで「3 つ目の節まで送り、その節の前に 500px の中身を足す」手順で測った | **1 件**: Anchor の現在地が、3 つ目のまま残る（2 つ目に戻るはず）。Affix と Tour は、T344 で対応済み | #989 で直した（番号は振っていない）。E2E に昇格（`vrt/move-following.e2e.spec.ts` の 3 本目）。**直していないもの**: どの節も通り過ぎていないときは、現在地を変えない作り（これまでどおり） |
 | 2026-10-12 | 押してもフォーカスが動かず、面の文だけが変わる操作（変更のときに気づいた・Tour の #994） | 公開版の全 1,175 ストーリーで、名前に next / previous / forward を含むボタンを押し、①フォーカスの要素が同じ ②面の文が変わった ③読み上げの領域（`role="status"` / `alert` / `aria-live`）が変わっていない、の 3 つで数えた（Playwright）。該当するボタンがあったのは 37 ストーリー。対照: 直す前の Tour で鳴り、直したあとの Tour で鳴らない | **5 ストーリー・4 部品**: DataGrid のページ送り 2 / Lightbox 1 / Video の「10 秒進む」1 / Patterns の複数ステップのフォーム 1。月送り（Calendar・RangeCalendar・DatePicker・DateRangePicker の 8 ストーリー）は、読み上げの領域が変わっていて外れなし。**測り方の穴 2 つ**: Carousel は、スライドの文が最初から全部描いてあるので、文が変わらず鳴らなかった（コードを読んで、告げる仕組みが無いと分かった）。英語の名前に next / previous / forward を含まないボタン（Stepper など）は押していない | 起票なし。DataGrid のページ送り（原因は Pagination）は #1001、Lightbox と Carousel は #1003 で直した。どれも、実機で「読まれない」を確かめてから直し、直したあとも聞き直した。Video は外した（変わるのは再生時刻の表示で、押すたびに読まれるとうるさい）。Patterns のフォームは見本なので、直していない |
 | 2026-10-12 | 実機のスクリーンリーダーで、操作の結果が読まれるか（人の確認待ちの分と、その場で足した分） | **ユーザーが、ナレーター + Chrome で 28 部品を聞いた**（公開版の Storybook。直しは、手元の Storybook で聞き直した）。機械で測ったものではない ── エージェントは、聞く対象と手順を出し、聞こえた文言から原因を読んだ | **OK 17**: LoadingOverlay / OtpInput / RangeSlider / Link の `asChild` / Calendar / HamburgerMenu / Select / Combobox / Stepper / Tabs / Dialog / Drawer / Accordion / Notification / 文字数カウント / Transfer / compact の見え方（目で見た）。**外れ 11**: Tour / Icon / Pagination / Lightbox / Carousel / Toast / Snackbar / RichTextEditor / FileUpload / DataGrid の並べ替え / DataGrid の行の選択。**外れは全部、a11y・VRT・E2E の CI が緑のまま通していた** | 起票なし。11 個とも同じ日に直して、聞き直しまで済ませた（#994・#996・#1001・#1003・#1006・#1008・#1012）。**読まれた形は 1 つだけ**: 先に画面に在る `role="status"` の、文字が書き換わる。読まれなかった形: 領域を中身ごと差し込む（Toast・Snackbar）/ 領域を入れ子にする（Toast の 1 回目の直し）/ ほかの読み上げが走っている瞬間に書き換える（FileUpload の 1 回目の直し）。ナレーターで踏んだこと: スキャン モードがオンだと、左右の矢印キーは 1 文字ずつ移る操作になり、部品に届かない（「削除」が「けずり」と読まれる）。日本語キーボードのナレーター キーは Insert / 無変換 |
+| 2026-10-31 | 公開 prop を分割代入で `_name` に受けて捨てている（定期点検 5 の途中で気づいた） | `src/components` の `.tsx` で `prop: _prop` の形を数えた（14 か所）。1 か所ずつ読み、下で使う・親が子の props を読む・Slot に流さないための形を除いた | **6 個・5 部品**: DatePicker の `minDate` / `maxDate` / `disabledDates`（JSDoc どおりに効かない）・PopoverContent の `side` / `align`・HoverCardContent の `sideOffset`・Video の `width`・PaginationPage の `page` | T349（DatePicker・P2）/ T350（残り・判断待ち） |
+| 2026-10-31 | `Icon` を通さない `<svg>` が、飾りなのに読み上げの木に残るか | `<svg>` を直接書く 6 ファイル。属性を読み、持たない 2 つを Chrome の `Accessibility.getFullAXTree` で測った（対照: 注入した素の svg が `image` で出ること） | Spinner の図形・Image の `duotone` のフィルタ定義（どちらも role `image`・名前空）。VoiceVisualizer / Barcode / TreeDiagram / ProgressRing は `aria-hidden` か名前を持つ | T351 |
+| 2026-10-31 | 数を取る prop を `{n && …}` で描き、`0` で素の「0」が出るか | 型に `number` を含む prop 316 個の `{prop &&` を数えた → 0 件（FloatButton は直り済み。**自己検証にした FloatButton は、直したあとのコメントの文字に当たっていた**ので、検出器の証拠にならなかった）。型が `ReactNode` のものは数えていない ── 名前で拾った `badge` で TabBar が出た | TabBar の `badge` | T352 |
+| 2026-10-31 | 読み上げの領域が、告げたい文と同時に差し込まれるか・入れ子か | `role="status"` / `role="alert"` / `aria-live` の 35 か所（24 ファイル）を読んだ。2026-10-12 に直した形（先に在る領域の文字を書き換える）は外れに数えない | 差し込み 8 か所（FieldError・DataGrid の空・InfiniteScroll・Combobox の該当なし・Transfer の空・RichTextEditor のアップロード失敗・ラベル付きの Spinner・StreamingText）。入れ子は 0 | T353（実機で聞いてから） |
 
 ---
 
