@@ -67,7 +67,7 @@
     "menubar_prop_asChild": "true の場合、コンポーネントは子要素としてレンダリングされ、props がその子要素にマージされます。",
     "paginationPage_prop_asChild": "true の場合、ページボタンの props を子要素にマージします。",
     "paginationPage_prop_isActive": "このページが現在のページかどうか",
-    "paginationPage_prop_page": "このコントロールが表すページ番号",
+    "paginationPage_prop_page": "非推奨: 効果はありません。表示される番号は子の文字です。今後の版で削除します。",
     "pagination_prop_aria-label": "ナビゲーションのランドマークの名前。`labels.navAriaLabel` より優先されます。",
     "pagination_prop_aria-labelledby": "ナビゲーションのランドマークの名前になる要素の ID。`aria-label` より優先されます。",
     "pagination_prop_asChild": "true の場合、nav の props を子要素にマージします。",

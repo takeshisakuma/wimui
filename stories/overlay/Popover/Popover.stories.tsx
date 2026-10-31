@@ -91,7 +91,7 @@ export const Variants: Story = {
             <PopoverTrigger asChild>
               <Button variant="outline">{t(variant === "glass" ? "story.overlay_variant_glass" : "common.default")}</Button>
             </PopoverTrigger>
-            <PopoverContent side="bottom" aria-labelledby={variant === "glass" ? `${headingId}${variant}` : undefined}>
+            <PopoverContent aria-labelledby={variant === "glass" ? `${headingId}${variant}` : undefined}>
               <div style={{ display: "flex", flexDirection: "column", gap: "var(--wim-spacing-xs)" }}>
                 <h4 id={`${headingId}${variant}`} style={{ margin: 0 }}>{t("story.popover_dimensions")}</h4>
                 <p style={{ margin: 0, color: "var(--wim-color-text-secondary)" }}>{t("story.popover_set_dim")}</p>

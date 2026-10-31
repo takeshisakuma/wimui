@@ -3136,7 +3136,7 @@ Ignored when `truncate` is set (one line wins; they cannot both apply).
     - `defaultIndex: number` = 0 — Index of the item shown first
 - **Video** — A component for embedding and controlling local or remote video content
     - `src: string` — Source URL of the video
-    - `width: string | number` — Width of the video
+    - `width: string | number` — Width of the video. A number is px; a string is used as is. Never wider than its container. Defaults to 100%.
     - `height: string | number` — Height of the video
     - `autoPlay: boolean` = false — Whether to start playing automatically
     - `loop: boolean` = false — Whether to loop playback

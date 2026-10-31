@@ -67,7 +67,7 @@
     "menubar_prop_asChild": "Se true, o componente será renderizado como seu filho, mesclando suas props nesse filho.",
     "paginationPage_prop_asChild": "Se true, mescla as props do botão de página no filho.",
     "paginationPage_prop_isActive": "Se esta página é a página atual",
-    "paginationPage_prop_page": "Número da página que este controle representa",
+    "paginationPage_prop_page": "Obsoleto: não tem efeito. O número exibido é o texto filho. Será removido em uma versão futura.",
     "pagination_prop_aria-label": "Nome acessível para o marco de navegação. Tem precedência sobre `labels.navAriaLabel`.",
     "pagination_prop_aria-labelledby": "ID do elemento que rotula o marco de navegação. Tem precedência sobre `aria-label`.",
     "pagination_prop_asChild": "Se true, mescla as props de nav no elemento filho.",

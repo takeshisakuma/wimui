@@ -38,6 +38,10 @@
        向きごとの `transform` とは別のプロパティなので、重ねて効く。 */
     translate: var(--wim-floating-shift-x, 0) 0;
 
+    /* 引き金との間隔。`sideOffset` を渡すと、要素の style で上書きされる（T350）。以前は prop を受け取るだけで、
+       間隔は固定だった。右寄せのときだけ 8px を生で書いていたので、そこも同じ変数にした。 */
+    --wim-hover-card-offset: var(--wim-spacing-md);
+
     /* 既定は「見えている」（Tooltip と同じ理由。アニメーションが止められても消えたままにしない）。 */
     animation: fadeIn var(--wim-duration-fast);
   
@@ -45,7 +49,7 @@
       bottom: 100%;
       left: 50%;
 
-      --base-transform: translate(-50%, calc(var(--wim-spacing-md) * -1));
+      --base-transform: translate(-50%, calc(var(--wim-hover-card-offset) * -1));
 
       transform: var(--base-transform);
     }
@@ -54,7 +58,7 @@
       top: 100%;
       left: 50%;
 
-      --base-transform: translate(-50%, var(--wim-spacing-md));
+      --base-transform: translate(-50%, var(--wim-hover-card-offset));
 
       transform: var(--base-transform);
     }
@@ -63,7 +67,7 @@
       top: 50%;
       right: 100%;
 
-      --base-transform: translate(calc(var(--wim-spacing-md) * -1), -50%);
+      --base-transform: translate(calc(var(--wim-hover-card-offset) * -1), -50%);
 
       transform: var(--base-transform);
     }
@@ -72,7 +76,7 @@
       top: 50%;
       left: 100%;
 
-      --base-transform: translate(var(--wim-spacing-md), -50%);
+      --base-transform: translate(var(--wim-hover-card-offset), -50%);
 
       transform: var(--base-transform);
     }
@@ -80,10 +84,10 @@
     &.alignLeft {
       left: 0;
 
-      --base-transform: var(--wim-spacing-md);
+      --base-transform: var(--wim-hover-card-offset);
 
       &.top {
-        --base-transform: calc(var(--wim-spacing-md) * -1);
+        --base-transform: calc(var(--wim-hover-card-offset) * -1);
       }
 
       transform: translateY(var(--base-transform));
@@ -93,10 +97,10 @@
       right: 0;
       left: auto;
 
-      --base-transform: translateY(8px); /* Exception: Interaction Physics — entry motion offset */
+      --base-transform: translateY(var(--wim-hover-card-offset));
 
       &.top {
-        --base-transform: translateY(-8px); /* Exception: Interaction Physics — entry motion offset */
+        --base-transform: translateY(calc(var(--wim-hover-card-offset) * -1));
       }
 
       transform: var(--base-transform);

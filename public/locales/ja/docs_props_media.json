@@ -112,6 +112,6 @@
     "video_prop_src": "動画のソース URL",
     "video_prop_tracks": "<track> 要素として渡される字幕/キャプショントラック（kind、src、srcLang、label）。",
     "video_prop_videoId": "再生位置の保存と再開に使用する一意な ID",
-    "video_prop_width": "動画の幅"
+    "video_prop_width": "動画の幅。数は px、文字列はそのまま使います。親の幅を超えることはありません。既定は 100%。"
   }
 }
