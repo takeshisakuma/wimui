@@ -273,6 +273,7 @@ export type WimLineHeightKey =
   | "tight-jp";
 
 export type WimLetterSpacingKey = 
+  | "extra-wide"
   | "normal"
   | "tight"
   | "tighter"

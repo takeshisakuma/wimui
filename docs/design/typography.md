@@ -74,6 +74,8 @@ Major Second (1.125) に近い Type Scale を採用。
 | `--wim-letter-spacing-normal` | 0 | 本文・小見出し・和文すべて |
 | `--wim-letter-spacing-tight` | -0.01em | 欧文の中〜大見出し（Title 既定） |
 | `--wim-letter-spacing-tighter` | -0.02em | 欧文のディスプレイ見出し（Title `xl`〜`xl4`） |
+| `--wim-letter-spacing-wide` | 0.05em | 大文字で見せる小さい見出し（Menu / Select / CommandPalette / ContextMenu のグループ見出し、JsonViewer / KeyboardShortcuts の題）と、等幅の小さい札（CodeBlock の言語名・CodeDiffViewer のファイル名・Barcode の値） |
+| `--wim-letter-spacing-extra-wide` | 0.1em | 部品では使っていない（公開テーマ契約に残している） |
 
 ### 言語による行高・フォントファミリーの出し分け規約
 
