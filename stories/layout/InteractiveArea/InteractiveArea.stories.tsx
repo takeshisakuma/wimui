@@ -149,3 +149,13 @@ export const WithContextMenu: Story = {
     bgVariant: "muted",
   },
 };
+
+// T354: この値はどのストーリーにも描かれていなかった（変えても VRT と a11y の CI が赤を出さない）。
+// docs ページには載せない（撮るためのストーリー。`scripts/story-docs-baseline.json`）。
+export const AlignStart: Story = {
+  ...Default,
+  args: {
+    ...Default.args,
+    align: "start",
+  },
+};

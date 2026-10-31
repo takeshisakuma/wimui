@@ -21,11 +21,12 @@ const meta: Meta<typeof Tour> = {
 export default meta;
 type Story = StoryObj<typeof Tour>;
 
-export const Default: Story = {
-  render: function Render(args) {
+// `leftOnly` は T354 の撮影用: 右端のヘルプのボタンを、左向きの 1 手順だけで指す。
+const renderTour = (leftOnly: boolean) =>
+  function Render(args: React.ComponentProps<typeof Tour>) {
     const { t } = useTranslation(ALL_NAMESPACES);
     const [open, setOpen] = useState(false);
-    const steps = [
+    const allSteps = [
       {
         target: "#tour-step-1",
         title: t("story.tour_welcome_title"),
@@ -45,6 +46,7 @@ export const Default: Story = {
         placement: "top" as const,
       },
     ];
+    const steps = leftOnly ? [{ ...allSteps[2], placement: "left" as const }] : allSteps;
 
     return (
       <Box p="5xl">
@@ -87,7 +89,10 @@ export const Default: Story = {
         />
       </Box>
     );
-  },
+  };
+
+export const Default: Story = {
+  render: renderTour(false),
 };
 
 // 開いた姿。ほかのストーリーは閉じたまま撮られるので、開いた中身を変えても VRT と a11y の CI が
@@ -95,5 +100,12 @@ export const Default: Story = {
 export const Open: Story = {
   ...Default,
   // 開始のボタンは、ツアーの対象（#tour-step-*）の外にある最初のボタン。
+  play: openWith("click", 'button:not([id^="tour-step"] button)', ".wim-tour"),
+};
+
+// T354: この値はどのストーリーにも描かれていなかった（変えても VRT と a11y の CI が赤を出さない）。
+// docs ページには載せない（撮るためのストーリー。`scripts/story-docs-baseline.json`）。
+export const OpenLeft: Story = {
+  render: renderTour(true),
   play: openWith("click", 'button:not([id^="tour-step"] button)', ".wim-tour"),
 };

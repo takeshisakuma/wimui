@@ -132,3 +132,40 @@ export const Open: Story = {
     open: true,
   },
 };
+
+// T354: この値はどのストーリーにも描かれていなかった（変えても VRT と a11y の CI が赤を出さない）。
+// docs ページには載せない（撮るためのストーリー。`scripts/story-docs-baseline.json`）。
+export const Placements: Story = {
+  render: function Render() {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    const placements = [
+      { side: "top", align: "center" },
+      { side: "left", align: "center" },
+      { side: "right", align: "center" },
+      { side: "bottom", align: "left" },
+      { side: "bottom", align: "right" },
+    ] as const;
+    return (
+      <div style={{ display: "flex", flexDirection: "column", gap: "48px", padding: "24px" }}>
+        {placements.map(({ side, align }) => (
+          <div
+            key={side + align}
+            style={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: "220px" }}
+          >
+            <HoverCard open>
+              <HoverCardTrigger asChild>
+                <a href="/" style={{ borderRadius: "50%", display: "inline-block" }}>
+                  <Avatar src={avatar2} alt={t("story.hovercard_name")} />
+                </a>
+              </HoverCardTrigger>
+              <HoverCardContent side={side} align={align}>
+                <div style={{ fontWeight: "bold" }}>{t("story.hovercard_name")}</div>
+                <div>{side} / {align}</div>
+              </HoverCardContent>
+            </HoverCard>
+          </div>
+        ))}
+      </div>
+    );
+  },
+};
