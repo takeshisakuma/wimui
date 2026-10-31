@@ -7,6 +7,8 @@
 
 ## 次にやるとよい順
 
+**2026-10-31（追記 3）**: unslop の兆候から足した 7-4 の 4 観点を、同じ日に測って T355〜T358 を起票した。どれも P3 か判断待ち（T356＝グループ見出しを大文字にするか）。
+
 **2026-10-31（追記 2）**: T349（#1053）を済にして退避先へ移した。定期点検の issue（#993 / #1020 / #1036）は閉じた。**台帳の残りは T350（判断待ち）・T351 / T352 / T354（P3）・T353（実機で聞いてから）。**
 
 **2026-10-31（追記）**: 定期点検の issue 3 本（#993 / #1020 / #1036。10-12 の週から持ち越し）を 1 回として流し、6 行を起票した（T349〜T354）。**次は T349**（DatePicker の範囲指定が効かない・P2。渡すだけで直る）。T350 は API を外すか実装するかの判断待ち、T353 は実機で聞いてから。
@@ -218,6 +220,17 @@ CI・テスト・監査体制は堅い（typecheck / coverage 80% / axe-core WCA
 | T352 | **TabBar の `badge={0}` が、バッジの枠の外に素の「0」を描く** | P3 | 起票 2026-10-31（定期点検 7-4 の候補）。`badge` は `ReactNode` で、`{badge && <span>…}` と書いている。FloatButton は同じ形を #1023 の作業中に直したが、TabBar は残っていた。数値の型の prop を `&&` の左に置く箇所を数えたら、型が `number` のものは 0 件（FloatButton は直り済み）で、型が `ReactNode` の TabBar は数え方から漏れていた | `badge={0}` で描いて、素の「0」の文字が出ないこと（バッジを出すかは FloatButton に揃える: 0 件は出さない） |
 | T353 | **中身と一緒に差し込まれる読み上げの領域（8 か所）** | 判断待ち（実機で聞いてから） | 起票 2026-10-31（定期点検 7-4 の候補）。`role="status"` / `role="alert"` / `aria-live` の 35 か所を読み、要素が告げたい文と同時に描かれ始めるものを拾った: **FieldError**（`FieldTemplate` が `{error && <FieldError>}`。全フォーム部品の誤り表示）・DataGrid の空の表示・InfiniteScroll の読み込み中・Combobox の該当なし・Transfer の空の表示・RichTextEditor のアップロード失敗（`role="alert"`）・ラベル付きの Spinner（条件付きで置かれたとき）・StreamingText（`aria-live` を付けるのと書き出しが同時）。2026-10-12 の確認でナレーターが読まなかったのは `role="status"` を中身ごと差し込む形。`role="alert"` を差し込む形（FieldError・RichTextEditor）が読まれるかは聞いていない | ナレーター + Chrome で聞く（`docs/rules/implementation.md` の「操作の結果を、読み上げで告げる」）。読まれなかったものだけ、先に在る領域の文字を書き換える形に直し、聞き直す |
 | T354 | **VRT / a11y に一度も写っていない見た目の値（6 部品・11 値）** | P3 | 起票 2026-10-31（定期点検 6）。文字列の合併型の prop（variant / intent / size / align / side / placement など）を 37 部品・135 値で数え、既定値と、Patterns で使われているもの（Card の `glass`・Fieldset の `plain`）を除いた: HoverCard の `side` = top / left / right と `align` = left / right（どれもクラスで位置を決める）・Timeline の `align="right"`・Tour の `placement="left"`・InteractiveArea の `align="start"`・SpeedDial の項目の `intent` = default / success。Navbar.Menu の `position` 3 値は Drawer の `side` へそのまま渡すので、Drawer のストーリーで写っている。Popover の `align` は T350（効いていない） | 値ごとのストーリー（1 本に並べてよい）を足して VRT / a11y に載せる |
+
+### unslop の兆候から足した 7-4 の観点（2026-10-31 起票）
+
+外部の skill（heydamir/unslop の `signs.md`）を WIM の規約に突き合わせて足した 4 観点を、同じ日に測った結果。測り方と外れなしの内訳は `MAINTENANCE.md` の 7-4 の表にある。
+
+| # | 項目 | 優先 | 内容 | 検証方法 |
+|---|---|---|---|---|
+| T355 | **メニュー系のグループ見出しの字間が揃っていない（生の `0.05em`）** | P3 | 起票 2026-10-31。大文字 + 広い字間の見出しは 6 部品。Menu / Select / CommandPalette は `--wim-letter-spacing-wide`（0.02em）、ContextMenu・JsonViewer の題・KeyboardShortcuts の題は生の `0.05em`（トークンの 2.5 倍）。同じ役（ContextMenu と Menu のグループ見出し）で値が違う。生の em は `audit:hardcoded`（px を見る）に当たらない。ja のロケールでは大文字にならない和文の字間だけが開く | 6 か所の computed の `letter-spacing` が、トークンの値に揃っていること。生の `em` の字間が `src/components` の SCSS に残っていないこと |
+| T356 | **グループ見出しを大文字にするか** | 判断待ち | 起票 2026-10-31。unslop は「大文字 + 広い字間のラベル」を AI の署名に数える。一方で、メニューのグループ見出しを大文字にするのは広く使われる慣習で、WIM の 4 部品（Menu / Select / CommandPalette / ContextMenu）と、JsonViewer・KeyboardShortcuts の題が使っている。和文には大文字が無いので、ja では字間だけが効く。**決めること**: 残す（T355 で字間だけ揃える）か、文の大文字・小文字のままにして字間を戻すか。Avatar の頭文字は大文字が意味を持つので対象外 | 決めた形で VRT の差分を見る |
+| T357 | **Stats のデモの数に、比較の相手が無い・書式が揃っていない** | P3 | 起票 2026-10-31。符号つきの変化量で、何に比べてかを言わないものが 6 か所: Stats のストーリー 2（`+20.1%` / `+18%`）・Patterns の Marketing の Badge（`+8.3%`）・Page 2（`+12.5%` / `+5.1%`）・Playground のレシピ `BillingOverview`（`+6.4%`。StackBlitz へも出る）。比較の相手を書いたのは 1 か所（`stats_desc_users`＝「from last month」）だけ。Stats には相手を書く `Stats.Description` が既にある。同じ `BillingOverview` は、通貨の書式も揃っていない（MRR が `$48,210`、請求の行が `$4,610.50` / `$12,199.00` / `$89.00`）。**さらに、同じファイルのコメントが古い**: 「Trend は ↑ を成功の色としか組まない」とあるが、T250 ④（2026-09-21）で `intent` が入り、上がって悪い数も Trend で書ける | 6 か所に比較の相手が付くこと。`BillingOverview` の通貨が 1 つの書式で並ぶこと。コメントを今の API に合わせる |
+| T358 | **デモの見出しが挨拶になっている（3 か所）** | P3 | 起票 2026-10-31。見出しの役で挨拶をしているもの: AppShell のストーリー 2 本の `<h2>Welcome!</h2>`（`story.appshell_welcome`）・RichTextEditor の見本の見出し「Welcome to RichTextEditor」・レシピのログインの題「Welcome back」（`recipes:login.title`）。unslop の言う「ページや期間を題にする」に直す候補。ログインの題は慣習として自然なので、直すかは読んで決める。チャットのデモの挨拶（会話の中身）と、操作結果の通知の感嘆符（`Data saved successfully!` など 7 件）は外れに数えていない | 3 か所の見出しが、その画面が何かを言う題になっていること（en / ja / pt） |
 
 ### 他のライブラリとの突き合わせ（2026-10-10 起票）
 
