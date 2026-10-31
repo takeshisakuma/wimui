@@ -68,3 +68,19 @@ export const CustomIcons: Story = {
     trigger: "hover",
   },
 };
+
+// T354: この値はどのストーリーにも描かれていなかった（変えても VRT と a11y の CI が赤を出さない）。
+// docs ページには載せない（撮るためのストーリー。`scripts/story-docs-baseline.json`）。
+export const ActionIntents: Story = {
+  args: {
+    actions: [
+      { ...actions[0], intent: "default" },
+      { ...actions[1], intent: "default" },
+      { ...actions[2], intent: "success" },
+      { ...actions[3], intent: "danger" },
+    ],
+    direction: "up",
+    trigger: "click",
+    open: true,
+  },
+};
