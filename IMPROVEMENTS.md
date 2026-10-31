@@ -7,6 +7,8 @@
 
 ## 次にやるとよい順
 
+**2026-10-31（追記 2）**: T349（#1053）を済にして退避先へ移した。定期点検の issue（#993 / #1020 / #1036）は閉じた。**台帳の残りは T350（判断待ち）・T351 / T352 / T354（P3）・T353（実機で聞いてから）。**
+
 **2026-10-31（追記）**: 定期点検の issue 3 本（#993 / #1020 / #1036。10-12 の週から持ち越し）を 1 回として流し、6 行を起票した（T349〜T354）。**次は T349**（DatePicker の範囲指定が効かない・P2。渡すだけで直る）。T350 は API を外すか実装するかの判断待ち、T353 は実機で聞いてから。
 
 **2026-10-31**: T348 を実装して済にし、退避先へ移した（#1050。和文の出し分けを `:lang(ja)` に。`ja-JP` も和文として扱う挙動の変更を changeset に書いた）。VRT は CaptionReview（行ごとに `lang` を持つ）の絵が変わる見込み。
@@ -211,7 +213,6 @@ CI・テスト・監査体制は堅い（typecheck / coverage 80% / axe-core WCA
 
 | # | 項目 | 優先 | 内容 | 検証方法 |
 |---|---|---|---|---|
-| T349 | **DatePicker の `minDate` / `maxDate` / `disabledDates` が効かない** | P2 | 起票 2026-10-31（定期点検 5 の途中・受け取って捨てている prop を数えたとき）。3 つとも分割代入で `_minDate` などに受けて捨て、中の `Calendar` に渡していない（`DatePicker.tsx` の 83〜85 行・311 行）。JSDoc は「Minimum selectable date」などと書いており、範囲外の日付を選べる。`Calendar` は 3 つとも持っているので、渡せば直る | 3 つを渡したテスト（範囲外の日のボタンが押せない・選べない）。直す前に落ちること |
 | T350 | **受け取るだけで何もしない公開 prop（4 部品・5 個）** | 判断待ち | 起票 2026-10-31（同上）。`PopoverContent` の `side` / `align`（位置は親の `placement` で決まる。2026-03-31 のリファクタリングから。ストーリーも `side="bottom"` を渡している）・`HoverCardContent` の `sideOffset`・`Video` の `width`（幅は常に 100%）・`PaginationPage` の `page`。**決めること**: 効くように実装するか、型から外すか（外すのは公開 API の破壊的変更）。正当な形と分けた内訳: 14 か所のうち、Accordion の `defaultValue`（下で使う）・Splitter の 3 つ（親が子の props を読む）・Drawer の `asChild`（Slot に流さないため）は意図どおり | 決めた形に応じて、prop を渡して出力が変わるテスト（実装する場合）か、`check:api` / `check:prop-api` の差分（外す場合） |
 | T351 | **飾りの `<svg>` が、名前の無い画像として読み上げの木に残る（Spinner・Image）** | P3 | 起票 2026-10-31（定期点検 7-4 の候補）。`<svg>` を直接書く 6 ファイルのうち、Spinner の回る図形と、Image の `duotone` のフィルタ定義用の svg（幅 0）が、`aria-hidden` も名前も持たない。Chrome のツリーで両方とも role `image`・名前空として出た（対照に入れた素の svg も同じく出たので、測り方は効いている）。axe は `role="img"` を書いたものしか見ないので鳴らない | Spinner と Image の duotone のストーリーで、`Accessibility.getFullAXTree` に名前の無い `image` が出ないこと。直す前に出ること |
 | T352 | **TabBar の `badge={0}` が、バッジの枠の外に素の「0」を描く** | P3 | 起票 2026-10-31（定期点検 7-4 の候補）。`badge` は `ReactNode` で、`{badge && <span>…}` と書いている。FloatButton は同じ形を #1023 の作業中に直したが、TabBar は残っていた。数値の型の prop を `&&` の左に置く箇所を数えたら、型が `number` のものは 0 件（FloatButton は直り済み）で、型が `ReactNode` の TabBar は数え方から漏れていた | `badge={0}` で描いて、素の「0」の文字が出ないこと（バッジを出すかは FloatButton に揃える: 0 件は出さない） |
