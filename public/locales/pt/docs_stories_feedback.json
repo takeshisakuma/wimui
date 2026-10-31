@@ -83,6 +83,7 @@
     "snackbar_undo_clicked": "Desfazer clicado!",
     "snackbar_update_available": "Nova atualização disponível.",
     "spinner_label_loading": "Carregando...",
+    "spinner_load_report": "Carregar o relatório",
     "spinner_loading_bottom": "Carregando abaixo...",
     "spinner_loading_right": "Carregando à direita...",
     "toast_5s_desc": "Este desaparecerá em 5 segundos.",

@@ -2,7 +2,7 @@ import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
-import { Badge, Button, DataGrid, Icon, Text, type DataGridColumn, type DataGridProps } from "wimui";
+import { Badge, Button, DataGrid, Icon, Input, Stack, Text, type DataGridColumn, type DataGridProps } from "wimui";
 
 
 const meta: Meta<typeof DataGrid> = {
@@ -590,5 +590,30 @@ export const MobileCard: Story = {
         />
       </div>
     );
+  },
+};
+
+// T353: 読み上げの聞き取り用。操作のあとに、告げる文が要素ごと差し込まれる形を開く
+// （ナレーターでは読まれない見込みの形。`MAINTENANCE.md` 7-4 の 2026-10-31 の行）。docs ページには載せない。
+export const FilterToEmpty: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    const { tColumns, tSampleData } = useDataGridTranslations();
+    const [query, setQuery] = React.useState("");
+    const rows = tSampleData.filter((row) => String(row.name).toLowerCase().includes(query.toLowerCase()));
+    return (
+      <Stack gap="md">
+        <Input label={t("story.datagrid_filter_label")} value={query} onChange={(e) => setQuery(e.target.value)} />
+        <DataGrid
+          {...(args as DataGridProps<Record<string, unknown>>)}
+          columns={tColumns}
+          data={rows}
+          emptyMessage={t("story.datagrid_empty")}
+        />
+      </Stack>
+    );
+  },
+  args: {
+    bordered: true,
   },
 };

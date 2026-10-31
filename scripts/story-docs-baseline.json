@@ -1,5 +1,5 @@
 {
-  "comment": "**T224 の凍結。2026-08-28 時点で 177 件 / 84 ファイル**（188 件から、例が 1 つも無かった 4 ページを直して -11）。`known` は「docs ページは在るのに、そのストーリーだけページに出ていない」もので、**これは方針どおりの状態**── docs ページは重要なバリエーションを選んで見せる場所で、全ストーリーの一覧ではない（RULES.md「ストーリー掲載時の注意点」）。`knownPageless` は「docs ページ（MDX）自体を持たない stories ファイル」で、`stories/Patterns/**`（Pattern ページは書かない）と `stories/Audit/**`（内部点検用）が大半。**欠陥なのは「そのページに例が 1 つも無い」場合だけ**なので、このラチェットは意図せず増えたときにだけ落ちる。起票時の 215 件との差は数え方 ── `<Primary />` を掲載と数えるかどうかで 26 件動く（scripts/check-story-docs.js の冒頭を参照）。 2026-10-31（T354）: 撮るためだけのストーリー 5 件（HoverCard::Placements / Timeline::RightAligned / Tour::OpenLeft / InteractiveArea::AlignStart / SpeedDial::ActionIntents）を足した。どのストーリーにも描かれていなかった値を VRT と a11y に載せるためで、docs ページには載せない。",
+  "comment": "**T224 の凍結。2026-08-28 時点で 177 件 / 84 ファイル**（188 件から、例が 1 つも無かった 4 ページを直して -11）。`known` は「docs ページは在るのに、そのストーリーだけページに出ていない」もので、**これは方針どおりの状態**── docs ページは重要なバリエーションを選んで見せる場所で、全ストーリーの一覧ではない（RULES.md「ストーリー掲載時の注意点」）。`knownPageless` は「docs ページ（MDX）自体を持たない stories ファイル」で、`stories/Patterns/**`（Pattern ページは書かない）と `stories/Audit/**`（内部点検用）が大半。**欠陥なのは「そのページに例が 1 つも無い」場合だけ**なので、このラチェットは意図せず増えたときにだけ落ちる。起票時の 215 件との差は数え方 ── `<Primary />` を掲載と数えるかどうかで 26 件動く（scripts/check-story-docs.js の冒頭を参照）。 2026-10-31（T354）: 撮るためだけのストーリー 5 件（HoverCard::Placements / Timeline::RightAligned / Tour::OpenLeft / InteractiveArea::AlignStart / SpeedDial::ActionIntents）を足した。どのストーリーにも描かれていなかった値を VRT と a11y に載せるためで、docs ページには載せない。 2026-10-31（T353）: 読み上げの聞き取り用のストーリー 3 件（DataGrid::FilterToEmpty / RichTextEditor::ImageUploadFails / Spinner::AppearsAfterAction）を足した。操作のあとに告げる文が差し込まれる形を開くためで、docs ページには載せない。",
   "known": [
     "stories/ai/AgentStatus/AgentStatus.stories.tsx::Default",
     "stories/ai/AgentStatus/AgentStatus.stories.tsx::DoneState",
@@ -30,6 +30,7 @@
     "stories/data-display/Calendar/Calendar.stories.tsx::Controlled",
     "stories/data-display/Carousel/Carousel.stories.tsx::CustomContent",
     "stories/data-display/Chip/Chip.stories.tsx::WithIcon",
+    "stories/data-display/DataGrid/DataGrid.stories.tsx::FilterToEmpty",
     "stories/data-display/DataGrid/DataGrid.stories.tsx::MobileCard",
     "stories/data-display/DataGrid/DataGrid.stories.tsx::TruncatedColumn",
     "stories/data-display/EmptyState/EmptyState.stories.tsx::NoFiles",
@@ -84,6 +85,7 @@
     "stories/feedback/Snackbar/Snackbar.stories.tsx::LongContent",
     "stories/feedback/Snackbar/Snackbar.stories.tsx::WithAction",
     "stories/feedback/Snackbar/Snackbar.stories.tsx::WithCloseButton",
+    "stories/feedback/Spinner/Spinner.stories.tsx::AppearsAfterAction",
     "stories/feedback/Toast/Toast.stories.tsx::Info",
     "stories/feedback/Toast/Toast.stories.tsx::Interactive",
     "stories/feedback/Toast/Toast.stories.tsx::LongContent",
@@ -119,6 +121,7 @@
     "stories/form/Rating/Rating.stories.tsx::Controlled",
     "stories/form/Rating/Rating.stories.tsx::CustomCount",
     "stories/form/Rating/Rating.stories.tsx::InWideField",
+    "stories/form/RichTextEditor/RichTextEditor.stories.tsx::ImageUploadFails",
     "stories/form/RichTextEditor/RichTextEditor.stories.tsx::WithDefaultValue",
     "stories/form/SearchInput/SearchInput.stories.tsx::SmartSearchWithAI_Example",
     "stories/form/SegmentedControl/SegmentedControl.stories.tsx::LongLabel",
