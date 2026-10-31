@@ -7,6 +7,8 @@
 
 ## 次にやるとよい順
 
+**2026-10-31（追記 7）**: T350（#1071）と T354（#1070）を済にして退避先へ移した。T353 は聞き取り用のストーリーを足した（#1072）── 8 か所すべてを、実機のナレーターで聞いてもらう段にある。0.64.14 は、#1071 の changeset が残ったまま Version PR がマージされたため npm に出ていない（0.65.0 で一緒に届く。changeset に注記した）。
+
 **2026-10-31（追記 6）**: T351 / T352 / T360（#1065）と T357 / T358（#1067）を済にして退避先へ移した。残りは T350（判断待ち）・T353（実機で聞いてから）・T354（PR を出している）。
 
 **2026-10-31（追記 5）**: T359 を済にして退避先へ移した（#1064。字間のトークンの定義を 1 か所にした）。
@@ -221,9 +223,7 @@ CI・テスト・監査体制は堅い（typecheck / coverage 80% / axe-core WCA
 
 | # | 項目 | 優先 | 内容 | 検証方法 |
 |---|---|---|---|---|
-| T350 | **受け取るだけで何もしない公開 prop（4 部品・5 個）** | 判断待ち | 起票 2026-10-31（同上）。`PopoverContent` の `side` / `align`（位置は親の `placement` で決まる。2026-03-31 のリファクタリングから。ストーリーも `side="bottom"` を渡している）・`HoverCardContent` の `sideOffset`・`Video` の `width`（幅は常に 100%）・`PaginationPage` の `page`。**決めること**: 効くように実装するか、型から外すか（外すのは公開 API の破壊的変更）。正当な形と分けた内訳: 14 か所のうち、Accordion の `defaultValue`（下で使う）・Splitter の 3 つ（親が子の props を読む）・Drawer の `asChild`（Slot に流さないため）は意図どおり | 決めた形に応じて、prop を渡して出力が変わるテスト（実装する場合）か、`check:api` / `check:prop-api` の差分（外す場合） |
 | T353 | **中身と一緒に差し込まれる読み上げの領域（8 か所）** | 判断待ち（実機で聞いてから） | 起票 2026-10-31（定期点検 7-4 の候補）。`role="status"` / `role="alert"` / `aria-live` の 35 か所を読み、要素が告げたい文と同時に描かれ始めるものを拾った: **FieldError**（`FieldTemplate` が `{error && <FieldError>}`。全フォーム部品の誤り表示）・DataGrid の空の表示・InfiniteScroll の読み込み中・Combobox の該当なし・Transfer の空の表示・RichTextEditor のアップロード失敗（`role="alert"`）・ラベル付きの Spinner（条件付きで置かれたとき）・StreamingText（`aria-live` を付けるのと書き出しが同時）。2026-10-12 の確認でナレーターが読まなかったのは `role="status"` を中身ごと差し込む形。`role="alert"` を差し込む形（FieldError・RichTextEditor）が読まれるかは聞いていない | ナレーター + Chrome で聞く（`docs/rules/implementation.md` の「操作の結果を、読み上げで告げる」）。読まれなかったものだけ、先に在る領域の文字を書き換える形に直し、聞き直す |
-| T354 | **VRT / a11y に一度も写っていない見た目の値（6 部品・11 値）** | P3 | 起票 2026-10-31（定期点検 6）。文字列の合併型の prop（variant / intent / size / align / side / placement など）を 37 部品・135 値で数え、既定値と、Patterns で使われているもの（Card の `glass`・Fieldset の `plain`）を除いた: HoverCard の `side` = top / left / right と `align` = left / right（どれもクラスで位置を決める）・Timeline の `align="right"`・Tour の `placement="left"`・InteractiveArea の `align="start"`・SpeedDial の項目の `intent` = default / success。Navbar.Menu の `position` 3 値は Drawer の `side` へそのまま渡すので、Drawer のストーリーで写っている。Popover の `align` は T350（効いていない） | 値ごとのストーリー（1 本に並べてよい）を足して VRT / a11y に載せる |
 
 ### unslop の兆候から足した 7-4 の観点（2026-10-31 起票）
 
