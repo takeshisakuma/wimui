@@ -446,3 +446,10 @@
 | # | 項目 | 優先 | 内容 | 検証方法 |
 |---|---|---|---|---|
 | T349 | **DatePicker の `minDate` / `maxDate` / `disabledDates` が効かない** | **済**（2026-10-31・#1053。3 つを `Calendar` に渡した。テスト 2 件は直す前に落ち、直したあとに通った） | 起票 2026-10-31（定期点検 5 の途中・受け取って捨てている prop を数えたとき）。3 つとも分割代入で `_minDate` などに受けて捨て、中の `Calendar` に渡していない（`DatePicker.tsx` の 83〜85 行・311 行）。JSDoc は「Minimum selectable date」などと書いており、範囲外の日付を選べる。`Calendar` は 3 つとも持っているので、渡せば直る | 3 つを渡したテスト（範囲外の日のボタンが押せない・選べない）。直す前に落ちること |
+
+## unslop の兆候から足した 7-4 の観点（2026-10-31 起票）
+
+| # | 項目 | 優先 | 内容 | 検証方法 |
+|---|---|---|---|---|
+| T355 | **メニュー系のグループ見出しの字間が、生の `0.05em` で書かれている** | **済**（2026-10-31・#1058。5 か所を `--wim-letter-spacing-wide` に揃えた） | 起票 2026-10-31。**起票の時点の記述を訂正した**: 「Menu などはトークン（0.02em）、ContextMenu などは生の 0.05em で 2.5 倍違う」と書いたが、`_ui-patterns.scss` がトークンを 0.05em で上書きしていて、効いている値はもともと 6 か所とも同じだった（計算値はどれも 0.632px＝12.64px の 0.05em）。書き方だけが割れていた。直したのは ContextMenu・JsonViewer・KeyboardShortcuts と、同じ生の値を持っていた CodeBlock の言語名・CodeDiffViewer のファイル名。トークンの定義のずれは T359 | 生の `em` の字間が `src/components` の SCSS に残っていないこと（0 件）。VRT に差分が出ないこと（#1058 の compare は全シャード緑） |
+| T356 | **グループ見出しを大文字にするか** | **済**（2026-10-31・#1058。ユーザー判断: 大文字を残す） | 起票 2026-10-31。判断の途中で、**大文字が読み上げに漏れていた**ことが分かった: `text-transform: uppercase` は見た目の指定だが、Chrome は大文字に変えた文字を名前として渡していた（Menu のグループ「Main pages」が「MAIN PAGES」）。読み上げソフトによっては、全部大文字の語を略語として 1 文字ずつ読む。ユーザー判断で「聞かずに予防する」にし、見た目の大文字は残したまま、名前は元の大小にした: Menu / ContextMenu / CommandPalette のグループは `aria-label` で名前を付け、文字そのものが名前になる Select・JsonViewer・KeyboardShortcuts は内部の `VisualUppercase`（大文字の写しを `aria-hidden` にし、元の文字を `VisuallyHidden` で読ませる）。フォーム画面の予算は 22.5 → 23.5 kB（ユーザー判断） | ビルドした Storybook の `Accessibility.getFullAXTree` で、6 か所とも名前が元の大小になったこと（直す前は大文字） |
