@@ -131,6 +131,7 @@
     "datagrid_col_role": "Role",
     "datagrid_col_status": "Status",
     "datagrid_empty": "No users found",
+    "datagrid_filter_label": "Filter by name",
     "datagrid_selected": "Selected: ",
     "datagrid_status_active": "Active",
     "datagrid_status_inactive": "Inactive",

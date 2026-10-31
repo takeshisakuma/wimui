@@ -83,6 +83,7 @@
     "snackbar_undo_clicked": "Undo clicked!",
     "snackbar_update_available": "New update available.",
     "spinner_label_loading": "Loading...",
+    "spinner_load_report": "Load the report",
     "spinner_loading_bottom": "Loading bottom...",
     "spinner_loading_right": "Loading right...",
     "toast_5s_desc": "This will disappear in 5 seconds.",

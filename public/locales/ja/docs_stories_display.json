@@ -131,6 +131,7 @@
     "datagrid_col_role": "権限",
     "datagrid_col_status": "ステータス",
     "datagrid_empty": "ユーザーが見つかりません",
+    "datagrid_filter_label": "名前で絞り込む",
     "datagrid_selected": "選択済み: ",
     "datagrid_status_active": "有効",
     "datagrid_status_inactive": "無効",

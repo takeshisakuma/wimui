@@ -219,3 +219,24 @@ export const MarkdownFormat: Story = {
     );
   },
 };
+
+// T353: 読み上げの聞き取り用。操作のあとに、告げる文が要素ごと差し込まれる形を開く
+// （ナレーターでは読まれない見込みの形。`MAINTENANCE.md` 7-4 の 2026-10-31 の行）。docs ページには載せない。
+export const ImageUploadFails: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    // 送り先が落ちている形。ファイルを選ぶと、部品が既定の失敗の文（role="alert"）を差し込む
+    const failingUpload = React.useCallback(async (): Promise<string> => {
+      throw new Error("upload failed");
+    }, []);
+    return (
+      <RichTextEditor
+        {...args}
+        label={t("story.rte_image_label")}
+        toolbar={["bold", "italic", "separator", "link", "image"]}
+        defaultValue={`<p>${t("story.rte_image_body")}</p>`}
+        onImageUpload={failingUpload}
+      />
+    );
+  },
+};
