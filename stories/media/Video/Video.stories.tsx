@@ -26,8 +26,10 @@ const sampleTracks = [
 const meta: Meta<typeof Video> = {
   title: "Components/Media/Video",
   component: Video,
+  // `width` は親の幅を上限にする（T350）。centered は包みが中身の幅に縮むので、上限が効かず 390px で
+  // はみ出した。実際の画面と同じく、幅の決まった親の中に置く。
   parameters: {
-    layout: "centered",
+    layout: "padded",
   },
   args: {
     tracks: sampleTracks,
