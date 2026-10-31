@@ -80,9 +80,9 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
       format = "YYYY-MM-DD",
       clearable = true,
       placeholder,
-      minDate: _minDate,
-      maxDate: _maxDate,
-      disabledDates: _disabledDates,
+      minDate,
+      maxDate,
+      disabledDates,
       label,
       error,
       required,
@@ -308,9 +308,13 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
                 aria-labelledby={labelId}
                 aria-label={labelId ? undefined : (props["aria-label"] ?? t("datepicker.dialog"))}
               >
+                {/* T349: 以前は 3 つとも受け取って捨てていて、範囲外の日を選べた。日の入り口は Calendar だけ（入力欄は打てない）なので、ここで渡せば足りる。 */}
                 <Calendar
                   value={currentValue ?? undefined}
                   onChange={handleDateChange}
+                  minDate={minDate}
+                  maxDate={maxDate}
+                  disabledDates={disabledDates}
                 />
               </div>
             </FocusTrap>

@@ -97,4 +97,39 @@ describe("DatePicker", () => {
     fireEvent.click(input);
     expect(document.querySelector(`.${styles.dropdown}`)).not.toBeInTheDocument();
   });
+
+  // T349: 3 つとも受け取って捨てていて、範囲外の日を選べた。
+  describe("selectable range", () => {
+    const renderOpen = (onChange = vi.fn()) => {
+      render(
+        <DatePicker
+          defaultValue={new Date(2024, 0, 15)}
+          minDate={new Date(2024, 0, 12)}
+          maxDate={new Date(2024, 0, 20)}
+          disabledDates={[new Date(2024, 0, 17)]}
+          onChange={onChange}
+        />,
+      );
+      fireEvent.click(screen.getByRole("combobox"));
+      return onChange;
+    };
+
+    it("disables days outside minDate / maxDate and the disabledDates", () => {
+      renderOpen();
+      expect(screen.getByLabelText("2024-1-11")).toBeDisabled();
+      expect(screen.getByLabelText("2024-1-21")).toBeDisabled();
+      expect(screen.getByLabelText("2024-1-17")).toBeDisabled();
+      // 対照: 範囲内の日は押せる
+      expect(screen.getByLabelText("2024-1-12")).toBeEnabled();
+      expect(screen.getByLabelText("2024-1-20")).toBeEnabled();
+    });
+
+    it("does not select a day outside the range", () => {
+      const onChange = renderOpen();
+      fireEvent.click(screen.getByLabelText("2024-1-11"));
+      expect(onChange).not.toHaveBeenCalled();
+      fireEvent.click(screen.getByLabelText("2024-1-16"));
+      expect(onChange).toHaveBeenCalledWith(new Date(2024, 0, 16));
+    });
+  });
 });
