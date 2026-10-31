@@ -576,6 +576,14 @@
         "color-contrast"
       ]
     },
+    "components-overlays-tour--open-left": {
+      "light": [
+        "color-contrast"
+      ],
+      "dark": [
+        "color-contrast"
+      ]
+    },
     "components-pickers-sliders-datepicker--open": {
       "light": [
         "aria-valid-attr-value"
