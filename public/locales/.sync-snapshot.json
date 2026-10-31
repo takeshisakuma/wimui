@@ -12542,8 +12542,8 @@
   },
   "docs_stories_recipes": {
     "login": {
-      "title": "Welcome back",
-      "subtitle": "Please enter your details to sign in",
+      "title": "Sign in to your workspace",
+      "subtitle": "Use the email address you registered with.",
       "email": "Email",
       "email_placeholder": "example@email.com",
       "password": "Password",
