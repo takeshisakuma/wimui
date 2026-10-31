@@ -200,8 +200,6 @@ PopoverTrigger.displayName = "PopoverTrigger";
 export type PopoverContentProps = {
   children: ReactNode;
   className?: string;
-  align?: "left" | "right" | "center";
-  side?: "top" | "bottom";
   /** Whether the popover is modal. If true, focus will be trapped inside and interaction with outside will be disabled. */
   modal?: boolean;
 };
@@ -209,7 +207,7 @@ export type PopoverContentProps = {
 export const PopoverContent = React.forwardRef<
   HTMLDivElement,
   PopoverContentProps & React.HTMLAttributes<HTMLDivElement>
->(({ children, className, align: _align, side: _side, style, modal = false, ...props }, propRef) => {
+>(({ children, className, style, modal = false, ...props }, propRef) => {
   const context = React.useContext(PopoverContext);
 
   if (context == null) {

@@ -16001,7 +16001,7 @@
       "video_prop_src": "Source URL of the video",
       "video_prop_tracks": "Subtitle/caption tracks passed as <track> elements (kind, src, srcLang, label).",
       "video_prop_videoId": "Unique ID used to persist and resume playback position",
-      "video_prop_width": "Width of the video"
+      "video_prop_width": "Width of the video. A number is px; a string is used as is. Defaults to 100%."
     }
   },
   "docs_props_navigation": {
@@ -16073,7 +16073,7 @@
       "menubar_prop_asChild": "If true, the component will be rendered as its child, merging its props onto that child.",
       "paginationPage_prop_asChild": "If true, merge page button props onto the child.",
       "paginationPage_prop_isActive": "Whether this page is the current page",
-      "paginationPage_prop_page": "Page number this control represents",
+      "paginationPage_prop_page": "Deprecated: has no effect. The page number shown is the child text. Will be removed in a future version.",
       "pagination_prop_aria-label": "Accessible name for the navigation landmark. Takes precedence over `labels.navAriaLabel`.",
       "pagination_prop_aria-labelledby": "ID of the element that labels the navigation landmark. Takes precedence over `aria-label`.",
       "pagination_prop_asChild": "If true, merge nav props onto the child element.",

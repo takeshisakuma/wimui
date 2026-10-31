@@ -17,6 +17,10 @@ export type PaginationPageProps = React.ComponentPropsWithoutRef<"button"> & {
    */
   asChild?: boolean;
   /** Page number this control represents */
+  /**
+   * @deprecated Has no effect: the page number shown is the child text. Will be removed in a future
+   * version. (`renderPage` still receives `page` in its props to build links.)
+   */
   page?: number;
   /** Whether this page is the current page */
   isActive?: boolean;

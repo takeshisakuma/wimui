@@ -157,6 +157,7 @@ export type HoverCardContentProps = {
   className?: string;
   align?: "left" | "right" | "center";
   side?: "top" | "bottom" | "left" | "right";
+  /** Distance between the trigger and the card, in px. Defaults to `--wim-spacing-md`. */
   sideOffset?: number;
 };
 
@@ -165,7 +166,7 @@ export const HoverCardContent = ({
   className,
   align = "center",
   side = "bottom",
-  sideOffset: _sideOffset = 8,
+  sideOffset,
   ...props
 }: HoverCardContentProps & React.HTMLAttributes<HTMLDivElement>) => {
   const { isOpen, refs, getFloatingProps } = React.useContext(HoverCardContext);
@@ -194,7 +195,11 @@ export const HoverCardContent = ({
       data-side={side}
       data-align={align}
       {...(getFloatingProps(props) as React.HTMLAttributes<HTMLDivElement>)}
-      style={{ ...props.style, ...floatingProps.style }}
+      style={{
+        ...(sideOffset !== undefined && ({ "--wim-hover-card-offset": `${sideOffset}px` } as React.CSSProperties)),
+        ...props.style,
+        ...floatingProps.style,
+      }}
     >
       {children}
     </div>

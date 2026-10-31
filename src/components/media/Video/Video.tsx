@@ -16,7 +16,7 @@ export type { VideoLabels };
 type VideoProps = Omit<React.ComponentPropsWithoutRef<"video">, "src"> & {
   /** Source URL of the video */
   src?: string;
-  /** Width of the video */
+  /** Width of the video. A number is px; a string is used as is. Defaults to 100%. */
   width?: string | number;
   /** Height of the video */
   height?: string | number;
@@ -70,7 +70,7 @@ type VideoProps = Omit<React.ComponentPropsWithoutRef<"video">, "src"> & {
 
 export const Video = ({
   src,
-  width: _width,
+  width,
   height,
   autoPlay = false,
   loop = false,
@@ -171,7 +171,8 @@ export const Video = ({
     // `Audio` / `Image` も figure だが、どちらも最初からロールを付けていない。
     <figure
       className={classNames("wim-video", styles.root, className)}
-      style={{ width: "100%" }}
+      // `width` は以前、受け取るだけで常に 100% だった（T350）。数なら px、文字列ならそのまま。
+      style={{ width: width === undefined ? "100%" : typeof width === "number" ? `${width}px` : width }}
       aria-label={videoAriaLabel}
       data-testid="video-root"
     >

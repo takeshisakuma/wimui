@@ -7831,9 +7831,6 @@
     "PopoverClose.asChild": {
       "type": "boolean"
     },
-    "PopoverContent.align": {
-      "type": "\"left\" | \"right\" | \"center\""
-    },
     "PopoverContent.children": {
       "type": "ReactNode"
     },
@@ -7842,9 +7839,6 @@
     },
     "PopoverContent.modal": {
       "type": "boolean"
-    },
-    "PopoverContent.side": {
-      "type": "\"top\" | \"bottom\""
     },
     "PopoverTrigger.asChild": {
       "type": "boolean"

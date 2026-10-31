@@ -236,4 +236,23 @@ describe("HoverCard", () => {
     );
     expect(container.firstChild).toHaveClass("my-card");
   });
+
+  // T350: `sideOffset` は受け取るだけで、間隔は固定だった
+  it("applies sideOffset as the gap between trigger and card", () => {
+    const { rerender } = render(
+      <HoverCard open>
+        <HoverCardTrigger>Trigger</HoverCardTrigger>
+        <HoverCardContent sideOffset={20}>Card</HoverCardContent>
+      </HoverCard>,
+    );
+    expect(screen.getByText("Card").style.getPropertyValue("--wim-hover-card-offset")).toBe("20px");
+    rerender(
+      <HoverCard open>
+        <HoverCardTrigger>Trigger</HoverCardTrigger>
+        <HoverCardContent>Card</HoverCardContent>
+      </HoverCard>,
+    );
+    // 渡さなければ、CSS の既定（--wim-spacing-md）のまま
+    expect(screen.getByText("Card").style.getPropertyValue("--wim-hover-card-offset")).toBe("");
+  });
 });
