@@ -72,7 +72,7 @@ outline/subtle バリアントの文字色も intents SSOT の `text` ロール�
 | トークン | いつ使うか |
 |----------|------------|
 | `--wim-color-text-on-disabled` | 背景が `--wim-color-disabled` のとき（solid Button / Input 系の disabled フィル上）。`text-on-*` ファミリー |
-| `--wim-color-text-disabled` | 通常サーフェス上の無効・非活性テキスト（outline/ghost Button、Chip/Tag、Tabs、Pagination、Icon `color="disabled"` など） |
+| `--wim-color-text-disabled` | 通常サーフェス上の無効・非活性テキスト（outline/ghost Button、Tabs、Pagination、Icon `color="disabled"` など）。Chip / Tag の無効は、無効の面（`--wim-color-disabled`）の上に置く文字なので `--wim-color-text-on-disabled` |
 
 `--wim-color-disabled` 自体は**塗り**用。テキスト色に使わない。
 

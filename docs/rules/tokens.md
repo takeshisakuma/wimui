@@ -71,7 +71,7 @@
 | トークン | 値 | 対象 |
 |---|---|---|
 | `--wim-radius-component` | 4px | Button, Input, Tag, SegmentedControl / ToggleGroup のトラックなど小〜中要素 |
-| `--wim-radius-container` | 12px | Card, Table, Modal など大きな親要素 |
+| `--wim-radius-container` | 12px | Card, Dialog, BottomSheet など大きな親要素。Table と DataGrid は「面」ではなく「格子」なので `component`（4px。T236） |
 | `--wim-radius-overlay` | 8px | Tooltip, Popover など浮遊要素。**開いた面（Select・Combobox のリスト、メニュー、DatePicker のカレンダーなど）は全部ここ** ── 引き金が入力欄でも、開いた面は入力欄の角（`component`）に合わせない。枠は `--wim-color-border`、影は `--wim-shadow-overlay`（T320。`vrt/open-surfaces.e2e.spec.ts` が見る） |
 
 **親子ルール（Nested Radius）:** 要素を別の要素の内側に配置する場合、外側の角丸（R_outer）は内側の角丸（R_inner）に両者の間隔（S）を加えた値を目安にしてください。
@@ -95,14 +95,14 @@ R_outer ≈ R_inner + S
 
 ## シャドウ（Shadow）の設計指針
 
-浮遊・モーダル面には役割ベースのエイリアストークンを使用してください。静的な浮き上がり（カード、パネル、Terminal 等）や軽いインタラクションのシャドウには値ベース（`--wim-shadow-xs/sm/md/lg`）を直接使用してかまいません。
+浮遊・モーダル面には役割ベースのエイリアストークンを使用してください。静的な浮き上がり（カード、パネル等）や軽いインタラクションのシャドウには値ベース（`--wim-shadow-xs/sm/md/lg`）を直接使用してかまいません。
 
 | トークン | 値 | 対象 |
 |---|---|---|
 | `--wim-shadow-overlay` | `shadow-md` | Dropdown, Popover, Menu, Tooltip など浮遊小要素。一時的に浮く通知（Toast, Snackbar, Notification）もここ |
 | `--wim-shadow-modal` | `shadow-lg` | Dialog, Drawer など、画面を止める重いモーダル |
 
-`--wim-shadow-xs / sm` はボタンやカードの hover/active など軽いインタラクションに、`--wim-shadow-md / lg` はカードや Terminal など静的に浮き上がって見せる面に使用します。
+`--wim-shadow-xs / sm` はボタンやカードの hover/active など軽いインタラクションに、`--wim-shadow-md / lg` はカードや FloatButton など静的に浮き上がって見せる面に使用します。
 
 - `z-index` の使用ルール： z-index はスタッキングコンテキスト内でしか比較されません（`position` + `z-index` / `transform` / `opacity < 1` 等を持つ要素は新しいスタッキングコンテキストを作成し、その内側の値は外と競合しません）。そのため、コンポーネント自身がスタッキングコンテキストを作成している場合、その内部での相対的な上下順は生値のままで構いません（例: トラックの上にサムブを重ねる Slider 内の `z-index: 1` / `2`、固定列を浮かせる Table 内の `z-index: 100` / `110` など）。それに対して、スタッキングコンテキストをまたいで他のコンポーネントと競合しうる値（画面全体を覆うオーバーレイ、サイドバー、トースト等）は必ず `var(--wim-z-*)` トークンを使用してください。利用可能なキーは `WimZIndexKey`（`src/types/tokens.ts`）を参照してください。
   - `--wim-z-sidebar: 900` — サイドバー（非オーバーレイ時）
@@ -149,7 +149,7 @@ R_outer ≈ R_inner + S
 | `--wim-z-overlay-step` | 1002 | Tour（ガイド）のステップバブル。 |
 | `--wim-z-navbar` | 1020 | モバイル用ボトムナビゲーション等。 |
 | `--wim-z-mask` | 1500 | ローディングマスク、背景のクリック遮断用。 |
-| `--wim-z-drawer` | 2000 | Drawer（サイドからスライドするパネル）。Dialog より優先される場合に使用。 |
+| `--wim-z-drawer` | 2000 | 使っているのは `Sidebar` の狭い幅の引き出しだけ。**`Drawer` 部品は `--wim-z-overlay-panel`**（Dialog と同じ層） |
 | `--wim-z-toast` | 9999 | Toast, Notification など、常に最前面に表示すべき通知。 |
 
 注意： コンポーネント内部（Slider のサムブ、Table の固定列など）での相対的な順序指定には、生値（`z-index: 10` 等）を使用して構いません。

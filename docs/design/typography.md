@@ -46,7 +46,7 @@ Major Second (1.125) に近い Type Scale を採用。
 | `--wim-font-weight-normal` | 400 | 本文 |
 | `--wim-font-weight-medium` | 500 | 操作のラベル（Button、SegmentedControl、Tabs の未選択、入力系のラベル）、Badge / Tag / Chip |
 | `--wim-font-weight-semibold` | 600 | 面の見出し（Dialog、Drawer、Toast、Alert、Banner、Accordion の開いた見出し）、表の見出し、Menu のグループ見出し |
-| `--wim-font-weight-bold` | 700 | 文書の見出し（Title）、数値の主役（Stats の値、Countdown）、選択中の Tabs / TabNavigation、Label / Legend |
+| `--wim-font-weight-bold` | 700 | 文書の見出し（Title）、数値の主役（Stats の値、Countdown）、選択中の TabNavigation（Tabs は選択中も `medium`）、Label / Legend |
 
 ボタンのラベルは medium です（bold ではありません）。semibold は「面の中の見出し」、bold は「ページや数値の主役」という使い分けです。
 
@@ -56,12 +56,12 @@ Major Second (1.125) に近い Type Scale を採用。
 
 | トークン | 値 | 対象言語 | 主な用途 |
 |----------|-----|---------|---------|
-| `--wim-line-height-tight` | 1.2 | 欧文 | ディスプレイ見出し（Title `xl`〜） |
-| `--wim-line-height-snug` | 1.33 | 欧文 | **見出しの既定**（Title・素の `h1`〜`h6`） |
+| `--wim-line-height-tight` | 1.2 | 欧文 | 1 行で詰めて置く短い文字と数字（Countdown の数字・Stats の説明・Tooltip・TabBar の札・Notification の説明・Barcode の値・NodeGraph / TreeDiagram の節点・Markdown の見出し）。Title は使わない（下の「段ごとの比率」） |
+| `--wim-line-height-snug` | 1.33 | 欧文 | **素の `h1`〜`h6` の既定**（`reset.css`）と、見出しの役の部品（Alert / Toast の題・ThoughtProcess の見出し・Stats の値）。Title は段を指定しないときの受け皿だけ |
 | `--wim-line-height-normal` | 1.4 | 欧文 | 本文 |
 | `--wim-line-height-loose` | 1.6 | 欧文 | 長文・入力欄の本文 |
-| `--wim-line-height-tight-jp` | 1.4 | 日本語 | ディスプレイ見出し |
-| `--wim-line-height-snug-jp` | 1.5 | 日本語 | **見出しの既定** |
+| `--wim-line-height-tight-jp` | 1.4 | 日本語 | 既定で使う部品は無い。利用者が選んだときだけ効く（`Text` の行間の指定・`reset.css` の行間のクラス）。Title の和文の大きい段は、段ごとの比率（1.26〜1.18）を持つ |
+| `--wim-line-height-snug-jp` | 1.5 | 日本語 | **素の `h1`〜`h6` の既定**（`reset.css`）と、見出しの役の部品・短い説明（Alert / Toast の題と説明・Drawer / BottomSheet の題など）。Title は段を指定しないときの受け皿だけ |
 | `--wim-line-height-normal-jp` | 1.6 | 日本語 | 本文 |
 | `--wim-line-height-loose-jp` | 1.8 | 日本語 | 長文 |
 

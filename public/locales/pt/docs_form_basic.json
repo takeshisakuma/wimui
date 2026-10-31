@@ -200,7 +200,7 @@
     "input_search": "Busca",
     "input_search_desc": "Exemplo que exibe um ícone de pesquisa.",
     "input_title": "Um campo padrão para os usuários introduzirem texto curto livremente",
-    "input_tokens_desc": "Herda tokens do InputBase (`--wim-color-surface`, borda `--wim-color-secondary`, cores de intent).",
+    "input_tokens_desc": "Herda tokens do InputBase (fundo `--wim-color-surface`, borda `--wim-color-line`, cores de intent).",
     "input_variant_desc": "Pode alterar o estilo com a propriedade `variant`.",
     "input_variant_filled": "Estilo Preenchido",
     "input_variant_flushed": "Estilo Nivelado (apenas fundo)",

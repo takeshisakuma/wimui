@@ -175,7 +175,7 @@
     "input_search": "Search",
     "input_search_desc": "Example displaying a search icon.",
     "input_title": "A standard field for users to enter short text freely",
-    "input_tokens_desc": "Inherits tokens from InputBase (`--wim-color-surface`, `--wim-color-secondary` border, intent colors).",
+    "input_tokens_desc": "Inherits tokens from InputBase (`--wim-color-surface` background, `--wim-color-line` border, intent colors).",
     "input_variant_desc": "You can change the style with the `variant` property.",
     "input_variant_filled": "Filled Style",
     "input_variant_flushed": "Flushed (Bottom-only) Style",

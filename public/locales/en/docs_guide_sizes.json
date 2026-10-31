@@ -32,7 +32,7 @@
     "tap_2": "Under `compact`, nothing clears 44px",
     "tap_2_desc": "`lg` drops to 40px. A layout that relies on `lg` for reachability loses it the moment the app switches density, and no component can see that switch coming.",
     "tap_3": "Controls built on `xs` fall under the AA floor in compact",
-    "tap_3_desc": "`Rating` sizes its stars from `--wim-height-xs` and `Slider` sets its whole height from it. That is 24px by default — exactly the AA minimum — and 20px under `compact`. Nothing measures this: axe does not check target size, and a screenshot of a smaller star looks fine.",
+    "tap_3_desc": "`Slider` sets its whole height from `--wim-height-xs`. That is 24px by default — exactly the AA minimum — and 20px under `compact`. Nothing measures this: axe does not check target size, and a screenshot of a smaller control looks fine. `Rating` used to size its stars from the same token; since T117 its smallest stars use `--wim-tap-target-min`, which stays at 24px in every density.",
 
     "density_title": "Size and density are not the same lever",
     "density_desc": "`size` is a per-component statement about one control's importance. Density is an application-wide setting that rewrites every control at once. They compose — a `compact` `lg` button is still the largest thing on its row — but they are not interchangeable. Reaching for `size=\"sm\"` to fit more rows moves a global decision into one component, where the next screen cannot inherit it and where the tap-target consequence is invisible to whoever set the density.",

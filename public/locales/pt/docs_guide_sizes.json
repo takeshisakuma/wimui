@@ -32,7 +32,7 @@
     "tap_2": "Em `compact`, nenhum tamanho passa de 44px",
     "tap_2_desc": "`lg` cai para 40px. Um layout que depende de `lg` para ser alcançável perde isso no instante em que o app troca a densidade, e nenhum componente enxerga essa troca.",
     "tap_3": "Controles construídos sobre `xs` ficam abaixo do piso AA em compact",
-    "tap_3_desc": "`Rating` dimensiona suas estrelas a partir de `--wim-height-xs` e `Slider` define toda a sua altura a partir dele. São 24px por padrão — exatamente o mínimo AA — e 20px em `compact`. Nada mede isso: o axe não verifica área de toque, e uma captura de tela com estrelas menores parece perfeitamente normal.",
+    "tap_3_desc": "`Slider` define toda a sua altura a partir de `--wim-height-xs`. São 24px por padrão — exatamente o mínimo AA — e 20px em `compact`. Nada mede isso: o axe não verifica área de toque, e uma captura de tela de um controle menor parece perfeitamente normal. O `Rating` antes dimensionava suas estrelas a partir do mesmo token; desde o T117, as estrelas menores usam `--wim-tap-target-min`, que fica em 24px em qualquer densidade.",
 
     "density_title": "Tamanho e densidade não são a mesma alavanca",
     "density_desc": "`size` é uma afirmação, componente a componente, sobre a importância de um controle. Densidade é uma configuração de aplicação inteira que reescreve todos os controles de uma vez. Elas se combinam — um botão `lg` em `compact` continua sendo o maior da linha — mas não se substituem. Recorrer a `size=\"sm\"` para caber mais linhas move uma decisão global para dentro de um componente, onde a próxima tela não a herda e onde a consequência para a área de toque fica invisível para quem definiu a densidade.",

@@ -11,7 +11,7 @@ export type ToolbarProps = React.ComponentPropsWithoutRef<"div"> & {
    */
   asChild?: boolean;
   /**
-   * Visual density for padding and gap. Cascades to `--wim-toolbar-*` CSS variables.
+   * Visual density for padding and gap.
    * @default "md"
    */
   size?: ComponentSizeBasic;
