@@ -71,7 +71,7 @@ $title-font-size: 0.9375rem;
     );
     font-size: var(--wim-font-size-xl);
 
-    :global([lang="ja"]) & {
+    &:lang(ja) {
       padding-top: calc(
         (#{$title-font-size} * var(--wim-line-height-snug-jp) - var(--wim-font-size-sm)) / 2
       );
@@ -79,7 +79,7 @@ $title-font-size: 0.9375rem;
   }
 
   // title が無いときの 1 行目は `.description`（`font-size-sm` / `snug-jp`）。
-  // `[lang="ja"]` の規則より詳細度が高いので、lang を問わずこちらが勝つ。
+  // `.icon:lang(ja)`（0,2,0）より詳細度が高い（0,3,0）ので、lang を問わずこちらが勝つ。
   .root:not(:has(.title)) .icon {
     padding-top: calc(
       (var(--wim-font-size-sm) * var(--wim-line-height-snug-jp) - var(--wim-font-size-sm)) / 2
@@ -103,7 +103,7 @@ $title-font-size: 0.9375rem;
     line-height: var(--wim-line-height-snug);
     overflow-wrap: break-word;
 
-    :global([lang="ja"]) & {
+    &:lang(ja) {
       line-height: var(--wim-line-height-snug-jp);
     }
   }

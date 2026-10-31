@@ -186,7 +186,7 @@ padding: var(--wim-spacing-md);
 | パス / 属性 | 役割 |
 |---|---|
 | `wimui/styles.css` | **必須** — `:root` `--wim-*`（ダーク・密度含む）+ コンポーネント CSS |
-| `wimui/reset.css` | **任意** — 意見の強いリセット/base。**素の `h1`〜`h6` の `line-height` を含む**（T208。`snug` / `[lang="ja"]` は `snug-jp`。入れなければ見出しは本文の比率＝間延びしたまま） |
+| `wimui/reset.css` | **任意** — 意見の強いリセット/base。**素の `h1`〜`h6` の `line-height` を含む**（T208。`snug` / `:lang(ja)` は `snug-jp`。入れなければ見出しは本文の比率＝間延びしたまま） |
 | `WimProvider` | **推奨** — `theme` / `density` / `locale` を React から設定（内部で属性を書く） |
 | `data-theme` | CSS 契約。`<html>` に載せる。値 `light` \| `dark`。省略で OS 追従 |
 | `data-density` | CSS 契約。`<html>`（または祖先）。`comfortable` \| `compact` |

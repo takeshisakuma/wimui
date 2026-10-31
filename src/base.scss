@@ -110,7 +110,7 @@
    * 要素側のこの宣言が効く ── 継承はその要素に宣言が無いときだけ働く。
    *
    * ja を `lang.scss` 側に置かないのは、**あのファイルがレイヤー外だから**。
-   * レイヤー外の宣言は全レイヤーより強いので、`body[lang="ja"] h1` に行間を足すと
+   * レイヤー外の宣言は全レイヤーより強いので、`body[lang] h1:lang(ja)` に行間を足すと
    * `@layer component` の `Title` まで上書きしてしまう。 */
   h1,
   h2,
@@ -121,15 +121,15 @@
     line-height: var(--wim-line-height-snug);
   }
 
-  [lang="ja"] {
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      line-height: var(--wim-line-height-snug-jp);
-    }
+  /* `:lang(ja)` は一番近い `lang` を見る（T348）。`[lang="ja"] h1` だと、ja のページの中の
+   * `lang="en"` の区画の見出しにも和文の値が当たる。 */
+  h1:lang(ja),
+  h2:lang(ja),
+  h3:lang(ja),
+  h4:lang(ja),
+  h5:lang(ja),
+  h6:lang(ja) {
+    line-height: var(--wim-line-height-snug-jp);
   }
 
   /* RubyチE��スト（ルビ）�E表示を老E�E */

@@ -67,7 +67,7 @@ Major Second (1.125) に近い Type Scale を採用。
 
 ### 字間（letter-spacing）
 
-見出しの主張を強めるためのトラッキング。**欧文は大きいサイズほど字面が空いて間延びするため負トラッキングで締める**。一方、**和文（かな・漢字）は仮想ボディが詰まって見えるため詰めない**（`normal` = 0）。行高と同じく `[lang="ja"]` で出し分ける（規約3）。本文サイズ相当の小見出し（Title `xs`/`sm`）は詰めると可読性が落ちるため `normal`。
+見出しの主張を強めるためのトラッキング。**欧文は大きいサイズほど字面が空いて間延びするため負トラッキングで締める**。一方、**和文（かな・漢字）は仮想ボディが詰まって見えるため詰めない**（`normal` = 0）。行高と同じく `:lang(ja)` で出し分ける（規約3）。本文サイズ相当の小見出し（Title `xs`/`sm`）は詰めると可読性が落ちるため `normal`。
 
 | トークン | 値 | 用途 |
 |----------|-----|------|
@@ -85,15 +85,14 @@ Major Second (1.125) に近い Type Scale を採用。
 2. **本文・複数行テキストを内包するコンポーネントは、既定で `-jp`（広いほう）を採用する。**
    日本語は字形が正方形に近く詰まって見えるため、CJK・欧文混在のテキストでは広い行高のほうが安全。`List`, `status-content` の `.description` 等はこの方針で `--wim-line-height-normal-jp` を直接使用している。
 
-3. **`lang` 属性に連動して自動で切り替えたい場合**は、最上層の `<html lang="…">` から伝播する `lang` 属性をセレクタで拾う。グローバルな `:root[lang="ja"]` ではなく、コンポーネントのルートに付く `lang` を起点にする。
+3. **`lang` 属性に連動して自動で切り替えたい場合**は、`:lang(ja)` で拾う。`:lang()` は**一番近い `lang`** を見るので、ja のページの中に置いた `lang="en"` の区画では欧文の値に戻り、`lang="ja-JP"` も拾う。祖先セレクタ（`:global([lang="ja"]) &`）は祖先のどこかに `lang="ja"` があれば当たるため、入れ子の区画で誤る（T348）。
 
    ```scss
    .text {
      font-family: var(--wim-font-family-default);
      line-height: var(--wim-line-height-normal);
 
-     &:global([lang="ja"]),
-     :global([lang="ja"]) & {
+     &:lang(ja) {
        font-family: var(--wim-font-family-ja);
        line-height: var(--wim-line-height-normal-jp);
      }
@@ -108,7 +107,7 @@ Major Second (1.125) に近い Type Scale を採用。
 
 | 見出しの書き方 | 行高を決める場所 | コンポーネント側ですること |
 |---|---|---|
-| 素の `<h1>`〜`<h6>` | `@layer base`（`src/base.scss`）が `snug` / `[lang="ja"]` は `snug-jp` を当てる。**`reset.css` に入る＝利用者の素マークアップにも効く** | **何も宣言しない**（宣言すると `component` 層のクラスが base に勝ち、base が届かなくなる） |
+| 素の `<h1>`〜`<h6>` | `@layer base`（`src/base.scss`）が `snug` / `:lang(ja)` は `snug-jp` を当てる。**`reset.css` に入る＝利用者の素マークアップにも効く** | **何も宣言しない**（宣言すると `component` 層のクラスが base に勝ち、base が届かなくなる） |
 | `Title` コンポーネント | `title.module.scss` の `$line-heights` が、段ごとに単位のない比率を当てる（下の表）。トークンは使わない | `Title` に任せる |
 | `role="heading"` を載せた `div` / `button` | **base のセレクタは要素名なので構造的に届かない** | 自分で `snug` / `snug-jp` を宣言する |
 
@@ -125,7 +124,7 @@ Major Second (1.125) に近い Type Scale を採用。
 
 **素の `<h1>`〜`<h6>` は段ごとにしない。** base の規則は要素名で当たり、実際の font-size を知らない（`Dialog` の題は `<h2>` でも 18px 前後で描かれる）。UA 既定の大きさで決め打ちすると、ずれた値が当たる。`snug`（1.33 / ja 1.5）は `Title` の小さい段（xs / sm）とほぼ同じなので、そのまま置く。
 
-和文の出し分けを `lang.scss` に書かないこと。**あのファイルはレイヤー外**で、レイヤー外の宣言は全レイヤーより強いため、`body[lang="ja"] h1` に行高を足すと `@layer component` の `Title` まで上書きしてしまう。base 層に置く。
+和文の出し分けを `lang.scss` に書かないこと。**あのファイルはレイヤー外**で、レイヤー外の宣言は全レイヤーより強いため、`body[lang] h1:lang(ja)` に行高を足すと `@layer component` の `Title` まで上書きしてしまう。base 層に置く。
 
 機械強制: `npm run check:heading-lh`（`audit:lib` と lint-staged に配線済み）。
 

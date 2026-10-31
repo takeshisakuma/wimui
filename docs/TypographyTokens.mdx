@@ -239,9 +239,9 @@ import { TokenGrid, TypographyVisualizer, FontWeightVisualizer, DecorationVisual
   font-family: var(--wim-font-family-default);
   line-height: var(--wim-line-height-normal);
 
-  // Switch to Japanese stack & wider line-height via the lang attribute
-  &:global([lang="ja"]),
-  :global([lang="ja"]) & {
+  // Switch to Japanese stack & wider line-height via the nearest lang attribute.
+  // :lang(ja) also matches lang="ja-JP", and a lang="en" section inside a ja page stays Latin.
+  &:lang(ja) {
     font-family: var(--wim-font-family-ja);
     line-height: var(--wim-line-height-normal-jp);
   }
