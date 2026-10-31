@@ -42,7 +42,8 @@
       "normal": { "value": "0" },
       "tight": { "value": "-0.01em" },
       "tighter": { "value": "-0.02em" },
-      "wide": { "value": "0.02em" }
+      "wide": { "value": "0.05em" },
+      "extra-wide": { "value": "0.1em" }
     },
     "decoration": {
       "line-through": { "value": "line-through" },
