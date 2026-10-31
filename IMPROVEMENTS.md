@@ -7,6 +7,8 @@
 
 ## 次にやるとよい順
 
+**2026-10-31（追記 6）**: T351 / T352 / T360（#1065）と T357 / T358（#1067）を済にして退避先へ移した。残りは T350（判断待ち）・T353（実機で聞いてから）・T354（PR を出している）。
+
 **2026-10-31（追記 5）**: T359 を済にして退避先へ移した（#1064。字間のトークンの定義を 1 か所にした）。
 
 **2026-10-31（追記 4）**: T355 / T356 を #1058 で済にして退避先へ移した（大文字の見出しを、支援技術には元の大小で渡す。字間をトークンに揃えた）。T355 の起票の記述（字間が 2.5 倍違う）は誤りだったので訂正した。作業中に気づいた 2 件を T359（字間のトークンの定義のずれ）/ T360（CodeDiffViewer がファイル名を小文字で出す）に起票した。
@@ -220,8 +222,6 @@ CI・テスト・監査体制は堅い（typecheck / coverage 80% / axe-core WCA
 | # | 項目 | 優先 | 内容 | 検証方法 |
 |---|---|---|---|---|
 | T350 | **受け取るだけで何もしない公開 prop（4 部品・5 個）** | 判断待ち | 起票 2026-10-31（同上）。`PopoverContent` の `side` / `align`（位置は親の `placement` で決まる。2026-03-31 のリファクタリングから。ストーリーも `side="bottom"` を渡している）・`HoverCardContent` の `sideOffset`・`Video` の `width`（幅は常に 100%）・`PaginationPage` の `page`。**決めること**: 効くように実装するか、型から外すか（外すのは公開 API の破壊的変更）。正当な形と分けた内訳: 14 か所のうち、Accordion の `defaultValue`（下で使う）・Splitter の 3 つ（親が子の props を読む）・Drawer の `asChild`（Slot に流さないため）は意図どおり | 決めた形に応じて、prop を渡して出力が変わるテスト（実装する場合）か、`check:api` / `check:prop-api` の差分（外す場合） |
-| T351 | **飾りの `<svg>` が、名前の無い画像として読み上げの木に残る（Spinner・Image）** | P3 | 起票 2026-10-31（定期点検 7-4 の候補）。`<svg>` を直接書く 6 ファイルのうち、Spinner の回る図形と、Image の `duotone` のフィルタ定義用の svg（幅 0）が、`aria-hidden` も名前も持たない。Chrome のツリーで両方とも role `image`・名前空として出た（対照に入れた素の svg も同じく出たので、測り方は効いている）。axe は `role="img"` を書いたものしか見ないので鳴らない | Spinner と Image の duotone のストーリーで、`Accessibility.getFullAXTree` に名前の無い `image` が出ないこと。直す前に出ること |
-| T352 | **TabBar の `badge={0}` が、バッジの枠の外に素の「0」を描く** | P3 | 起票 2026-10-31（定期点検 7-4 の候補）。`badge` は `ReactNode` で、`{badge && <span>…}` と書いている。FloatButton は同じ形を #1023 の作業中に直したが、TabBar は残っていた。数値の型の prop を `&&` の左に置く箇所を数えたら、型が `number` のものは 0 件（FloatButton は直り済み）で、型が `ReactNode` の TabBar は数え方から漏れていた | `badge={0}` で描いて、素の「0」の文字が出ないこと（バッジを出すかは FloatButton に揃える: 0 件は出さない） |
 | T353 | **中身と一緒に差し込まれる読み上げの領域（8 か所）** | 判断待ち（実機で聞いてから） | 起票 2026-10-31（定期点検 7-4 の候補）。`role="status"` / `role="alert"` / `aria-live` の 35 か所を読み、要素が告げたい文と同時に描かれ始めるものを拾った: **FieldError**（`FieldTemplate` が `{error && <FieldError>}`。全フォーム部品の誤り表示）・DataGrid の空の表示・InfiniteScroll の読み込み中・Combobox の該当なし・Transfer の空の表示・RichTextEditor のアップロード失敗（`role="alert"`）・ラベル付きの Spinner（条件付きで置かれたとき）・StreamingText（`aria-live` を付けるのと書き出しが同時）。2026-10-12 の確認でナレーターが読まなかったのは `role="status"` を中身ごと差し込む形。`role="alert"` を差し込む形（FieldError・RichTextEditor）が読まれるかは聞いていない | ナレーター + Chrome で聞く（`docs/rules/implementation.md` の「操作の結果を、読み上げで告げる」）。読まれなかったものだけ、先に在る領域の文字を書き換える形に直し、聞き直す |
 | T354 | **VRT / a11y に一度も写っていない見た目の値（6 部品・11 値）** | P3 | 起票 2026-10-31（定期点検 6）。文字列の合併型の prop（variant / intent / size / align / side / placement など）を 37 部品・135 値で数え、既定値と、Patterns で使われているもの（Card の `glass`・Fieldset の `plain`）を除いた: HoverCard の `side` = top / left / right と `align` = left / right（どれもクラスで位置を決める）・Timeline の `align="right"`・Tour の `placement="left"`・InteractiveArea の `align="start"`・SpeedDial の項目の `intent` = default / success。Navbar.Menu の `position` 3 値は Drawer の `side` へそのまま渡すので、Drawer のストーリーで写っている。Popover の `align` は T350（効いていない） | 値ごとのストーリー（1 本に並べてよい）を足して VRT / a11y に載せる |
 
@@ -231,9 +231,6 @@ CI・テスト・監査体制は堅い（typecheck / coverage 80% / axe-core WCA
 
 | # | 項目 | 優先 | 内容 | 検証方法 |
 |---|---|---|---|---|
-| T357 | **Stats のデモの数に、比較の相手が無い・書式が揃っていない** | P3 | 起票 2026-10-31。符号つきの変化量で、何に比べてかを言わないものが 6 か所: Stats のストーリー 2（`+20.1%` / `+18%`）・Patterns の Marketing の Badge（`+8.3%`）・Page 2（`+12.5%` / `+5.1%`）・Playground のレシピ `BillingOverview`（`+6.4%`。StackBlitz へも出る）。比較の相手を書いたのは 1 か所（`stats_desc_users`＝「from last month」）だけ。Stats には相手を書く `Stats.Description` が既にある。同じ `BillingOverview` は、通貨の書式も揃っていない（MRR が `$48,210`、請求の行が `$4,610.50` / `$12,199.00` / `$89.00`）。**さらに、同じファイルのコメントが古い**: 「Trend は ↑ を成功の色としか組まない」とあるが、T250 ④（2026-09-21）で `intent` が入り、上がって悪い数も Trend で書ける | 6 か所に比較の相手が付くこと。`BillingOverview` の通貨が 1 つの書式で並ぶこと。コメントを今の API に合わせる |
-| T358 | **デモの見出しが挨拶になっている（3 か所）** | P3 | 起票 2026-10-31。見出しの役で挨拶をしているもの: AppShell のストーリー 2 本の `<h2>Welcome!</h2>`（`story.appshell_welcome`）・RichTextEditor の見本の見出し「Welcome to RichTextEditor」・レシピのログインの題「Welcome back」（`recipes:login.title`）。unslop の言う「ページや期間を題にする」に直す候補。ログインの題は慣習として自然なので、直すかは読んで決める。チャットのデモの挨拶（会話の中身）と、操作結果の通知の感嘆符（`Data saved successfully!` など 7 件）は外れに数えていない | 3 か所の見出しが、その画面が何かを言う題になっていること（en / ja / pt） |
-| T360 | **CodeDiffViewer が、ファイル名を小文字にして表示する** | P3 | 起票 2026-10-31（#1058 の作業中に気づいた）。見出しの `.filename` に `text-transform: lowercase` が当たっていて、`filename` を渡すと `Button.tsx` が `button.tsx` と見える（`filename` が無いときは `language` を出すので、言語名の見た目に合わせた指定と見られる）。ファイル名は大文字と小文字を区別するので、違うファイルを指して見える。読み上げにも小文字の名前が渡る（T356 と同じ仕組み） | `filename='Button.tsx'` で、見た目と名前が `Button.tsx` のままであること。言語名の見た目をどうするかも決める |
 
 ### 他のライブラリとの突き合わせ（2026-10-10 起票）
 
