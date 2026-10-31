@@ -108,7 +108,7 @@ Major Second (1.125) に近い比率に基づく、意図的にコンパクト�
 
 | トークン | 値 | 用途 |
 |----------|-----|------|
-| `--wim-radius-sm` | 2px | 部品の中のサブ要素（Tag の閉じるボタン、メニューの項目など） |
+| `--wim-radius-sm` | 2px | 部品の中のサブ要素（メニューの項目、Tabs の札など） |
 | `--wim-radius-md` | 4px | 標準角丸（`component` の参照先） |
 | `--wim-radius-lg` | 8px | 目立つ角丸（`overlay` の参照先） |
 | `--wim-radius-xl` | 12px | 大きな角丸（`container` の参照先） |
@@ -146,7 +146,7 @@ Major Second (1.125) に近い比率に基づく、意図的にコンパクト�
 | トークン | 値 | 用途 |
 |----------|-----|------|
 | `--wim-shadow-none` | none | フラット |
-| `--wim-shadow-xs` | 0 1px 2px oklch(0 0 0 / 0.08), 0 1px 1px oklch(0 0 0 / 0.05) | 微小な浮き（Badge, Chip） |
+| `--wim-shadow-xs` | 0 1px 2px oklch(0 0 0 / 0.08), 0 1px 1px oklch(0 0 0 / 0.05) | 微小な浮き（Kbd、Button など） |
 | `--wim-shadow-sm` | 0 2px 4px oklch(0 0 0 / 0.08), 0 1px 2px oklch(0 0 0 / 0.12) | カード、ドロップダウン |
 | `--wim-shadow-md` | 0 4px 12px oklch(0 0 0 / 0.08), 0 2px 4px oklch(0 0 0 / 0.12) | モーダル、ポップオーバー |
 | `--wim-shadow-lg` | 0 12px 24px oklch(0 0 0 / 0.12), 0 8px 16px oklch(0 0 0 / 0.18) | ドロワー、全画面オーバーレイ |

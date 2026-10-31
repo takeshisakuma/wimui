@@ -200,7 +200,7 @@
     "input_search": "検索",
     "input_search_desc": "検索アイコンを表示する例です。",
     "input_title": "短い自由形式のテキストを取得するための標準的な入力フィールド",
-    "input_tokens_desc": "InputBase のトークンを継承（`--wim-color-surface`、`--wim-color-secondary` ボーダー、インテント色）。",
+    "input_tokens_desc": "InputBase のトークンを継承（`--wim-color-surface` の背景、`--wim-color-line` のボーダー、インテント色）。",
     "input_variant_desc": "`variant` プロパティでスタイルを変更できます。",
     "input_variant_filled": "塗りつぶし",
     "input_variant_flushed": "下線のみ",

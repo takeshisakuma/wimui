@@ -891,7 +891,7 @@ number of pixels. Prefer the token so the gap follows the theme.
     - `position: React.CSSProperties["position"]` — Position
 - **Toolbar** — Action strip for IconButton, ToggleGroup, and related controls with toolbar keyboard navigation. (aka Action Bar)
     - `asChild: boolean` = false — If true, the component will be rendered as its child, merging its props onto that child.
-    - `size: ComponentSizeBasic` = "md" — Visual density for padding and gap. Cascades to `--wim-toolbar-*` CSS variables.
+    - `size: ComponentSizeBasic` = "md" — Visual density for padding and gap.
 @default "md"
     - `orientation: "horizontal" | "vertical"` = "horizontal" — Layout axis of the toolbar.
 @default "horizontal"
