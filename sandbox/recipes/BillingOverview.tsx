@@ -10,9 +10,9 @@ type Row = {
 };
 
 const rows: Row[] = [
-  { id: "in_9f2a", name: "Marisol Okonkwo", plan: "Scale", amount: "$4,610.50", status: "paid" },
-  { id: "in_7b41", name: "Dmitri Sørensen", plan: "Enterprise", amount: "$12,199.00", status: "failed" },
-  { id: "in_2a90", name: "Thomas O'Reilly", plan: null, amount: "$89.00", status: "pending" }, // incomplete row
+  { id: "in_9f2a", name: "Marisol Okonkwo", plan: "Scale", amount: "$4,610", status: "paid" },
+  { id: "in_7b41", name: "Dmitri Sørensen", plan: "Enterprise", amount: "$12,199", status: "failed" },
+  { id: "in_2a90", name: "Thomas O'Reilly", plan: null, amount: "$89", status: "pending" }, // incomplete row
 ];
 
 // Colour carries state only: paid and failed earn an intent, pending is the
@@ -38,7 +38,7 @@ export default function BillingOverview() {
         <Stats variant="outline">
           <Stats.Label>MRR</Stats.Label>
           <Stats.Value>$48,210</Stats.Value>
-          <Stats.Trend>+6.4%</Stats.Trend>
+          <Stats.Trend>+6.4% vs September</Stats.Trend>
         </Stats>
         <Stats variant="outline">
           <Stats.Label>Active workspaces</Stats.Label>
@@ -48,9 +48,9 @@ export default function BillingOverview() {
         <Stats variant="outline">
           <Stats.Label>Failed webhooks</Stats.Label>
           <Stats.Value>137</Stats.Value>
-          {/* Not a Trend: rising failures are bad, and Trend only pairs ↑ with
-              the success colour. A plain description says it without lying. */}
-          <Stats.Description>+23 today</Stats.Description>
+          {/* Rising failures are bad: the arrow points up, the colour says danger.
+              `intent` decides the colour separately from `direction` (T250). */}
+          <Stats.Trend direction="up" intent="danger">+23 since yesterday</Stats.Trend>
         </Stats>
       </Grid>
 

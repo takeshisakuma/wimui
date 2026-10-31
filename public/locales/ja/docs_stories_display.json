@@ -317,6 +317,7 @@
     "stats_desc_users": "先月から+12.5%",
     "stats_page_views": "ページビュー",
     "stats_revenue": "収益",
+    "trend_vs_last_month": "前月比 {{value}}",
     "stats_total_users": "総ユーザー数",
     "swipe_confirm_desc": "「{{action}}」アクションがクリックされました。",
     "swipe_confirm_title": "アクションを確認しました",

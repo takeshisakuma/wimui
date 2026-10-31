@@ -317,6 +317,7 @@
     "stats_desc_users": "+12,5% em relação ao mês passado",
     "stats_page_views": "Page Views",
     "stats_revenue": "Receita",
+    "trend_vs_last_month": "{{value}} vs. mês anterior",
     "stats_total_users": "Total Users",
     "swipe_confirm_desc": "Você clicou na ação \"{{action}}\".",
     "swipe_confirm_title": "Ação confirmada",

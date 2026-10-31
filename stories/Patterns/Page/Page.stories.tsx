@@ -263,7 +263,7 @@ export const DashboardHeader: StoryObj = {
                       <Stats.Label>{stat.label}</Stats.Label>
                       <Badge
                         intent={stat.intent}
-                        content={stat.trend}
+                        content={t("story.trend_vs_last_month", { value: stat.trend })}
                         size="lg"
                         variant="subtle"
                       />

@@ -152,7 +152,7 @@
     "rating_wide_field": "評価（幅いっぱいの欄の中）",
     "rte_controlled_initial": "このテキストを編集してください。",
     "rte_default_body": "ツールバーを使ってテキストを書式設定できます。太字・斜体・見出しなどをお試しください。",
-    "rte_default_heading": "RichTextEditorへようこそ",
+    "rte_default_heading": "書式の基本",
     "rte_disabled_content": "このエディタは無効状態のため編集できません。",
     "rte_error_required": "コンテンツは必須です。",
     "rte_image_alt": "補修後の北側の壁。新しいしっくいが見える",

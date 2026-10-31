@@ -85,7 +85,7 @@ export const HeroSection: StoryObj = {
               <Stack gap="lg">
                 <Stack direction="row" justify="space-between" align="center">
                   <Stats.Label>{t("hero.card_label")}</Stats.Label>
-                  <Badge intent="success" variant="subtle" content="+8.3%" />
+                  <Badge intent="success" variant="subtle" content={t("story.trend_vs_last_month", { value: "+8.3%" })} />
                 </Stack>
                 <Stats.Value>24,807</Stats.Value>
                 <Sparkline
