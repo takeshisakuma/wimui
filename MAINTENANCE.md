@@ -393,10 +393,6 @@ git branch -vv | grep ": gone]"   # 追跡先が消えたローカルブラン�
 **2026-10-11 の回で測り残した 5 つの候補**（省略記号の残り・開いた面の 5 部品・フォーカスの行き先の 3 部品・選択中の要素のホバー・ScrollProgress）は、2026-10-12 に測り終えた（下の表）。欠陥は ScrollProgress の 1 件。 残っていた候補 5 行も、同じ日に測った（表の下の 4 行。欠陥は Gallery の 1 件と、Affix / Tour の 2 件）。
 
 - 型が `ReactNode` の prop を `{prop && …}` で描き、数の `0` を渡すと素の「0」が出るか（2026-10-31 の回で、`number` 型だけを数えた数え方から漏れた。TabBar の `badge` は名前で拾った）。数え方: `src/components` の `.tsx` で、型に `ReactNode` を含む prop を `&&` の左に置く箇所を拾い、数を入れそうな名前（badge / count / extra / suffix など）から `0` を渡して描く
-- 大文字 + 広い字間のラベルが、意味を持たずに使われていないか（外部の診断から: unslop の `signs.md`「Uppercase labels with wide tracking」。2026-10-31 に突き合わせた）。2026-10-31 時点で `text-transform: uppercase` を持つ部品 SCSS は 7 つ（Menu / Select / ContextMenu / CommandPalette / KeyboardShortcuts / JsonViewer / Avatar）。Menu と Select は `--wim-letter-spacing-wide` と組で、グループの見出しに当てている。数え方: 7 つを 1 つずつ読み、①何に当てているか（グループの見出し・キー表記・頭文字など、大文字が意味を持つものは外す）②ja / pt で開いたときに、大文字にならない文字（和文）で字間だけが開いていないか。**慣習として正当な使い方もある**ので、直すかは測ってから判断する
-- 比較の相手が無い変化量（`+12%` だけで、何に比べてかを言わない）が、デモ文や部品の既定に無いか（同上: 「Changes without a reference」）。数え方: `public/locales/{en,ja,pt}/docs_stories_*.json` と `stories/**/*.stories.tsx` で、符号つきの数（`+12%` / `-3` / `↑ 4.2%` など）を拾い、同じ要素か隣に比較の相手（`vs last month` / `前月比` など）があるかを見る。`Stats.Trend` のように、相手を書く場所を部品が持つかも確かめる
-- 感嘆符と挨拶の見出しが、デモ文に無いか（同上: 「Exclamation marks」「Greeting headlines」）。`check:slop` の辞書が持つ挨拶は `Welcome` の 1 件だけ。数え方: デモ文（上と同じ範囲）で `!` で終わる値・`!!`・挨拶の形（`Welcome back` / `Hi, ` / `おかえりなさい` / `ようこそ`）を拾う。読むと、操作の結果の通知（`Saved!`）とデモの見出しが混ざるので、見出しの役のものだけを外れに数える。外れが多ければ `slop-dictionary.json` へ足すかを決める
-- 同じ画面の中で、数字の書式が揃っていないか（同上: 「Numbers in mixed formats」）。たとえば `$48,210` と `$124,860.40` が並ぶ、桁区切りの有無が混ざる。2026-10-31 時点で `tabular-nums` を持つ部品 SCSS は 11。数え方: Patterns の各ストーリーで、表示されている数（通貨・百分率・件数）を DOM から拾い、同じ種類の数どうしで小数の桁数と桁区切りが揃っているかを見る。部品の側は、数を整形する prop（`format` / `Intl.NumberFormat` を受けるもの）を持つかも数える
 - 実機のスクリーンリーダーで、まだ聞いていない部品（**人の手が要る**）。2026-10-12 にナレーター + Chrome で 28 部品を聞いた（下の表）。残り: Dropdown / Menubar / ContextMenu / TreeView / Tooltip / Popover / CommandPalette / MultiSelect / DatePicker / Cascader / TreeSelect。聞けるストーリーが無いもの: Alert が「あとから現れる」とき・Autosave が切り替わるとき（切り替わるストーリーを足せば聞ける）。**外れが出やすいのは、押してもフォーカスが動かず、中身だけが変わる操作**（28 部品中の外れ 11 のうち 8）
 
 **測り終えた観点の分け先**（2026-10-10・ユーザーとの相談で決めた）。観点は、基本的に 1 回きりの掃除である。直したあとに同じ手順を隔週で流し直しても、ほぼ毎回 0 件になる。**毎回流す価値があるものは、人ではなく CI に流させる。** 測り終えたら、次の 3 つのどれかに分ける。
@@ -459,6 +455,10 @@ git branch -vv | grep ": gone]"   # 追跡先が消えたローカルブラン�
 | 2026-10-31 | `Icon` を通さない `<svg>` が、飾りなのに読み上げの木に残るか | `<svg>` を直接書く 6 ファイル。属性を読み、持たない 2 つを Chrome の `Accessibility.getFullAXTree` で測った（対照: 注入した素の svg が `image` で出ること） | Spinner の図形・Image の `duotone` のフィルタ定義（どちらも role `image`・名前空）。VoiceVisualizer / Barcode / TreeDiagram / ProgressRing は `aria-hidden` か名前を持つ | T351 |
 | 2026-10-31 | 数を取る prop を `{n && …}` で描き、`0` で素の「0」が出るか | 型に `number` を含む prop 316 個の `{prop &&` を数えた → 0 件（FloatButton は直り済み。**自己検証にした FloatButton は、直したあとのコメントの文字に当たっていた**ので、検出器の証拠にならなかった）。型が `ReactNode` のものは数えていない ── 名前で拾った `badge` で TabBar が出た | TabBar の `badge` | T352 |
 | 2026-10-31 | 読み上げの領域が、告げたい文と同時に差し込まれるか・入れ子か | `role="status"` / `role="alert"` / `aria-live` の 35 か所（24 ファイル）を読んだ。2026-10-12 に直した形（先に在る領域の文字を書き換える）は外れに数えない | 差し込み 8 か所（FieldError・DataGrid の空・InfiniteScroll・Combobox の該当なし・Transfer の空・RichTextEditor のアップロード失敗・ラベル付きの Spinner・StreamingText）。入れ子は 0 | T353（実機で聞いてから） |
+| 2026-10-31 | 大文字 + 広い字間のラベル（unslop の兆候から） | `text-transform: uppercase` を持つ部品 SCSS 7 つを読んだ | 頭文字の Avatar を除く 6 つが見出しの役。字間は 3 つがトークン（0.02em）、3 つが生の `0.05em` で、同じ役の ContextMenu と Menu で値が違う | T355（字間）/ T356（大文字を残すか・判断待ち） |
+| 2026-10-31 | 比較の相手が無い変化量（同上） | `docs_stories_*.json`（en）と `stories/**/*.stories.tsx` の符号つきの数を拾った（25 件。時刻のタイムゾーン `+09:00`・コード・Avatar の `+5` を除いて 6 件）。Patterns の測り（下の行）で、`sandbox` のレシピからも 1 件出た | 比較の相手が無いもの 6（Stats 2・Marketing 1・Page 2・BillingOverview 1）。相手があるのは 1 | T357 |
+| 2026-10-31 | 感嘆符と挨拶の見出し（同上） | `docs_stories_*.json` の en 27 件（ja 24・pt 26）を、見出しの役か・会話の中身か・操作結果の通知かで分けた | 見出しの役の挨拶 3（AppShell・RichTextEditor の見本・ログインの題）。通知の感嘆符 7 とチャットの挨拶は外れに数えない | T358 |
+| 2026-10-31 | 同じ画面の数字の書式（同上） | Patterns 58 ストーリーを en・1280px で開き、表示されている通貨と百分率を、種類ごとに小数の桁数と桁区切りで比べた | 2 画面: Playground の `BillingOverview`（`$48,210` と `$4,610.50`）と、Marketing の比較表（SLA の `99%` と `99.9%`。値が違う段なので正当） | T357 に含めた |
 
 ---
 
