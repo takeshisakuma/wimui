@@ -1,5 +1,16 @@
 # wimui
 
+## 0.64.14
+
+### Patch Changes
+
+- 50bb6a2: 字間のトークンの定義を 1 か所にした。`--wim-letter-spacing-wide` はトークンの定義では 0.02em だったが、別のファイルが 0.05em で上書きしていて、実際に効いていたのは 0.05em だった。定義を 0.05em に揃え、上書きを消した。`--wim-letter-spacing-extra-wide`（0.1em）も同じファイルにしか無かったので、トークンの定義へ移した。どちらも効いている値は変わらない。型 `WimLetterSpacingKey` に `"extra-wide"` が加わる。
+- 279e92b: 小さい修正を 3 つ。
+
+  - `Spinner` の回る図形と、`Image` の `duotone` のフィルタ定義用の svg に `aria-hidden` を付けた。名前の無い「画像」として読み上げの木に残っていた。
+  - `TabBar.Item` に `badge={0}` を渡すと、バッジの枠の外に素の「0」が描かれていた。0 件のバッジは出さない（`FloatButton` と同じ）。
+  - `CodeDiffViewer` が `filename` を小文字にして表示していた（`Button.tsx` が `button.tsx`）。小文字にするのは、ファイル名が無いときに出す言語名だけにした。
+
 ## 0.64.13
 
 ### Patch Changes
