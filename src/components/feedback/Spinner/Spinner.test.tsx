@@ -47,4 +47,10 @@ describe("Spinner", () => {
     render(<Spinner label="Loading" labelPosition="bottom" />);
     expect(screen.getByText("Loading")).toBeInTheDocument();
   });
+
+  // T351: 回る図形は飾り。名前の無い「画像」として読み上げの木に残っていた
+  it("hides the decorative svg from assistive technology", () => {
+    const { container } = render(<Spinner label="Loading" />);
+    expect(container.querySelector("svg")).toHaveAttribute("aria-hidden", "true");
+  });
 });

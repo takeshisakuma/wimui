@@ -373,7 +373,8 @@ export const Image = ({
       onMouseLeave={handleMouseLeave}
     >
       {duotone && (
-        <svg style={{ position: "absolute", width: 0, height: 0 }}>
+        // フィルタの定義だけを持つ幅 0 の svg。名前の無い「画像」として読み上げの木に残っていた（T351）
+        <svg style={{ position: "absolute", width: 0, height: 0 }} aria-hidden="true">
           <filter id={filterId} colorInterpolationFilters="sRGB">
             <feColorMatrix type="matrix" values={duotoneMatrix || ""} />
           </filter>

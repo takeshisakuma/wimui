@@ -37,9 +37,13 @@
     font-size: var(--wim-font-size-xs);
     font-weight: var(--wim-font-weight-medium);
     color: var(--wim-color-text-secondary);
-    text-transform: lowercase;
     letter-spacing: var(--wim-letter-spacing-wide);
     white-space: nowrap;
+  }
+
+  // ファイル名が無いときに出す言語名だけを小文字にする（CodeBlock の言語名と揃える）
+  .language {
+    text-transform: lowercase;
   }
 
   .viewToggle {

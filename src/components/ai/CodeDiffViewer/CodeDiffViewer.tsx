@@ -215,7 +215,11 @@ export const CodeDiffViewer = React.forwardRef<HTMLDivElement, CodeDiffViewerPro
       >
         <div className={styles.header}>
           <div className={styles.headerLeft}>
-            {headerLabel && <span className={styles.filename}>{headerLabel}</span>}
+            {/* 小文字にするのは言語名のときだけ。ファイル名は大文字と小文字を区別するので、
+                小文字にすると別のファイルを指して見える（T360。`Button.tsx` が `button.tsx`） */}
+            {headerLabel && (
+              <span className={classNames(styles.filename, !filename && styles.language)}>{headerLabel}</span>
+            )}
             <div className={styles.viewToggle}>
               <button
                 type="button"
