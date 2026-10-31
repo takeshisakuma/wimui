@@ -118,6 +118,14 @@ const checks = [
   },
   {
     category: "docs",
+    // 2026-10-31。上 2 つは名前と値を見るが、**どの部品が使うか**（用途）は誰も見ていなかった。
+    // Title の行高の表が #1047 のあと古いまま残り、全文書を突き合わせたら 10 件ずれていた（#1061）。
+    // 行単位で拾うので、読んで正しいと分かった組を一覧に凍結するラチェット。実証は `npm run prove:doc-token-usage`。
+    name: "Doc token usage matches the components (ratchet)",
+    command: "node scripts/check-doc-token-usage.js",
+  },
+  {
+    category: "docs",
     // 後から入ったコンポーネントは、誰かが思い出して足さない限り Audit の
     // 家族ページに永久に載らない。増やさないためのラチェット。
     name: "Audit family coverage (ratchet)",
