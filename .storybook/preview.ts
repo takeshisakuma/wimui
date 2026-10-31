@@ -89,7 +89,7 @@ darkMQ?.addEventListener("change", (e) => {
 
 // ─────────────────────────────────────────────────
 // 動的タイポグラフィ最適化
-// lang.scss の body[lang="ja"] セレクタを機能させるため
+// lang.scss の body[lang]:lang(ja) セレクタを機能させるため
 // html/body の lang 属性を言語切替に連動して更新する
 // ─────────────────────────────────────────────────
 const GLOBALS_UPDATED = "globalsUpdated";

@@ -59,7 +59,7 @@
     text-align: left;
     cursor: default;
 
-    :global([lang="ja"]) & {
+    &:lang(ja) {
       line-height: var(--wim-line-height-snug-jp);
     }
 

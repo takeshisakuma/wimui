@@ -17,48 +17,58 @@ body {
   text-spacing-trim: normal;
 }
 
+/* T348: 言語は `:lang()` で見る ── 一番近い `lang` で決まり、`ja-JP` のような地域つきの値も拾う。
+   `body[lang="ja"] p` の形だと、ja のページの中の `<section lang="en">` の段落にも和文の規則が当たる。
+   `body[lang]` を条件に残すのは、従来どおり body に lang を置いたページだけを対象にするため
+   （html だけに lang を置いたページの見た目は変えない）。 */
+
 /* 日本語のコンテンツに対するフォント指定 */
-body[lang="ja"] {
+body[lang]:lang(ja) {
   font-family: var(--wim-font-family-ja);
   font-feature-settings: "palt";
   line-height: var(--wim-line-height-normal-jp);
   hyphens: manual;
   line-break: auto;
+}
 
-  p,
-  li,
-  dd,
-  dt {
+/* 英語 */
+body[lang]:lang(en) {
+  font-family: var(--wim-font-family-en);
+  line-height: var(--wim-line-height-normal);
+  hyphens: auto;
+}
+
+/* ポルトガル語 */
+body[lang]:lang(pt) {
+  font-family: var(--wim-font-family-pt);
+  line-height: var(--wim-line-height-normal);
+  hyphens: auto;
+}
+
+/* 言語ごとの、要素の規則（要素自身の言語で決める） */
+body[lang] {
+  p:lang(ja),
+  li:lang(ja),
+  dd:lang(ja),
+  dt:lang(ja) {
     -webkit-line-break: strict;
     line-break: strict;
     word-break: break-all;
   }
 
   /* 見出しにも禁則処理を適用する（break-all は付けず単語中間での分断を避ける） */
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
+  h1:lang(ja),
+  h2:lang(ja),
+  h3:lang(ja),
+  h4:lang(ja),
+  h5:lang(ja),
+  h6:lang(ja) {
     -webkit-line-break: strict;
     line-break: strict;
   }
-}
-
-/* 英語 */
-body[lang="en"] {
-  font-family: var(--wim-font-family-en);
-  line-height: var(--wim-line-height-normal);
-  hyphens: auto;
 
   /* 見出しの自動ハイフネーションはタイポグラフィ上不適切なため除外 */
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
+  :is(h1, h2, h3, h4, h5, h6):is(:lang(en), :lang(pt)) {
     hyphens: manual;
   }
 
@@ -66,39 +76,38 @@ body[lang="en"] {
      右端が揃って読みやすくなる機能だが、入力欄の中では「自分が打っていない文字
      （ハイフン）が見える」ことになる。実測では RichTextEditor の本文が
      "fol-lowing"、Mentions のメモが "be-fore" と割れていた。 */
-  input,
-  textarea,
-  [contenteditable="true"],
-  [contenteditable=""] {
+  :is(input, textarea, [contenteditable="true"], [contenteditable=""]):is(:lang(en), :lang(pt)) {
     hyphens: manual;
   }
 }
 
-/* ポルトガル語 */
-body[lang="pt"] {
-  font-family: var(--wim-font-family-pt);
-  line-height: var(--wim-line-height-normal);
-  hyphens: auto;
-
-  /* 見出しの自動ハイフネーションはタイポグラフィ上不適切なため除外 */
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
+/* T348: body の中で `lang` を切り替えた区画（`<section lang="en">` など）に、body と同じ言語の値を配る。
+   中の要素は継承で受け取る。`@layer base` に置き、詳細度も 0 にするのは、区画の根が部品
+   （自前で `font-family` / `line-height` を宣言する）や見出し（`base.scss` の h1〜h6）のときに、
+   そちらを勝たせるため ── 上の body の規則はレイヤー外なので、同じ形で書くと部品まで上書きする。 */
+@layer base {
+  :where(body[lang] [lang]:lang(ja)) {
+    font-family: var(--wim-font-family-ja);
+    font-feature-settings: "palt";
+    line-height: var(--wim-line-height-normal-jp);
     hyphens: manual;
+    line-break: auto;
   }
 
-  /* T127: **利用者が打った文字を見せる面**も除外する。散文の自動ハイフネーションは
-     右端が揃って読みやすくなる機能だが、入力欄の中では「自分が打っていない文字
-     （ハイフン）が見える」ことになる。実測では RichTextEditor の本文が
-     "fol-lowing"、Mentions のメモが "be-fore" と割れていた。 */
-  input,
-  textarea,
-  [contenteditable="true"],
-  [contenteditable=""] {
-    hyphens: manual;
+  :where(body[lang] [lang]:lang(en)) {
+    font-family: var(--wim-font-family-en);
+    font-feature-settings: normal;
+    line-height: var(--wim-line-height-normal);
+    hyphens: auto;
+    line-break: normal;
+  }
+
+  :where(body[lang] [lang]:lang(pt)) {
+    font-family: var(--wim-font-family-pt);
+    font-feature-settings: normal;
+    line-height: var(--wim-line-height-normal);
+    hyphens: auto;
+    line-break: normal;
   }
 }
 

@@ -69,7 +69,7 @@ function walk(dir, out = []) {
 
 /**
  * SCSS から「クラス名 `cls` で始まる最上位ブロック」を波括弧の釣り合いで切り出し、
- * その中の `line-height` 宣言を返す。ネスト（`&:hover` / `[lang="ja"]`）の中も拾う。
+ * その中の `line-height` 宣言を返す。ネスト（`&:hover` / `&:lang(ja)`）の中も拾う。
  */
 function lineHeightsFor(scssPath, cls) {
   if (!fs.existsSync(scssPath)) return null;
@@ -154,7 +154,7 @@ function main() {
       baseSrc,
     );
   const hasJaRule =
-    /\[lang="ja"\][\s\S]{0,400}line-height:\s*var\(--wim-line-height-(snug|tight)-jp\)/m.test(
+    /h6:lang\(ja\)\s*\{[^}]*line-height:\s*var\(--wim-line-height-(snug|tight)-jp\)/m.test(
       baseSrc,
     );
   if (!hasBareRule) {
@@ -170,7 +170,7 @@ function main() {
       rel: "src/base.scss",
       line: 0,
       why: "素の見出しの和文用の行間規則が無い（ja だけ本文比率 1.6 のまま残る）",
-      text: '[lang="ja"] の h1〜h6 { line-height: var(--wim-line-height-snug-jp) } が見つからない',
+      text: 'h1:lang(ja)〜h6:lang(ja) { line-height: var(--wim-line-height-snug-jp) } が見つからない',
     });
   }
 

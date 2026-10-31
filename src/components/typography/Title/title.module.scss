@@ -41,13 +41,13 @@ $line-heights: (
     line-height: var(--wim-line-height-snug);
 
     /* 欧文見出しは大きいほど字面が空くため負トラッキングで締める（主張強化 T10）。
-       和文（かな/漢字）は仮想ボディが詰まって見えるため詰めない＝[lang="ja"] で 0 に出し分け（規約3） */
+       和文（かな/漢字）は仮想ボディが詰まって見えるため詰めない＝:lang(ja) で 0 に出し分け（規約3） */
     letter-spacing: var(--wim-letter-spacing-tight);
 
     /* 見出しは自動ハイフネーション（lang.scss の hyphens: auto）の対象外 */
     hyphens: manual;
 
-    :global([lang="ja"]) & {
+    &:lang(ja) {
       line-height: var(--wim-line-height-snug-jp);
       letter-spacing: var(--wim-letter-spacing-normal);
     }
@@ -65,7 +65,7 @@ $line-heights: (
     &.xl4 {
       letter-spacing: var(--wim-letter-spacing-tighter);
 
-      :global([lang="ja"]) & {
+      &:lang(ja) {
         letter-spacing: var(--wim-letter-spacing-normal);
       }
     }
@@ -76,7 +76,7 @@ $line-heights: (
       &.#{$size} {
         line-height: list.nth($pair, 1);
 
-        :global([lang="ja"]) & {
+        &:lang(ja) {
           line-height: list.nth($pair, 2);
         }
       }
