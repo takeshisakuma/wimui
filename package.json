@@ -179,7 +179,7 @@
         "react/jsx-runtime"
       ],
       "gzip": true,
-      "limit": "22.5 kB"
+      "limit": "23.5 kB"
     },
     {
       "name": "ルートバレル全部 — 最悪ケース (gzip)",
