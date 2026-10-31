@@ -317,18 +317,17 @@ export const ContextMenuGroup = ({
   // 区切りが分からず、項目が一続きに読まれていた（T211）。
   // **見出しにはしない** ── メニューは文書の節ではないので、ARIA のパターンは
   // 「グループに名前を付ける」。同じ形が `Menu` の `MenuItemGroup` に既にある。
-  // タイトルは `aria-hidden` にして二重読みを防ぐ（名前は `aria-labelledby` が運ぶ）。
-  const labelId = React.useId();
+  // タイトルは `aria-hidden` にして二重読みを防ぐ。名前は元の文字から `aria-label` で付ける。以前は `aria-labelledby` で見出しを指していたが、見出しは
+  // `text-transform: uppercase` なので、Chrome は大文字に変えた文字（「EDIT ACTIONS」）を名前として渡していた（2026-10-31 に実測）。
   return (
     <div
       role="group"
-      aria-labelledby={title ? labelId : undefined}
+      aria-label={title || undefined}
       className={className}
       data-testid="context-menu-group"
     >
       {title && (
         <div
-          id={labelId}
           className={styles.groupTitle}
           data-testid="context-menu-group-title"
           aria-hidden="true"

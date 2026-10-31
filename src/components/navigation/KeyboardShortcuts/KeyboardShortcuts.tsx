@@ -3,6 +3,7 @@ import classNames from "classnames";
 import { Kbd } from "../../typography/Kbd/Kbd";
 import { ComponentSizeBasic } from "../../../types/tokens";
 import styles from "./keyboard-shortcuts.module.scss";
+import { VisualUppercase } from "../../_internal/VisualUppercase";
 
 export type ShortcutItem = {
   /** Description label of the shortcut */
@@ -69,9 +70,9 @@ export const KeyboardShortcuts = React.forwardRef<
       <div className={classNames("wim-keyboard-shortcuts", styles.root, styles[size], className)}>
         {title &&
           (Heading ? (
-            <Heading className={styles.title}>{title}</Heading>
+            <Heading className={styles.title}><VisualUppercase>{title}</VisualUppercase></Heading>
           ) : (
-            <p className={styles.title}>{title}</p>
+            <p className={styles.title}><VisualUppercase>{title}</VisualUppercase></p>
           ))}
         <dl ref={ref} className={styles.list} {...props}>
           {shortcuts.map((shortcut, index) => (

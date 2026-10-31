@@ -413,16 +413,16 @@ export const CommandPaletteGroup = ({
   // 区切りが分からず候補が一続きに読まれていた（T211）。
   // **見出しにはしない** ── ここは `role="listbox"` の中で、ARIA 的に正しいのは
   // `listbox > group > option`。同じ形が `Menu` の `MenuItemGroup` に既にある。
-  // タイトルは `aria-hidden` にして二重読みを防ぐ（名前は `aria-labelledby` が運ぶ）。
-  const labelId = React.useId();
+  // タイトルは `aria-hidden` にして二重読みを防ぐ。名前は元の文字から `aria-label` で付ける。以前は `aria-labelledby` で見出しを指していたが、見出しは
+  // `text-transform: uppercase` なので、Chrome は大文字に変えた文字（「EDIT ACTIONS」）を名前として渡していた（2026-10-31 に実測）。
   return (
     <div
       className={styles.group}
       role="group"
-      aria-labelledby={heading ? labelId : undefined}
+      aria-label={heading || undefined}
     >
       {heading && (
-        <div id={labelId} className={styles.groupHeading} aria-hidden="true">
+        <div className={styles.groupHeading} aria-hidden="true">
           {heading}
         </div>
       )}

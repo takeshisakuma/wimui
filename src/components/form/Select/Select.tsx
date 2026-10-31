@@ -12,6 +12,7 @@ import { InputBase } from "../InputBase";
 import localStyles from "./select.module.scss";
 import { useSelect } from "./useSelect";
 import { type FieldIntent, type FieldWidth } from "../../../types/tokens";
+import { VisualUppercase } from "../../_internal/VisualUppercase";
 
 export type SelectOption = {
   label?: React.ReactNode;
@@ -194,7 +195,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
                 className={classNames(localStyles.groupLabel, stylesProp?.groupLabel)}
                 role="presentation"
               >
-                {group.label}
+                <VisualUppercase>{group.label}</VisualUppercase>
               </li>
               {groupOptionsFiltered.map((option, optIdx) => {
                 const index = flatIndex++;

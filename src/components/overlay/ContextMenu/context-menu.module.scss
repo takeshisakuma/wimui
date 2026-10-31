@@ -56,7 +56,7 @@
     font-weight: var(--wim-font-weight-semibold);
     color: var(--wim-color-text-secondary);
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: var(--wim-letter-spacing-wide);
   }
   
   @keyframes fadeIn {
