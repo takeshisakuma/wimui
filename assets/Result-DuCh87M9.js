@@ -1,0 +1,39 @@
+"use client";
+import{n as e}from"./rolldown-runtime-sJBDdmOt.js";import{t}from"./jsx-runtime-MKhVqBIO.js";import{R as n,h as r,m as i,n as a,u as o,z as s}from"./blocks-DbHzBHGq.js";import{n as c,t as l}from"./T-kq1SWS19.js";import{n as u,t as d}from"./Docgen-B81m9h0K.js";import{a as f,c as p,i as m,l as h,n as g,o as _,r as v,s as y,t as b,u as x}from"./Result.stories-e2yxvVKX.js";function S(e){let t={h2:`h2`,h3:`h3`,...s(),...e.components};return(0,w.jsxs)(w.Fragment,{children:[(0,w.jsx)(o,{of:m}),`
+`,(0,w.jsx)(i,{}),`
+`,(0,w.jsx)(`p`,{children:(0,w.jsx)(l,{k:`doc.result_long_desc`})}),`
+`,(0,w.jsx)(t.h2,{id:``,children:(0,w.jsx)(l,{k:`doc.design_intent_title`})}),`
+`,(0,w.jsx)(`p`,{children:(0,w.jsx)(l,{k:`doc.result_design_intent`})}),`
+`,(0,w.jsx)(t.h2,{id:`-1`,children:(0,w.jsx)(l,{k:`doc.choice_matrix_title`})}),`
+`,(0,w.jsx)(`p`,{children:(0,w.jsx)(l,{k:`doc.result_choice_matrix_desc`})}),`
+`,(0,w.jsxs)(`table`,{children:[(0,w.jsx)(`thead`,{children:(0,w.jsxs)(`tr`,{children:[(0,w.jsx)(`th`,{children:(0,w.jsx)(l,{k:`doc.component`})}),(0,w.jsx)(`th`,{children:(0,w.jsx)(l,{k:`doc.usage_scenario`})})]})}),(0,w.jsxs)(`tbody`,{children:[(0,w.jsxs)(`tr`,{children:[(0,w.jsx)(`td`,{children:(0,w.jsx)(`b`,{children:`Result`})}),(0,w.jsx)(`td`,{children:(0,w.jsx)(l,{k:`doc.result_choice_result_when`})})]}),(0,w.jsxs)(`tr`,{children:[(0,w.jsx)(`td`,{children:(0,w.jsx)(`b`,{children:`Alert`})}),(0,w.jsx)(`td`,{children:(0,w.jsx)(l,{k:`doc.result_choice_alert_when`})})]}),(0,w.jsxs)(`tr`,{children:[(0,w.jsx)(`td`,{children:(0,w.jsx)(`b`,{children:`Notification`})}),(0,w.jsx)(`td`,{children:(0,w.jsx)(l,{k:`doc.result_choice_notification_when`})})]})]})]}),`
+`,(0,w.jsx)(d,{componentName:`Result`,section:`anatomy`}),`
+`,(0,w.jsx)(t.h2,{id:`-2`,children:(0,w.jsx)(l,{k:`doc.a11y_spec_title`})}),`
+`,(0,w.jsx)(`ul`,{children:(0,w.jsx)(`li`,{children:(0,w.jsx)(l,{k:`doc.result_a11y_spec`})})}),`
+`,(0,w.jsx)(t.h2,{id:`-3`,children:(0,w.jsx)(l,{k:`doc.real_world_scenarios_title`})}),`
+`,(0,w.jsxs)(`table`,{children:[(0,w.jsx)(`thead`,{children:(0,w.jsxs)(`tr`,{children:[(0,w.jsx)(`th`,{children:(0,w.jsx)(l,{k:`doc.usage_scenario`})}),(0,w.jsx)(`th`,{children:(0,w.jsx)(l,{k:`doc.description`})})]})}),(0,w.jsxs)(`tbody`,{children:[(0,w.jsxs)(`tr`,{children:[(0,w.jsx)(`td`,{children:(0,w.jsx)(`b`,{children:(0,w.jsx)(l,{k:`doc.scenario_payment_title`})})}),(0,w.jsx)(`td`,{children:(0,w.jsx)(l,{k:`doc.result_scenario_payment`})})]}),(0,w.jsxs)(`tr`,{children:[(0,w.jsx)(`td`,{children:(0,w.jsx)(`b`,{children:(0,w.jsx)(l,{k:`doc.scenario_404_title`})})}),(0,w.jsx)(`td`,{children:(0,w.jsx)(l,{k:`doc.result_scenario_404`})})]}),(0,w.jsxs)(`tr`,{children:[(0,w.jsx)(`td`,{children:(0,w.jsx)(`b`,{children:(0,w.jsx)(l,{k:`doc.scenario_fail_title`})})}),(0,w.jsx)(`td`,{children:(0,w.jsx)(l,{k:`doc.result_scenario_fail`})})]})]})]}),`
+`,(0,w.jsx)(t.h2,{id:`-4`,children:(0,w.jsx)(l,{k:`doc.best_practices_title`})}),`
+`,(0,w.jsxs)(`ul`,{children:[(0,w.jsx)(`li`,{children:(0,w.jsx)(l,{k:`doc.result_best_practice_1`})}),(0,w.jsx)(`li`,{children:(0,w.jsx)(l,{k:`doc.result_best_practice_2`})})]}),`
+`,(0,w.jsx)(t.h2,{id:`-5`,children:(0,w.jsx)(l,{k:`doc.usage`})}),`
+`,(0,w.jsx)(`p`,{children:(0,w.jsx)(l,{k:`doc.result_usage_desc`})}),`
+`,(0,w.jsx)(a,{of:g}),`
+`,(0,w.jsx)(a,{of:p}),`
+`,(0,w.jsx)(d,{componentName:`Result`,section:`props`}),`
+`,(0,w.jsx)(t.h2,{id:`-6`,children:(0,w.jsx)(l,{k:`doc.example`})}),`
+`,(0,w.jsx)(t.h3,{id:`-7`,children:(0,w.jsx)(l,{k:`doc.info`})}),`
+`,(0,w.jsx)(a,{of:v}),`
+`,(0,w.jsx)(t.h3,{id:`-8`,children:(0,w.jsx)(l,{k:`doc.warning`})}),`
+`,(0,w.jsx)(a,{of:h}),`
+`,(0,w.jsx)(t.h3,{id:`-9`,children:(0,w.jsx)(l,{k:`doc.error`})}),`
+`,(0,w.jsx)(a,{of:b}),`
+`,(0,w.jsx)(t.h3,{id:`404`,children:`404`}),`
+`,(0,w.jsx)(a,{of:_}),`
+`,(0,w.jsx)(t.h3,{id:`403`,children:`403`}),`
+`,(0,w.jsx)(a,{of:f}),`
+`,(0,w.jsx)(t.h3,{id:`500`,children:`500`}),`
+`,(0,w.jsx)(a,{of:y}),`
+`,(0,w.jsx)(d,{componentName:`Result`,section:`tokens`}),`
+`,(0,w.jsx)(t.h2,{id:`-10`,children:(0,w.jsx)(l,{k:`doc.keyboard_nav_title`})}),`
+`,(0,w.jsx)(`p`,{children:(0,w.jsx)(l,{k:`doc.result_keyboard_desc`})}),`
+`,(0,w.jsx)(d,{componentName:`Result`,section:`i18n`}),`
+`,(0,w.jsx)(d,{componentName:`Result`,section:`test`})]})}function C(e={}){let{wrapper:t}={...s(),...e.components};return t?(0,w.jsx)(t,{...e,children:(0,w.jsx)(S,{...e})}):S(e)}var w;function T(){return(T=e((()=>{w=t(),n(),r(),x(),c(),u()})))()}T();export{C as default};

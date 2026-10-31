@@ -1,0 +1,3 @@
+"use client";
+import{a as e,n as t}from"./rolldown-runtime-sJBDdmOt.js";import{t as n}from"./react-BGJ90fIb.js";import{t as r}from"./jsx-runtime-MKhVqBIO.js";import{t as i}from"./classnames-DQoS6hca.js";import{n as a,t as o}from"./Input-DHbxaISk.js";var s,c,l;function u(){return(u=t((()=>{n(),s=e(i(),1),a(),c=r(),l=e=>(0,c.jsx)(o,{...e,type:`password`,showPasswordToggle:!0,className:(0,s.default)(`wim-password-input`,e.className)}),l.__docgenInfo={description:`パスワード入力に特化したコンポーネント。
+表示/非表示の切り替え機能を内蔵しています。`,methods:[],displayName:`PasswordInput`}})))()}export{u as n,l as t};

@@ -1,0 +1,2 @@
+"use client";
+import{n as e}from"./rolldown-runtime-sJBDdmOt.js";import{C as t}from"./helpers-B4IA9_41.js";function n(e,t){return e.graphicalItems.cartesianItems.find(e=>e.id===t)?.xAxisId??0}function r(e,t){return e.graphicalItems.cartesianItems.find(e=>e.id===t)?.yAxisId??0}function i(){return(i=e((()=>{t()})))()}export{n,r,i as t};

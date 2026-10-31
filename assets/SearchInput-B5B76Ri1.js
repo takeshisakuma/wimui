@@ -1,0 +1,3 @@
+"use client";
+import{a as e,n as t}from"./rolldown-runtime-sJBDdmOt.js";import{t as n}from"./react-BGJ90fIb.js";import{t as r}from"./jsx-runtime-MKhVqBIO.js";import{t as i}from"./classnames-DQoS6hca.js";import{n as a,t as o}from"./Input-DHbxaISk.js";var s,c,l;function u(){return(u=t((()=>{n(),s=e(i(),1),a(),c=r(),l=e=>(0,c.jsx)(o,{leftIcon:`SearchIcon`,allowClear:!0,...e,className:(0,s.default)(`wim-search-input`,e.className)}),l.__docgenInfo={description:`検索に特化した入力コンポーネント。
+検索アイコンを標準装備し、入力がある場合はクリアボタンを表示します。`,methods:[],displayName:`SearchInput`}})))()}export{u as n,l as t};
