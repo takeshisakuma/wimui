@@ -96,6 +96,14 @@ const PT_PT_FORBIDDEN = [
   /\binqu[ée]ritos?\b/i,
   /\bpartilhad[oa]s?\b/i,
   /\bpartilhar\b/i,
+  // 二人称の `tu`（PT-BR は `você` で、動詞は三人称の形）。2026-10-31 にログインのレシピで
+  // 「Esqueceste a senha?」（PT-BR は「Esqueceu a senha?」）が見つかった。語彙の表では拾えない
+  // 文法の形なので、代名詞・所有詞と、UI でよく出る `tu` の活用だけを名指しする。
+  // 過去形の語尾（-aste / -este）は `teste`・`contraste`・`existe` と区別できないので見ない。
+  /\btu\b/i,
+  /\bcontigo\b/i,
+  /\b(?:teu|tua|teus|tuas)\b/i,
+  /\b(?:esqueceste|tens|podes|queres|estás)\b/i,
 ];
 
 // --- 1. 重複キー検出 -------------------------------------------------------
