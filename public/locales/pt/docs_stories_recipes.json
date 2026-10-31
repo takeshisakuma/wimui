@@ -295,7 +295,7 @@
   "login": {
     "email": "E-mail",
     "email_placeholder": "example@email.com",
-    "forgot_password": "Esqueceste a senha?",
+    "forgot_password": "Esqueceu a senha?",
     "no_account": "Não tem uma conta?",
     "password": "Senha",
     "remember_me": "Lembrar de mim",
