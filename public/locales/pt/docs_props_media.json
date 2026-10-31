@@ -112,6 +112,6 @@
     "video_prop_src": "URL de origem do vídeo",
     "video_prop_tracks": "Faixas de legenda passadas como elementos <track> (kind, src, srcLang, label).",
     "video_prop_videoId": "ID único usado para salvar e retomar a posição de reprodução",
-    "video_prop_width": "Largura do vídeo. Um número é px; uma string é usada como está. O padrão é 100%."
+    "video_prop_width": "Largura do vídeo. Um número é px; uma string é usada como está. Nunca fica mais larga que o contêiner. O padrão é 100%."
   }
 }

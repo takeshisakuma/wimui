@@ -190,7 +190,7 @@ describe("Video", () => {
   // T350: `width` は受け取るだけで、常に 100% だった
   it("applies width to the figure", () => {
     const { rerender } = render(<Video src="a.mp4" width={320} />);
-    expect(screen.getByTestId("video-root")).toHaveStyle({ width: "320px" });
+    expect(screen.getByTestId("video-root")).toHaveStyle({ width: "320px", maxWidth: "100%" });
     rerender(<Video src="a.mp4" width="50%" />);
     expect(screen.getByTestId("video-root")).toHaveStyle({ width: "50%" });
     rerender(<Video src="a.mp4" />);

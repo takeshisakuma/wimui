@@ -16,7 +16,7 @@ export type { VideoLabels };
 type VideoProps = Omit<React.ComponentPropsWithoutRef<"video">, "src"> & {
   /** Source URL of the video */
   src?: string;
-  /** Width of the video. A number is px; a string is used as is. Defaults to 100%. */
+  /** Width of the video. A number is px; a string is used as is. Never wider than its container. Defaults to 100%. */
   width?: string | number;
   /** Height of the video */
   height?: string | number;
@@ -172,7 +172,11 @@ export const Video = ({
     <figure
       className={classNames("wim-video", styles.root, className)}
       // `width` は以前、受け取るだけで常に 100% だった（T350）。数なら px、文字列ならそのまま。
-      style={{ width: width === undefined ? "100%" : typeof width === "number" ? `${width}px` : width }}
+      // 狭い画面で親からはみ出さないよう、親の幅を上限にする（指定した幅は「その幅まで」）。
+      style={{
+        width: width === undefined ? "100%" : typeof width === "number" ? `${width}px` : width,
+        maxWidth: "100%",
+      }}
       aria-label={videoAriaLabel}
       data-testid="video-root"
     >

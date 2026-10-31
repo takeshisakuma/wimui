@@ -16001,7 +16001,7 @@
       "video_prop_src": "Source URL of the video",
       "video_prop_tracks": "Subtitle/caption tracks passed as <track> elements (kind, src, srcLang, label).",
       "video_prop_videoId": "Unique ID used to persist and resume playback position",
-      "video_prop_width": "Width of the video. A number is px; a string is used as is. Defaults to 100%."
+      "video_prop_width": "Width of the video. A number is px; a string is used as is. Never wider than its container. Defaults to 100%."
     }
   },
   "docs_props_navigation": {
