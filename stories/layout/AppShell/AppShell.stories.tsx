@@ -67,7 +67,7 @@ export const Default: Story = {
         }
       >
         <div>
-          <h2>{t("story.appshell_welcome")}</h2>
+          <h2>{t("story.appshell_title")}</h2>
           <p>{t("story.appshell_main_content")}</p>
           <p>{t("story.appshell_flexible_layout")}</p>
         </div>
@@ -426,7 +426,7 @@ export const Playground: Story = {
         }
       >
         <div>
-          <h2>{t("story.appshell_welcome")}</h2>
+          <h2>{t("story.appshell_title")}</h2>
           <p>{t("story.appshell_main_content")}</p>
         </div>
       </AppShell>

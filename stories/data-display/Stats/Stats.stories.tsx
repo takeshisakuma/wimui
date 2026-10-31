@@ -36,7 +36,7 @@ export const WithTrend: Story = {
       <Stats {...args}>
         <Stats.Label>{t('story.stats_revenue')}</Stats.Label>
         <Stats.Value>$45,231.89</Stats.Value>
-        <Stats.Trend direction="up">+20.1%</Stats.Trend>
+        <Stats.Trend direction="up">{t("story.trend_vs_last_month", { value: "+20.1%" })}</Stats.Trend>
       </Stats>
     );
   }
@@ -52,7 +52,7 @@ export const NegativeTrend: Story = {
       <Stats {...args}>
         <Stats.Label>{t('story.stats_conversion_rate')}</Stats.Label>
         <Stats.Value>3.2%</Stats.Value>
-        <Stats.Trend direction="down">-5%</Stats.Trend>
+        <Stats.Trend direction="down">{t("story.trend_vs_last_month", { value: "-5%" })}</Stats.Trend>
       </Stats>
     );
   }
@@ -67,7 +67,7 @@ export const RisingCost: Story = {
       <Stats {...args}>
         <Stats.Label>{t("story.stats_cloud_cost")}</Stats.Label>
         <Stats.Value>$12,480</Stats.Value>
-        <Stats.Trend direction="up" intent="danger">+18%</Stats.Trend>
+        <Stats.Trend direction="up" intent="danger">{t("story.trend_vs_last_month", { value: "+18%" })}</Stats.Trend>
       </Stats>
     );
   },

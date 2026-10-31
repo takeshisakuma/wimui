@@ -317,6 +317,7 @@
     "stats_desc_users": "+12.5% from last month",
     "stats_page_views": "Page Views",
     "stats_revenue": "Revenue",
+    "trend_vs_last_month": "{{value}} vs last month",
     "stats_total_users": "Total Users",
     "swipe_confirm_desc": "You clicked the \"{{action}}\" action.",
     "swipe_confirm_title": "Action Confirmed",

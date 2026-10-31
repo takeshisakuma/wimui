@@ -302,8 +302,8 @@
     "sign_in": "サインイン",
     "sign_in_google": "Googleでサインイン",
     "sign_up": "新規登録",
-    "subtitle": "詳細を入力してサインインしてください",
-    "title": "おかえりなさい"
+    "subtitle": "登録したメールアドレスを使ってください。",
+    "title": "ワークスペースにサインイン"
   },
   "maintenance": {
     "btn_notify": "通知を受け取る",
