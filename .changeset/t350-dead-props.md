@@ -2,6 +2,8 @@
 "wimui": minor
 ---
 
+**0.64.14 は npm に出していない。** その版の変更（字間のトークンの定義・`Spinner` / `Image` の飾りの svg・`TabBar` の `badge={0}`・`CodeDiffViewer` のファイル名）も、この版で初めて届く（下の 0.64.14 の節）。
+
 受け取るだけで何もしていなかった prop を整理した。
 
 - **破壊的変更**（0.x のため minor）: `PopoverContent` から `side` と `align` を外した。位置は以前から親の `Popover` の `placement`（例: `"top-start"`）で決まっていて、この 2 つは受け取っても無視されていた。渡している場合は消し、位置は `<Popover placement="…">` で指定する。
