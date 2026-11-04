@@ -57,6 +57,20 @@ const TableAsParagraphs = Extension.create({
 
 // ---- 読み込み ----
 
+const isInline = (node: JSONContent, schema: Schema) =>
+  node.type === "text" || (!!node.type && !!schema.nodes[node.type]?.isInline);
+
+/**
+ * 空の段落の直後に文字が続くなら、その空の段落を外す。@tiptap/markdown 3.32.2 以降は、スキーマに無いタスクの項目
+ * （`- [ ] task`）を「空の段落＋裸の文字」で返し、項目の先頭に空行が出る（3.32.0 までは裸の文字だけ。実測）。
+ * peer の範囲が両方を含むので、どちらの版でも同じ文書にする。
+ */
+const dropEmptyParagraphBeforeInline = (content: JSONContent[], schema: Schema): JSONContent[] =>
+  content.filter((child, i) => {
+    const next = content[i + 1];
+    return !(child.type === "paragraph" && !child.content?.length && next && isInline(next, schema));
+  });
+
 /**
  * スキーマに無い型（タスクリストなど）は中身だけ残し、無い装飾（format="markdown" の下線など）は外す。ツールバーに無い見出しの段（h4〜h6）は段落にする
  * （HTML の `<h4>` が段落になるのと同じ。そのまま渡すと Tiptap は h1 として描く）。
@@ -65,7 +79,10 @@ const fitToSchema = (node: JSONContent, schema: Schema): JSONContent[] => {
   if (node.type === "text") {
     return [{ ...node, marks: node.marks?.filter((mark) => !!schema.marks[mark.type]) }];
   }
-  const content = (node.content ?? []).flatMap((child) => fitToSchema(child, schema));
+  const content = dropEmptyParagraphBeforeInline(
+    (node.content ?? []).flatMap((child) => fitToSchema(child, schema)),
+    schema,
+  );
   if (!node.type || !schema.nodes[node.type]) return content;
   if (node.type === "heading" && ![1, 2, 3].includes(Number(node.attrs?.level))) {
     return [{ type: "paragraph", content }];
