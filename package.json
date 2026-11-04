@@ -616,7 +616,7 @@
     "@fullcalendar/interaction": "^6.0.0",
     "@fullcalendar/react": "^6.0.0",
     "@fullcalendar/timegrid": "^6.0.0",
-    "@hookform/resolvers": "^5.1.0 || ^6.0.0",
+    "@hookform/resolvers": "^5.1.0 || ^6.0.0 || ^7.0.0",
     "@tiptap/core": "^3.7.0",
     "@tiptap/extension-image": "^3.7.0",
     "@tiptap/extensions": "^3.7.0",
