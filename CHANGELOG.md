@@ -1,5 +1,12 @@
 # wimui
 
+## 0.65.1
+
+### Patch Changes
+
+- 7c4339c: `wimui/rhf` の optional peer `@hookform/resolvers` の範囲を `^5.1.0 || ^6.0.0 || ^7.0.0` に広げた。7.0.0 の破壊的変更は typebox リゾルバーだけで、`wimui/rhf` が使う zod リゾルバーには当たらない。開発とテストは 7 で行う。
+- d691a16: `RichTextEditor`: `format="markdown"` でタスクリスト（`- [ ] task`）を読んだとき、項目の先頭に空行が入らないようにした。@tiptap/markdown 3.32.2 以降で起きていた（3.32.0 までは起きない）。どちらの版でも、項目は文字だけの段落になる。
+
 ## 0.65.0
 
 ### Minor Changes
