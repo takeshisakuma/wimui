@@ -1,0 +1,25 @@
+{
+  "presets": {
+    "doc_title": "Presets",
+    "doc_intro": "Presets de tema são pequenos \"brand kits\": um atributo troca a forma (raio) e o acento de uma tela, sobreposto ao styles.css. Eles compõem com tema (claro/escuro) e densidade, e podem ser aplicados a uma subárvore — assim uma seção de marketing pode ter uma cara diferente do app ao redor. Presets só sobrescrevem tokens de papel; não adicionam novos tokens base.",
+    "usage_title": "Aplicando um preset",
+    "usage_desc": "Use a prop do WimProvider (recomendado) ou defina o atributo diretamente — mesmo contrato de tema e densidade.",
+    "list_title": "Presets integrados",
+    "list_desc": "O texto de acento (links) mantém contraste AA nos dois temas; os preenchimentos sólidos mantêm texto branco. O Minimal muda apenas a forma e mantém o acento padrão.",
+    "extend_title": "Adicionando o seu",
+    "extend_desc": "Presets são gerados a partir de tokens/presets/*.json (raio + acentos referenciados do PCCS) em uma camada CSS [data-wim-preset] pelo npm run tokens:build. Adicione um arquivo, rebuild, e ele aparece em WIM_PRESETS e no tipo de preset.",
+    "showcase_title": "Predefinições de tema",
+    "showcase_desc": "Um único atributo troca forma e cor de destaque. As predefinições se combinam com tema e densidade, e podem ser aplicadas a qualquer subárvore.",
+    "showcase_label_default": "Padrão",
+    "desc_none": "A aparência entregue em styles.css.",
+    "desc_minimal": "Cantos vivos e ênfase contida. Mantém a cor de destaque padrão.",
+    "desc_soft": "Formas arredondadas e acolhedoras, com um destaque violeta sereno.",
+    "desc_bold": "Raio marcante e um destaque vermelho de alto impacto.",
+    "sample_primary": "Primária",
+    "sample_secondary": "Secundária",
+    "sample_badge": "Novo",
+    "sample_input_label": "Nome do espaço de trabalho",
+    "sample_link": "Ler a documentação",
+    "sample_switch": "Resumo semanal"
+  }
+}

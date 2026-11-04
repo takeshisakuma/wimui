@@ -1,0 +1,32 @@
+{
+  "withai": {
+    "title": "Usando o wimui com IA",
+    "intro": "O wimui inclui um mapa legível por máquina de toda a biblioteca para que agentes de código com IA (Cursor, Claude Code, v0, ChatGPT, …) gerem telas reais do wimui — com os imports corretos, o contrato de CSS obrigatório e as regras de composição que evitam que as telas pareçam geradas por IA — em vez de adivinhar. Aponte seu agente para os arquivos abaixo e ele compõe a partir da superfície de API real, não de uma alucinada.",
+    "files_title": "Dois arquivos",
+    "files_desc": "Ambos são gerados a partir das mesmas fontes de verdade deste Storybook (catálogo, props do docgen, tokens, regras de composição) e regerados a cada release.",
+    "files_h_file": "Arquivo",
+    "files_h_use": "Quando usar",
+    "concise_use": "Autossuficiente: contrato de setup, caminhos de import, regras de composição e o catálogo completo de componentes. Pequeno o bastante para colar inteiro ou manter sempre no contexto do agente. Comece por aqui.",
+    "full_use": "Tudo embutido: props por componente vindas do docgen, receitas prontas para colar (setup / tela composta / auth / configurações) e as regras de composição completas. Use quando o agente precisar escrever código real.",
+    "urls_title": "Onde obtê-los",
+    "urls_desc": "Hospedado (acompanha a main — pode conter mudanças ainda não publicadas) ou resolvido a partir do pacote instalado (a versão exata que você instalou):",
+    "urls_public_label": "Hospedado (URL pública — acompanha a main)",
+    "urls_npm_label": "A partir do pacote instalado (export por subpath)",
+    "prompts_title": "Prompts para copiar e colar",
+    "prompts_desc": "Dê o arquivo ao agente e então peça uma tela. O texto do prompt abaixo está intencionalmente em inglês — os agentes o leem diretamente; o que importa são as URLs e os caminhos de import.",
+    "prompt_generic_title": "Qualquer agente ou chat (cole o arquivo e então peça)",
+    "prompt_cursor_title": "Cursor",
+    "prompt_cursor_desc": "Adicione o llms.txt hospedado como Doc (@Docs → Add new doc), ou coloque o llms-full.txt no repositório e referencie com @. Então:",
+    "prompt_claude_title": "Claude Code",
+    "prompt_claude_desc": "Baixe o arquivo localmente primeiro e aponte o Claude Code para ele. Ler direto de uma URL passa por uma busca que resume o conteúdo, então um arquivo de 3.000 linhas pode não entrar no contexto na íntegra. Se o wimui já estiver instalado, leia node_modules/wimui/dist/llms-full.txt:",
+    "prompt_v0_title": "v0 / ChatGPT / outras UIs de chat",
+    "prompt_v0_desc": "Cole o llms.txt conciso no topo da conversa e então descreva a tela. Para código real, cole o llms-full.txt no lugar.",
+    "includes_title": "O que o agente recebe",
+    "includes_desc": "Para não ter que adivinhar:",
+    "inc_setup": "O contrato de CSS obrigatório (styles.css) e o setup (WimProvider, tema, densidade).",
+    "inc_imports": "Os caminhos de import corretos — barrel raiz vs. subpath de categoria vs. subpaths de peer opcional (wimui/rhf, wimui/ai/streaming-text, …).",
+    "inc_catalog": "O catálogo completo de componentes com descrições e (no llms-full.txt) props reais vindas do docgen.",
+    "inc_composition": "As regras de composição anti-genéricas — as mesmas que este projeto segue para evitar telas com cara de IA.",
+    "note_version": "Os arquivos hospedados são reimplantados a cada push na main, portanto podem estar à frente da release mais recente no npm. O subpath do pacote corresponde à versão exata que você instalou — fixe-a para gerações reproduzíveis."
+  }
+}

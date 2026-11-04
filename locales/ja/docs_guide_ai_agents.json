@@ -1,0 +1,32 @@
+{
+  "withai": {
+    "title": "AI とともに wimui を使う",
+    "intro": "wimui はライブラリ全体の機械可読なマップを同梱しています。これにより AI コーディングエージェント（Cursor / Claude Code / v0 / ChatGPT など）は、推測ではなく実際の API から、正しい import・必須の CSS 契約・AI っぽい画面を避けるための合成ルールに従って、本物の wimui 画面を生成できます。以下のファイルをエージェントに渡すだけで、幻覚ではない実在の API サーフェスから組み立てられます。",
+    "files_title": "2 つのファイル",
+    "files_desc": "どちらもこの Storybook と同じ信頼できる情報源（カタログ・docgen の props・トークン・合成ルール）から生成され、リリースごとに再生成されます。",
+    "files_h_file": "ファイル",
+    "files_h_use": "使いどころ",
+    "concise_use": "これ 1 本で完結します（セットアップ契約・import パス・合成ルール・全コンポーネント一覧）。全文を貼っても、エージェントの常時コンテキストに入れても収まる小ささ。まずはここから。",
+    "full_use": "すべてを展開: docgen 由来のコンポーネント別 props、そのまま貼れるレシピ（setup / 合成画面 / 認証 / 設定）、合成ルール全文。エージェントに実コードを書かせるときに使う。",
+    "urls_title": "入手先",
+    "urls_desc": "ホスト版（main を追随。未リリースの変更を含むことがあります）か、インストール済みパッケージから解決（入れたバージョンそのもの）:",
+    "urls_public_label": "ホスト版（公開 URL・main を追随）",
+    "urls_npm_label": "インストール済みパッケージから（サブパス export）",
+    "prompts_title": "コピペ用プロンプト",
+    "prompts_desc": "エージェントにファイルを渡してから画面を頼みます。下のプロンプト本文は意図的に英語です（エージェントは直接読めるため）。重要なのは URL と import パスです。",
+    "prompt_generic_title": "任意のエージェント / チャット（ファイルを貼ってから頼む）",
+    "prompt_cursor_title": "Cursor",
+    "prompt_cursor_desc": "ホスト版 llms.txt を Doc として追加（@Docs → Add new doc）するか、llms-full.txt をリポジトリに置いて @ で参照します。その上で:",
+    "prompt_claude_title": "Claude Code",
+    "prompt_claude_desc": "先にローカルへ落として、そのファイルを読ませてください。URL から直接読ませると要約を挟む取得経路を通るため、3,000 行規模のファイルは全文がそのままコンテキストに入るとは限りません。wimui を導入済みなら node_modules/wimui/dist/llms-full.txt を読ませるのが確実です:",
+    "prompt_v0_title": "v0 / ChatGPT / その他のチャット UI",
+    "prompt_v0_desc": "会話の先頭に簡潔版 llms.txt を貼り、画面を説明します。実コードが必要なら代わりに llms-full.txt を貼ってください。",
+    "includes_title": "エージェントが受け取るもの",
+    "includes_desc": "推測せずに済むように:",
+    "inc_setup": "必須の CSS 契約（styles.css）とセットアップ（WimProvider・テーマ・密度）。",
+    "inc_imports": "正しい import パス — ルートバレル / カテゴリサブパス / optional-peer サブパス（wimui/rhf・wimui/ai/streaming-text など）の使い分け。",
+    "inc_catalog": "説明付きの全コンポーネントカタログ、そして（llms-full.txt では）docgen 由来の実 props。",
+    "inc_composition": "AI っぽさを避ける合成ルール — このプロジェクト自身が従っているものと同じ。",
+    "note_version": "ホスト版は main への push ごとに再デプロイされるため、npm の最新リリースより先行することがあります。パッケージのサブパスはインストールしたバージョンそのものに一致するため、再現可能な生成にはそれを固定してください。"
+  }
+}
