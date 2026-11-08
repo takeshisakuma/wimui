@@ -239,6 +239,22 @@ Ant Design・Mantine・shadcn/ui・MUI の部品一覧（各 llms.txt から取�
 | # | 項目 | 優先 | 内容 | 検証方法 |
 |---|---|---|---|---|
 
+### Astryx との突き合わせ（2026-11-09 起票）
+
+Meta の Astryx（[github.com/meta/astryx](https://github.com/meta/astryx)・[部品一覧](https://astryx.atmeta.com/components)。MIT・React 19・StyleX）の部品一覧と README の要約を、`src/data/components.json` と `src/hooks/` に突き合わせた結果。**大半は既存と重なる**（Typeahead→Combobox・Tokenizer→TagInput・Metadata List→DescriptionList・Power Search→SmartSearchInput / QueryBuilder・Resize Handle→Splitter・Alert Dialog→`Dialog` の `role="alertdialog"`・列幅変更→DataGrid）。**起票時点で読んだのは一覧と README の要約だけで、Astryx の実装と文書は読んでいない** ── どの行も、最初の一手は「Astryx の該当部品の実装と docs を読み、WIM の規約（`docs/design/composition.md`・`docs/rules/implementation.md`）に合うかを決める」。起票しなかったもの: Status Dot（Indicator / Presence と重なる）・Timer（Countdown の逆向き。需要が出たら Countdown の mode で）・Top Nav Mega Menu（需要待ち）。採らないもの: 「Guidance over enforcement」（渡された値をそのまま描き、意見は文書に置く）は WIM の `default_anatomy` と逆の方針なので取り入れない。
+
+| # | 項目 | 優先 | 内容 | 検証方法 |
+|---|---|---|---|---|
+| T361 | **Overflow List（入る分だけ並べ、残りを「+N」にまとめる）** | 未着手（P2） | Tag の列・Breadcrumb・Toolbar・AvatarGroup が同じ「幅に収まらない分を畳む」仕組みを要る。部品より先に、共通のプリミティブ（測る・畳む・残りをメニューで出す）として持てるかを見る。既存の部品が今それぞれどう畳んでいるか（畳んでいないか）を先に数える | 幅を変えるストーリーで、畳んだ数と「+N」の数が一致すること・畳んだ項目にキーボードで届くこと（E2E）・VRT |
+| T362 | **Table / DataGrid の一括操作バー（Table Selection Toolbar）** | 未着手（P2） | 行を選んだあとに出る「n 件を選択中・操作・選択の解除」のバー。選択の機能はあるが、その受け皿が無く、使う側が毎回組む。件数の告知は T367 と同じ仕組みに乗せる | 選択数の変化が読み上げられること（実機）・a11y・VRT |
+| T363 | **ChatUI のツール呼び出し・システムメッセージ・メタデータの表示** | 未着手（P2） | Astryx の Chat Tool Calls / Chat System Message / Chat Message Metadata に当たるものが ChatUI に無い（`ChatUI.tsx` に tool の扱いが無いことを grep で確認）。ThoughtProcess・AgentStatus との役割の切り分けを先に決める | ストーリー化して a11y・VRT・`judge:slop` |
+| T364 | **Info Tip（(i) アイコン + Tooltip の組み合わせ）** | 未着手（P3） | 使う側が自作すると、引き金がボタンでない・名前が無い、で a11y を落としやすい組み合わせ。部品にせず Tooltip のレシピで足りるかも含めて判断する（`docs/rules/implementation.md` のレシピか公開かの基準） | 引き金にフォーカスが届き名前があること（a11y）・Esc で閉じること（E2E） |
+| T365 | **Selectable Card / Clickable Card** | 未着手（P3） | カード全体を押せるようにしつつ、中のリンクやボタンも生かす作り（入れ子の対話要素を作らない）。Card に今その機能は無い。選べるカードは RadioGroup / CheckboxGroup との関係を先に決める | 入れ子の対話要素が無いこと（axe）・中のボタンが独立して押せること（E2E）・VRT |
+| T366 | **キー操作のフックを 1 か所にまとめる（一覧・グリッド・ツリー）** | 未着手（P3） | Astryx は `useListFocus` / `useGridFocus` / `useTreeFocus` を公開している。WIM は TreeView・DataGrid・Menu・Tabs などがそれぞれ矢印キーの移動を書いている。まず何か所で書いているかを数え、内部の共通化（公開するかは別判断）にするかを決める | 置き換えた部品の既存のキー操作の E2E が全部緑のまま |
+| T367 | **`useAnnounce`（読み上げの告知を 1 本のフックに）** | 未着手（P2） | 告知は「先に在る status 領域の文字を書き換える」形でしか読まれない（実機で確認済み・28 部品中 11 が外れていた）。それをフックにして、部品ごとに書かない構造にする。T353 の 8 か所はこのフックの最初の使い手になりうるので、T353 の判断と一緒に見る | 置き換えた部品をナレーター + Chrome で聞いてもらう（axe の緑では足りない） |
+| T368 | **入れた版に合った情報をエージェントに返す仕組み（CLI）** | 判断待ち | Astryx は `astryx docs` / `astryx component --list` で、インストールした版の部品情報を返す。WIM の llms.txt は最新版の内容なので、古い版を入れた利用者とずれる。以前の A/B 測定で価値が出たのは API の正しさ（コンパイルが通るか）だったので、そこを強める。候補: ①tarball に llms.txt を同梱して版と一致させる（安い）②`bin` を持つ CLI（高い・公開面が増える）。swizzle（部品のソースを書き出す）とテーマの別パッケージ配布も、CLI を持つなら同じ判断に載る | ①なら、Version PR の状態で同梱の llms.txt の版が package.json と一致すること（リリース PR の経路で鳴らす） |
+| T369 | **Astryx の "vibe tests" を読む** | 未着手（P3・調査） | リポジトリの `internal/` にある内部テスト。名前からは見た目の質の判定に見え、`judge:slop` と比べる価値がある。読んで、取り入れる点があれば別の行に起票する | 調査の結論をこの行に書く |
+
 ### コンポーネント追加の検討（2026-09-28 起票）
 
 ユーザーが持ち込んだ 5 候補（Swipeable List / Pivot Table / Rich Text Editor / Org Chart / Choropleth Map）を既存の部品と突き合わせた結果。**3 つは既存と重なっていた**（SwipeAction / RichTextEditor / NodeGraph・TreeView）。Choropleth Map は「採らない」と決めて `src/data/not-planned.json` と DESIGN.md「採らないチャート」に載せた（地図データの同梱が国境の政治的立場とサイズを負うこと・面積が値の大きさと一致しないこと。代わりは並べ替えた `BarChart`）。着手順は T275 → T276 → T277 → T278 → T279（T278 は 2026-09-28 にユーザー判断で ⓑ Tiptap に決定）。
