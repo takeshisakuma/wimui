@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import React from "react";
 import { ALL_NAMESPACES } from "../../i18nConstants";
-import { Button, Input, Label, Popover, PopoverContent, PopoverTrigger } from "wimui";
+import { Button, Group, IconButton, Input, Label, Popover, PopoverContent, PopoverTrigger, Text } from "wimui";
 
 
 const meta: Meta<typeof Popover> = {
@@ -240,4 +240,46 @@ export const Placement: Story = {
       </div>
     );
   },
+};
+
+/**
+ * Info Tip（(i) のアイコンで補足を出す）のレシピ（T364）。部品にはせず、IconButton と Popover で組む:
+ * - 名前は IconButton の `aria-label`（型で必須）。開いた面は、その名前で `dialog` として読まれる
+ * - 押せる大きさは IconButton の `size` が持つ（Tooltip の引き金は padding 0 で、アイコンの大きさがそのまま押せる範囲になる）
+ * - タップでも開く。Tooltip はホバーとフォーカスでしか開かないので、タッチ端末では補足に届かない
+ * - Esc と外側のクリックで閉じ、フォーカスはアイコンへ戻る（Popover の既定）
+ */
+function InfoTipExample({ defaultOpen }: { defaultOpen?: boolean }) {
+  const { t } = useTranslation(ALL_NAMESPACES);
+  return (
+    <Group gap="2xs" align="center">
+      <Text>{t("story.popover_infotip_price")}</Text>
+      <Popover defaultOpen={defaultOpen} placement="bottom-start">
+        <PopoverTrigger asChild>
+          <IconButton
+            iconName="InfoCircleIcon"
+            variant="ghost"
+            size="sm"
+            aria-label={t("story.popover_infotip_label")}
+          />
+        </PopoverTrigger>
+        <PopoverContent>
+          <Text size="sm">
+            {t("story.popover_infotip_body")}
+          </Text>
+        </PopoverContent>
+      </Popover>
+    </Group>
+  );
+}
+
+export const InfoTip: Story = {
+  render: () => <InfoTipExample />,
+};
+
+/**
+ * 開いた姿（VRT と a11y に、開いた面を写すため）。docs ページには載せない（`defaultOpen` はページを開いた瞬間に開く）。
+ */
+export const InfoTipOpen: Story = {
+  render: () => <InfoTipExample defaultOpen />,
 };

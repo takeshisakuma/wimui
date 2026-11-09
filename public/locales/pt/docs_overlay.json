@@ -497,7 +497,10 @@
     "tour_long_desc": "Um componente de guia para orientar os usuários pelas funcionalidades ou operações da tela.",
     "tour_title": "Tour Guiado",
     "tour_usage_desc": "Especifique seletores de elementos, títulos e descrições para cada etapa na prop `steps`. Controle a visibilidade do tour com a prop `open`.",
-    "contextmenu_table_row_usage": "Em uma linha de tabela, passe asChild para que o gatilho seja mesclado no <tr> em vez de colocar uma div dentro de tbody:"
+    "contextmenu_table_row_usage": "Em uma linha de tabela, passe asChild para que o gatilho seja mesclado no <tr> em vez de colocar uma div dentro de tbody:",
+    "tooltip_best_practice_infotip": "Para um ícone (i) cuja única função é mostrar uma explicação (um Info Tip), use um IconButton com um Popover (veja o exemplo Info Tip na página do Popover). O Tooltip só abre com hover e foco, então nunca abre em tela de toque, e o gatilho não tem espaçamento, então a área de toque é só o ícone.",
+    "popover_infotip_title": "Info Tip",
+    "popover_infotip_desc": "Um ícone (i) que mostra uma explicação curta. Monte com um IconButton (o aria-label dá nome ao ícone e ao diálogo aberto; o size define a área de toque) e um Popover (abre com clique e toque, fecha com Esc ou clique fora e devolve o foco ao ícone). O que o leitor precisa saber fica na própria página; o Info Tip só complementa."
   },
   "overlay": {
     "attn_full": "Atrai completamente a atenção do usuário.",

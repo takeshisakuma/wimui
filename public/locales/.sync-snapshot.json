@@ -10718,7 +10718,10 @@
       "tour_title": "Sequential guided walkthroughs to onboard users or highlight features",
       "tour_usage_desc": "Specify element selectors, titles, and descriptions for each step in the `steps` prop. Control the tour visibility with the `open` prop.",
       "contextmenu_best_practice_3": "Wrapping a table row requires asChild. Without it the trigger renders a div directly inside tbody, which is invalid HTML and breaks the column layout.",
-      "contextmenu_table_row_usage": "On a table row, pass asChild so the trigger merges onto the <tr> instead of putting a <div> under <tbody>:"
+      "contextmenu_table_row_usage": "On a table row, pass asChild so the trigger merges onto the <tr> instead of putting a <div> under <tbody>:",
+      "tooltip_best_practice_infotip": "For an (i) icon whose only job is to reveal an explanation (an Info Tip), use an IconButton with a Popover instead (see the Info Tip example on the Popover page). A Tooltip opens only on hover and focus, so it never opens on a touch screen, and its trigger has no padding, so the icon alone is the target.",
+      "popover_infotip_title": "Info Tip",
+      "popover_infotip_desc": "An (i) icon that reveals a short explanation. Build it from an IconButton (its aria-label names the icon and the opened dialog; its size sets the target) and a Popover (opens on click and tap, closes on Escape or an outside click, and returns focus to the icon). Keep anything the reader must know in the page itself; the tip only adds to it."
     },
     "overlay": {
       "attn_full": "Attracts user attention completely.",
@@ -12585,7 +12588,10 @@
       "transition_show_content": "Show Content",
       "transition_show_slide": "Expand Slide Content",
       "transition_slide_content": "Slide!",
-      "overlay_variant_glass": "Glass"
+      "overlay_variant_glass": "Glass",
+      "popover_infotip_price": "€34.80 incl. VAT",
+      "popover_infotip_label": "About this price",
+      "popover_infotip_body": "Shipping (€5.50) is not included. You will see the total on the next step, before you pay."
     }
   },
   "docs_stories_recipes": {

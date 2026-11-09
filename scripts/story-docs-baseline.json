@@ -189,6 +189,7 @@
     "stories/overlay/HoverCard/HoverCard.stories.tsx::Placements",
     "stories/overlay/Menu/Menu.stories.tsx::WithDisabledItems",
     "stories/overlay/Popconfirm/Popconfirm.stories.tsx::Open",
+    "stories/overlay/Popover/Popover.stories.tsx::InfoTipOpen",
     "stories/typography/Code/Code.stories.tsx::LongContent",
     "stories/typography/Highlight/Highlight.stories.tsx::AsChild",
     "stories/typography/Kbd/Kbd.stories.tsx::AsChild",
