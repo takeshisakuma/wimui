@@ -497,7 +497,10 @@
     "tour_long_desc": "ユーザーに機能の使い方や画面の操作方法を案内するためのガイドコンポーネント。",
     "tour_title": "操作ガイド/ウォークスルー",
     "tour_usage_desc": "`steps` プロップにターゲットとなる要素のセレクタ、タイトル、説明文を指定します。`open` プロップでツアーの表示/非表示を制御します。",
-    "contextmenu_table_row_usage": "表の行では asChild を渡す。トリガーが tbody の直下に div を出す代わりに、<tr> 側へマージされる:"
+    "contextmenu_table_row_usage": "表の行では asChild を渡す。トリガーが tbody の直下に div を出す代わりに、<tr> 側へマージされる:",
+    "tooltip_best_practice_infotip": "説明を出すためだけの (i) アイコン（Info Tip）には、Tooltip ではなく IconButton と Popover を使う（Popover のページの Info Tip の例）。Tooltip はホバーとフォーカスでしか開かないのでタッチ画面では開かず、引き金に余白が無いので、アイコンの大きさがそのまま押せる範囲になる。",
+    "popover_infotip_title": "Info Tip",
+    "popover_infotip_desc": "短い説明を出す (i) アイコン。IconButton（aria-label がアイコンと開いた dialog の名前になり、size が押せる大きさを決める）と Popover（クリックとタップで開き、Esc か外側のクリックで閉じ、フォーカスをアイコンへ戻す）で組む。読み手が必ず知るべきことはページ本体に書き、Info Tip は補うだけにする。"
   },
   "overlay": {
     "attn_full": "ユーザーの注意を完全に引きつける。",

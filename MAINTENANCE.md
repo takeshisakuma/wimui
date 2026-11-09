@@ -407,6 +407,7 @@ git branch -vv | grep ": gone]"   # 追跡先が消えたローカルブラン�
 - 実機のスクリーンリーダーで、まだ聞いていない部品（**人の手が要る**）。2026-10-12 にナレーター + Chrome で 28 部品を聞いた（下の表）。残り: Dropdown / Menubar / ContextMenu / TreeView / Tooltip / Popover / CommandPalette / MultiSelect / DatePicker / Cascader / TreeSelect。聞けるストーリーが無いもの: Alert が「あとから現れる」とき・Autosave が切り替わるとき（切り替わるストーリーを足せば聞ける）。**外れが出やすいのは、押してもフォーカスが動かず、中身だけが変わる操作**（28 部品中の外れ 11 のうち 8）
 - keyframes の `transform` が `var()` を使い、その変数に、修飾子によっては transform の関数でない値を入れている箇所（変更のときに気づいた・2026-11-09）。HoverCard の `alignLeft` だけ `--base-transform` に長さ（`8px`）を入れ、keyframes の `var(--base-transform) scale(0.95)` が無効になって、アニメーション中は `transform: none` になっていた（ほかの 4 配置は正しい）。**終わった姿は正しいので、VRT にも a11y にも写らない**。測り方: SCSS で keyframes の中の `var(--x)` を拾い、同じ変数に入れている値を修飾子ごとに並べる → 疑わしいものは、`animation-duration` を伸ばした Storybook で途中の computed style を読む（`none` になるか）
 - 2026-11-09 の回は、機械で測る候補が無かった（上の 1 行は、この回の途中で足したので次の回）
+- 文を入れる面が、文の長さのまま 1 行に伸びる（変更のときに気づいた・T364・2026-11-09）。Popover の面は `width: max-content`・上限は画面幅で、Info Tip の 88 文字の補足が 1280px で幅 594px の 1 行になった。`width: max-content` を持つ面は 7 ファイル（Popover / HoverCard / DatePicker / TreeSelect / Terminal / FloatButton / SegmentedControl。後ろの 3 つは文を入れる面ではないかもしれない）。測り方: 開いた面に 200 文字の文を入れ、1280px で 1 行の文字数と面の幅を数える。外れの基準（何文字で折り返すべきか）は先に決める
 
 **測り終えた観点の分け先**（2026-10-10・ユーザーとの相談で決めた）。観点は、基本的に 1 回きりの掃除である。直したあとに同じ手順を隔週で流し直しても、ほぼ毎回 0 件になる。**毎回流す価値があるものは、人ではなく CI に流させる。** 測り終えたら、次の 3 つのどれかに分ける。
 
