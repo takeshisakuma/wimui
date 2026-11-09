@@ -3,6 +3,7 @@ import { useMergedRef } from "@/hooks/useMergedRef";
 import classNames from "classnames";
 import { Slot } from "@radix-ui/react-slot";
 import type { ComponentSizeBasic } from "@/types/tokens";
+import { getRovingIndex } from "../../_internal/rovingIndex";
 import localStyles from "./toolbar.module.scss";
 
 export type ToolbarProps = React.ComponentPropsWithoutRef<"div"> & {
@@ -161,27 +162,16 @@ const ToolbarRoot = React.forwardRef<HTMLDivElement, ToolbarProps>(
       const currentIndex = items.indexOf(document.activeElement as HTMLElement);
       if (currentIndex < 0) return;
 
-      const horizontal = orientation === "horizontal";
-      const nextKey = horizontal ? "ArrowRight" : "ArrowDown";
-      const prevKey = horizontal ? "ArrowLeft" : "ArrowUp";
+      // 主軸の矢印だけ（T366。計算は rovingIndex）。無効の要素は getItems が除いている
+      const nextIndex = getRovingIndex({
+        key: event.key,
+        current: currentIndex,
+        count: items.length,
+        orientation,
+      });
+      if (nextIndex === null) return;
 
-      let nextIndex = currentIndex;
-      if (event.key === nextKey) {
-        event.preventDefault();
-        nextIndex = (currentIndex + 1) % items.length;
-      } else if (event.key === prevKey) {
-        event.preventDefault();
-        nextIndex = (currentIndex - 1 + items.length) % items.length;
-      } else if (event.key === "Home") {
-        event.preventDefault();
-        nextIndex = 0;
-      } else if (event.key === "End") {
-        event.preventDefault();
-        nextIndex = items.length - 1;
-      } else {
-        return;
-      }
-
+      event.preventDefault();
       event.stopPropagation();
       items[nextIndex]?.focus();
     };

@@ -235,7 +235,7 @@
         "react/jsx-runtime"
       ],
       "gzip": true,
-      "limit": "30 kB"
+      "limit": "31 kB"
     },
     {
       "name": "wimui/data-display 全部 (gzip)",

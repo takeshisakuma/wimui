@@ -4,6 +4,7 @@ import { Slot, Slottable } from "@radix-ui/react-slot";
 import { useIndicator } from "../../_internal/useIndicator";
 import { useMergedRef } from "../../../hooks/useMergedRef";
 import { ComponentSizeBasic } from "../../../types/tokens";
+import { getRovingIndex, isRovingKey } from "../../_internal/rovingIndex";
 import styles from "./tab-navigation.module.scss";
 
 export interface TabNavigationProps extends React.ComponentPropsWithoutRef<"nav"> {
@@ -40,8 +41,7 @@ const TabNavigation = React.forwardRef<HTMLElement, TabNavigationProps>(
     });
 
     const handleTablistKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
-      const keys = ["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Home", "End"];
-      if (!keys.includes(e.key)) return;
+      if (!isRovingKey(e.key)) return;
 
       e.preventDefault();
 
@@ -55,16 +55,9 @@ const TabNavigation = React.forwardRef<HTMLElement, TabNavigationProps>(
       const currentIndex = tabs.indexOf(document.activeElement as HTMLElement);
       if (currentIndex === -1) return;
 
-      let nextIndex: number;
-      if (e.key === "ArrowRight" || e.key === "ArrowDown") {
-        nextIndex = (currentIndex + 1) % tabs.length;
-      } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
-        nextIndex = (currentIndex - 1 + tabs.length) % tabs.length;
-      } else if (e.key === "Home") {
-        nextIndex = 0;
-      } else {
-        nextIndex = tabs.length - 1;
-      }
+      // 無効のタブは上で除いてあるので、ここは位置の計算だけ（T366）
+      const nextIndex = getRovingIndex({ key: e.key, current: currentIndex, count: tabs.length });
+      if (nextIndex === null) return;
 
       const nextTab = tabs[nextIndex];
       nextTab.focus();

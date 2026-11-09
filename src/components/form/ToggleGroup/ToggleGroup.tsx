@@ -6,6 +6,7 @@ import { useIndicator } from "../../_internal/useIndicator";
 import { useMergedRef } from "../../../hooks/useMergedRef";
 import { FieldTemplate } from "../FieldTemplate/FieldTemplate";
 import { ComponentSizeBasic } from "../../../types/tokens";
+import { getRovingIndex, isRovingKey } from "../../_internal/rovingIndex";
 import styles from "./toggle-group.module.scss";
 
 export type Option = {
@@ -153,35 +154,16 @@ export const ToggleGroup = forwardRef<HTMLDivElement, ToggleGroupProps>(({
     return currentValue === optionValue;
   };
 
-  const findNextIndex = (current: number, direction: 1 | -1): number => {
-    for (let i = 1; i <= options.length; i++) {
-      const next = (current + direction * i + options.length) % options.length;
-      if (!options[next].disabled) return next;
-    }
-    return current;
-  };
-
   const handleKeyDown = (currentIndex: number, e: React.KeyboardEvent) => {
-    let newIndex: number | null = null;
-
-    if (e.key === "ArrowRight" || e.key === "ArrowDown") {
-      e.preventDefault();
-      newIndex = findNextIndex(currentIndex, 1);
-    } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
-      e.preventDefault();
-      newIndex = findNextIndex(currentIndex, -1);
-    } else if (e.key === "Home") {
-      e.preventDefault();
-      newIndex = firstNonDisabledIndex >= 0 ? firstNonDisabledIndex : null;
-    } else if (e.key === "End") {
-      e.preventDefault();
-      for (let i = options.length - 1; i >= 0; i--) {
-        if (!options[i].disabled) {
-          newIndex = i;
-          break;
-        }
-      }
-    }
+    if (!isRovingKey(e.key)) return;
+    e.preventDefault();
+    // 無効の項目は飛ばす（T366。計算は rovingIndex）
+    const newIndex = getRovingIndex({
+      key: e.key,
+      current: currentIndex,
+      count: options.length,
+      isDisabled: (i) => !!options[i].disabled,
+    });
 
     if (newIndex !== null && newIndex !== currentIndex) {
       setFocusedIndex(newIndex);
