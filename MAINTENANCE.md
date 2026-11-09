@@ -26,7 +26,7 @@ minor / patch はグループ PR をマージしてよい（`AGENTS.md` の委�
 
 ### 2. ブロック中の依存を、版番号ではなく**ブロッカーの実体**で再確認する
 
-**最後に実体で確認した日: 2026-11-02**（2026-10-31 から、版も宣言も 1 つも動いていない。以下は 2026-10-31 の記録: どれも解けていない: `eslint-plugin-jsx-a11y` 6.10.2 は `^9` まで・`eslint-plugin-react` 7.37.5 は `^9.7` まで（eslint の `latest` は 10.14.0、9 は `maintenance` タグの 9.39.5）・`typescript-eslint` 8.72.1 は `<6.1.0`（TS の `latest` は 7.0.2）・`@tiptap/markdown` 3.32.2 は `marked: ^17.0.1`・FullCalendar のプラグイン 3 つは 6.1.22（core と react は 7.1.3）・`@storybook/addon-mcp` 10.6.5 の `get instructions()` は今も `buildServerInstructions` だけを返す。以下は前回の記録。2026-10-09: 2026-10-09 は宣言を読み直しただけで、どれも解けていない。`eslint` 10 は、peer を外して実際に流した ── 下の注記。以下は 2026-10-07 の記録: `vitest` 5 が解けていたので上げた ── 下の「解除したもの」。`eslint` 10・`typescript` 7・FullCalendar 7・`marked` 18 は解けていない。addon-mcp の行は 2026-10-02 の実測のまま）。**確認は `npm view <ブロッカー> peerDependencies` で、
+**最後に実体で確認した日: 2026-11-09**（どれも解けていない。動いた版は、宣言の変わらないものだけ: `@tiptap/markdown` 3.33.0 も `marked: ^17.0.1`・FullCalendar の core と react が 7.1.4（プラグイン 3 つは 6.1.22 のまま）・`@storybook/addon-mcp` 10.6.6 の `get instructions()` も `buildServerInstructions` だけを返す（tgz を展開して `dist/preset.js` を読んだ）。eslint の 2 プラグイン・`typescript-eslint` 8.72.1 は版も宣言も 10-31 と同じ。2026-11-02 は、10-31 から 1 つも動いていなかった。以下は 2026-10-31 の記録: どれも解けていない: `eslint-plugin-jsx-a11y` 6.10.2 は `^9` まで・`eslint-plugin-react` 7.37.5 は `^9.7` まで（eslint の `latest` は 10.14.0、9 は `maintenance` タグの 9.39.5）・`typescript-eslint` 8.72.1 は `<6.1.0`（TS の `latest` は 7.0.2）・`@tiptap/markdown` 3.32.2 は `marked: ^17.0.1`・FullCalendar のプラグイン 3 つは 6.1.22（core と react は 7.1.3）・`@storybook/addon-mcp` 10.6.5 の `get instructions()` は今も `buildServerInstructions` だけを返す。以下は前回の記録。2026-10-09: 2026-10-09 は宣言を読み直しただけで、どれも解けていない。`eslint` 10 は、peer を外して実際に流した ── 下の注記。以下は 2026-10-07 の記録: `vitest` 5 が解けていたので上げた ── 下の「解除したもの」。`eslint` 10・`typescript` 7・FullCalendar 7・`marked` 18 は解けていない。addon-mcp の行は 2026-10-02 の実測のまま）。**確認は `npm view <ブロッカー> peerDependencies` で、
 宣言の実物を読む** ── 「まだ無理だろう」で飛ばすと、解けたことに気づかないまま何か月も止まる。
 実際この日、`i18next-http-backend` は**解けていた**（`storybook-react-i18next` の peer が `^2 || ^3` から
 `^2 || ^3 || ^4` へ動いていた。メモには「2026-07-06 再確認、変化なし」と書いたまま放置されていた）。
@@ -151,7 +151,9 @@ for (const n of Object.keys(pkg.scripts).filter(k=>/^(check|audit)/.test(k))) {
 }'
 ```
 
-**2026-10-31 時点の実測**: CI で走る **86 件** ／ lint-staged だけ **0 件** ／ 失敗できない **0 件** ／ どこからも呼ばれない **1 件**（`check:skills-mirror`）。架空の `check:zzz-fake` を足した版で「どこからも呼ばれない」に出ることを先に確かめた。
+**2026-11-09 時点の実測**: CI で走る **87 件** ／ lint-staged だけ **0 件** ／ 失敗できない **0 件** ／ どこからも呼ばれない **1 件**（同じ `check:skills-mirror`）。架空の `check:zzz-fake` を足した版で「どこからも呼ばれない」に出ることを先に確かめた。
+
+**旧: 2026-10-31 時点の実測**: CI で走る **86 件** ／ lint-staged だけ **0 件** ／ 失敗できない **0 件** ／ どこからも呼ばれない **1 件**（`check:skills-mirror`）。架空の `check:zzz-fake` を足した版で「どこからも呼ばれない」に出ることを先に確かめた。
 
 **旧: 2026-09-29 時点の実測**: CI で走る **81 件** ／ lint-staged だけ **0 件** ／ 失敗できない **0 件** ／ どこからも呼ばれない **1 件**（同じ `check:skills-mirror`。架空の `check:zzz-fake` を足すと「どこからも呼ばれない」に出ることを確かめてから数えた）。
 
@@ -201,6 +203,8 @@ npm run measure:doc-aria-claims
 >
 > **2026-10-31 の実測**: 127 部品・366 件のうち、文字列で見つからないもの 30 件（前回の 34 から増えていない＝読む分は無い）。`check:doc-drift` もズレ 0。直近に変えた部品（Title / FloatButton と、#1050 の 4 部品）の JSDoc に、ほかの部品を名指しする記述は無かった。**この回で別の形の乖離が出た**: JSDoc で説明している prop を、分割代入で `_name` に受けて捨てている（`DatePicker` の `minDate` ほか。T349 / T350）。数え方は 7-4 の表の 2026-10-31 の行
 >
+> **2026-11-09 の実測**: 127 部品・366 件のうち 30 件（増えていない）。`check:doc-drift` もズレ 0。10-31 以降に変えた 4 部品（Video・Pagination・HoverCard・Popover）がほかの部品を名指しする記述は 4 か所で、どれも実装と合っていた（Video の「`Audio` / `Image` もロールを付けていない」・HoverCard の「`Tooltip` と `useFloatingElement` は `safePolygon()` を使う」「`side` / `align` は公開 prop」・Pagination の「DataGrid のページ送り」は経緯の記述）
+>
 > **届かないもの**: キー操作の記述（「矢印キーで移動」）と実際の挙動（7-4 の E2E の領分）、ja / pt にしか無い主張（en だけを読む）、外部ライブラリが付ける属性（一覧の `ext=[…]` を見て、ライブラリ側を読む）。
 
 **トークンの用途の記述は、2026-10-31 から CI のガードが見る**（`check:doc-token-usage`。`audit:docs` の中。読み終えた候補を `scripts/doc-token-usage-baseline.json` に凍結したラチェットで、ここで手で数える必要は無い。新しい候補が出たら PR が落ちるので、その場で読む。実証は `npm run prove:doc-token-usage`）。以下は始めたときの記録。文書の 1 行に `--wim-*` と部品名が一緒に出る箇所を拾い、その部品の SCSS・TSX がそのトークンを参照しているかを突き合わせる（`docs/**`・`DESIGN.md`・`README.md`・`public/locales/en/docs_*.json`）。行単位なので、「この部品は使わない」と書いた否定の行・1 行に複数のトークンが並ぶ行・別名のトークン（`--wim-radius-component` → `--wim-radius-md`）を経由する行も候補に出る ── 読んで外す。**2026-10-31 の実測**: 236 組のうち候補 51、読むと本物は 10 件（Table の角丸・Terminal の影・Drawer の z-index・Rating の星の大きさ・Toolbar の存在しない CSS 変数など。行高の表を含めて #1061 で直した）。直したあとの候補 54 は、どれも読み終えた外れ。定義の無いトークン名（14）は、どれも `--wim-spacing-*` のような略記だった
@@ -217,6 +221,8 @@ for v in solid outline subtle; do printf "%-10s %s\n" "$v" "$(grep -rho "variant
 ```
 
 > **2026-10-31 の実測**: 文字列の合併型の prop（variant / intent / size / appearance / shape / orientation / placement / position / side / align）を、自分のストーリーを持つ 37 部品・135 値で数えた。どのストーリーにも出ない値は 28、うち既定値（既定のストーリーに写る）13・Patterns で使われているもの 2・ほかの部品へ素通しで写っているもの 3（Navbar.Menu → Drawer）を除いて **11 値**（T354）。数え方: 部品の `.tsx` から合併型を読み、`stories/` の中で部品名のディレクトリにあるファイルに、その値の文字列が 1 回も出ないものを拾う → 既定値（分割代入の `prop = "値"`）と、`stories/` 全体で `<部品 prop="値"` と書いた箇所を除く
+
+> **2026-11-09**: 全量は数え直していない（10-31 の T354 で写した直後）。10-31 以降に公開面が変わったのは Video の `width` と HoverCard の `sideOffset`（どちらも T350 で「受け取るだけ」から効くようにした）で、`width` はストーリーに写っているが、**`sideOffset` はどのストーリーにも出ない**（単体テストは CSS 変数が付くことまでで、向きごとの SCSS は見ていない）。合併型ではない数の prop なので、上の数え方には出ない。HoverCard を直す PR で、Placements に足す。**その SCSS を読んでいて、別の欠陥に気づいた**: `align="left"` のときだけ、出てくるアニメーションの途中の transform が無効な値になり、間隔 0 で描かれてから終わりに 8px 跳ぶ（下の 7-4 の候補に形を足した）
 
 > 実例: `Chip` の `subtle` は 3 つの variant のうちここだけ**どのストーリーにも出ていなかった**（2026-08-07 に追加）。`LoadingOverlay` は 8 ストーリーすべてが `position: relative` の親で包んでおり、**素直に書いたときの姿を一度も撮っていなかった**。
 
@@ -315,6 +321,8 @@ EOF
 
 > **2026-10-31 の実測**: `patterns-*` 58 ストーリー × 390 / 768 = 116 通りで **0 件**（はみ出し・犯人・ヘッダ・潰れの 4 判定。先に 1 ストーリーへ 3000px の要素・ヘッダの外へ出る要素・幅 10px の文字を入れ、4 判定とも鳴ることを確かめた）。1 通り（`patterns-marketing--feature-comparison` の 390px）は 1 回目に開けず、開き直して測った。**102 通りは `header` を持たず、③は判定不能**のまま
 
+> **2026-11-09 の実測**: 同じ 116 通りで **0 件**（4 判定。対照は先頭の `patterns-ai--artifacts-canvas` の 390px に同じ 3 つの違反を入れ、4 判定とも鳴ることを確かめた）。開けなかったもの 0。102 通りは `header` を持たず③は判定不能。間に依存のグループ更新（#1081・28 件）が入ったが、合成画面の狭い幅には出ていない
+
 > **この 3 つは「はみ出し」しか見ていない。「潰れ」は緑で通る。**（2026-08-11・9 枚目）
 > `Dashboard` が狭い幅で列を減らすのに span を畳まず、grid が
 > `0px 186.188px 151.812px` に壊れて**幅 30px のカードに 1 文字ずつ縦に折れて**いたが、
@@ -355,6 +363,8 @@ git branch -vv | grep ": gone]"   # 追跡先が消えたローカルブラン�
 **削除はユーザー判断**（一覧を出して提案するところまで）。
 
 > **2026-10-31**: リモートは `main` と `gh-pages` だけ（PR 作成時の `--delete-branch` が効いている）。手元に、PR がマージ済みで追跡先が消えたブランチが 5 本あった（#1038 / #1039 / #1043 / #1044 / #1047）。PR 作成時に `--delete-branch` を付けておけば、そもそも溜まらない。
+>
+> **2026-11-09**: リモートは同じく `main` と `gh-pages` だけ。手元の、追跡先が消えたブランチは 26 本で、PR の状態と照らすと 26 本ともマージ済みだった。**リモートの枝が消えても、手元の枝は残る** ── `git fetch --prune` が消すのは追跡先（`origin/…`）だけ。手元の掃除は `git branch -D` で、これもユーザー判断。
 
 ### 7-4. 観点を 1 つ決めて、全部品を同じ手順で測る（デザインと操作の一貫性）
 
@@ -395,6 +405,8 @@ git branch -vv | grep ": gone]"   # 追跡先が消えたローカルブラン�
 **2026-10-11 の回で測り残した 5 つの候補**（省略記号の残り・開いた面の 5 部品・フォーカスの行き先の 3 部品・選択中の要素のホバー・ScrollProgress）は、2026-10-12 に測り終えた（下の表）。欠陥は ScrollProgress の 1 件。 残っていた候補 5 行も、同じ日に測った（表の下の 4 行。欠陥は Gallery の 1 件と、Affix / Tour の 2 件）。
 
 - 実機のスクリーンリーダーで、まだ聞いていない部品（**人の手が要る**）。2026-10-12 にナレーター + Chrome で 28 部品を聞いた（下の表）。残り: Dropdown / Menubar / ContextMenu / TreeView / Tooltip / Popover / CommandPalette / MultiSelect / DatePicker / Cascader / TreeSelect。聞けるストーリーが無いもの: Alert が「あとから現れる」とき・Autosave が切り替わるとき（切り替わるストーリーを足せば聞ける）。**外れが出やすいのは、押してもフォーカスが動かず、中身だけが変わる操作**（28 部品中の外れ 11 のうち 8）
+- keyframes の `transform` が `var()` を使い、その変数に、修飾子によっては transform の関数でない値を入れている箇所（変更のときに気づいた・2026-11-09）。HoverCard の `alignLeft` だけ `--base-transform` に長さ（`8px`）を入れ、keyframes の `var(--base-transform) scale(0.95)` が無効になって、アニメーション中は `transform: none` になっていた（ほかの 4 配置は正しい）。**終わった姿は正しいので、VRT にも a11y にも写らない**。測り方: SCSS で keyframes の中の `var(--x)` を拾い、同じ変数に入れている値を修飾子ごとに並べる → 疑わしいものは、`animation-duration` を伸ばした Storybook で途中の computed style を読む（`none` になるか）
+- 2026-11-09 の回は、機械で測る候補が無かった（上の 1 行は、この回の途中で足したので次の回）
 
 **測り終えた観点の分け先**（2026-10-10・ユーザーとの相談で決めた）。観点は、基本的に 1 回きりの掃除である。直したあとに同じ手順を隔週で流し直しても、ほぼ毎回 0 件になる。**毎回流す価値があるものは、人ではなく CI に流させる。** 測り終えたら、次の 3 つのどれかに分ける。
 
