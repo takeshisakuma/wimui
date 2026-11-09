@@ -239,6 +239,9 @@
     "transition_hide_slide": "Fechar Slide",
     "transition_show_content": "Mostrar Conteúdo",
     "transition_show_slide": "Expandir Conteúdo do Slide",
-    "transition_slide_content": "Deslizar!"
+    "transition_slide_content": "Deslizar!",
+    "popover_infotip_price": "R$ 34,80 com impostos",
+    "popover_infotip_label": "Sobre este preço",
+    "popover_infotip_body": "O frete (R$ 5,50) não está incluído. Você verá o total na próxima etapa, antes de pagar."
   }
 }

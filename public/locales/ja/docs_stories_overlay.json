@@ -239,6 +239,9 @@
     "transition_hide_slide": "スライドを閉じる",
     "transition_show_content": "コンテンツを表示する",
     "transition_show_slide": "スライドコンテンツを展開",
-    "transition_slide_content": "スライド！"
+    "transition_slide_content": "スライド！",
+    "popover_infotip_price": "3,480 円（税込）",
+    "popover_infotip_label": "この価格について",
+    "popover_infotip_body": "送料 550 円は含みません。合計は、支払いの前に次の画面で出ます。"
   }
 }
