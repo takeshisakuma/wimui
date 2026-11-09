@@ -10,7 +10,12 @@ import {
   ChatMessageList, 
   PromptInput,
   Icon,
-  AIResponseFeedback
+  AIResponseFeedback,
+  ChatToolCall,
+  ChatSystemMessage,
+  Button,
+  Stack,
+  Text,
 } from "../../../src/index";
 import { StreamingText } from "../../../src/ai/streaming-text";
 import type { Meta, StoryObj } from "@storybook/react-vite";
@@ -37,6 +42,17 @@ const VRT_CHAT: Record<string, string> = {
   "chat.placeholder": "Type a message...",
   "chat.placeholder_interactive": "Type a message...",
   "action.copy": "Copy",
+  "story.chat_tool_started": "Conversation started · Thu 13 Nov",
+  "story.chat_tool_user_1": "Can you move my dentist appointment? Thursday doesn't work anymore.",
+  "story.chat_tool_summary_found": "1 upcoming",
+  "story.chat_tool_summary_slots": "3 open slots",
+  "story.chat_tool_reply_1": "Your cleaning with Dr. Okafor is Thursday at 9:30. The clinic has Tuesday 16:40 or Wednesday 8:15 open next week. Should I take Tuesday?",
+  "story.chat_tool_user_2": "Tuesday, yes.",
+  "story.chat_tool_failed": "The clinic's booking system didn't answer. Your Thursday appointment is unchanged.",
+  "story.chat_tool_retry": "Try again",
+  "story.chat_tool_model_changed": "Switched to a smaller model for this conversation",
+  "story.chat_tool_context_warning": "Older messages will be left out of the model's context soon",
+  "story.chat_tool_booked": "Booked: Tuesday 16:40 with Dr. Okafor. Thursday is cancelled.",
 };
 
 function useChatT() {
@@ -468,6 +484,136 @@ export const AiAssistantIntegration: Story = {
               style={{ flex: 1, minWidth: 0 }}
             />
           </ChatInputArea>
+        </ChatContainer>
+      </div>
+    );
+  },
+};
+
+const SLOT_QUERY = `{
+  "clinic": "harbourview-dental",
+  "after": "2026-11-17",
+  "duration_min": 40
+}`;
+
+const SLOT_RESULT = `[
+  { "start": "2026-11-18T16:40", "dentist": "Okafor" },
+  { "start": "2026-11-19T08:15", "dentist": "Okafor" },
+  { "start": "2026-11-21T11:00", "dentist": "Lindqvist" }
+]`;
+
+/**
+ * ツールの呼び出し・システムメッセージ・メタデータ（T363）。予約の変更を頼んで、
+ * 医院の予約システムが応答しなかったところ。「もう一度試す」を押すと呼び出しが
+ * 実行中になり、終わると返事が出る（画面の操作だけで、見えている状態に着く）。
+ */
+export const ToolCalls: Story = {
+  render: function Render() {
+    const t = useChatT();
+    const [booking, setBooking] = useState<"error" | "running" | "done">("error");
+
+    const retry = () => {
+      setBooking("running");
+      setTimeout(() => setBooking("done"), 1200);
+    };
+
+    return (
+      <div style={{ height: "720px" }}>
+        <ChatContainer>
+          <ChatMessageList>
+            <ChatSystemMessage>{t("story.chat_tool_started")}</ChatSystemMessage>
+            <ChatMessage position="right" timestamp="09:12">
+              {t("story.chat_tool_user_1")}
+            </ChatMessage>
+            <ChatMessage
+              position="left"
+              senderName={t("story.chat_ai_assistant")}
+              timestamp="09:12"
+              metadata="1,284 tokens · 3.1s"
+            >
+              <Stack gap="md">
+                <Stack gap="xs">
+                  <ChatToolCall
+                    name="list_appointments"
+                    summary={t("story.chat_tool_summary_found")}
+                    input={`{ "from": "2026-11-13" }`}
+                  />
+                  <ChatToolCall
+                    name="search_open_slots"
+                    summary={t("story.chat_tool_summary_slots")}
+                    input={SLOT_QUERY}
+                    output={SLOT_RESULT}
+                  />
+                </Stack>
+                <Text>{t("story.chat_tool_reply_1")}</Text>
+              </Stack>
+            </ChatMessage>
+            <ChatMessage position="right" timestamp="09:14">
+              {t("story.chat_tool_user_2")}
+            </ChatMessage>
+            <ChatMessage position="left" senderName={t("story.chat_ai_assistant")} timestamp="09:14">
+              <Stack gap="md">
+                <ChatToolCall
+                  name="book_slot"
+                  status={booking}
+                  input={`{ "start": "2026-11-18T16:40", "replaces": "apt_88213" }`}
+                  output={
+                    booking === "error" ? (
+                      "503 Service Unavailable (after 30s)"
+                    ) : undefined
+                  }
+                />
+                {booking === "done" && <Text>{t("story.chat_tool_booked")}</Text>}
+              </Stack>
+            </ChatMessage>
+            {booking === "error" && (
+              <ChatSystemMessage
+                intent="danger"
+                action={
+                  <Button size="sm" variant="outline" onClick={retry}>
+                    {t("story.chat_tool_retry")}
+                  </Button>
+                }
+              >
+                {t("story.chat_tool_failed")}
+              </ChatSystemMessage>
+            )}
+          </ChatMessageList>
+          <ChatInput placeholder={t("chat.placeholder")} />
+        </ChatContainer>
+      </div>
+    );
+  },
+};
+
+/**
+ * 状態の一覧（VRT と a11y に、どの値も写すためのストーリー）。ツールの呼び出しの 4 状態と、
+ * システムメッセージの 3 つの intent。
+ */
+export const ToolCallStates: Story = {
+  render: function Render() {
+    const t = useChatT();
+    return (
+      <div style={{ height: "520px" }}>
+        <ChatContainer>
+          <ChatMessageList>
+            <ChatSystemMessage>{t("story.chat_tool_model_changed")}</ChatSystemMessage>
+            <ChatSystemMessage intent="warning">{t("story.chat_tool_context_warning")}</ChatSystemMessage>
+            <ChatSystemMessage intent="danger">{t("story.chat_tool_failed")}</ChatSystemMessage>
+            <ChatMessage position="left" senderName={t("story.chat_ai_assistant")}>
+              <Stack gap="xs">
+                <ChatToolCall name="book_slot" status="waiting" />
+                <ChatToolCall name="search_open_slots" status="running" />
+                <ChatToolCall name="list_appointments" status="done" summary={t("story.chat_tool_summary_found")} />
+                <ChatToolCall
+                  name="book_slot"
+                  status="error"
+                  output="503 Service Unavailable"
+                  defaultExpanded
+                />
+              </Stack>
+            </ChatMessage>
+          </ChatMessageList>
         </ChatContainer>
       </div>
     );

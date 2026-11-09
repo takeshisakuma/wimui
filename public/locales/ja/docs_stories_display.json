@@ -471,6 +471,17 @@
     "pivottable_shop_station": "駅前店",
     "pivottable_shop_riverside": "川沿い店",
     "pivottable_caption_daily": "店舗別・日別の販売数（2026 年 5 月〜 6 月）",
-    "pivottable_shop_day": "店舗と日付"
+    "pivottable_shop_day": "店舗と日付",
+    "chat_tool_started": "会話を開始 · 11月13日（木）",
+    "chat_tool_user_1": "歯医者の予約を動かせる？ 木曜は都合が悪くなった。",
+    "chat_tool_summary_found": "予定 1 件",
+    "chat_tool_summary_slots": "空き 3 枠",
+    "chat_tool_reply_1": "オカフォー先生のクリーニングが木曜 9:30 に入っています。来週は火曜 16:40 か水曜 8:15 が空いています。火曜にしますか？",
+    "chat_tool_user_2": "火曜で。",
+    "chat_tool_failed": "医院の予約システムから応答がありませんでした。木曜の予約はそのままです。",
+    "chat_tool_retry": "もう一度試す",
+    "chat_tool_model_changed": "この会話は小さいモデルに切り替わりました",
+    "chat_tool_context_warning": "まもなく、古いメッセージはモデルの文脈から外れます",
+    "chat_tool_booked": "火曜 16:40、オカフォー先生で予約しました。木曜はキャンセル済みです。"
   }
 }

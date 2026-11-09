@@ -102,7 +102,9 @@
     "support": "サポート",
     "you": "あなた",
     "send": "送信",
-    "user_avatar": "ユーザーのアバター"
+    "user_avatar": "ユーザーのアバター",
+    "tool_input": "入力",
+    "tool_output": "出力"
   },
   "common": {
     "all": "すべて",

@@ -41,6 +41,14 @@ import { Docgen } from "../../Docgen";
       <td><code>ChatAvatar</code></td>
       <td><T k="doc.chatui_c_avatar" /></td>
     </tr>
+    <tr>
+      <td><code>ChatToolCall</code></td>
+      <td><T k="doc.chatui_c_toolcall" /></td>
+    </tr>
+    <tr>
+      <td><code>ChatSystemMessage</code></td>
+      <td><T k="doc.chatui_c_system" /></td>
+    </tr>
   </tbody>
 </table>
 
@@ -81,6 +89,16 @@ import { Docgen } from "../../Docgen";
 ### <T k="doc.chatui_avatar_tones" />
 
 <Canvas of={ChatUIStories.AvatarTones} />
+
+### <T k="doc.chatui_tool_calls" />
+
+<p><T k="doc.chatui_tool_calls_desc" /></p>
+
+<Canvas of={ChatUIStories.ToolCalls} />
+
+### <T k="doc.chatui_tool_states" />
+
+<Canvas of={ChatUIStories.ToolCallStates} />
 
 ## <T k="doc.features" />
 
@@ -208,6 +226,12 @@ import { Docgen } from "../../Docgen";
 
 ### <T k="doc.chatui_avatar_props" />
 <Docgen componentName="ChatAvatar" section="props" />
+
+### <T k="doc.chatui_toolcall_props" />
+<Docgen componentName="ChatToolCall" section="props" />
+
+### <T k="doc.chatui_system_props" />
+<Docgen componentName="ChatSystemMessage" section="props" />
 
 <Docgen componentName="ChatUI" section="tokens" />
 

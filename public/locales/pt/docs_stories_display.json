@@ -471,6 +471,17 @@
     "pivottable_shop_station": "Loja da estação",
     "pivottable_shop_riverside": "Loja da beira-rio",
     "pivottable_caption_daily": "Unidades vendidas por dia e por loja, maio e junho de 2026",
-    "pivottable_shop_day": "Loja e dia"
+    "pivottable_shop_day": "Loja e dia",
+    "chat_tool_started": "Conversa iniciada · qui., 13 de nov.",
+    "chat_tool_user_1": "Dá pra remarcar minha consulta no dentista? Quinta não dá mais.",
+    "chat_tool_summary_found": "1 próxima",
+    "chat_tool_summary_slots": "3 horários livres",
+    "chat_tool_reply_1": "Sua limpeza com a Dra. Okafor está marcada para quinta às 9:30. A clínica tem terça às 16:40 ou quarta às 8:15 na semana que vem. Marco na terça?",
+    "chat_tool_user_2": "Terça, isso.",
+    "chat_tool_failed": "O sistema de agendamento da clínica não respondeu. Sua consulta de quinta continua marcada.",
+    "chat_tool_retry": "Tentar de novo",
+    "chat_tool_model_changed": "Esta conversa passou a usar um modelo menor",
+    "chat_tool_context_warning": "Em breve, as mensagens mais antigas vão sair do contexto do modelo",
+    "chat_tool_booked": "Marcado: terça às 16:40 com a Dra. Okafor. A consulta de quinta foi cancelada."
   }
 }

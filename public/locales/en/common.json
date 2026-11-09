@@ -89,7 +89,9 @@
     "you": "You",
     "support": "Support",
     "send": "Send",
-    "user_avatar": "User avatar"
+    "user_avatar": "User avatar",
+    "tool_input": "Input",
+    "tool_output": "Output"
   },
   "analytics": "Analytics",
   "aspect": {

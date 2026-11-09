@@ -1,10 +1,20 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, useId } from "react";
 import classNames from "classnames";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { commonNs } from "@/i18n/generated/common";
-import { ComponentSizeBasic } from "../../../types/tokens";
+import { formNs } from "@/i18n/generated/form";
+import { ComponentSizeBasic, FeedbackIntent } from "../../../types/tokens";
 import { Icon } from "../../media/Icon/Icon";
-import { SendIcon, PaperclipIcon } from "@/icon";
+import type { AgentStatusValue } from "../AgentStatus/AgentStatus";
+import {
+  SendIcon,
+  PaperclipIcon,
+  AlertCircleIcon,
+  AlertTriangleIcon,
+  CheckIcon,
+  ChevronRightIcon,
+  HourglassIcon,
+} from "@/icon";
 import { useAutoResize } from "../../../hooks/useAutoResize";
 import styles from "./chat-ui.module.scss";
 import { composeEventHandlers } from "../../_internal/composeEventHandlers";
@@ -66,6 +76,11 @@ export interface ChatMessageProps extends React.ComponentPropsWithoutRef<"div"> 
   avatar?: React.ReactNode;
   /** Timestamp text shown below the message */
   timestamp?: string;
+  /**
+   * Details about how the message was produced (model, token count, latency),
+   * shown on the same line as `timestamp` in the same small, secondary text.
+   */
+  metadata?: React.ReactNode;
   /** Sender name shown above the message */
   senderName?: string;
   /** Whether to show the typing indicator instead of content */
@@ -97,6 +112,7 @@ export const ChatMessage = ({
   showAvatar = true,
   avatar,
   timestamp,
+  metadata,
   senderName,
   isTyping = false,
   actions,
@@ -138,13 +154,214 @@ export const ChatMessage = ({
             {actions}
           </div>
         )}
-        {timestamp && (
-          <div className={styles.timestamp}>{timestamp}</div>
+        {(timestamp || metadata) && (
+          <div className={styles.timestamp}>
+            {timestamp}
+            {timestamp && metadata && " · "}
+            {metadata}
+          </div>
         )}
       </div>
       {showAvatar && position === "right" && (
         <div className={styles.messageAvatar}>{avatar}</div>
       )}
+    </div>
+  );
+};
+
+/**
+ * 状態の語は `AgentStatus` と同じ（T363）。ツールの呼び出しに「考え中」「待機」は無いので外す。
+ * `Extract<AgentStatusValue, …>` と書くと、docgen と prop の API スナップショットが型の式を
+ * そのまま記録して、値の一覧が出ない。同じファイルに値を書き、部分集合であることは下の型で保つ。
+ */
+export type ChatToolCallStatus = "waiting" | "running" | "done" | "error";
+type ToolStatusIsAgentStatus = ChatToolCallStatus extends AgentStatusValue ? true : never;
+const toolStatusIsAgentStatus: ToolStatusIsAgentStatus = true;
+void toolStatusIsAgentStatus;
+
+const TOOL_STATUS_ICONS: Record<
+  Exclude<ChatToolCallStatus, "running">,
+  React.ComponentType<React.SVGProps<SVGSVGElement>>
+> = {
+  waiting: HourglassIcon,
+  done: CheckIcon,
+  error: AlertCircleIcon,
+};
+
+export interface ChatToolCallProps extends Omit<React.ComponentPropsWithoutRef<"div">, "children"> {
+  /** Name of the tool that was called, shown in a monospace face (e.g. `search_incidents`) */
+  name: string;
+  /**
+   * State of the call. Uses the same words as `AgentStatus`; `waiting` is a call
+   * that is waiting on something before it runs, such as the user's approval.
+   * @default "done"
+   */
+  status?: ChatToolCallStatus;
+  /** One-line summary shown next to the name (e.g. "6 incidents found") */
+  summary?: React.ReactNode;
+  /**
+   * Arguments the tool was called with. Shown when expanded. A string is shown
+   * as preformatted monospace text; pass a `CodeBlock` for highlighting or a copy
+   * button (it brings its own frame inside this one).
+   */
+  input?: React.ReactNode;
+  /** What the tool returned, or the error it failed with. Shown when expanded. Strings are shown as for `input`. */
+  output?: React.ReactNode;
+  /** Whether `input` and `output` are shown on first render. */
+  defaultExpanded?: boolean;
+  /** Additional class names */
+  className?: string;
+}
+
+/**
+ * One call the assistant made to a tool, with its arguments and result.
+ *
+ * Where it sits next to its neighbours: `ThoughtProcess` is the model's own
+ * reasoning written as steps, `AgentStatus` is the whole agent's state on one
+ * line, and `ChatToolCall` is one action against the outside world and what
+ * came back. Place it inside a `ChatMessage` or directly in `ChatMessageList`.
+ *
+ * The status is part of the toggle's name ("search_incidents … Done"). A change
+ * of status is not announced: it is not something the user did, and a run of
+ * tool calls would keep talking over the conversation.
+ *
+ * Composition Contract:
+ * - Managed by: App consumption
+ * - Scroll lock: No
+ */
+export const ChatToolCall = ({
+  name,
+  status = "done",
+  summary,
+  input,
+  output,
+  defaultExpanded = false,
+  className,
+  ...props
+}: ChatToolCallProps): React.ReactElement => {
+  const { t } = useWimTranslation([commonNs, formNs]);
+  const [expanded, setExpanded] = React.useState(defaultExpanded);
+  const bodyId = useId();
+  const hasBody = input != null || output != null;
+  const StatusIcon = status === "running" ? null : TOOL_STATUS_ICONS[status];
+
+  const head = (
+    <>
+      {hasBody && (
+        <Icon
+          component={ChevronRightIcon}
+          size="sm"
+          className={classNames(styles.toolChevron, expanded && styles.expanded)}
+          aria-hidden="true"
+        />
+      )}
+      <code className={styles.toolName}>{name}</code>
+      {summary && <span className={styles.toolSummary}>{summary}</span>}
+      <span className={classNames(styles.toolStatus, styles[status])}>
+        {StatusIcon ? (
+          <Icon component={StatusIcon} size="xs" aria-hidden="true" />
+        ) : (
+          <span className={styles.toolSpinner} aria-hidden="true" />
+        )}
+        {t(`agent_status.${status}`)}
+      </span>
+    </>
+  );
+
+  return (
+    <div
+      className={classNames(styles.toolCall, className)}
+      aria-busy={status === "running" || undefined}
+      {...props}
+    >
+      {hasBody ? (
+        <button
+          type="button"
+          className={styles.toolHeader}
+          aria-expanded={expanded}
+          aria-controls={bodyId}
+          onClick={() => setExpanded((v) => !v)}
+        >
+          {head}
+        </button>
+      ) : (
+        <div className={styles.toolHeader}>{head}</div>
+      )}
+      {/* 文字列の引数と結果は、長いと内側でスクロールする。キーボードで届くよう tabIndex={0}（CodeBlock と同じ。axe: scrollable-region-focusable） */}
+      {hasBody && (
+        <div id={bodyId} className={styles.toolBody} hidden={!expanded}>
+          {input != null && (
+            <div className={styles.toolSection}>
+              <div className={styles.toolLabel}>{t("chat.tool_input")}</div>
+              {typeof input === "string" ? <pre className={styles.toolCode} tabIndex={0}>{input}</pre> : input}
+            </div>
+          )}
+          {output != null && (
+            <div className={styles.toolSection}>
+              <div className={styles.toolLabel}>{t("chat.tool_output")}</div>
+              {typeof output === "string" ? <pre className={styles.toolCode} tabIndex={0}>{output}</pre> : output}
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+};
+
+/** `FeedbackIntent` の部分集合（上の `ChatToolCallStatus` と同じ理由で、値を書いて型で保つ）。 */
+export type ChatSystemMessageIntent = "default" | "warning" | "danger";
+type SystemIntentIsFeedbackIntent = ChatSystemMessageIntent extends FeedbackIntent ? true : never;
+const systemIntentIsFeedbackIntent: SystemIntentIsFeedbackIntent = true;
+void systemIntentIsFeedbackIntent;
+
+const SYSTEM_ICONS: Partial<Record<ChatSystemMessageIntent, React.ComponentType<React.SVGProps<SVGSVGElement>>>> = {
+  warning: AlertTriangleIcon,
+  danger: AlertCircleIcon,
+};
+
+export interface ChatSystemMessageProps extends React.ComponentPropsWithoutRef<"div"> {
+  /** The notice (e.g. "Switched to a faster model", "No answer arrived") */
+  children: React.ReactNode;
+  /**
+   * `warning` and `danger` add an icon as well as colour, so the difference does
+   * not rest on colour alone.
+   * @default "default"
+   */
+  intent?: ChatSystemMessageIntent;
+  /** An action that belongs next to the notice, such as a retry button */
+  action?: React.ReactNode;
+  /** Additional class names */
+  className?: string;
+}
+
+/**
+ * A notice in the transcript that nobody said: the conversation started, the
+ * model changed, an answer never arrived. A `ChatMessage` would put it in a
+ * speech bubble with a sender, which is wrong for something nobody said.
+ *
+ * Place it in `ChatMessageList` between messages so it shares the list's
+ * spacing. It does not announce itself; when the notice is the result of
+ * something the user did, announce it from the app.
+ *
+ * Composition Contract:
+ * - Managed by: App consumption
+ * - Scroll lock: No
+ */
+export const ChatSystemMessage = ({
+  children,
+  intent = "default",
+  action,
+  className,
+  ...props
+}: ChatSystemMessageProps): React.ReactElement => {
+  const IntentIcon = SYSTEM_ICONS[intent];
+  return (
+    <div className={classNames(styles.system, styles[intent], className)} {...props}>
+      <span className={styles.systemText}>
+        {IntentIcon && <Icon component={IntentIcon} size="xs" aria-hidden="true" />}
+        <span>{children}</span>
+      </span>
+      {action && <span className={styles.systemAction}>{action}</span>}
     </div>
   );
 };

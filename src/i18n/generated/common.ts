@@ -105,6 +105,8 @@ export type CommonKey =
   | "chat.placeholder_interactive"
   | "chat.send"
   | "chat.support"
+  | "chat.tool_input"
+  | "chat.tool_output"
   | "chat.user_avatar"
   | "chat.you"
   | "comment.action_context"
@@ -715,7 +717,9 @@ export const commonNs: WimNamespace<"common", CommonKey> = {
       },
       "chat": {
         "send": "Send",
-        "user_avatar": "User avatar"
+        "user_avatar": "User avatar",
+        "tool_input": "Input",
+        "tool_output": "Output"
       },
       "aspect": {
         "ratio": "Aspect ratio"
@@ -926,7 +930,9 @@ export const commonNs: WimNamespace<"common", CommonKey> = {
       },
       "chat": {
         "send": "送信",
-        "user_avatar": "ユーザーのアバター"
+        "user_avatar": "ユーザーのアバター",
+        "tool_input": "入力",
+        "tool_output": "出力"
       },
       "common": {
         "dark": "ダーク",
@@ -1127,7 +1133,9 @@ export const commonNs: WimNamespace<"common", CommonKey> = {
       },
       "chat": {
         "send": "Enviar",
-        "user_avatar": "Avatar do usuário"
+        "user_avatar": "Avatar do usuário",
+        "tool_input": "Entrada",
+        "tool_output": "Saída"
       },
       "common": {
         "dark": "Escuro",
