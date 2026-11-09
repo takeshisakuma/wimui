@@ -482,6 +482,11 @@
     "chat_tool_retry": "Try again",
     "chat_tool_model_changed": "Switched to a smaller model for this conversation",
     "chat_tool_context_warning": "Older messages will be left out of the model's context soon",
-    "chat_tool_booked": "Booked: Tuesday 16:40 with Dr. Okafor. Thursday is cancelled."
+    "chat_tool_booked": "Booked: Tuesday 16:40 with Dr. Okafor. Thursday is cancelled.",
+    "card_link_order_1": "Order 4281",
+    "card_link_order_1_meta": "3 items · Delivered Tue 4 Nov",
+    "card_link_buy_again": "Buy again",
+    "card_link_order_2": "Order 4307",
+    "card_link_order_2_meta": "1 item · Arrives Thu 13 Nov"
   }
 }

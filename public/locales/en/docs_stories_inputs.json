@@ -252,6 +252,21 @@
     "rte_markdown_heading": "What changed",
     "rte_markdown_item1": "Images can be embedded",
     "rte_markdown_item2": "Content can be saved as Markdown",
-    "rte_markdown_output_label": "Markdown output:"
+    "rte_markdown_output_label": "Markdown output:",
+    "radio_card_label": "Delivery",
+    "radio_card_standard": "Standard",
+    "radio_card_standard_desc": "3 to 5 days · free over ¥5,000",
+    "radio_card_express": "Express",
+    "radio_card_express_desc": "Next business day · ¥900",
+    "radio_card_pickup": "Pick up at the Shibuya store",
+    "radio_card_pickup_desc": "Ready in about 2 hours · free",
+    "radio_card_sameday": "Same day",
+    "radio_card_sameday_desc": "Not available for this address",
+    "checkbox_card_label": "Extras",
+    "checkbox_card_wrap": "Gift wrap",
+    "checkbox_card_wrap_desc": "Paper and a message card · ¥300",
+    "checkbox_card_door": "Leave at the door",
+    "checkbox_card_receipt": "Paper receipt",
+    "checkbox_card_receipt_desc": "Mailed separately, made out to the name on the order"
   }
 }

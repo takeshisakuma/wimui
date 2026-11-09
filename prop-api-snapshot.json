@@ -1634,6 +1634,10 @@
       "required": false,
       "type": "string | number"
     },
+    "Card.Link.asChild": {
+      "required": false,
+      "type": "boolean"
+    },
     "Card.asChild": {
       "required": false,
       "type": "boolean"
@@ -2176,6 +2180,10 @@
       "required": true,
       "type": "Option[]",
       "shape": {
+        "description": {
+          "required": false,
+          "type": "string"
+        },
         "disabled": {
           "required": false,
           "type": "boolean"
@@ -2197,6 +2205,13 @@
     "CheckboxGroup.value": {
       "required": true,
       "type": "string[]"
+    },
+    "CheckboxGroup.variant": {
+      "required": false,
+      "values": [
+        "card",
+        "default"
+      ]
     },
     "Chip.asChild": {
       "required": false,
@@ -8249,6 +8264,10 @@
       "required": true,
       "type": "Option[]",
       "shape": {
+        "description": {
+          "required": false,
+          "type": "string"
+        },
         "disabled": {
           "required": false,
           "type": "boolean"
@@ -8270,6 +8289,13 @@
     "RadioGroup.value": {
       "required": true,
       "type": "string"
+    },
+    "RadioGroup.variant": {
+      "required": false,
+      "values": [
+        "card",
+        "default"
+      ]
     },
     "RangeCalendar.className": {
       "required": false,

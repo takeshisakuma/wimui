@@ -252,6 +252,21 @@
     "transfer_long_desc": "これはとてもとてもとてもとてもとてもとてもとてもとても長い説明です",
     "transfer_long_title": "これは切り捨てられるべき、とてもとてもとてもとてもとてもとてもとてもとてもとてもとても長いタイトルです",
     "transfer_short_desc": "短い説明",
-    "transfer_short_title": "短いタイトル"
+    "transfer_short_title": "短いタイトル",
+    "radio_card_label": "お届け方法",
+    "radio_card_standard": "通常配送",
+    "radio_card_standard_desc": "3〜5 日・5,000 円以上で無料",
+    "radio_card_express": "お急ぎ便",
+    "radio_card_express_desc": "翌営業日・900 円",
+    "radio_card_pickup": "渋谷店で受け取る",
+    "radio_card_pickup_desc": "約 2 時間後から・無料",
+    "radio_card_sameday": "当日便",
+    "radio_card_sameday_desc": "この住所には届けられません",
+    "checkbox_card_label": "追加のオプション",
+    "checkbox_card_wrap": "ギフト包装",
+    "checkbox_card_wrap_desc": "包装紙とメッセージカード・300 円",
+    "checkbox_card_door": "置き配にする",
+    "checkbox_card_receipt": "紙の領収書",
+    "checkbox_card_receipt_desc": "別送。宛名は注文者の名前になります"
   }
 }

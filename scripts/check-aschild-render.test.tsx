@@ -25,7 +25,7 @@ import {
   Textarea,
 } from "../src/form";
 import { Box, Flex, Stack, Group, Grid, Toolbar } from "../src/layout";
-import { Badge, Chip, Tag, Card, List, RelativeTime, Countdown } from "../src/data-display-core";
+import { Badge, Chip, Tag, Card, CardLink, List, RelativeTime, Countdown } from "../src/data-display-core";
 import { Drawer, DrawerTrigger, DrawerContent, DrawerTitle, DrawerClose } from "../src/overlay";
 // T337 で足した分は、名前から部品を引く（必須の一覧と名前で突き合わせるため）。
 import fs from "node:fs";
@@ -78,6 +78,8 @@ const CASES: Case[] = [
   { name: "Chip", Component: Chip },
   { name: "Tag", Component: Tag },
   { name: "Card", Component: Card },
+  // T365: カード全体に広がる主のリンク。asChild で router の Link や button を渡す
+  { name: "CardLink", Component: CardLink, props: { href: "#" } },
   { name: "List", Component: List },
   { name: "RelativeTime", Component: RelativeTime, props: { date: new Date("2026-01-01") } },
   { name: "Countdown", Component: Countdown, props: { date: new Date(Date.now() + 60_000) } },

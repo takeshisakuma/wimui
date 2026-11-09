@@ -4,11 +4,14 @@ import { Slot, Slottable } from "@radix-ui/react-slot";
 import { Checkbox } from "../../form/Checkbox/Checkbox";
 import styles from "./checkbox-group.module.scss";
 import { FieldTemplate } from "../FieldTemplate";
+import { ChoiceLabel, choiceLabelClasses } from "../../_internal/ChoiceLabel";
 
 type Option = {
   label: string;
   value: string;
   disabled?: boolean;
+  /** A second line that explains the option (shown under the label, and linked with `aria-describedby`) */
+  description?: string;
 };
 
 export interface CheckboxGroupProps extends Omit<React.ComponentPropsWithoutRef<"div">, "onChange" | "defaultValue"> {
@@ -22,6 +25,13 @@ export interface CheckboxGroupProps extends Omit<React.ComponentPropsWithoutRef<
   onChange?: (value: string[]) => void;
   /** Layout direction of the checkboxes */
   direction?: "vertical" | "horizontal";
+  /**
+   * `card` draws each option as a bordered card that is selectable as a whole
+   * (the card is the option's `<label>`). Keys and group semantics stay those
+   * of a checkbox group. Use with `description` when the options need explaining.
+   * @default "default"
+   */
+  variant?: "default" | "card";
   /** Name attribute shared by the checkbox inputs */
   name?: string;
   /** Whether to render as a child element. */
@@ -47,6 +57,7 @@ export const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(
       defaultValue = [],
       onChange,
       direction = "vertical",
+      variant = "default",
       name,
       className,
       label,
@@ -102,6 +113,7 @@ export const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(
           className={classNames("wim-checkbox-group", 
             styles.root,
             direction === "horizontal" && styles.horizontal,
+            variant === "card" && styles.cards,
           )}
           role="group"
           // 利用者が渡した参照を捨てない（T328）。以前はここで固定の値を書いていて、ラベルやエラーを
@@ -109,19 +121,34 @@ export const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(
           aria-labelledby={label ? labelId : props["aria-labelledby"]}
           aria-describedby={[props["aria-describedby"], errorId].filter(Boolean).join(" ") || undefined}
         >
-          {options.map((option) => (
-            <Checkbox
-              key={option.value}
-              value={option.value}
-              checked={currentValue.includes(option.value)}
-              disabled={disabled || option.disabled}
-              error={!!error}
-              name={name}
-              onChange={(e) => handleChange(option.value, e.target.checked)}
-            >
-              {option.label}
-            </Checkbox>
-          ))}
+          {options.map((option) => {
+            const descriptionId = option.description ? `${id}-${option.value}-description` : undefined;
+            const labelTextId = option.description ? `${id}-${option.value}-label` : undefined;
+            return (
+              <Checkbox
+                key={option.value}
+                value={option.value}
+                checked={currentValue.includes(option.value)}
+                disabled={disabled || option.disabled}
+                error={!!error}
+                name={name}
+                onChange={(e) => handleChange(option.value, e.target.checked)}
+                aria-describedby={descriptionId}
+                aria-labelledby={labelTextId}
+                className={classNames(
+                  variant === "card" && choiceLabelClasses.card,
+                  option.description && choiceLabelClasses.top,
+                )}
+              >
+                <ChoiceLabel
+                  label={option.label}
+                  description={option.description}
+                  descriptionId={descriptionId}
+                  labelId={labelTextId}
+                />
+              </Checkbox>
+            );
+          })}
           {/* 利用者の要素（asChild の子）を Slottable に入れる。Slot はこれを根にして、上の中身をその中に描く。
               以前は逆（中身を Slottable に入れていた）で、asChild を付けると描画で例外になるか、部品の
               クラスが利用者の要素に付かなかった（T337）。 */}

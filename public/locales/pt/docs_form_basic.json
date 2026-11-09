@@ -481,6 +481,9 @@
     "themetoggle_scenario_1_desc": "A variante de ícone compacta fica na barra superior e alterna claro e escuro com um clique.",
     "themetoggle_scenario_1_title": "Cabeçalho do app",
     "themetoggle_scenario_2_desc": "A variante segmentada oferece claro, escuro e sistema como uma escolha explícita e descobrível.",
-    "themetoggle_scenario_2_title": "Tela de configurações"
+    "themetoggle_scenario_2_title": "Tela de configurações",
+    "choice_cards_title": "Cartões",
+    "radiogroup_cards_desc": "variant=\"card\" desenha cada opção como um cartão que é selecionado por inteiro, porque o cartão é o rótulo da opção. As setas e o significado do grupo de rádio não mudam. Dê uma description às opções quando o nome sozinho não decide a escolha (preço, prazo); o campo aponta para ela com aria-describedby. Com direction=\"horizontal\" os cartões formam colunas e voltam a uma coluna quando falta espaço.",
+    "checkboxgroup_cards_desc": "variant=\"card\" desenha cada opção como um cartão que alterna por inteiro, porque o cartão é o rótulo da opção. Dê description só às opções que precisam; o campo aponta para ela com aria-describedby."
   }
 }

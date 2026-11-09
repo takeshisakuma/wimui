@@ -482,6 +482,11 @@
     "chat_tool_retry": "Tentar de novo",
     "chat_tool_model_changed": "Esta conversa passou a usar um modelo menor",
     "chat_tool_context_warning": "Em breve, as mensagens mais antigas vão sair do contexto do modelo",
-    "chat_tool_booked": "Marcado: terça às 16:40 com a Dra. Okafor. A consulta de quinta foi cancelada."
+    "chat_tool_booked": "Marcado: terça às 16:40 com a Dra. Okafor. A consulta de quinta foi cancelada.",
+    "card_link_order_1": "Pedido 4281",
+    "card_link_order_1_meta": "3 itens · Entregue ter., 4 de nov.",
+    "card_link_buy_again": "Comprar de novo",
+    "card_link_order_2": "Pedido 4307",
+    "card_link_order_2_meta": "1 item · Chega qui., 13 de nov."
   }
 }

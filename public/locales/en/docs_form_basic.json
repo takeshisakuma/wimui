@@ -481,6 +481,9 @@
     "themetoggle_scenario_2_title": "Settings screen",
     "searchinput_choice_alt": "Alternative",
     "taginput_controlled_desc": "Managing tags via external state.",
-    "taginput_maximum_tags_desc": "Limit the number of tags that can be added."
+    "taginput_maximum_tags_desc": "Limit the number of tags that can be added.",
+    "choice_cards_title": "Cards",
+    "radiogroup_cards_desc": "variant=\"card\" draws each option as a card that selects as a whole, because the card is the option's label. Arrow keys and the radio group's meaning do not change. Give options a description when the label alone does not decide the choice (price, timing); the input points at it with aria-describedby. With direction=\"horizontal\" the cards form columns and fall back to one column when the space is narrow.",
+    "checkboxgroup_cards_desc": "variant=\"card\" draws each option as a card that toggles as a whole, because the card is the option's label. Give a description only to the options that need one; the input points at it with aria-describedby."
   }
 }

@@ -8,5 +8,16 @@
       flex-flow: row wrap;
       gap: var(--wim-spacing-md) var(--wim-spacing-lg);
     }
+
+    /* カードで並べる（T365）。縦は詰め、横は幅に応じて列を作る（カードが細く潰れないよう、1 枚の最小幅を持つ）。 */
+    &.cards {
+      gap: var(--wim-spacing-sm);
+
+      &.horizontal {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--wim-width-sm)), 1fr));
+        gap: var(--wim-spacing-sm);
+      }
+    }
   }
 }

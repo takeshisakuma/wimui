@@ -481,6 +481,9 @@
     "themetoggle_scenario_1_desc": "コンパクトなアイコン版をトップバーに置き、ワンクリックでライトとダークを切り替える。",
     "themetoggle_scenario_1_title": "アプリのヘッダー",
     "themetoggle_scenario_2_desc": "セグメント版で、ライト・ダーク・システムを明示的で見つけやすい選択肢として提示する。",
-    "themetoggle_scenario_2_title": "設定画面"
+    "themetoggle_scenario_2_title": "設定画面",
+    "choice_cards_title": "カード",
+    "radiogroup_cards_desc": "variant=\"card\" は、選択肢を 1 枚ずつのカードで描く。カードが選択肢のラベルなので、カードのどこを押しても選べる。矢印キーの操作とラジオグループの意味は変わらない。名前だけでは決められない選択肢（料金・日数）には description を付ける。入力から aria-describedby で指される。direction=\"horizontal\" では列に並び、幅が足りないと 1 列に落ちる。",
+    "checkboxgroup_cards_desc": "variant=\"card\" は、選択肢を 1 枚ずつのカードで描く。カードが選択肢のラベルなので、カードのどこを押しても切り替わる。description は必要な選択肢にだけ付ける。入力から aria-describedby で指される。"
   }
 }

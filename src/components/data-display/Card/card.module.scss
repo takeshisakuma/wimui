@@ -163,32 +163,44 @@
       }
     }
 
-/* Radius */
+/* Radius。値は `--_card-radius` にも置く（`Card.Link` の `::after` がカードの角に合わせて読む。T365） */
     &.radius-none {
-      border-radius: 0;
+      --_card-radius: 0;
+
+      border-radius: var(--_card-radius);
     }
   
     &.radius-sm {
-      border-radius: var(--wim-radius-sm);
+      --_card-radius: var(--wim-radius-sm);
+
+      border-radius: var(--_card-radius);
     }
   
     &.radius-md {
-      border-radius: var(--wim-radius-component);
+      --_card-radius: var(--wim-radius-component);
+
+      border-radius: var(--_card-radius);
     }
   
     &.radius-lg {
-      border-radius: var(--wim-radius-container);
+      --_card-radius: var(--wim-radius-container);
+
+      border-radius: var(--_card-radius);
     }
 
     /* xl / 2xl は container からの相対で決める。値トークン（--wim-radius-xl = 12px / 2xl = 16px）を
        直に使うとプリセットで動かず、Soft（container = 16px）では lg 16px > xl 12px と大小が逆転していた。
        既定の見た目は同じ（container 12px → xl 12px / 2xl 16px）。足す 1 段は md（4px）。 */
     &.radius-xl {
-      border-radius: var(--wim-radius-container);
+      --_card-radius: var(--wim-radius-container);
+
+      border-radius: var(--_card-radius);
     }
 
     &.radius-2xl {
-      border-radius: calc(var(--wim-radius-container) + var(--wim-radius-md));
+      --_card-radius: calc(var(--wim-radius-container) + var(--wim-radius-md));
+
+      border-radius: var(--_card-radius);
     }
   }
 
@@ -203,5 +215,46 @@
 
   .footer {
     border-top: var(--wim-border-width-thin) solid var(--wim-divider-color, var(--wim-color-ghost-border));
+  }
+
+  /* `Card.Link`（T365）: 主のリンクの `::after` をカード全体に広げる。カードの中のほかの
+     ボタンやリンクは、その上に重ねて別に押せるようにする（リンクの中に操作要素を入れ子にしない）。 */
+  .link {
+    color: inherit;
+    text-decoration: none;
+
+    &::after {
+      position: absolute;
+      inset: 0;
+      content: "";
+      border-radius: var(--_card-radius, 0);
+    }
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    /* フォーカスの輪は、リンクの文字ではなくカードの形に出す（押せる範囲がカード全体なので）。 */
+    &:focus-visible {
+      // focus-indicator-ok: 輪は下の ::after（カード全体に広がった押せる範囲）に描く
+      outline: none;
+
+      &::after {
+        outline: var(--wim-focus-outline-width) solid var(--wim-color-focus-outline);
+        outline-offset: var(--wim-focus-outline-offset);
+      }
+    }
+  }
+
+  /* 重ね順はカードの中だけで閉じる（外の z-index と競わない）。 */
+  .root:has(.link) {
+    isolation: isolate;
+  }
+
+  /* 中の操作要素をリンクの上へ。詳細度 0 にして、自分で position を決める部品（絶対配置の
+     ボタンなど）はそちらを優先させる。z-index は、このカードの中だけの相対順（docs/rules/tokens.md）。 */
+  :where(.root:has(.link)) :where(a[href], button, input, select, textarea, summary, [tabindex]):where(:not(.link)) {
+    position: relative;
+    z-index: 1;
   }
 }

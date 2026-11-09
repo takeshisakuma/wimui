@@ -482,6 +482,11 @@
     "chat_tool_retry": "もう一度試す",
     "chat_tool_model_changed": "この会話は小さいモデルに切り替わりました",
     "chat_tool_context_warning": "まもなく、古いメッセージはモデルの文脈から外れます",
-    "chat_tool_booked": "火曜 16:40、オカフォー先生で予約しました。木曜はキャンセル済みです。"
+    "chat_tool_booked": "火曜 16:40、オカフォー先生で予約しました。木曜はキャンセル済みです。",
+    "card_link_order_1": "注文 4281",
+    "card_link_order_1_meta": "3 点・11月4日（火）にお届け済み",
+    "card_link_buy_again": "もう一度買う",
+    "card_link_order_2": "注文 4307",
+    "card_link_order_2_meta": "1 点・11月13日（木）お届け予定"
   }
 }

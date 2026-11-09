@@ -606,6 +606,9 @@
     "comment_scenario_2": "Um chamado de suporte em que cliente, atendente e engenheiro de escalonamento somam à mesma discussão.",
     "comment_best_practice_1": "Mantenha replyingTo e editingId com um único valor cada. Duas caixas de resposta abertas dão ao leitor dois lugares para digitar e nenhuma forma de saber a qual pertence o rascunho.",
     "comment_best_practice_2": "Defina edited quando um comentário mudar depois de publicado. Um comentário reescrito em silêncio é lido como se sempre tivesse dito a coisa nova, que é a única falha da qual uma discussão não se recupera.",
-    "comment_keyboard_desc": "Os botões de ação entram na ordem de tabulação na mesma ordem em que são lidos, e cada resposta vem depois do comentário que responde. Não há atalhos próprios: um comentário é conteúdo com botões, e inventar atalhos aqui brigaria com a ordem de leitura que as pessoas já têm."
+    "comment_keyboard_desc": "Os botões de ação entram na ordem de tabulação na mesma ordem em que são lidos, e cada resposta vem depois do comentário que responde. Não há atalhos próprios: um comentário é conteúdo com botões, e inventar atalhos aqui brigaria com a ordem de leitura que as pessoas já têm.",
+    "card_link_title": "Link no cartão inteiro (Card.Link)",
+    "card_link_desc": "Card.Link é o link principal do cartão, estendido sobre o cartão inteiro: clicar em qualquer ponto segue o link. Outros botões e links dentro do cartão ficam acima dele, como alvos separados, então nenhum controle fica aninhado no link (não envolva o cartão inteiro em um <a> com asChild quando ele tiver botões). Coloque o link onde o texto funciona como nome do cartão, em geral o título. O anel de foco aparece em volta do cartão. Use um por cartão, junto com interactive para o retorno de hover. Enquanto o link cobre o cartão, o texto dentro dele não pode ser selecionado arrastando.",
+    "card_link_props": "Propriedades de Card.Link"
   }
 }

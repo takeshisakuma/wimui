@@ -129,3 +129,34 @@ export const LongLabel: Story = {
     );
   },
 };
+
+/**
+ * カードで選ぶ（T365）。カードは選択肢の `<label>` なので、どこを押しても選べる。説明文は入力から
+ * `aria-describedby` で指す。当日便は、この住所では使えない（無効の選択肢）。
+ */
+export const Cards: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <RadioGroup
+        {...args}
+        variant="card"
+        name="delivery"
+        label={t("story.radio_card_label")}
+        defaultValue="standard"
+        options={[
+          { label: t("story.radio_card_standard"), value: "standard", description: t("story.radio_card_standard_desc") },
+          { label: t("story.radio_card_express"), value: "express", description: t("story.radio_card_express_desc") },
+          { label: t("story.radio_card_pickup"), value: "pickup", description: t("story.radio_card_pickup_desc") },
+          { label: t("story.radio_card_sameday"), value: "sameday", description: t("story.radio_card_sameday_desc"), disabled: true },
+        ]}
+      />
+    );
+  },
+};
+
+/** 横に並べたカード。幅が足りないと、1 列に落ちる。 */
+export const CardsHorizontal: Story = {
+  ...Cards,
+  args: { direction: "horizontal" },
+};
