@@ -144,12 +144,14 @@ export const Placements: Story = {
       { side: "right", align: "center" },
       { side: "bottom", align: "left" },
       { side: "bottom", align: "right" },
+      // `sideOffset` も、どのストーリーにも描かれていなかった（T350 で効くようにした値）
+      { side: "bottom", align: "center", sideOffset: 24 },
     ] as const;
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: "48px", padding: "24px" }}>
-        {placements.map(({ side, align }) => (
+        {placements.map(({ side, align, ...rest }) => (
           <div
-            key={side + align}
+            key={side + align + ("sideOffset" in rest ? rest.sideOffset : "")}
             style={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: "220px" }}
           >
             <HoverCard open>
@@ -158,9 +160,12 @@ export const Placements: Story = {
                   <Avatar src={avatar2} alt={t("story.hovercard_name")} />
                 </a>
               </HoverCardTrigger>
-              <HoverCardContent side={side} align={align}>
+              <HoverCardContent side={side} align={align} {...rest}>
                 <div style={{ fontWeight: "bold" }}>{t("story.hovercard_name")}</div>
-                <div>{side} / {align}</div>
+                <div>
+                  {side} / {align}
+                  {"sideOffset" in rest && ` / ${rest.sideOffset}px`}
+                </div>
               </HoverCardContent>
             </HoverCard>
           </div>
