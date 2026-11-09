@@ -8,6 +8,7 @@ import React, {
 import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import { useIndicator } from "../../_internal/useIndicator";
+import { getRovingIndex } from "../../_internal/rovingIndex";
 import { useMergedRef } from "../../../hooks/useMergedRef";
 import styles from "./tabs.module.scss";
 import { composeEventHandlers } from "../../_internal/composeEventHandlers";
@@ -189,22 +190,20 @@ export const TabsList = React.forwardRef<HTMLDivElement, TabsListProps>(
 
     const handleKeyDown = (e: React.KeyboardEvent) => {
       const currentIndex = value ? items.indexOf(value) : -1;
-      let nextIndex = -1;
+      // 無効のタブは飛ばす（T366）。以前は数えていて、矢印で無効のタブが選ばれ、
+      // フォーカスだけが元のタブに残っていた（無効のボタンにはフォーカスが乗らない）。
+      const nextIndex = getRovingIndex({
+        key: e.key,
+        current: currentIndex,
+        count: items.length,
+        orientation,
+        isDisabled: (i) =>
+          !!containerRef.current
+            ?.querySelector(`[data-value="${items[i]}"]`)
+            ?.hasAttribute("disabled"),
+      });
 
-      if (orientation === "horizontal") {
-        if (e.key === "ArrowRight") nextIndex = (currentIndex + 1) % items.length;
-        if (e.key === "ArrowLeft")
-          nextIndex = (currentIndex - 1 + items.length) % items.length;
-      } else {
-        if (e.key === "ArrowDown") nextIndex = (currentIndex + 1) % items.length;
-        if (e.key === "ArrowUp")
-          nextIndex = (currentIndex - 1 + items.length) % items.length;
-      }
-
-      if (e.key === "Home") nextIndex = 0;
-      if (e.key === "End") nextIndex = items.length - 1;
-
-      if (nextIndex !== -1) {
+      if (nextIndex !== null) {
         e.preventDefault();
         const nextValue = items[nextIndex];
         if (nextValue) {

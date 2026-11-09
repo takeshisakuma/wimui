@@ -4,6 +4,7 @@ import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
 import styles from "./stepper.module.scss";
 import { CheckIcon, CloseIcon } from "@/icon";
+import { getRovingIndex, isRovingKey } from "../../_internal/rovingIndex";
 
 export type StepperIntent = "wait" | "process" | "finish" | "error";
 
@@ -98,24 +99,16 @@ export const Stepper = forwardRef<HTMLDivElement, StepperProps>(({
     const focusedItemIdx = items.indexOf(focusedEl);
     if (focusedItemIdx === -1) return;
 
-    const arrowKeys = ["ArrowRight", "ArrowLeft", "ArrowDown", "ArrowUp", "Home", "End"];
-    if (!arrowKeys.includes(e.key)) return;
+    if (!isRovingKey(e.key)) return;
     e.preventDefault();
 
     const navigableItems = items.filter((_, i) => !steps[i]?.disabled);
     const focusedNavIdx = navigableItems.indexOf(focusedEl);
     if (focusedNavIdx === -1) return;
 
-    let nextNavIdx: number;
-    if (e.key === "ArrowRight" || e.key === "ArrowDown") {
-      nextNavIdx = (focusedNavIdx + 1) % navigableItems.length;
-    } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
-      nextNavIdx = (focusedNavIdx - 1 + navigableItems.length) % navigableItems.length;
-    } else if (e.key === "Home") {
-      nextNavIdx = 0;
-    } else {
-      nextNavIdx = navigableItems.length - 1;
-    }
+    // 無効のステップは上で除いてあるので、ここは位置の計算だけ（T366）
+    const nextNavIdx = getRovingIndex({ key: e.key, current: focusedNavIdx, count: navigableItems.length });
+    if (nextNavIdx === null) return;
 
     const nextItem = navigableItems[nextNavIdx];
     nextItem.focus();

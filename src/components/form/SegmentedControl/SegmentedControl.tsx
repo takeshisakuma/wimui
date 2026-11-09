@@ -6,6 +6,7 @@ import { useIndicator } from "../../_internal/useIndicator";
 import { useMergedRef } from "../../../hooks/useMergedRef";
 import { FieldTemplate } from "../FieldTemplate";
 import { ComponentSizeBasic } from "../../../types/tokens";
+import { getRovingIndex } from "../../_internal/rovingIndex";
 import localStyles from "./segmented-control.module.scss";
 
 type Option = {
@@ -100,29 +101,9 @@ export const SegmentedControl = forwardRef<HTMLDivElement, SegmentedControlProps
   const selectedIndex = options.findIndex((opt) => opt.value === value);
 
   const handleKeyDown = (event: React.KeyboardEvent, index: number) => {
-    let nextIndex: number;
-
-    switch (event.key) {
-      case "ArrowLeft":
-      case "ArrowUp":
-        nextIndex = index - 1;
-        if (nextIndex < 0) nextIndex = options.length - 1;
-        break;
-      case "ArrowRight":
-      case "ArrowDown":
-        nextIndex = index + 1;
-        if (nextIndex >= options.length) nextIndex = 0;
-        break;
-      // 端へ。ToggleGroup / Rating / Tabs と同じ（T315）
-      case "Home":
-        nextIndex = 0;
-        break;
-      case "End":
-        nextIndex = options.length - 1;
-        break;
-      default:
-        return;
-    }
+    // 上下左右と Home / End（端へ。ToggleGroup / Rating / Tabs と同じ・T315）。計算は rovingIndex（T366）
+    const nextIndex = getRovingIndex({ key: event.key, current: index, count: options.length });
+    if (nextIndex === null) return;
 
     event.preventDefault(); // Prevent scroll
     onChange(options[nextIndex].value);

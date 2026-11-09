@@ -1,5 +1,6 @@
 import { render, screen, fireEvent, act, waitFor } from "@testing-library/react";
 import { describe, it, expect, vi, beforeAll, afterAll } from "vitest";
+import React from "react";
 import { Tabs } from "./Tabs";
 import styles from "./tabs.module.scss";
 
@@ -236,5 +237,33 @@ describe("Tabs", () => {
     expect(link.tagName).toBe("A");
     expect(link).toHaveAttribute("role", "tab");
     expect(link).toHaveAttribute("aria-selected", "true");
+  });
+});
+
+describe("Tabs keyboard and disabled tabs (T366)", () => {
+  it("skips a disabled tab with the arrow keys instead of selecting it", () => {
+    function Controlled() {
+      const [v, setV] = React.useState("a");
+      return (
+        <Tabs value={v} onChange={setV}>
+          <Tabs.List>
+            <Tabs.Trigger value="a">A</Tabs.Trigger>
+            <Tabs.Trigger value="b" disabled>B</Tabs.Trigger>
+            <Tabs.Trigger value="c">C</Tabs.Trigger>
+          </Tabs.List>
+          <Tabs.Content value="a">pa</Tabs.Content>
+          <Tabs.Content value="b">pb</Tabs.Content>
+          <Tabs.Content value="c">pc</Tabs.Content>
+        </Tabs>
+      );
+    }
+    render(<Controlled />);
+    const a = screen.getByRole("tab", { name: "A" });
+    a.focus();
+    fireEvent.keyDown(a, { key: "ArrowRight" });
+    const c = screen.getByRole("tab", { name: "C" });
+    expect(c).toHaveAttribute("aria-selected", "true");
+    expect(c).toHaveFocus();
+    expect(screen.getByRole("tab", { name: "B" })).toHaveAttribute("aria-selected", "false");
   });
 });
