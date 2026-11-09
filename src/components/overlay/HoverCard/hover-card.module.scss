@@ -81,16 +81,19 @@
       transform: var(--base-transform);
     }
   
+    /* `--base-transform` には、どの向きでも transform の関数を入れる。keyframes が
+       `var(--base-transform) scale(…)` と並べるので、長さだけを入れると無効な値になり、
+       出てくる間だけ `transform: none`（間隔 0）で描かれて、終わりに跳んでいた。 */
     &.alignLeft {
       left: 0;
 
-      --base-transform: var(--wim-hover-card-offset);
+      --base-transform: translateY(var(--wim-hover-card-offset));
 
       &.top {
-        --base-transform: calc(var(--wim-hover-card-offset) * -1);
+        --base-transform: translateY(calc(var(--wim-hover-card-offset) * -1));
       }
 
-      transform: translateY(var(--base-transform));
+      transform: var(--base-transform);
     }
   
     &.alignRight {
