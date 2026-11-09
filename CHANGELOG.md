@@ -1,5 +1,19 @@
 # wimui
 
+## 0.67.0
+
+### Minor Changes
+
+- 74366bc: カードで選ぶ・カード全体を押す形を足した（T365）。
+
+  - `RadioGroup` / `CheckboxGroup` に `variant="card"` を足した。選択肢を 1 枚ずつのカードで描き、カードのどこを押しても選べる（カードが選択肢の `<label>`）。矢印キーとグループの意味はこれまでどおり。
+  - 選択肢に `description` を足した（両方の variant で使える）。名前の下に 2 行目として出し、入力の名前は名前の文字だけ（`aria-labelledby`）、説明文は `aria-describedby` で読む。
+  - `Card.Link`（`CardLink`）を足した。カードの主のリンクをカード全体に広げ、カードの中のほかのボタンやリンクは、その上で別に押せる（リンクの中に操作要素を入れ子にしない）。フォーカスの輪はカードの形に出る。`asChild` で router の Link などを渡せる。
+
+### Patch Changes
+
+- 4f0a8d2: `Tabs`: 矢印キーで無効のタブを選ばないようにした。以前は矢印で無効のタブが選ばれ（中身も切り替わり）、フォーカスだけが元のタブに残っていた。無効のタブは飛ばし、Home / End も無効のタブには止まらない。あわせて、並んだボタンの矢印キーの計算（Tabs / TabNavigation / Toolbar / Stepper / SegmentedControl / ToggleGroup）を内部で 1 つにまとめた。ほかの 5 部品の動きは変わらない。
+
 ## 0.66.0
 
 ### Minor Changes
