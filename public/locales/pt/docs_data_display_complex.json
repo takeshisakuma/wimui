@@ -274,7 +274,14 @@
     "charts_color_evidence_row_normal": "Par mais próximo, visão normal (OKLab ΔE ×100)",
     "charts_color_evidence_row_cvd": "Par mais próximo simulado como protan/deutan",
     "charts_color_evidence_row_surface": "Superfície contra a qual o contraste é medido",
-    "chatui_avatar_tones": "Tons do avatar"
+    "chatui_avatar_tones": "Tons do avatar",
+    "chatui_c_toolcall": "Uma chamada que o assistente fez a uma ferramenta, com os argumentos e o resultado. Fica recolhida em uma linha por padrão.",
+    "chatui_c_system": "Um aviso que ninguém disse (a conversa começou, o modelo mudou, uma resposta falhou). Sem balão e sem remetente.",
+    "chatui_tool_calls": "Chamadas de ferramenta, mensagens do sistema e metadados",
+    "chatui_tool_calls_desc": "ThoughtProcess mostra o raciocínio do modelo em etapas e AgentStatus mostra o estado do agente inteiro em uma linha; ChatToolCall é uma ação no mundo externo e o que voltou dela. O status faz parte do nome do botão de abrir e não é anunciado quando muda, porque a mudança não vem de uma ação do usuário. ChatSystemMessage também não se anuncia: quando o aviso é resultado de uma ação do usuário, anuncie pela aplicação. A prop metadata de ChatMessage fica na mesma linha do horário. Toque em \"Tentar de novo\" no exemplo para refazer a chamada que falhou.",
+    "chatui_tool_states": "Estados da chamada de ferramenta e intents da mensagem do sistema",
+    "chatui_toolcall_props": "Propriedades de ChatToolCall",
+    "chatui_system_props": "Propriedades de ChatSystemMessage"
   },
   "doc.jsondiff_intro": "JsonDiffViewer compara dois valores JSON lado a lado ou em forma unificada, com destaque de diff em nível de linha. Serializa ambos os valores com JSON.stringify e delega a renderização ao CodeDiffViewer.",
   "doc.jsondiff_design_intent": "Otimizado para comparar respostas de API, payloads de webhook e objetos de configuração. Ao delegar ao CodeDiffViewer com language=json, herda todos os controles de diff mantendo sua própria API mínima.",

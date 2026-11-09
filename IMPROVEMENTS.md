@@ -247,7 +247,6 @@ Meta の Astryx（[github.com/meta/astryx](https://github.com/meta/astryx)・[�
 |---|---|---|---|---|
 | T361 | **Overflow List（入る分だけ並べ、残りを「+N」にまとめる）** | 未着手（P2） | Tag の列・Breadcrumb・Toolbar・AvatarGroup が同じ「幅に収まらない分を畳む」仕組みを要る。部品より先に、共通のプリミティブ（測る・畳む・残りをメニューで出す）として持てるかを見る。既存の部品が今それぞれどう畳んでいるか（畳んでいないか）を先に数える | 幅を変えるストーリーで、畳んだ数と「+N」の数が一致すること・畳んだ項目にキーボードで届くこと（E2E）・VRT |
 | T362 | **Table / DataGrid の一括操作バー（Table Selection Toolbar）** | 未着手（P2） | 行を選んだあとに出る「n 件を選択中・操作・選択の解除」のバー。選択の機能はあるが、その受け皿が無く、使う側が毎回組む。件数の告知は T367 と同じ仕組みに乗せる | 選択数の変化が読み上げられること（実機）・a11y・VRT |
-| T363 | **ChatUI のツール呼び出し・システムメッセージ・メタデータの表示** | 未着手（P2） | Astryx の Chat Tool Calls / Chat System Message / Chat Message Metadata に当たるものが ChatUI に無い（`ChatUI.tsx` に tool の扱いが無いことを grep で確認）。ThoughtProcess・AgentStatus との役割の切り分けを先に決める | ストーリー化して a11y・VRT・`judge:slop` |
 | T364 | **Info Tip（(i) アイコン + Tooltip の組み合わせ）** | 未着手（P3） | 使う側が自作すると、引き金がボタンでない・名前が無い、で a11y を落としやすい組み合わせ。部品にせず Tooltip のレシピで足りるかも含めて判断する（`docs/rules/implementation.md` のレシピか公開かの基準） | 引き金にフォーカスが届き名前があること（a11y）・Esc で閉じること（E2E） |
 | T365 | **Selectable Card / Clickable Card** | 未着手（P3） | カード全体を押せるようにしつつ、中のリンクやボタンも生かす作り（入れ子の対話要素を作らない）。Card に今その機能は無い。選べるカードは RadioGroup / CheckboxGroup との関係を先に決める | 入れ子の対話要素が無いこと（axe）・中のボタンが独立して押せること（E2E）・VRT |
 | T366 | **キー操作のフックを 1 か所にまとめる（一覧・グリッド・ツリー）** | 未着手（P3） | Astryx は `useListFocus` / `useGridFocus` / `useTreeFocus` を公開している。WIM は TreeView・DataGrid・Menu・Tabs などがそれぞれ矢印キーの移動を書いている。まず何か所で書いているかを数え、内部の共通化（公開するかは別判断）にするかを決める | 置き換えた部品の既存のキー操作の E2E が全部緑のまま |

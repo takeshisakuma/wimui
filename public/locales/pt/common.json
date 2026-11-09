@@ -102,7 +102,9 @@
     "support": "Suporte",
     "you": "Você",
     "send": "Enviar",
-    "user_avatar": "Avatar do usuário"
+    "user_avatar": "Avatar do usuário",
+    "tool_input": "Entrada",
+    "tool_output": "Saída"
   },
   "common": {
     "all": "Todos",

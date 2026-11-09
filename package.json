@@ -272,7 +272,7 @@
         "react/jsx-runtime"
       ],
       "gzip": true,
-      "limit": "51 kB"
+      "limit": "52 kB"
     },
     {
       "name": "UMD Bundle (gzip)",

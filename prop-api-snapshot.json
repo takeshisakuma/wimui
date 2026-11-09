@@ -2064,6 +2064,9 @@
     "ChatMessage.isTyping": {
       "type": "boolean"
     },
+    "ChatMessage.metadata": {
+      "type": "React.ReactNode"
+    },
     "ChatMessage.position": {
       "type": "\"left\" | \"right\""
     },
@@ -2084,6 +2087,39 @@
     },
     "ChatMessageList.className": {
       "type": "string"
+    },
+    "ChatSystemMessage.action": {
+      "type": "React.ReactNode"
+    },
+    "ChatSystemMessage.children": {
+      "type": "React.ReactNode"
+    },
+    "ChatSystemMessage.className": {
+      "type": "string"
+    },
+    "ChatSystemMessage.intent": {
+      "type": "\"default\" | \"warning\" | \"danger\""
+    },
+    "ChatToolCall.className": {
+      "type": "string"
+    },
+    "ChatToolCall.defaultExpanded": {
+      "type": "boolean"
+    },
+    "ChatToolCall.input": {
+      "type": "React.ReactNode"
+    },
+    "ChatToolCall.name": {
+      "type": "string"
+    },
+    "ChatToolCall.output": {
+      "type": "React.ReactNode"
+    },
+    "ChatToolCall.status": {
+      "type": "\"waiting\" | \"running\" | \"done\" | \"error\""
+    },
+    "ChatToolCall.summary": {
+      "type": "React.ReactNode"
     },
     "Checkbox.asChild": {
       "required": false,

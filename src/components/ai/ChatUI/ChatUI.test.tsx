@@ -6,6 +6,8 @@ import {
   ChatMessage,
   ChatInput,
   ChatAvatar,
+  ChatToolCall,
+  ChatSystemMessage,
 } from "./ChatUI";
 import styles from "./chat-ui.module.scss";
 
@@ -237,5 +239,85 @@ describe("ChatAvatar", () => {
     fireEvent.error(img);
 
     expect(screen.getByText("U")).toBeInTheDocument();
+  });
+});
+
+describe("ChatMessage metadata", () => {
+  it("shows metadata on the timestamp line", () => {
+    render(
+      <ChatMessage timestamp="14:05" metadata="model-x · 1,204 tokens">
+        Hi
+      </ChatMessage>,
+    );
+    expect(screen.getByText("14:05 · model-x · 1,204 tokens")).toBeInTheDocument();
+  });
+
+  it("shows metadata without a timestamp", () => {
+    render(<ChatMessage metadata="3.2s">Hi</ChatMessage>);
+    expect(screen.getByText("3.2s")).toBeInTheDocument();
+  });
+});
+
+describe("ChatToolCall", () => {
+  it("is collapsed by default and toggles input and output", () => {
+    render(
+      <ChatToolCall
+        name="search_incidents"
+        input={<pre>{'{"days":30}'}</pre>}
+        output={<pre>6 incidents</pre>}
+      />,
+    );
+    const toggle = screen.getByRole("button", { name: /search_incidents/ });
+    expect(toggle).toHaveAttribute("aria-expanded", "false");
+    expect(screen.getByText("6 incidents")).not.toBeVisible();
+
+    fireEvent.click(toggle);
+
+    expect(toggle).toHaveAttribute("aria-expanded", "true");
+    expect(screen.getByText("6 incidents")).toBeVisible();
+    expect(document.getElementById(toggle.getAttribute("aria-controls")!)).toContainElement(
+      screen.getByText("6 incidents"),
+    );
+  });
+
+  it("puts the status in the toggle's name", () => {
+    render(<ChatToolCall name="run_query" status="error" output="timeout" />);
+    expect(screen.getByRole("button", { name: /run_query.*Error/ })).toBeInTheDocument();
+  });
+
+  it("is not a button when there is nothing to expand", () => {
+    render(<ChatToolCall name="ping" status="running" />);
+    expect(screen.queryByRole("button")).toBeNull();
+    expect(screen.getByText("ping").closest("[aria-busy]")).toHaveAttribute("aria-busy", "true");
+  });
+
+  it("shows a string input as preformatted text reachable by keyboard", () => {
+    render(<ChatToolCall name="ping" input={'{\n  "host": "a"\n}'} defaultExpanded />);
+    const pre = screen.getByText(/"host": "a"/);
+    expect(pre.tagName).toBe("PRE");
+    expect(pre).toHaveAttribute("tabindex", "0");
+  });
+
+  it("starts expanded with defaultExpanded", () => {
+    render(<ChatToolCall name="ping" input="{}" defaultExpanded />);
+    expect(screen.getByRole("button", { name: /ping/ })).toHaveAttribute("aria-expanded", "true");
+    expect(screen.getByText("{}")).toBeVisible();
+  });
+});
+
+describe("ChatSystemMessage", () => {
+  it("renders the notice and the action", () => {
+    render(
+      <ChatSystemMessage intent="danger" action={<button type="button">Retry</button>}>
+        No answer arrived
+      </ChatSystemMessage>,
+    );
+    expect(screen.getByText("No answer arrived")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Retry" })).toBeInTheDocument();
+  });
+
+  it("is not a live region", () => {
+    const { container } = render(<ChatSystemMessage>Model changed</ChatSystemMessage>);
+    expect(container.querySelector("[role=status],[role=alert],[aria-live]")).toBeNull();
   });
 });
