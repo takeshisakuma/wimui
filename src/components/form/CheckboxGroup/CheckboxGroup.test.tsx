@@ -45,3 +45,21 @@ describe("CheckboxGroup", () => {
     expect(screen.getByLabelText("Option 2")).not.toBeChecked();
   });
 });
+
+describe("CheckboxGroup card variant and descriptions (T365)", () => {
+  const extras = [
+    { label: "Gift wrap", value: "wrap", description: "Paper and a card, 300 yen" },
+    { label: "Receipt", value: "receipt" },
+  ];
+
+  it("links the description and toggles from anywhere on the card", () => {
+    const onChange = vi.fn();
+    render(<CheckboxGroup options={extras} variant="card" onChange={onChange} />);
+    const box = screen.getByRole("checkbox", { name: "Gift wrap" });
+    expect(box).toHaveAccessibleName("Gift wrap");
+    expect(box).toHaveAccessibleDescription("Paper and a card, 300 yen");
+    fireEvent.click(screen.getByText("Paper and a card, 300 yen"));
+    expect(onChange).toHaveBeenCalledWith(["wrap"]);
+    expect(screen.getByRole("checkbox", { name: "Receipt" })).not.toHaveAttribute("aria-describedby");
+  });
+});

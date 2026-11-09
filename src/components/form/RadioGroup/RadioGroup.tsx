@@ -4,11 +4,14 @@ import { Slot, Slottable } from "@radix-ui/react-slot";
 import { Radio } from "../../form/Radio/Radio";
 import styles from "./radio-group.module.scss";
 import { FieldTemplate } from "../FieldTemplate";
+import { ChoiceLabel, choiceLabelClasses } from "../../_internal/ChoiceLabel";
 
 type Option = {
   label: string;
   value: string;
   disabled?: boolean;
+  /** A second line that explains the option (shown under the label, and linked with `aria-describedby`) */
+  description?: string;
 };
 
 export interface RadioGroupProps extends Omit<React.ComponentPropsWithoutRef<"div">, "onChange" | "defaultValue"> {
@@ -22,6 +25,13 @@ export interface RadioGroupProps extends Omit<React.ComponentPropsWithoutRef<"di
   onChange?: (value: string) => void;
   /** Layout direction of the radio buttons */
   direction?: "vertical" | "horizontal";
+  /**
+   * `card` draws each option as a bordered card that is selectable as a whole
+   * (the card is the option's `<label>`). Keys and group semantics stay those
+   * of a radio group. Use with `description` when the options need explaining.
+   * @default "default"
+   */
+  variant?: "default" | "card";
   /** Name attribute shared by the radio inputs */
   name?: string;
   /** Whether to render as a child element. */
@@ -47,6 +57,7 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(
       defaultValue,
       onChange,
       direction = "vertical",
+      variant = "default",
       name,
       className,
       label,
@@ -97,6 +108,7 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(
           className={classNames("wim-radio-group", 
             styles.root,
             direction === "horizontal" && styles.horizontal,
+            variant === "card" && styles.cards,
           )}
           role="radiogroup"
           // 利用者が渡した参照を捨てない（T328）。以前はここで固定の値を書いていて、ラベルやエラーを
@@ -106,19 +118,34 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(
           aria-required={required}
           aria-invalid={!!error}
         >
-          {options.map((option) => (
-            <Radio
-              key={option.value}
-              value={option.value}
-              checked={currentValue === option.value}
-              disabled={disabled || option.disabled}
-              error={!!error}
-              name={name}
-              onChange={() => handleChange(option.value)}
-            >
-              {option.label}
-            </Radio>
-          ))}
+          {options.map((option) => {
+            const descriptionId = option.description ? `${id}-${option.value}-description` : undefined;
+            const labelTextId = option.description ? `${id}-${option.value}-label` : undefined;
+            return (
+              <Radio
+                key={option.value}
+                value={option.value}
+                checked={currentValue === option.value}
+                disabled={disabled || option.disabled}
+                error={!!error}
+                name={name}
+                onChange={() => handleChange(option.value)}
+                aria-describedby={descriptionId}
+                aria-labelledby={labelTextId}
+                className={classNames(
+                  variant === "card" && choiceLabelClasses.card,
+                  option.description && choiceLabelClasses.top,
+                )}
+              >
+                <ChoiceLabel
+                  label={option.label}
+                  description={option.description}
+                  descriptionId={descriptionId}
+                  labelId={labelTextId}
+                />
+              </Radio>
+            );
+          })}
           {/* 利用者の要素（asChild の子）を Slottable に入れる。Slot はこれを根にして、上の中身をその中に描く。
               以前は逆（中身を Slottable に入れていた）で、asChild を付けると描画で例外になるか、部品の
               クラスが利用者の要素に付かなかった（T337）。 */}

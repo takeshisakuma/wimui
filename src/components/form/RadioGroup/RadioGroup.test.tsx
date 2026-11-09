@@ -55,3 +55,32 @@ describe("RadioGroup", () => {
     expect(screen.getByText("Required")).toBeInTheDocument();
   });
 });
+
+describe("RadioGroup card variant and descriptions (T365)", () => {
+  const shipping = [
+    { label: "Standard", value: "std", description: "3 to 5 days, free" },
+    { label: "Express", value: "exp", description: "Next day, 900 yen" },
+  ];
+
+  it("links each description to its radio", () => {
+    render(<RadioGroup options={shipping} variant="card" label="Shipping" />);
+    // 名前は名前の文字だけ。説明文は説明としてだけ読む（label の中にあるので、何もしないと 2 回読まれる）
+    const radio = screen.getByRole("radio", { name: "Express" });
+    expect(radio).toHaveAccessibleName("Express");
+    expect(radio).toHaveAccessibleDescription("Next day, 900 yen");
+  });
+
+  it("selects an option by clicking anywhere on its card", () => {
+    const onChange = vi.fn();
+    render(<RadioGroup options={shipping} variant="card" onChange={onChange} />);
+    fireEvent.click(screen.getByText("Next day, 900 yen"));
+    expect(onChange).toHaveBeenCalledWith("exp");
+    expect(screen.getByRole("radio", { name: /Express/ })).toBeChecked();
+  });
+
+  it("keeps the label as the name when there is no description", () => {
+    render(<RadioGroup options={[{ label: "Pickup", value: "pick" }]} variant="card" />);
+    const radio = screen.getByRole("radio", { name: "Pickup" });
+    expect(radio).not.toHaveAttribute("aria-describedby");
+  });
+});

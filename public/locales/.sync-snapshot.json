@@ -3885,7 +3885,10 @@
       "comment_scenario_2": "A support ticket where the customer, the agent, and an escalation engineer each add to the same discussion.",
       "comment_best_practice_1": "Keep replyingTo and editingId to a single value each. Two open reply boxes give the reader two places to type and no way to tell which one their draft belongs to.",
       "comment_best_practice_2": "Set edited when a comment has changed since it was posted. A comment that was silently rewritten reads as if it always said the new thing, which is the one thing a discussion cannot recover from.",
-      "comment_keyboard_desc": "The action buttons are in the tab order in the order they are read, and each reply is reached after the comment it answers. There are no custom key bindings: a comment is content with buttons in it, and inventing shortcuts here would fight the reading order people already have."
+      "comment_keyboard_desc": "The action buttons are in the tab order in the order they are read, and each reply is reached after the comment it answers. There are no custom key bindings: a comment is content with buttons in it, and inventing shortcuts here would fight the reading order people already have.",
+      "card_link_title": "Whole-card link (Card.Link)",
+      "card_link_desc": "Card.Link is the card's main link, stretched over the whole card: clicking anywhere on the card follows it. Other buttons and links inside the card stay separate targets above it, so no control is nested inside the link (do not wrap the whole card in an <a> with asChild when it holds buttons). Put the link where its text reads as the card's name, usually the title. The focus ring is drawn around the card. Use one per card, together with interactive for hover feedback. Text inside the card cannot be selected by dragging while the link covers it.",
+      "card_link_props": "Card.Link Props"
     }
   },
   "docs_data_display_complex": {
@@ -5974,7 +5977,10 @@
       "themetoggle_scenario_2_title": "Settings screen",
       "searchinput_choice_alt": "Alternative",
       "taginput_controlled_desc": "Managing tags via external state.",
-      "taginput_maximum_tags_desc": "Limit the number of tags that can be added."
+      "taginput_maximum_tags_desc": "Limit the number of tags that can be added.",
+      "choice_cards_title": "Cards",
+      "radiogroup_cards_desc": "variant=\"card\" draws each option as a card that selects as a whole, because the card is the option's label. Arrow keys and the radio group's meaning do not change. Give options a description when the label alone does not decide the choice (price, timing); the input points at it with aria-describedby. With direction=\"horizontal\" the cards form columns and fall back to one column when the space is narrow.",
+      "checkboxgroup_cards_desc": "variant=\"card\" draws each option as a card that toggles as a whole, because the card is the option's label. Give a description only to the options that need one; the input points at it with aria-describedby."
     }
   },
   "docs_form_pickers": {
@@ -11589,7 +11595,12 @@
       "chat_tool_retry": "Try again",
       "chat_tool_model_changed": "Switched to a smaller model for this conversation",
       "chat_tool_context_warning": "Older messages will be left out of the model's context soon",
-      "chat_tool_booked": "Booked: Tuesday 16:40 with Dr. Okafor. Thursday is cancelled."
+      "chat_tool_booked": "Booked: Tuesday 16:40 with Dr. Okafor. Thursday is cancelled.",
+      "card_link_order_1": "Order 4281",
+      "card_link_order_1_meta": "3 items · Delivered Tue 4 Nov",
+      "card_link_buy_again": "Buy again",
+      "card_link_order_2": "Order 4307",
+      "card_link_order_2_meta": "1 item · Arrives Thu 13 Nov"
     }
   },
   "docs_stories_feedback": {
@@ -11953,7 +11964,22 @@
       "rte_markdown_heading": "What changed",
       "rte_markdown_item1": "Images can be embedded",
       "rte_markdown_item2": "Content can be saved as Markdown",
-      "rte_markdown_output_label": "Markdown output:"
+      "rte_markdown_output_label": "Markdown output:",
+      "radio_card_label": "Delivery",
+      "radio_card_standard": "Standard",
+      "radio_card_standard_desc": "3 to 5 days · free over ¥5,000",
+      "radio_card_express": "Express",
+      "radio_card_express_desc": "Next business day · ¥900",
+      "radio_card_pickup": "Pick up at the Shibuya store",
+      "radio_card_pickup_desc": "Ready in about 2 hours · free",
+      "radio_card_sameday": "Same day",
+      "radio_card_sameday_desc": "Not available for this address",
+      "checkbox_card_label": "Extras",
+      "checkbox_card_wrap": "Gift wrap",
+      "checkbox_card_wrap_desc": "Paper and a message card · ¥300",
+      "checkbox_card_door": "Leave at the door",
+      "checkbox_card_receipt": "Paper receipt",
+      "checkbox_card_receipt_desc": "Mailed separately, made out to the name on the order"
     }
   },
   "docs_stories_layout": {

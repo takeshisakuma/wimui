@@ -984,6 +984,10 @@ Useful for using the button styles with Link components (e.g. from React Router 
     - `defaultValue: string[]` = [] — Initially selected values (uncontrolled)
     - `onChange: (value: string[]) => void` — Callback when the selected values change
     - `direction: "vertical" | "horizontal"` = "vertical" — Layout direction of the checkboxes
+    - `variant: "default" | "card"` = "default" — `card` draws each option as a bordered card that is selectable as a whole
+(the card is the option's `<label>`). Keys and group semantics stay those
+of a checkbox group. Use with `description` when the options need explaining.
+@default "default"
     - `name: string` — Name attribute shared by the checkbox inputs
     - `asChild: boolean` = false — Whether to render as a child element.
     - `label: string` — Group label
@@ -1528,6 +1532,10 @@ so the unit does not have to be repeated in the label.
     - `defaultValue: string` — Initially selected value (uncontrolled)
     - `onChange: (value: string) => void` — Callback when the selected value changes
     - `direction: "vertical" | "horizontal"` = "vertical" — Layout direction of the radio buttons
+    - `variant: "default" | "card"` = "default" — `card` draws each option as a bordered card that is selectable as a whole
+(the card is the option's `<label>`). Keys and group semantics stay those
+of a radio group. Use with `description` when the options need explaining.
+@default "default"
     - `name: string` — Name attribute shared by the radio inputs
     - `asChild: boolean` = false — Whether to render as a child element.
     - `label: string` — Group label

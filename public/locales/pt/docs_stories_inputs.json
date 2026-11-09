@@ -252,6 +252,21 @@
     "transfer_long_desc": "Esta é uma descrição muito muito muito muito muito muito muito longa",
     "transfer_long_title": "Este é um título muito muito muito muito muito muito muito muito muito muito longo que deve ser truncado",
     "transfer_short_desc": "Descrição Curta",
-    "transfer_short_title": "Título Curto"
+    "transfer_short_title": "Título Curto",
+    "radio_card_label": "Entrega",
+    "radio_card_standard": "Padrão",
+    "radio_card_standard_desc": "3 a 5 dias · grátis acima de R$ 150",
+    "radio_card_express": "Expresso",
+    "radio_card_express_desc": "Próximo dia útil · R$ 24,90",
+    "radio_card_pickup": "Retirar na loja de Shibuya",
+    "radio_card_pickup_desc": "Pronto em cerca de 2 horas · grátis",
+    "radio_card_sameday": "No mesmo dia",
+    "radio_card_sameday_desc": "Indisponível para este endereço",
+    "checkbox_card_label": "Opcionais",
+    "checkbox_card_wrap": "Embrulho para presente",
+    "checkbox_card_wrap_desc": "Papel e cartão com mensagem · R$ 9,90",
+    "checkbox_card_door": "Deixar na porta",
+    "checkbox_card_receipt": "Recibo em papel",
+    "checkbox_card_receipt_desc": "Enviado separadamente, no nome de quem fez o pedido"
   }
 }

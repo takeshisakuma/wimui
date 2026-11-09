@@ -2,7 +2,7 @@ import React from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
-import { Button, Card } from "wimui";
+import { Button, Card, Group, Stack, Text } from "wimui";
 import {
   CARD_STYLED_PADDING,
   CARD_STYLED_RADIUS,
@@ -153,5 +153,40 @@ export const WithHeaderAndFooter: Story = {
   },
   args: {
     variant: "elevated",
+  },
+};
+
+/**
+ * カード全体が押せるリンク（T365・`Card.Link`）。題のリンクがカード全体に広がり、
+ * 「もう一度買う」は別に押せる（リンクの中にボタンを入れ子にしない）。2 枚目はボタンを持たない。
+ */
+export const LinkCard: Story = {
+  render: function Render() {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <Stack gap="sm">
+        <Card interactive>
+          <Group justify="between" align="center" gap="md">
+            <Stack gap="2xs">
+              <Card.Link href="#order-4281">{t("story.card_link_order_1")}</Card.Link>
+              <Text size="sm" color="text-secondary">
+                {t("story.card_link_order_1_meta")}
+              </Text>
+            </Stack>
+            <Button variant="outline" size="sm">
+              {t("story.card_link_buy_again")}
+            </Button>
+          </Group>
+        </Card>
+        <Card interactive>
+          <Stack gap="2xs">
+            <Card.Link href="#order-4307">{t("story.card_link_order_2")}</Card.Link>
+            <Text size="sm" color="text-secondary">
+              {t("story.card_link_order_2_meta")}
+            </Text>
+          </Stack>
+        </Card>
+      </Stack>
+    );
   },
 };

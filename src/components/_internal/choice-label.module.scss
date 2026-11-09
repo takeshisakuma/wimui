@@ -1,0 +1,43 @@
+@layer component {
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wim-spacing-3xs);
+    min-width: 0;
+  }
+
+  .label {
+    font-weight: var(--wim-font-weight-medium);
+  }
+
+  .description {
+    font-size: var(--wim-font-size-sm);
+    color: var(--wim-color-text-secondary);
+  }
+
+  /* 説明文があるときは、入力を 2 行の中央ではなく 1 行目に揃える。 */
+  .top {
+    align-items: flex-start;
+  }
+
+  /* 選べるカード（T365）。根は選択肢の `<label>` なので、カード全体が押せる範囲になる。
+     選ばれた・フォーカスがある、は中の入力の状態から引く。 */
+  .card {
+    box-sizing: border-box;
+    width: 100%;
+    padding: var(--wim-spacing-md) var(--wim-spacing-lg);
+    background-color: var(--wim-color-surface);
+    border: var(--wim-border-width-thin) solid var(--wim-color-border);
+    border-radius: var(--wim-radius-component);
+    transition: border-color var(--wim-transition-fast), background-color var(--wim-transition-fast);
+
+    &:hover:not(:has(input:disabled)) {
+      border-color: var(--wim-color-text-tertiary);
+    }
+
+    &:has(input:checked) {
+      background-color: var(--wim-color-primary-subtle);
+      border-color: var(--wim-color-primary);
+    }
+  }
+}

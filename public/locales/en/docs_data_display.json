@@ -606,6 +606,9 @@
     "comment_scenario_2": "A support ticket where the customer, the agent, and an escalation engineer each add to the same discussion.",
     "comment_best_practice_1": "Keep replyingTo and editingId to a single value each. Two open reply boxes give the reader two places to type and no way to tell which one their draft belongs to.",
     "comment_best_practice_2": "Set edited when a comment has changed since it was posted. A comment that was silently rewritten reads as if it always said the new thing, which is the one thing a discussion cannot recover from.",
-    "comment_keyboard_desc": "The action buttons are in the tab order in the order they are read, and each reply is reached after the comment it answers. There are no custom key bindings: a comment is content with buttons in it, and inventing shortcuts here would fight the reading order people already have."
+    "comment_keyboard_desc": "The action buttons are in the tab order in the order they are read, and each reply is reached after the comment it answers. There are no custom key bindings: a comment is content with buttons in it, and inventing shortcuts here would fight the reading order people already have.",
+    "card_link_title": "Whole-card link (Card.Link)",
+    "card_link_desc": "Card.Link is the card's main link, stretched over the whole card: clicking anywhere on the card follows it. Other buttons and links inside the card stay separate targets above it, so no control is nested inside the link (do not wrap the whole card in an <a> with asChild when it holds buttons). Put the link where its text reads as the card's name, usually the title. The focus ring is drawn around the card. Use one per card, together with interactive for hover feedback. Text inside the card cannot be selected by dragging while the link covers it.",
+    "card_link_props": "Card.Link Props"
   }
 }
