@@ -229,6 +229,16 @@
     "watermark_prop_opacity": "Opacidade da marca d'água",
     "watermark_prop_rotate": "Ângulo de rotação da marca d'água (graus)",
     "watermark_prop_width": "Largura de um único bloco de marca d'água (px)",
-    "watermark_prop_zIndex": "z-index da camada da marca d'água"
+    "watermark_prop_zIndex": "z-index da camada da marca d'água",
+    "overflowList_prop_items": "Itens para organizar em uma única linha, na ordem de leitura.",
+    "overflowList_prop_renderItem": "Renderiza um item. Retorne um único elemento: cada elemento de nível superior é medido como um item.",
+    "overflowList_prop_renderOverflow": "Renderiza o indicador a partir dos itens que não couberam (por exemplo, um botão \"+N\" que abre um Popover com eles). Retorne um único elemento. Não é renderizado enquanto todos os itens cabem, a menos que alwaysRenderOverflow esteja definido.",
+    "overflowList_prop_collapseFrom": "O lado a partir do qual os itens são agrupados. \"end\" mantém os primeiros itens; \"start\" mantém os últimos.",
+    "overflowList_prop_minVisibleItems": "Itens que continuam visíveis por mais estreita que a linha fique. Nesse caso, podem ultrapassar a linha.",
+    "overflowList_prop_alwaysRenderOverflow": "Renderiza o indicador mesmo quando todos os itens cabem (ele recebe um array vazio).",
+    "overflowList_prop_onOverflow": "Chamado com os itens ocultos sempre que o conjunto de itens ocultos muda.",
+    "overflowList_prop_gap": "Espaço entre os itens: o nome de um token de espaçamento (\"sm\", \"md\", …).",
+    "overflowList_prop_asChild": "Se true, a lista será renderizada como seu filho, mesclando suas props nesse filho.",
+    "overflowList_prop_children": "O elemento que se torna a raiz (no lugar de div) quando asChild está definido. Os itens são renderizados dentro dele."
   }
 }

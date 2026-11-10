@@ -118,6 +118,24 @@
     "toolbar_size": "サイズ {{size}}",
     "toolbar_text_style": "テキストスタイル",
     "toolbar_view": "表示",
-    "toolbar_view_mode": "表示モード"
+    "toolbar_view_mode": "表示モード",
+    "overflowlist_amenities": "設備・サービス",
+    "overflowlist_amenity_wifi": "Wi-Fi 無料",
+    "overflowlist_amenity_breakfast": "朝食付き",
+    "overflowlist_amenity_parking": "敷地内駐車場",
+    "overflowlist_amenity_pets": "ペット可",
+    "overflowlist_amenity_shuttle": "空港送迎",
+    "overflowlist_amenity_late_checkout": "13 時までのレイトチェックアウト",
+    "overflowlist_amenity_kitchen": "簡易キッチン",
+    "overflowlist_amenity_laundry": "洗濯機",
+    "overflowlist_more_amenities": "すべての設備・サービスを表示",
+    "overflowlist_path": "フォルダの場所",
+    "overflowlist_folder_shared": "共有ドライブ",
+    "overflowlist_folder_household": "家計",
+    "overflowlist_folder_year": "2026",
+    "overflowlist_folder_tax": "確定申告",
+    "overflowlist_folder_receipts": "医療費の領収書",
+    "overflowlist_hidden_folders": "省略したフォルダ（{{count}} 件）",
+    "overflowlist_container_width": "器の幅: {{width}}"
   }
 }

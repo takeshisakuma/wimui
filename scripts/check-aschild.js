@@ -17,7 +17,7 @@ const requiredComponents = [
   'CreditCardInput', 'Switch', 'SwitchGroup', 'LinkButton', 'Textarea', 'SegmentedControl', 'ToggleGroup', 'TreeSelect',
   'ButtonGroup', 'ThemeToggle', 'RangeSlider', 'Rating', 'CopyButton',
   // Layout
-  'Box', 'Flex', 'Stack', 'Group', 'Grid', 'Toolbar',
+  'Box', 'Flex', 'Stack', 'Group', 'Grid', 'Toolbar', 'OverflowList',
   // Data Display
   'Badge', 'Chip', 'Tag', 'Card', 'Table', 'List', 'Kanban',
   'Accordion', 'Timeline', 'Carousel', 'SwipeAction', 'SortableList', 'PullToRefresh', 'CalendarHeatmap',

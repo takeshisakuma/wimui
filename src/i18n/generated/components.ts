@@ -130,6 +130,7 @@ export type ComponentsKey =
   | "doc.levels_title"
   | "doc.menubar_desc"
   | "doc.nodeGraph_desc"
+  | "doc.overflowList_desc"
   | "doc.overlay_base_desc"
   | "doc.passwordStrength_desc"
   | "doc.pivotTable_desc"

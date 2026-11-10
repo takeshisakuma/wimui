@@ -118,6 +118,24 @@
     "toolbar_size": "Tamanho {{size}}",
     "toolbar_text_style": "Estilo de texto",
     "toolbar_view": "Visualização",
-    "toolbar_view_mode": "Modo de visualização"
+    "toolbar_view_mode": "Modo de visualização",
+    "overflowlist_amenities": "Comodidades",
+    "overflowlist_amenity_wifi": "Wi-Fi grátis",
+    "overflowlist_amenity_breakfast": "Café da manhã incluso",
+    "overflowlist_amenity_parking": "Estacionamento no local",
+    "overflowlist_amenity_pets": "Aceita animais",
+    "overflowlist_amenity_shuttle": "Traslado para o aeroporto",
+    "overflowlist_amenity_late_checkout": "Check-out tardio até 13h",
+    "overflowlist_amenity_kitchen": "Cozinha compacta",
+    "overflowlist_amenity_laundry": "Máquina de lavar",
+    "overflowlist_more_amenities": "Mostrar todas as comodidades",
+    "overflowlist_path": "Caminho da pasta",
+    "overflowlist_folder_shared": "Drive compartilhado",
+    "overflowlist_folder_household": "Casa",
+    "overflowlist_folder_year": "2026",
+    "overflowlist_folder_tax": "Imposto de renda",
+    "overflowlist_folder_receipts": "Recibos médicos",
+    "overflowlist_hidden_folders": "Pastas ocultas ({{count}})",
+    "overflowlist_container_width": "Contêiner: {{width}}"
   }
 }

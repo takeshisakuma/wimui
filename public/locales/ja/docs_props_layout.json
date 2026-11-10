@@ -229,6 +229,16 @@
     "watermark_prop_opacity": "ウォーターマークの不透明度",
     "watermark_prop_rotate": "ウォーターマークの回転角度（度）",
     "watermark_prop_width": "ウォーターマーク1タイルの幅（px）",
-    "watermark_prop_zIndex": "ウォーターマークレイヤーの z-index"
+    "watermark_prop_zIndex": "ウォーターマークレイヤーの z-index",
+    "overflowList_prop_items": "1 行に並べる項目（読む順）。",
+    "overflowList_prop_renderItem": "項目を 1 つ描きます。要素を 1 つ返してください（一番外側の要素 1 つを 1 項目として測ります）。",
+    "overflowList_prop_renderOverflow": "入らなかった項目から、「+N」を描きます（例: 隠れた項目を Popover で並べる「+N」のボタン）。要素を 1 つ返してください。すべて入るあいだは描きません（alwaysRenderOverflow のときを除く）。",
+    "overflowList_prop_collapseFrom": "どちらの端から畳むか。\"end\" は先頭の項目を、\"start\" は最後の項目を残します。",
+    "overflowList_prop_minVisibleItems": "どれだけ狭くても見せておく項目の数。その場合は行からはみ出すことがあります。",
+    "overflowList_prop_alwaysRenderOverflow": "すべての項目が入るときも「+N」を描きます（空の配列を受け取ります）。",
+    "overflowList_prop_onOverflow": "隠れた項目の組が変わるたびに、隠れた項目を渡して呼ばれます。",
+    "overflowList_prop_gap": "項目の間隔。間隔のトークン名（\"sm\"・\"md\" など）。",
+    "overflowList_prop_asChild": "true のとき、子の要素を根として描き、props をその子へまとめます。",
+    "overflowList_prop_children": "asChild のとき、div の代わりに根になる要素。項目はその中に描かれます。"
   }
 }

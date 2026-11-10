@@ -1,0 +1,57 @@
+@layer component {
+  // 1 列の grid。列の最小は 0、最大は測る層の幅（全項目を 1 行に並べた幅）。どちらも畳んだ状態に
+  // 左右されないので、中身で幅が決まる器（表のセル・inline-block）でも、狭ければ畳み、広がれば戻る。
+  // flex の行を根にすると、最小幅が「見えている項目の合計」になり、器がそれより狭くなれなかった
+  // （390px の画面で inline-block の中の行が 810px のまま、ページが横にはみ出した）
+  .root {
+    display: grid;
+
+    // flex の子に置かれたら、隣の要素を残した幅を受け取る。基準幅が全項目の幅のままだと、
+    // 縮める量が隣にも割り振られ、見出しと横に並べたとき、右に余白を残して見出しが 2 行に折れた
+    flex: 1 1 0%;
+    grid-template-columns: minmax(0, max-content);
+
+    // 縦に余った高さがあっても、行を上に置く（下の flex で縦に伸ばされたとき）
+    align-content: start;
+    align-items: center;
+
+    // 読める下限。隣が幅を取り切る要素（`width: 100%` を持つ Title）だと、基準幅 0 のこの行は
+    // 0 まで押し潰され、全部が「+N」に畳まれた。器がこれより狭ければ器の幅まで
+    min-width: min(100%, var(--wim-width-xs));
+  }
+
+  .row {
+    display: flex;
+    flex-wrap: nowrap;
+    grid-area: 1 / 1;
+    gap: var(--wim-overflow-list-gap, var(--wim-spacing-sm));
+    align-items: center;
+
+    > * {
+      flex-shrink: 0;
+    }
+  }
+
+  // 幅を測るための写し。行と同じセルに高さ 0 で重ね、見えなくする。はみ出しは切る
+  // （切らないと、全部を並べた幅でページが横に伸びる）
+  .measure {
+    visibility: hidden;
+    grid-area: 1 / 1;
+    align-self: start;
+    height: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .measureRow {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: var(--wim-overflow-list-gap, var(--wim-spacing-sm));
+    align-items: center;
+    width: max-content;
+
+    > * {
+      flex-shrink: 0;
+    }
+  }
+}

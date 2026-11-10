@@ -47,7 +47,9 @@
     "semantic_wrapping": "Semantic Wrapping with Box",
     "box_as_prop_desc": "Use Box's `as` prop (e.g., `as=\"section\"`) to render semantic HTML while applying design-system styles.",
     "container_control": "Control Maximum Width",
-    "container_max_width_desc": "Wrap page content in Container and set `size` to a breakpoint token to ensure readable line lengths on wide screens."
+    "container_max_width_desc": "Wrap page content in Container and set `size` to a breakpoint token to ensure readable line lengths on wide screens.",
+    "overflowlist_usage": "Tag rows, toolbars and paths that must stay one line high",
+    "overflowlist_desc": "Shows the items that fit and folds the rest into a \"+N\" indicator; the row recomputes when its width changes"
   },
   "guide": {
     "layout_desc": "Guidelines for roles and placement of Header, Sidebar, Main, and Footer.",

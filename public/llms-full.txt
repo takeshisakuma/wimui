@@ -4,7 +4,7 @@
 
 ## What this is
 
-**wimui** v0.67.0 — a React 19 component library: 228 documented components across 10 categories, with design tokens, dark mode, i18n (en/ja/pt-BR) and WAI-ARIA compliant a11y. Peer deps: react ^19, react-dom ^19 (plus optional peers for specific components — see package.json).
+**wimui** v0.67.0 — a React 19 component library: 229 documented components across 10 categories, with design tokens, dark mode, i18n (en/ja/pt-BR) and WAI-ARIA compliant a11y. Peer deps: react ^19, react-dom ^19 (plus optional peers for specific components — see package.json).
 
 ## Install & required setup
 
@@ -813,6 +813,26 @@ of pixels. Prefer the token so the gap follows the theme.
     - `defaultMenuOpen: boolean` = false — Initial open state of the mobile menu (uncontrolled)
     - `isMenuOpen: boolean` — Open state of the mobile menu (controlled)
     - `onMenuOpenChange: (isOpen: boolean) => void` — Callback when the mobile menu open state changes
+- **OverflowList** — Lays out items in one row and folds the ones that do not fit into a "+N" indicator.
+    - `items: T[]` (required) — Items to lay out in a single row, in reading order.
+    - `renderItem: (item: T, index: number) => React.ReactNode` (required) — Renders one item. Return a single element: each top-level element is measured as one item.
+    - `renderOverflow: (hiddenItems: T[]) => React.ReactNode` (required) — Renders the overflow indicator from the items that did not fit (for example a "+N" button
+that opens a Popover listing them). Return a single element. Not rendered while every item
+fits, unless `alwaysRenderOverflow` is set. The hidden items are not in the DOM, so the
+indicator is how users — including keyboard and screen reader users — reach them.
+    - `collapseFrom: "start" | "end"` = "end" — The side items are collapsed from. `"end"` keeps the first items (tags, toolbars);
+`"start"` keeps the last ones (a breadcrumb keeps the current page).
+@default "end"
+    - `minVisibleItems: number` = 0 — Items that stay visible however narrow the row gets. They may then overflow the row.
+@default 0
+    - `alwaysRenderOverflow: boolean` = false — Renders the overflow indicator even when every item fits (it receives an empty array).
+@default false
+    - `onOverflow: (hiddenItems: T[]) => void` — Called with the hidden items whenever the set of hidden items changes.
+    - `gap: WimSpacing` = "sm" — Gap between items: a spacing token name (`"sm"`, `"md"`, …).
+@default "sm"
+    - `asChild: boolean` = false — If true, the list will be rendered as its child, merging its props onto that child.
+    - `children: React.ReactNode` — The element that becomes the root (in place of `div`) when `asChild` is set. The items are
+rendered inside it. Ignored without `asChild`.
 - **ScrollArea** — A custom scrollbar component that provides high-performance, cross-browser consistent themes while maintaining a native-like feel.
     - `text: React.ReactNode` — Content to display (alternative to children)
     - `children: React.ReactNode` — Content to display
