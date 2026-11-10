@@ -27,9 +27,9 @@
     "accordion_prop_value": "Valor(es) do(s) item(ns) aberto(s) (controlado)",
     "avatarGroup_prop_children": "Elementos de avatar a agrupar",
     "avatarGroup_prop_className": "Nomes de classe adicionais",
-    "avatarGroup_prop_max": "Número máximo de avatares exibidos antes de agrupar em uma contagem",
+    "avatarGroup_prop_max": "Número máximo de avatares exibidos antes de agrupar em uma contagem. Ignorado com overflow=\"collapse\".",
     "avatarGroup_prop_size": "Tamanho aplicado aos avatares",
-    "avatarGroup_prop_total": "Número total de avatares (usado para calcular a contagem de excedentes)",
+    "avatarGroup_prop_total": "Número total de avatares (usado para calcular a contagem excedente). Ignorado com overflow=\"collapse\".",
     "avatar_prop_alt": "Texto alternativo da imagem",
     "avatar_prop_icon": "Ícone exibido como fallback quando não há imagem nem iniciais disponíveis",
     "avatar_prop_initials": "Iniciais exibidas como fallback quando não há imagem disponível",
@@ -430,6 +430,7 @@
     "pivotTable_prop_maxHeight": "Altura máxima da tabela (um número é em px). Acima dela, a tabela rola verticalmente dentro da própria caixa.",
     "pivotTable_prop_stickyHeader": "Mantém os cabeçalhos de coluna visíveis enquanto a tabela rola verticalmente. Todos os níveis permanecem, empilhados em ordem. Só tem efeito junto com `maxHeight`.",
     "pivotTable_prop_stickyRowHeaders": "Mantém os cabeçalhos de linha visíveis enquanto a tabela rola para os lados. A coluna só fica fixa enquanto ocupa no máximo metade da largura visível; em um contêiner mais estreito, ela rola com o restante, para que os valores continuem legíveis.",
-    "pivotTable_prop_virtualized": "Renderiza apenas as linhas visíveis (e algumas ao redor) e mantém a altura de rolagem com linhas vazias de espaçamento. Use em tabelas com centenas de linhas, junto com `maxHeight`. Todas as linhas precisam ter a mesma altura, então mantenha rótulos e valores em uma única linha."
+    "pivotTable_prop_virtualized": "Renderiza apenas as linhas visíveis (e algumas ao redor) e mantém a altura de rolagem com linhas vazias de espaçamento. Use em tabelas com centenas de linhas, junto com `maxHeight`. Todas as linhas precisam ter a mesma altura, então mantenha rótulos e valores em uma única linha.",
+    "avatarGroup_prop_overflow": "Como os avatares que não cabem são tratados. \"count\" os corta por max / total e mostra \"+N\" como texto; \"collapse\" mostra quantos couberem na largura e transforma \"+N\" em um botão que lista as pessoas ocultas pelo nome.\n@default \"count\""
   }
 }

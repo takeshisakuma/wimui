@@ -31,7 +31,7 @@
     "avatar_title": "プロフィール画像/頭文字",
     "avatargroup_best_practice_1": "視覚的な混雑を防ぎつつ「+N」バッジでグループサイズを伝えるため、適切なmax値を設定しましょう。",
     "avatargroup_best_practice_2": "グループ内のアバターサイズは統一して視覚的な一貫性を保ちましょう。",
-    "avatargroup_keyboard_desc": "標準的な Tab フォーカス以外、特定のキーボードインタラクションを必要としません。",
+    "avatargroup_keyboard_desc": "既定の overflow=\"count\" では、独自のキー操作はありません。overflow=\"collapse\" では「+N」のボタンが Tab の停止点になり、Enter か Space で隠れた人の一覧を開き、Escape で閉じてボタンへ戻ります。",
     "badge_best_practice_1": "バッジのテキストは短く簡潔に保ち、一目で意味が伝わるようにしましょう。",
     "badge_best_practice_2": "色にセマンティクスを一貫して割り当てましょう（緑=成功、赤=エラー）。",
     "badge_keyboard_desc": "このコンポーネントは標準の Tab フォーカス以外の固有のキーボード操作は必要ありません。",

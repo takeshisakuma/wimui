@@ -124,6 +124,24 @@ describe("OverflowList", () => {
     expect(onOverflow).toHaveBeenLastCalledWith(["beta", "gamma"]);
   });
 
+  it("counts the items' margins, so items overlapped by a negative margin are not folded early", () => {
+    // 50px の項目を -20px ずつ重ねると、5 つで 50 + 4 × 30 = 170px。幅だけを足すと 250px で畳んでいた
+    render(
+      <OverflowList
+        data-testid="list"
+        data-available={180}
+        items={ITEMS}
+        renderItem={(item, index) => (
+          <span data-w="50" style={{ marginLeft: index > 0 ? -20 : 0 }}>
+            {item}
+          </span>
+        )}
+        renderOverflow={(hidden) => <span data-w="30">+{hidden.length}</span>}
+      />,
+    );
+    expect(visibleTexts()).toEqual(ITEMS);
+  });
+
   it("renders the row and the measuring copy as the given list element", () => {
     render(
       <OverflowList

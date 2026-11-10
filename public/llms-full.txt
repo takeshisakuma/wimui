@@ -2350,9 +2350,13 @@ scans stay green while the bar hangs outside its parent.
     - `intent: IndicatorIntent` — Intent (semantic color) applied to the avatar
 - **AvatarGroup** — Stacked avatars (aka Face Pile)
     - `children: React.ReactNode` (required) — Avatar elements to group
-    - `max: number` — Maximum number of avatars to show before collapsing into a count
+    - `max: number` — Maximum number of avatars to show before collapsing into a count. Ignored with `overflow="collapse"`.
     - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size applied to the avatars
-    - `total: number` — Total number of avatars (used to compute the overflow count)
+    - `total: number` — Total number of avatars (used to compute the overflow count). Ignored with `overflow="collapse"`.
+    - `overflow: "count" | "collapse"` = "count" — How the avatars that do not fit are handled. `"count"` cuts them by `max` / `total` and shows
+"+N" as text; `"collapse"` shows as many as fit the width and turns "+N" into a button that
+lists the hidden people by name.
+@default "count"
     - `className: string` — Additional class names
 - **Badge** — Indicators or counts
     - `asChild: boolean` — If true, the badge will be rendered as its child, merging its props onto that child.

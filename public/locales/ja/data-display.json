@@ -9,5 +9,8 @@
   "table": {
     "header_component": "コンポーネント",
     "header_overview": "概要"
+  },
+  "avatar_group": {
+    "show_everyone": "全員を表示"
   }
 }

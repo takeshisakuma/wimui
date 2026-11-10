@@ -31,7 +31,7 @@
     "avatar_title": "Iniciais/fotos de perfil",
     "avatargroup_best_practice_1": "Defina um max razoável para evitar poluição visual, transmitindo o tamanho do grupo com o badge '+N'.",
     "avatargroup_best_practice_2": "Use o mesmo tamanho de avatar dentro de um grupo para consistência visual.",
-    "avatargroup_keyboard_desc": "Este componente não requer interação de teclado específica além do foco Tab padrão.",
+    "avatargroup_keyboard_desc": "Com o padrão overflow=\"count\", o grupo não tem interação de teclado própria. Com overflow=\"collapse\", o botão \"+N\" é uma parada de Tab: Enter ou Espaço abre a lista de pessoas ocultas, e Escape a fecha e devolve o foco ao botão.",
     "badge_best_practice_1": "Mantenha o texto do badge curto e conciso para transmitir o significado rapidamente.",
     "badge_best_practice_2": "Atribua significado semântico às cores consistentemente — verde para sucesso, vermelho para erro.",
     "badge_keyboard_desc": "Este componente não requer interação específica de teclado além do foco padrão com Tab.",

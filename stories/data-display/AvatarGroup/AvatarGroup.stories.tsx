@@ -93,3 +93,29 @@ export const TotalCount: Story = {
     </AvatarGroup>
   ),
 };
+
+// 文書を開いている人。名前は Avatar の alt から、隠れた人の一覧に出る
+const viewers = [
+  { src: avatar1, alt: "Aiko Tanaka", initials: "AT" },
+  { src: avatar2, alt: "Rafael Souza", initials: "RS" },
+  { alt: "Kwame Mensah", initials: "KM" },
+  { src: avatar3, alt: "Mei Lin", initials: "ML" },
+  { alt: "Priya Nair", initials: "PN" },
+  { src: avatar4, alt: "Lucas Ferreira", initials: "LF" },
+  { alt: "Sofia Rossi", initials: "SR" },
+  { alt: "Haruto Sato", initials: "HS" },
+];
+
+/** 器（180px）に入るだけを並べ、残りは「+N」から名前で開く */
+export const Collapsed: Story = {
+  args: { overflow: "collapse" },
+  render: (args) => (
+    <div style={{ width: "min(var(--wim-width-sm), 100vw - 2rem)" }}>
+      <AvatarGroup {...args}>
+        {viewers.map((v) => (
+          <Avatar key={v.alt} src={v.src} alt={v.alt} initials={v.initials} intent="neutral" />
+        ))}
+      </AvatarGroup>
+    </div>
+  ),
+};

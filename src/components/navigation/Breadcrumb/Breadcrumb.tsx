@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect, useId, useRef, useState } from "react";
+import React, { forwardRef } from "react";
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { commonNs } from "@/i18n/generated/common";
@@ -10,7 +10,7 @@ import { Icon } from "../../media/Icon/Icon";
 import { ComponentSizeBasic } from "../../../types/tokens";
 import { ChevronRightIcon, MoreHorizontalIcon } from "@/icon";
 import { OverflowList } from "../../layout/OverflowList/OverflowList";
-import { useInlineFloating } from "../../_internal/useInlineFloating";
+import { InlineDisclosure } from "../../_internal/InlineDisclosure";
 
 type BreadcrumbItem = {
   label: React.ReactNode;
@@ -139,7 +139,7 @@ export const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(({
     const list = e.currentTarget;
     // 畳んだときは「…」も移動先。幅を測るための写し（aria-hidden）は除く
     const itemElements = Array.from(
-      list.querySelectorAll(`.${styles.link}, .${styles.label}.${styles.current}, .${styles.more}`),
+      list.querySelectorAll(`.${styles.link}, .${styles.label}.${styles.current}, button[aria-expanded]`),
     ).filter((el) => !el.closest('[aria-hidden="true"]'));
     const currentIndex = itemElements.indexOf(document.activeElement as HTMLElement);
 
@@ -176,16 +176,26 @@ export const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(({
           minVisibleItems={Math.min(items.length, 2)}
           // 間隔は区切りの余白が持つ（折り返す形と同じ見た目にする）
           gap="0"
-          className={styles.collapsible}
           items={items}
           renderItem={(item, index) => renderItem(item, index)}
           renderOverflow={(hidden) => (
             <li className={styles.item}>
-              <BreadcrumbMore
-                items={hidden}
-                size={size}
+              <InlineDisclosure
+                trigger={<Icon component={MoreHorizontalIcon} size={size} />}
                 label={(moreLabel ?? ((count: number) => t("a11y.breadcrumb_more", { count })))(hidden.length)}
-              />
+              >
+                {hidden.map((item, index) => (
+                  <li key={index}>
+                    {item.href ? (
+                      <Link href={item.href} size={size} priority="secondary" iconName={item.iconName}>
+                        {item.label}
+                      </Link>
+                    ) : (
+                      <span className={styles.label}>{item.label}</span>
+                    )}
+                  </li>
+                ))}
+              </InlineDisclosure>
               <span className={styles.separator} aria-hidden="true">
                 {separator || defaultSeparator}
               </span>
@@ -206,85 +216,3 @@ export const Breadcrumb = forwardRef<HTMLElement, BreadcrumbProps>(({
 
 Breadcrumb.displayName = "Breadcrumb";
 
-type BreadcrumbMoreProps = {
-  items: BreadcrumbItem[];
-  size: ComponentSizeBasic;
-  label: string;
-};
-
-/**
- * 畳んだ階層を開く「…」のボタンと、その隣に描く一覧（disclosure）。
- *
- * Composition Contract:
- * - Managed by: Breadcrumb（overflow="collapse" のときだけ描く）
- * - Scroll lock: No
- * - 面はポータルへ出さず、引き金の隣に描く（位置は useInlineFloating）。Escape・外側の押下・
- *   フォーカスが外へ出たときに閉じ、Escape ではボタンへフォーカスを戻す
- */
-const BreadcrumbMore = ({ items, size, label }: BreadcrumbMoreProps) => {
-  const [open, setOpen] = useState(false);
-  const panelId = useId();
-  const wrapperRef = useRef<HTMLSpanElement | null>(null);
-  const buttonRef = useRef<HTMLButtonElement | null>(null);
-  const { setReference, setFloating, floatingProps } = useInlineFloating({ open });
-
-  useEffect(() => {
-    if (!open) return;
-    const handlePointerDown = (event: PointerEvent) => {
-      if (!wrapperRef.current?.contains(event.target as Node)) setOpen(false);
-    };
-    // Escape は、フォーカスがボタンか一覧の中にあるときだけ閉じて、ボタンへ戻す
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key !== "Escape" || !wrapperRef.current?.contains(document.activeElement)) return;
-      event.stopPropagation();
-      setOpen(false);
-      buttonRef.current?.focus();
-    };
-    document.addEventListener("pointerdown", handlePointerDown);
-    document.addEventListener("keydown", handleKeyDown);
-    return () => {
-      document.removeEventListener("pointerdown", handlePointerDown);
-      document.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [open]);
-
-  return (
-    <span
-      ref={(node) => {
-        wrapperRef.current = node;
-        setReference(node);
-      }}
-      className={styles.moreWrapper}
-      onBlur={(event) => {
-        if (open && !event.currentTarget.contains(event.relatedTarget as Node | null)) setOpen(false);
-      }}
-    >
-      <button
-        ref={buttonRef}
-        type="button"
-        className={styles.more}
-        aria-label={label}
-        aria-expanded={open}
-        aria-controls={open ? panelId : undefined}
-        onClick={() => setOpen((current) => !current)}
-      >
-        <Icon component={MoreHorizontalIcon} size={size} />
-      </button>
-      {open && (
-        <ul id={panelId} ref={setFloating} className={styles.morePanel} {...floatingProps}>
-          {items.map((item, index) => (
-            <li key={index} className={styles.moreItem}>
-              {item.href ? (
-                <Link href={item.href} size={size} priority="secondary" iconName={item.iconName}>
-                  {item.label}
-                </Link>
-              ) : (
-                <span className={styles.label}>{item.label}</span>
-              )}
-            </li>
-          ))}
-        </ul>
-      )}
-    </span>
-  );
-};

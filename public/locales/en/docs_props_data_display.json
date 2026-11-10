@@ -27,9 +27,9 @@
     "accordion_prop_value": "Open item value(s) (controlled)",
     "avatarGroup_prop_children": "Avatar elements to group",
     "avatarGroup_prop_className": "Additional class names",
-    "avatarGroup_prop_max": "Maximum number of avatars to show before collapsing into a count",
+    "avatarGroup_prop_max": "Maximum number of avatars to show before collapsing into a count. Ignored with overflow=\"collapse\".",
     "avatarGroup_prop_size": "Size applied to the avatars",
-    "avatarGroup_prop_total": "Total number of avatars (used to compute the overflow count)",
+    "avatarGroup_prop_total": "Total number of avatars (used to compute the overflow count). Ignored with overflow=\"collapse\".",
     "avatar_prop_alt": "Alternative text for the image",
     "avatar_prop_icon": "Icon shown as a fallback when no image or initials are available",
     "avatar_prop_initials": "Initials shown as a fallback when no image is available",
@@ -430,6 +430,7 @@
     "pivotTable_prop_maxHeight": "Maximum height of the table (a number is px). Past it the table scrolls vertically\ninside its own box.",
     "pivotTable_prop_stickyHeader": "Keeps the column headings in view while the table scrolls vertically. Every heading\nlevel stays, stacked in order. Only has an effect together with `maxHeight`.",
     "pivotTable_prop_stickyRowHeaders": "Keeps the row headings in view while the table scrolls sideways. The column is only\npinned while it takes at most half of the visible width; in a narrower container it\nscrolls with the rest, so that the values stay readable.",
-    "pivotTable_prop_virtualized": "Renders only the rows in view (plus a few around them) and keeps the scroll height\nwith empty spacer rows. Use it for tables with hundreds of rows, together with\n`maxHeight`. Rows must all have the same height, so keep labels and values on one line."
+    "pivotTable_prop_virtualized": "Renders only the rows in view (plus a few around them) and keeps the scroll height\nwith empty spacer rows. Use it for tables with hundreds of rows, together with\n`maxHeight`. Rows must all have the same height, so keep labels and values on one line.",
+    "avatarGroup_prop_overflow": "How the avatars that do not fit are handled. \"count\" cuts them by max / total and shows \"+N\" as text; \"collapse\" shows as many as fit the width and turns \"+N\" into a button that lists the hidden people by name.\n@default \"count\""
   }
 }
