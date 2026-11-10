@@ -104,8 +104,10 @@ export const ContainerWidths: Story = {
             <Text size="sm" color="text-secondary">
               {t("story.overflowlist_container_width", { width: label })}
             </Text>
-            {/* 狭い画面では、器のほうを画面に収める（640px の器が 390px の画面からはみ出した） */}
-            <div style={{ width: `min(${token}, 100%)` }} data-testid={`overflow-list-${label}`}>
+            {/* 狭い画面では、器のほうを画面に収める（640px の器が 390px の画面からはみ出した）。
+                100% ではなく画面幅で抑える ── 親の Stack は中身で幅が決まるので、100% が循環し、
+                部品の望む幅（全項目の幅）で親が広がって、ブロック全体が左へずれた */}
+            <div style={{ width: `min(${token}, 100vw - 2rem)` }} data-testid={`overflow-list-${label}`}>
               <AmenityList />
             </div>
           </Stack>
