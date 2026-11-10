@@ -34,6 +34,7 @@ import * as formExports from "../src/form";
 import * as navigationExports from "../src/navigation";
 import * as overlayExports from "../src/overlay";
 import * as dataDisplayExports from "../src/data-display-core";
+import * as layoutExports from "../src/layout";
 
 type Case = {
   name: string;
@@ -209,6 +210,10 @@ const NAMED_CASES: Record<string, { props?: Record<string, unknown>; inner?: Rea
   Accordion: {},
   SortableList: { props: { items: [] } },
   CalendarHeatmap: { props: { data: [] } },
+  // T361: 渡した要素を根にして、項目と幅を測る層をその中に描く
+  OverflowList: {
+    props: { items: ["a"], renderItem: (item: string) => <span>{item}</span>, renderOverflow: () => null },
+  },
 };
 
 /**
@@ -238,6 +243,7 @@ const namedExports: Record<string, unknown> = {
   ...navigationExports,
   ...overlayExports,
   ...dataDisplayExports,
+  ...layoutExports,
 };
 
 describe("asChild render smoke: 名前で引く部品（T337）", () => {

@@ -47,7 +47,9 @@
     "semantic_wrapping": "Envolvimento Semântico com Box",
     "box_as_prop_desc": "Use a prop `as` do Box (ex.: `as=\"section\"`) para renderizar HTML semântico aplicando os estilos do design system.",
     "container_control": "Controlar Largura Máxima",
-    "container_max_width_desc": "Envolva o conteúdo da página em Container e defina `size` como um token de breakpoint para garantir comprimentos de linha legíveis em telas largas."
+    "container_max_width_desc": "Envolva o conteúdo da página em Container e defina `size` como um token de breakpoint para garantir comprimentos de linha legíveis em telas largas.",
+    "overflowlist_usage": "Linhas de tags, barras de ferramentas e caminhos que precisam manter uma única linha",
+    "overflowlist_desc": "Mostra os itens que cabem e agrupa o restante em um indicador \"+N\"; a linha recalcula quando sua largura muda"
   },
   "guide": {
     "layout_desc": "Diretrizes para funções e posicionamento de Cabeçalho, Barra Lateral, Principal e Rodapé.",

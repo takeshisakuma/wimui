@@ -142,7 +142,8 @@
     "barcode_desc": "Draws a scannable Code 128 or EAN-13 barcode.",
     "comment_desc": "Shows one comment in a discussion, with its actions and nested replies.",
     "treeDiagram_desc": "Lays out a tree such as an org chart from the data alone, with parents centred over their children and collapsible subtrees.",
-    "pivotTable_desc": "Draws aggregated data as a table with multi-level row and column headings, subtotals and grand totals."
+    "pivotTable_desc": "Draws aggregated data as a table with multi-level row and column headings, subtotals and grand totals.",
+    "overflowList_desc": "Lays out items in one row and folds the ones that do not fit into a \"+N\" indicator."
   },
   "cat": {
     "ai": "AI"

@@ -47,7 +47,9 @@
     "semantic_wrapping": "Box によるセマンティックラッピング",
     "box_as_prop_desc": "Box の `as` prop（例: `as=\"section\"`）を使うと、デザインシステムのスタイルを当てたまま意味のある HTML 要素で描画できます。",
     "container_control": "最大幅を制御する",
-    "container_max_width_desc": "ページコンテンツを Container で囲み、`size` をブレークポイントトークンに設定して、広い画面でも読みやすい行の長さを確保します。"
+    "container_max_width_desc": "ページコンテンツを Container で囲み、`size` をブレークポイントトークンに設定して、広い画面でも読みやすい行の長さを確保します。",
+    "overflowlist_usage": "1 行の高さを保ちたいタグの列・ツールバー・パス",
+    "overflowlist_desc": "入る項目だけを見せ、残りを「+N」に畳む。幅が変わると数え直す"
   },
   "guide": {
     "layout_desc": "Header, Sidebar, Main, Footer の役割と配置についてのガイドラインです。",

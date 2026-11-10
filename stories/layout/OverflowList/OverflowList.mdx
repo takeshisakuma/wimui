@@ -1,0 +1,144 @@
+import { Meta, Canvas, Controls, Title, Primary } from "@storybook/blocks";
+import * as OverflowListStories from "./OverflowList.stories";
+import { T } from "../../T";
+import { Docgen } from "../../Docgen";
+
+<Meta of={OverflowListStories} />
+
+<Title />
+
+<p
+  style={{
+    margin: "0 0 16px 0",
+    fontSize: "var(--wim-font-size-lg)",
+    lineHeight: "var(--wim-line-height-loose)",
+    color: "var(--wim-color-text-secondary)",
+  }}
+>
+  <T k="doc.overflowList_title" />
+</p>
+
+<p><T k="doc.overflowList_long_desc" /></p>
+
+## <T k="doc.design_intent_title" />
+<p><T k="doc.overflowList_design_intent" /></p>
+
+## <T k="doc.choice_matrix_title" />
+<p><T k="doc.overflowList_choice_matrix_desc" /></p>
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.component" /></th>
+      <th><T k="doc.usage_scenario" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>OverflowList</b></td>
+      <td><T k="doc.overflowList_choice_self_when" /></td>
+    </tr>
+    <tr>
+      <td><b>Group</b></td>
+      <td><T k="doc.overflowList_choice_wrap_when" /></td>
+    </tr>
+    <tr>
+      <td><b>Tabs</b></td>
+      <td><T k="doc.overflowList_choice_scroll_when" /></td>
+    </tr>
+    <tr>
+      <td><b>AvatarGroup</b></td>
+      <td><T k="doc.overflowList_choice_count_when" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<Docgen componentName="OverflowList" section="anatomy" />
+
+## <T k="doc.a11y_spec_title" />
+<p><T k="doc.overflowList_a11y_desc" /></p>
+
+## <T k="doc.real_world_scenarios_title" />
+<table>
+  <thead>
+    <tr>
+      <th><T k="doc.usage_scenario" /></th>
+      <th><T k="doc.table_header_description" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong><T k="doc.overflowList_scenario_1_title" /></strong></td>
+      <td><T k="doc.overflowList_scenario_1" /></td>
+    </tr>
+    <tr>
+      <td><strong><T k="doc.overflowList_scenario_2_title" /></strong></td>
+      <td><T k="doc.overflowList_scenario_2" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<Canvas of={OverflowListStories.CollapseFromStart} />
+
+## <T k="doc.best_practices_title" />
+<ul>
+  <li><T k="doc.overflowList_best_practice_1" /></li>
+  <li><T k="doc.overflowList_best_practice_2" /></li>
+  <li><T k="doc.overflowList_best_practice_3" /></li>
+</ul>
+
+<Canvas of={OverflowListStories.ContainerWidths} />
+
+<Primary />
+
+## <T k="doc.usage" />
+
+```tsx
+import { OverflowList, Tag, Button, Popover, PopoverTrigger, PopoverContent, Stack, VisuallyHidden } from "wimui";
+
+const Amenities = ({ amenities }: { amenities: string[] }) => (
+  <OverflowList
+    role="group"
+    aria-label="Amenities"
+    items={amenities}
+    renderItem={(amenity) => (
+      <Tag intent="neutral" variant="subtle" size="sm">
+        {amenity}
+      </Tag>
+    )}
+    renderOverflow={(hidden) => (
+      <Popover placement="bottom-start">
+        <PopoverTrigger asChild>
+          <Button size="sm" variant="ghost">
+            +{hidden.length}
+            <VisuallyHidden> Show all amenities</VisuallyHidden>
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent>
+          <Stack gap="xs" align="start">
+            {hidden.map((amenity) => (
+              <Tag key={amenity} intent="neutral" variant="subtle" size="sm">
+                {amenity}
+              </Tag>
+            ))}
+          </Stack>
+        </PopoverContent>
+      </Popover>
+    )}
+  />
+);
+```
+
+<Canvas of={OverflowListStories.Default} />
+<Controls of={OverflowListStories.Default} />
+
+<Docgen componentName="OverflowList" section="props" />
+
+<Docgen componentName="OverflowList" section="tokens" />
+
+## <T k="doc.keyboard_nav_title" />
+<p><T k="doc.overflowList_keyboard_desc" /></p>
+
+## <T k="doc.i18n_title" />
+<p><T k="doc.overflowList_i18n_desc" /></p>
+
+<Docgen componentName="OverflowList" section="test" />

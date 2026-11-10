@@ -651,5 +651,8 @@
   "sample_sitemap_products": "製品",
   "sample_sitemap_pricing": "料金",
   "sample_sitemap_support": "サポート",
-  "sample_sitemap_docs": "ドキュメント"
+  "sample_sitemap_docs": "ドキュメント",
+  "layout_overflow_check": "はみ出し: 折り返すか畳むか",
+  "label_group_wrap": "Group（折り返す）",
+  "label_overflow_list": "OverflowList（畳む）"
 }

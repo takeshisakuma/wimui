@@ -14,6 +14,7 @@ import {
   AppShell,
   IconButton,
   Toolbar,
+  OverflowList,
   Text,
 } from "../../src";
 import { AuditPage, ComparisonGrid, ComponentGroup } from "./AuditUtils";
@@ -129,6 +130,32 @@ export const Overview: StoryObj = {
                 <IconButton iconName="TrashIcon" aria-label={t("action.delete")} variant="ghost" size="sm" />
               </Toolbar.Group>
             </Toolbar>
+          </ComponentGroup>
+        </ComparisonGrid>
+
+        {/* Overflow: 同じ項目を、同じ幅で、折り返すか畳むか */}
+        <ComparisonGrid title={t("audit:layout_overflow_check")}>
+          <ComponentGroup label={t("audit:label_group_wrap")} align="stretch">
+            <Box w="var(--wim-width-md)">
+              <Group gap="sm">
+                {[1, 2, 3, 4, 5, 6].map((n) => (
+                  <Placeholder key={n} height="30px" label={t("audit:layout_stack_item", { n })} />
+                ))}
+              </Group>
+            </Box>
+          </ComponentGroup>
+          <ComponentGroup label={t("audit:label_overflow_list")} align="stretch">
+            <Box w="var(--wim-width-md)">
+              <OverflowList
+                items={[1, 2, 3, 4, 5, 6]}
+                renderItem={(n) => <Placeholder height="30px" label={t("audit:layout_stack_item", { n })} />}
+                renderOverflow={(hidden) => (
+                  <Text size="sm" color="text-secondary">
+                    +{hidden.length}
+                  </Text>
+                )}
+              />
+            </Box>
           </ComponentGroup>
         </ComparisonGrid>
 

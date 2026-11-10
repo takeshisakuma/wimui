@@ -652,7 +652,10 @@
     "sample_sitemap_products": "Products",
     "sample_sitemap_pricing": "Pricing",
     "sample_sitemap_support": "Support",
-    "sample_sitemap_docs": "Documentation"
+    "sample_sitemap_docs": "Documentation",
+    "layout_overflow_check": "Overflow: wrap or fold",
+    "label_group_wrap": "Group (wraps)",
+    "label_overflow_list": "OverflowList (folds)"
   },
   "common": {
     "a11y": {
@@ -1525,7 +1528,8 @@
       "barcode_desc": "Draws a scannable Code 128 or EAN-13 barcode.",
       "comment_desc": "Shows one comment in a discussion, with its actions and nested replies.",
       "treeDiagram_desc": "Lays out a tree such as an org chart from the data alone, with parents centred over their children and collapsible subtrees.",
-      "pivotTable_desc": "Draws aggregated data as a table with multi-level row and column headings, subtotals and grand totals."
+      "pivotTable_desc": "Draws aggregated data as a table with multi-level row and column headings, subtotals and grand totals.",
+      "overflowList_desc": "Lays out items in one row and folds the ones that do not fit into a \"+N\" indicator."
     },
     "cat": {
       "ai": "AI"
@@ -7623,7 +7627,9 @@
       "semantic_wrapping": "Semantic Wrapping with Box",
       "box_as_prop_desc": "Use Box's `as` prop (e.g., `as=\"section\"`) to render semantic HTML while applying design-system styles.",
       "container_control": "Control Maximum Width",
-      "container_max_width_desc": "Wrap page content in Container and set `size` to a breakpoint token to ensure readable line lengths on wide screens."
+      "container_max_width_desc": "Wrap page content in Container and set `size` to a breakpoint token to ensure readable line lengths on wide screens.",
+      "overflowlist_usage": "Tag rows, toolbars and paths that must stay one line high",
+      "overflowlist_desc": "Shows the items that fit and folds the rest into a \"+N\" indicator; the row recomputes when its width changes"
     },
     "guide": {
       "layout_desc": "Guidelines for roles and placement of Header, Sidebar, Main, and Footer.",
@@ -8967,7 +8973,25 @@
       "toolbar_scenario_1_title": "Rich text formatting",
       "toolbar_scenario_2": "Delete / download / share actions that appear when gallery items are selected.",
       "toolbar_scenario_2_title": "Bulk selection actions",
-      "toolbar_title": "Action strip for clustered controls"
+      "toolbar_title": "Action strip for clustered controls",
+      "overflowList_title": "Lays out items in one row and folds the ones that do not fit into a \"+N\" indicator.",
+      "overflowList_long_desc": "OverflowList measures every item and the row it sits in, shows as many items as fit, and hands the rest to renderOverflow. It recomputes when the row or an item changes width, so a row that gets wider brings its items back. What the indicator shows — a count, a Popover, a Menu — is up to you; the component only measures and folds.",
+      "overflowList_design_intent": "Tag rows, toolbars, breadcrumbs and avatar stacks all run out of width the same way. Wrapping makes the row taller and pushes the content below it around; scrolling hides items with no hint that they exist. Folding keeps the row one line high and says how many items are out of sight. The measuring is shared so each component does not reinvent it, and the disclosure is left to the caller because a count, a list and a menu suit different content.",
+      "overflowList_choice_matrix_desc": "Choose by what should happen when the items do not fit on one line.",
+      "overflowList_choice_self_when": "The row must stay one line high and every item must stay reachable — fold the rest into \"+N\".",
+      "overflowList_choice_wrap_when": "Taller rows are fine (a filter area, a form) — let Group wrap the items onto more lines.",
+      "overflowList_choice_scroll_when": "The items are peers the user moves between (tabs) — keep them all and scroll the row.",
+      "overflowList_choice_count_when": "Only the number matters, not which items are hidden (people on a document) — AvatarGroup with max.",
+      "overflowList_a11y_desc": "Folded items are removed from the DOM, so the overflow indicator is the only way to reach them: make it a button whose name starts with the visible \"+3\" and says what is hidden (visible text followed by visually hidden text: \"+3 Show all amenities\"), and list the hidden items in what it opens. Each item is also rendered once in an invisible measuring layer; that layer is aria-hidden and inert, so it is neither read nor focusable. Give the row a name (aria-label with role=\"group\", or a surrounding nav) when the items need context.",
+      "overflowList_scenario_1_title": "Labels on a list row",
+      "overflowList_scenario_1": "A hotel in search results shows its amenities in a 320px row. The first few stay visible; \"+3\" opens a Popover with the rest.",
+      "overflowList_scenario_2_title": "A path that keeps the current place",
+      "overflowList_scenario_2": "A file path folds from the start (collapseFrom=\"start\", minVisibleItems={1}), so the current folder stays visible and the parent folders move into \"…\".",
+      "overflowList_best_practice_1": "It fills its container, may shrink to 0 on its own and keeps a readable floor of 120px beside other elements. Its preferred width is every item in one row, whatever is folded at the moment, so it folds inside a table cell or an inline-block too and grows back when there is room. Next to an element that claims the full width (Title), it gets only that floor — give the heading its own line when the tags matter.",
+      "overflowList_best_practice_2": "Return one element from renderItem and renderOverflow. Each top-level element is measured as one item, and the indicator is measured as it looks with every item folded, so its widest count is already reserved.",
+      "overflowList_best_practice_3": "Put order into items before passing them: the items folded first are the ones at the collapsing end. Sort by importance if the most useful item should be the last to fold.",
+      "overflowList_keyboard_desc": "OverflowList adds no keys of its own. Visible items keep their own focus behaviour, and folded items are reached through the indicator: Tab to it, open it with Enter or Space, and move through the hidden items in what it opens.",
+      "overflowList_i18n_desc": "The component has no text of its own. The indicator's label and the hidden items come from your translations; longer translations take more room and fold more items, which the row recomputes on its own."
     },
     "faq": {
       "section_default_title": "Frequently Asked Questions",
@@ -12102,7 +12126,25 @@
       "toolbar_size": "Size {{size}}",
       "toolbar_text_style": "Text style",
       "toolbar_view": "View",
-      "toolbar_view_mode": "View mode"
+      "toolbar_view_mode": "View mode",
+      "overflowlist_amenities": "Amenities",
+      "overflowlist_amenity_wifi": "Free Wi-Fi",
+      "overflowlist_amenity_breakfast": "Breakfast included",
+      "overflowlist_amenity_parking": "Parking on site",
+      "overflowlist_amenity_pets": "Pets allowed",
+      "overflowlist_amenity_shuttle": "Airport shuttle",
+      "overflowlist_amenity_late_checkout": "Late check-out until 1 pm",
+      "overflowlist_amenity_kitchen": "Kitchenette",
+      "overflowlist_amenity_laundry": "Washing machine",
+      "overflowlist_more_amenities": "Show all amenities",
+      "overflowlist_path": "Folder path",
+      "overflowlist_folder_shared": "Shared drive",
+      "overflowlist_folder_household": "Household",
+      "overflowlist_folder_year": "2026",
+      "overflowlist_folder_tax": "Tax return",
+      "overflowlist_folder_receipts": "Medical receipts",
+      "overflowlist_hidden_folders": "Hidden folders ({{count}})",
+      "overflowlist_container_width": "Container: {{width}}"
     }
   },
   "docs_stories_media": {
@@ -15938,7 +15980,17 @@
       "watermark_prop_opacity": "Opacity of the watermark",
       "watermark_prop_rotate": "Rotation angle of the watermark (degrees)",
       "watermark_prop_width": "Width of a single watermark tile (px)",
-      "watermark_prop_zIndex": "z-index of the watermark layer"
+      "watermark_prop_zIndex": "z-index of the watermark layer",
+      "overflowList_prop_items": "Items to lay out in a single row, in reading order.",
+      "overflowList_prop_renderItem": "Renders one item. Return a single element: each top-level element is measured as one item.",
+      "overflowList_prop_renderOverflow": "Renders the overflow indicator from the items that did not fit (for example a \"+N\" button that opens a Popover listing them). Return a single element. Not rendered while every item fits, unless alwaysRenderOverflow is set.",
+      "overflowList_prop_collapseFrom": "The side items are collapsed from. \"end\" keeps the first items; \"start\" keeps the last ones.",
+      "overflowList_prop_minVisibleItems": "Items that stay visible however narrow the row gets. They may then overflow the row.",
+      "overflowList_prop_alwaysRenderOverflow": "Renders the overflow indicator even when every item fits (it receives an empty array).",
+      "overflowList_prop_onOverflow": "Called with the hidden items whenever the set of hidden items changes.",
+      "overflowList_prop_gap": "Gap between items: a spacing token name (\"sm\", \"md\", …).",
+      "overflowList_prop_asChild": "If true, the list will be rendered as its child, merging its props onto that child.",
+      "overflowList_prop_children": "The element that becomes the root (in place of div) when asChild is set. The items are rendered inside it."
     }
   },
   "docs_props_media": {

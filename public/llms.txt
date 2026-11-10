@@ -4,7 +4,7 @@
 
 ## What this is
 
-**wimui** v0.67.0 — a React 19 component library: 228 documented components across 10 categories, with design tokens, dark mode, i18n (en/ja/pt-BR) and WAI-ARIA compliant a11y. Peer deps: react ^19, react-dom ^19 (plus optional peers for specific components — see package.json).
+**wimui** v0.67.0 — a React 19 component library: 229 documented components across 10 categories, with design tokens, dark mode, i18n (en/ja/pt-BR) and WAI-ARIA compliant a11y. Peer deps: react ^19, react-dom ^19 (plus optional peers for specific components — see package.json).
 
 ## Install & required setup
 
@@ -218,6 +218,7 @@ export function BillingOverview() {
 - **InteractiveArea** — Foundation component for consistent interactive areas with borders and states.
 - **Masonry** — Waterfall grid
 - **Navbar** — Primary navigation
+- **OverflowList** — Lays out items in one row and folds the ones that do not fit into a "+N" indicator.
 - **ScrollArea** — A custom scrollbar component that provides high-performance, cross-browser consistent themes while maintaining a native-like feel.
 - **Sidebar** — A collapsible navigation or informational panel on the side of the screen (aka Source List, Inspector)
 - **SimpleGrid** — Responsive fixed grid

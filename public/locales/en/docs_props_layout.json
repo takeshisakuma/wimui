@@ -229,6 +229,16 @@
     "watermark_prop_opacity": "Opacity of the watermark",
     "watermark_prop_rotate": "Rotation angle of the watermark (degrees)",
     "watermark_prop_width": "Width of a single watermark tile (px)",
-    "watermark_prop_zIndex": "z-index of the watermark layer"
+    "watermark_prop_zIndex": "z-index of the watermark layer",
+    "overflowList_prop_items": "Items to lay out in a single row, in reading order.",
+    "overflowList_prop_renderItem": "Renders one item. Return a single element: each top-level element is measured as one item.",
+    "overflowList_prop_renderOverflow": "Renders the overflow indicator from the items that did not fit (for example a \"+N\" button that opens a Popover listing them). Return a single element. Not rendered while every item fits, unless alwaysRenderOverflow is set.",
+    "overflowList_prop_collapseFrom": "The side items are collapsed from. \"end\" keeps the first items; \"start\" keeps the last ones.",
+    "overflowList_prop_minVisibleItems": "Items that stay visible however narrow the row gets. They may then overflow the row.",
+    "overflowList_prop_alwaysRenderOverflow": "Renders the overflow indicator even when every item fits (it receives an empty array).",
+    "overflowList_prop_onOverflow": "Called with the hidden items whenever the set of hidden items changes.",
+    "overflowList_prop_gap": "Gap between items: a spacing token name (\"sm\", \"md\", …).",
+    "overflowList_prop_asChild": "If true, the list will be rendered as its child, merging its props onto that child.",
+    "overflowList_prop_children": "The element that becomes the root (in place of div) when asChild is set. The items are rendered inside it."
   }
 }

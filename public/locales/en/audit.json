@@ -651,5 +651,8 @@
   "sample_sitemap_products": "Products",
   "sample_sitemap_pricing": "Pricing",
   "sample_sitemap_support": "Support",
-  "sample_sitemap_docs": "Documentation"
+  "sample_sitemap_docs": "Documentation",
+  "layout_overflow_check": "Overflow: wrap or fold",
+  "label_group_wrap": "Group (wraps)",
+  "label_overflow_list": "OverflowList (folds)"
 }

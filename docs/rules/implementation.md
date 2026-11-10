@@ -23,7 +23,7 @@
     - Overlay: Tooltip, Popover, Dropdown, HoverCard, Drawer, Dialog, BottomSheet, Menu, ContextMenu
     - Navigation: Link, CommandPalette, Breadcrumb, Stepper, Menubar, Tabs, TabNavigation, TabBar, Pagination, HamburgerMenu, BackTop
     - Form: Button, IconButton, Input, Select, Checkbox, CheckboxGroup, Radio, RadioGroup, Slider, NumberInput, Mentions, OtpInput, FloatButton, FieldTemplate, DatePicker, CreditCardInput, Switch, SwitchGroup, LinkButton, Textarea, SegmentedControl, ToggleGroup, TreeSelect, ButtonGroup, ThemeToggle, RangeSlider, Rating, CopyButton
-    - Layout: Box, Flex, Stack, Group, Grid, Toolbar
+    - Layout: Box, Flex, Stack, Group, Grid, Toolbar, OverflowList
     - Data Display: Badge, Chip, Tag, Card, Table, List, Kanban, Accordion, Timeline, Carousel, SwipeAction, SortableList, PullToRefresh, CalendarHeatmap, RelativeTime, Countdown
     - Media: Lightbox
     - このリストは `scripts/check-aschild.js` の必須リスト（`requiredComponents`）と同期しています。実装を追加・削除した場合は両方を更新してください。現状の実装一覧は `node scripts/check-aschild.js --list` で確認できます。

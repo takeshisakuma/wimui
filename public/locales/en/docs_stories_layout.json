@@ -118,6 +118,24 @@
     "toolbar_size": "Size {{size}}",
     "toolbar_text_style": "Text style",
     "toolbar_view": "View",
-    "toolbar_view_mode": "View mode"
+    "toolbar_view_mode": "View mode",
+    "overflowlist_amenities": "Amenities",
+    "overflowlist_amenity_wifi": "Free Wi-Fi",
+    "overflowlist_amenity_breakfast": "Breakfast included",
+    "overflowlist_amenity_parking": "Parking on site",
+    "overflowlist_amenity_pets": "Pets allowed",
+    "overflowlist_amenity_shuttle": "Airport shuttle",
+    "overflowlist_amenity_late_checkout": "Late check-out until 1 pm",
+    "overflowlist_amenity_kitchen": "Kitchenette",
+    "overflowlist_amenity_laundry": "Washing machine",
+    "overflowlist_more_amenities": "Show all amenities",
+    "overflowlist_path": "Folder path",
+    "overflowlist_folder_shared": "Shared drive",
+    "overflowlist_folder_household": "Household",
+    "overflowlist_folder_year": "2026",
+    "overflowlist_folder_tax": "Tax return",
+    "overflowlist_folder_receipts": "Medical receipts",
+    "overflowlist_hidden_folders": "Hidden folders ({{count}})",
+    "overflowlist_container_width": "Container: {{width}}"
   }
 }

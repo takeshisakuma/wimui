@@ -7348,6 +7348,49 @@
       "required": false,
       "type": "string"
     },
+    "OverflowList.alwaysRenderOverflow": {
+      "required": false,
+      "type": "boolean"
+    },
+    "OverflowList.asChild": {
+      "required": false,
+      "type": "boolean"
+    },
+    "OverflowList.children": {
+      "required": false,
+      "type": "React.ReactNode"
+    },
+    "OverflowList.collapseFrom": {
+      "required": false,
+      "values": [
+        "end",
+        "start"
+      ]
+    },
+    "OverflowList.gap": {
+      "required": false,
+      "type": "WimSpacing"
+    },
+    "OverflowList.items": {
+      "required": true,
+      "type": "T[]"
+    },
+    "OverflowList.minVisibleItems": {
+      "required": false,
+      "type": "number"
+    },
+    "OverflowList.onOverflow": {
+      "required": false,
+      "type": "(hiddenItems: T[]) => void"
+    },
+    "OverflowList.renderItem": {
+      "required": true,
+      "type": "(item: T, index: number) => React.ReactNode"
+    },
+    "OverflowList.renderOverflow": {
+      "required": true,
+      "type": "(hiddenItems: T[]) => React.ReactNode"
+    },
     "Pagination.aria-label": {
       "type": "string"
     },
