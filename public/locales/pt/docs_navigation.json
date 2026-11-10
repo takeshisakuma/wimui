@@ -476,6 +476,8 @@
     "menubar_keyboard_desc": "Esquerda/Direita (e Home/End) movem entre triggers de nível superior. ArrowDown, Enter ou Space abrem um menu. ArrowUp/Down movem dentro do menu aberto. Escape fecha e devolve o foco ao trigger.",
     "menubar_i18n_desc": "Menubar não tem textos embutidos. Localize rótulos de trigger e item no app consumidor; forneça um aria-label na raiz.",
     "anchor_choice_navbar_when": "Quando você quer se mover entre as áreas principais do site.",
-    "anchor_choice_breadcrumbs_when": "Quando você quer mostrar onde a página atual está na hierarquia e permitir subir de volta."
+    "anchor_choice_breadcrumbs_when": "Quando você quer mostrar onde a página atual está na hierarquia e permitir subir de volta.",
+    "breadcrumb_collapse": "Agrupando os níveis intermediários",
+    "breadcrumb_collapse_desc": "Com overflow=\"collapse\", um caminho que não cabe em uma linha mantém o primeiro nível e a página atual e agrupa os níveis intermediários em um botão \"…\". O botão os lista como links; Escape, clicar fora ou mover o foco para fora fecha a lista. A linha recalcula quando sua largura muda, então os níveis voltam quando há espaço."
   }
 }

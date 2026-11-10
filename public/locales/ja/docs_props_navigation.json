@@ -125,6 +125,8 @@
     "tabs_prop_defaultValue": "非制御で使用する場合に最初に選択されるタブの値。",
     "tabs_prop_onChange": "新しく選択されたタブの値を引数に呼び出されます。",
     "tabs_prop_orientation": "タブリストの向き。レイアウトと矢印キー操作に影響します。\n@default \"horizontal\"",
-    "tabs_prop_value": "選択中タブの制御用の値。onChange と併用します。"
+    "tabs_prop_value": "選択中タブの制御用の値。onChange と併用します。",
+    "breadcrumb_prop_overflow": "項目が 1 行に入らないときの扱い。\"wrap\" は次の行へ折り返し、\"collapse\" は先頭と現在のページを残して、間の階層を、それらを並べる「…」のボタンにまとめます。\n@default \"wrap\"",
+    "breadcrumb_prop_moreLabel": "「…」のボタンの読み上げの名前を、畳んだ階層の数から作ります。既定は、内蔵の翻訳の「省略した階層を表示（n 件）」。"
   }
 }

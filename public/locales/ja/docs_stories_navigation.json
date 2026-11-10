@@ -136,6 +136,10 @@
     "menubar_zoom_out": "縮小",
     "stepper_desc_finished": "3/12 に承認済み",
     "stepper_desc_progress": "経理の確認待ち",
-    "stepper_desc_waiting": "確認が通り次第に開始"
+    "stepper_desc_waiting": "確認が通り次第に開始",
+    "breadcrumb_shop_women": "レディース",
+    "breadcrumb_shop_shoes": "シューズ",
+    "breadcrumb_shop_running": "ランニング",
+    "breadcrumb_shop_trail": "トレイルランニングシューズ"
   }
 }

@@ -1345,12 +1345,46 @@
         }
       }
     },
+    "Breadcrumb.moreLabel": {
+      "required": false,
+      "type": "(count: number) => string"
+    },
+    "Breadcrumb.overflow": {
+      "required": false,
+      "values": [
+        "collapse",
+        "wrap"
+      ]
+    },
     "Breadcrumb.separator": {
       "required": false,
       "type": "React.ReactNode"
     },
     "Breadcrumb.size": {
       "required": false,
+      "type": "Extract<ComponentSize, \"sm\" | \"md\" | \"lg\">"
+    },
+    "BreadcrumbMore.items": {
+      "type": "BreadcrumbItem[]",
+      "shape": {
+        "href": {
+          "required": false,
+          "type": "string"
+        },
+        "iconName": {
+          "required": false,
+          "type": "React.ComponentProps<typeof Icon>[\"name\"]"
+        },
+        "label": {
+          "required": true,
+          "type": "React.ReactNode"
+        }
+      }
+    },
+    "BreadcrumbMore.label": {
+      "type": "string"
+    },
+    "BreadcrumbMore.size": {
       "type": "Extract<ComponentSize, \"sm\" | \"md\" | \"lg\">"
     },
     "Button.animateWidth": {
@@ -7364,6 +7398,7 @@
       "required": false,
       "values": [
         "end",
+        "middle",
         "start"
       ]
     },
@@ -7374,6 +7409,13 @@
     "OverflowList.items": {
       "required": true,
       "type": "T[]"
+    },
+    "OverflowList.listElement": {
+      "required": false,
+      "values": [
+        "ol",
+        "ul"
+      ]
     },
     "OverflowList.minVisibleItems": {
       "required": false,

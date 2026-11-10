@@ -79,5 +79,6 @@ export const ALL_NAMESPACES = [
   "docs_stories_utility",
   "docs_typography",
   "docs_utility",
-  "form"
+  "form",
+  "navigation"
 ];
