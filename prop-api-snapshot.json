@@ -782,6 +782,13 @@
       "required": false,
       "type": "number"
     },
+    "AvatarGroup.overflow": {
+      "required": false,
+      "values": [
+        "collapse",
+        "count"
+      ]
+    },
     "AvatarGroup.size": {
       "required": false,
       "type": "Extract<ComponentSize, \"sm\" | \"md\" | \"lg\">"
@@ -1362,29 +1369,6 @@
     },
     "Breadcrumb.size": {
       "required": false,
-      "type": "Extract<ComponentSize, \"sm\" | \"md\" | \"lg\">"
-    },
-    "BreadcrumbMore.items": {
-      "type": "BreadcrumbItem[]",
-      "shape": {
-        "href": {
-          "required": false,
-          "type": "string"
-        },
-        "iconName": {
-          "required": false,
-          "type": "React.ComponentProps<typeof Icon>[\"name\"]"
-        },
-        "label": {
-          "required": true,
-          "type": "React.ReactNode"
-        }
-      }
-    },
-    "BreadcrumbMore.label": {
-      "type": "string"
-    },
-    "BreadcrumbMore.size": {
       "type": "Extract<ComponentSize, \"sm\" | \"md\" | \"lg\">"
     },
     "Button.animateWidth": {

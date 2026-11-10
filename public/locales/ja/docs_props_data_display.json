@@ -27,9 +27,9 @@
     "accordion_prop_value": "開いている項目の値（制御時）",
     "avatarGroup_prop_children": "グループ化するアバター要素",
     "avatarGroup_prop_className": "追加のクラス名",
-    "avatarGroup_prop_max": "件数表示にまとめる前に表示するアバターの最大数",
+    "avatarGroup_prop_max": "件数にまとめる前に表示するアバターの最大数。overflow=\"collapse\" のときは使いません。",
     "avatarGroup_prop_size": "アバターに適用するサイズ",
-    "avatarGroup_prop_total": "アバターの総数（超過数の算出に使用）",
+    "avatarGroup_prop_total": "アバターの総数（「+N」の数の計算に使う）。overflow=\"collapse\" のときは使いません。",
     "avatar_prop_alt": "画像の代替テキスト",
     "avatar_prop_icon": "画像もイニシャルもない場合にフォールバックとして表示するアイコン",
     "avatar_prop_initials": "画像がない場合にフォールバックとして表示するイニシャル",
@@ -430,6 +430,7 @@
     "pivotTable_prop_maxHeight": "表の高さの上限です（数値は px）。これを超えると、表は自分の枠の中で縦にスクロールします。",
     "pivotTable_prop_stickyHeader": "縦にスクロールしても列見出しを残します。見出しは全段が順に積まれたまま残ります。`maxHeight` と一緒に指定したときだけ効きます。",
     "pivotTable_prop_stickyRowHeaders": "横にスクロールしても行見出しを残します。列を固定するのは、見えている幅の半分以下に収まっているあいだだけです。それより狭い置き場では、値が読めるように、ほかの列と一緒に流れます。",
-    "pivotTable_prop_virtualized": "見えている行（とその前後の数行）だけを描き、スクロールの高さは空の行で保ちます。行が数百ある表で、`maxHeight` と一緒に使います。行はすべて同じ高さである必要があるので、見出しも値も 1 行に収めてください。"
+    "pivotTable_prop_virtualized": "見えている行（とその前後の数行）だけを描き、スクロールの高さは空の行で保ちます。行が数百ある表で、`maxHeight` と一緒に使います。行はすべて同じ高さである必要があるので、見出しも値も 1 行に収めてください。",
+    "avatarGroup_prop_overflow": "入らないアバターの扱い。\"count\" は max / total で切って「+N」を文字で出し、\"collapse\" は幅に入るだけを並べて、「+N」を、隠れた人を名前で並べるボタンにします。\n@default \"count\""
   }
 }

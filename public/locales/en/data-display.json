@@ -9,5 +9,8 @@
   "table": {
     "header_component": "Component",
     "header_overview": "Overview"
+  },
+  "avatar_group": {
+    "show_everyone": "Show everyone"
   }
 }

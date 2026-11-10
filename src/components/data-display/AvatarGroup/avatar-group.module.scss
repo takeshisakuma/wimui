@@ -3,7 +3,11 @@
     display: inline-flex;
     flex-direction: row;
     align-items: center;
+  }
 
+  // 重なりは、件数で切る形（.root）と幅で畳む形（.collapse。行は OverflowList）で同じ
+  .root,
+  .collapse {
     .avatar {
       border: var(--wim-border-width-thick) solid var(--wim-color-surface);
 
@@ -33,5 +37,12 @@
     &.lg {
       font-size: var(--wim-font-size-md);
     }
+  }
+
+  // overflow="collapse" の「+N」から開く一覧の 1 行（小さなアバターと名前）
+  .person {
+    display: flex;
+    gap: var(--wim-spacing-sm);
+    align-items: center;
   }
 }

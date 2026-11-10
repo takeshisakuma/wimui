@@ -3,6 +3,7 @@
 import type { WimNamespace } from "../instance";
 
 export type DataDisplayKey =
+  | "avatar_group.show_everyone"
   | "calendar.aria_date"
   | "calendar.title"
   | "countdown.remaining"
@@ -15,16 +16,25 @@ export const dataDisplayNs: WimNamespace<"data-display", DataDisplayKey> = {
     "en": {
       "countdown": {
         "remaining": "{{time}} remaining"
+      },
+      "avatar_group": {
+        "show_everyone": "Show everyone"
       }
     },
     "ja": {
       "countdown": {
         "remaining": "残り{{time}}"
+      },
+      "avatar_group": {
+        "show_everyone": "全員を表示"
       }
     },
     "pt": {
       "countdown": {
         "remaining": "{{time}} restantes"
+      },
+      "avatar_group": {
+        "show_everyone": "Mostrar todos"
       }
     }
   },

@@ -31,7 +31,7 @@
     "avatar_title": "Profile initials/pics",
     "avatargroup_best_practice_1": "Set a reasonable max count to prevent visual clutter while conveying group size with the '+N' badge.",
     "avatargroup_best_practice_2": "Use the same avatar size within a group for visual consistency.",
-    "avatargroup_keyboard_desc": "This component does not require specific keyboard interaction beyond standard Tab focus.",
+    "avatargroup_keyboard_desc": "With the default overflow=\"count\", the group has no keyboard interaction of its own. With overflow=\"collapse\", the \"+N\" button is a Tab stop: Enter or Space opens the list of hidden people, and Escape closes it and returns focus to the button.",
     "badge_best_practice_1": "Keep badge text short and concise so the meaning is conveyed at a glance.",
     "badge_best_practice_2": "Assign semantic meaning to colors consistently — green for success, red for error.",
     "badge_keyboard_desc": "This component does not require specific keyboard interaction beyond standard Tab focus.",

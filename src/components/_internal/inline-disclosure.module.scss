@@ -1,0 +1,69 @@
+@use "../../styles/focus-mixins" as focus;
+
+@layer component {
+  .root {
+    position: relative;
+    display: inline-flex;
+  }
+
+  .trigger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    // 押せる大きさの下限（WCAG 2.5.8。アイコンと余白だけでは 24px を下回った）
+    min-width: var(--wim-tap-target-min);
+    min-height: var(--wim-tap-target-min);
+    padding: var(--wim-spacing-3xs) var(--wim-spacing-2xs);
+    font-family: inherit;
+    color: var(--wim-color-text-secondary);
+    cursor: pointer;
+    background: none;
+    border: none;
+    border-radius: var(--wim-radius-component);
+
+    @media (hover: hover) {
+      &:hover {
+        color: var(--wim-color-text-primary);
+        background-color: var(--wim-color-surface-hover);
+      }
+    }
+
+    &:focus-visible {
+      @include focus.forced-colors-outline;
+
+      box-shadow: var(--wim-shadow-focus);
+    }
+  }
+
+  // 隠れた項目の一覧。Menubar の面と同じ見た目で、引き金の下（余地が無ければ上）に開く
+  .panel {
+    position: absolute;
+    top: calc(100% + var(--wim-spacing-2xs));
+    left: 0;
+    z-index: var(--wim-z-overlay);
+    display: flex;
+    flex-direction: column;
+    gap: var(--wim-spacing-xs);
+    min-width: var(--wim-menu-min-width);
+    padding: var(--wim-spacing-sm) var(--wim-spacing-md);
+    margin: 0;
+    list-style: none;
+    background-color: var(--wim-color-surface);
+    border: var(--wim-border-width-thin) solid var(--wim-color-border);
+    border-radius: var(--wim-radius-overlay);
+    box-shadow: var(--wim-shadow-overlay);
+
+    /* 画面の端からはみ出す分だけ、内側へ寄せる（値は `useInlineFloating` が入れる）。 */
+    translate: var(--wim-floating-shift-x, 0) 0;
+
+    &[data-side="top"] {
+      top: auto;
+      bottom: calc(100% + var(--wim-spacing-2xs));
+    }
+
+    > li {
+      white-space: nowrap;
+    }
+  }
+}

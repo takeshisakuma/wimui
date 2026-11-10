@@ -601,7 +601,9 @@
     "overflowList_best_practice_2": "Retorne um único elemento em renderItem e renderOverflow. Cada elemento de nível superior é medido como um item, e o indicador é medido como fica com todos os itens agrupados, então a maior contagem já está reservada.",
     "overflowList_best_practice_3": "Ordene items antes de passá-los: os primeiros a serem agrupados são os da extremidade que agrupa. Ordene por importância se o item mais útil deve ser o último a ser agrupado.",
     "overflowList_keyboard_desc": "OverflowList não adiciona teclas próprias. Os itens visíveis mantêm seu próprio comportamento de foco, e os itens agrupados são alcançados pelo indicador: vá até ele com Tab, abra com Enter ou Espaço e percorra os itens ocultos no que ele abre.",
-    "overflowList_i18n_desc": "O componente não tem texto próprio. O rótulo do indicador e os itens ocultos vêm das suas traduções; traduções mais longas ocupam mais espaço e agrupam mais itens, o que a linha recalcula sozinha."
+    "overflowList_i18n_desc": "O componente não tem texto próprio. O rótulo do indicador e os itens ocultos vêm das suas traduções; traduções mais longas ocupam mais espaço e agrupam mais itens, o que a linha recalcula sozinha.",
+    "avatargroup_collapse": "Ajustar à largura",
+    "avatargroup_collapse_desc": "Com overflow=\"collapse\", o grupo mostra quantos avatares couberem no contêiner e transforma o restante em um botão \"+N\". O botão lista as pessoas ocultas pelo nome (a partir do alt de cada Avatar). max e total são ignorados neste modo. Use quando a largura muda (uma barra lateral, um card estreito) e importa quem está oculto."
   },
   "faq": {
     "a1": "WIM UI é um sistema de design moderno e acessível baseado em React. Ele apresenta recursos práticos como consultas de contêiner e suporte multilíngue.",

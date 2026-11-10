@@ -106,9 +106,19 @@ const OverflowListInner = <T,>(
       (parseFloat(rootStyle.paddingRight) || 0);
     const gapWidth = parseFloat(getComputedStyle(layer).columnGap) || 0;
 
+    // 外側の余白も足す。項目を負のマージンで重ねる並び（AvatarGroup）は、幅だけを足すと実際より
+    // 広く見積もり、入る項目まで畳んだ
+    const outerWidth = (node: HTMLElement) => {
+      const nodeStyle = getComputedStyle(node);
+      return (
+        node.getBoundingClientRect().width +
+        (parseFloat(nodeStyle.marginLeft) || 0) +
+        (parseFloat(nodeStyle.marginRight) || 0)
+      );
+    };
     const nodes = Array.from(layer.children) as HTMLElement[];
-    const widths = nodes.slice(0, items.length).map((node) => node.getBoundingClientRect().width);
-    const overflowWidth = nodes[items.length]?.getBoundingClientRect().width ?? 0;
+    const widths = nodes.slice(0, items.length).map(outerWidth);
+    const overflowWidth = nodes[items.length] ? outerWidth(nodes[items.length]) : 0;
 
     // "middle" は先頭の 1 つを先に並べ、その幅と間隔を除いた残りで数える
     const pinned = pinnedCount(collapseFrom, widths.length);
