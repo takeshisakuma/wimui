@@ -125,6 +125,8 @@
     "tabs_prop_defaultValue": "Valor da aba selecionada inicialmente, para uso não controlado.",
     "tabs_prop_onChange": "Chamado com o valor da aba recém-selecionada.",
     "tabs_prop_orientation": "Orientação da lista de abas, afetando o layout e a navegação por setas.\n@default \"horizontal\"",
-    "tabs_prop_value": "Valor controlado da aba selecionada. Use junto com onChange."
+    "tabs_prop_value": "Valor controlado da aba selecionada. Use junto com onChange.",
+    "breadcrumb_prop_overflow": "O que acontece quando os itens não cabem em uma linha. \"wrap\" os move para mais linhas; \"collapse\" mantém o primeiro item e a página atual e agrupa os níveis intermediários em um botão \"…\" que os lista.\n@default \"wrap\"",
+    "breadcrumb_prop_moreLabel": "Nome acessível do botão \"…\", a partir do número de níveis ocultos. O padrão é o texto localizado \"Mostrar níveis ocultos (n)\"."
   }
 }

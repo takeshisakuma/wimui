@@ -20,6 +20,14 @@
     min-width: min(100%, var(--wim-width-xs));
   }
 
+  // 行をリスト（ol / ul）で描くときの既定の字下げと記号を消す
+  .row,
+  .measureRow {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
   .row {
     display: flex;
     flex-wrap: nowrap;

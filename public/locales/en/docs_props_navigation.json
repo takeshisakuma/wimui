@@ -125,6 +125,8 @@
     "tabs_prop_defaultValue": "Value of the tab selected initially, for uncontrolled usage.",
     "tabs_prop_onChange": "Called with the value of the newly selected tab.",
     "tabs_prop_orientation": "Orientation of the tab list, affecting layout and arrow-key navigation.\n@default \"horizontal\"",
-    "tabs_prop_value": "Controlled value of the selected tab. Use together with onChange."
+    "tabs_prop_value": "Controlled value of the selected tab. Use together with onChange.",
+    "breadcrumb_prop_overflow": "What happens when the items do not fit on one line. \"wrap\" moves them onto more lines; \"collapse\" keeps the first item and the current page and folds the levels in between into a \"…\" button that lists them.\n@default \"wrap\"",
+    "breadcrumb_prop_moreLabel": "Accessible name of the \"…\" button, from the number of hidden levels. Defaults to a localized \"Show hidden levels (n)\"."
   }
 }

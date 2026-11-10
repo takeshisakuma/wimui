@@ -2,7 +2,7 @@ import type React from "react";
 import { describe, it, expect, vi, beforeAll, afterAll } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { OverflowList } from "./OverflowList";
-import { getVisibleCount } from "./getVisibleCount";
+import { getVisibleCount, splitItems } from "./getVisibleCount";
 
 vi.mock("react-i18next", () => ({
   useTranslation: () => ({ t: (key: string) => key }),
@@ -57,6 +57,19 @@ const renderList = (available: number, props: Partial<React.ComponentProps<typeo
 const visibleTexts = () =>
   Array.from(screen.getByTestId("list").firstElementChild!.children).map((el) => el.textContent);
 
+describe("splitItems", () => {
+  it("places the indicator at the end, the start, or right after the first item", () => {
+    expect(splitItems("end", 5, 3)).toEqual({ visible: [0, 1, 2], hidden: [3, 4], overflowAt: 3 });
+    expect(splitItems("start", 5, 3)).toEqual({ visible: [2, 3, 4], hidden: [0, 1], overflowAt: 0 });
+    expect(splitItems("middle", 5, 3)).toEqual({ visible: [0, 3, 4], hidden: [1, 2], overflowAt: 1 });
+  });
+
+  it("keeps the first item in the middle mode even when nothing else fits", () => {
+    expect(splitItems("middle", 5, 0)).toEqual({ visible: [0], hidden: [1, 2, 3, 4], overflowAt: 1 });
+    expect(splitItems("middle", 0, 0)).toEqual({ visible: [], hidden: [], overflowAt: 0 });
+  });
+});
+
 describe("getVisibleCount", () => {
   const base = { overflowWidth: 30, gap: 10, minVisibleItems: 0, alwaysRenderOverflow: false };
 
@@ -101,6 +114,31 @@ describe("OverflowList", () => {
   it("collapses from the start and keeps the last items", () => {
     renderList(200, { collapseFrom: "start" });
     expect(visibleTexts()).toEqual(["+2", "gamma", "delta", "epsilon"]);
+  });
+
+  it("collapses from the middle: keeps the first item, folds from the second, and keeps the last ones", () => {
+    // 先頭 50 を除いた 150 に、30 + 50 + 50 = 130 が入る
+    const onOverflow = vi.fn();
+    renderList(200, { collapseFrom: "middle", onOverflow });
+    expect(visibleTexts()).toEqual(["alpha", "+2", "delta", "epsilon"]);
+    expect(onOverflow).toHaveBeenLastCalledWith(["beta", "gamma"]);
+  });
+
+  it("renders the row and the measuring copy as the given list element", () => {
+    render(
+      <OverflowList
+        data-testid="list"
+        data-available={120}
+        listElement="ol"
+        items={ITEMS}
+        renderItem={(item) => <li data-w="50">{item}</li>}
+        renderOverflow={(hidden) => <li data-w="30">+{hidden.length}</li>}
+      />,
+    );
+    const row = screen.getByTestId("list").firstElementChild!;
+    expect(row.tagName).toBe("OL");
+    expect(Array.from(row.children).every((el) => el.tagName === "LI")).toBe(true);
+    expect(screen.getByTestId("list").querySelector('[aria-hidden="true"] > ol')).not.toBeNull();
   });
 
   it("passes the hidden items in order to renderOverflow and onOverflow", () => {

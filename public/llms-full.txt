@@ -820,9 +820,13 @@ of pixels. Prefer the token so the gap follows the theme.
 that opens a Popover listing them). Return a single element. Not rendered while every item
 fits, unless `alwaysRenderOverflow` is set. The hidden items are not in the DOM, so the
 indicator is how users — including keyboard and screen reader users — reach them.
-    - `collapseFrom: "start" | "end"` = "end" — The side items are collapsed from. `"end"` keeps the first items (tags, toolbars);
-`"start"` keeps the last ones (a breadcrumb keeps the current page).
+    - `collapseFrom: "start" | "end" | "middle"` = "end" — The side items are collapsed from. `"end"` keeps the first items (tags, toolbars);
+`"start"` keeps the last ones (a path keeps the current folder); `"middle"` keeps the first
+item and collapses from the second one, with the indicator right after the first item
+(a breadcrumb keeps its root and the current page).
 @default "end"
+    - `listElement: "ul" | "ol"` — Renders the row as a list. `renderItem` and `renderOverflow` must then return `<li>`
+elements. Without it, the row is a `div`, which a list may not contain.
     - `minVisibleItems: number` = 0 — Items that stay visible however narrow the row gets. They may then overflow the row.
 @default 0
     - `alwaysRenderOverflow: boolean` = false — Renders the overflow indicator even when every item fits (it receives an empty array).
@@ -2189,6 +2193,12 @@ follows the theme and never needs a hand-mixed colour.
     - `separator: React.ReactNode` — Separator displayed between items. Defaults to a chevron icon.
     - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size of the breadcrumb.
 @default "md"
+    - `overflow: "wrap" | "collapse"` = "wrap" — What happens when the items do not fit on one line. `"wrap"` moves them onto more lines;
+`"collapse"` keeps the first item and the current page and folds the levels in between
+into a "…" button that lists them.
+@default "wrap"
+    - `moreLabel: (count: number) => string` — Accessible name of the "…" button, from the number of hidden levels. Defaults to a localized
+"Show hidden levels (n)".
     - `className: string` — Additional CSS class name for the container.
     - `ariaLabel: string` — Accessible label of the navigation landmark. Defaults to a localized "breadcrumb" label.
     - `asChild: boolean` — If true, the breadcrumb will be rendered as its child, merging its props onto that child.

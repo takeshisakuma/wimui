@@ -10240,7 +10240,9 @@
       "menubar_keyboard_desc": "Left/Right (and Home/End) move between top-level triggers. ArrowDown, Enter, or Space opens a menu. ArrowUp/Down move within the open menu. Escape closes and returns focus to the trigger.",
       "menubar_i18n_desc": "Menubar has no built-in copy. Localize trigger and item labels in the consuming app; provide an aria-label on the root.",
       "anchor_choice_navbar_when": "When you want to move between the main areas of the site.",
-      "anchor_choice_breadcrumbs_when": "When you want to show where the current page sits in the hierarchy and let the user climb back up."
+      "anchor_choice_breadcrumbs_when": "When you want to show where the current page sits in the hierarchy and let the user climb back up.",
+      "breadcrumb_collapse": "Collapsing the middle levels",
+      "breadcrumb_collapse_desc": "With overflow=\"collapse\", a path that does not fit on one line keeps the first level and the current page and folds the levels in between into a \"…\" button. The button lists them as links; Escape, pressing outside or moving focus away closes the list. The row recomputes when its width changes, so the levels come back when there is room."
     }
   },
   "docs_overlay": {
@@ -12386,7 +12388,11 @@
       "menubar_zoom_out": "Zoom out",
       "stepper_desc_finished": "Signed off on 12 Mar",
       "stepper_desc_progress": "Waiting on the finance review",
-      "stepper_desc_waiting": "Starts once the review clears"
+      "stepper_desc_waiting": "Starts once the review clears",
+      "breadcrumb_shop_women": "Women",
+      "breadcrumb_shop_shoes": "Shoes",
+      "breadcrumb_shop_running": "Running",
+      "breadcrumb_shop_trail": "Trail running shoes"
     }
   },
   "docs_stories_overlay": {
@@ -15984,13 +15990,14 @@
       "overflowList_prop_items": "Items to lay out in a single row, in reading order.",
       "overflowList_prop_renderItem": "Renders one item. Return a single element: each top-level element is measured as one item.",
       "overflowList_prop_renderOverflow": "Renders the overflow indicator from the items that did not fit (for example a \"+N\" button that opens a Popover listing them). Return a single element. Not rendered while every item fits, unless alwaysRenderOverflow is set.",
-      "overflowList_prop_collapseFrom": "The side items are collapsed from. \"end\" keeps the first items; \"start\" keeps the last ones.",
+      "overflowList_prop_collapseFrom": "The side items are collapsed from. \"end\" keeps the first items; \"start\" keeps the last ones; \"middle\" keeps the first item and collapses from the second one, with the indicator right after the first item.",
       "overflowList_prop_minVisibleItems": "Items that stay visible however narrow the row gets. They may then overflow the row.",
       "overflowList_prop_alwaysRenderOverflow": "Renders the overflow indicator even when every item fits (it receives an empty array).",
       "overflowList_prop_onOverflow": "Called with the hidden items whenever the set of hidden items changes.",
       "overflowList_prop_gap": "Gap between items: a spacing token name (\"sm\", \"md\", …).",
       "overflowList_prop_asChild": "If true, the list will be rendered as its child, merging its props onto that child.",
-      "overflowList_prop_children": "The element that becomes the root (in place of div) when asChild is set. The items are rendered inside it."
+      "overflowList_prop_children": "The element that becomes the root (in place of div) when asChild is set. The items are rendered inside it.",
+      "overflowList_prop_listElement": "Renders the row as a list. renderItem and renderOverflow must then return li elements. Without it, the row is a div, which a list may not contain."
     }
   },
   "docs_props_media": {
@@ -16237,7 +16244,9 @@
       "tabs_prop_defaultValue": "Value of the tab selected initially, for uncontrolled usage.",
       "tabs_prop_onChange": "Called with the value of the newly selected tab.",
       "tabs_prop_orientation": "Orientation of the tab list, affecting layout and arrow-key navigation.\n@default \"horizontal\"",
-      "tabs_prop_value": "Controlled value of the selected tab. Use together with onChange."
+      "tabs_prop_value": "Controlled value of the selected tab. Use together with onChange.",
+      "breadcrumb_prop_overflow": "What happens when the items do not fit on one line. \"wrap\" moves them onto more lines; \"collapse\" keeps the first item and the current page and folds the levels in between into a \"…\" button that lists them.\n@default \"wrap\"",
+      "breadcrumb_prop_moreLabel": "Accessible name of the \"…\" button, from the number of hidden levels. Defaults to a localized \"Show hidden levels (n)\"."
     }
   },
   "docs_props_overlay": {
@@ -16721,5 +16730,10 @@
       "return_trouble": "Accident or breakdown"
     }
   },
-  "docs_stories_probes": {}
+  "docs_stories_probes": {},
+  "navigation": {
+    "a11y": {
+      "breadcrumb_more": "Show hidden levels ({{count}})"
+    }
+  }
 }

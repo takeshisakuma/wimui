@@ -136,6 +136,10 @@
     "menubar_zoom_out": "Reduzir",
     "stepper_desc_finished": "Aprovado em 12 de março",
     "stepper_desc_progress": "Aguardando a revisão financeira",
-    "stepper_desc_waiting": "Começa assim que a revisão for concluída"
+    "stepper_desc_waiting": "Começa assim que a revisão for concluída",
+    "breadcrumb_shop_women": "Feminino",
+    "breadcrumb_shop_shoes": "Calçados",
+    "breadcrumb_shop_running": "Corrida",
+    "breadcrumb_shop_trail": "Tênis de trail running"
   }
 }

@@ -17,6 +17,10 @@ const meta: Meta<typeof Breadcrumb> = {
       control: "radio",
       options: ["sm", "md", "lg"],
     },
+    overflow: {
+      control: "radio",
+      options: ["wrap", "collapse"],
+    },
   },
 };
 
@@ -110,6 +114,29 @@ export const CustomSeparator: Story = {
           { label: t("story.breadcrumb_current") },
         ]}
       />
+    );
+  },
+};
+
+/** 1 行に入らないパス。先頭と現在のページを残し、間の階層を「…」にまとめる（器は 320px） */
+export const Collapsed: Story = {
+  args: { overflow: "collapse" },
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      // 狭い画面では器を画面に収める（100% は、中身で幅が決まる親に対して循環する）
+      <div style={{ width: "min(var(--wim-width-md), 100vw - 2rem)" }}>
+        <Breadcrumb
+          {...args}
+          items={[
+            { label: t("story.breadcrumb_home"), href: "/" },
+            { label: t("story.breadcrumb_shop_women"), href: "/women" },
+            { label: t("story.breadcrumb_shop_shoes"), href: "/women/shoes" },
+            { label: t("story.breadcrumb_shop_running"), href: "/women/shoes/running" },
+            { label: t("story.breadcrumb_shop_trail") },
+          ]}
+        />
+      </div>
     );
   },
 };

@@ -476,6 +476,8 @@
     "menubar_keyboard_desc": "左右矢印（と Home/End）でトップレベル間を移動。ArrowDown / Enter / Space で開く。メニュー内は上下。Escape で閉じて Trigger に戻る。",
     "menubar_i18n_desc": "Menubar 本体に固定文言はありません。Trigger / Item のラベルとルートの aria-label をアプリ側でローカライズしてください。",
     "anchor_choice_navbar_when": "サイトの主要な区画の間を移動したいとき",
-    "anchor_choice_breadcrumbs_when": "現在のページが階層のどこにいるかを示し、上へ戻れるようにしたいとき"
+    "anchor_choice_breadcrumbs_when": "現在のページが階層のどこにいるかを示し、上へ戻れるようにしたいとき",
+    "breadcrumb_collapse": "間の階層を畳む",
+    "breadcrumb_collapse_desc": "overflow=\"collapse\" にすると、1 行に入らないパスは、先頭の階層と現在のページを残し、間の階層を「…」のボタンにまとめます。ボタンを押すと、畳んだ階層がリンクとして並びます。Escape・外側を押す・フォーカスが外へ出ると閉じます。幅が変わるたびに数え直すので、広がれば階層は戻ります。"
   }
 }

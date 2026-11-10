@@ -136,6 +136,10 @@
     "menubar_zoom_out": "Zoom out",
     "stepper_desc_finished": "Signed off on 12 Mar",
     "stepper_desc_progress": "Waiting on the finance review",
-    "stepper_desc_waiting": "Starts once the review clears"
+    "stepper_desc_waiting": "Starts once the review clears",
+    "breadcrumb_shop_women": "Women",
+    "breadcrumb_shop_shoes": "Shoes",
+    "breadcrumb_shop_running": "Running",
+    "breadcrumb_shop_trail": "Trail running shoes"
   }
 }
