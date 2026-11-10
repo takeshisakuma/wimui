@@ -104,7 +104,8 @@ export const ContainerWidths: Story = {
             <Text size="sm" color="text-secondary">
               {t("story.overflowlist_container_width", { width: label })}
             </Text>
-            <div style={{ width: token }} data-testid={`overflow-list-${label}`}>
+            {/* 狭い画面では、器のほうを画面に収める（640px の器が 390px の画面からはみ出した） */}
+            <div style={{ width: `min(${token}, 100%)` }} data-testid={`overflow-list-${label}`}>
               <AmenityList />
             </div>
           </Stack>
