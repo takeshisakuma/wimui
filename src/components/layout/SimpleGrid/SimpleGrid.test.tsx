@@ -30,7 +30,7 @@ describe("SimpleGrid", () => {
   it("uses a spacing token for the default gap", () => {
     const { container } = render(<SimpleGrid cols={2} />);
     const grid = container.querySelector(`.${styles.root}`) as HTMLElement;
-    expect(grid.style.gap).toBe("var(--wim-spacing-2xl)");
+    expect(grid.style.columnGap).toBe("var(--wim-spacing-2xl)");
     expect(grid.style.rowGap).toBe("var(--wim-spacing-2xl)");
   });
 

@@ -55,7 +55,9 @@ describe("Icon", () => {
   it("accepts the token vocabulary Text uses", () => {
     const { container } = render(<Icon name="CircleIcon" color="text-tertiary" />);
     const svg = container.querySelector("svg");
-    expect(svg).toHaveStyle({ color: "var(--wim-color-text-tertiary)" });
+    // 宣言した値で比べる。toHaveStyle は計算値を読み、jsdom 31 からは var() を解決する
+    // （テストにトークンの定義は無いので、計算値は継承の黒になる）
+    expect(svg?.style.color).toBe("var(--wim-color-text-tertiary)");
   });
 
   it("still resolves the semantic names through a class", () => {
@@ -70,6 +72,7 @@ describe("Icon", () => {
       <Icon name="CircleIcon" color="text-tertiary" style={{ opacity: 0.5 }} />,
     );
     const svg = container.querySelector("svg");
-    expect(svg).toHaveStyle({ color: "var(--wim-color-text-tertiary)", opacity: "0.5" });
+    expect(svg?.style.color).toBe("var(--wim-color-text-tertiary)");
+    expect(svg).toHaveStyle({ opacity: "0.5" });
   });
 });

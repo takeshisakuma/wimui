@@ -96,7 +96,11 @@ describe("ImageCropper", () => {
       render(<ImageCropper src="photo.png" />);
       const viewer = screen.getByRole("application", { name: "Image position" });
       const image = screen.getByRole("img");
-      const position = () => image.style.transform.match(/translate\((-?\d+)px, (-?\d+)px\)/)!.slice(1).map(Number);
+      // 縦が 0 のとき、translate(10px, 0px) は translate(10px) と書き出される（jsdom 31 からの正規化）
+      const position = () => {
+        const [, x, y = "0"] = image.style.transform.match(/translate\((-?\d+)px(?:, (-?\d+)px)?\)/)!;
+        return [Number(x), Number(y)];
+      };
       return { viewer, position };
     };
 
