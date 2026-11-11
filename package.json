@@ -1,6 +1,6 @@
 {
   "name": "wimui",
-  "version": "0.67.0",
+  "version": "0.68.0",
   "type": "module",
   "description": "React component library with design tokens, dark mode, i18n (en/ja/pt-BR), and WAI-ARIA compliant accessibility. 200+ components documented in Storybook.",
   "main": "dist/index.cjs",
@@ -525,7 +525,7 @@
     "@fullcalendar/interaction": "6.1.22",
     "@fullcalendar/react": "6.1.22",
     "@fullcalendar/timegrid": "6.1.22",
-    "@google/genai": "2.32.0",
+    "@google/genai": "3.0.0",
     "@hookform/resolvers": "7.0.3",
     "@playwright/test": "^1.59.0",
     "@size-limit/esbuild": "14.3.0",
