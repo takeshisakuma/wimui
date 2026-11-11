@@ -67,6 +67,18 @@ updates:
       # **marked（devDependencies と peerDependencies の範囲）と @tiptap/markdown を 1 PR で**上げること。
       - dependency-name: "marked"
         update-types: ["version-update:semver-major"]
+      # i18next 27 は **storybook-react-i18next が追随するまで上げられない**（2026-11-11・#1100）。
+      # storybook-react-i18next@10.1.4（現行 latest）の peer が i18next "^22 || … || ^26" までで、
+      # npm ci が ERESOLVE で止まり CI が全滅する。i18next は devDependencies だけ（peer には無い）なので利用者には影響しない。
+      # storybook-react-i18next の peer が ^27 を含んだら本 ignore を外す。
+      - dependency-name: "i18next"
+        update-types: ["version-update:semver-major"]
+      # stylelint 18 は **stylelint-config-recess-order が追随するまで上げられない**（2026-11-11・#1101）。
+      # stylelint-config-recess-order@7.10.0（現行 latest）の peer が stylelint "^16.18.0 || ^17.0.0" までで、
+      # npm ci が ERESOLVE で止まる。peer が ^18 を含んだら本 ignore を外す
+      # （ほかの stylelint-config-* / stylelint-scss / stylelint-order の peer も同時に確かめること）。
+      - dependency-name: "stylelint"
+        update-types: ["version-update:semver-major"]
 
   - package-ecosystem: "github-actions"
     directory: "/"

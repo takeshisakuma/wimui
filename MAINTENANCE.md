@@ -45,6 +45,8 @@ minor / patch はグループ PR をマージしてよい（`AGENTS.md` の委�
 | `typescript` 7 | **`typescript-eslint` の peer が `>=4.8.4 <6.1.0`**（8.67.0 時点。TS 7 どころか 6.1 も範囲外） | `npm view typescript-eslint peerDependencies.typescript` の上限が動いたか |
 | `marked` 18 | `@tiptap/markdown@3.31.4` が dependencies に `marked: ^17.0.1` を持つ。こちらだけ上げると marked が 2 つ入り、RichTextEditor が作った `Marked` のインスタンス（18）を 17 向けの実装へ渡す形になる（2026-10-07・#883 は型チェックが TS2322 で落ちた。major の ignore は #884） | `npm view @tiptap/markdown dependencies.marked` が 18 を含んだか（含んだら、marked の devDependencies と peer のレンジ、`@tiptap/markdown` を 1 PR で） |
 | `@fullcalendar/*` 7 | プラグイン 3 つ（daygrid / timegrid / interaction）の `latest` が 6.1.21 のまま（2026-10-07。core だけ 7.1.1）。#598 の経緯は `dependabot.yml` のコメント | 3 つのプラグインの `latest` が 7 になったか（なったら、5 パッケージを 1 PR で） |
+| `i18next` 27 | `storybook-react-i18next@10.1.4` の peer が i18next `^26` まで。`npm ci` が ERESOLVE で止まる（2026-11-11・#1100。major の ignore を入れて閉じた）。i18next は devDependencies だけ | `npm view storybook-react-i18next peerDependencies.i18next` が `^27` を含んだか |
+| `stylelint` 18 | `stylelint-config-recess-order@7.10.0` の peer が stylelint `^16.18.0 || ^17.0.0` まで。`npm ci` が ERESOLVE で止まる（2026-11-11・#1101。major の ignore を入れて閉じた） | `npm view stylelint-config-recess-order peerDependencies.stylelint` が `^18` を含んだか（含んだら、ほかの `stylelint-*` の peer も同時に見る） |
 
 **解除したもの**:
 
