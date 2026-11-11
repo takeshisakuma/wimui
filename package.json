@@ -525,7 +525,7 @@
     "@fullcalendar/interaction": "6.1.22",
     "@fullcalendar/react": "6.1.22",
     "@fullcalendar/timegrid": "6.1.22",
-    "@google/genai": "2.32.0",
+    "@google/genai": "3.0.0",
     "@hookform/resolvers": "7.0.3",
     "@playwright/test": "^1.59.0",
     "@size-limit/esbuild": "14.3.0",
