@@ -1,5 +1,35 @@
 # wimui
 
+## 0.68.0
+
+### Minor Changes
+
+- 279e25d: `AvatarGroup` に `overflow="collapse"` を足した（T361）。器の幅に入るだけのアバターを並べ、残りを「+N」のボタンにまとめる。
+
+  - 「+N」を押すと、隠れた人が名前（各 `Avatar` の `alt`。無ければ `initials`）で並ぶ（一覧のアバターは飾りにし、名前は文字で読む）。Escape・外側を押す・フォーカスが外へ出ると閉じる。
+  - ボタンの名前は、見えている「+N」に、内蔵の翻訳の「Show everyone」（ja / pt あり）を続けたもの。
+  - この形では `max` と `total` は使わない。既定は `overflow="count"`（これまでどおり `max` / `total` で切り、「+N」は文字）。
+
+  `OverflowList` は、項目の外側の余白（マージン）も足して幅を数えるようにした。負のマージンで重ねる並び（AvatarGroup）は、幅だけを足すと実際より広く見積もり、入る項目まで畳んでいた。
+
+- 10088da: `Breadcrumb` に `overflow="collapse"` を足した（T361）。1 行に入らないパスは、先頭の階層と現在のページを残し、間の階層を「…」のボタンにまとめる。
+
+  - 「…」を押すと、畳んだ階層がリンクとして並ぶ（disclosure。面は引き金の隣に開き、画面の端では上へ返す・内側へ寄せる）。Escape・外側を押す・フォーカスが外へ出ると閉じ、Escape ではボタンへ戻る。矢印キーの移動先にも「…」が入る。
+  - ボタンの読み上げの名前は、内蔵の翻訳の「Show hidden levels (n)」（ja / pt あり）。`moreLabel(count)` で差し替えられる。
+  - 既定は `overflow="wrap"`（これまでどおり折り返す）。
+
+  `OverflowList` に 2 つ足した。
+
+  - `collapseFrom="middle"`: 先頭の 1 つを残し、2 つ目から畳む。「+N」は先頭のすぐ後ろに置く。
+  - `listElement="ul" | "ol"`: 行をリストとして描く（`renderItem` / `renderOverflow` は `<li>` を返す）。これまでは行が `div` で、リストの中に置けなかった。
+
+- a3bf8c8: `OverflowList` を足した（T361）。項目を 1 行に並べ、入らない分を「+N」にまとめる。
+
+  - 並べる行と各項目の幅を測り、入る分だけを描いて、残りを `renderOverflow(hiddenItems)` に渡す。行や項目の幅が変わるたびに数え直すので、広がれば畳んだ項目は戻る。
+  - `collapseFrom="end"`（既定。先頭の項目を残す）と `"start"`（最後の項目を残す。パスで今いる場所を残す形）。`minVisibleItems` / `alwaysRenderOverflow` / `onOverflow` / `gap`。
+  - 「+N」に何を出すか（件数・Popover・Menu）は使う側が決める。畳んだ項目は DOM から外れるので、「+N」を名前付きのボタンにして、開いた先に隠れた項目を並べる。
+  - 器の幅いっぱいに広がり、最小は 0（ほかの要素と横に並べたときは 120px）、望む幅は全項目を 1 行に並べた幅。表のセルや inline-block の中でも畳み、広がれば戻る。
+
 ## 0.67.0
 
 ### Minor Changes
