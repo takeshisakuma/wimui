@@ -80,5 +80,6 @@ export const ALL_NAMESPACES = [
   "docs_typography",
   "docs_utility",
   "form",
+  "layout",
   "navigation"
 ];

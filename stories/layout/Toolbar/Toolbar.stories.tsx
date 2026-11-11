@@ -1,3 +1,4 @@
+import { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useTranslation } from "react-i18next";
 import { Toolbar } from "@/components/layout/Toolbar/Toolbar";
@@ -16,6 +17,7 @@ const meta: Meta<typeof Toolbar> = {
     asChild: { control: "boolean" },
     size: { control: "radio", options: ["sm", "md", "lg"] },
     orientation: { control: "radio", options: ["horizontal", "vertical"] },
+    overflow: { control: "radio", options: ["wrap", "collapse"] },
   },
   args: {
     size: "md",
@@ -134,6 +136,69 @@ export const Vertical: Story = {
           size="sm"
         />
       </Toolbar>
+    );
+  },
+};
+
+/**
+ * 器（320px の狭いエディタのペイン）に入るだけを並べ、残りは「…」から同じコントロールを開く。
+ * ToggleGroup は面へ移るときに作り直されるので、値は制御で持つ
+ */
+export const Collapsed: Story = {
+  args: { overflow: "collapse" },
+  render: (args) => {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    const [view, setView] = useState<string | string[]>("list");
+    return (
+      <div style={{ width: "min(var(--wim-width-md), 100vw - 2rem)" }}>
+        <Toolbar {...args} aria-label={t("story.toolbar_formatting")}>
+          <Toolbar.Group aria-label={t("story.toolbar_text_style")}>
+            <IconButton
+              iconName="EditIcon"
+              aria-label={t("story.dropdown_edit")}
+              variant="ghost"
+              size="sm"
+            />
+            <IconButton
+              iconName="CopyIcon"
+              aria-label={t("story.toolbar_copy")}
+              variant="ghost"
+              size="sm"
+            />
+            <IconButton
+              iconName="TrashIcon"
+              aria-label={t("story.dropdown_delete")}
+              variant="ghost"
+              size="sm"
+            />
+          </Toolbar.Group>
+          <Toolbar.Separator />
+          <Toolbar.Group aria-label={t("story.toolbar_view")}>
+            <ToggleGroup
+              size="sm"
+              selectionMode="single"
+              aria-label={t("story.toolbar_view_mode")}
+              options={[
+                { value: "list", iconName: "AlignJustifyIcon", label: t("story.toolbar_list") },
+                { value: "grid", iconName: "ColumnsIcon", label: t("story.toolbar_columns") },
+                { value: "focus", iconName: "MaximizeIcon", label: t("story.toolbar_focus") },
+              ]}
+              value={view}
+              onChange={setView}
+            />
+          </Toolbar.Group>
+          <Toolbar.Separator />
+          <IconButton
+            iconName="ExternalLinkIcon"
+            aria-label={t("story.toolbar_open")}
+            variant="ghost"
+            size="sm"
+          />
+          <Button size="sm" variant="ghost">
+            {t("story.toolbar_clear")}
+          </Button>
+        </Toolbar>
+      </div>
     );
   },
 };

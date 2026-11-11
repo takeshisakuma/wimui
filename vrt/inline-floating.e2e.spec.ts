@@ -33,6 +33,7 @@ const cases: Case[] = [
   // T361: 畳んだ階層の一覧。引き金は見えている行の「…」（幅を測る写しの中のボタンは押せない）
   { name: "Breadcrumb", id: "components-navigation-elements-breadcrumb--collapsed", surface: "#storybook-root .wim-overflow-list > ol [aria-expanded] + ul", opener: "#storybook-root .wim-overflow-list > ol button" },
   { name: "AvatarGroup", id: "components-data-indicators-avatargroup--collapsed", surface: "#storybook-root .wim-avatar-group [aria-expanded] + ul", opener: "#storybook-root .wim-avatar-group > :first-child button" },
+  { name: "Toolbar", id: "components-layout-toolbar--collapsed", surface: "#storybook-root .wim-toolbar [aria-expanded] + ul", opener: "#storybook-root .wim-overflow-list > :first-child button[aria-expanded]" },
 ];
 
 /** ストーリーの根を、画面の隅へ寄せる（余白を消し、根を中身の幅にする ── 引き金が端に来る）。 */

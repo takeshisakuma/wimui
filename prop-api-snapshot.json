@@ -11679,11 +11679,22 @@
       "required": false,
       "type": "boolean"
     },
+    "Toolbar.moreLabel": {
+      "required": false,
+      "type": "(count: number) => string"
+    },
     "Toolbar.orientation": {
       "required": false,
       "values": [
         "horizontal",
         "vertical"
+      ]
+    },
+    "Toolbar.overflow": {
+      "required": false,
+      "values": [
+        "collapse",
+        "wrap"
       ]
     },
     "Toolbar.size": {
