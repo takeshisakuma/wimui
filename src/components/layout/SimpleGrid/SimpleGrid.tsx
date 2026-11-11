@@ -44,7 +44,10 @@ export const SimpleGrid = React.forwardRef<HTMLDivElement, SimpleGridProps>(
 
     const gridStyle: React.CSSProperties = {
       display: "grid",
-      gap: getSpacingValue(spacing),
+      // shorthand の gap と longhand の rowGap を並べない。var() の shorthand は
+      // longhand を「置換待ち」にし、片方を上書きすると column-gap の宣言が空で書き出される
+      // （React も衝突として警告する）。列と行を longhand で別々に渡す
+      columnGap: getSpacingValue(spacing),
       rowGap: getSpacingValue(verticalSpacing ?? spacing),
       gridTemplateColumns: minChildWidth
         ? `repeat(auto-fill, minmax(${typeof minChildWidth === "number" ? `${minChildWidth}px` : minChildWidth}, 1fr))`

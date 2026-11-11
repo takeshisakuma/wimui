@@ -80,10 +80,9 @@ describe("Grid", () => {
   it("applies gap as spacing token string", () => {
     render(<Grid gap="md" data-testid="grid" />);
     const grid = screen.getByTestId("grid");
-    expect(grid).toHaveStyle({
-      "--wim-grid-col-gap": "var(--wim-spacing-md)",
-      "--wim-grid-row-gap": "var(--wim-spacing-md)",
-    });
+    // 宣言した値で比べる（toHaveStyle の計算値は、jsdom 31 から var() を解決する）
+    expect(grid.style.getPropertyValue("--wim-grid-col-gap")).toBe("var(--wim-spacing-md)");
+    expect(grid.style.getPropertyValue("--wim-grid-row-gap")).toBe("var(--wim-spacing-md)");
   });
 
   it("applies gap as responsive object", () => {

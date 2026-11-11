@@ -102,7 +102,8 @@ describe("Title", () => {
 
   it("handles inline semantic colors correctly", () => {
     render(<Title color="text-primary">Text</Title>);
-    expect(screen.getByRole("heading")).toHaveStyle({ color: "var(--wim-color-text-primary)" });
+    // 宣言した値で比べる（toHaveStyle の計算値は、jsdom 31 から var() を解決する）
+    expect(screen.getByRole("heading").style.color).toBe("var(--wim-color-text-primary)");
   });
 });
 
