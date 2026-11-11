@@ -2,8 +2,14 @@ import React, { useCallback, useEffect, useLayoutEffect, useRef } from "react";
 import { useMergedRef } from "@/hooks/useMergedRef";
 import classNames from "classnames";
 import { Slot } from "@radix-ui/react-slot";
-import type { ComponentSizeBasic } from "@/types/tokens";
+import type { ComponentSizeBasic, WimSpacing } from "@/types/tokens";
+import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { layoutNs } from "@/i18n/generated/layout";
+import { MoreHorizontalIcon } from "@/icon";
 import { getRovingIndex } from "../../_internal/rovingIndex";
+import { InlineDisclosure } from "../../_internal/InlineDisclosure";
+import { OverflowList } from "../OverflowList/OverflowList";
+import { Icon } from "../../media/Icon/Icon";
 import localStyles from "./toolbar.module.scss";
 
 export type ToolbarProps = React.ComponentPropsWithoutRef<"div"> & {
@@ -21,10 +27,32 @@ export type ToolbarProps = React.ComponentPropsWithoutRef<"div"> & {
    * @default "horizontal"
    */
   orientation?: "horizontal" | "vertical";
+  /**
+   * How the controls that do not fit on one line are handled. `"wrap"` wraps them onto the next
+   * line; `"collapse"` keeps one line and moves the trailing children that do not fit behind a
+   * "…" button, which opens them in a panel next to it. Each direct child (a whole
+   * `Toolbar.Group`) is collapsed as one unit. Horizontal toolbars only, and not with `asChild`.
+   *
+   * A control remounts when it moves into the panel, so keep its state controlled.
+   * @default "wrap"
+   */
+  overflow?: "wrap" | "collapse";
+  /**
+   * Accessible name of the "…" button with `overflow="collapse"`, from the number of hidden
+   * children. Defaults to the built-in "Show hidden tools (n)" (en / ja / pt).
+   */
+  moreLabel?: (count: number) => string;
 };
 
 const CANDIDATES =
   "button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]";
+
+// size ごとの項目の間隔（toolbar.module.scss の .size-* と同じ）。畳む形では行を OverflowList が持つので、
+// 間隔もそちらへ渡す
+const GAP_BY_SIZE: Record<ComponentSizeBasic, WimSpacing> = { sm: "2xs", md: "xs", lg: "sm" };
+
+const isSeparator = (child: React.ReactNode) =>
+  React.isValidElement(child) && child.type === ToolbarSeparator;
 
 // Toolbar が tabindex="-1" を書いた要素の印。利用者（や中の部品）が自分で -1 にした要素と見分ける。
 const ROVING_ATTR = "data-wim-toolbar-roving";
@@ -69,6 +97,8 @@ const ToolbarRoot = React.forwardRef<HTMLDivElement, ToolbarProps>(
       asChild = false,
       size = "md",
       orientation = "horizontal",
+      overflow = "wrap",
+      moreLabel,
       className,
       children,
       onKeyDownCapture,
@@ -77,6 +107,7 @@ const ToolbarRoot = React.forwardRef<HTMLDivElement, ToolbarProps>(
     },
     ref,
   ) => {
+    const { t } = useWimTranslation(layoutNs);
     const rootRef = useRef<HTMLDivElement | null>(null);
     const setRefs = useMergedRef(ref, rootRef);
 
@@ -177,6 +208,35 @@ const ToolbarRoot = React.forwardRef<HTMLDivElement, ToolbarProps>(
     };
 
     const Root = asChild ? Slot : "div";
+    // asChild では子が根そのものなので、子を項目に分けられない
+    const collapse = overflow === "collapse" && orientation === "horizontal" && !asChild;
+
+    // 畳んだ子は「…」の面へ移す。面は Toolbar の中に描くので、矢印の移動は「…」から面の中へ続く。
+    // 区切りは面では意味を持たないので落とす
+    const content = collapse ? (
+      <OverflowList
+        gap={GAP_BY_SIZE[size]}
+        items={React.Children.toArray(children)}
+        renderItem={(child) => child}
+        renderOverflow={(hidden) => (
+          <InlineDisclosure
+            trigger={<Icon component={MoreHorizontalIcon} size="sm" />}
+            label={(moreLabel ?? ((count: number) => t("a11y.toolbar_more", { count })))(
+              hidden.length,
+            )}
+            triggerClassName={localStyles.more}
+          >
+            {hidden
+              .filter((child) => !isSeparator(child))
+              .map((child, index) => (
+                <li key={index}>{child}</li>
+              ))}
+          </InlineDisclosure>
+        )}
+      />
+    ) : (
+      children
+    );
 
     return (
       <Root
@@ -190,13 +250,14 @@ const ToolbarRoot = React.forwardRef<HTMLDivElement, ToolbarProps>(
           localStyles.root,
           localStyles[`size-${size}`],
           localStyles[orientation],
+          collapse && localStyles.collapse,
           className,
         )}
         onKeyDownCapture={handleKeyDown}
         onFocus={handleFocus}
         {...props}
       >
-        {children}
+        {content}
       </Root>
     );
   },

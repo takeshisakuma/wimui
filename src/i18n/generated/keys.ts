@@ -6,6 +6,7 @@ import type { CommonKey } from "./common";
 import type { ComponentsKey } from "./components";
 import type { DataDisplayKey } from "./data-display";
 import type { FormKey } from "./form";
+import type { LayoutKey } from "./layout";
 import type { NavigationKey } from "./navigation";
 
 export type WimI18nKey =
@@ -17,5 +18,7 @@ export type WimI18nKey =
   | `data-display:${DataDisplayKey}`
   | FormKey
   | `form:${FormKey}`
+  | LayoutKey
+  | `layout:${LayoutKey}`
   | NavigationKey
   | `navigation:${NavigationKey}`;

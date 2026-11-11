@@ -66,6 +66,25 @@
     margin-inline: 0;
   }
 
+  // overflow="collapse": 1 行に保ち、入らない子を「…」の面へ移す。行は OverflowList が持ち、
+  // 器の幅いっぱいに広がる（折り返す形の inline-flex では、器より広い行が畳まれずにはみ出す）
+  .collapse {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+
+  // 区切りは OverflowList の行の子になるので、根の直下の規則が当たらない
+  .collapse .separator {
+    width: var(--wim-border-width-thin);
+    margin-block: var(--wim-spacing-2xs);
+  }
+
+  // 「…」の引き金。中のボタンは size="sm" で置くのが既定なので、その高さに揃える
+  .more {
+    min-width: var(--wim-height-sm);
+    min-height: var(--wim-height-sm);
+  }
+
   @include breakpoints.container-down(sm) {
     .root.horizontal {
       max-width: 100%;

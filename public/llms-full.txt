@@ -919,6 +919,15 @@ number of pixels. Prefer the token so the gap follows the theme.
 @default "md"
     - `orientation: "horizontal" | "vertical"` = "horizontal" — Layout axis of the toolbar.
 @default "horizontal"
+    - `overflow: "wrap" | "collapse"` = "wrap" — How the controls that do not fit on one line are handled. `"wrap"` wraps them onto the next
+line; `"collapse"` keeps one line and moves the trailing children that do not fit behind a
+"…" button, which opens them in a panel next to it. Each direct child (a whole
+`Toolbar.Group`) is collapsed as one unit. Horizontal toolbars only, and not with `asChild`.
+
+A control remounts when it moves into the panel, so keep its state controlled.
+@default "wrap"
+    - `moreLabel: (count: number) => string` — Accessible name of the "…" button with `overflow="collapse"`, from the number of hidden
+children. Defaults to the built-in "Show hidden tools (n)" (en / ja / pt).
 - **Transition** — Utilities for managing smooth enter and leave animations with CSS classes
     - `show: boolean` (required) — Whether the content is shown (drives the enter/leave transitions)
     - `children: React.ReactNode` (required) — Content to transition

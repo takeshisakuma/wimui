@@ -1,5 +1,6 @@
-import { describe, it, expect, vi } from "vitest";
-import { render, screen } from "@testing-library/react";
+import type React from "react";
+import { describe, it, expect, vi, beforeAll, afterAll } from "vitest";
+import { render, screen, fireEvent } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Toolbar } from "./Toolbar";
 
@@ -207,5 +208,106 @@ describe("Toolbar", () => {
       await user.keyboard("{ArrowRight}");
       expect(screen.getByRole("button", { name: "Last" })).toHaveFocus();
     });
+  });
+});
+
+describe('Toolbar overflow="collapse"（T361）', () => {
+  // jsdom は幅を持たないので、子は data-w の幅、「…」の包み（aria-expanded のボタンを持つ）は 30px、
+  // 器は data-available から読ませる
+  const rectSpy = vi.spyOn(HTMLElement.prototype, "getBoundingClientRect");
+  const clientWidthDescriptor = Object.getOwnPropertyDescriptor(HTMLElement.prototype, "clientWidth");
+
+  beforeAll(() => {
+    rectSpy.mockImplementation(function (this: HTMLElement) {
+      const width = this.dataset.w
+        ? Number(this.dataset.w)
+        : this.querySelector(":scope > button[aria-expanded]")
+          ? 30
+          : 0;
+      return { width, height: 0, top: 0, left: 0, right: width, bottom: 0, x: 0, y: 0, toJSON: () => ({}) };
+    });
+    Object.defineProperty(HTMLElement.prototype, "clientWidth", {
+      configurable: true,
+      get(this: HTMLElement) {
+        return Number(this.closest<HTMLElement>("[data-available]")?.dataset.available ?? 0);
+      },
+    });
+  });
+
+  afterAll(() => {
+    rectSpy.mockRestore();
+    if (clientWidthDescriptor) Object.defineProperty(HTMLElement.prototype, "clientWidth", clientWidthDescriptor);
+  });
+
+  const renderToolbar = (available: number, props: Partial<React.ComponentProps<typeof Toolbar>> = {}) =>
+    render(
+      <div data-available={available}>
+        <Toolbar aria-label="Formatting" overflow="collapse" {...props}>
+          <Toolbar.Group aria-label="Text style" data-w={100}>
+            <button type="button">Bold</button>
+            <button type="button">Italic</button>
+          </Toolbar.Group>
+          <Toolbar.Separator data-w={1} />
+          <button type="button" data-w={40}>
+            Link
+          </button>
+          <button type="button" data-w={40}>
+            Image
+          </button>
+        </Toolbar>
+      </div>,
+    );
+
+  const more = () => screen.getByRole("button", { name: /Show hidden tools/ });
+
+  it("keeps the leading children that fit and moves the rest behind a named … button", () => {
+    // 100 + 1 + 30 = 131 <= 150 < 171（Link まで並べると「…」が入らない）
+    renderToolbar(150);
+    expect(screen.getByRole("toolbar")).toContainElement(screen.getByRole("group", { name: "Text style" }));
+    expect(screen.queryByRole("button", { name: "Link" })).toBeNull();
+    expect(more()).toHaveAccessibleName("Show hidden tools (2)");
+    expect(more()).toHaveAttribute("aria-expanded", "false");
+  });
+
+  it("opens the hidden controls themselves in the panel, without separators", () => {
+    renderToolbar(100);
+    fireEvent.click(more());
+    const panel = document.getElementById(more().getAttribute("aria-controls")!)!;
+    expect(panel).toContainElement(screen.getByRole("group", { name: "Text style" }));
+    expect(panel).toContainElement(screen.getByRole("button", { name: "Link" }));
+    expect(panel).toContainElement(screen.getByRole("button", { name: "Image" }));
+    expect(panel.querySelector('[role="separator"]')).toBeNull();
+  });
+
+  it("reaches the … button and then the opened controls with the arrow keys", async () => {
+    const user = userEvent.setup();
+    renderToolbar(150);
+    await user.tab();
+    expect(screen.getByRole("button", { name: "Bold" })).toHaveFocus();
+    await user.keyboard("{End}");
+    expect(more()).toHaveFocus();
+    await user.keyboard("{Enter}");
+    await user.keyboard("{ArrowRight}");
+    expect(screen.getByRole("button", { name: "Link" })).toHaveFocus();
+    await user.keyboard("{Escape}");
+    expect(more()).toHaveFocus();
+    expect(screen.queryByRole("button", { name: "Link" })).toBeNull();
+  });
+
+  it("shows every child and no … button when they all fit", () => {
+    renderToolbar(1000);
+    expect(screen.getByRole("button", { name: "Image" })).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: /Show hidden tools/ })).toBeNull();
+  });
+
+  it("uses moreLabel for the … button's name", () => {
+    renderToolbar(150, { moreLabel: (count) => `${count} more` });
+    expect(screen.getByRole("button", { name: "2 more" })).toBeInTheDocument();
+  });
+
+  it("does not collapse a vertical toolbar", () => {
+    renderToolbar(100, { orientation: "vertical" });
+    expect(screen.getByRole("button", { name: "Image" })).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: /Show hidden tools/ })).toBeNull();
   });
 });
