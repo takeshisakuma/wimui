@@ -261,6 +261,14 @@ const checks = [
     command: "node scripts/check_consistency.js --docs",
   },
   {
+    category: "docs",
+    // Registry の「幅の基準」列は、SCSS のクエリと ResizeObserver から生成した
+    // src/data/component-responsive.json を読む。部品の SCSS を直して作り直さないと、
+    // 列が実装と食い違う。ResizeObserver を持つ部品の分類漏れもここで落ちる。
+    name: "Registry width basis matches the implementation",
+    command: "node scripts/generate-responsive.js --check",
+  },
+  {
     category: "lib",
     // **2026-08-16 まで、このガードはどこからも呼ばれず、`process.exit` も
     // 持っていなかった**（何を見つけても exit 0）。`MAINTENANCE.md`「4. ガードの

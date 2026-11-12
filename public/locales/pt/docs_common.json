@@ -286,6 +286,15 @@
     "with_children": "Children",
     "with_icons": "Icons",
     "with_label": "Label",
-    "with_submenu": "Submenu"
+    "with_submenu": "Submenu",
+    "registry_width_header": "Adapta-se a",
+    "registry_width_legend": "Em que o layout se baseia para mudar quando a largura muda (lido da implementação).",
+    "registry_width_media": "Tela",
+    "registry_width_media_desc": "Muda conforme a largura da tela (media queries). Mesmo em um painel estreito ao lado de uma barra lateral, segue a largura da tela inteira.",
+    "registry_width_container": "Contêiner",
+    "registry_width_container_desc": "Muda conforme a largura da área onde é colocado (container queries).",
+    "registry_width_js": "Própria largura (JS)",
+    "registry_width_js_desc": "Mede a própria largura com JavaScript e muda o layout (colunas, modo de exibição, itens movidos para um menu de excedentes).",
+    "registry_width_none": "O layout não muda com a largura."
   }
 }

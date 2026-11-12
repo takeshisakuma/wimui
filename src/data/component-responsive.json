@@ -1,0 +1,316 @@
+{
+  "AIResponseFeedback": [],
+  "Accordion": [],
+  "Affix": [],
+  "AgentStatus": [],
+  "Alert": [],
+  "Anchor": [],
+  "AppShell": [
+    "media"
+  ],
+  "AreaChart": [],
+  "ArtifactsOverlay": [],
+  "AspectRatio": [],
+  "Audio": [],
+  "Autosave": [],
+  "Avatar": [],
+  "AvatarGroup": [
+    "js"
+  ],
+  "BackTop": [],
+  "Badge": [],
+  "Banner": [
+    "container"
+  ],
+  "BarChart": [],
+  "Barcode": [],
+  "BaseListItem": [],
+  "BentoGrid": [
+    "container"
+  ],
+  "Blockquote": [],
+  "BottomSheet": [
+    "media"
+  ],
+  "Box": [
+    "media"
+  ],
+  "BoxPlot": [],
+  "Breadcrumb": [
+    "js"
+  ],
+  "Button": [],
+  "ButtonGroup": [
+    "media"
+  ],
+  "Calendar": [],
+  "CalendarHeatmap": [],
+  "CandlestickChart": [],
+  "Card": [],
+  "Carousel": [],
+  "Cascader": [
+    "media"
+  ],
+  "Center": [],
+  "ChatUI": [
+    "container"
+  ],
+  "Checkbox": [],
+  "CheckboxGroup": [],
+  "Chip": [],
+  "Code": [],
+  "CodeBlock": [
+    "container"
+  ],
+  "CodeDiffViewer": [
+    "js"
+  ],
+  "ColorInput": [],
+  "ColorPicker": [],
+  "Combobox": [],
+  "CommandPalette": [
+    "media"
+  ],
+  "Comment": [],
+  "Container": [],
+  "ContextMenu": [],
+  "CopyButton": [],
+  "Countdown": [],
+  "CounterTextarea": [],
+  "CreditCardInput": [],
+  "Dashboard": [
+    "container"
+  ],
+  "DataGrid": [
+    "container"
+  ],
+  "DatePicker": [],
+  "DateRangePicker": [
+    "container"
+  ],
+  "DescriptionList": [
+    "container"
+  ],
+  "Dialog": [],
+  "Divider": [],
+  "Drawer": [],
+  "Dropdown": [],
+  "Dropzone": [],
+  "EmptyState": [],
+  "ErrorBoundary": [],
+  "FAQSection": [
+    "media"
+  ],
+  "FieldCharacterCount": [],
+  "FieldError": [],
+  "FieldTemplate": [],
+  "Fieldset": [],
+  "FileUpload": [],
+  "Flex": [],
+  "FloatButton": [],
+  "FocusTrap": [],
+  "Footer": [
+    "media"
+  ],
+  "FunnelChart": [],
+  "Gallery": [
+    "container",
+    "js"
+  ],
+  "GanttChart": [
+    "container"
+  ],
+  "GaugeChart": [],
+  "Grid": [
+    "container"
+  ],
+  "Group": [],
+  "HamburgerMenu": [
+    "media"
+  ],
+  "Header": [],
+  "Heatmap": [],
+  "Highlight": [],
+  "HoverCard": [],
+  "Icon": [],
+  "IconButton": [],
+  "Image": [],
+  "ImageCompare": [],
+  "ImageCropper": [],
+  "Indicator": [],
+  "IndicatorBase": [],
+  "InfiniteScroll": [],
+  "InlineEdit": [],
+  "Input": [],
+  "InputBase": [],
+  "InputGroup": [],
+  "InputMask": [],
+  "InteractiveArea": [],
+  "InteractiveGraph": [
+    "media"
+  ],
+  "JsonDiffViewer": [],
+  "JsonViewer": [],
+  "Kanban": [],
+  "Kbd": [],
+  "KeyboardShortcuts": [],
+  "Label": [],
+  "Leaderboard": [],
+  "Legend": [],
+  "Lightbox": [
+    "media"
+  ],
+  "LineChart": [],
+  "Link": [],
+  "LinkButton": [],
+  "List": [],
+  "Loader": [],
+  "LoadingOverlay": [],
+  "Markdown": [],
+  "MarkdownRenderer": [],
+  "Marquee": [],
+  "Masonry": [],
+  "Mentions": [],
+  "Menu": [],
+  "Menubar": [],
+  "ModelSelector": [],
+  "MultiSelect": [],
+  "Navbar": [
+    "media"
+  ],
+  "NodeGraph": [],
+  "Notification": [],
+  "NumberInput": [],
+  "OtpInput": [
+    "container"
+  ],
+  "OverflowList": [
+    "js"
+  ],
+  "OverlayBase": [],
+  "Pagination": [
+    "container"
+  ],
+  "PasswordInput": [],
+  "PasswordStrength": [],
+  "PhoneInput": [],
+  "PieChart": [],
+  "PivotTable": [
+    "js"
+  ],
+  "Popconfirm": [],
+  "Popover": [],
+  "Portal": [],
+  "Presence": [],
+  "Progress": [],
+  "ProgressRing": [],
+  "PromptInput": [
+    "container"
+  ],
+  "PullToRefresh": [],
+  "QRCode": [],
+  "QueryBuilder": [
+    "container"
+  ],
+  "RadarChart": [],
+  "Radio": [],
+  "RadioGroup": [],
+  "RangeCalendar": [],
+  "RangeSlider": [],
+  "Rating": [],
+  "Reaction": [],
+  "RelativeTime": [],
+  "Result": [],
+  "RichTextEditor": [],
+  "SankeyChart": [],
+  "ScatterChart": [],
+  "ScheduleView": [],
+  "ScrollArea": [],
+  "ScrollProgress": [],
+  "SearchInput": [],
+  "SegmentedControl": [],
+  "Select": [],
+  "Sidebar": [
+    "media"
+  ],
+  "SignaturePad": [],
+  "SimpleGrid": [
+    "container"
+  ],
+  "Skeleton": [],
+  "Slider": [],
+  "SmartSearchInput": [],
+  "Snackbar": [],
+  "SortableList": [],
+  "SourceCitation": [],
+  "Span": [],
+  "Sparkline": [],
+  "SpeedDial": [],
+  "Spinner": [],
+  "SplitButton": [],
+  "Splitter": [],
+  "Spoiler": [],
+  "Stack": [
+    "media"
+  ],
+  "Stats": [],
+  "StatusContent": [],
+  "Stepper": [
+    "container"
+  ],
+  "StreamingText": [],
+  "SwipeAction": [],
+  "SwipeableList": [],
+  "Switch": [],
+  "SwitchGroup": [],
+  "TabBar": [],
+  "TabNavigation": [],
+  "Table": [
+    "container"
+  ],
+  "Tabs": [
+    "container"
+  ],
+  "Tag": [],
+  "TagInput": [],
+  "Terminal": [],
+  "Text": [],
+  "Textarea": [],
+  "ThemeToggle": [],
+  "ThoughtProcess": [
+    "container"
+  ],
+  "ThreadList": [],
+  "TimePicker": [],
+  "Timeline": [],
+  "Title": [],
+  "Toast": [],
+  "ToggleGroup": [],
+  "Toolbar": [
+    "container",
+    "js"
+  ],
+  "Tooltip": [],
+  "Tour": [],
+  "Transfer": [
+    "container"
+  ],
+  "Transition": [],
+  "TreeDiagram": [],
+  "TreeSelect": [
+    "container"
+  ],
+  "TreeView": [
+    "container"
+  ],
+  "Treemap": [],
+  "UsageMeter": [],
+  "Video": [
+    "media"
+  ],
+  "VirtualList": [],
+  "VisuallyHidden": [],
+  "VoiceVisualizer": [],
+  "WaterfallChart": [],
+  "Watermark": []
+}
