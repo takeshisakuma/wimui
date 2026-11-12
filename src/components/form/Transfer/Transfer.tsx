@@ -7,6 +7,8 @@ import { Button } from "../../form/Button/Button";
 import { BaseListItem } from "../../_internal/BaseListItem";
 import { FieldTemplate } from "../FieldTemplate";
 import { useAnnounce } from "../../_internal/useAnnounce";
+import { getRovingIndex, isRovingKey } from "../../_internal/rovingIndex";
+import { findTypeaheadIndex, isTypeaheadKey, useTypeahead } from "../../_internal/typeahead";
 import { VirtualList } from "../../data-display/VirtualList/VirtualList";
 import styles from "./transfer.module.scss";
 
@@ -370,20 +372,10 @@ export const Transfer = ({
     announce(msg, { delay: 50 });
   };
 
-  const getAdjacentKey = (
-    data: TransferItem[],
-    currentKey: string | null,
-    dir: 1 | -1,
-  ): string | null => {
-    const enabled = data.filter((item) => !item.disabled);
-    if (enabled.length === 0) return null;
-    if (currentKey === null) {
-      return dir === 1 ? enabled[0].key : enabled[enabled.length - 1].key;
-    }
-    const idx = enabled.findIndex((item) => item.key === currentKey);
-    if (idx === -1) return enabled[0].key;
-    return enabled[(idx + dir + enabled.length) % enabled.length].key;
-  };
+  // 矢印キー・Home / End の行き先は共通の計算で決める（T370）。無効の項目には止まらず、端で折り返す
+  const typeahead = useTypeahead();
+  // 項目の名前が文字でない（要素を渡された）ときは、key で照合する
+  const itemText = (item: TransferItem) => (typeof item.title === "string" ? item.title : item.key);
 
   const handleListKeyDown = (
     e: React.KeyboardEvent,
@@ -394,21 +386,33 @@ export const Transfer = ({
     const focusedKey = listType === "source" ? focusedSourceKey : focusedTargetKey;
     const setFocusedKey =
       listType === "source" ? setFocusedSourceKey : setFocusedTargetKey;
+    const current = data.findIndex((item) => item.key === focusedKey);
+    const isItemDisabled = (index: number) => !!data[index]?.disabled;
 
-    if (e.key === "ArrowDown") {
+    // 文字を打つと、名前の先頭が一致する項目へ移る
+    if (isTypeaheadKey(e, typeahead.typing())) {
       e.preventDefault();
-      setFocusedKey(getAdjacentKey(data, focusedKey, 1));
-    } else if (e.key === "ArrowUp") {
+      const index = findTypeaheadIndex({
+        query: typeahead.push(e.key),
+        current,
+        count: data.length,
+        getText: (i) => itemText(data[i]),
+        isDisabled: isItemDisabled,
+      });
+      if (index >= 0) setFocusedKey(data[index].key);
+      return;
+    }
+
+    if (isRovingKey(e.key, "vertical")) {
       e.preventDefault();
-      setFocusedKey(getAdjacentKey(data, focusedKey, -1));
-    } else if (e.key === "Home") {
-      e.preventDefault();
-      const first = data.find((item) => !item.disabled);
-      if (first) setFocusedKey(first.key);
-    } else if (e.key === "End") {
-      e.preventDefault();
-      const last = [...data].reverse().find((item) => !item.disabled);
-      if (last) setFocusedKey(last.key);
+      const next = getRovingIndex({
+        key: e.key,
+        current,
+        count: data.length,
+        orientation: "vertical",
+        isDisabled: isItemDisabled,
+      });
+      if (next !== null) setFocusedKey(data[next].key);
     } else if (e.key === " ") {
       e.preventDefault();
       const focusedItem = data.find((item) => item.key === focusedKey);
