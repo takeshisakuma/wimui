@@ -119,16 +119,26 @@ export const ComponentDashboard = ({ data }: { data: Category[] }) => {
 
       <h2><T k="doc.registry_width_header" /></h2>
       <p><T k="doc.registry_width_legend" /></p>
-      <dl className="wim-component-dashboard__width-legend">
-        {WIDTH_KINDS.map((kind) => (
-          <React.Fragment key={kind}>
-            <dt><T k={`doc.registry_width_${kind}`} /></dt>
-            <dd><T k={`doc.registry_width_${kind}_desc`} /></dd>
-          </React.Fragment>
-        ))}
-        <dt>—</dt>
-        <dd><T k="doc.registry_width_none" /></dd>
-      </dl>
+      <table>
+        <thead>
+          <tr>
+            <th><T k="doc.registry_width_header" /></th>
+            <th><T k="table.header_description" /></th>
+          </tr>
+        </thead>
+        <tbody>
+          {WIDTH_KINDS.map((kind) => (
+            <tr key={kind}>
+              <th scope="row"><T k={`doc.registry_width_${kind}`} /></th>
+              <td><T k={`doc.registry_width_${kind}_desc`} /></td>
+            </tr>
+          ))}
+          <tr>
+            <th scope="row">—</th>
+            <td><T k="doc.registry_width_none" /></td>
+          </tr>
+        </tbody>
+      </table>
 
       {data.map((cat) => (
         <React.Fragment key={cat.id}>
