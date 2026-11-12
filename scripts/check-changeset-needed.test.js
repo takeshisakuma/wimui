@@ -1,5 +1,7 @@
+import fs from "node:fs";
+import path from "node:path";
 import { describe, it, expect } from "vitest";
-import { needsChangeset, readNameStatus } from "./check-changeset-needed.mjs";
+import { needsChangeset, readNameStatus, UNSHIPPED_DATA, SHIPPED_DATA } from "./check-changeset-needed.mjs";
 
 /**
  * changeset の付け忘れの警告（changeset-reminder）。
@@ -21,6 +23,8 @@ const PR = {
   678: [".changeset/marquee-keyboard-pause.md", "src/components/data-display/Marquee/Marquee.tsx", "src/components/data-display/Marquee/marquee.module.scss"],
   // #682: docs だけ
   682: ["IMPROVEMENTS.md", "docs/history/improvements-archive.md"],
+  // #1110: Registry の列。src/ に触れたのは、出荷されない生成データだけ（空の changeset を足して通した）
+  1110: ["MAINTENANCE.md", "package.json", "public/locales/en/docs_common.json", "scripts/audit-all.js", "scripts/generate-responsive.js", "src/data/component-responsive.json", "stories/ComponentDashboard.tsx"],
 };
 
 describe("check-changeset-needed", () => {
@@ -39,6 +43,15 @@ describe("check-changeset-needed", () => {
   it("コメントだけの #641 は鳴るが、空の changeset を足せば通る", () => {
     expect(needsChangeset(PR[641], []).needed).toBe(true);
     expect(needsChangeset([...PR[641], ".changeset/quiet-comments.md"], [".changeset/quiet-comments.md"]).needed).toBe(false);
+  });
+
+  it("出荷されない src/data だけの #1110 は鳴らない", () => {
+    expect(needsChangeset(PR[1110], []).needed).toBe(false);
+  });
+
+  it("llms.txt を通って出荷される src/data は鳴る", () => {
+    expect(needsChangeset(["src/data/components.json"], []).needed).toBe(true);
+    expect(needsChangeset(["src/data/not-planned.json"], []).needed).toBe(true);
   });
 
   it("テストだけの変更は鳴らない", () => {
@@ -87,6 +100,53 @@ describe("check-changeset-needed", () => {
     it("改名は、新しい側の名前で出荷物かどうかを見る", () => {
       expect(check(["R100\tdocs/old.ts\tsrc/new.ts"])).toBe(true);
       expect(check(["R090\t.changeset/a.md\t.changeset/b.md", "M\tsrc/index.ts"])).toBe(false);
+    });
+  });
+
+  // UNSHIPPED_DATA は手で持つ一覧なので、実物とずれたら落とす。
+  describe("src/data の分類", () => {
+    const root = path.resolve(import.meta.dirname, "..");
+    const dataDir = path.join(root, "src", "data");
+    // docgen_*.json と .docgen-cache.json は gitignore された生成物で、PR の差分に出てこない
+    const tracked = fs
+      .readdirSync(dataDir)
+      .filter((name) => name.endsWith(".json") && !name.startsWith("docgen_") && !name.startsWith("."))
+      .map((name) => `src/data/${name}`);
+
+    it("src/data のファイルは、出荷される / されないのどちらかに載っている", () => {
+      const listed = (file) => Object.hasOwn(UNSHIPPED_DATA, file) || Object.hasOwn(SHIPPED_DATA, file);
+      expect(tracked.filter((file) => !listed(file))).toEqual([]);
+    });
+
+    it("一覧に、もう無いファイルが残っていない", () => {
+      const listed = [...Object.keys(UNSHIPPED_DATA), ...Object.keys(SHIPPED_DATA)];
+      expect(listed.filter((file) => !tracked.includes(file))).toEqual([]);
+    });
+
+    it("出荷されないファイルを、ライブラリのコードと llms.txt の生成が読んでいない", () => {
+      const sources = [path.join(root, "scripts", "generate-llms.js")];
+      const walk = (dir) => {
+        for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+          const full = path.join(dir, entry.name);
+          if (entry.isDirectory()) {
+            if (full !== dataDir) walk(full);
+          } else if (/\.[cm]?[jt]sx?$/.test(entry.name) && !/\.(test|stories)\./.test(entry.name)) {
+            sources.push(full);
+          }
+        }
+      };
+      walk(path.join(root, "src"));
+      const readers = [];
+      for (const file of sources) {
+        const text = fs.readFileSync(file, "utf8");
+        for (const data of Object.keys(UNSHIPPED_DATA)) {
+          // import 文・readJSON の引数のどちらでも、パスの末尾は「data/<名前>」になる
+          if (text.includes(`data/${path.basename(data)}`) || text.includes(`data/${path.basename(data, ".json")}"`)) {
+            readers.push(`${path.relative(root, file)} -> ${data}`);
+          }
+        }
+      }
+      expect(readers).toEqual([]);
     });
   });
 });
