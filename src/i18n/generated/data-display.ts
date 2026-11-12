@@ -7,6 +7,10 @@ export type DataDisplayKey =
   | "calendar.aria_date"
   | "calendar.title"
   | "countdown.remaining"
+  | "selection_bar.clear"
+  | "selection_bar.cleared"
+  | "selection_bar.label"
+  | "selection_bar.selected"
   | "table.header_component"
   | "table.header_overview";
 
@@ -19,6 +23,12 @@ export const dataDisplayNs: WimNamespace<"data-display", DataDisplayKey> = {
       },
       "avatar_group": {
         "show_everyone": "Show everyone"
+      },
+      "selection_bar": {
+        "label": "Bulk actions",
+        "selected": "{{count}} selected",
+        "cleared": "Selection cleared",
+        "clear": "Clear selection"
       }
     },
     "ja": {
@@ -27,6 +37,12 @@ export const dataDisplayNs: WimNamespace<"data-display", DataDisplayKey> = {
       },
       "avatar_group": {
         "show_everyone": "全員を表示"
+      },
+      "selection_bar": {
+        "label": "一括操作",
+        "selected": "{{count}} 件を選択中",
+        "cleared": "選択を解除しました",
+        "clear": "選択を解除"
       }
     },
     "pt": {
@@ -35,6 +51,12 @@ export const dataDisplayNs: WimNamespace<"data-display", DataDisplayKey> = {
       },
       "avatar_group": {
         "show_everyone": "Mostrar todos"
+      },
+      "selection_bar": {
+        "label": "Ações em lote",
+        "selected": "Selecionados: {{count}}",
+        "cleared": "Seleção removida",
+        "clear": "Limpar seleção"
       }
     }
   },

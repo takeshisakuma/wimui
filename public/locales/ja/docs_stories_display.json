@@ -487,6 +487,20 @@
     "card_link_order_1_meta": "3 点・11月4日（火）にお届け済み",
     "card_link_buy_again": "もう一度買う",
     "card_link_order_2": "注文 4307",
-    "card_link_order_2_meta": "1 点・11月13日（木）お届け予定"
+    "card_link_order_2_meta": "1 点・11月13日（木）お届け予定",
+    "selectionbar_action_labels": "送り状を印刷",
+    "selectionbar_action_shipped": "発送済みにする",
+    "selectionbar_action_cancel": "注文を取り消す",
+    "selectionbar_cancel_confirm": "{{count}} 件の注文を取り消しますか？代金は自動で返金されます。",
+    "selectionbar_cancel_keep": "取り消さない",
+    "selectionbar_col_order": "注文番号",
+    "selectionbar_col_customer": "お客様",
+    "selectionbar_col_items": "点数",
+    "selectionbar_col_total": "合計",
+    "selectionbar_col_status": "状態",
+    "selectionbar_status_paid": "支払い済み",
+    "selectionbar_status_packed": "梱包済み",
+    "selectionbar_status_on_hold": "保留",
+    "selectionbar_grid_label": "発送待ちの注文"
   }
 }

@@ -654,5 +654,8 @@
   "sample_sitemap_docs": "Documentation",
   "layout_overflow_check": "Overflow: wrap or fold",
   "label_group_wrap": "Group (wraps)",
-  "label_overflow_list": "OverflowList (folds)"
+  "label_overflow_list": "OverflowList (folds)",
+  "label_selectionbar": "Selection bar (bulk actions)",
+  "sample_selectionbar_labels": "Print shipping labels",
+  "sample_selectionbar_cancel": "Cancel orders"
 }

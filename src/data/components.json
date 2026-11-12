@@ -509,6 +509,17 @@
         "mobile": true
       },
       {
+        "name": "SelectionBar",
+        "descKey": "doc.selectionBar_desc",
+        "pc": true,
+        "mobile": true,
+        "aliases": [
+          "Bulk Actions",
+          "Batch Actions",
+          "Table Selection Toolbar"
+        ]
+      },
+      {
         "name": "PivotTable",
         "descKey": "doc.pivotTable_desc",
         "pc": true,

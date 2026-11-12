@@ -187,6 +187,7 @@ export type ComponentsKey =
   | "doc.score"
   | "doc.segmentedcontrol_choice_alt_when"
   | "doc.segmentedcontrol_choice_self_when"
+  | "doc.selectionBar_desc"
   | "doc.selection_guide_link"
   | "doc.smartSearchInput_desc"
   | "doc.sourceCitation_desc"

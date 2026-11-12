@@ -654,5 +654,8 @@
   "sample_sitemap_docs": "ドキュメント",
   "layout_overflow_check": "はみ出し: 折り返すか畳むか",
   "label_group_wrap": "Group（折り返す）",
-  "label_overflow_list": "OverflowList（畳む）"
+  "label_overflow_list": "OverflowList（畳む）",
+  "label_selectionbar": "選択中のバー（一括操作）",
+  "sample_selectionbar_labels": "送り状を印刷",
+  "sample_selectionbar_cancel": "注文を取り消す"
 }

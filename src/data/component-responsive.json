@@ -230,6 +230,7 @@
   "SearchInput": [],
   "SegmentedControl": [],
   "Select": [],
+  "SelectionBar": [],
   "Sidebar": [
     "media"
   ],

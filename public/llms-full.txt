@@ -4,7 +4,7 @@
 
 ## What this is
 
-**wimui** v0.68.0 — a React 19 component library: 229 documented components across 10 categories, with design tokens, dark mode, i18n (en/ja/pt-BR) and WAI-ARIA compliant a11y. Peer deps: react ^19, react-dom ^19 (plus optional peers for specific components — see package.json).
+**wimui** v0.68.0 — a React 19 component library: 230 documented components across 10 categories, with design tokens, dark mode, i18n (en/ja/pt-BR) and WAI-ARIA compliant a11y. Peer deps: react ^19, react-dom ^19 (plus optional peers for specific components — see package.json).
 
 ## Install & required setup
 
@@ -2750,6 +2750,18 @@ renders inline, next to whatever follows it.
     - `unselectAuto: boolean` = true — Whether clicking elsewhere on the page will clear the current selection
     - `className: string` — Additional CSS class
     - `aria-label: string` — Accessible label for the schedule region
+- **SelectionBar** — Bar above a table that shows the number of selected rows, the actions for them and a way to clear the selection. Announces the count to screen readers. (aka Bulk Actions, Batch Actions, Table Selection Toolbar)
+    - `count: number` (required) — Number of selected items. The bar shows while it is above 0. Keep the component mounted
+while the count is 0 as well: it holds the status region that announces the count, and a
+region that appears together with its text is not read by screen readers.
+    - `onClear: () => void` — Called by the built-in "Clear selection" button. Leave it out to render no clear button.
+    - `children: React.ReactNode` — Actions for the selected items (`Button size="sm"`, `IconButton`, `Popconfirm` ...). They
+are placed in a `Toolbar`, so the arrow keys move between them.
+    - `countLabel: (count: number) => React.ReactNode` — Text that states the count. Defaults to the built-in "{count} selected" (en / ja / pt).
+    - `clearLabel: string` — Label of the clear button. Defaults to the built-in "Clear selection".
+    - `returnFocusRef: React.RefObject<HTMLElement | null>` — Where focus goes when the bar closes after focus was in it — after the clear button, or
+after a confirmation opened from the bar (`Popconfirm`) whose trigger is gone. Without it,
+focus moves to the first focusable element after the bar (with `DataGrid`, the grid).
 - **SortableList** — Item rearrangement and reordering
     - `asChild: boolean` = false — If true, the component will be rendered as its child.
     - `onSortEnd: (oldIndex: number, newIndex: number) => void` — Callback called when reordering is completed.

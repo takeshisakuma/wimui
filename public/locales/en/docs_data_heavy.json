@@ -361,6 +361,23 @@
     "pivottable_virtual": "Many rows",
     "pivottable_virtual_desc": "With virtualized the table renders only the rows in view and a few around them, and keeps the scroll height with empty spacer rows. This table has 992 rows and 11 columns; about 20 rows are in the page at a time. Use it together with maxHeight. Rows must all have the same height, so keep labels and values on one line.",
     "pivottable_a11y_virtual": "With virtualized, the table reports the full number of rows (aria-rowcount) and the position of each rendered row (aria-rowindex). A group row that has scrolled away is no longer in the page, so the rows under it carry the group names inside their own heading, hidden from sight, and a screen reader still announces the full row path. The row that has keyboard focus stays rendered while it is out of view, so focus is not lost by scrolling.",
-    "pivottable_best_virtual": "Turn on virtualized for hundreds of rows, not for a few dozen. Column widths follow the rows that are rendered: a column widens the first time a longer value scrolls into view and then stays that wide."
+    "pivottable_best_virtual": "Turn on virtualized for hundreds of rows, not for a few dozen. Column widths follow the rows that are rendered: a column widens the first time a longer value scrolls into view and then stays that wide.",
+    "selectionBar_title": "Shows how many rows are selected, the actions for them and a way to clear the selection, above the table they act on.",
+    "selectionBar_long_desc": "The selection itself stays with the caller (`DataGrid` `selectedRowKeys`, your own checkboxes in a `Table` or `List`). `SelectionBar` receives only the `count`, shows itself while it is above 0, and lays the actions out in a `Toolbar`.",
+    "selectionBar_design_intent": "The bar is chrome: it sits above the data and stays quieter than it. The actions use `variant=\"outline\"` or `\"ghost\"` so the page keeps its one primary action, and the clear button always sits at the end so its position does not move when the set of actions changes. Keep the bar mounted even while nothing is selected — the status region that announces the count has to exist before its text changes.",
+    "selectionBar_choice_matrix_desc": "Pick by whether the actions act on the selected rows.",
+    "selectionBar_choice_self_when": "Actions that act on the selected rows (print labels, archive, delete), shown only while something is selected.",
+    "selectionBar_choice_footer_when": "Only stating the count next to the pagination, with no actions — the `DataGrid` footer already does this.",
+    "selectionBar_choice_toolbar_when": "Search, filters and actions that are always available, whatever is selected. Swap it with `SelectionBar` while rows are selected if both should not show at once.",
+    "selectionBar_a11y_desc": "The bar is a `role=\"toolbar\"` named \"Bulk actions\" (change it with `aria-label`). A status region that is always present announces \"3 selected\" when the count changes and \"Selection cleared\" when it returns to 0; nothing is announced on the first render. When the bar closes after focus was in it — after the clear button, or after confirming in a `Popconfirm` opened from the bar, whose trigger is gone by then — focus moves to `returnFocusRef`, or to the first focusable element after the bar (with `DataGrid`, the grid), instead of falling to the top of the page.",
+    "selectionBar_scenario_1_title": "Shipping several orders at once",
+    "selectionBar_scenario_1": "Select the orders that were packed today, print their labels and mark them as shipped in one go.",
+    "selectionBar_scenario_2_title": "Destructive action with confirmation",
+    "selectionBar_scenario_2": "Wrap the destructive action in `Popconfirm` and clear the selection in `onConfirm`. The bar closes, the clear is announced, and focus moves on to the table instead of the top of the page.",
+    "selectionBar_best_practice_1": "Render it all the time and pass the count — do not mount it only when rows are selected, or the count is never announced.",
+    "selectionBar_best_practice_2": "Keep at most one destructive action, as `intent=\"danger\"` with `variant=\"ghost\"` or `\"outline\"`, and confirm it.",
+    "selectionBar_best_practice_3": "Pass `returnFocusRef` when there is a better place to land after clearing than the element right after the bar, such as the select-all checkbox of your own table.",
+    "selectionBar_keyboard_desc": "Tab reaches the bar once; the arrow keys (Home / End for the ends) move between the actions and the clear button (the `Toolbar` roving tabindex). Enter or Space activates the focused button.",
+    "selectionBar_i18n_desc": "\"Bulk actions\", \"{count} selected\", \"Selection cleared\" and \"Clear selection\" are built in for en / ja / pt. Replace them with `aria-label`, `countLabel` and `clearLabel`."
   }
 }

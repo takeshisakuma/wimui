@@ -12,5 +12,11 @@
   },
   "avatar_group": {
     "show_everyone": "Show everyone"
+  },
+  "selection_bar": {
+    "label": "Bulk actions",
+    "selected": "{{count}} selected",
+    "cleared": "Selection cleared",
+    "clear": "Clear selection"
   }
 }

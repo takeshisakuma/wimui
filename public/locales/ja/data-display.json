@@ -12,5 +12,11 @@
   },
   "avatar_group": {
     "show_everyone": "全員を表示"
+  },
+  "selection_bar": {
+    "label": "一括操作",
+    "selected": "{{count}} 件を選択中",
+    "cleared": "選択を解除しました",
+    "clear": "選択を解除"
   }
 }

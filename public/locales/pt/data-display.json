@@ -12,5 +12,11 @@
   },
   "avatar_group": {
     "show_everyone": "Mostrar todos"
+  },
+  "selection_bar": {
+    "label": "Ações em lote",
+    "selected": "Selecionados: {{count}}",
+    "cleared": "Seleção removida",
+    "clear": "Limpar seleção"
   }
 }
