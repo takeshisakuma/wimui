@@ -645,7 +645,7 @@
   },
   "reaction": {
     "aria_label": "Reactions",
-    "react_with": "{{emoji}}, {{count}} reactions",
+    "react_with": "{{emoji}}, reactions: {{count}}",
     "add_reaction": "Add reaction"
   },
   "autosave": {

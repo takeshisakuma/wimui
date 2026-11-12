@@ -777,7 +777,7 @@ export const commonNs: WimNamespace<"common", CommonKey> = {
       },
       "reaction": {
         "aria_label": "Reactions",
-        "react_with": "{{emoji}}, {{count}} reactions",
+        "react_with": "{{emoji}}, reactions: {{count}}",
         "add_reaction": "Add reaction"
       },
       "autosave": {
@@ -1185,7 +1185,7 @@ export const commonNs: WimNamespace<"common", CommonKey> = {
       "reaction": {
         "add_reaction": "Adicionar reação",
         "aria_label": "Reações",
-        "react_with": "{{emoji}}, {{count}} reações"
+        "react_with": "{{emoji}}, reações: {{count}}"
       },
       "sat": "Sáb",
       "standard": "Padrão",
@@ -1196,7 +1196,7 @@ export const commonNs: WimNamespace<"common", CommonKey> = {
       "dataGrid": {
         "displaying": "Exibindo {{shown}} de {{total}}",
         "loading_more": "Carregando mais…",
-        "rows_selected": "({{selected}} selecionados)",
+        "rows_selected": "(selecionados: {{selected}})",
         "sort_cleared": "Ordenação por {{column}} removida",
         "sorted_ascending": "Ordenado por {{column}}, crescente",
         "sorted_descending": "Ordenado por {{column}}, decrescente"

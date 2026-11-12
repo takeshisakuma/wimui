@@ -242,8 +242,7 @@
     "deselect_item": "Desmarcar {{title}}",
     "grid_label": "Galeria de imagens",
     "select_item": "Selecionar {{title}}",
-    "selected_count": "{{count}} item selecionado",
-    "selected_count_plural": "{{count}} itens selecionados",
+    "selected_count": "Selecionados: {{count}}",
     "toolbar_label": "Barra de ações em massa"
   },
   "ganttchart": {
@@ -422,7 +421,7 @@
   },
   "rating": {
     "readonly_label": "{{count}} de {{max}} estrelas",
-    "stars": "{{count}} estrelas"
+    "stars": "Estrelas: {{count}}"
   },
   "rule": {
     "overload_dont_desc": "Sufocando com regras como \"8+ caracteres, incluindo símbolos\"",

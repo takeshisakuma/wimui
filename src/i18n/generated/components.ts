@@ -219,7 +219,6 @@ export type ComponentsKey =
   | "gallery.grid_label"
   | "gallery.select_item"
   | "gallery.selected_count"
-  | "gallery.selected_count_plural"
   | "gallery.toolbar_label"
   | "ganttchart.aria_chart"
   | "ganttchart.aria_task_bar"
@@ -670,7 +669,7 @@ export const componentsNs: WimNamespace<"components", ComponentsKey> = {
       },
       "gallery": {
         "toolbar_label": "Bulk actions toolbar",
-        "selected_count": "{{count}} item selected",
+        "selected_count": "{{count}} selected",
         "clear_selection": "Clear selection",
         "select_item": "Select {{title}}",
         "deselect_item": "Deselect {{title}}",
@@ -915,7 +914,7 @@ export const componentsNs: WimNamespace<"components", ComponentsKey> = {
         "deselect_item": "Desmarcar {{title}}",
         "grid_label": "Galeria de imagens",
         "select_item": "Selecionar {{title}}",
-        "selected_count": "{{count}} item selecionado",
+        "selected_count": "Selecionados: {{count}}",
         "toolbar_label": "Barra de ações em massa"
       },
       "lightbox": {

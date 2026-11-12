@@ -334,7 +334,7 @@
     "for_implementation": "Planned for implementation"
   },
   "rating": {
-    "stars": "{{count}} stars",
+    "stars": "Stars: {{count}}",
     "readonly_label": "{{count}} out of {{max}} stars"
   },
   "rule": {
@@ -650,8 +650,7 @@
   },
   "gallery": {
     "toolbar_label": "Bulk actions toolbar",
-    "selected_count": "{{count}} item selected",
-    "selected_count_plural": "{{count}} items selected",
+    "selected_count": "{{count}} selected",
     "clear_selection": "Clear selection",
     "select_item": "Select {{title}}",
     "deselect_item": "Deselect {{title}}",
