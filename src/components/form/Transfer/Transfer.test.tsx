@@ -387,4 +387,36 @@ describe("Transfer edge cases", () => {
       message.id,
     );
   });
+
+  // T370: 矢印キーと先頭一致。無効の項目には止まらない
+  describe("キー操作（T370）", () => {
+    const fruits: TransferItem[] = [
+      { key: "a", title: "Apple" },
+      { key: "b", title: "Banana", disabled: true },
+      { key: "c", title: "Blueberry" },
+      { key: "d", title: "Cherry" },
+    ];
+    const activeText = (listbox: HTMLElement) => {
+      const id = listbox.getAttribute("aria-activedescendant");
+      return id ? document.getElementById(id)?.textContent : null;
+    };
+
+    it("矢印キーは無効の項目を飛ばし、端で折り返す", () => {
+      render(<Transfer dataSource={fruits} />);
+      const listbox = screen.getByRole("listbox", { name: "Available" });
+      fireEvent.keyDown(listbox, { key: "ArrowDown" });
+      fireEvent.keyDown(listbox, { key: "ArrowDown" });
+      expect(activeText(listbox)).toContain("Blueberry");
+      fireEvent.keyDown(listbox, { key: "ArrowDown" });
+      fireEvent.keyDown(listbox, { key: "ArrowDown" });
+      expect(activeText(listbox)).toContain("Apple");
+    });
+
+    it("文字を打つと、名前の先頭が一致する項目へ移る（無効の項目は飛ばす）", () => {
+      render(<Transfer dataSource={fruits} />);
+      const listbox = screen.getByRole("listbox", { name: "Available" });
+      fireEvent.keyDown(listbox, { key: "b" });
+      expect(activeText(listbox)).toContain("Blueberry");
+    });
+  });
 });

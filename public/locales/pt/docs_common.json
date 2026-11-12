@@ -295,6 +295,7 @@
     "registry_width_container_desc": "Muda conforme a largura da área onde é colocado (container queries).",
     "registry_width_js": "Própria largura (JS)",
     "registry_width_js_desc": "Mede a própria largura com JavaScript e muda o layout (colunas, modo de exibição, itens movidos para um menu de excedentes).",
-    "registry_width_none": "O layout não muda com a largura."
+    "registry_width_none": "O layout não muda com a largura.",
+    "kb_typeahead": "Move para o próximo item cujo nome começa com as letras digitadas (itens desativados são ignorados)"
   }
 }

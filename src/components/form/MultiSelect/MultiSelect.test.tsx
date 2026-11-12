@@ -269,4 +269,54 @@ describe("MultiSelect", () => {
     fireEvent.click(screen.getByText("Option 2"));
     expect(handleChange).not.toHaveBeenCalled();
   });
+
+  // T370: 矢印キーの行き先を共通の計算にした。以前は無効の項目にも止まっていた
+  describe("キー操作（T370）", () => {
+    const fruits = [
+      { label: "Apple", value: "apple", disabled: true },
+      { label: "Banana", value: "banana" },
+      { label: "Blueberry", value: "blueberry", disabled: true },
+      { label: "Cherry", value: "cherry" },
+    ];
+    const active = () => {
+      const combobox = screen.getByRole("combobox");
+      const id = combobox.getAttribute("aria-activedescendant");
+      return id ? document.getElementById(id)?.textContent : null;
+    };
+
+    it("開いたとき、先頭の無効の項目には止まらない", () => {
+      render(<MultiSelect options={fruits} />);
+      fireEvent.keyDown(screen.getByRole("combobox"), { key: "ArrowDown" });
+      expect(active()).toContain("Banana");
+    });
+
+    it("矢印キーは無効の項目を飛ばし、端で折り返す", () => {
+      render(<MultiSelect options={fruits} />);
+      const combobox = screen.getByRole("combobox");
+      fireEvent.keyDown(combobox, { key: "ArrowDown" });
+      fireEvent.keyDown(combobox, { key: "ArrowDown" });
+      expect(active()).toContain("Cherry");
+      fireEvent.keyDown(combobox, { key: "ArrowDown" });
+      expect(active()).toContain("Banana");
+    });
+
+    it("文字を打つと、先頭が一致する項目へ移る（無効の項目は飛ばす）", () => {
+      render(<MultiSelect options={fruits} />);
+      const combobox = screen.getByRole("combobox");
+      fireEvent.keyDown(combobox, { key: "c" });
+      expect(screen.getByRole("listbox")).toBeInTheDocument();
+      expect(active()).toContain("Cherry");
+      fireEvent.keyDown(combobox, { key: "a" });
+      expect(active()).toContain("Cherry");
+    });
+
+    it("無効の項目では Enter で選ばない", () => {
+      const handleChange = vi.fn();
+      render(<MultiSelect options={[{ label: "Only", value: "only", disabled: true }]} onChange={handleChange} />);
+      const combobox = screen.getByRole("combobox");
+      fireEvent.keyDown(combobox, { key: "Enter" });
+      fireEvent.keyDown(combobox, { key: "Enter" });
+      expect(handleChange).not.toHaveBeenCalled();
+    });
+  });
 });

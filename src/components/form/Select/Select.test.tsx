@@ -235,11 +235,11 @@ describe("Select", () => {
     // 動いた先を見る（CI-19）。以前は「onChange が呼ばれない」だけを見ていた。
     const activeId = trigger.getAttribute("aria-activedescendant");
     expect(activeId).toBeTruthy();
-    expect(document.getElementById(activeId as string)).toHaveTextContent("Orange");
+    // 末尾の Orange は無効なので、End はその手前の、最後の有効な Banana へ移る（T370）。
+    // 以前は無効の Orange に止まり、このテストもそれを確かめていた
+    expect(document.getElementById(activeId as string)).toHaveTextContent("Banana");
     fireEvent.keyDown(trigger, { key: "Enter" });
-
-    // Orange (index 2) is disabled, so End focuses it but Enter should not select it
-    await waitFor(() => expect(onChange).not.toHaveBeenCalled());
+    await waitFor(() => expect(onChange).toHaveBeenCalledWith("2"));
   });
 
   it("closes on outside click", async () => {
@@ -350,5 +350,21 @@ describe("Select", () => {
 
     await waitFor(() => expect(screen.queryByRole("option", { name: "Carrot" })).toBeInTheDocument());
     expect(screen.queryByRole("option", { name: "Apple" })).not.toBeInTheDocument();
+  });
+
+  it("文字を打つと、先頭が一致する項目へ移る（T370。閉じていれば開いて移る）", async () => {
+    render(<Select options={options} />);
+    const trigger = screen.getByRole("combobox");
+    fireEvent.keyDown(trigger, { key: "b" });
+    await waitFor(() => expect(screen.queryByRole("listbox")).not.toBeNull());
+    const activeId = trigger.getAttribute("aria-activedescendant");
+    expect(document.getElementById(activeId as string)).toHaveTextContent("Banana");
+  });
+
+  it("文字を打っても、無効の項目には移らない（T370）", async () => {
+    render(<Select options={options} />);
+    const trigger = screen.getByRole("combobox");
+    fireEvent.keyDown(trigger, { key: "o" });
+    expect(screen.queryByRole("listbox")).toBeNull();
   });
 });

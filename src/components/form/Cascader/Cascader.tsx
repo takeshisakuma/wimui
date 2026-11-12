@@ -11,6 +11,8 @@ import { FieldTemplate } from "../FieldTemplate";
 import { FieldWidth } from "../../../types/tokens";
 import { ChevronRightIcon } from "@/icon";
 import { composeEventHandlers } from "../../_internal/composeEventHandlers";
+import { getRovingIndex, isRovingKey } from "../../_internal/rovingIndex";
+import { findTypeaheadIndex, isTypeaheadKey, useTypeahead } from "../../_internal/typeahead";
 
 function getLabelText(label: React.ReactNode): string {
   if (typeof label === "string") return label;
@@ -147,7 +149,10 @@ export const Cascader = ({
         // Initialize active path with current value if exists
         setActivePath(currentValue || []);
         setFocusedLevel(0);
-        setFocusedIndexes([0]);
+        // 最初の有効な選択肢に置く（先頭が無効でも、そこには止まらない。T370）
+        setFocusedIndexes([
+          getRovingIndex({ key: "Home", current: -1, count: options.length, isDisabled: (i) => !!options[i]?.disabled }) ?? 0,
+        ]);
       } else {
         setFocusedLevel(-1);
       }
@@ -226,6 +231,8 @@ export const Cascader = ({
     }
   };
 
+  const typeahead = useTypeahead();
+
   const handleKeyDown = (e: React.KeyboardEvent) => {
     setIsKeyboardNavigating(true);
     if (disabled) return;
@@ -254,30 +261,59 @@ export const Cascader = ({
     const currentMenuOptions = menus[focusedLevel] || [];
     const currentIndex = focusedIndexes[focusedLevel] || 0;
 
+    // 列の中の上下・Home / End は共通の計算で決める（T370）。端で折り返し、無効の選択肢には
+    // 止まらない（以前は端で止まり、無効の選択肢にも止まっていた）
+    const isOptionDisabled = (options: CascaderOption[]) => (index: number) => !!options[index]?.disabled;
+    const focusAt = (index: number) =>
+      setFocusedIndexes((prev) => {
+        const next = [...prev];
+        next[focusedLevel] = index;
+        return next;
+      });
+
+    // 文字を打つと、いまの列の中で、名前の先頭が一致する選択肢へ移る
+    if (isTypeaheadKey(e, typeahead.typing())) {
+      e.preventDefault();
+      const index = findTypeaheadIndex({
+        query: typeahead.push(e.key),
+        current: currentIndex,
+        count: currentMenuOptions.length,
+        // ラベルが文字でない（要素を渡された）ときは、値で照合する
+        getText: (i) => {
+          const label = currentMenuOptions[i]?.label;
+          return typeof label === "string" ? label : String(currentMenuOptions[i]?.value ?? "");
+        },
+        isDisabled: isOptionDisabled(currentMenuOptions),
+      });
+      if (index >= 0) focusAt(index);
+      return;
+    }
+
+    if (isRovingKey(e.key, "vertical")) {
+      e.preventDefault();
+      const next = getRovingIndex({
+        key: e.key,
+        current: currentIndex,
+        count: currentMenuOptions.length,
+        orientation: "vertical",
+        isDisabled: isOptionDisabled(currentMenuOptions),
+      });
+      if (next !== null) focusAt(next);
+      return;
+    }
+
     switch (e.key) {
-      case "ArrowDown":
-        e.preventDefault();
-        setFocusedIndexes((prev) => {
-          const next = [...prev];
-          next[focusedLevel] = Math.min(currentIndex + 1, currentMenuOptions.length - 1);
-          return next;
-        });
-        break;
-      case "ArrowUp":
-        e.preventDefault();
-        setFocusedIndexes((prev) => {
-          const next = [...prev];
-          next[focusedLevel] = Math.max(currentIndex - 1, 0);
-          return next;
-        });
-        break;
       case "ArrowRight": {
         e.preventDefault();
         const currentOpt = currentMenuOptions[currentIndex];
-        if (currentOpt && currentOpt.children && currentOpt.children.length > 0) {
+        if (currentOpt && !currentOpt.disabled && currentOpt.children && currentOpt.children.length > 0) {
+          const children = currentOpt.children;
+          // 子の列へ入ったら、最初の有効な選択肢に置く
+          const first =
+            getRovingIndex({ key: "Home", current: -1, count: children.length, isDisabled: isOptionDisabled(children) }) ?? 0;
           setActivePath([...activePath.slice(0, focusedLevel), currentOpt.value]);
           setFocusedLevel(focusedLevel + 1);
-          setFocusedIndexes((prev) => [...prev.slice(0, focusedLevel + 1), 0]);
+          setFocusedIndexes((prev) => [...prev.slice(0, focusedLevel + 1), first]);
         }
         break;
       }
@@ -292,7 +328,7 @@ export const Cascader = ({
       case " ": {
         e.preventDefault();
         const optToSelect = currentMenuOptions[currentIndex];
-        if (optToSelect) {
+        if (optToSelect && !optToSelect.disabled) {
           handleOptionSelect(optToSelect, focusedLevel);
         }
         break;
@@ -302,22 +338,6 @@ export const Cascader = ({
         setIsOpen(false);
         setFocusedLevel(-1);
         triggerRef.current?.focus();
-        break;
-      case "Home":
-        e.preventDefault();
-        setFocusedIndexes((prev) => {
-          const next = [...prev];
-          next[focusedLevel] = 0;
-          return next;
-        });
-        break;
-      case "End":
-        e.preventDefault();
-        setFocusedIndexes((prev) => {
-          const next = [...prev];
-          next[focusedLevel] = currentMenuOptions.length - 1;
-          return next;
-        });
         break;
       case "Tab":
         if (isOpen) {

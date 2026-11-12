@@ -473,7 +473,7 @@
     "menubar_best_practice_1": "Mantenha rótulos de nível superior curtos (File, Edit, View) e coloque ações destrutivas atrás de rótulos claros nos itens.",
     "menubar_best_practice_2": "Abra apenas um menu por vez; troque por hover enquanto um menu estiver aberto.",
     "menubar_best_practice_3": "Não aninhe Menubar dentro do FocusTrap de um Dialog sem testar o comportamento de Escape.",
-    "menubar_keyboard_desc": "Esquerda/Direita (e Home/End) movem entre triggers de nível superior. ArrowDown, Enter ou Space abrem um menu. ArrowUp/Down movem dentro do menu aberto. Escape fecha e devolve o foco ao trigger.",
+    "menubar_keyboard_desc": "Esquerda/Direita (e Home/End) movem entre triggers de nível superior. ArrowDown, Enter ou Space abrem um menu. ArrowUp/Down movem dentro do menu aberto. Escape fecha e devolve o foco ao trigger. Digitar letras move para a próxima opção que começa com elas, ignorando as desativadas.",
     "menubar_i18n_desc": "Menubar não tem textos embutidos. Localize rótulos de trigger e item no app consumidor; forneça um aria-label na raiz.",
     "anchor_choice_navbar_when": "Quando você quer se mover entre as áreas principais do site.",
     "anchor_choice_breadcrumbs_when": "Quando você quer mostrar onde a página atual está na hierarquia e permitir subir de volta.",

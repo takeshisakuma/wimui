@@ -123,4 +123,20 @@ describe("ModelSelector", () => {
     expect(text(gpt)).toBe("GPT Context 128K In $2.5/1M Out $10/1M");
     expect(text(claude)).toBe("Claude New Context 200K");
   });
+
+  // T370: 名前の先頭で移る。無効のモデルには移らない
+  it("文字を打つと、名前の先頭が一致するモデルへ移る", () => {
+    render(<ModelSelector models={MODELS} />);
+    const trigger = screen.getByRole("combobox");
+    fireEvent.keyDown(trigger, { key: "c" });
+    const id = trigger.getAttribute("aria-activedescendant");
+    expect(document.getElementById(id as string)).toHaveTextContent("Claude");
+  });
+
+  it("文字を打っても、無効のモデルには移らない", () => {
+    render(<ModelSelector models={MODELS} />);
+    const trigger = screen.getByRole("combobox");
+    fireEvent.keyDown(trigger, { key: "l" });
+    expect(trigger).toHaveAttribute("aria-expanded", "false");
+  });
 });

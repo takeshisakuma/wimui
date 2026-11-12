@@ -473,7 +473,7 @@
     "menubar_best_practice_1": "トップレベルラベルは短く（File, Edit, View）。破壊的操作は明確な項目名にする。",
     "menubar_best_practice_2": "同時に開くメニューは1つ。開いている間はホバーで切替。",
     "menubar_best_practice_3": "Dialog の FocusTrap 内に入れる場合は Escape の挙動を確認する。",
-    "menubar_keyboard_desc": "左右矢印（と Home/End）でトップレベル間を移動。ArrowDown / Enter / Space で開く。メニュー内は上下。Escape で閉じて Trigger に戻る。",
+    "menubar_keyboard_desc": "左右矢印（と Home/End）でトップレベル間を移動。ArrowDown / Enter / Space で開く。メニュー内は上下。Escape で閉じて Trigger に戻る。文字を打つと、その文字で始まる次の項目へ移ります（無効の項目は飛ばします）。",
     "menubar_i18n_desc": "Menubar 本体に固定文言はありません。Trigger / Item のラベルとルートの aria-label をアプリ側でローカライズしてください。",
     "anchor_choice_navbar_when": "サイトの主要な区画の間を移動したいとき",
     "anchor_choice_breadcrumbs_when": "現在のページが階層のどこにいるかを示し、上へ戻れるようにしたいとき",

@@ -107,4 +107,30 @@ describe("Menubar", () => {
     );
     expect(screen.getByTestId("nav")).toHaveAttribute("role", "menubar");
   });
+
+  // T370: 開いたメニューの中で、文字の先頭で項目へ移る。無効の項目には移らない
+  it("文字を打つと、先頭が一致する項目へフォーカスが移る（無効の項目は飛ばす）", async () => {
+    const user = userEvent.setup();
+    render(
+      <Menubar>
+        <Menubar.Menu value="file">
+          <Menubar.Trigger>File</Menubar.Trigger>
+          <Menubar.Content>
+            <Menubar.Item>New</Menubar.Item>
+            <Menubar.Item disabled>Open</Menubar.Item>
+            <Menubar.Item>Save</Menubar.Item>
+            <Menubar.Item>Save as</Menubar.Item>
+          </Menubar.Content>
+        </Menubar.Menu>
+      </Menubar>,
+    );
+    await user.click(screen.getByRole("menuitem", { name: "File" }));
+    // 無効の Open には移らない（当たりが無いので、いまの項目に留まる）
+    await waitFor(() => expect(screen.getByRole("menuitem", { name: "New" })).toHaveFocus());
+    await user.keyboard("o");
+    expect(screen.getByRole("menuitem", { name: "New" })).toHaveFocus();
+    await new Promise((r) => setTimeout(r, 600)); // 打った文字を捨てる間を空ける
+    await user.keyboard("s");
+    await waitFor(() => expect(screen.getByRole("menuitem", { name: "Save" })).toHaveFocus());
+  });
 });

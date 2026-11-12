@@ -210,7 +210,8 @@
     "registry_width_container_desc": "Switches on the width of the area it is placed in (container queries).",
     "registry_width_js": "Own width (JS)",
     "registry_width_js_desc": "Measures its own width in JavaScript and changes its layout (columns, display mode, items moved into an overflow menu).",
-    "registry_width_none": "Its layout does not switch with width."
+    "registry_width_none": "Its layout does not switch with width.",
+    "kb_typeahead": "Moves to the next item whose name starts with the typed letters (disabled items are skipped)"
   },
   "config": {
     "install_title": "Install",

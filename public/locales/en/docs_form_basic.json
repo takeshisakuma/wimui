@@ -370,7 +370,7 @@
     "select_key_next": "ArrowDown",
     "select_key_open": "Enter / Space",
     "select_key_prev": "ArrowUp",
-    "select_keyboard_desc": "Tab focuses the select. Enter or Space opens the dropdown. Arrow keys navigate options. Escape closes without selection.",
+    "select_keyboard_desc": "Tab focuses the select. Enter or Space opens the dropdown. Arrow keys navigate options. Escape closes without selection. Typing letters moves to the next option that starts with them, skipping disabled ones.",
     "select_long_desc": "A dropdown menu for users to select one option from a predefined set.",
     "select_op_close": "Close dropdown",
     "select_op_first": "Focus first option with Home key",
