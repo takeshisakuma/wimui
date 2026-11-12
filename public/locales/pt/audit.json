@@ -654,5 +654,8 @@
   "sample_sitemap_docs": "Documentação",
   "layout_overflow_check": "Excesso: quebrar ou agrupar",
   "label_group_wrap": "Group (quebra a linha)",
-  "label_overflow_list": "OverflowList (agrupa)"
+  "label_overflow_list": "OverflowList (agrupa)",
+  "label_selectionbar": "Barra de seleção (ações em lote)",
+  "sample_selectionbar_labels": "Imprimir etiquetas de envio",
+  "sample_selectionbar_cancel": "Cancelar pedidos"
 }

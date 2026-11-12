@@ -1,0 +1,26 @@
+@layer component {
+  .root {
+    display: block;
+  }
+
+  // Toolbar の根（inline-flex）より強くして、器の幅いっぱいに伸ばす。同じ詳細度だと、
+  // チャンクの読み込み順で勝ち負けが変わる
+  .root .bar {
+    display: flex;
+    width: 100%;
+  }
+
+  .count {
+    padding-inline: var(--wim-spacing-xs);
+    margin-inline-end: var(--wim-spacing-sm);
+    font-size: var(--wim-font-size-sm);
+    font-weight: var(--wim-font-weight-medium);
+    color: var(--wim-color-text-primary);
+    white-space: nowrap;
+  }
+
+  // 解除はいつも末尾に置く（操作の数が変わっても位置が動かない）
+  .end {
+    margin-inline-start: auto;
+  }
+}

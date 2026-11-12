@@ -487,6 +487,20 @@
     "card_link_order_1_meta": "3 items · Delivered Tue 4 Nov",
     "card_link_buy_again": "Buy again",
     "card_link_order_2": "Order 4307",
-    "card_link_order_2_meta": "1 item · Arrives Thu 13 Nov"
+    "card_link_order_2_meta": "1 item · Arrives Thu 13 Nov",
+    "selectionbar_action_labels": "Print shipping labels",
+    "selectionbar_action_shipped": "Mark as shipped",
+    "selectionbar_action_cancel": "Cancel orders",
+    "selectionbar_cancel_confirm": "Cancel the selected orders ({{count}})? Customers are refunded automatically.",
+    "selectionbar_cancel_keep": "Keep orders",
+    "selectionbar_col_order": "Order",
+    "selectionbar_col_customer": "Customer",
+    "selectionbar_col_items": "Items",
+    "selectionbar_col_total": "Total",
+    "selectionbar_col_status": "Status",
+    "selectionbar_status_paid": "Paid",
+    "selectionbar_status_packed": "Packed",
+    "selectionbar_status_on_hold": "On hold",
+    "selectionbar_grid_label": "Orders waiting to ship"
   }
 }

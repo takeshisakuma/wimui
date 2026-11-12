@@ -361,6 +361,23 @@
     "treeview_use_cases": "ユースケース:",
     "treeview_use_cases_item_1": "ファイル/フォルダの複数選択",
     "treeview_use_cases_item_2": "権限設定",
-    "treeview_use_cases_item_3": "タスクの一括操作"
+    "treeview_use_cases_item_3": "タスクの一括操作",
+    "selectionBar_title": "選んだ行の数・その行への操作・選択の解除を、操作の対象の表の上に出します。",
+    "selectionBar_long_desc": "選択の状態は呼ぶ側が持ちます（`DataGrid` の `selectedRowKeys`、`Table` や `List` に置いた自前のチェックボックス）。`SelectionBar` が受け取るのは件数（`count`）だけで、0 より大きいあいだ姿を出し、操作を `Toolbar` に並べます。",
+    "selectionBar_design_intent": "このバーはクローム（中身を囲む部分）です。データの上に置き、データより声量を下げます。操作は `variant=\"outline\"` か `\"ghost\"` にして、ページの primary は 1 つに保ちます。解除のボタンはいつも末尾に置くので、操作の数が変わっても位置が動きません。何も選んでいないあいだも置いたままにしてください ── 件数を告知する status 領域は、文字が変わる前から在る必要があります。",
+    "selectionBar_choice_matrix_desc": "操作が、選んだ行に対するものかで選びます。",
+    "selectionBar_choice_self_when": "選んだ行に対する操作（送り状の印刷・アーカイブ・削除）。何かを選んでいるあいだだけ出す。",
+    "selectionBar_choice_footer_when": "ページ送りの隣で件数を言うだけで、操作は無い ── `DataGrid` のフッターが既にそうしている。",
+    "selectionBar_choice_toolbar_when": "選択に関係なく、いつでも使える検索・絞り込み・操作。同時に出したくないなら、行を選んでいるあいだは `SelectionBar` と入れ替える。",
+    "selectionBar_a11y_desc": "バーは「一括操作」という名前の `role=\"toolbar\"` です（`aria-label` で変えられます）。いつも在る status 領域が、件数が変わると「3 件を選択中」、0 に戻ると「選択を解除しました」と告知します。初回の描画では何も告知しません。フォーカスがバーに入ったあとで閉じると（解除のボタンを押したとき、またはバーから開いた `Popconfirm` で確定し、その引き金が消えたとき）、フォーカスは `returnFocusRef` へ移ります。渡さなければ、バーの後ろで最初にフォーカスできる要素（`DataGrid` なら表）へ移り、ページの先頭へは落ちません。",
+    "selectionBar_scenario_1_title": "複数の注文をまとめて発送する",
+    "selectionBar_scenario_1": "今日梱包した注文を選び、送り状の印刷と発送済みへの変更を一度に行う。",
+    "selectionBar_scenario_2_title": "確認を挟む取り消し",
+    "selectionBar_scenario_2": "取り消しの操作を `Popconfirm` で包み、`onConfirm` で選択を解除する。バーが閉じ、解除が告知され、フォーカスはページの先頭ではなく表へ移る。",
+    "selectionBar_best_practice_1": "いつも置いて件数を渡す ── 行を選んだときだけ置くと、件数は一度も告知されない。",
+    "selectionBar_best_practice_2": "危険な操作は 1 つまでにし、`intent=\"danger\"` と `variant=\"ghost\"` か `\"outline\"` で置いて、確認を挟む。",
+    "selectionBar_best_practice_3": "解除のあと、バーの直後の要素より戻すべき場所（自前の表の全選択のチェックボックスなど）があるなら、`returnFocusRef` で渡す。",
+    "selectionBar_keyboard_desc": "Tab でバーに 1 回だけ止まり、矢印キー（両端は Home / End）で操作と解除のボタンのあいだを移ります（`Toolbar` の roving tabindex）。Enter か Space で、フォーカスのあるボタンを押します。",
+    "selectionBar_i18n_desc": "「一括操作」「{count} 件を選択中」「選択を解除しました」「選択を解除」は en / ja / pt を内蔵しています。`aria-label`・`countLabel`・`clearLabel` で差し替えられます。"
   }
 }

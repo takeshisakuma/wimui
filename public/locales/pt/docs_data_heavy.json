@@ -361,6 +361,23 @@
     "treeview_use_cases": "Casos de Uso:",
     "treeview_use_cases_item_1": "Seleção múltipla de arquivos/pastas",
     "treeview_use_cases_item_2": "Configurações de permissão",
-    "treeview_use_cases_item_3": "Operações em lote em tarefas"
+    "treeview_use_cases_item_3": "Operações em lote em tarefas",
+    "selectionBar_title": "Mostra quantas linhas estão selecionadas, as ações para elas e uma forma de limpar a seleção, acima da tabela em que atuam.",
+    "selectionBar_long_desc": "A seleção fica com quem chama (`selectedRowKeys` do `DataGrid`, ou suas próprias caixas de seleção em uma `Table` ou `List`). O `SelectionBar` recebe só a contagem (`count`), aparece enquanto ela é maior que 0 e organiza as ações em uma `Toolbar`.",
+    "selectionBar_design_intent": "A barra é moldura: fica acima dos dados e mais discreta que eles. As ações usam `variant=\"outline\"` ou `\"ghost\"` para que a página mantenha uma única ação primária, e o botão de limpar fica sempre no fim, então sua posição não muda quando o conjunto de ações muda. Mantenha a barra montada mesmo sem nada selecionado — a região de status que anuncia a contagem precisa existir antes de o texto mudar.",
+    "selectionBar_choice_matrix_desc": "Escolha pelo fato de as ações atuarem sobre as linhas selecionadas.",
+    "selectionBar_choice_self_when": "Ações sobre as linhas selecionadas (imprimir etiquetas, arquivar, excluir), mostradas só enquanto há algo selecionado.",
+    "selectionBar_choice_footer_when": "Só informar a contagem ao lado da paginação, sem ações — o rodapé do `DataGrid` já faz isso.",
+    "selectionBar_choice_toolbar_when": "Busca, filtros e ações sempre disponíveis, independentemente da seleção. Troque pelo `SelectionBar` enquanto houver linhas selecionadas se os dois não devem aparecer juntos.",
+    "selectionBar_a11y_desc": "A barra é uma `role=\"toolbar\"` chamada \"Ações em lote\" (altere com `aria-label`). Uma região de status sempre presente anuncia \"Selecionados: 3\" quando a contagem muda e \"Seleção removida\" quando volta a 0; nada é anunciado na primeira renderização. Quando a barra fecha depois de o foco ter estado nela — após o botão de limpar, ou após confirmar em um `Popconfirm` aberto a partir da barra, cujo gatilho já não existe — o foco vai para `returnFocusRef`, ou para o primeiro elemento focável depois da barra (com `DataGrid`, a grade), em vez de cair no topo da página.",
+    "selectionBar_scenario_1_title": "Enviar vários pedidos de uma vez",
+    "selectionBar_scenario_1": "Selecione os pedidos embalados hoje, imprima as etiquetas e marque-os como enviados de uma só vez.",
+    "selectionBar_scenario_2_title": "Ação destrutiva com confirmação",
+    "selectionBar_scenario_2": "Envolva a ação destrutiva em `Popconfirm` e limpe a seleção em `onConfirm`. A barra fecha, a limpeza é anunciada e o foco passa para a tabela, e não para o topo da página.",
+    "selectionBar_best_practice_1": "Renderize sempre e passe a contagem — não monte só quando houver linhas selecionadas, ou a contagem nunca é anunciada.",
+    "selectionBar_best_practice_2": "Mantenha no máximo uma ação destrutiva, com `intent=\"danger\"` e `variant=\"ghost\"` ou `\"outline\"`, e peça confirmação.",
+    "selectionBar_best_practice_3": "Passe `returnFocusRef` quando houver um lugar melhor para o foco depois de limpar do que o elemento logo após a barra, como a caixa de selecionar tudo da sua própria tabela.",
+    "selectionBar_keyboard_desc": "O Tab para na barra uma vez; as setas (Home / End para as pontas) passam entre as ações e o botão de limpar (o roving tabindex da `Toolbar`). Enter ou Espaço aciona o botão em foco.",
+    "selectionBar_i18n_desc": "\"Ações em lote\", \"Selecionados: {count}\", \"Seleção removida\" e \"Limpar seleção\" vêm embutidos em en / ja / pt. Substitua com `aria-label`, `countLabel` e `clearLabel`."
   }
 }

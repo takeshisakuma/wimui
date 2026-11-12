@@ -8,6 +8,8 @@ import {
   List,
   ListItem,
   PivotTable,
+  SelectionBar,
+  Button,
   type PivotTableAxisNode,
 } from "../../src";
 
@@ -174,6 +176,20 @@ export const Overview: StoryObj = {
               bordered
               striped
             />
+          </ComponentGroup>
+        </ComparisonGrid>
+
+        {/* SelectionBar: 見比べるために、件数を固定して常に出す。表の枠・余白と揃っているかを見る */}
+        <ComparisonGrid title={t("audit:label_selectionbar")}>
+          <ComponentGroup label={t("audit:label_selectionbar")}>
+            <SelectionBar count={2} onClear={() => {}}>
+              <Button variant="outline" size="sm">
+                {t("audit:sample_selectionbar_labels")}
+              </Button>
+              <Button variant="ghost" size="sm" intent="danger">
+                {t("audit:sample_selectionbar_cancel")}
+              </Button>
+            </SelectionBar>
           </ComponentGroup>
         </ComparisonGrid>
 

@@ -4,7 +4,7 @@
 
 ## What this is
 
-**wimui** v0.68.0 — a React 19 component library: 229 documented components across 10 categories, with design tokens, dark mode, i18n (en/ja/pt-BR) and WAI-ARIA compliant a11y. Peer deps: react ^19, react-dom ^19 (plus optional peers for specific components — see package.json).
+**wimui** v0.68.0 — a React 19 component library: 230 documented components across 10 categories, with design tokens, dark mode, i18n (en/ja/pt-BR) and WAI-ARIA compliant a11y. Peer deps: react ^19, react-dom ^19 (plus optional peers for specific components — see package.json).
 
 ## Install & required setup
 
@@ -363,6 +363,7 @@ export function BillingOverview() {
 - **Reaction** — Display emoji reaction buttons with toggleable state and counts
 - **RelativeTime** — Display a timestamp as a localized relative phrase ("3 minutes ago", "yesterday") that updates automatically as time passes.
 - **ScheduleView** — Displays tasks or events on a chronological timeline or calendar view.
+- **SelectionBar** — Bar above a table that shows the number of selected rows, the actions for them and a way to clear the selection. Announces the count to screen readers. (aka Bulk Actions, Batch Actions, Table Selection Toolbar)
 - **SortableList** — Item rearrangement and reordering
 - **Stats** — A component to highlight key performance indicators and metrics (aka Statistic, Stat)
 - **SwipeableList** — Container for SwipeAction rows that keeps at most one row open at a time. (aka Swipeable List)

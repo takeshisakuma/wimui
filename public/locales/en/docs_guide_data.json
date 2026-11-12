@@ -132,6 +132,9 @@
     "row_column_annotation": "(Row/Column)",
     "pivot_structure": "Cross-tabulation (two hierarchies)",
     "pivot_features": "Multi-level row and column headings with subtotals and grand totals. It draws aggregated data; it does not sort, filter or edit.",
-    "pivot_usage": "Reports that compare totals across two dimensions, such as sales by product and month."
+    "pivot_usage": "Reports that compare totals across two dimensions, such as sales by product and month.",
+    "selectionbar_structure": "Bar above a table (count + actions)",
+    "selectionbar_features": "States how many rows are selected, holds the actions for them and a clear button, and announces the count to screen readers. Takes only the count; the selection stays with the table.",
+    "selectionbar_usage": "Acting on several rows at once: shipping, archiving or deleting the selected orders above a DataGrid."
   }
 }

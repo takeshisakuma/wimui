@@ -132,6 +132,9 @@
     "row_column_annotation": "(Linha/Coluna)",
     "pivot_structure": "Tabulação cruzada (duas hierarquias)",
     "pivot_features": "Cabeçalhos de linha e de coluna em vários níveis, com subtotais e totais gerais. Desenha dados agregados; não ordena, filtra nem edita.",
-    "pivot_usage": "Relatórios que comparam totais em duas dimensões, como vendas por produto e mês."
+    "pivot_usage": "Relatórios que comparam totais em duas dimensões, como vendas por produto e mês.",
+    "selectionbar_structure": "Barra acima de uma tabela (contagem + ações)",
+    "selectionbar_features": "Informa quantas linhas estão selecionadas, reúne as ações para elas e um botão de limpar, e anuncia a contagem para leitores de tela. Recebe só a contagem; a seleção fica com a tabela.",
+    "selectionbar_usage": "Agir sobre várias linhas de uma vez: enviar, arquivar ou excluir os pedidos selecionados acima de um DataGrid."
   }
 }

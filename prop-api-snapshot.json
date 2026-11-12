@@ -9472,6 +9472,30 @@
       "required": false,
       "type": "FieldWidth | string | number"
     },
+    "SelectionBar.children": {
+      "required": false,
+      "type": "React.ReactNode"
+    },
+    "SelectionBar.clearLabel": {
+      "required": false,
+      "type": "string"
+    },
+    "SelectionBar.count": {
+      "required": true,
+      "type": "number"
+    },
+    "SelectionBar.countLabel": {
+      "required": false,
+      "type": "(count: number) => React.ReactNode"
+    },
+    "SelectionBar.onClear": {
+      "required": false,
+      "type": "() => void"
+    },
+    "SelectionBar.returnFocusRef": {
+      "required": false,
+      "type": "React.RefObject<HTMLElement | null>"
+    },
     "Sidebar.Item.active": {
       "required": false,
       "type": "boolean"
