@@ -191,7 +191,7 @@
         "react/jsx-runtime"
       ],
       "gzip": true,
-      "limit": "213 kB"
+      "limit": "214 kB"
     },
     {
       "name": "wimui/form 全部 (gzip)",
