@@ -6,6 +6,8 @@ import { BaseListItem } from "../../_internal/BaseListItem";
 import { InputBase } from "../InputBase";
 import { useInlineFloating } from "../../_internal/useInlineFloating";
 import { useMergedRef } from "../../../hooks/useMergedRef";
+import { getRovingIndex, isRovingKey } from "../../_internal/rovingIndex";
+import { findTypeaheadIndex, isTypeaheadKey, useTypeahead } from "../../_internal/typeahead";
 import styles from "./multiselect.module.scss";
 import { FieldTemplate } from "../FieldTemplate";
 import { FieldWidth } from "../../../types/tokens";
@@ -115,7 +117,7 @@ export const MultiSelect = ({
     const nextOpen = !isOpen;
     setIsOpen(nextOpen);
     if (nextOpen) {
-      setFocusedIndex(0);
+      setFocusedIndex(firstEnabled());
     } else {
       setFocusedIndex(-1);
     }
@@ -172,33 +174,60 @@ export const MultiSelect = ({
     currentValues?.includes(opt.value),
   );
 
+  // 矢印キー・Home / End の行き先は共通の計算で決める（T370）。無効の項目には止まらない ──
+  // 以前は矢印キーでも、開いたときの先頭でも、無効の項目に止まっていた
+  const isOptionDisabled = (index: number) => !!options[index]?.disabled;
+  const firstEnabled = () =>
+    getRovingIndex({ key: "Home", current: -1, count: options.length, isDisabled: isOptionDisabled }) ?? -1;
+  const typeahead = useTypeahead();
+
   const handleKeyDown = (e: React.KeyboardEvent) => {
     setIsKeyboardNavigating(true);
     if (disabled) return;
 
+    // 文字を打つと、先頭が一致する項目へ移る（閉じていれば開いて移る）
+    if (isTypeaheadKey(e, typeahead.typing())) {
+      e.preventDefault();
+      const index = findTypeaheadIndex({
+        query: typeahead.push(e.key),
+        current: isOpen ? focusedIndex : -1,
+        count: options.length,
+        getText: (i) => options[i].label,
+        isDisabled: isOptionDisabled,
+      });
+      if (index >= 0) {
+        setIsOpen(true);
+        setFocusedIndex(index);
+      }
+      return;
+    }
+
+    if (isOpen && isRovingKey(e.key, "vertical")) {
+      e.preventDefault();
+      const next = getRovingIndex({
+        key: e.key,
+        current: focusedIndex,
+        count: options.length,
+        orientation: "vertical",
+        isDisabled: isOptionDisabled,
+      });
+      if (next !== null) setFocusedIndex(next);
+      return;
+    }
+
     switch (e.key) {
       case "ArrowDown":
         e.preventDefault();
-        if (!isOpen) {
-          setIsOpen(true);
-          setFocusedIndex(0);
-        } else {
-          setFocusedIndex((prev) => (prev < options.length - 1 ? prev + 1 : 0));
-        }
-        break;
-      case "ArrowUp":
-        e.preventDefault();
-        if (isOpen) {
-          setFocusedIndex((prev) => (prev > 0 ? prev - 1 : options.length - 1));
-        }
+        setIsOpen(true);
+        setFocusedIndex(firstEnabled());
         break;
       case "Enter":
       case " ":
         e.preventDefault();
         if (!isOpen) {
           setIsOpen(true);
-          setFocusedIndex(0);
-        } else if (focusedIndex >= 0) {
+          setFocusedIndex(firstEnabled());
+        } else if (focusedIndex >= 0 && !isOptionDisabled(focusedIndex)) {
           handleSelect(options[focusedIndex].value);
         }
         break;
@@ -208,18 +237,6 @@ export const MultiSelect = ({
           setIsOpen(false);
           setFocusedIndex(-1);
           triggerRef.current?.focus();
-        }
-        break;
-      case "Home":
-        if (isOpen) {
-          e.preventDefault();
-          setFocusedIndex(0);
-        }
-        break;
-      case "End":
-        if (isOpen) {
-          e.preventDefault();
-          setFocusedIndex(options.length - 1);
         }
         break;
       case "Tab":
