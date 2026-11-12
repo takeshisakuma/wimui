@@ -31,9 +31,32 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { execFileSync } from "node:child_process";
 
+/**
+ * `src/data/` の下で、出荷物（`dist`）に届かないファイル（2026-11-12）。ライブラリのコードは
+ * どれも import せず、ビルドの段（`generate-llms.js` ほか）も読まない。#1110 は
+ * `component-responsive.json` だけで `src/` に触れたと数えられ、空の changeset が要った。
+ * 新しいファイルを `src/data/` に置いたら、ここか下の SHIPPED_DATA のどちらかに載せる
+ * （載せ忘れはテストが落とす）。
+ */
+export const UNSHIPPED_DATA = {
+  "src/data/chart-palette.json": "check:chart-palette の基準値のスナップショット",
+  "src/data/component-responsive.json": "Storybook の Registry の列だけが読む",
+  "src/data/peer-imports.json": "check:imports とストーリーの peer 表示だけが読む",
+};
+
+/**
+ * `src/data/` の下で、import はされないが出荷物に届くファイル。`generate-llms.js` が読み、
+ * 生成した `public/llms.txt` / `llms-full.txt` は Vite が `dist` へ複写する。
+ */
+export const SHIPPED_DATA = {
+  "src/data/components.json": "llms.txt の部品の一覧と説明",
+  "src/data/not-planned.json": "llms.txt の「作らないもの」",
+};
+
 /** 出荷物になる変更か。 */
 export function isShipped(file) {
   if (/\.test\.[cm]?[jt]sx?$/.test(file)) return false;
+  if (Object.hasOwn(UNSHIPPED_DATA, file)) return false;
   return /^src\//.test(file) || /^tokens\//.test(file);
 }
 
