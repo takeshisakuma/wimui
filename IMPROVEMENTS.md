@@ -245,7 +245,6 @@ Meta の Astryx（[github.com/meta/astryx](https://github.com/meta/astryx)・[�
 
 | # | 項目 | 優先 | 内容 | 検証方法 |
 |---|---|---|---|---|
-| T362 | **Table / DataGrid の一括操作バー（Table Selection Toolbar）** | 未着手（P2） | 行を選んだあとに出る「n 件を選択中・操作・選択の解除」のバー。選択の機能はあるが、その受け皿が無く、使う側が毎回組む。件数の告知は T367 と同じ仕組みに乗せる | 選択数の変化が読み上げられること（実機）・a11y・VRT |
 | T370 | **矢印キーの計算をリスト系にも広げる（T366 の第 2 段）** | 判断待ち | 起票 2026-11-10（T366 の残り）。Select・MultiSelect・Combobox・ModelSelector・PhoneInput・CommandPalette・Menu・Dropdown・Transfer など、矢印キーで 1 次元のリストを動く約 15 部品は、`_internal/rovingIndex` に移していない。並んだボタンと違い、**折り返すか**（Select は折り返さず、ModelSelector・PhoneInput・CommandPalette・Menu は折り返す）と、**文字での先頭一致**（PhoneInput だけ）がそろっておらず、移す前に方針を決める（WAI-ARIA の listbox / menu は先頭一致を推奨し、折り返しは任意）。無効の項目に止まる件は 7-4 の候補で先に測る | 方針を決めたうえで、移した部品の既存の単体テストと E2E が全部緑のまま。無効の項目に止まらないことを部品ごとに 1 件ずつテストで押さえる |
 | T367 | **`useAnnounce`（読み上げの告知を 1 本のフックに）** | 未着手（P2） | 告知は「先に在る status 領域の文字を書き換える」形でしか読まれない（実機で確認済み・28 部品中 11 が外れていた）。それをフックにして、部品ごとに書かない構造にする。T353 の 8 か所はこのフックの最初の使い手になりうるので、T353 の判断と一緒に見る | 置き換えた部品をナレーター + Chrome で聞いてもらう（axe の緑では足りない） |
 | T368 | **入れた版に合った情報をエージェントに返す仕組み（CLI）** | 判断待ち | Astryx は `astryx docs` / `astryx component --list` で、インストールした版の部品情報を返す。WIM の llms.txt は最新版の内容なので、古い版を入れた利用者とずれる。以前の A/B 測定で価値が出たのは API の正しさ（コンパイルが通るか）だったので、そこを強める。候補: ①tarball に llms.txt を同梱して版と一致させる（安い）②`bin` を持つ CLI（高い・公開面が増える）。swizzle（部品のソースを書き出す）とテーマの別パッケージ配布も、CLI を持つなら同じ判断に載る | ①なら、Version PR の状態で同梱の llms.txt の版が package.json と一致すること（リリース PR の経路で鳴らす） |
