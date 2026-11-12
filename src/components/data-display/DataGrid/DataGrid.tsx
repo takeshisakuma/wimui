@@ -163,7 +163,22 @@ export function DataGrid<T extends Record<string, unknown>>({
   }, [selectionProp, propsSelectedRowKeys, onSelectionChange]);
 
   // 1. Column Processing (Fixed columns)
-  const { fixedLeftOffsets, fixedRightOffsets } = useFixedColumns(columns, !!selection);
+  // 選択の列は中身（チェックボックスと、密度で変わる余白）の幅なので、左に固定した列の
+  // 位置は、その列を測った幅から積む。固定した列が左に無ければ測らない
+  const selectionHeadRef = React.useRef<HTMLTableCellElement>(null);
+  const [selectionWidth, setSelectionWidth] = useState<number>();
+  const measureSelection = !!selection && columns.some((col) => col.fixed === "left");
+  React.useLayoutEffect(() => {
+    const cell = selectionHeadRef.current;
+    if (!measureSelection || !cell || typeof ResizeObserver === "undefined") return undefined;
+    // observe した時点で 1 回呼ばれるので、初回の計測も兼ねる。密度で変わるのは左右の余白
+    // だけで、中身（チェックボックス）は変わらないので、既定の content-box ではなく
+    // border-box を見張る（content-box だと、密度を切り替えても通知が来なかった）
+    const observer = new ResizeObserver(() => setSelectionWidth(cell.offsetWidth));
+    observer.observe(cell, { box: "border-box" });
+    return () => observer.disconnect();
+  }, [measureSelection]);
+  const { fixedLeftOffsets, fixedRightOffsets } = useFixedColumns(columns, !!selection, selectionWidth);
 
   const getStickyProps = (columnKey: string, isHeader = false) => {
     const leftInfo = fixedLeftOffsets[columnKey] as FixedColumnInfo & { isLast?: boolean };
@@ -290,6 +305,7 @@ export function DataGrid<T extends Record<string, unknown>>({
             <Table.Row>
               {selection && (
                 <Table.Head
+                  ref={selectionHeadRef}
                   role="columnheader"
                   selection
                   stickyLeft
