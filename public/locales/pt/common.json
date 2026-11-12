@@ -520,7 +520,7 @@
   "reaction": {
     "add_reaction": "Adicionar reação",
     "aria_label": "Reações",
-    "react_with": "{{emoji}}, {{count}} reações"
+    "react_with": "{{emoji}}, reações: {{count}}"
   },
   "reports": "Relatórios",
   "required": "Obrigatório",
@@ -658,7 +658,7 @@
   "dataGrid": {
     "displaying": "Exibindo {{shown}} de {{total}}",
     "loading_more": "Carregando mais…",
-    "rows_selected": "({{selected}} selecionados)",
+    "rows_selected": "(selecionados: {{selected}})",
     "sort_cleared": "Ordenação por {{column}} removida",
     "sorted_ascending": "Ordenado por {{column}}, crescente",
     "sorted_descending": "Ordenado por {{column}}, decrescente"

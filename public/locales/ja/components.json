@@ -243,7 +243,6 @@
     "grid_label": "画像ギャラリー",
     "select_item": "{{title}}を選択",
     "selected_count": "{{count}}件選択中",
-    "selected_count_plural": "{{count}}件選択中",
     "toolbar_label": "一括操作ツールバー"
   },
   "ganttchart": {

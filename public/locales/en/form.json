@@ -18,8 +18,7 @@
     "copy_label": "Copy code",
     "copied_label": "Copied!",
     "expand_label": "Expand",
-    "collapse_label": "Collapse",
-    "lines": "{{count}} lines"
+    "collapse_label": "Collapse"
   },
   "button": {
     "clear": "Clear",
@@ -75,8 +74,8 @@
     "move_to_source": "Move to available",
     "move_to_target": "Move to selected",
     "source": "Available",
-    "status_moved_to_source": "{{count}} item(s) moved to available",
-    "status_moved_to_target": "{{count}} item(s) moved to selected",
+    "status_moved_to_source": "Moved to available: {{count}}",
+    "status_moved_to_target": "Moved to selected: {{count}}",
     "target": "Selected"
   },
   "password_strength": {

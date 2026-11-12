@@ -28,8 +28,7 @@
     "collapse_label": "Recolher",
     "copied_label": "Copiado!",
     "copy_label": "Copiar código",
-    "expand_label": "Expandir",
-    "lines": "{{count}} linhas"
+    "expand_label": "Expandir"
   },
   "code_diff_viewer": {
     "applied": "Aplicado",
@@ -126,8 +125,8 @@
     "move_to_target": "Mover para selecionado",
     "no_data": "Sem dados",
     "source": "Disponível",
-    "status_moved_to_source": "{{count}} item(s) movido(s) para lista disponível",
-    "status_moved_to_target": "{{count}} item(s) movido(s) para lista selecionada",
+    "status_moved_to_source": "Movidos para a lista disponível: {{count}}",
+    "status_moved_to_target": "Movidos para a lista selecionada: {{count}}",
     "target": "Selecionado"
   }
 }

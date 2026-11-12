@@ -24,7 +24,6 @@ export type FormKey =
   | "code_block.copied_label"
   | "code_block.copy_label"
   | "code_block.expand_label"
-  | "code_block.lines"
   | "code_diff_viewer.applied"
   | "code_diff_viewer.apply"
   | "code_diff_viewer.copied_label"
@@ -161,8 +160,8 @@ export const formNs: WimNamespace<"form", FormKey> = {
         "move_to_source": "Move to available",
         "move_to_target": "Move to selected",
         "source": "Available",
-        "status_moved_to_source": "{{count}} item(s) moved to available",
-        "status_moved_to_target": "{{count}} item(s) moved to selected",
+        "status_moved_to_source": "Moved to available: {{count}}",
+        "status_moved_to_target": "Moved to selected: {{count}}",
         "target": "Selected"
       },
       "password_strength": {
@@ -444,8 +443,8 @@ export const formNs: WimNamespace<"form", FormKey> = {
         "move_to_target": "Mover para selecionado",
         "no_data": "Sem dados",
         "source": "Disponível",
-        "status_moved_to_source": "{{count}} item(s) movido(s) para lista disponível",
-        "status_moved_to_target": "{{count}} item(s) movido(s) para lista selecionada",
+        "status_moved_to_source": "Movidos para a lista disponível: {{count}}",
+        "status_moved_to_target": "Movidos para a lista selecionada: {{count}}",
         "target": "Selecionado"
       }
     }

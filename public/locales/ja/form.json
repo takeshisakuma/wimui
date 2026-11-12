@@ -28,8 +28,7 @@
     "collapse_label": "折りたたむ",
     "copied_label": "コピーしました",
     "copy_label": "コードをコピー",
-    "expand_label": "展開",
-    "lines": "{{count}} 行"
+    "expand_label": "展開"
   },
   "code_diff_viewer": {
     "applied": "適用済み",
