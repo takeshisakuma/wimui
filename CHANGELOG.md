@@ -1,5 +1,24 @@
 # wimui
 
+## 0.69.1
+
+### Patch Changes
+
+- 348e6a1: ページ内に置く 3 部品を、画面の幅ではなく置かれた器の幅で切り替えるようにした（T374）。広い画面の中の狭い領域（サイドバーの横など）で崩れていた。
+
+  - `FAQSection`（`layout="left"`）: 見出しと一覧を横に並べるかを、部品の幅で決める。1280px の画面に置いた 360px の器では横並びのままで、見出しが単語の途中で折れていた。見出しと一覧を包む入れ物を 1 段足した（根の `section` と、渡した `className` の位置は変わらない）。
+  - `InteractiveGraph`: 狭いときにミニマップを隠すかを、部品の幅で決める。狭い器では、ミニマップがキャンバスの約 3 分の 1 を塞いでいた。
+  - `Video`: 操作ボタンの並び（再生位置のバーを上の段へ・音量のつまみを隠す）を、映像の幅で決める。狭い器では、再生位置のバーが潰れ、全画面のボタンがはみ出していた。
+  - 広い画面と狭い画面そのものでの見た目は、これまでと同じ。`FAQSection` と `InteractiveGraph` の根には、横並びに置かれても潰れないよう `min-width: var(--wim-width-sm)` を持たせた。
+
+- 1cf4baf: 件数を差し込む内蔵の文言を、数で語形が変わらない形にした（T373）。内蔵の翻訳は複数形を選ばないため、数によって文が崩れていた。
+
+  - `Gallery` の選択数: 2 件以上で「3 item selected」と出ていたのを「3 selected」に（pt は「Selecionados: 3」）。
+  - `Reaction` のボタンの読み上げの名前: 1 件で「Thumbs up, 1 reactions」になっていたのを「Thumbs up, reactions: 1」に（pt も同じ形）。
+  - `DataGrid` のフッターの選択数（pt）: 1 件で「(1 selecionados)」になっていたのを「(selecionados: 1)」に。
+  - `Transfer` の移動の告知: 「2 item(s) moved to selected」を「Moved to selected: 2」に（pt も同じ形）。
+  - どの部品も使っていない内蔵のキー（`gallery.selected_count_plural`・`code_block.lines`）を消した。
+
 ## 0.69.0
 
 ### Minor Changes
