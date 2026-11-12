@@ -1,5 +1,7 @@
 import React, { useState, useRef, useEffect, useMemo } from "react";
 import type { SelectOption, SelectOptionGroup, SelectProps } from "./Select";
+import { getRovingIndex, isRovingKey } from "../../_internal/rovingIndex";
+import { findTypeaheadIndex, isTypeaheadKey, useTypeahead } from "../../_internal/typeahead";
 
 type UseSelectParams = Pick<
   SelectProps,
@@ -122,9 +124,50 @@ export function useSelect({
     onChange?.("");
   };
 
+  // 矢印キー・Home / End の行き先は共通の計算で決める（T370）。無効の項目と区切りには止まらない
+  // （以前は矢印キーだけが飛ばし、Home / End は端の無効の項目にも止まっていた）
+  const isUnavailable = (index: number) =>
+    !!filteredOptions[index]?.disabled || filteredOptions[index]?.type === "separator";
+  const typeahead = useTypeahead();
+
   const handleKeyDown = (e: React.KeyboardEvent) => {
     setIsKeyboardNavigating(true);
     if (disabled) return;
+
+    // 文字を打つと、先頭が一致する項目へ移る（閉じていれば開いて移る）。検索できる設定では、
+    // 打った文字は検索欄に入るので扱わない
+    if (!searchable && isTypeaheadKey(e, typeahead.typing())) {
+      e.preventDefault();
+      const index = findTypeaheadIndex({
+        query: typeahead.push(e.key),
+        current: isOpen ? focusedIndex : -1,
+        count: filteredOptions.length,
+        // ラベルが文字でない（要素を渡された）ときは、値で照合する
+        getText: (i) => {
+          const option = filteredOptions[i];
+          return typeof option?.label === "string" ? option.label : String(option?.value ?? "");
+        },
+        isDisabled: isUnavailable,
+      });
+      if (index >= 0) {
+        setIsOpen(true);
+        setFocusedIndex(index);
+      }
+      return;
+    }
+
+    if (isOpen && isRovingKey(e.key, "vertical")) {
+      e.preventDefault();
+      const next = getRovingIndex({
+        key: e.key,
+        current: focusedIndex,
+        count: filteredOptions.length,
+        orientation: "vertical",
+        isDisabled: isUnavailable,
+      });
+      if (next !== null) setFocusedIndex(next);
+      return;
+    }
 
     switch (e.key) {
       case "Enter":
@@ -157,74 +200,7 @@ export function useSelect({
 
       case "ArrowDown":
         e.preventDefault();
-        if (!isOpen) {
-          setIsOpen(true);
-        } else {
-          setFocusedIndex((prev) => {
-            let next = prev + 1;
-            if (next >= filteredOptions.length) next = 0;
-            while (
-              next < filteredOptions.length &&
-              (filteredOptions[next]?.disabled ||
-                filteredOptions[next]?.type === "separator")
-            ) {
-              next++;
-            }
-            if (next >= filteredOptions.length) {
-              next = 0;
-              while (
-                next < prev &&
-                (filteredOptions[next]?.disabled ||
-                  filteredOptions[next]?.type === "separator")
-              ) {
-                next++;
-              }
-            }
-            return next < filteredOptions.length ? next : prev;
-          });
-        }
-        break;
-
-      case "ArrowUp":
-        e.preventDefault();
-        if (isOpen) {
-          setFocusedIndex((prev) => {
-            let next = prev - 1;
-            if (next < 0) next = filteredOptions.length - 1;
-            while (
-              next >= 0 &&
-              (filteredOptions[next]?.disabled ||
-                filteredOptions[next]?.type === "separator")
-            ) {
-              next--;
-            }
-            if (next < 0) {
-              next = filteredOptions.length - 1;
-              while (
-                next > prev &&
-                (filteredOptions[next]?.disabled ||
-                  filteredOptions[next]?.type === "separator")
-              ) {
-                next--;
-              }
-            }
-            return next >= 0 ? next : prev;
-          });
-        }
-        break;
-
-      case "Home":
-        if (isOpen) {
-          e.preventDefault();
-          setFocusedIndex(0);
-        }
-        break;
-
-      case "End":
-        if (isOpen) {
-          e.preventDefault();
-          setFocusedIndex(filteredOptions.length - 1);
-        }
+        setIsOpen(true);
         break;
     }
   };
