@@ -195,4 +195,22 @@ describe("Menu", () => {
     fireEvent.click(link);
     expect(handleClick).toHaveBeenCalled();
   });
+
+  // T370: 文字の先頭で項目へ移る。無効の項目には移らない
+  it("文字を打つと、先頭が一致する項目へフォーカスが移る（無効の項目は飛ばす）", () => {
+    render(
+      <Menu>
+        <MenuItem>Archive</MenuItem>
+        <MenuItem disabled>Share</MenuItem>
+        <MenuItem>Settings</MenuItem>
+        <MenuItem>Sign out</MenuItem>
+      </Menu>,
+    );
+    const archive = screen.getByRole("menuitem", { name: "Archive" });
+    archive.focus();
+    fireEvent.keyDown(archive, { key: "s" });
+    expect(screen.getByRole("menuitem", { name: "Settings" })).toHaveFocus();
+    fireEvent.keyDown(document.activeElement as HTMLElement, { key: "s" });
+    expect(screen.getByRole("menuitem", { name: "Sign out" })).toHaveFocus();
+  });
 });

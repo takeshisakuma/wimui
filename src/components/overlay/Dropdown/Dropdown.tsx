@@ -4,6 +4,7 @@ import { Slot, Slottable } from "@radix-ui/react-slot";
 import { useFloating, autoUpdate, offset, flip, shift, FloatingPortal } from "@floating-ui/react";
 import { BaseListItem, type BaseListItemProps } from "../../_internal/BaseListItem";
 import { mergeRefs } from "../../_internal/mergeRefs";
+import { findTypeaheadIndex, isTypeaheadKey, useTypeahead } from "../../_internal/typeahead";
 import { Transition } from "../../layout/Transition/Transition";
 import styles from "./dropdown.module.scss";
 
@@ -193,12 +194,30 @@ const DropdownInner = forwardRef<HTMLDivElement, DropdownProps>(
       };
     }, [isOpen, refs.floating, close]);
 
+    const typeahead = useTypeahead();
+
     const handleKeyDown = (e: React.KeyboardEvent) => {
       if (!isOpen) return;
 
+      // 無効の項目は、並びから最初に外す（矢印キーでも先頭一致でも止まらない）
       const items = Array.from(
         (refs.floating.current ?? containerRef.current)?.querySelectorAll('[role="menuitem"]:not([aria-disabled="true"])') || [],
       ) as HTMLElement[];
+
+      // 文字を打つと、文字の先頭が一致する項目へ移る（T370）
+      if (isTypeaheadKey(e, typeahead.typing())) {
+        const next = findTypeaheadIndex({
+          query: typeahead.push(e.key),
+          current: focusedIndex,
+          count: items.length,
+          getText: (i) => items[i].textContent ?? "",
+        });
+        if (next >= 0) {
+          e.preventDefault();
+          setFocusedIndex(next);
+        }
+        return;
+      }
 
       switch (e.key) {
         case "ArrowDown":

@@ -14,6 +14,7 @@ import { Slot, Slottable } from "@radix-ui/react-slot";
 import { BaseListItem, type BaseListItemProps } from "../../_internal/BaseListItem";
 import { Transition } from "../../layout/Transition/Transition";
 import { useInlineFloating } from "../../_internal/useInlineFloating";
+import { findTypeaheadIndex, isTypeaheadKey, useTypeahead } from "../../_internal/typeahead";
 import localStyles from "./menubar.module.scss";
 
 type MenubarContextValue = {
@@ -374,13 +375,31 @@ const MenubarContent = React.forwardRef<HTMLDivElement, MenubarContentProps>(
       items[focusedIndex]?.focus();
     }, [focusedIndex, isOpen]);
 
+    const typeahead = useTypeahead();
+
     const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+      // 無効の項目は、並びから最初に外す（矢印キーでも先頭一致でも止まらない）
       const items = Array.from(
         contentRef.current?.querySelectorAll<HTMLElement>(
           '[role="menuitem"]:not([aria-disabled="true"])',
         ) ?? [],
       );
       if (items.length === 0) return;
+
+      // 文字を打つと、文字の先頭が一致する項目へ移る（T370）
+      if (isTypeaheadKey(event, typeahead.typing())) {
+        const next = findTypeaheadIndex({
+          query: typeahead.push(event.key),
+          current: focusedIndex,
+          count: items.length,
+          getText: (i) => items[i].textContent ?? "",
+        });
+        if (next >= 0) {
+          event.preventDefault();
+          setFocusedIndex(next);
+        }
+        return;
+      }
 
       switch (event.key) {
         case "ArrowDown":

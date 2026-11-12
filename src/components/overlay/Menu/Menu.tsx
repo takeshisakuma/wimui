@@ -6,6 +6,7 @@ import { Transition } from "../../layout/Transition/Transition";
 import { Icon } from "../../media/Icon/Icon";
 import styles from "./menu.module.scss";
 import { ChevronRightIcon } from "@/icon";
+import { findTypeaheadIndex, isTypeaheadKey, useTypeahead } from "../../_internal/typeahead";
 
 // Context to share state between components
 const MenuContext = React.createContext<{
@@ -99,14 +100,32 @@ const MenuInner = ({
   };
 
   const containerRef = React.useRef<HTMLUListElement>(null);
+  const typeahead = useTypeahead();
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
+    // 無効の項目は、並びから最初に外す（矢印キーでも先頭一致でも止まらない）
     const items = Array.from(
       containerRef.current?.querySelectorAll('[role="menuitem"]:not([aria-disabled="true"])') || [],
     ) as HTMLElement[];
     const index = items.indexOf(document.activeElement as HTMLElement);
 
     if (index === -1) return;
+
+    // 文字を打つと、文字の先頭が一致する項目へ移る（T370）
+    if (isTypeaheadKey(e, typeahead.typing())) {
+      const next = findTypeaheadIndex({
+        query: typeahead.push(e.key),
+        current: index,
+        count: items.length,
+        getText: (i) => items[i].textContent ?? "",
+      });
+      if (next >= 0) {
+        e.preventDefault();
+        setFocusedIndex(next);
+        items[next].focus();
+      }
+      return;
+    }
 
     if (mode === "vertical" || mode === "inline") {
       if (e.key === "ArrowDown") {

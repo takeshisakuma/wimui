@@ -286,4 +286,22 @@ describe("Dropdown", () => {
     });
     expect(screen.getByText("Rename")).toBeInTheDocument();
   });
+
+  // T370: 文字の先頭で項目へ移る。無効の項目には移らない
+  it("文字を打つと、先頭が一致する項目へフォーカスが移る（無効の項目は飛ばす）", async () => {
+    render(
+      <Dropdown>
+        <DropdownTrigger>Toggle</DropdownTrigger>
+        <DropdownMenu>
+          <DropdownItem>Duplicate</DropdownItem>
+          <DropdownItem disabled>Rename</DropdownItem>
+          <DropdownItem>Remove</DropdownItem>
+        </DropdownMenu>
+      </Dropdown>,
+    );
+    fireEvent.click(screen.getByText("Toggle"));
+    const menu = screen.getByRole("menu");
+    fireEvent.keyDown(menu, { key: "r" });
+    await waitFor(() => expect(screen.getByRole("menuitem", { name: "Remove" })).toHaveFocus());
+  });
 });
