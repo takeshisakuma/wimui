@@ -416,8 +416,6 @@ git branch -vv | grep ": gone]"   # 追跡先が消えたローカルブラン�
 
 - インラインの style オブジェクトに、shorthand とその longhand を並べている部品（変更のときに気づいた・jsdom 31 の #1099・2026-11-11）。`SimpleGrid` は `gap: var(…)` と `rowGap` を同時に渡していた。var() を含む shorthand は longhand を「置換待ち」にするので、片方を上書きすると、残りの longhand（`column-gap`）が空の宣言で書き出される（ブラウザでは効くが、React は再描画のたびに衝突として警告し、props が変わると片方が消えうる）。SimpleGrid は longhand に分けて直した。**数え方**: `src/components/**/*.tsx` の style オブジェクトのリテラルで、`gap` と `rowGap` / `columnGap`、`padding` と `padding*`、`margin` と `margin*`、`inset` と `top` などが同じオブジェクトに並ぶ箇所（呼び出し側の `...style` は除く）
 
-- JS で部品自身の幅を測って形を変える部品の、しきい値の直書き（2026-11-12 に測った「画面幅で切り替わる部品」の観点から残した分）。`Gallery` は列数を 480 / 576 の数値で切り替えていて、ブレイクポイントのトークンを使っていない。**数え方**: `scripts/generate-responsive.js` の `JS_LAYOUT` の部品で、`ResizeObserver` の中の幅の比較に数値を直に書いている箇所を数える。トークン（`--wim-breakpoint-*`）とずれている値を外れに数える
-
 **測り終えた観点の分け先**（2026-10-10・ユーザーとの相談で決めた）。観点は、基本的に 1 回きりの掃除である。直したあとに同じ手順を隔週で流し直しても、ほぼ毎回 0 件になる。**毎回流す価値があるものは、人ではなく CI に流させる。** 測り終えたら、次の 3 つのどれかに分ける。
 
 | 分け先 | 当てはまるもの | 例 |
@@ -485,6 +483,7 @@ git branch -vv | grep ": gone]"   # 追跡先が消えたローカルブラン�
 | 2026-10-31 | 型が `ReactNode`（か数を含む合併型）の prop を `{prop && …}` で描き、数の `0` で素の「0」が出るか | 該当する prop 548 個の `{prop &&` を数えた → 47 か所（コメントの行を除く）。名前と型を読み、数の意味を持つものを探した | 0 件。どれも題・説明・アイコン・枠の差し込み口で、件数を入れる場所ではない。数の意味を持つのは TabBar の `badge` だけで、#1065 で直り済み。Comment の `author.badge` は札（「投稿者」など） | 起票なし |
 | 2026-11-12 | 件数を差し込む実行時の文言で、複数形が選ばれない（T362 で気づいた） | 実行時の名前空間（`docs_` / `audit` 以外）で、数を差し込む値と `_plural` / `_one` / `_other` のキーを全部（22 件）。束に入っているか（`src/i18n/generated/`）と、部品から使われているかも見た | 利用者に出て崩れるのは 3 件: Gallery（2 件以上で「3 item selected」）・Reaction（1 件で「1 reactions」。読み上げの名前）・DataGrid（pt だけ 1 件で「(1 selecionados)」）。Transfer の `item(s)` は読みにくい。`rating.stars`・`code_block.lines`・`gallery.selected_count_plural` は、どの部品も使っていない | T373 |
 | 2026-11-12 | ページ内に置く部品なのに、画面幅で切り替わる（Registry の「幅の基準」の列から） | `component-responsive.json` の media 15 部品のうち、画面全体に従う 8 部品を除く 7 部品の SCSS を読み、疑いのある 3 部品を 1280px の画面に置いた 360px の器で測った | FAQSection（見出しが単語の途中で折れる）・InteractiveGraph（ミニマップがキャンバスの約 3 分の 1 を塞ぐ）・Video（操作ボタンの列が器を約 53px 越える。絵は未確認）。Box / Stack は画面幅ごとの値を受ける公開 API、Cascader は開いたポップアップで、画面幅が正しい。ButtonGroup は flex の器に `container-type` を付けられない既知の理由がある。Gallery の JS のしきい値（480 / 576 の直書き）は、この回では見ていない | T374 |
+| 2026-11-13 | JS で部品自身の幅を測って形を変える部品の、しきい値の直書き（2026-11-12 の観点から残した分） | `JS_LAYOUT` の 4 部品（Gallery・CodeDiffViewer・OverflowList・PivotTable）の `ResizeObserver` の中の幅の比較を読み、`--wim-breakpoint-*` と突き合わせた | Gallery（480 / 576 の直書き。値は xs / sm と同じ）・CodeDiffViewer（640。どのトークンにも無い）。JS 側のトークンの写し `BREAKPOINTS` に、ずれを見張るガードが無い | T375 |
 
 ---
 
