@@ -5,7 +5,7 @@ import { componentsNs } from "@/i18n/generated/components";
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import { OverlayBase } from "../../_internal/OverlayBase";
 import { Icon } from "../Icon/Icon";
-import { VisuallyHidden } from "../../layout/VisuallyHidden/VisuallyHidden";
+import { useAnnounce } from "../../_internal/useAnnounce";
 import { ChevronLeftIcon, ChevronRightIcon, CloseIcon, PlusIcon, MinusIcon } from "@/icon";
 import styles from "./lightbox.module.scss";
 
@@ -249,19 +249,22 @@ export const LightboxContent = ({
   // 画像を送ったことを、読み上げで告げる。「次へ」を押してもフォーカスは同じボタンに残り、
   // ダイアログの名前が差し替わるだけなので、告げないと何も読まれない（ナレーター + Chrome の
   // 実機で無音だった）。開いたときは告げない（ダイアログの名前が読まれる）。
-  const [announcement, setAnnouncement] = useState("");
-  if (!open && announcement) setAnnouncement("");
+  const { announce, clear: clearAnnouncement, region: announcementRegion } = useAnnounce();
+  // 閉じたら空に戻す（次に開いたとき、前の画像の文が残っていないように）
+  useEffect(() => {
+    if (!open) clearAnnouncement();
+  }, [open, clearAnnouncement]);
 
   const goTo = useCallback(
     (index: number) => {
       const item = items[index];
       const name = item?.title || item?.alt;
       const status = t("lightbox.image_status", { current: index + 1, total: items.length });
-      setAnnouncement(name ? `${status}: ${name}` : status);
+      announce(name ? `${status}: ${name}` : status);
       setCurrentIndex(index);
       setZoom(1);
     },
-    [items, setCurrentIndex, t],
+    [items, setCurrentIndex, t, announce],
   );
 
   const handlePrev = useCallback(() => {
@@ -317,9 +320,7 @@ export const LightboxContent = ({
       }}
     >
       <div className={styles.container}>
-        <VisuallyHidden role="status" aria-atomic="true">
-          {announcement}
-        </VisuallyHidden>
+        {announcementRegion}
         {/* Header/Controls */}
         <div className={styles.header}>
           {showCounter && items.length > 1 && (

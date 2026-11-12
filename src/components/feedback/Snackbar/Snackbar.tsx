@@ -6,7 +6,7 @@ import React, {
   useContext,
 } from "react";
 import { Button } from "../../form/Button/Button";
-import { VisuallyHidden } from "../../layout/VisuallyHidden/VisuallyHidden";
+import { useAnnounceValue } from "../../_internal/useAnnounce";
 import classNames from "classnames";
 import { FeedbackIcon } from "../../_internal/FeedbackIcon";
 import { FeedbackCloseButton } from "../../_internal/FeedbackCloseButton";
@@ -139,6 +139,8 @@ export const Snackbar = ({
     };
 
     const role = intent === "danger" || intent === "warning" ? "alert" : "status";
+    // 開いたら読み、閉じたら空に戻す（最初の描画から開いているときは、前と同じく文を入れておく）
+    const announcementRegion = useAnnounceValue(open ? message : "", { role, initial: true });
 
     return (
       // 包みは、閉じているあいだも置いておく（透明で、クリックも通す）。中に、画面に見えない
@@ -151,9 +153,7 @@ export const Snackbar = ({
           styles[position],
         )}
       >
-        <VisuallyHidden role={role} aria-atomic="true">
-          {open ? message : ""}
-        </VisuallyHidden>
+        {announcementRegion}
         {(isRendered || open) && (
         <div
           className={classNames("wim-snackbar", 

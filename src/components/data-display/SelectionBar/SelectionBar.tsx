@@ -4,7 +4,7 @@ import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { dataDisplayNs } from "@/i18n/generated/data-display";
 import { Toolbar } from "../../layout/Toolbar/Toolbar";
 import { Button } from "../../form/Button/Button";
-import { VisuallyHidden } from "../../layout/VisuallyHidden/VisuallyHidden";
+import { useAnnounceValue } from "../../_internal/useAnnounce";
 import { useMergedRef } from "../../../hooks/useMergedRef";
 import localStyles from "./selection-bar.module.scss";
 
@@ -95,15 +95,10 @@ export const SelectionBar = React.forwardRef<HTMLDivElement, SelectionBarProps>(
     const mergedRef = useMergedRef(ref, rootRef);
     const open = count > 0;
 
-    // 告知は、先に在る status 領域の文字を書き換える形でしか読まれない。初回の描画では
-    // 何も変わっていないので空のままにし、件数が変わったときだけ書く
-    const [announcement, setAnnouncement] = React.useState("");
-    const previousCount = React.useRef(count);
-    React.useEffect(() => {
-      if (previousCount.current === count) return;
-      previousCount.current = count;
-      setAnnouncement(count > 0 ? t("selection_bar.selected", { count }) : t("selection_bar.cleared"));
-    }, [count, t]);
+    // 件数が変わったときだけ告げる（初回の描画では告げない）
+    const announcementRegion = useAnnounceValue(
+      open ? t("selection_bar.selected", { count }) : t("selection_bar.cleared"),
+    );
 
     // 閉じると中の要素ごと DOM から消え、フォーカスが body へ落ちる。経路は 2 つある:
     // ①解除のボタンのように、バーの中の要素がそのまま消える
@@ -143,9 +138,7 @@ export const SelectionBar = React.forwardRef<HTMLDivElement, SelectionBarProps>(
         className={classNames("wim-selection-bar", localStyles.root, className)}
         onFocus={handleFocus}
       >
-        <VisuallyHidden role="status" aria-atomic="true">
-          {announcement}
-        </VisuallyHidden>
+        {announcementRegion}
         {open && (
           <Toolbar size="sm" aria-label={ariaLabel ?? t("selection_bar.label")} className={localStyles.bar}>
             <span className={localStyles.count}>

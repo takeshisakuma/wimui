@@ -4,10 +4,11 @@ import React, {
   useCallback,
   createContext,
   useContext,
+  useRef,
 } from "react";
 import classNames from "classnames";
 import { Transition } from "../../layout/Transition/Transition";
-import { VisuallyHidden } from "../../layout/VisuallyHidden/VisuallyHidden";
+import { useAnnounce, useAnnounceValue } from "../../_internal/useAnnounce";
 import { FeedbackIcon } from "../../_internal/FeedbackIcon";
 import { FeedbackCloseButton } from "../../_internal/FeedbackCloseButton";
 import { FeedbackIntent } from "../../../types/tokens";
@@ -96,6 +97,10 @@ export const Toast = ({
   }, [open, duration, id, onClose, internalVisible, handleClose]);
 
   const announcedByProvider = useContext(ToastAnnouncedByProviderContext);
+  // 単体で `open` を切り替えて使うときの告知。出たら読み、消えたら空に戻す（最初の描画では告げない）
+  const announcementRegion = useAnnounceValue(open && internalVisible ? toastAnnouncement(title, description) : "", {
+    initial: true,
+  });
 
   const toast = (
     <Transition
@@ -143,9 +148,7 @@ export const Toast = ({
   if (announcedByProvider) return toast;
   return (
     <div className={styles.live}>
-      <VisuallyHidden role="status" aria-atomic="true">
-        {open && internalVisible ? toastAnnouncement(title, description) : ""}
-      </VisuallyHidden>
+      {announcementRegion}
       {toast}
     </div>
   );
@@ -184,18 +187,30 @@ export const ToastProvider = ({
   const [toasts, setToasts] = useState<ToastItem[]>([]);
   // 読み上げるのは、出したばかりのトースト。そのトーストが消えたら、領域を空に戻す。
   // 「残っている中でいちばん新しいもの」にはしない ── 新しいほうが先に消えると、前のトーストを読み直す。
-  const [announced, setAnnounced] = useState<ToastItem | null>(null);
+  // 同じ文のトーストを続けて出しても、useAnnounce がいったん空にしてから入れるので読まれる
+  const { announce, clear, region } = useAnnounce();
+  const announcedId = useRef<string | null>(null);
 
-  const show = useCallback((toast: Omit<ToastItem, "id">) => {
-    const id = Math.random().toString(36).substr(2, 9);
-    setToasts((prev) => [...prev, { ...toast, id }]);
-    setAnnounced({ ...toast, id });
-  }, []);
+  const show = useCallback(
+    (toast: Omit<ToastItem, "id">) => {
+      const id = Math.random().toString(36).substr(2, 9);
+      setToasts((prev) => [...prev, { ...toast, id }]);
+      announcedId.current = id;
+      announce(toastAnnouncement(toast.title, toast.description));
+    },
+    [announce],
+  );
 
-  const remove = useCallback((id: string) => {
-    setToasts((prev) => prev.filter((t) => t.id !== id));
-    setAnnounced((prev) => (prev?.id === id ? null : prev));
-  }, []);
+  const remove = useCallback(
+    (id: string) => {
+      setToasts((prev) => prev.filter((t) => t.id !== id));
+      if (announcedId.current === id) {
+        announcedId.current = null;
+        clear();
+      }
+    },
+    [clear],
+  );
 
   return (
     <ToastContext.Provider value={{ show, remove }}>
@@ -207,9 +222,7 @@ export const ToastProvider = ({
         )}
       >
         {/* 最初から置いておく、画面に見えない読み上げの領域。トーストが出るたびに、文字が書き換わる。 */}
-        <VisuallyHidden role="status" aria-atomic="true">
-          {announced ? toastAnnouncement(announced.title, announced.description) : ""}
-        </VisuallyHidden>
+        {region}
         <ToastAnnouncedByProviderContext.Provider value={true}>
           {toasts.map((toast) => (
             <Toast key={toast.id} {...toast} onClose={() => remove(toast.id)} />

@@ -10,7 +10,7 @@ import { Slot, Slottable } from "@radix-ui/react-slot";
 import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
 import { useMergedRef } from "../../../hooks/useMergedRef";
-import { VisuallyHidden } from "../../layout/VisuallyHidden/VisuallyHidden";
+import { useAnnounce } from "../../_internal/useAnnounce";
 import styles from "./carousel.module.scss";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { componentsNs } from "@/i18n/generated/components";
@@ -223,12 +223,12 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
   // 利用者がスライドを送ったことを、読み上げで告げる。押してもフォーカスは同じボタンに残り、
   // スライドは最初から全部描いてあって位置が動くだけなので、告げないと何も読まれない
   // （ナレーター + Chrome の実機で、インジケーターで送っても無音だった）。自動再生では告げない。
-  const [announcement, setAnnouncement] = useState("");
+  const { announce: announceText, region: announcementRegion } = useAnnounce();
   const logicalIndex = loop ? currentIndex % originalItemCount : currentIndex;
   const lastIndex = loop ? originalItemCount - 1 : Math.max(originalItemCount - displaySlides, 0);
   const announce = (index: number) => {
     if (isTransitioning || index === logicalIndex) return;
-    setAnnouncement(mergedLabels.slideStatus(index + 1, originalItemCount));
+    announceText(mergedLabels.slideStatus(index + 1, originalItemCount));
   };
   const userGoTo = (index: number) => {
     announce(index);
@@ -289,9 +289,7 @@ export const Carousel = forwardRef<HTMLDivElement, CarouselProps>(({
   // 根の中身（スライドの枠・前後のボタン・インジケーター）。
   const body = (
     <>
-      <VisuallyHidden role="status" aria-atomic="true">
-        {announcement}
-      </VisuallyHidden>
+      {announcementRegion}
       <div className={styles.viewport}>
         <div
           ref={trackRef}

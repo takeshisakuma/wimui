@@ -1,11 +1,11 @@
-import React, { useMemo, useCallback, useState } from "react";
+import React, { useMemo, useCallback } from "react";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { commonNs } from "@/i18n/generated/common";
 import classNames from "classnames";
 import { Table } from "../Table/Table";
 import { Checkbox } from "../../form/Checkbox/Checkbox";
 import { Pagination } from "../../navigation/Pagination/Pagination";
-import { VisuallyHidden } from "../../layout/VisuallyHidden/VisuallyHidden";
+import { useAnnounce } from "../../_internal/useAnnounce";
 import { useFixedColumns, type FixedColumnInfo } from "./useFixedColumns";
 import { useDataGridKeyboard } from "./useDataGridKeyboard";
 import { useInfiniteScroll } from "./useInfiniteScroll";
@@ -245,7 +245,7 @@ export function DataGrid<T extends Record<string, unknown>>({
   // 並べ替えたことを、読み上げで告げる。見出しを押してもフォーカスは同じ見出しに残り、変わるのは
   // `aria-sort` と行の並びだけなので、告げないと何も読まれない（ナレーター + Chrome の実機で、
   // 昇順・降順が読まれなかった）。先に在る領域の文字を書き換える（Pagination と同じ形）。
-  const [sortAnnouncement, setSortAnnouncement] = useState("");
+  const { announce: announceSort, region: sortAnnouncementRegion } = useAnnounce();
 
   return (
     <div
@@ -260,9 +260,7 @@ export function DataGrid<T extends Record<string, unknown>>({
       )}
       aria-busy={isBusy || undefined}
     >
-      <VisuallyHidden role="status" aria-atomic="true">
-        {sortAnnouncement}
-      </VisuallyHidden>
+      {sortAnnouncementRegion}
       <div
         className={styles.container}
         style={{ height, maxHeight }}
@@ -337,7 +335,7 @@ export function DataGrid<T extends Record<string, unknown>>({
                               : "asc"
                           : "asc";
                       const column = typeof col.title === "string" ? col.title : col.key;
-                      setSortAnnouncement(
+                      announceSort(
                         nextDir === "asc"
                           ? t("dataGrid.sorted_ascending", { column })
                           : nextDir === "desc"

@@ -420,6 +420,7 @@
     "intents:build": "node scripts/generate-intents.js",
     "check:intents": "node scripts/generate-intents.js --check",
     "check:responsive": "node scripts/generate-responsive.js --check",
+    "check:announce": "node scripts/check-announce-regions.js",
     "check:intents:scss": "node scripts/check-intents-scss.js",
     "check:mono": "node scripts/check-mono-family.js",
     "check:heading-lh": "node scripts/check-heading-line-height.js",
