@@ -286,6 +286,15 @@
     "with_children": "子要素を含む",
     "with_icons": "アイコン付き",
     "with_label": "Label",
-    "with_submenu": "Submenu"
+    "with_submenu": "Submenu",
+    "registry_width_header": "幅の基準",
+    "registry_width_legend": "幅が変わったとき、何を基準に形を切り替えるか（実装から読み取った値）。",
+    "registry_width_media": "画面幅",
+    "registry_width_media_desc": "画面（ビューポート）の幅で切り替わる（メディアクエリ）。サイドバーの横の狭い領域に置いても、画面全体の幅に従う。",
+    "registry_width_container": "置き場所の幅",
+    "registry_width_container_desc": "置かれた領域の幅で切り替わる（コンテナクエリ）。",
+    "registry_width_js": "自身の幅（JS）",
+    "registry_width_js_desc": "自身の幅を JavaScript で測って形を変える（列数・表示の型・入りきらない項目を「…」へ移す）。",
+    "registry_width_none": "幅によって形は切り替わらない。"
   }
 }

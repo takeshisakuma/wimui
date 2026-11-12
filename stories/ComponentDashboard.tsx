@@ -1,6 +1,8 @@
 import React from "react";
 import { T } from "./T";
 import { PlatformIcons } from "./PlatformIcons";
+import { VisuallyHidden } from "../src/components/layout/VisuallyHidden/VisuallyHidden";
+import responsiveData from "../src/data/component-responsive.json";
 import "./componentDashboard.scss";
 
 interface ComponentEntry {
@@ -9,6 +11,37 @@ interface ComponentEntry {
   pc: boolean;
   mobile: boolean;
 }
+
+type WidthKind = "media" | "container" | "js";
+
+// 実装（SCSS のクエリと ResizeObserver）から生成した値。手で書かない
+// （`npm run generate:responsive`。ずれは `--check` が落とす）。
+const responsive = responsiveData as Record<string, WidthKind[]>;
+
+const WIDTH_KINDS: WidthKind[] = ["container", "media", "js"];
+
+const WidthBasis = ({ name }: { name: string }) => {
+  const kinds = responsive[name];
+  if (!kinds) return null;
+  if (kinds.length === 0) {
+    return (
+      <>
+        <span aria-hidden="true">—</span>
+        <VisuallyHidden><T k="doc.registry_width_none" /></VisuallyHidden>
+      </>
+    );
+  }
+  return (
+    <>
+      {kinds.map((kind, i) => (
+        <React.Fragment key={kind}>
+          {i > 0 && " / "}
+          <T k={`doc.registry_width_${kind}`} />
+        </React.Fragment>
+      ))}
+    </>
+  );
+};
 
 interface Category {
   id: string;
@@ -84,6 +117,19 @@ export const ComponentDashboard = ({ data }: { data: Category[] }) => {
         </div>
       </div>
 
+      <h2><T k="doc.registry_width_header" /></h2>
+      <p><T k="doc.registry_width_legend" /></p>
+      <dl className="wim-component-dashboard__width-legend">
+        {WIDTH_KINDS.map((kind) => (
+          <React.Fragment key={kind}>
+            <dt><T k={`doc.registry_width_${kind}`} /></dt>
+            <dd><T k={`doc.registry_width_${kind}_desc`} /></dd>
+          </React.Fragment>
+        ))}
+        <dt>—</dt>
+        <dd><T k="doc.registry_width_none" /></dd>
+      </dl>
+
       {data.map((cat) => (
         <React.Fragment key={cat.id}>
           <h2 id={cat.id}>
@@ -104,6 +150,7 @@ export const ComponentDashboard = ({ data }: { data: Category[] }) => {
                 <th><T k="doc.std_column_component" /></th>
                 <th><T k="table.header_description" /></th>
                 <th><T k="table.header_platform" /></th>
+                <th><T k="doc.registry_width_header" /></th>
               </tr>
             </thead>
             <tbody>
@@ -112,6 +159,7 @@ export const ComponentDashboard = ({ data }: { data: Category[] }) => {
                   <td>{comp.name}</td>
                   <td><p><T k={comp.descKey} /></p></td>
                   <td><PlatformIcons pc={comp.pc} mobile={comp.mobile} /></td>
+                  <td><WidthBasis name={comp.name} /></td>
                 </tr>
               ))}
             </tbody>

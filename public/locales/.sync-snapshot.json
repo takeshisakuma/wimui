@@ -3196,7 +3196,16 @@
       "with_children": "Children",
       "with_icons": "With Icons",
       "with_label": "Label",
-      "with_submenu": "Submenu"
+      "with_submenu": "Submenu",
+      "registry_width_header": "Adapts to",
+      "registry_width_legend": "What the layout switches on when the width changes (read from the implementation).",
+      "registry_width_media": "Viewport",
+      "registry_width_media_desc": "Switches on the viewport width (media queries). Placed in a narrow pane next to a sidebar, it still follows the whole screen.",
+      "registry_width_container": "Container",
+      "registry_width_container_desc": "Switches on the width of the area it is placed in (container queries).",
+      "registry_width_js": "Own width (JS)",
+      "registry_width_js_desc": "Measures its own width in JavaScript and changes its layout (columns, display mode, items moved into an overflow menu).",
+      "registry_width_none": "Its layout does not switch with width."
     },
     "config": {
       "install_title": "Install",

@@ -416,6 +416,8 @@ git branch -vv | grep ": gone]"   # 追跡先が消えたローカルブラン�
 
 - インラインの style オブジェクトに、shorthand とその longhand を並べている部品（変更のときに気づいた・jsdom 31 の #1099・2026-11-11）。`SimpleGrid` は `gap: var(…)` と `rowGap` を同時に渡していた。var() を含む shorthand は longhand を「置換待ち」にするので、片方を上書きすると、残りの longhand（`column-gap`）が空の宣言で書き出される（ブラウザでは効くが、React は再描画のたびに衝突として警告し、props が変わると片方が消えうる）。SimpleGrid は longhand に分けて直した。**数え方**: `src/components/**/*.tsx` の style オブジェクトのリテラルで、`gap` と `rowGap` / `columnGap`、`padding` と `padding*`、`margin` と `margin*`、`inset` と `top` などが同じオブジェクトに並ぶ箇所（呼び出し側の `...style` は除く）
 
+- ページ内に置く部品なのに、画面幅（メディアクエリ）で切り替わる部品（変更のときに気づいた・Registry の「幅の基準」列・2026-11-12）。`docs/rules/implementation.md` の基準では、サイドバーの横に置かれうる部品はコンテナクエリにする。2026-11-12 の時点で media は 15 部品。AppShell / Navbar / Sidebar / HamburgerMenu / Footer / BottomSheet / Lightbox / CommandPalette のように画面全体に従う部品のほかに、Box / Stack / ButtonGroup / Cascader / FAQSection / InteractiveGraph / Video がある（ButtonGroup は、flex の器に `container-type` を付けられないという既知の理由があり、ドキュメントにも書いてある）。同じ回に、JS で幅を測る部品のしきい値も見る。`Gallery` は 480 / 576 を数値で直に書いていて、ブレイクポイントのトークンを使っていない。**数え方**: `src/data/component-responsive.json` で `media` を持つ部品を並べ、各部品の SCSS でクエリが切り替えている箇所を読む。狭い器（幅 360px の枠を 1280px の画面に置く）に置いて崩れるものを外れに数える。JS のほうは、`JS_LAYOUT`（`scripts/generate-responsive.js`）の部品の数値のしきい値を数える
+
 **測り終えた観点の分け先**（2026-10-10・ユーザーとの相談で決めた）。観点は、基本的に 1 回きりの掃除である。直したあとに同じ手順を隔週で流し直しても、ほぼ毎回 0 件になる。**毎回流す価値があるものは、人ではなく CI に流させる。** 測り終えたら、次の 3 つのどれかに分ける。
 
 | 分け先 | 当てはまるもの | 例 |
