@@ -41,6 +41,7 @@ const JS_LAYOUT = {
 const JS_OTHER = {
   Anchor: "マーカーの位置合わせ",
   Barcode: "はみ出したときだけスクロール領域をタブ位置にする",
+  DataGrid: "左に固定した列の位置を、選択の列の実際の幅から積む",
   ScheduleView: "はみ出した領域をタブ位置にする",
   ScrollProgress: "スクロール量の再計算",
   Spoiler: "中身の高さを測って畳むかを決める",

@@ -10,16 +10,25 @@ function parsePixelWidth(width: string | number | undefined): number {
   return 0;
 }
 
+// 選択の列を測る前（初回の描画・ResizeObserver の無い環境）の見込み
+const SELECTION_FALLBACK_WIDTH = 60;
+
+/**
+ * @param selectionWidth 選択の列の、測った幅（px）。選択の列は中身（チェックボックスと
+ *   密度で変わる余白）の幅なので、決め打ちの値で積むと、横にスクロールしたときに
+ *   左に固定した列とのあいだに隙間や重なりができる
+ */
 export function useFixedColumns<T>(
   columns: DataGridColumn<T>[],
   selection: boolean,
+  selectionWidth?: number,
 ): {
   fixedLeftOffsets: Record<string, FixedColumnInfo>;
   fixedRightOffsets: Record<string, FixedColumnInfo>;
 } {
   return useMemo(() => {
     const fixedLeftOffsets: Record<string, FixedColumnInfo & { isLast?: boolean; isFirst?: boolean }> = {};
-    let currentLeftOffset = selection ? 60 : 0;
+    let currentLeftOffset = selection ? (selectionWidth ?? SELECTION_FALLBACK_WIDTH) : 0;
     let currentLeftZIndex = 100;
 
     const fixedLeft = columns.filter(col => col.fixed === "left");
@@ -47,5 +56,5 @@ export function useFixedColumns<T>(
     });
 
     return { fixedLeftOffsets, fixedRightOffsets };
-  }, [columns, selection]);
+  }, [columns, selection, selectionWidth]);
 }
