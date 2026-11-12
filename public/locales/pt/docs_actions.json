@@ -183,7 +183,7 @@
     "copybutton_scenario_1": "Trechos de Código: Permite que desenvolvedores copiem comandos de terminal ou chaves de API com um clique.",
     "copybutton_scenario_2": "Links de Indicação: Permite que usuários compartilhem facilmente seus URLs de convite exclusivos a partir de uma página de perfil.",
     "copybutton_title": "Copiar para a área de transferência",
-    "dropdown_keyboard_desc": "Tab foca o gatilho do dropdown. Enter ou Espaço abre o dropdown. As teclas de seta navegam pelas opções. Enter seleciona a opção focada. Escape fecha o dropdown.",
+    "dropdown_keyboard_desc": "Tab foca o gatilho do dropdown. Enter ou Espaço abre o dropdown. As teclas de seta navegam pelas opções. Enter seleciona a opção focada. Escape fecha o dropdown. Digitar letras move para a próxima opção que começa com elas, ignorando as desativadas.",
     "floatButton_desc": "Botões de ação flutuantes",
     "floatbutton_a11y_desc": "O nome acessível vem de aria-label e, depois, de label quando é uma string. Não há outro fallback: o nome do ícone nunca é usado como nome, porque um identificador como \"PlusIcon\" não diz nada sobre a ação a quem usa leitor de tela. Um botão apenas com ícone e sem nome registra um aviso em desenvolvimento e falha nas verificações automáticas de acessibilidade, então a omissão é detectada antes da publicação. Sempre passe um nome que descreva o que acontece, pois um botão flutuante não tem texto ao redor de onde tomar significado emprestado.",
     "floatbutton_anatomy_content": "O ícone ou rótulo central exibido dentro do gatilho flutuante.",

@@ -295,6 +295,7 @@
     "registry_width_container_desc": "置かれた領域の幅で切り替わる（コンテナクエリ）。",
     "registry_width_js": "自身の幅（JS）",
     "registry_width_js_desc": "自身の幅を JavaScript で測って形を変える（列数・表示の型・入りきらない項目を「…」へ移す）。",
-    "registry_width_none": "幅によって形は切り替わらない。"
+    "registry_width_none": "幅によって形は切り替わらない。",
+    "kb_typeahead": "打った文字で名前が始まる、次の項目へ移る（無効の項目は飛ばす）"
   }
 }

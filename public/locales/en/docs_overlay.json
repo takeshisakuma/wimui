@@ -406,7 +406,7 @@
     "menu_comp_menuitem_desc": "Individual menu items. Supports click events and icons.",
     "menu_comp_submenu_desc": "Expandable submenus. Requires a unique itemKey.",
     "menu_desc": "General menus",
-    "menu_keyboard_desc": "Arrow keys navigate menu items. Enter or Space activates the focused item. Escape closes submenus or the menu.",
+    "menu_keyboard_desc": "Arrow keys navigate menu items. Enter or Space activates the focused item. Escape closes submenus or the menu. Typing letters moves to the next option that starts with them, skipping disabled ones.",
     "menu_long_desc": "A versatile menu component for navigation or action lists. Supports submenus, grouping, and multiple display modes.",
     "menu_props_default_open_keys": "Array of keys for submenu opened by default",
     "menu_props_mode": "Menu display mode",

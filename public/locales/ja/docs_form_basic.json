@@ -371,7 +371,7 @@
     "select_key_next": "ArrowDown",
     "select_key_open": "Enter / Space / ArrowDown / ArrowUp",
     "select_key_prev": "ArrowUp",
-    "select_keyboard_desc": "Tab キーでセレクトにフォーカスします。Enter または Space でドロップダウンを開きます。矢印キーでオプションを移動します。Escape キーで選択せずに閉じます。",
+    "select_keyboard_desc": "Tab キーでセレクトにフォーカスします。Enter または Space でドロップダウンを開きます。矢印キーでオプションを移動します。Escape キーで選択せずに閉じます。文字を打つと、その文字で始まる次の項目へ移ります（無効の項目は飛ばします）。",
     "select_long_desc": "ユーザーが定義済みの選択肢から1つを選択するためのドロップダウンメニューです。",
     "select_op_close": "ドロップダウンを閉じる",
     "select_op_first": "Homeキーで最初のオプションにフォーカス",

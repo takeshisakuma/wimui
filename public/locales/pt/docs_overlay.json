@@ -407,7 +407,7 @@
     "menu_comp_menuitem_desc": "Itens de menu individuais. Suporta eventos de clique e ícones.",
     "menu_comp_submenu_desc": "Submenus expansíveis. Requer uma itemKey única.",
     "menu_desc": "Menus gerais",
-    "menu_keyboard_desc": "As teclas de seta navegam pelos itens do menu. Enter ou Espaço ativa o item focado. Escape fecha submenus ou o menu.",
+    "menu_keyboard_desc": "As teclas de seta navegam pelos itens do menu. Enter ou Espaço ativa o item focado. Escape fecha submenus ou o menu. Digitar letras move para a próxima opção que começa com elas, ignorando as desativadas.",
     "menu_long_desc": "Um componente de menu versátil para navegação ou listas de ações. Suporta submenus, agrupamento e múltiplos modos de exibição.",
     "menu_props_default_open_keys": "Matriz de chaves para submenu aberto por padrão",
     "menu_props_mode": "Modo de exibição do menu",

@@ -371,7 +371,7 @@
     "select_key_next": "Seta Baixo",
     "select_key_open": "Enter / Espaço",
     "select_key_prev": "Seta Cima",
-    "select_keyboard_desc": "O Tab foca a seleção. Enter ou Espaço abre o menu suspenso. As teclas de seta navegam pelas opções. Escape fecha sem seleção.",
+    "select_keyboard_desc": "O Tab foca a seleção. Enter ou Espaço abre o menu suspenso. As teclas de seta navegam pelas opções. Escape fecha sem seleção. Digitar letras move para a próxima opção que começa com elas, ignorando as desativadas.",
     "select_long_desc": "Um menu suspenso para os usuários selecionarem uma opção de um conjunto predefinido.",
     "select_op_close": "Fechar menu suspenso",
     "select_op_first": "Focar primeira opção com a tecla Home",
