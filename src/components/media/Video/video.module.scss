@@ -128,6 +128,10 @@
     }
   }
   
+  // 操作の層は、映像の左右いっぱいに重ねてあるので、幅は映像の幅で決まる。ここを器にして、
+  // 中の並び・再生位置・音量のつまみを、画面ではなくこの幅で切り替える（T374。以前は画面の幅で
+  // 切り替えていたので、1280px の画面に置いた 360px の器では、再生位置のバーが潰れ、全画面の
+  // ボタンがはみ出していた）。根は幅を渡されないと中身で決まりうるので、器にしない
   .customControls {
     position: absolute;
     right: 0;
@@ -138,6 +142,10 @@
     flex-direction: column;
     gap: var(--wim-spacing-sm);
     padding: var(--wim-spacing-md);
+
+    // shrinkable-ok: 映像の上に重ねた絶対配置の層で、flex の子にならず、幅は left / right で決まる。
+    // 下限を足すと、小さい映像では層が映像からはみ出す
+    container-type: inline-size;
     background: linear-gradient(to top, var(--wim-color-overlay-strong) 0%, transparent 100%);
     opacity: 0;
     transition: opacity var(--wim-transition-base);
@@ -149,7 +157,7 @@
     align-items: center;
     width: 100%;
   
-    @include bp.down("sm") {
+    @include bp.container-down("sm") {
       flex-wrap: wrap;
       gap: var(--wim-spacing-xs);
       justify-content: center;
@@ -202,7 +210,7 @@
     font-variant-numeric: tabular-nums;
     color: var(--wim-color-text-on-overlay);
   
-    @include bp.down("sm") {
+    @include bp.container-down("sm") {
       flex: 1 1 100%;
       order: -1;
       padding-bottom: var(--wim-spacing-xs);
@@ -308,7 +316,7 @@
     }
   
     // モバイルでは音量スライダーを非表示（ミュートボタンのみ残す）
-    @include bp.down("sm") {
+    @include bp.container-down("sm") {
       display: none;
     }
   }

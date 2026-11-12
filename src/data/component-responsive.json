@@ -99,7 +99,7 @@
   "EmptyState": [],
   "ErrorBoundary": [],
   "FAQSection": [
-    "media"
+    "container"
   ],
   "FieldCharacterCount": [],
   "FieldError": [],
@@ -147,7 +147,7 @@
   "InputMask": [],
   "InteractiveArea": [],
   "InteractiveGraph": [
-    "media"
+    "container"
   ],
   "JsonDiffViewer": [],
   "JsonViewer": [],
@@ -307,7 +307,7 @@
   "Treemap": [],
   "UsageMeter": [],
   "Video": [
-    "media"
+    "container"
   ],
   "VirtualList": [],
   "VisuallyHidden": [],

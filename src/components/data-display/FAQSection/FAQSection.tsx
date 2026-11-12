@@ -62,6 +62,9 @@ export const FAQSection = ({
       aria-label={ariaLabelledBy ? undefined : ariaLabelAttr}
       aria-labelledby={ariaLabelledBy}
     >
+      {/* 並び（縦 / 見出しを左に置く横）は、この入れ物が受け持つ。根は置かれた器の幅を測る
+          コンテナで、コンテナクエリは器そのものではなく中の要素にしか効かないため（T374） */}
+      <div className={styles.layout}>
       {hasHeader && (
         <div className={styles.header}>
           {title && (
@@ -95,6 +98,7 @@ export const FAQSection = ({
             </Accordion.Item>
           ))}
         </Accordion>
+      </div>
       </div>
     </section>
   );

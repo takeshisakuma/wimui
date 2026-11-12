@@ -1,27 +1,38 @@
 @use "../../../tokens/breakpoints" as breakpoints;
 
 @layer component {
+  // 根は、置かれた器の幅を測るコンテナ。見出しを左に置く横並びは、画面の幅ではなく
+  // この幅で切り替える（T374）。以前は画面の幅で切り替えていたので、1280px の画面に置いた
+  // 360px の器では横並びのままになり、見出しが単語の途中で折れていた
   .root {
+    width: 100%;
+
+    /* `container-type: inline-size` は内容の寸法を 0 として扱い、flex の自動最小サイズの
+       保護が消える。横並びに置かれたときの下限（ChatUI・CodeBlock と同じ手当て。T61） */
+    min-width: var(--wim-width-sm);
+    container-type: inline-size;
+  }
+
+  .layout {
     display: flex;
     flex-direction: column;
     gap: var(--wim-spacing-xl);
-    width: 100%;
+  }
 
-    &.layout-left {
-      @include breakpoints.up(md) {
-        flex-direction: row;
-        align-items: flex-start;
-  
-        .header {
-          position: sticky;
-          top: var(--wim-spacing-md);
-          flex: 1;
-          margin-bottom: 0;
-        }
-  
-        .content {
-          flex: 2;
-        }
+  .layout-left .layout {
+    @include breakpoints.container-up(md) {
+      flex-direction: row;
+      align-items: flex-start;
+
+      .header {
+        position: sticky;
+        top: var(--wim-spacing-md);
+        flex: 1;
+        margin-bottom: 0;
+      }
+
+      .content {
+        flex: 2;
       }
     }
   }
