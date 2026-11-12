@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { commonNs } from "@/i18n/generated/common";
 import classNames from "classnames";
@@ -7,7 +7,7 @@ import { Icon } from "../../media/Icon/Icon";
 import { Select } from "../../form/Select/Select";
 import { Input } from "../../form/Input/Input";
 import { Button } from "../../form/Button/Button";
-import { VisuallyHidden } from "../../layout/VisuallyHidden/VisuallyHidden";
+import { useAnnounce } from "../../_internal/useAnnounce";
 import styles from "./pagination.module.scss";
 import { ChevronLeftIcon, ChevronRightIcon } from "@/icon";
 
@@ -160,17 +160,15 @@ export const Pagination = ({
   // ページが変わったことを、読み上げで告げる。「次へ」を押してもフォーカスは同じボタンに残り、
   // 変わるのは利用者が置いた中身（表の行など）なので、告げないと、押して何が起きたかが分からない
   // （ナレーター + Chrome の実機で、DataGrid のページ送りが無音だった）。最初の描画では告げない。
-  const [announcedPage, setAnnouncedPage] = useState(current);
-  const [announcement, setAnnouncement] = useState("");
-  if (current !== announcedPage) {
-    setAnnouncedPage(current);
-    setAnnouncement(pageStatus(current, totalPages));
-  }
-  const status = (
-    <VisuallyHidden role="status" aria-atomic="true">
-      {announcement}
-    </VisuallyHidden>
-  );
+  // 告げるのはページが変わったときだけ（総ページ数が変わっただけでは告げない）
+  const { announce, region: status } = useAnnounce();
+  const announcedPage = useRef(current);
+  useEffect(() => {
+    if (announcedPage.current === current) return;
+    announcedPage.current = current;
+    announce(pageStatus(current, totalPages));
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- ページが変わったときだけ告げる
+  }, [current]);
 
   const paginationRange = useMemo(() => {
     // totalPages + siblingCount + firstPage + lastPage + 2*ellipses

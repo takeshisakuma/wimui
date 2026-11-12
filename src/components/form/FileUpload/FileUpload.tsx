@@ -1,10 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { formNs } from "@/i18n/generated/form";
 import classNames from "classnames";
 import { Button } from "../../form/Button/Button";
 import { Icon } from "../../media/Icon/Icon";
 import { VisuallyHidden } from "../../layout/VisuallyHidden/VisuallyHidden";
+import { useAnnounce } from "../../_internal/useAnnounce";
 import { FieldTemplate } from "../FieldTemplate";
 import { ComponentSizeBasic } from "../../../types/tokens";
 import styles from "./file-upload.module.scss";
@@ -108,9 +109,7 @@ export const FileUpload = ({
   // 選んだことを告げる領域（画面には見えない）。**少し待ってから**文字を入れる ── ファイルを選ぶ
   // 画面が閉じた直後は、フォーカスがボタンへ戻る読み上げが走っていて、同時に書き換えた文字は
   // 読まれない（名前の表示そのものを読み上げの領域にした 1 回目の直しは、実機で読まれなかった）。
-  const [announcement, setAnnouncement] = useState("");
-  const announceTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
-  useEffect(() => () => clearTimeout(announceTimer.current), []);
+  const { announce, clear: clearAnnouncement, region: announcementRegion } = useAnnounce();
 
   const handleClick = () => {
     inputRef.current?.click();
@@ -119,13 +118,13 @@ export const FileUpload = ({
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
     setSelectedFiles(files);
-    clearTimeout(announceTimer.current);
-    setAnnouncement("");
     if (files && files.length > 0) {
       const names = Array.from(files)
         .map((file) => file.name)
         .join(", ");
-      announceTimer.current = setTimeout(() => setAnnouncement(t("fileupload.selected", { files: names })), 700);
+      announce(t("fileupload.selected", { files: names }), { delay: 700 });
+    } else {
+      clearAnnouncement();
     }
     if (onChange) {
       onChange(files);
@@ -187,9 +186,7 @@ export const FileUpload = ({
         >{buttonLabel ?? t("fileupload.button")}</Button>
         {nameSource === nameId && <VisuallyHidden id={nameId}>{ariaLabel}</VisuallyHidden>}
         {required && <VisuallyHidden id={requiredId}>{t("form.required")}</VisuallyHidden>}
-        <VisuallyHidden role="status" aria-atomic="true">
-          {announcement}
-        </VisuallyHidden>
+        {announcementRegion}
         <span
           id={fileNamesId}
           className={classNames(

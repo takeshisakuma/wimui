@@ -59,16 +59,23 @@
 
 押してもフォーカスが動かず、中身だけが変わる操作（ページ送り・並べ替え・スライドの切り替え・通知が出る）は、**変わったことを告げないと、スクリーンリーダーには何も伝わらない。** 2026-10-12 の実機の確認（ナレーター + Chrome・28 部品）で、外れ 11 のうち 8 がこの形だった。axe は、どれにも合格を出していた。
 
-**読まれる形は 1 つだけ**（同じ日に、5 部品で確かめた）:
+**読まれる形は 1 つだけ**（同じ日に、5 部品で確かめた）: 部品が描かれた時点から在る、画面に見えない status 領域の文字を、操作のときに書き換える。
+
+この形は `src/components/_internal/useAnnounce.tsx` にまとめてある（T367）。**部品は自前の領域を書かず、このフックを使う**（`npm run check:announce` が、`VisuallyHidden` に `role="status"` / `role="alert"` / `aria-live` を付けた部品を落とす。`audit:lib`）。
 
 ```tsx
-// 部品が描かれた時点から在る。最初は空。
-<VisuallyHidden role="status" aria-atomic="true">
-  {announcement}
-</VisuallyHidden>
+// 操作のときに告げる（並べ替え・ページ送り・ファイルを選んだ）
+const { announce, clear, region } = useAnnounce();
+announce(t("dataGrid.sorted_ascending", { column }));
+announce(t("fileupload.selected", { files }), { delay: 700 }); // ほかの読み上げと重なる瞬間は待つ
+
+// 状態から文が決まる（選んだ件数・開いている通知）。文が変わったときだけ告げる
+const region = useAnnounceValue(open ? t("selection_bar.selected", { count }) : t("selection_bar.cleared"));
+
+return <div>{region}{/* 中身 */}</div>; // 領域は部品の中に、いつも描いておく
 ```
 
-操作のときに、`announcement` の文字を書き換える。
+フックが引き受けていること: 領域を最初から空で置く・同じ文を続けて告げるときにいったん空にしてから入れる（同じ文字のままだと DOM が変わらず、読まれない）・`delay` のあいだ空にして待つ・アンマウントで待ちを取り消す・`role: "alert"`（Snackbar の警告・危険）。領域を文書に 1 つだけ置く形にしないのは、`aria-modal` のダイアログの外にある領域が、スクリーンリーダーに無視されることがあるため（Lightbox はダイアログの中から告げる）。
 
 | やること | 理由（実機で起きたこと） |
 |---|---|

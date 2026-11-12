@@ -6,7 +6,7 @@ import { Checkbox } from "../../form/Checkbox/Checkbox";
 import { Button } from "../../form/Button/Button";
 import { BaseListItem } from "../../_internal/BaseListItem";
 import { FieldTemplate } from "../FieldTemplate";
-import { VisuallyHidden } from "../../layout/VisuallyHidden/VisuallyHidden";
+import { useAnnounce } from "../../_internal/useAnnounce";
 import { VirtualList } from "../../data-display/VirtualList/VirtualList";
 import styles from "./transfer.module.scss";
 
@@ -308,9 +308,8 @@ export const Transfer = ({
   const [focusedSourceKey, setFocusedSourceKey] = useState<string | null>(null);
   const [focusedTargetKey, setFocusedTargetKey] = useState<string | null>(null);
 
-  // aria-live status message for screen reader announcements on item moves
-  const [statusMessage, setStatusMessage] = useState("");
-  const statusTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  // 項目を移したことを、読み上げで告げる（先に在る領域の文字を書き換える。useAnnounce）
+  const { announce, region: statusRegion } = useAnnounce();
 
   // Reset focused key if it's no longer in the list (e.g. after move)
   if (focusedSourceKey && !sourceData.some((d) => d.key === focusedSourceKey)) {
@@ -367,9 +366,8 @@ export const Transfer = ({
     const msg = direction === "toRight"
       ? statusMovedToTarget(moveKeys.length)
       : statusMovedToSource(moveKeys.length);
-    if (statusTimeoutRef.current) clearTimeout(statusTimeoutRef.current);
-    setStatusMessage("");
-    statusTimeoutRef.current = setTimeout(() => setStatusMessage(msg), 50);
+    // 毎回いったん空にしてから入れる（以前の実装の 50 ms を引き継ぐ。続けて同じ件数を移しても読まれる）
+    announce(msg, { delay: 50 });
   };
 
   const getAdjacentKey = (
@@ -441,9 +439,7 @@ export const Transfer = ({
       className={className}
     >
       <div className={classNames(styles.container, "wim-transfer")}>
-        <VisuallyHidden aria-live="polite" aria-atomic="true">
-          {statusMessage}
-        </VisuallyHidden>
+        {statusRegion}
         <div
           className={classNames(
             styles.root,

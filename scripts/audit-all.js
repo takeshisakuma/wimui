@@ -280,6 +280,14 @@ const checks = [
   },
   {
     category: "lib",
+    // 読み上げの告知は、先に在る見えない status 領域の文字を書き換える形でしか読まれない
+    // （2026-10-12 の実機の確認で 28 部品中 11 が外れた）。その形を _internal/useAnnounce に
+    // まとめたので、部品が自前の領域を書いたら落とす（T367）。
+    name: "Screen reader announcements go through useAnnounce",
+    command: "node scripts/check-announce-regions.js",
+  },
+  {
+    category: "lib",
     // 単体では正しいトークンが、組み合わせたときだけ不可視になる事故を防ぐ。
     // axe も VRT も捕まえられない種類（T34）。
     name: "Contrast / fill visibility (intent × variant × surface)",
