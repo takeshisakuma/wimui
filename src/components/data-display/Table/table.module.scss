@@ -383,12 +383,18 @@
       }
     }
   
+    // 選択の列は中身（チェックボックス）の幅まで縮め、表の余りを受け取らない。
+    // 表は table-layout: auto で、幅を px で指定した列には、余りが指定の幅に比例して配られる。
+    // 以前は 60px を指定していたので、1280px の画面では 130px まで伸びていた（セルの
+    // max-width は効かない）。1px にしても、最小幅に比例した取り分が配られて伸びる（実測）。
+    // パーセントの列は「表の幅のその割合と、中身の最小幅の大きいほう」になり、余りを
+    // 受け取らないので、1% で中身の幅に止まる。固定した列の位置は DataGrid が測った幅で積む
     &.selection {
-      width: 60px; /* Exception: Structural Logic — 選択列の固定幅（チェックボックス中央寄せ） */
-      min-width: 60px; /* Exception: Structural Logic — 選択列の固定幅 */
-      max-width: 60px; /* Exception: Structural Logic — 選択列の固定幅 */
-      padding-right: 0;
-      padding-left: 0;
+      width: 1%; /* Exception: Structural Logic — 表の余りを受け取らない指定（実際の幅は中身） */
+      // 幅は「チェックボックス＋左右の余白」。余白をほかのセルと同じトークンにして、
+      // 密度（compact）にも追従させる（0 にすると、チェックボックスがセルの縁に接する）
+      padding-right: var(--wim-table-cell-padding-x);
+      padding-left: var(--wim-table-cell-padding-x);
       text-align: center;
     }
   
@@ -473,12 +479,18 @@
       white-space: nowrap;
     }
   
+    // 選択の列は中身（チェックボックス）の幅まで縮め、表の余りを受け取らない。
+    // 表は table-layout: auto で、幅を px で指定した列には、余りが指定の幅に比例して配られる。
+    // 以前は 60px を指定していたので、1280px の画面では 130px まで伸びていた（セルの
+    // max-width は効かない）。1px にしても、最小幅に比例した取り分が配られて伸びる（実測）。
+    // パーセントの列は「表の幅のその割合と、中身の最小幅の大きいほう」になり、余りを
+    // 受け取らないので、1% で中身の幅に止まる。固定した列の位置は DataGrid が測った幅で積む
     &.selection {
-      width: 60px; /* Exception: Structural Logic — 選択列の固定幅（チェックボックス中央寄せ） */
-      min-width: 60px; /* Exception: Structural Logic — 選択列の固定幅 */
-      max-width: 60px; /* Exception: Structural Logic — 選択列の固定幅 */
-      padding-right: 0;
-      padding-left: 0;
+      width: 1%; /* Exception: Structural Logic — 表の余りを受け取らない指定（実際の幅は中身） */
+      // 幅は「チェックボックス＋左右の余白」。余白をほかのセルと同じトークンにして、
+      // 密度（compact）にも追従させる（0 にすると、チェックボックスがセルの縁に接する）
+      padding-right: var(--wim-table-cell-padding-x);
+      padding-left: var(--wim-table-cell-padding-x);
       text-align: center;
     }
   

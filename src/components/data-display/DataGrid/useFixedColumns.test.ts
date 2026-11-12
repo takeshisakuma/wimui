@@ -128,4 +128,32 @@ describe("useFixedColumns", () => {
     rerender({ cols: columns, sel: false });
     expect(result.current).toBe(first);
   });
+
+  // 選択の列は中身（チェックボックスと密度で変わる余白）の幅。決め打ちの値で積むと、
+  // 横にスクロールしたときに左に固定した列とのあいだに隙間や重なりができる
+  describe("選択の列の幅", () => {
+    const columns: DataGridColumn<Row>[] = [
+      { key: "a", title: "A", fixed: "left", width: 80 },
+      { key: "b", title: "B", fixed: "left", width: 120 },
+      { key: "c", title: "C", fixed: "right", width: 100 },
+    ];
+
+    it("測る前は 60px で積む", () => {
+      const { result } = renderHook(() => useFixedColumns(columns, true));
+      expect(result.current.fixedLeftOffsets["a"].offset).toBe("60px");
+      expect(result.current.fixedLeftOffsets["b"].offset).toBe("140px");
+    });
+
+    it("測ったあとは、その幅で積む（右に固定した列は変わらない）", () => {
+      const { result } = renderHook(() => useFixedColumns(columns, true, 45));
+      expect(result.current.fixedLeftOffsets["a"].offset).toBe("45px");
+      expect(result.current.fixedLeftOffsets["b"].offset).toBe("125px");
+      expect(result.current.fixedRightOffsets["c"].offset).toBe(0);
+    });
+
+    it("選択の列が無ければ、測った幅を使わない", () => {
+      const { result } = renderHook(() => useFixedColumns(columns, false, 45));
+      expect(result.current.fixedLeftOffsets["a"].offset).toBe(0);
+    });
+  });
 });
