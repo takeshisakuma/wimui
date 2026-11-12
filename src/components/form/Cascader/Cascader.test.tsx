@@ -298,7 +298,8 @@ describe("Cascader", () => {
     expect(trigger).toHaveAttribute("aria-label", "Select location");
   });
 
-  it("ArrowUp does not go below index 0", async () => {
+  // T370: 列の中の上下は、ほかのリストと同じく端で折り返す（以前は先頭で止まり、このテストもそれを確かめていた）
+  it("ArrowUp at the first option wraps to the last", async () => {
     render(<Cascader options={options} />);
     const trigger = screen.getByRole("combobox");
     fireEvent.click(trigger);
@@ -308,7 +309,7 @@ describe("Cascader", () => {
     fireEvent.keyDown(trigger, { key: "ArrowUp" });
     expect(activeOption(trigger)).toHaveTextContent("Zhejiang");
     fireEvent.keyDown(trigger, { key: "ArrowUp" });
-    expect(activeOption(trigger)).toHaveTextContent("Zhejiang");
+    expect(activeOption(trigger)).toHaveTextContent("Jiangsu");
     expect(screen.getByRole("combobox")).toHaveAttribute("aria-expanded", "true");
   });
 
@@ -324,5 +325,37 @@ describe("Cascader", () => {
     fireEvent.keyDown(trigger, { key: "ArrowLeft" });
     expect(activeOption(trigger)).toHaveTextContent("Zhejiang");
     expect(screen.getByRole("combobox")).toHaveAttribute("aria-expanded", "true");
+  });
+
+  describe("無効の選択肢と先頭一致（T370）", () => {
+    const withDisabled: CascaderOption[] = [
+      { label: "Aomori", value: "aomori", disabled: true },
+      { label: "Akita", value: "akita" },
+      { label: "Iwate", value: "iwate", disabled: true },
+      { label: "Miyagi", value: "miyagi" },
+    ];
+
+    it("開いたとき、先頭の無効の選択肢には止まらない", () => {
+      render(<Cascader options={withDisabled} />);
+      const trigger = screen.getByRole("combobox");
+      fireEvent.click(trigger);
+      expect(activeOption(trigger)).toHaveTextContent("Akita");
+    });
+
+    it("矢印キーは無効の選択肢を飛ばす", () => {
+      render(<Cascader options={withDisabled} />);
+      const trigger = screen.getByRole("combobox");
+      fireEvent.click(trigger);
+      fireEvent.keyDown(trigger, { key: "ArrowDown" });
+      expect(activeOption(trigger)).toHaveTextContent("Miyagi");
+    });
+
+    it("文字を打つと、名前の先頭が一致する選択肢へ移る", () => {
+      render(<Cascader options={withDisabled} />);
+      const trigger = screen.getByRole("combobox");
+      fireEvent.click(trigger);
+      fireEvent.keyDown(trigger, { key: "m" });
+      expect(activeOption(trigger)).toHaveTextContent("Miyagi");
+    });
   });
 });
