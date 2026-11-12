@@ -8,6 +8,8 @@ import { ComponentSizeBasic } from "../../../types/tokens";
 import { ChevronDownIcon, CheckIcon } from "@/icon";
 import { useInlineFloating } from "../../_internal/useInlineFloating";
 import { useMergedRef } from "../../../hooks/useMergedRef";
+import { getRovingIndex, isRovingKey } from "../../_internal/rovingIndex";
+import { findTypeaheadIndex, isTypeaheadKey, useTypeahead } from "../../_internal/typeahead";
 import styles from "./model-selector.module.scss";
 
 /** Pricing metadata for a model, expressed per 1M tokens in the given currency. */
@@ -171,53 +173,50 @@ export const ModelSelector = React.forwardRef<HTMLDivElement, ModelSelectorProps
       setOpen(false);
     };
 
-    const firstEnabled = (from: number, delta: number) => {
-      let next = from;
-      for (let i = 0; i < models.length; i++) {
-        if (!models[next]?.disabled) return next;
-        next = (next + delta + models.length) % models.length;
-      }
-      return -1;
-    };
+    // 矢印キー・Home / End の行き先は共通の計算で決める（T370）
+    const isModelDisabled = (index: number) => !!models[index]?.disabled;
+    const rovingTo = (key: string, current: number) =>
+      getRovingIndex({ key, current, count: models.length, orientation: "vertical", isDisabled: isModelDisabled }) ?? -1;
+    const firstEnabled = () => rovingTo("Home", -1);
+    const typeahead = useTypeahead();
 
     const openList = (at?: number) => {
       const currentIdx = models.findIndex((m) => m.id === currentValue);
-      setActiveIndex(at ?? (currentIdx >= 0 ? currentIdx : firstEnabled(0, 1)));
+      setActiveIndex(at ?? (currentIdx >= 0 ? currentIdx : firstEnabled()));
       setOpen(true);
     };
 
-    const moveActive = (delta: number) => {
-      setActiveIndex((prev) => {
-        let next = prev;
-        for (let i = 0; i < models.length; i++) {
-          next = (next + delta + models.length) % models.length;
-          if (!models[next]?.disabled) break;
-        }
-        return next;
-      });
-    };
 
     // フォーカスは引き金（combobox）に置いたまま、キーは全部ここで受ける（select-only combobox）。
     // いまの項目は aria-activedescendant で伝える。リスト側で受けていた頃は、フォーカスの無い
     // listbox に aria-activedescendant が付いていて、読み上げに「いまどの項目か」が届かなかった。
     const handleTriggerKeyDown = (e: React.KeyboardEvent) => {
       if (disabled) return;
+      // 文字を打つと、名前の先頭が一致するモデルへ移る（閉じていれば開いて移る）
+      if (isTypeaheadKey(e, typeahead.typing())) {
+        e.preventDefault();
+        const index = findTypeaheadIndex({
+          query: typeahead.push(e.key),
+          current: open ? activeIndex : -1,
+          count: models.length,
+          getText: (i) => models[i].name,
+          isDisabled: isModelDisabled,
+        });
+        if (index >= 0) {
+          if (open) setActiveIndex(index);
+          else openList(index);
+        }
+        return;
+      }
+      if (isRovingKey(e.key, "vertical")) {
+        e.preventDefault();
+        // 閉じているときの上下の矢印は、今の値で開く（Home / End は端の項目で開く）
+        if (!open && (e.key === "ArrowDown" || e.key === "ArrowUp")) openList();
+        else if (!open) openList(rovingTo(e.key, -1));
+        else setActiveIndex(rovingTo(e.key, activeIndex));
+        return;
+      }
       switch (e.key) {
-        case "ArrowDown":
-        case "ArrowUp":
-          e.preventDefault();
-          if (!open) openList();
-          else moveActive(e.key === "ArrowDown" ? 1 : -1);
-          break;
-        case "Home":
-        case "End":
-          e.preventDefault();
-          if (e.key === "Home") {
-            if (open) setActiveIndex(firstEnabled(0, 1));
-            else openList(firstEnabled(0, 1));
-          } else if (open) setActiveIndex(firstEnabled(models.length - 1, -1));
-          else openList(firstEnabled(models.length - 1, -1));
-          break;
         case "Enter":
         case " ":
           e.preventDefault();
