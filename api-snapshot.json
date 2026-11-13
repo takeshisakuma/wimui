@@ -21,6 +21,7 @@
     "./layout => types:./dist/layout.d.ts; import:./dist/layout.js; require:./dist/layout.cjs",
     "./llms-full.txt => ./dist/llms-full.txt",
     "./llms.txt => ./dist/llms.txt",
+    "./llms/* => ./dist/llms/*",
     "./locales/* => ./dist/locales/*",
     "./media => types:./dist/media.d.ts; import:./dist/media.js; require:./dist/media.cjs",
     "./navigation => types:./dist/navigation.d.ts; import:./dist/navigation.js; require:./dist/navigation.cjs",

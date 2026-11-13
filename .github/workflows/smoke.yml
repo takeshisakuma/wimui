@@ -17,6 +17,7 @@ on:
       - "scripts/build-style-entries.js"
       - "scripts/fix-cjs-empty-css.js"
       - "scripts/prune-dist-assets.js"
+      - "scripts/generate-llms.js"
   push:
     branches: [main]
     # CI-6 と同じ非対称がここにもあった。`tokens/**` や `scripts/build-style-entries.js` を
@@ -32,6 +33,7 @@ on:
       - "scripts/build-style-entries.js"
       - "scripts/fix-cjs-empty-css.js"
       - "scripts/prune-dist-assets.js"
+      - "scripts/generate-llms.js"
   workflow_dispatch:
   schedule:
     # 週次（月曜 06:00 UTC）に full プロファイルも回す

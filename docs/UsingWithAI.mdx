@@ -26,6 +26,10 @@ import { T } from "../stories/T";
         <td><code>llms-full.txt</code></td>
         <td><T k="withai.full_use" /></td>
       </tr>
+      <tr>
+        <td><code>llms/&lt;Component&gt;.md</code></td>
+        <td><T k="withai.per_component_use" /></td>
+      </tr>
     </tbody>
   </table>
 
@@ -36,7 +40,8 @@ import { T } from "../stories/T";
 https://takeshisakuma.github.io/wimui/llms-full.txt`}</Command>
   <p><strong><T k="withai.urls_npm_label" /></strong></p>
   <Command>{`node -e "console.log(require.resolve('wimui/llms.txt'))"
-# or reference the export directly: wimui/llms.txt  •  wimui/llms-full.txt`}</Command>
+# or reference the export directly: wimui/llms.txt  •  wimui/llms-full.txt
+# one component (package only): wimui/llms/Select.md  →  node_modules/wimui/dist/llms/Select.md`}</Command>
 
   <h2><T k="withai.prompts_title" /></h2>
   <p><T k="withai.prompts_desc" /></p>

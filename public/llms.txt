@@ -464,3 +464,5 @@ These exist in other systems' vocabularies and are **decisions, not gaps**. Do n
 
 ---
 For per-component props, types and defaults, see `llms-full.txt`.
+
+**One component, matching your installed version:** the package ships `dist/llms/<Component>.md` — every prop with its type and default, its sub-components, and the design tokens it reads (e.g. `node_modules/wimui/dist/llms/Select.md`, also exported as `wimui/llms/Select.md`). The hosted copy of this file tracks main and can be ahead of the release you installed.

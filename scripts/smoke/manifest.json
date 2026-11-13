@@ -40,5 +40,6 @@
   ],
   "css": ["wimui/styles.css", "wimui/reset.css"],
   "cssMustContain": "--wim-",
-  "locale": "wimui/locales/en/common.json"
+  "locale": "wimui/locales/en/common.json",
+  "llmsComponent": "Select"
 }

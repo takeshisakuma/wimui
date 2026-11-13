@@ -12,7 +12,7 @@
 //   - public/locales/en/**.json          … English descriptions (descKey resolution)
 //   - docs/design/composition.md          … anti-generic rules (condensed inline below)
 
-import { readFileSync, writeFileSync, existsSync } from 'node:fs';
+import { readFileSync, writeFileSync, existsSync, rmSync, mkdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { resolveLocale } from './lib/locale-keys.js';
@@ -786,6 +786,10 @@ const notPlanned = [
 
 const banner = `# WIM UI — LLM guide (llms.txt)\n\n> Machine-readable map of the ${pkg.name} React component library for coding agents. Read this before generating any UI with ${pkg.name}: it defines the required CSS/setup, the correct import paths, the full component list, and the composition rules that keep screens from looking AI-generated.\n`;
 
+// 部品ごとのファイル（下の T368）への道案内。公開サイトの llms.txt は main を追うので、
+// 入れた版の情報はパッケージの中を読むよう、ここで案内する。
+const perComponentPointer = `**One component, matching your installed version:** the package ships \`dist/llms/<Component>.md\` — every prop with its type and default, its sub-components, and the design tokens it reads (e.g. \`node_modules/${pkg.name}/dist/llms/Select.md\`, also exported as \`${pkg.name}/llms/Select.md\`). The hosted copy of this file tracks main and can be ahead of the release you installed.`;
+
 const concise = [
   banner,
   setup,
@@ -794,7 +798,7 @@ const concise = [
   `> More verified full-screen recipes (auth sign-in, settings form, empty state, filtered data table, onboarding) and per-category idioms (form, navigation, feedback, overlay) are in \`llms-full.txt\`.`,
   catalogSection(false),
   `\n${notPlanned}`,
-  `\n---\nFor per-component props, types and defaults, see \`llms-full.txt\`.`,
+  `\n---\nFor per-component props, types and defaults, see \`llms-full.txt\`.\n\n${perComponentPointer}`,
 ].join('\n');
 
 const full = [
@@ -806,6 +810,7 @@ const full = [
   idioms,
   catalogSection(true),
   `\n${notPlanned}`,
+  `\n---\n${perComponentPointer}`,
 ].join('\n');
 
 // --check: 生成せず、コミット済みの内容と一致するかだけを見る。
@@ -842,10 +847,67 @@ if (process.argv.includes('--check')) {
 
 for (const o of outputs) writeFileSync(o.file, o.content);
 
+// --- per-component files (T368) -------------------------------------------
+//
+// llms-full.txt は 1 枚に全部品を載せる（約 270 KB）。1 つの部品だけ知りたいエージェントに、
+// その部品の分だけを渡すため、部品ごとに 1 ファイルを書く（dist/llms/<Name>.md）。
+// 公開サイトの llms.txt は main を追うので、入れた版とずれる。tarball に入るこのファイルは
+// 入れた版そのもの。版の番号は書かない（Version PR のたびに全ファイルが書き換わるのを避ける。
+// 版との一致は「tarball に入っている」ことで決まる）。
+//
+// 置き場は gitignore した public/llms/（vite が dist/ へ写す）。コミットしないので --check は見ない。
+// 消えた部品のファイルが残らないよう、毎回ディレクトリごと作り直す。
+const PER_COMPONENT_DIR = join(ROOT, 'public/llms');
+const propLines = (props) =>
+  Object.entries(props ?? {}).map(([pn, p]) => {
+    const req = p.required ? ' (required)' : '';
+    const def = p.defaultValue ? ` = ${p.defaultValue.value}` : '';
+    const d = p.description ? ` — ${p.description.replace(/\s*\n\s*/g, ' ')}` : '';
+    return `- \`${pn}: ${typeStr(p.tsType)}\`${req}${def}${d}`;
+  });
+const componentDoc = ({ name, desc, aliases, disambiguation }) => {
+  const lines = [`# ${name} — ${pkg.name}`, ''];
+  if (desc) lines.push(`> ${desc}`, '');
+  if (aliases?.length) lines.push(`Also known as: ${aliases.join(', ')}`, '');
+  if (disambiguation) lines.push(`⚠️ Not the same as elsewhere: ${disambiguation}`, '');
+  lines.push(
+    '## Import',
+    '',
+    '```ts',
+    `import "${pkg.name}/styles.css"; // once per app — required`,
+    `import { ${name} } from "${importPathFor(name)}";`,
+    '```',
+  );
+  const dg = docgen[name];
+  const props = propLines(dg?.props);
+  if (props.length) lines.push('', '## Props', '', ...props);
+  for (const sub of Object.keys(docgen).filter((k) => k.startsWith(`${name}.`)).sort()) {
+    const subProps = propLines(docgen[sub].props);
+    lines.push('', `## ${sub}`, '', ...(subProps.length ? subProps : ['(no props of its own)']));
+  }
+  if (dg?.tokens?.length) {
+    lines.push('', '## Design tokens it reads', '', dg.tokens.map((t) => `\`${t}\``).join(', '));
+  }
+  lines.push(
+    '',
+    '---',
+    'Setup, composition rules and the full catalog: `llms.txt` / `llms-full.txt` in the same package.',
+    '',
+  );
+  return lf(lines.join('\n'));
+};
+rmSync(PER_COMPONENT_DIR, { recursive: true, force: true });
+mkdirSync(PER_COMPONENT_DIR, { recursive: true });
+const perComponent = [...[...byExportCat.values()].flat(), ...rootOnly];
+for (const entry of perComponent) {
+  writeFileSync(join(PER_COMPONENT_DIR, `${entry.name}.md`), componentDoc(entry));
+}
+
 const unresolved = catalog
   .flatMap((g) => g.components)
   .filter((c) => isTopLevel(c.name) && c.descKey && !resolve(c.descKey)).length;
 
 console.log(`✓ public/llms.txt          (${(concise.length / 1024).toFixed(1)} KB)`);
 console.log(`✓ public/llms-full.txt     (${(full.length / 1024).toFixed(1)} KB)`);
+console.log(`✓ public/llms/<Name>.md     (${perComponent.length} files)`);
 console.log(`  ${seen.size} components, ${unresolved} descriptions unresolved`);
