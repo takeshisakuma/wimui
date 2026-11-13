@@ -301,6 +301,6 @@
   "doc.jsondiff_scenario_2_desc": "AIエージェントが変更する前後の設定オブジェクトを表示します。",
   "doc.jsondiff_practice_1": "シリアライズの順序変更による差分の不安定さを防ぐため、渡す前にオブジェクトのキーをソートします。",
   "doc.jsondiff_practice_2": "大きな配列を含む深くネストされたオブジェクトの渡しは避け、読みやすさのためにフラット化やページ分割を検討します。",
-  "doc.jsondiff_responsive": "CodeDiffViewerのレスポンシブ動作を継承し、640px 未満で自動的に統合ビューに切り替わります。",
+  "doc.jsondiff_responsive": "CodeDiffViewerのレスポンシブ動作を継承し、768px 未満で自動的に統合ビューに切り替わります。",
   "doc.jsondiff_i18n_desc": "ユーザー向けのすべてのラベルはCodeDiffViewerから継承されます。値に翻訳テキストを埋め込む代わりに `filename` または `language` プロップでコンテキストを渡してください。"
 }

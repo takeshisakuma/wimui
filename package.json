@@ -422,6 +422,7 @@
     "check:responsive": "node scripts/generate-responsive.js --check",
     "check:announce": "node scripts/check-announce-regions.js",
     "check:intents:scss": "node scripts/check-intents-scss.js",
+    "check:breakpoints": "node scripts/check-breakpoints.js",
     "check:mono": "node scripts/check-mono-family.js",
     "check:heading-lh": "node scripts/check-heading-line-height.js",
     "check:icons": "node scripts/check-icons.js",
@@ -448,6 +449,7 @@
     "prove:slop": "node scripts/prove-slop-guard.mjs",
     "prove:component-slop": "node scripts/prove-component-slop.mjs",
     "prove:focus-indicator": "node scripts/prove-focus-indicator.mjs",
+    "prove:breakpoints": "node scripts/prove-breakpoints.mjs",
     "prove:radius-tokens": "node scripts/prove-radius-tokens.mjs",
     "prove:opacity-forwards": "node scripts/prove-opacity-forwards.mjs",
     "prove:vrt-update-scope": "node scripts/prove-vrt-update-scope.mjs",
@@ -782,6 +784,9 @@
     "{tokens/color/base.json,tokens/color/semantic.json,tokens/themes/dark.json,src/tokens/generated/_css-vars.scss,src/tokens/generated/_css-vars-dark.scss}": [
       "node scripts/check-chart-palette.js --update",
       "node scripts/stage-generated.js src/data/chart-palette.json --"
+    ],
+    "{tokens/breakpoints.json,src/hooks/useBreakpoint.ts}": [
+      "node scripts/check-breakpoints.js"
     ],
     "tokens/**/*.json": [
       "node scripts/check-contrast.js"

@@ -1,5 +1,6 @@
 import { describe, it, expect, vi } from "vitest";
-import { render, screen, fireEvent } from "@testing-library/react";
+import type React from "react";
+import { render, screen, fireEvent, act } from "@testing-library/react";
 import { CodeDiffViewer } from "./CodeDiffViewer";
 
 vi.mock("react-i18next", async () => ({
@@ -11,6 +12,32 @@ vi.mock("react-i18next", async () => ({
 
 const before = `function greet() {\n  return "hello";\n}`;
 const after = `function greet(name: string) {\n  return \`hello \${name}\`;\n}`;
+
+// T375: 器の幅で切り替える値は、ブレイクポイントのトークン（BREAKPOINTS）から読む。
+// ResizeObserver を差し替え、器の幅を 1 つ渡して、切り替わる境目の前後を確かめる。
+const renderAtWidth = (width: number, ui: React.ReactElement) => {
+  let callback: ResizeObserverCallback | undefined;
+  vi.stubGlobal(
+    "ResizeObserver",
+    class {
+      constructor(cb: ResizeObserverCallback) {
+        callback = cb;
+      }
+      observe() {}
+      unobserve() {}
+      disconnect() {}
+    },
+  );
+  try {
+    const result = render(ui);
+    act(() => {
+      callback?.([{ contentRect: { width } } as ResizeObserverEntry], {} as ResizeObserver);
+    });
+    return result;
+  } finally {
+    vi.unstubAllGlobals();
+  }
+};
 
 describe("CodeDiffViewer", () => {
   it("renders without crashing", () => {
@@ -78,5 +105,14 @@ describe("CodeDiffViewer", () => {
     unmount();
     render(<CodeDiffViewer before={before} after={after} language="TypeScript" />);
     expect(screen.getByText("TypeScript")).toHaveClass("language");
+  });
+
+  // 左右並べ ↔ 1 列の境目は md（768px）。640〜767px の器は 1 列になる
+  it.each([
+    [767, "Unified"],
+    [768, "Split"],
+  ])("器の幅 %spx では %s の表示になる", (width, label) => {
+    renderAtWidth(width, <CodeDiffViewer before={before} after={after} />);
+    expect(screen.getByLabelText(label)).toHaveAttribute("aria-pressed", "true");
   });
 });

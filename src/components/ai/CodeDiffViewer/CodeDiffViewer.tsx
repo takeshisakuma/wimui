@@ -4,6 +4,7 @@ import { diffLines, type Change } from "diff";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { formNs } from "@/i18n/generated/form";
 import { Icon } from "../../media/Icon/Icon";
+import { BREAKPOINTS } from "@/hooks/useBreakpoint";
 import { AlignJustifyIcon, CheckIcon, CloseIcon, ColumnsIcon, CopyIcon, SpinnerIcon } from "@/icon";
 import styles from "./code-diff-viewer.module.scss";
 
@@ -180,7 +181,7 @@ export const CodeDiffViewer = React.forwardRef<HTMLDivElement, CodeDiffViewerPro
       const el = rootRef.current;
       if (!el) return;
       const observer = new ResizeObserver(([entry]) => {
-        const narrow = entry.contentRect.width < 640;
+        const narrow = entry.contentRect.width < BREAKPOINTS.md;
         setAutoView((prev) => {
           const next: DiffView = narrow ? "unified" : "split";
           if (prev !== next) setManualView(null);

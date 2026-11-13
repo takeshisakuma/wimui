@@ -301,6 +301,6 @@
   "doc.jsondiff_scenario_2_desc": "Show a configuration object before and after an AI agent modifies it.",
   "doc.jsondiff_practice_1": "Pre-sort object keys before passing to keep diffs stable across serialization order changes.",
   "doc.jsondiff_practice_2": "Avoid passing deeply nested objects with large arrays — consider flattening or paginating for readability.",
-  "doc.jsondiff_responsive": "Inherits CodeDiffViewer's responsive behavior: auto-switches to unified view below 640 px.",
+  "doc.jsondiff_responsive": "Inherits CodeDiffViewer's responsive behavior: auto-switches to unified view below 768 px.",
   "doc.jsondiff_i18n_desc": "All user-facing labels inherit from CodeDiffViewer. Pass `filename` or `language` for context rather than embedding translated text in the value."
 }
