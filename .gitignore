@@ -180,3 +180,6 @@ test_output.txt
 test-output.txt
 # CI-8 のフォント診断の出力（CI のアーティファクトとして残すもの）
 font-diagnosis/
+
+# llms の部品ごとのファイル（generate-llms.js の生成物。dist/llms/ へ写る・T368）
+public/llms/

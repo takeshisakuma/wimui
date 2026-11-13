@@ -142,6 +142,7 @@
     "./reset.css": "./dist/reset.css",
     "./llms.txt": "./dist/llms.txt",
     "./llms-full.txt": "./dist/llms-full.txt",
+    "./llms/*": "./dist/llms/*",
     "./locales/*": "./dist/locales/*"
   },
   "size-limit": [

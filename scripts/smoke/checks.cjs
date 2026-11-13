@@ -131,6 +131,25 @@ async function runChecks({
     bad(`resolve ${manifest.locale}`, e);
   }
 
+  // 7. llms の部品ごとのファイル（T368）が、llms.txt の数えた部品の数だけ入っている。
+  // 生成は public/llms/（gitignore）→ vite が dist/ へ写す、の 2 段なので、どちらかが
+  // 落ちても型もテストも通る。tarball の実物で数える。
+  try {
+    const llms = fs.readFileSync(resolve("wimui/llms.txt"), "utf8");
+    const expected = Number(/(\d+) documented components/.exec(llms)?.[1]);
+    const sample = resolve(`wimui/llms/${manifest.llmsComponent}.md`);
+    const files = fs.readdirSync(require("node:path").dirname(sample)).filter((f) => f.endsWith(".md"));
+    const head = fs.readFileSync(sample, "utf8").split("\n")[0];
+    if (!expected) bad("wimui/llms.txt: documented component count not found");
+    else if (files.length !== expected)
+      bad(`wimui/llms/*.md: ${files.length} files, llms.txt documents ${expected}`);
+    else if (head !== `# ${manifest.llmsComponent} — wimui`)
+      bad(`wimui/llms/${manifest.llmsComponent}.md starts with "${head}"`);
+    else ok(`wimui/llms/<Component>.md resolves (${files.length} files = llms.txt count)`);
+  } catch (e) {
+    bad("resolve wimui/llms/<Component>.md", e);
+  }
+
   console.log(`\n  [${format}/${profile}] pass=${pass} fail=${fail} warn=${warn}`);
   return fail === 0;
 }
