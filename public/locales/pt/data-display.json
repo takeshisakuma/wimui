@@ -18,5 +18,8 @@
     "selected": "Selecionados: {{count}}",
     "cleared": "Seleção removida",
     "clear": "Limpar seleção"
+  },
+  "infinite_scroll": {
+    "loading": "Carregando mais…"
   }
 }

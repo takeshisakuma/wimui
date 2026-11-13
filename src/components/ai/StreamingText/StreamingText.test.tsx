@@ -26,14 +26,29 @@ describe("StreamingText", () => {
     expect(container.querySelector("[aria-hidden='true']")).not.toBeInTheDocument();
   });
 
-  it("sets aria-live when streaming", () => {
-    const { container } = render(<StreamingText content="..." isStreaming />);
-    expect(container.firstChild).toHaveAttribute("aria-live", "polite");
+  // T353: 流れている途中に aria-live で読ませると、書き足すたびに読み直された（ナレーター + Chrome）。
+  // 途中は aria-busy だけ、流れ終わったら本文を 1 回だけ告げる
+  it("is busy, not live, while streaming", () => {
+    const { container } = render(<StreamingText content="Hel" isStreaming />);
+    expect(container.firstChild).toHaveAttribute("aria-busy", "true");
+    expect(container.firstChild).not.toHaveAttribute("aria-live");
+    expect(screen.getByRole("status")).toBeEmptyDOMElement();
   });
 
-  it("does not set aria-live when not streaming", () => {
-    const { container } = render(<StreamingText content="Done" />);
-    expect(container.firstChild).not.toHaveAttribute("aria-live");
+  it("announces the finished text once when streaming ends", () => {
+    const { container, rerender } = render(<StreamingText content="Hel" isStreaming />);
+    const region = screen.getByRole("status");
+    rerender(<StreamingText content="Hello **world**" isStreaming />);
+    expect(region).toBeEmptyDOMElement();
+    rerender(<StreamingText content="Hello **world**" isStreaming={false} />);
+    expect(container.firstChild).not.toHaveAttribute("aria-busy");
+    expect(screen.getByRole("status")).toBe(region);
+    expect(region).toHaveTextContent(/^Hello world$/);
+  });
+
+  it("does not announce text that was already complete when it was placed", () => {
+    render(<StreamingText content="Done" />);
+    expect(screen.getByRole("status")).toBeEmptyDOMElement();
   });
 
   it("applies className to the root element", () => {

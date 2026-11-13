@@ -1,7 +1,7 @@
 import React from "react";
 import { describe, it, expect, vi, afterEach } from "vitest";
 import { act, render, screen } from "@testing-library/react";
-import { useAnnounce, useAnnounceValue } from "./useAnnounce";
+import { useAnnounce, useAnnounceAppearance, useAnnounceValue } from "./useAnnounce";
 
 vi.mock("react-i18next", () => ({
   useTranslation: () => ({ t: (key: string) => key }),
@@ -19,6 +19,17 @@ const Imperative = ({ role }: { role?: "status" | "alert" }) => {
 };
 
 const Valued = ({ text }: { text: string }) => <>{useAnnounceValue(text)}</>;
+
+// 差し込む表示は飾り（role を持たない）。領域だけが role="status" を持つ
+const Appearing = ({ shown, text = "No users found" }: { shown: boolean; text?: string }) => {
+  const { ref, region } = useAnnounceAppearance(shown);
+  return (
+    <div>
+      {region}
+      {shown && <p ref={ref}><strong>{text}</strong></p>}
+    </div>
+  );
+};
 
 afterEach(() => {
   vi.useRealTimers();
@@ -132,5 +143,28 @@ describe("useAnnounceValue", () => {
     expect(region).toHaveTextContent("Saved");
     act(() => vi.advanceTimersByTime(100));
     expect(region).toHaveTextContent("Saved");
+  });
+});
+
+describe("useAnnounceAppearance", () => {
+  it("最初の描画では告げない（現れた状態で置いただけ）", () => {
+    render(<Appearing shown />);
+    expect(screen.getByRole("status")).toBeEmptyDOMElement();
+  });
+
+  it("表示が現れたら、その文字を先に在る領域へ書き、消えたら空にする", () => {
+    const { rerender } = render(<Appearing shown={false} />);
+    const region = screen.getByRole("status");
+    rerender(<Appearing shown />);
+    expect(screen.getByRole("status")).toBe(region);
+    expect(region).toHaveTextContent("No users found");
+    rerender(<Appearing shown={false} />);
+    expect(region).toBeEmptyDOMElement();
+  });
+
+  it("差し込む表示そのものは、領域にならない", () => {
+    const { rerender } = render(<Appearing shown={false} />);
+    rerender(<Appearing shown />);
+    expect(screen.getAllByRole("status")).toHaveLength(1);
   });
 });

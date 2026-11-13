@@ -59,13 +59,19 @@ describe("Combobox", () => {
     expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
   });
 
-  it("shows empty state when no options match filter", () => {
+  // T353: 該当なしの表示はポップオーバーごと差し込まれる。表示を領域にしても読まれなかったので、
+  // 文字は入力の前から在る領域へ書く
+  it("shows empty state when no options match filter, and announces it from a region that was already there", () => {
     render(<Combobox options={options} />);
     const input = screen.getByRole("combobox");
+    const region = screen.getByRole("status");
+    expect(region).toBeEmptyDOMElement();
 
     fireEvent.change(input, { target: { value: "xyz" } });
 
-    expect(screen.getByText("No results found")).toBeInTheDocument();
+    expect(screen.getAllByText("No results found")).toHaveLength(2);
+    expect(screen.getByRole("status")).toBe(region);
+    expect(region).toHaveTextContent("No results found");
     expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
   });
 
