@@ -11,6 +11,7 @@ import classNames from "classnames";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { componentsNs } from "@/i18n/generated/components";
 import { CloseIcon } from "@/icon";
+import { BREAKPOINTS } from "@/hooks/useBreakpoint";
 import { Icon } from "../Icon/Icon";
 import { Checkbox } from "../../form/Checkbox/Checkbox";
 import { Button } from "../../form/Button/Button";
@@ -125,9 +126,9 @@ export const Gallery = React.forwardRef<HTMLDivElement, GalleryProps>(
 
       const observer = new ResizeObserver((entries) => {
         const width = entries[0].contentRect.width;
-        if (width < 480) {
+        if (width < BREAKPOINTS.xs) {
           setActualColumns(1);
-        } else if (width < 576) {
+        } else if (width < BREAKPOINTS.sm) {
           setActualColumns(2);
         } else {
           setActualColumns(columns);

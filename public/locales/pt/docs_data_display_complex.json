@@ -301,6 +301,6 @@
   "doc.jsondiff_scenario_2_desc": "Exibir um objeto de configuração antes e depois de um agente de IA modificá-lo.",
   "doc.jsondiff_practice_1": "Pré-ordene as chaves do objeto antes de passar para manter diffs estáveis entre mudanças na ordem de serialização.",
   "doc.jsondiff_practice_2": "Evite passar objetos profundamente aninhados com arrays grandes — considere achatar ou paginar para legibilidade.",
-  "doc.jsondiff_responsive": "Herda o comportamento responsivo do CodeDiffViewer: muda automaticamente para visualização unificada abaixo de 640 px.",
+  "doc.jsondiff_responsive": "Herda o comportamento responsivo do CodeDiffViewer: muda automaticamente para visualização unificada abaixo de 768 px.",
   "doc.jsondiff_i18n_desc": "Todos os rótulos voltados ao usuário herdam do CodeDiffViewer. Passe `filename` ou `language` para contexto em vez de incorporar texto traduzido no valor."
 }

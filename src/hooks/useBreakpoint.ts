@@ -6,6 +6,7 @@ export type Breakpoint = "xs" | "sm" | "md" | "lg" | "xl";
 /**
  * Breakpoint values in pixels — the single source of truth on the JS side,
  * kept in sync with `tokens/breakpoints.json` (and `src/tokens/_breakpoints.scss`).
+ * `npm run check:breakpoints` fails when the two drift apart.
  */
 export const BREAKPOINTS: Record<Breakpoint, number> = {
   xs: 480,

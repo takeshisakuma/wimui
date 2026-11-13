@@ -1,5 +1,6 @@
 import { describe, it, expect, vi } from "vitest";
-import { render, screen, fireEvent } from "@testing-library/react";
+import type React from "react";
+import { render, screen, fireEvent, act } from "@testing-library/react";
 import { Gallery } from "./Gallery";
 import type { GalleryItem } from "./Gallery";
 
@@ -19,6 +20,32 @@ const sampleItems: GalleryItem[] = [
   { id: "2", src: "/img2.jpg", alt: "Image 2", title: "Photo 2" },
   { id: "3", src: "/img3.jpg", alt: "Image 3", title: "Photo 3" },
 ];
+
+// T375: 器の幅で切り替える値は、ブレイクポイントのトークン（BREAKPOINTS）から読む。
+// ResizeObserver を差し替え、器の幅を 1 つ渡して、切り替わる境目の前後を確かめる。
+const renderAtWidth = (width: number, ui: React.ReactElement) => {
+  let callback: ResizeObserverCallback | undefined;
+  vi.stubGlobal(
+    "ResizeObserver",
+    class {
+      constructor(cb: ResizeObserverCallback) {
+        callback = cb;
+      }
+      observe() {}
+      unobserve() {}
+      disconnect() {}
+    },
+  );
+  try {
+    const result = render(ui);
+    act(() => {
+      callback?.([{ contentRect: { width } } as ResizeObserverEntry], {} as ResizeObserver);
+    });
+    return result;
+  } finally {
+    vi.unstubAllGlobals();
+  }
+};
 
 describe("Gallery", () => {
   it("renders all items", () => {
@@ -223,5 +250,17 @@ describe("Gallery", () => {
 
     fireEvent.keyDown(cells[0], { key: "Enter" });
     expect(onItemClick).toHaveBeenCalledWith(sampleItems[0], 0);
+  });
+
+  // 6 枚・columns=3。480 未満は 1 列（6 行）、576 未満は 2 列（3 行）、それ以上は 3 列（2 行）
+  it.each([
+    [479, 6],
+    [480, 3],
+    [575, 3],
+    [576, 2],
+  ])("器の幅 %spx では %s 行に並ぶ", (width, rows) => {
+    const items = [...sampleItems, ...sampleItems.map((item) => ({ ...item, id: item.id + "b" }))];
+    renderAtWidth(width, <Gallery items={items} columns={3} />);
+    expect(screen.getAllByRole("row")).toHaveLength(rows);
   });
 });

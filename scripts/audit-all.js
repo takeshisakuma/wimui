@@ -506,6 +506,12 @@ const checks = [
   },
   {
     category: "lib",
+    // JS の BREAKPOINTS は手で書いたトークンの写し。ずれると CSS と JS で切り替わる幅が黙って食い違う（T375）。
+    name: "BREAKPOINTS (JS) matches tokens/breakpoints.json",
+    command: "node scripts/check-breakpoints.js",
+  },
+  {
+    category: "lib",
     // 型は「キーの間違い」を守るが、**t() を呼ばない生文字列**は誰の網にも
     // かからない。stories 用のガードは stories しか見ず、check-i18n-components は
     // 意図的に src を走査しない（T40）。
