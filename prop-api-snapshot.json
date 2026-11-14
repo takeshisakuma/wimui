@@ -192,7 +192,13 @@
     },
     "Alert.intent": {
       "required": false,
-      "type": "FeedbackIntent"
+      "values": [
+        "danger",
+        "default",
+        "info",
+        "success",
+        "warning"
+      ]
     },
     "Alert.onClose": {
       "required": false,
@@ -753,7 +759,14 @@
     },
     "Avatar.intent": {
       "required": false,
-      "type": "IndicatorIntent"
+      "values": [
+        "danger",
+        "info",
+        "neutral",
+        "primary",
+        "success",
+        "warning"
+      ]
     },
     "Avatar.shape": {
       "required": false,
@@ -852,7 +865,14 @@
     },
     "Badge.intent": {
       "required": false,
-      "type": "IndicatorIntent"
+      "values": [
+        "danger",
+        "info",
+        "neutral",
+        "primary",
+        "success",
+        "warning"
+      ]
     },
     "Badge.interactive": {
       "required": false,
@@ -892,7 +912,13 @@
     },
     "Banner.intent": {
       "required": false,
-      "type": "FeedbackIntent"
+      "values": [
+        "danger",
+        "default",
+        "info",
+        "success",
+        "warning"
+      ]
     },
     "Banner.onClose": {
       "required": false,
@@ -1404,7 +1430,11 @@
     },
     "Button.intent": {
       "required": false,
-      "type": "ButtonIntent"
+      "values": [
+        "danger",
+        "default",
+        "success"
+      ]
     },
     "Button.justify": {
       "required": false,
@@ -2265,7 +2295,14 @@
     },
     "Chip.intent": {
       "required": false,
-      "type": "IndicatorIntent"
+      "values": [
+        "danger",
+        "info",
+        "neutral",
+        "primary",
+        "success",
+        "warning"
+      ]
     },
     "Chip.onClick": {
       "required": false,
@@ -2401,7 +2438,10 @@
       "type": "string"
     },
     "ColorInput.intent": {
-      "type": "FieldIntent"
+      "values": [
+        "danger",
+        "default"
+      ]
     },
     "ColorInput.label": {
       "type": "React.ReactNode"
@@ -2513,7 +2553,10 @@
     },
     "ColorPicker.intent": {
       "required": false,
-      "type": "FieldIntent"
+      "values": [
+        "danger",
+        "default"
+      ]
     },
     "ColorPicker.label": {
       "type": "React.ReactNode"
@@ -3146,7 +3189,10 @@
       "type": "boolean"
     },
     "CounterTextarea.intent": {
-      "type": "FieldIntent"
+      "values": [
+        "danger",
+        "default"
+      ]
     },
     "CounterTextarea.label": {
       "type": "string"
@@ -3193,7 +3239,10 @@
       "type": "string"
     },
     "CreditCardInput.intent": {
-      "type": "FieldIntent"
+      "values": [
+        "danger",
+        "default"
+      ]
     },
     "CreditCardInput.label": {
       "type": "React.ReactNode"
@@ -3552,7 +3601,10 @@
     },
     "DatePicker.intent": {
       "required": false,
-      "type": "FieldIntent"
+      "values": [
+        "danger",
+        "default"
+      ]
     },
     "DatePicker.label": {
       "required": false,
@@ -4359,7 +4411,11 @@
     },
     "FloatButton.intent": {
       "required": false,
-      "type": "ButtonIntent"
+      "values": [
+        "danger",
+        "default",
+        "success"
+      ]
     },
     "FloatButton.label": {
       "required": false,
@@ -5109,7 +5165,11 @@
       "type": "React.ComponentProps<typeof Icon>[\"name\"]"
     },
     "IconButton.intent": {
-      "type": "ButtonIntent"
+      "values": [
+        "danger",
+        "default",
+        "success"
+      ]
     },
     "IconButton.justify": {
       "values": [
@@ -5557,7 +5617,10 @@
     },
     "Input.intent": {
       "required": false,
-      "type": "FieldIntent"
+      "values": [
+        "danger",
+        "default"
+      ]
     },
     "Input.label": {
       "required": false,
@@ -5697,7 +5760,15 @@
     },
     "InputBase.intent": {
       "required": false,
-      "type": "FieldIntent | WimIntent"
+      "values": [
+        "danger",
+        "default",
+        "info",
+        "neutral",
+        "primary",
+        "success",
+        "warning"
+      ]
     },
     "InputBase.leftIcon": {
       "required": false,
@@ -5838,7 +5909,10 @@
       "type": "string"
     },
     "InputMask.intent": {
-      "type": "FieldIntent"
+      "values": [
+        "danger",
+        "default"
+      ]
     },
     "InputMask.label": {
       "type": "React.ReactNode"
@@ -6525,7 +6599,11 @@
     },
     "LinkButton.intent": {
       "required": false,
-      "type": "ButtonIntent"
+      "values": [
+        "danger",
+        "default",
+        "success"
+      ]
     },
     "LinkButton.justify": {
       "required": false,
@@ -7274,7 +7352,13 @@
     },
     "Notification.intent": {
       "required": false,
-      "type": "FeedbackIntent"
+      "values": [
+        "danger",
+        "default",
+        "info",
+        "success",
+        "warning"
+      ]
     },
     "Notification.onClose": {
       "required": false,
@@ -7564,7 +7648,10 @@
       "type": "string"
     },
     "PasswordInput.intent": {
-      "type": "FieldIntent"
+      "values": [
+        "danger",
+        "default"
+      ]
     },
     "PasswordInput.label": {
       "type": "React.ReactNode"
@@ -7900,7 +7987,11 @@
     },
     "Popconfirm.okType": {
       "required": false,
-      "type": "ButtonIntent"
+      "values": [
+        "danger",
+        "default",
+        "success"
+      ]
     },
     "Popconfirm.onCancel": {
       "required": false,
@@ -7936,7 +8027,20 @@
     },
     "Popover.placement": {
       "required": false,
-      "type": "Placement"
+      "values": [
+        "bottom",
+        "bottom-end",
+        "bottom-start",
+        "left",
+        "left-end",
+        "left-start",
+        "right",
+        "right-end",
+        "right-start",
+        "top",
+        "top-end",
+        "top-start"
+      ]
     },
     "Popover.variant": {
       "required": true,
@@ -8017,7 +8121,14 @@
     },
     "Progress.intent": {
       "required": false,
-      "type": "IndicatorIntent"
+      "values": [
+        "danger",
+        "info",
+        "neutral",
+        "primary",
+        "success",
+        "warning"
+      ]
     },
     "Progress.label": {
       "required": false,
@@ -8045,7 +8156,14 @@
     },
     "ProgressRing.intent": {
       "required": false,
-      "type": "IndicatorIntent"
+      "values": [
+        "danger",
+        "info",
+        "neutral",
+        "primary",
+        "success",
+        "warning"
+      ]
     },
     "ProgressRing.label": {
       "required": false,
@@ -8716,7 +8834,10 @@
     },
     "RichTextEditor.intent": {
       "required": false,
-      "type": "FieldIntent"
+      "values": [
+        "danger",
+        "default"
+      ]
     },
     "RichTextEditor.label": {
       "required": false,
@@ -9113,7 +9234,14 @@
     },
     "ScrollProgress.intent": {
       "required": false,
-      "type": "IndicatorIntent"
+      "values": [
+        "danger",
+        "info",
+        "neutral",
+        "primary",
+        "success",
+        "warning"
+      ]
     },
     "ScrollProgress.target": {
       "required": false,
@@ -9138,7 +9266,10 @@
       "type": "string"
     },
     "SearchInput.intent": {
-      "type": "FieldIntent"
+      "values": [
+        "danger",
+        "default"
+      ]
     },
     "SearchInput.label": {
       "type": "React.ReactNode"
@@ -9370,7 +9501,10 @@
     },
     "Select.intent": {
       "required": false,
-      "type": "FieldIntent"
+      "values": [
+        "danger",
+        "default"
+      ]
     },
     "Select.label": {
       "required": false,
@@ -9770,7 +9904,10 @@
     },
     "SmartSearchInput.intent": {
       "required": false,
-      "type": "FieldIntent"
+      "values": [
+        "danger",
+        "default"
+      ]
     },
     "SmartSearchInput.label": {
       "required": false,
@@ -9832,7 +9969,13 @@
     },
     "Snackbar.intent": {
       "required": false,
-      "type": "FeedbackIntent"
+      "values": [
+        "danger",
+        "default",
+        "info",
+        "success",
+        "warning"
+      ]
     },
     "Snackbar.message": {
       "required": true,
@@ -9977,7 +10120,12 @@
     },
     "Span.weight": {
       "required": false,
-      "type": "WimFontWeightKey"
+      "values": [
+        "bold",
+        "medium",
+        "normal",
+        "semibold"
+      ]
     },
     "Sparkline.ariaLabel": {
       "required": false,
@@ -10895,7 +11043,14 @@
     },
     "Tag.intent": {
       "required": false,
-      "type": "IndicatorIntent"
+      "values": [
+        "danger",
+        "info",
+        "neutral",
+        "primary",
+        "success",
+        "warning"
+      ]
     },
     "Tag.interactive": {
       "required": false,
@@ -10939,7 +11094,10 @@
     },
     "TagInput.intent": {
       "required": false,
-      "type": "FieldIntent"
+      "values": [
+        "danger",
+        "default"
+      ]
     },
     "TagInput.label": {
       "required": false,
@@ -11069,7 +11227,12 @@
     },
     "Text.weight": {
       "required": false,
-      "type": "WimFontWeightKey"
+      "values": [
+        "bold",
+        "medium",
+        "normal",
+        "semibold"
+      ]
     },
     "Textarea.asChild": {
       "required": false,
@@ -11092,7 +11255,10 @@
     },
     "Textarea.intent": {
       "required": false,
-      "type": "FieldIntent"
+      "values": [
+        "danger",
+        "default"
+      ]
     },
     "Textarea.label": {
       "required": false,
@@ -11336,7 +11502,10 @@
     },
     "TimePicker.intent": {
       "required": false,
-      "type": "FieldIntent"
+      "values": [
+        "danger",
+        "default"
+      ]
     },
     "TimePicker.label": {
       "type": "React.ReactNode"
@@ -11578,7 +11747,13 @@
     },
     "Toast.intent": {
       "required": false,
-      "type": "FeedbackIntent"
+      "values": [
+        "danger",
+        "default",
+        "info",
+        "success",
+        "warning"
+      ]
     },
     "Toast.onClose": {
       "required": false,
@@ -11723,7 +11898,11 @@
     },
     "Toolbar.size": {
       "required": false,
-      "type": "ComponentSizeBasic"
+      "values": [
+        "lg",
+        "md",
+        "sm"
+      ]
     },
     "ToolbarButton.active": {
       "type": "boolean"
@@ -11774,7 +11953,20 @@
     },
     "Tooltip.placement": {
       "required": true,
-      "type": "Placement"
+      "values": [
+        "bottom",
+        "bottom-end",
+        "bottom-start",
+        "left",
+        "left-end",
+        "left-start",
+        "right",
+        "right-end",
+        "right-start",
+        "top",
+        "top-end",
+        "top-start"
+      ]
     },
     "Tooltip.variant": {
       "required": true,
