@@ -21,5 +21,8 @@
   },
   "infinite_scroll": {
     "loading": "Loading more…"
+  },
+  "kanban": {
+    "moved": "Moved to {{column}}"
   }
 }

@@ -188,7 +188,7 @@
     "jsonViewer_prop_showToolbar": "Se verdadeiro, exibe a barra de ferramentas",
     "kanban_prop_asChild": "Se deve renderizar como um elemento filho.",
     "kanban_prop_columns": "Dados das colunas do Kanban (para uso orientado a props).",
-    "kanban_prop_forceMobileUI": "Se deve forçar a UI para dispositivos de toque.",
+    "kanban_prop_forceMobileUI": "Se deve forçar a UI para dispositivos de toque (o botão de mover como uma barra de largura total abaixo de cada cartão). Sem isso, em dispositivos com ponteiro o botão de mover fica no canto do cartão e aparece ao passar o mouse ou com o foco.",
     "kanban_prop_onCardMove": "Callback quando um card é movido (nome legado / alternativo).",
     "kanban_prop_onMove": "Callback quando um card é movido.",
     "leaderboard_prop_entries": "Lista de entradas do ranking",

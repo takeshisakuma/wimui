@@ -2,9 +2,12 @@ import React, { useState, forwardRef } from "react";
 import classNames from "classnames";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { commonNs } from "@/i18n/generated/common";
+import { dataDisplayNs } from "@/i18n/generated/data-display";
 import { Slot, Slottable } from "@radix-ui/react-slot";
+import { useFloating, autoUpdate, offset, flip, shift } from "@floating-ui/react";
 import { Icon } from "../../media/Icon/Icon";
 import { VisuallyHidden } from "../../layout/VisuallyHidden/VisuallyHidden";
+import { useAnnounce } from "../../_internal/useAnnounce";
 import styles from "./kanban.module.scss";
 import { MoreHorizontalIcon } from "@/icon";
 
@@ -26,7 +29,10 @@ export interface KanbanProps extends Omit<React.ComponentPropsWithoutRef<"div">,
   onMove?: (itemId: string, fromColumnId: string, toColumnId: string) => void;
   /** Callback when a card is moved (legacy / alternative name). */
   onCardMove?: (itemId: string, fromColumnId: string, toColumnId: string) => void;
-  /** Whether to force the touch-device UI. */
+  /**
+   * Whether to force the touch-device UI (the move button as a full-width bar under each card).
+   * Without it, pointer devices show the move button in the card's corner on hover or focus.
+   */
   forceMobileUI?: boolean;
   /** Whether to render as a child element. */
   asChild?: boolean;
@@ -49,15 +55,43 @@ export const Kanban = forwardRef<HTMLDivElement, KanbanProps>(
     },
     ref,
   ) => {
-    const { t } = useWimTranslation(commonNs);
+    // 内蔵の翻訳は `t(` の呼び出しから使うキーを拾う（i18n:bundle）。別名の関数にすると同梱されない
+    const { t } = useWimTranslation([commonNs, dataDisplayNs]);
+    const { announce, region } = useAnnounce();
     const [draggedItem, setDraggedItem] = useState<{
       itemId: string;
       columnId: string;
     } | null>(null);
     const [dragOverColumn, setDragOverColumn] = useState<string | null>(null);
     const [activeMobileMenu, setActiveMobileMenu] = useState<string | null>(null);
+    // 移動ボタンで動かしたカード。動いた先で描き直されたカードが、自分の移動ボタンへフォーカスを取る
+    // （T379）。動かしたカードは別の列で作り直されるので、何もしないとフォーカスは文書の先頭へ落ちる
+    const [focusAfterMove, setFocusAfterMove] = useState<string | null>(null);
 
     const handleMove = onMove || onCardMove;
+
+    const derivedColumns = React.useMemo(() => {
+      if (columnsProp) return columnsProp;
+      const cols: KanbanColumnData[] = [];
+      React.Children.forEach(children, (child) => {
+        if (React.isValidElement(child)) {
+          const props = child.props as Record<string, unknown>;
+          if (typeof props.id === "string" && typeof props.title === "string") {
+            cols.push({
+              id: props.id,
+              title: props.title,
+              items: [], // Items are not needed for the mobile menu
+            });
+          }
+        }
+      });
+      return cols;
+    }, [children, columnsProp]);
+
+    const announceMove = (toColumnId: string, delay = 0) => {
+      const column = derivedColumns.find((c) => c.id === toColumnId);
+      if (column) announce(t("kanban.moved", { column: column.title }), { delay });
+    };
 
     // ドラッグ開始
     const handleDragStart = (
@@ -86,6 +120,7 @@ export const Kanban = forwardRef<HTMLDivElement, KanbanProps>(
 
       handleMove?.(itemId, fromColumnId, toColumnId);
       setDraggedItem(null);
+      if (fromColumnId !== toColumnId) announceMove(toColumnId);
     };
 
     // モバイル向け移動処理
@@ -96,25 +131,10 @@ export const Kanban = forwardRef<HTMLDivElement, KanbanProps>(
     ) => {
       handleMove?.(itemId, fromColumnId, toColumnId);
       setActiveMobileMenu(null);
+      setFocusAfterMove(itemId);
+      // フォーカスが移動ボタンへ戻る読み上げ（ボタンの名前）と重ならないよう、少し待ってから告げる
+      announceMove(toColumnId, 700);
     };
-
-    const derivedColumns = React.useMemo(() => {
-      if (columnsProp) return columnsProp;
-      const cols: KanbanColumnData[] = [];
-      React.Children.forEach(children, (child) => {
-        if (React.isValidElement(child)) {
-          const props = child.props as Record<string, unknown>;
-          if (typeof props.id === "string" && typeof props.title === "string") {
-            cols.push({
-              id: props.id,
-              title: props.title,
-              items: [], // Items are not needed for the mobile menu
-            });
-          }
-        }
-      });
-      return cols;
-    }, [children, columnsProp]);
 
     const renderContent = () => {
       if (children) return children;
@@ -150,6 +170,8 @@ export const Kanban = forwardRef<HTMLDivElement, KanbanProps>(
           handleMobileMove,
           activeMobileMenu,
           setActiveMobileMenu,
+          focusAfterMove,
+          setFocusAfterMove,
           columns: derivedColumns, // Used for mobile move menu search
         }}
       >
@@ -177,6 +199,7 @@ export const Kanban = forwardRef<HTMLDivElement, KanbanProps>(
           tabIndex={0}
         >
           <Slottable>{renderContent()}</Slottable>
+          {region}
         </Component>
       </KanbanContext.Provider>
     );
@@ -202,6 +225,8 @@ const KanbanContext = React.createContext<{
   ) => void;
   activeMobileMenu: string | null;
   setActiveMobileMenu: (id: string | null) => void;
+  focusAfterMove: string | null;
+  setFocusAfterMove: (id: string | null) => void;
   columns: KanbanColumnData[];
 } | null>(null);
 
@@ -305,11 +330,57 @@ export const KanbanCard = ({
     handleMobileMove,
     activeMobileMenu,
     setActiveMobileMenu,
+    focusAfterMove,
+    setFocusAfterMove,
     columns,
   } = useKanban();
 
   const colId = React.useContext(ColumnContext);
   const inCardList = React.useContext(CardListContext);
+  const moveButtonRef = React.useRef<HTMLButtonElement>(null);
+  const moveRef = React.useRef<HTMLDivElement>(null);
+  const menuId = React.useId();
+  const menuOpen = activeMobileMenu === id;
+  // 盤は横スクロールの領域（`overflow-x: auto`）なので、中に絶対配置で開くと端で切れる
+  // （下の段のカードで、移動先の最後の列が見えなかった）。DOM の位置は変えずに（Tab の順はボタンの
+  // 直後のまま）、`position: fixed` で切り取りを抜ける。収まらなければ上に返す
+  const {
+    refs: { setReference, setFloating },
+    floatingStyles,
+  } = useFloating({
+    open: menuOpen,
+    strategy: "fixed",
+    placement: "bottom-end",
+    whileElementsMounted: autoUpdate,
+    middleware: [offset(4), flip(), shift({ padding: 10 })],
+  });
+
+  React.useEffect(() => {
+    if (focusAfterMove !== id) return;
+    moveButtonRef.current?.focus();
+    setFocusAfterMove(null);
+  }, [focusAfterMove, id, setFocusAfterMove]);
+
+  // 閉じ方は InlineDisclosure（Breadcrumb・AvatarGroup の「…」）と揃える: Escape ではボタンへ
+  // フォーカスを戻す。外側の押下・フォーカスが外へ出たときにも閉じる
+  React.useEffect(() => {
+    if (!menuOpen) return;
+    const handlePointerDown = (event: PointerEvent) => {
+      if (!moveRef.current?.contains(event.target as Node)) setActiveMobileMenu(null);
+    };
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== "Escape" || !moveRef.current?.contains(document.activeElement)) return;
+      event.stopPropagation();
+      setActiveMobileMenu(null);
+      moveButtonRef.current?.focus();
+    };
+    document.addEventListener("pointerdown", handlePointerDown);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("pointerdown", handlePointerDown);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [menuOpen, setActiveMobileMenu]);
 
   return (
     <div
@@ -319,6 +390,7 @@ export const KanbanCard = ({
         {
           [styles.dragging]: draggedItem?.itemId === id,
           [styles.disabled]: disabled,
+          [styles.menuOpen]: menuOpen,
         },
         className,
       )}
@@ -327,23 +399,46 @@ export const KanbanCard = ({
     >
       <div className={styles.cardContent}>{children}</div>
 
-      <div className={styles.cardMove}>
+      {/*
+        マウスのドラッグ以外でカードを動かす入口（T379）。以前はタッチ端末でしか出さず
+        （`display: none`）、キーボードとドラッグできないマウスの利用者には動かす手段が無かった。
+        ポインターの端末ではカードの角に置き、ホバーかフォーカスで見せる（隠すのは `opacity` で、
+        Tab の順からは外さない）。
+      */}
+      <div
+        ref={moveRef}
+        className={styles.cardMove}
+        onBlur={(event) => {
+          if (menuOpen && !event.currentTarget.contains(event.relatedTarget as Node | null)) {
+            setActiveMobileMenu(null);
+          }
+        }}
+      >
         <button
+          ref={(node) => {
+            moveButtonRef.current = node;
+            setReference(node);
+          }}
           type="button"
           className={styles.cardMoveBtn}
-          onClick={() =>
-            setActiveMobileMenu(activeMobileMenu === id ? null : id)
-          }
+          onClick={() => setActiveMobileMenu(menuOpen ? null : id)}
           aria-label={t("a11y.move_card")}
+          aria-expanded={menuOpen}
+          aria-controls={menuOpen ? menuId : undefined}
           disabled={disabled}
         >
           <Icon component={MoreHorizontalIcon} size="sm" />
         </button>
 
-        {activeMobileMenu === id && (
+        {menuOpen && (
+          // 中身は押すボタンの並びなので `group`。以前の `listbox` / `option` は、矢印キーで選ぶ
+          // 部品だと名乗りながら矢印キーが効かず、選んだ状態も持たなかった
           <div
+            id={menuId}
+            ref={setFloating}
+            style={floatingStyles}
             className={styles.cardMoveMenu}
-            role="listbox"
+            role="group"
             aria-label={t("a11y.move_to_column")}
           >
             {columns
@@ -354,8 +449,6 @@ export const KanbanCard = ({
                   type="button"
                   className={styles.cardMoveOption}
                   onClick={() => colId && handleMobileMove(id, colId, c.id)}
-                  role="option"
-                  aria-selected={false}
                 >
                   {c.title}
                 </button>

@@ -189,8 +189,9 @@ describe("KanbanBoard", () => {
     const moveBtns = screen.getAllByRole("button", { name: "Move card" });
     fireEvent.click(moveBtns[0]);
     await waitFor(() => {
-      expect(screen.getByRole("listbox", { name: "Move to column" })).toBeInTheDocument();
+      expect(screen.getByRole("group", { name: "Move to column" })).toBeInTheDocument();
     });
+    expect(moveBtns[0]).toHaveAttribute("aria-expanded", "true");
   });
 
   it("calls onCardMove via move menu", async () => {
@@ -201,11 +202,83 @@ describe("KanbanBoard", () => {
     fireEvent.click(moveBtns[0]);
 
     await waitFor(() => {
-      expect(screen.getByRole("listbox")).toBeInTheDocument();
+      expect(screen.getByRole("group", { name: "Move to column" })).toBeInTheDocument();
     });
 
-    fireEvent.click(screen.getByRole("option", { name: "Done" }));
+    fireEvent.click(screen.getByRole("button", { name: "Done" }));
     expect(onCardMove).toHaveBeenCalledWith("card-1", "todo", "done");
+  });
+
+  // T379: 移動ボタンは、マウスのドラッグができない人がカードを動かす唯一の経路
+  describe("moving a card without dragging (T379)", () => {
+    const StatefulBoard = () => {
+      const [cols, setCols] = React.useState([
+        { id: "todo", title: "To Do", items: [{ id: "card-1", content: "Card 1" }] },
+        { id: "done", title: "Done", items: [] as { id: string; content: string }[] },
+      ]);
+      return (
+        <KanbanBoard
+          columns={cols}
+          onMove={(itemId, from, to) =>
+            setCols((prev) => {
+              const item = prev.find((c) => c.id === from)!.items.find((i) => i.id === itemId)!;
+              return prev.map((c) =>
+                c.id === from
+                  ? { ...c, items: c.items.filter((i) => i.id !== itemId) }
+                  : c.id === to
+                    ? { ...c, items: [...c.items, item] }
+                    : c,
+              );
+            })
+          }
+        />
+      );
+    };
+
+    it("closes the menu with Escape and returns focus to the move button", async () => {
+      render(<DefaultBoard />);
+      const moveBtn = screen.getAllByRole("button", { name: "Move card" })[0];
+      fireEvent.click(moveBtn);
+      const done = await screen.findByRole("button", { name: "Done" });
+      done.focus();
+      fireEvent.keyDown(done, { key: "Escape" });
+      expect(screen.queryByRole("group", { name: "Move to column" })).not.toBeInTheDocument();
+      expect(moveBtn).toHaveFocus();
+      expect(moveBtn).toHaveAttribute("aria-expanded", "false");
+    });
+
+    it("keeps focus on the moved card's move button in its new column", async () => {
+      render(<StatefulBoard />);
+      fireEvent.click(screen.getByRole("button", { name: "Move card" }));
+      fireEvent.click(await screen.findByRole("button", { name: "Done" }));
+
+      const doneColumn = screen.getByRole("group", { name: "Done" });
+      await waitFor(() => {
+        expect(within(doneColumn).getByRole("button", { name: "Move card" })).toHaveFocus();
+      });
+    });
+
+    it("announces the destination column after the move", async () => {
+      render(<StatefulBoard />);
+      fireEvent.click(screen.getByRole("button", { name: "Move card" }));
+      fireEvent.click(await screen.findByRole("button", { name: "Done" }));
+
+      // 文はフォーカスの読み上げと重ならないよう遅れて入る（内蔵の翻訳で英語になる）
+      await waitFor(
+        () => {
+          expect(screen.getByRole("status")).toHaveTextContent("Moved to Done");
+        },
+        { timeout: 2000 },
+      );
+    });
+
+    it("keeps the move button in the tab order on pointer devices", () => {
+      render(<DefaultBoard />);
+      for (const btn of screen.getAllByRole("button", { name: "Move card" })) {
+        expect(btn).not.toHaveAttribute("tabindex", "-1");
+        expect(btn).toBeEnabled();
+      }
+    });
   });
 
   it("renders columns and cards via columns prop (prop-driven)", () => {

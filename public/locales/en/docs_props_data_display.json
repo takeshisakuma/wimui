@@ -188,7 +188,7 @@
     "jsonViewer_prop_showToolbar": "If true, show toolbar",
     "kanban_prop_asChild": "Whether to render as a child element.",
     "kanban_prop_columns": "Kanban column data (for prop-driven usage).",
-    "kanban_prop_forceMobileUI": "Whether to force the touch-device UI.",
+    "kanban_prop_forceMobileUI": "Whether to force the touch-device UI (the move button as a full-width bar under each card). Without it, pointer devices show the move button in the card's corner on hover or focus.",
     "kanban_prop_onCardMove": "Callback when a card is moved (legacy / alternative name).",
     "kanban_prop_onMove": "Callback when a card is moved.",
     "leaderboard_prop_entries": "List of ranking entries",
