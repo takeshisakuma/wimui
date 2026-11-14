@@ -12,6 +12,18 @@
   color: inherit !important;
 }
 
+/*
+ * 翻訳した文言（`<T>` が描く `span.wim-t`）は、置かれた要素の文字の大きさを継ぐ（T390）。
+ * addon-docs の `:where(span:not(.sb-anchor, .sb-unstyled, .sb-unstyled span))` が
+ * span に `font-size: 16px` を当てるので、`<h1><T k="…" /></h1>` の見出しも、14px の
+ * 本文・表のセル・リストも、中の文字はすべて 16px で描かれていた（2026-11-15 実測:
+ * 全 299 の文書ページで、`.wim-t` 14295 か所のうち 11448 か所が親と違う大きさ）。
+ * `:where()` の詳細度は 0 なので、ここは `!important` を要らない。
+ */
+.sbdocs-content .wim-t {
+  font-size: inherit;
+}
+
 /* Canvas (Story preview enclosure) */
 .sbdocs-preview {
   border-radius: 4px !important;
