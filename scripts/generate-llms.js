@@ -16,6 +16,7 @@ import { readFileSync, writeFileSync, existsSync, rmSync, mkdirSync } from 'node
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { resolveLocale } from './lib/locale-keys.js';
+import { literalTypeAliases } from './lib/prop-types.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
@@ -69,8 +70,27 @@ const resolve = (key) => i18n[key] || '';
 
 // --- helpers --------------------------------------------------------------
 
+// 名前だけの型の別名（`FieldIntent` など）は、値を並べないと読んだ側が値を当て推量する
+// （T376。T371 の測定で `intent="error"` と書かれた）。docgen は import した別名を辿らないので、
+// 型チェッカーで作った表から値へ展開する。単独なら値の union、ほかと組んでいれば括弧で包む。
+const { values: literalAliases } = await literalTypeAliases(ROOT);
+const expandAliases = (input) => {
+  // `Extract<ComponentSize, "sm" | "md" | "lg">` は受け付ける値が第 2 引数そのもの。
+  // 第 1 引数を展開して並べると、答えが長い列の後ろに埋もれる
+  const str = input.replace(
+    /Extract<\s*[A-Za-z0-9]+\s*,\s*((?:"[^"]*"|\d+)(?:\s*\|\s*(?:"[^"]*"|\d+))*)\s*>/g,
+    (_, values) => `(${values.replace(/\s*\|\s*/g, ' | ')})`,
+  );
+  if (str !== input && /^\([^()]*\)$/.test(str)) return str.slice(1, -1);
+  if (literalAliases.has(str)) return literalAliases.get(str).join(' | ');
+  return str.replace(/\b[A-Z][A-Za-z0-9]*\b/g, (name) =>
+    literalAliases.has(name) ? `(${literalAliases.get(name).join(' | ')})` : name,
+  );
+};
+
 // Render a docgen tsType into a compact one-line type string.
-const typeStr = (t) => {
+const typeStr = (t) => expandAliases(typeStrRaw(t));
+const typeStrRaw = (t) => {
   if (!t) return 'unknown';
   const raw = t.raw ? t.raw.replace(/\s+/g, ' ').replace(/^\|\s*/, '').trim() : '';
   if (raw && raw.length <= 80) return raw;
@@ -830,6 +850,27 @@ const outputs = [
   { file: join(ROOT, 'public/llms-full.txt'), content: lf(full) },
 ];
 
+// 型の欄に、値へ展開できるはずの別名が名前のまま残っていないか（T376）。typeStr を通らない
+// 経路（新しい節が型を直に書く等）で名前が戻ると、読んだエージェントがまた値を当て推量する。
+// 見るのは型の欄（`- \`prop: 型\``）だけ。説明文の中の名前は数えない
+const leftoverAliases = (text) => {
+  const hits = new Set();
+  for (const m of text.matchAll(/^\s*- `[\w.]+\??: ([^`]+)`/gm)) {
+    for (const name of m[1].match(/\b[A-Z][A-Za-z0-9]*\b/g) ?? []) {
+      if (literalAliases.has(name)) hits.add(name);
+    }
+  }
+  return [...hits];
+};
+const failOnLeftoverAliases = (label, text) => {
+  const hits = leftoverAliases(text);
+  if (hits.length === 0) return;
+  console.error(`✗ ${label}: 値に展開できる型の別名が、名前のまま残っています: ${hits.join(', ')}`);
+  console.error('  型の欄は typeStr() を通して書いてください（T376）。');
+  process.exit(1);
+};
+for (const o of outputs) failOnLeftoverAliases(o.file.replace(ROOT, '').replace(/\\/g, '/'), o.content);
+
 if (process.argv.includes('--check')) {
   const stale = outputs.filter(
     // 読み出し側も正規化する（既存のコミット済みファイルが CRLF で入っている場合に備えて）
@@ -900,7 +941,9 @@ rmSync(PER_COMPONENT_DIR, { recursive: true, force: true });
 mkdirSync(PER_COMPONENT_DIR, { recursive: true });
 const perComponent = [...[...byExportCat.values()].flat(), ...rootOnly];
 for (const entry of perComponent) {
-  writeFileSync(join(PER_COMPONENT_DIR, `${entry.name}.md`), componentDoc(entry));
+  const doc = componentDoc(entry);
+  failOnLeftoverAliases(`public/llms/${entry.name}.md`, doc);
+  writeFileSync(join(PER_COMPONENT_DIR, `${entry.name}.md`), doc);
 }
 
 const unresolved = catalog
