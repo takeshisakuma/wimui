@@ -20,6 +20,8 @@
     "hooks_use_notification": "画面の隅に通知のカードを出します。通知は積み重なり、ほかの場所で起きた出来事（書き出しの完了・新しいコメント）向けです。NotificationProvider が要ります。",
     "hooks_use_table_sort": "Table の行を、クライアントで並べ替えます。同じ列を押すと、昇順・降順・並べ替えなしの順に切り替わります。サーバーで並べ替えるときは、状態を自分で持ち、onSortChange を使ってください。",
     "hooks_use_auto_resize": "textarea を、中身に合わせて指定した行数まで伸ばし、それを超えたらスクロールにします。Textarea と PromptInput はすでにこうなっています。自分で描く textarea にだけ使ってください。",
-    "hooks_use_wim": "いちばん近い WimProvider から、テーマ・密度・ロケール・プリセットを読みます（無ければ文書の状態から読みます）。"
+    "hooks_use_wim": "いちばん近い WimProvider から、テーマ・密度・ロケール・プリセットを読みます（無ければ文書の状態から読みます）。",
+    "hooks_group_a11y": "アクセシビリティ",
+    "hooks_use_announce": "操作の結果をスクリーンリーダーに告げます（「保存しました」「3 件」など）。返ってくる region を 1 回描き、最初の描画から置いたままにして、announce を呼びます。WIM UI が実機のスクリーンリーダーで確かめた形です。status の要素を文ごと後から差し込む形は、読まれないことが多くあります。Toast・Kanban・Transfer などの部品は、自分の結果をすでに告げています。"
   }
 }

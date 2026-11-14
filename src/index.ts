@@ -19,6 +19,9 @@ export * from "./ai-core";
 export * from "./hooks/useAutoResize";
 export * from "./hooks/useMediaQuery";
 export * from "./hooks/useBreakpoint";
+// T383: 読み上げの告知。公開するのは useAnnounce と型だけ（同じファイルのほかの関数は部品の中だけで使う）
+export { useAnnounce } from "./components/_internal/useAnnounce";
+export type { AnnounceRole, AnnounceOptions } from "./components/_internal/useAnnounce";
 // 個別アイコンの named import 用（tree-shaking 可能・登録副作用なし）。
 // 文字列ベースの icon/name API を使う場合は `import "wimui/icons"` が別途必要。
 export * from "./icon";

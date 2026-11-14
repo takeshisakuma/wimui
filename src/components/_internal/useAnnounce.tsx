@@ -24,13 +24,33 @@ export type AnnounceRole = "status" | "alert";
 export const AnnouncedByParent = createContext(false);
 
 export type AnnounceOptions = {
-  /** 何 ms 待ってから文を入れるか。待つあいだ、領域は空にしておく */
+  // 何 ms 待ってから文を入れるか。待つあいだ、領域は空にしておく
+  /** Milliseconds to wait before writing the message (the region stays empty meanwhile). Use it when another announcement — focus moving back, a dialog closing — would talk over yours. */
   delay?: number;
 };
 
 // 同じ文を入れ直すときに、いったん空にしておく時間（Transfer の 50 ms を引き継いだ）
 const REPEAT_GAP_MS = 50;
 
+// T383（2026-11-15・ユーザー判断）で公開した。公開するのはこの関数と 2 つの型だけ
+// （`useAnnounceAppearance` / `useAnnounceValue` / `AnnouncedByParent` は部品の中だけで使う）。
+/**
+ * Announce the result of an action to screen readers — "Saved", "3 results", "Moved to Done".
+ *
+ * Render `region` once inside your component and keep it rendered (empty) from the first paint;
+ * then call `announce(text)`. This is the one pattern that WIM UI verified is actually read
+ * (Narrator + Chrome): rewriting the text of a status region that already exists. Inserting a
+ * new `role="status"` / `aria-live` element together with its text is often not read at all.
+ * Repeating the same text is handled (the region is cleared first), and `delay` lets you wait
+ * for another announcement, such as focus returning, to finish.
+ *
+ * @returns `announce(text, { delay? })`, `clear()`, and `region` — a visually hidden element to render.
+ *
+ * @example
+ * const { announce, region } = useAnnounce();
+ * const save = async () => { await saveDraft(); announce("Draft saved"); };
+ * return <>{region}<Button onClick={save}>Save</Button></>;
+ */
 export function useAnnounce({
   role = "status",
   initialMessage = "",
