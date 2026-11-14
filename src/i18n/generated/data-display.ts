@@ -8,6 +8,7 @@ export type DataDisplayKey =
   | "calendar.title"
   | "countdown.remaining"
   | "infinite_scroll.loading"
+  | "kanban.moved"
   | "selection_bar.clear"
   | "selection_bar.cleared"
   | "selection_bar.label"
@@ -33,6 +34,9 @@ export const dataDisplayNs: WimNamespace<"data-display", DataDisplayKey> = {
       },
       "infinite_scroll": {
         "loading": "Loading more…"
+      },
+      "kanban": {
+        "moved": "Moved to {{column}}"
       }
     },
     "ja": {
@@ -50,6 +54,9 @@ export const dataDisplayNs: WimNamespace<"data-display", DataDisplayKey> = {
       },
       "infinite_scroll": {
         "loading": "さらに読み込み中…"
+      },
+      "kanban": {
+        "moved": "{{column}} へ移動しました"
       }
     },
     "pt": {
@@ -67,6 +74,9 @@ export const dataDisplayNs: WimNamespace<"data-display", DataDisplayKey> = {
       },
       "infinite_scroll": {
         "loading": "Carregando mais…"
+      },
+      "kanban": {
+        "moved": "Movido para {{column}}"
       }
     }
   },

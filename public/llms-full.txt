@@ -2593,7 +2593,8 @@ in; use `"center"` only when the empty state is the only thing in its region.
     - `columns: KanbanColumnData[]` — Kanban column data (for prop-driven usage).
     - `onMove: (itemId: string, fromColumnId: string, toColumnId: string) => void` — Callback when a card is moved.
     - `onCardMove: (itemId: string, fromColumnId: string, toColumnId: string) => void` — Callback when a card is moved (legacy / alternative name).
-    - `forceMobileUI: boolean` = false — Whether to force the touch-device UI.
+    - `forceMobileUI: boolean` = false — Whether to force the touch-device UI (the move button as a full-width bar under each card).
+Without it, pointer devices show the move button in the card's corner on hover or focus.
     - `asChild: boolean` = false — Whether to render as a child element.
 - **Leaderboard** — Display a ranked list of entries with scores. Medal colors for the top three are opt-in.
     - `entries: LeaderboardEntry[]` (required) — List of ranking entries

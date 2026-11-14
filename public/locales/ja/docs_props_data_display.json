@@ -188,7 +188,7 @@
     "jsonViewer_prop_showToolbar": "true の場合、ツールバーを表示します",
     "kanban_prop_asChild": "子要素としてレンダリングするかどうか。",
     "kanban_prop_columns": "カンバンのカラムデータ（Prop-driven用）。",
-    "kanban_prop_forceMobileUI": "タッチデバイス向けのUIを強制的に表示するか。",
+    "kanban_prop_forceMobileUI": "タッチ端末向けの UI（各カードの下に、横幅いっぱいの移動ボタンの帯）を常に出すか。指定しないと、マウスなどの端末では、移動ボタンはカードの角に置かれ、ホバーかフォーカスで現れます。",
     "kanban_prop_onCardMove": "カードの移動が発生した時のコールバック (Legacy/Alternative name)。",
     "kanban_prop_onMove": "カードの移動が発生した時のコールバック。",
     "leaderboard_prop_entries": "ランキングエントリー一覧",

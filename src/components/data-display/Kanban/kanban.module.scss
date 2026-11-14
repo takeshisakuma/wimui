@@ -71,6 +71,9 @@
   }
 
   .card {
+    // 本文の内側の余白。移動ボタンの位置（上の揃えと右の余白）も、この値から決める
+    --kanban-card-padding: 0.75rem;
+
     position: relative;
     box-sizing: border-box;
     cursor: grab;
@@ -95,21 +98,47 @@
   }
 
   .cardContent {
-    padding: 0.75rem;
+    padding: var(--kanban-card-padding);
   }
 
-  /* Mobile UI */
+  /*
+   * 移動ボタン（T379）。ポインターの端末ではカードの右上の角に重ね、ホバーかフォーカスで見せる。
+   * 隠すのは `opacity` で、`display: none` にはしない ── Tab の順から外れ、キーボードの
+   * 利用者にはカードを動かす手段が無くなる（以前はタッチ端末でしか出していなかった）。
+   * タッチ端末（`hover: none` かつ `pointer: coarse`）と `forceMobileUI` では、カードの下の帯にする。
+   */
   .cardMove {
-    position: relative;
-    display: none;
-    border-top: var(--wim-border-width-thin) solid var(--wim-color-border);
+    position: absolute;
+
+    // ボタンの中心を、本文の 1 行目の中心にそろえる（1 行のカードでは上下の真ん中になる）。
+    // カードの上下の真ん中にしないのは、題名と担当者・期限を重ねた背の高いカードで、本文に重なるため。
+    // `.cardContent` の上の余白 + (1 行の高さ − ボタンの高さ) / 2。`1lh` はカードから継いだ行の高さ。
+    // 右の余白は、本文の左の余白とそろえる
+    top: calc(var(--kanban-card-padding) + (1lh - var(--wim-height-sm)) / 2);
+    right: var(--kanban-card-padding);
+    opacity: 0;
+    transition: opacity var(--wim-duration-fast) var(--wim-easing-standard);
+
+    .card:hover:not(.disabled) &,
+    .card:focus-within &,
+    .card.menuOpen & {
+      opacity: 1;
+    }
 
     @media (hover: none) and (pointer: coarse) {
-      display: block;
+      position: relative;
+      top: auto;
+      right: auto;
+      border-top: var(--wim-border-width-thin) solid var(--wim-color-border);
+      opacity: 1;
     }
 
     .root.touch & {
-      display: block;
+      position: relative;
+      top: auto;
+      right: auto;
+      border-top: var(--wim-border-width-thin) solid var(--wim-color-border);
+      opacity: 1;
     }
   }
 
@@ -117,27 +146,62 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    min-height: 2.75rem;
-    padding: 0.375rem;
+    width: var(--wim-height-sm);
+    height: var(--wim-height-sm);
+    padding: 0;
     font-size: var(--wim-font-size-md);
-    color: var(--wim-color-text-tertiary);
+    color: var(--wim-color-text-secondary);
     cursor: pointer;
-    background: transparent;
-    border: none;
-    border-radius: 0 0 var(--wim-radius-component) var(--wim-radius-component);
 
-    &:active {
+    // 本文の右上に重なるので、地の色を敷いて文字を隠す
+    background: var(--wim-color-surface);
+    border: var(--wim-border-width-thin) solid var(--wim-color-border);
+    border-radius: var(--wim-radius-component);
+
+    &:hover {
       background: var(--wim-color-surface-hover);
+    }
+
+    &:focus-visible {
+      outline: var(--wim-focus-outline-width) solid var(--wim-color-focus-outline);
+      outline-offset: var(--wim-focus-outline-offset);
+    }
+
+    @media (hover: none) and (pointer: coarse) {
+      width: 100%;
+      height: auto;
+      min-height: 2.75rem;
+      padding: 0.375rem;
+      color: var(--wim-color-text-tertiary);
+      background: transparent;
+      border: none;
+      border-radius: 0 0 var(--wim-radius-component) var(--wim-radius-component);
+
+      &:active {
+        background: var(--wim-color-surface-hover);
+      }
+    }
+
+    .root.touch & {
+      width: 100%;
+      height: auto;
+      min-height: 2.75rem;
+      padding: 0.375rem;
+      color: var(--wim-color-text-tertiary);
+      background: transparent;
+      border: none;
+      border-radius: 0 0 var(--wim-radius-component) var(--wim-radius-component);
+
+      &:active {
+        background: var(--wim-color-surface-hover);
+      }
     }
   }
 
+  // 位置は floating-ui が `position: fixed` で決める（盤のスクロール領域で切れないように）
   .cardMoveMenu {
-    position: absolute;
-    right: 0;
-    bottom: calc(100% + var(--wim-spacing-2xs));
-    left: 0;
     z-index: 10;
+    min-width: 10rem;
     overflow: hidden;
     background-color: var(--wim-color-surface);
     border: var(--wim-border-width-thin) solid var(--wim-color-border);
