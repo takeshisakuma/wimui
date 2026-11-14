@@ -1,5 +1,17 @@
 # wimui
 
+## 0.72.0
+
+### Minor Changes
+
+- f3b12cb: `List.Item` で `ListItem` を書けるようにしました。ほかの「親.子」の部品（`Card.Header`・`SortableList.Item` など）と同じ書き方です。`ListItem` の import も、これまでどおり使えます。
+
+  `Lightbox.Trigger` / `Lightbox.Content` / `Lightbox.Gallery` を、型のエラーなしで書けるようにしました。実行時には以前から動いていましたが、`Lightbox` の型に子が載っておらず、tsc が落ちていました。`LightboxRoot` はこれまでどおり使え、`Lightbox` と同じものです。
+
+### Patch Changes
+
+- b48db8d: AI エージェント向けのファイル（`llms-full.txt` と `dist/llms/<Component>.md`）で、prop の型を別名のまま書かず、受け付ける値を並べるようにしました。たとえば `Input` の `intent` は、`FieldIntent` ではなく `"default" | "danger"` と書かれます。`Extract<ComponentSize, "sm" | "md" | "lg">` のような型も、`"sm" | "md" | "lg"` と書かれます。
+
 ## 0.71.0
 
 ### Minor Changes
