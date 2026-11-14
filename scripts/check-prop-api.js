@@ -60,7 +60,10 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { globSync } from 'glob';
-import { enumerableValues } from './lib/prop-types.js';
+import { enumerableValues, literalTypeAliases } from './lib/prop-types.js';
+
+// 名前だけの型の別名（`FieldIntent` など）を値へ解く表（T378）
+const { values: literalAliases } = await literalTypeAliases(process.cwd());
 
 const SNAPSHOT = 'prop-api-snapshot.json';
 // v2: 構造体 prop の中身（`shape`）を展開して持つようになった（T94）。
@@ -252,7 +255,7 @@ function collect() {
     const tsx = tsxFor.get(name) ?? tsxFor.get(name.split('.')[0]);
     const optionality = tsx ? declaredOptionality(tsx) : new Map();
     for (const [prop, d] of Object.entries(def.props)) {
-      const values = tsx ? enumerableValues(d.tsType, tsx) : null;
+      const values = tsx ? enumerableValues(d.tsType, tsx, literalAliases) : null;
       const entry = {};
       // ソースで読めたものだけ必須/任意を持つ。読めなければキーごと持たない
       // （false を入れると「任意だと確認した」と嘘をつくことになる）。

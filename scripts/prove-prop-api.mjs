@@ -64,6 +64,19 @@ const CASES = [
     expect: true,
     match: /任意 → 必須/,
   },
+  {
+    /**
+     * T378: docgen は import した別名を辿らないので、`intent: FieldIntent` は以前
+     * 「列挙できない型」として値を比べていなかった。別名の宣言から値を消すと鳴ることを、
+     * 部品ではなく**別名の側**を触って確かめる（触るのは生成物だが、終わったら戻す）。
+     */
+    name: 'P6. 型の別名（FieldIntent）から値を消すと、それを使う prop が鳴る（T378）',
+    file: 'src/types/generated-intents.ts',
+    find: 'export type FieldIntent =\n  | "default"\n  | "danger";',
+    put: 'export type FieldIntent =\n  | "default";',
+    expect: true,
+    match: /Input\.intent: 受け付けなくなった値 "danger"/,
+  },
 ];
 
 const original = fs.readFileSync(TARGET, 'utf8');
@@ -72,10 +85,21 @@ if (!original.includes(ANCHOR)) {
   process.exit(1);
 }
 
+const touched = new Map(); // ほかのファイルを触るケース（P6）の元の中身
 let allOk = true;
 try {
   for (const c of CASES) {
-    let mutated = c.put === null ? original : original.replace(ANCHOR, c.put);
+    if (c.file) {
+      const before = touched.get(c.file) ?? fs.readFileSync(c.file, 'utf8');
+      touched.set(c.file, before);
+      if (!before.includes(c.find)) {
+        console.error(`✗ ${c.name}: ${c.file} に目印がありません。移動したら直してください。`);
+        allOk = false;
+        continue;
+      }
+      fs.writeFileSync(c.file, before.replace(c.find, c.put));
+    }
+    let mutated = c.put === null || c.file ? original : original.replace(ANCHOR, c.put);
     for (const extra of c.also ?? []) {
       if (!mutated.includes(extra.find)) {
         console.error(`✗ ${c.name}: 目印 "${extra.find.trim()}" が見つかりません。`);
@@ -86,6 +110,7 @@ try {
     fs.writeFileSync(TARGET, mutated);
 
     const { code, out } = run();
+    if (c.file) fs.writeFileSync(c.file, touched.get(c.file));
     const rang = code !== 0;
     const matched = !c.match || c.match.test(out);
     const ok = rang === c.expect && (!c.expect || matched);
@@ -98,6 +123,7 @@ try {
   }
 } finally {
   fs.writeFileSync(TARGET, original);
+  for (const [file, before] of touched) fs.writeFileSync(file, before);
   // docgen はキャッシュを持つので、差し込みが残らないよう最後に 1 回素で走らせる。
   run();
 }
