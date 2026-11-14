@@ -38,6 +38,20 @@ describe("Lightbox", () => {
     expect(screen.getByText("Test content")).toBeInTheDocument();
   });
 
+  it("名前付きの Lightbox から子を書ける（T377。以前は型に無く tsc で落ちた）", () => {
+    expect(Lightbox).toBe(LightboxRoot);
+    render(
+      <Lightbox>
+        <Lightbox.Gallery items={ITEMS}>
+          <Lightbox.Trigger index={0}>open-first</Lightbox.Trigger>
+        </Lightbox.Gallery>
+        <Lightbox.Content />
+      </Lightbox>,
+    );
+    fireEvent.click(screen.getByText("open-first"));
+    expect(screen.getByAltText("image-a")).toBeInTheDocument();
+  });
+
   it("is closed by default and opens via trigger", () => {
     const onOpenChange = vi.fn();
     renderGallery({ onOpenChange });

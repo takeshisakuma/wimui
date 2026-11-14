@@ -16,6 +16,16 @@ describe("List", () => {
     expect(screen.getByText("Item 2")).toBeInTheDocument();
   });
 
+  it("List.Item で書いても ListItem と同じ部品になる（T377）", () => {
+    expect(List.Item).toBe(ListItem);
+    render(
+      <List>
+        <List.Item>Item 1</List.Item>
+      </List>,
+    );
+    expect(screen.getByRole("listitem")).toHaveTextContent("Item 1");
+  });
+
   it("renders as ol when using asChild", () => {
     const { container } = render(
       <List asChild>
