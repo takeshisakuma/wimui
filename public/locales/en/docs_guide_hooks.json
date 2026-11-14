@@ -1,0 +1,25 @@
+{
+  "guide": {
+    "hooks_title": "Hooks",
+    "hooks_desc": "The hooks you can import from the package. Prefer them over writing the same thing yourself — a matchMedia listener, textarea height math, sort state. The import line, the signature and the example under each hook are generated from the source (JSDoc), so they match the installed version.",
+    "hooks_group_responsive": "Responsive",
+    "hooks_group_responsive_desc": "Read the viewport in JavaScript. For layout, prefer CSS (the breakpoint tokens and container queries); use these only when the rendered structure itself has to change.",
+    "hooks_group_feedback": "Feedback",
+    "hooks_group_feedback_desc": "Show a message from an event handler. Each one needs its provider once near the root of the app, and throws when called outside it.",
+    "hooks_group_data": "Data",
+    "hooks_group_input": "Input",
+    "hooks_group_settings": "Settings",
+    "hooks_signature": "Signature",
+    "hooks_example": "Example",
+    "hooks_use_media_query": "Track whether a CSS media query currently matches. Before the first client render it returns the default value you pass (false if omitted), so server and client render the same markup.",
+    "hooks_use_breakpoint": "The name of the largest breakpoint the viewport currently reaches (xs, sm, md, lg, xl). Until the component mounts it returns the smallest one.",
+    "hooks_use_breakpoint_up": "Whether the viewport is at or above the named breakpoint. The JavaScript counterpart of the SCSS up() mixin.",
+    "hooks_use_breakpoint_down": "Whether the viewport is below the named breakpoint. The JavaScript counterpart of the SCSS down() mixin, and of HamburgerMenu's visibleBelow.",
+    "hooks_use_toast": "Show a short message that dismisses itself — a one-off confirmation of what the user just did. For a state that stays true (a limit, an outage), render an inline Alert instead. Needs ToastProvider.",
+    "hooks_use_snackbar": "Show a single message bar at the edge of the screen. Showing a new message replaces the current one. Suits a message that carries one action, such as Undo. Needs SnackbarProvider.",
+    "hooks_use_notification": "Show a notification card in a corner of the screen. Notifications stack and suit events that happened elsewhere (a finished export, a new comment). Needs NotificationProvider.",
+    "hooks_use_table_sort": "Sort rows on the client for Table. Activating the same column cycles ascending, descending and unsorted. For server-side sorting, keep the state yourself and use onSortChange.",
+    "hooks_use_auto_resize": "Grow a textarea with its content up to a number of rows, then scroll. Textarea and PromptInput already do this — use the hook only for a textarea you render yourself.",
+    "hooks_use_wim": "Read the theme, density, locale and preset from the nearest WimProvider (or from the document when there is none)."
+  }
+}

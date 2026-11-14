@@ -35,7 +35,7 @@ interface LightboxContextType {
 
 const LightboxContext = createContext<LightboxContextType | undefined>(undefined);
 
-export const useLightbox = () => {
+const useLightbox = () => {
   const context = useContext(LightboxContext);
   if (!context) {
     throw new Error("Lightbox components must be used within Lightbox");

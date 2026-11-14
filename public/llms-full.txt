@@ -3633,6 +3633,87 @@ sentiment color and the rest in a neutral color. Has effect only with `data`.
     - `ariaLabel: string` — Accessible label describing the audio; when omitted the visualizer is
 hidden from assistive tech
 
+## Hooks
+
+Exported hooks. Prefer them over hand-rolled equivalents (`matchMedia` listeners, textarea height math, sort state).
+
+- **useAutoResize** — `import { useAutoResize } from "wimui"` — Grow a `<textarea>` with its content, up to `maxRows` rows; past that it scrolls. `Textarea` and `PromptInput` already do this — use the hook only for a textarea you render yourself.
+  - Signature: `(value: string | undefined, maxRows?: number): RefObject<HTMLTextAreaElement | null>`
+
+  ```tsx
+  const [value, setValue] = useState("");
+  const ref = useAutoResize(value, 6);
+  return <textarea ref={ref} value={value} onChange={(e) => setValue(e.target.value)} />;
+  ```
+
+- **useBreakpoint** — `import { useBreakpoint } from "wimui"` — Resolve the current active breakpoint — the largest whose min-width the viewport satisfies. Returns the smallest breakpoint below the first threshold. SSR-safe (defaults to the smallest until mounted).
+  - Signature: `(): Breakpoint`
+
+  ```tsx
+  const bp = useBreakpoint(); // "xs" | "sm" | "md" | "lg" | "xl"
+  ```
+
+- **useBreakpointDown** — `import { useBreakpointDown } from "wimui"` — Track whether the viewport is below a named breakpoint (max-width), mirroring the SCSS `down()` mixin — the JS equivalent of HamburgerMenu's `visibleBelow`. SSR-safe.
+  - Signature: `(breakpoint: Breakpoint): boolean`
+
+  ```tsx
+  const isMobile = useBreakpointDown("md");
+  ```
+
+- **useBreakpointUp** — `import { useBreakpointUp } from "wimui"` — Track whether the viewport is at or above a named breakpoint (min-width), mirroring the SCSS `up()` mixin. SSR-safe.
+  - Signature: `(breakpoint: Breakpoint): boolean`
+
+  ```tsx
+  const isDesktop = useBreakpointUp("lg");
+  ```
+
+- **useMediaQuery** — `import { useMediaQuery } from "wimui"` — Subscribe to a CSS media query and track whether it currently matches.
+  - Signature: `(query: string, defaultState?: boolean): boolean`
+
+  ```tsx
+  const isWide = useMediaQuery("(min-width: 768px)");
+  ```
+
+- **useNotification** — `import { useNotification } from "wimui/feedback"` — Show a notification card in a corner of the screen from anywhere under `NotificationProvider`. Notifications stack, carry a title and a body, and suit events that happened elsewhere (a finished export, a new comment) rather than the result of the user's last action.
+  - Signature: `(): NotificationContextType`
+
+  ```tsx
+  const { show } = useNotification();
+  show({ title: "Export finished", description: "report.csv is ready." });
+  ```
+
+- **useSnackbar** — `import { useSnackbar } from "wimui/feedback"` — Show a single message bar at the edge of the screen from anywhere under `SnackbarProvider`. One message at a time: showing a new one replaces the current one. Use it when the message may carry one action (for example "Undo").
+  - Signature: `(): SnackbarContextType`
+
+  ```tsx
+  const { showMessage } = useSnackbar();
+  showMessage("Message archived");
+  ```
+
+- **useTableSort** — `import { useTableSort } from "wimui/data-display"` — Sort rows on the client for `Table`: clicking the same column cycles ascending → descending → unsorted. For server-side sorting, keep the state yourself and pass `onSortChange`.
+  - Signature: `<T extends Record<string, unknown>>(data: T[], options?: UseTableSortOptions<T>): UseTableSortReturn<T>`
+
+  ```tsx
+  const { sortedData, handleSort, getSortDirection } = useTableSort(rows);
+  // <Table.Head sortable sortDirection={getSortDirection("name")} onSort={() => handleSort("name")}>
+  ```
+
+- **useToast** — `import { useToast } from "wimui/feedback"` — Show a short, self-dismissing message (a toast) from anywhere under `ToastProvider`. Use it for a one-off confirmation of something the user just did; for state that stays true (a limit, an outage), render an inline `Alert` instead.
+  - Signature: `(): ToastContextType`
+
+  ```tsx
+  const { show } = useToast();
+  show({ title: "Saved", intent: "success" });
+  ```
+
+- **useWim** — `import { useWim } from "wimui"` — Read the nearest `WimProvider` values, or fall back to document / i18n globals when used outside a provider.
+  - Signature: `(): WimContextValue`
+
+  ```tsx
+  const { theme, locale } = useWim();
+  ```
+
+
 ## Not in scope — deliberately not provided
 
 These exist in other systems' vocabularies and are **decisions, not gaps**. Do not hand-roll them into a wimui screen; the alternative given is the supported way to express the same intent.

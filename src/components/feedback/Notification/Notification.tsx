@@ -183,6 +183,19 @@ export const NotificationProvider = ({
   );
 };
 
+/**
+ * Show a notification card in a corner of the screen from anywhere under `NotificationProvider`.
+ * Notifications stack, carry a title and a body, and suit events that happened elsewhere
+ * (a finished export, a new comment) rather than the result of the user's last action.
+ *
+ * Throws when called outside `NotificationProvider`.
+ *
+ * @returns `show(notification)` — the `Notification` props without `onClose` — and `remove(id)`.
+ *
+ * @example
+ * const { show } = useNotification();
+ * show({ title: "Export finished", description: "report.csv is ready." });
+ */
 export const useNotification = () => {
   const context = useContext(NotificationContext);
   if (!context) {

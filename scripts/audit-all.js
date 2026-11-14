@@ -65,6 +65,13 @@ const checks = [
   },
   {
     category: "docs",
+    // T380（2026-11-14）。公開している hooks 13 個のうち、文書があるのは 3 個・llms に出るのは
+    // 1 個だった。check:story-docs は部品しか見ない。JSDoc・docs/Hooks.mdx・llms-full.txt を見る。
+    name: "Public hooks documented (JSDoc, docs/Hooks.mdx, llms)",
+    command: "node scripts/check-hooks-docs.js",
+  },
+  {
+    category: "docs",
     // T229（2026-08-23）。同じキーが複数のロケールファイルに在ると、i18next は
     // 先の名前空間だけを返すので**負けている複製は一度も表示されない**。
     // `check-i18n-quality` の重複検出は 1 ファイルの中しか見ないため構造的に見えない。

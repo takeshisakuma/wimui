@@ -371,6 +371,8 @@
     "check:exports": "node scripts/check-documented-exports.js",
     "check:api:update": "node scripts/check-public-api.js --update",
     "check:prop-api": "node scripts/check-prop-api.js",
+    "check:hooks-docs": "node scripts/check-hooks-docs.js",
+    "prove:hooks-docs": "node scripts/prove-hooks-docs.mjs",
     "check:spread-order": "node scripts/check-spread-order.js",
     "check:spread-order:update": "node scripts/check-spread-order.js --update",
     "check:prop-api:update": "node scripts/check-prop-api.js --update",

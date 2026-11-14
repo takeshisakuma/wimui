@@ -267,6 +267,20 @@ export const SnackbarProvider = ({
   );
 };
 
+/**
+ * Show a single message bar at the edge of the screen from anywhere under `SnackbarProvider`.
+ * One message at a time: showing a new one replaces the current one. Use it when the message
+ * may carry one action (for example "Undo").
+ *
+ * Throws when called outside `SnackbarProvider`.
+ *
+ * @returns `showMessage(message)` — a string, or the `Snackbar` props without `open` / `onClose` —
+ * and `hideMessage()`.
+ *
+ * @example
+ * const { showMessage } = useSnackbar();
+ * showMessage("Message archived");
+ */
 export const useSnackbar = () => {
   const context = useContext(SnackbarContext);
   if (!context) {

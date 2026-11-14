@@ -29,6 +29,7 @@ export const ALL_NAMESPACES = [
   "docs_guide_data",
   "docs_guide_effects",
   "docs_guide_forms",
+  "docs_guide_hooks",
   "docs_guide_icons",
   "docs_guide_intents",
   "docs_guide_internal",

@@ -17,6 +17,7 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { resolveLocale } from './lib/locale-keys.js';
 import { literalTypeAliases } from './lib/prop-types.js';
+import { publicHooks } from './lib/public-hooks.js';
 import { compoundMemberChecker } from './lib/compound-members.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -785,6 +786,29 @@ const catalogSection = (withProps) => {
   return lines.join('\n');
 };
 
+// --- hooks (T380) ------------------------------------------------------------
+//
+// 公開している hooks を、型チェッカーで入口から数えて、JSDoc から書く（写しは持たない）。
+// 以前は `useToast` だけがレシピの中に出て、残りの 9 個は llms のどこにも無かった ──
+// 読んだエージェントは、無いと思って `matchMedia` などを自前で書く。
+// 文書ページ（docs/Hooks.mdx）と JSDoc の欠けは `check:hooks-docs` が落とす。
+const hooks = await publicHooks(ROOT);
+const hooksSection = (withDetails) => {
+  const lines = [
+    '## Hooks',
+    '',
+    'Exported hooks. Prefer them over hand-rolled equivalents (`matchMedia` listeners, textarea height math, sort state).',
+    '',
+  ];
+  for (const h of hooks) {
+    lines.push(`- **${h.name}** — \`import { ${h.name} } from "${h.importPath}"\` — ${h.summary}`);
+    if (!withDetails) continue;
+    lines.push(`  - Signature: \`${h.signature}\``);
+    if (h.example) lines.push('', '  ```tsx', ...h.example.split('\n').map((l) => `  ${l}`), '  ```', '');
+  }
+  return lines.join('\n');
+};
+
 // --- not in scope (T47⑤) --------------------------------------------------
 //
 // 「カタログに無い」は「まだ実装していない」と読まれる。読んだエージェントは
@@ -818,6 +842,7 @@ const concise = [
   recipes,
   `> More verified full-screen recipes (auth sign-in, settings form, empty state, filtered data table, onboarding) and per-category idioms (form, navigation, feedback, overlay) are in \`llms-full.txt\`.`,
   catalogSection(false),
+  `\n${hooksSection(false)}`,
   `\n${notPlanned}`,
   `\n---\nFor per-component props, types and defaults, see \`llms-full.txt\`.\n\n${perComponentPointer}`,
 ].join('\n');
@@ -830,6 +855,7 @@ const full = [
   recipesExtra,
   idioms,
   catalogSection(true),
+  `\n${hooksSection(true)}`,
   `\n${notPlanned}`,
   `\n---\n${perComponentPointer}`,
 ].join('\n');

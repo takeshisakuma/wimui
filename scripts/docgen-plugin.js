@@ -635,6 +635,29 @@ async function handleHotFile(file) {
 }
 
 /**
+ * 公開している hooks の一覧（T380）を `src/data/docgen-hooks.json` に書く。
+ * `docs/Hooks.mdx` の `HookDoc` が、シグネチャと例（JSDoc の `@example`）をここから描く ──
+ * MDX に手で写すと JSDoc とずれるため。
+ *
+ * `generateDocgenData()` には入れない: 型チェッカーを立てるので数秒かかり、`generateDocgenData()` は
+ * `check:prop-api` などのガードからも毎回呼ばれる。Storybook の起動（`buildStart`）でだけ作る。
+ * 名前を `docgen_` で始めないのは、カテゴリの JSON の掃除（上の Cleanup obsolete files）に消されないため。
+ */
+export async function generateHooksDocgen() {
+  const rootDir = path.resolve(__dirname, '..');
+  const { publicHooks } = await import('./lib/public-hooks.js');
+  const hooks = await publicHooks(rootDir);
+  const targetFile = path.join(rootDir, 'src/data/docgen-hooks.json');
+  const content = JSON.stringify(
+    Object.fromEntries(hooks.map((h) => [h.name, { importPath: h.importPath, signature: h.signature, example: h.example }])),
+    null,
+    2,
+  );
+  if (fs.existsSync(targetFile) && fs.readFileSync(targetFile, 'utf-8') === content) return;
+  fs.writeFileSync(targetFile, content);
+}
+
+/**
  * Vite プラグイン
  */
 export default function docgenPlugin() {
@@ -642,6 +665,7 @@ export default function docgenPlugin() {
     name: 'docgen-plugin',
     async buildStart() {
       await generateDocgenData();
+      await generateHooksDocgen();
     },
     async handleHotUpdate({ file }) {
       if (file.includes('src/components') && (file.endsWith('.tsx') || file.endsWith('.scss'))) {

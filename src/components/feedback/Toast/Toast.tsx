@@ -233,6 +233,19 @@ export const ToastProvider = ({
   );
 };
 
+/**
+ * Show a short, self-dismissing message (a toast) from anywhere under `ToastProvider`.
+ * Use it for a one-off confirmation of something the user just did; for state that stays
+ * true (a limit, an outage), render an inline `Alert` instead.
+ *
+ * Throws when called outside `ToastProvider`.
+ *
+ * @returns `show(toast)` — `{ title?, description?, intent?, duration? }` — and `remove(id)`.
+ *
+ * @example
+ * const { show } = useToast();
+ * show({ title: "Saved", intent: "success" });
+ */
 export const useToast = () => {
   const context = useContext(ToastContext);
   if (!context) {

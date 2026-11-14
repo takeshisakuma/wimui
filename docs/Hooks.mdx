@@ -1,0 +1,65 @@
+import { Meta } from "@storybook/blocks";
+import { T } from "../stories/T";
+import { HookDoc } from "../stories/HookDoc";
+
+{/*
+  公開している hooks の一覧（T380）。import・シグネチャ・例は HookDoc が JSDoc から描く。
+  公開している hooks がこのページに無いと check:hooks-docs が落ちる（入口から型チェッカーで数える）。
+*/}
+
+<Meta title="Guides/Hooks" />
+
+<h1><T k="guide.hooks_title" /></h1>
+<p><T k="guide.hooks_desc" /></p>
+
+<h2><T k="guide.hooks_group_responsive" /></h2>
+<p><T k="guide.hooks_group_responsive_desc" /></p>
+
+<h3><code>useMediaQuery</code></h3>
+<p><T k="guide.hooks_use_media_query" /></p>
+<HookDoc name="useMediaQuery" />
+
+<h3><code>useBreakpoint</code></h3>
+<p><T k="guide.hooks_use_breakpoint" /></p>
+<HookDoc name="useBreakpoint" />
+
+<h3><code>useBreakpointUp</code></h3>
+<p><T k="guide.hooks_use_breakpoint_up" /></p>
+<HookDoc name="useBreakpointUp" />
+
+<h3><code>useBreakpointDown</code></h3>
+<p><T k="guide.hooks_use_breakpoint_down" /></p>
+<HookDoc name="useBreakpointDown" />
+
+<h2><T k="guide.hooks_group_feedback" /></h2>
+<p><T k="guide.hooks_group_feedback_desc" /></p>
+
+<h3><code>useToast</code></h3>
+<p><T k="guide.hooks_use_toast" /></p>
+<HookDoc name="useToast" />
+
+<h3><code>useSnackbar</code></h3>
+<p><T k="guide.hooks_use_snackbar" /></p>
+<HookDoc name="useSnackbar" />
+
+<h3><code>useNotification</code></h3>
+<p><T k="guide.hooks_use_notification" /></p>
+<HookDoc name="useNotification" />
+
+<h2><T k="guide.hooks_group_data" /></h2>
+
+<h3><code>useTableSort</code></h3>
+<p><T k="guide.hooks_use_table_sort" /></p>
+<HookDoc name="useTableSort" />
+
+<h2><T k="guide.hooks_group_input" /></h2>
+
+<h3><code>useAutoResize</code></h3>
+<p><T k="guide.hooks_use_auto_resize" /></p>
+<HookDoc name="useAutoResize" />
+
+<h2><T k="guide.hooks_group_settings" /></h2>
+
+<h3><code>useWim</code></h3>
+<p><T k="guide.hooks_use_wim" /></p>
+<HookDoc name="useWim" />
