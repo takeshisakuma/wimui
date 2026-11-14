@@ -42,6 +42,9 @@ for (const id of [
       await page.locator("#before-calendar").focus();
       await page.keyboard.press("Tab");
       await expect(page.getByRole("button", { name: "Previous month" })).toBeFocused();
+      // 見出しは月の一覧へ上がるボタン（T381）
+      await page.keyboard.press("Tab");
+      await expect(page.getByRole("button", { name: /Choose month$/ })).toBeFocused();
       await page.keyboard.press("Tab");
       await expect(page.getByRole("button", { name: "Next month" })).toBeFocused();
       await page.keyboard.press("Tab");
@@ -97,10 +100,12 @@ test.describe("DatePicker", () => {
     await page.keyboard.press("ArrowRight");
     await expect.poll(async () => dayDiff(start, (await focusedDate(page)) ?? start)).toBe(1);
 
-    // パネルの中の停止点は、月送りの 2 つと日の 1 つ。3 回の Tab で元の日へ戻る（外へ出ない）
+    // パネルの中の停止点は、月送りの 2 つ・見出し（月の一覧へ上がる。T381）・日の 1 つ。4 回の Tab で元の日へ戻る（外へ出ない）
     const day = await focusedDate(page);
     await page.keyboard.press("Tab");
     await expect(dialog.getByRole("button", { name: "Previous month" })).toBeFocused();
+    await page.keyboard.press("Tab");
+    await expect(dialog.getByRole("button", { name: /Choose month$/ })).toBeFocused();
     await page.keyboard.press("Tab");
     await expect(dialog.getByRole("button", { name: "Next month" })).toBeFocused();
     await page.keyboard.press("Tab");

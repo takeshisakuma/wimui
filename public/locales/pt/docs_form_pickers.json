@@ -96,7 +96,7 @@
     "datepicker_kb_2": "Navegue pelas datas com as teclas de seta e prima Enter para selecionar.",
     "datepicker_kb_3": "Feche o calendário a qualquer momento premindo a tecla Escape.",
     "datepicker_keyboard": "Interações de Teclado",
-    "datepicker_keyboard_desc": "O Tab foca o campo de entrada de data. As teclas de seta navegam pelo calendário. Enter seleciona uma data. Escape fecha o calendário.",
+    "datepicker_keyboard_desc": "O Tab foca o campo de entrada de data. As teclas de seta navegam pelo calendário. Enter seleciona uma data. Escape fecha o calendário. Dentro do calendário, o título abre a lista de meses e depois a de anos, então uma data distante (uma data de nascimento, por exemplo) leva poucos toques. Escape dentro dessas listas volta um nível; Escape na visão de dias fecha o calendário.",
     "datepicker_long_desc": "Detalhes e utilização para o componente Date Picker.",
     "datepicker_main_features": "Principais Funcionalidades",
     "datepicker_op_close": "Fechar Calendário",

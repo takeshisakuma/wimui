@@ -2097,7 +2097,15 @@
   "data-display": {
     "calendar": {
       "aria_date": "{{year}}-{{month}}-{{day}}",
-      "title": "{{year}} / {{month}}"
+      "title": "{{year}} / {{month}}",
+      "choose_month": "Choose month",
+      "choose_year": "Choose year",
+      "months": "Months of {{year}}",
+      "years": "Years {{start}} to {{end}}",
+      "prev_year": "Previous year",
+      "next_year": "Next year",
+      "prev_years": "Previous {{n}} years",
+      "next_years": "Next {{n}} years"
     },
     "countdown": {
       "remaining": "{{time}} remaining"
@@ -4252,7 +4260,7 @@
       "calendar_disabled_dates_desc": "There are two ways to disable dates: by passing an array or a function.",
       "calendar_integration_datepicker": "Integration with DatePicker",
       "calendar_integration_datepicker_desc": "Calendar is used as an internal component of DatePicker. Use this component directly for standalone calendar needs.",
-      "calendar_keyboard_desc": "Arrow keys navigate between dates. Page Up and Page Down move between months. Home and End move to the first and last day of the week. Enter or Space selects the focused date.",
+      "calendar_keyboard_desc": "Arrow keys navigate between dates. Page Up and Page Down move between months. Home and End move to the first and last day of the week. Enter or Space selects the focused date. Activate the title (for example \"2026 / 11\") to go up to the 12 months of that year, and again to go up to 12 years; choosing a year or a month goes back down one level. In those lists the arrow keys move the focus (skipping unavailable months and years), Home and End jump to the first and last item, and Escape goes back down one level without choosing.",
       "calendar_long_desc": "Details and usage for the Calendar component.",
       "calendar_min_max_dates": "Restricting Selectable Date Range",
       "calendar_min_max_dates_desc": "Limit the selectable range with minDate and maxDate properties. Dates outside this range will be grayed out.",
@@ -6351,7 +6359,7 @@
       "otpinput_anatomy_fields_label": "fields",
       "colorinput_keyboard_desc": "Tab focuses the color input field. Standard keyboard input is supported for hex values. Escape cancels editing.",
       "colorpicker_keyboard_desc": "Tab moves focus within the color picker. Arrow keys adjust hue and saturation values. Escape closes the picker.",
-      "datepicker_keyboard_desc": "Tab focuses the date input field. Arrow keys navigate the calendar. Enter selects a date. Escape closes the calendar.",
+      "datepicker_keyboard_desc": "Tab focuses the date input field. Arrow keys navigate the calendar. Enter selects a date. Escape closes the calendar. Inside the calendar, the title opens the list of months and then of years, so a distant date (a birth date, say) takes a few presses. Escape inside those lists goes back one level; Escape in the day view closes the calendar.",
       "daterangepicker_keyboard_desc": "Tab moves between start and end date fields. Arrow keys navigate the calendar. Enter selects dates. Escape closes the calendar.",
       "inputmask_keyboard_desc": "Tab focuses the masked input field. Standard keyboard input is supported within the mask pattern. Escape cancels where applicable.",
       "rangeslider_keyboard_desc": "Tab focuses each slider thumb. Arrow keys adjust the value. Home and End move to min and max values respectively.",

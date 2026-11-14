@@ -294,3 +294,80 @@ describe("Calendar", () => {
     expect(day10).toBeDisabled();
   });
 });
+
+// T381: 見出しから月・年の一覧へ上がって、遠い日付へ少ない操作で届く
+describe("Calendar month and year levels (T381)", () => {
+  const titleButton = () => screen.getByRole("button", { name: /Choose (month|year)$/ });
+
+  it("goes up to the 12 months from the title and back down to the chosen month", () => {
+    render(<Calendar defaultValue={new Date(2024, 0, 15)} />);
+    fireEvent.click(titleButton());
+
+    const months = screen.getByRole("grid", { name: "Months of 2024" });
+    const cells = months.querySelectorAll('[role="gridcell"]');
+    expect(cells).toHaveLength(12);
+    // フォーカスは今の月（1 月）へ移る
+    expect(document.activeElement).toBe(cells[0]);
+
+    fireEvent.click(cells[7]); // August
+    expect(screen.getByText("2024 / 8")).toBeInTheDocument();
+    expect(screen.getByRole("grid", { name: undefined })).toBeInTheDocument();
+    // 同じ日付（15 日）へフォーカスが付いていく
+    expect(document.activeElement).toHaveAttribute("data-date", "2024-8-15");
+  });
+
+  it("reaches a year 30 years back in a few steps", () => {
+    const onChange = vi.fn();
+    render(<Calendar defaultValue={new Date(2024, 5, 10)} onChange={onChange} />);
+    fireEvent.click(titleButton()); // months of 2024
+    fireEvent.click(titleButton()); // years 2016–2027
+    expect(screen.getByRole("grid", { name: "Years 2016 to 2027" })).toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole("button", { name: "Previous 12 years" }));
+    fireEvent.click(screen.getByRole("button", { name: "Previous 12 years" }));
+    fireEvent.click(screen.getByRole("gridcell", { name: "1994" }));
+    expect(screen.getByRole("grid", { name: "Months of 1994" })).toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole("gridcell", { name: /March 1994/ }));
+    fireEvent.click(screen.getByLabelText("1994-3-3"));
+    const picked = onChange.mock.calls[0][0] as Date;
+    expect([picked.getFullYear(), picked.getMonth(), picked.getDate()]).toEqual([1994, 2, 3]);
+  });
+
+  it("moves with the arrow keys in the month list and skips disabled months", () => {
+    render(
+      <Calendar defaultValue={new Date(2024, 4, 1)} minDate={new Date(2024, 2, 1)} maxDate={new Date(2024, 9, 31)} />,
+    );
+    fireEvent.click(titleButton());
+    const cell = (name: RegExp) => screen.getByRole("gridcell", { name });
+    expect(cell(/February 2024/)).toBeDisabled();
+    expect(cell(/November 2024/)).toBeDisabled();
+
+    expect(document.activeElement).toBe(cell(/May 2024/));
+    // May -> February (disabled) -> January (disabled): nothing left in that direction, so it stays
+    fireEvent.keyDown(document.activeElement!, { key: "ArrowUp" });
+    expect(document.activeElement).toBe(cell(/May 2024/));
+    fireEvent.keyDown(document.activeElement!, { key: "ArrowLeft" });
+    expect(document.activeElement).toBe(cell(/April 2024/));
+    fireEvent.keyDown(document.activeElement!, { key: "End" }); // December, November disabled -> October
+    expect(document.activeElement).toBe(cell(/October 2024/));
+  });
+
+  it("Escape goes back down one level and does not reach a document listener", () => {
+    const onDocumentEscape = vi.fn();
+    const listener = (e: KeyboardEvent) => e.key === "Escape" && onDocumentEscape();
+    document.addEventListener("keydown", listener);
+    try {
+      render(<Calendar defaultValue={new Date(2024, 0, 15)} />);
+      fireEvent.click(titleButton());
+      fireEvent.click(titleButton());
+      fireEvent.keyDown(document.activeElement!, { key: "Escape" });
+      expect(screen.getByRole("grid", { name: "Months of 2024" })).toBeInTheDocument();
+      fireEvent.keyDown(document.activeElement!, { key: "Escape" });
+      expect(screen.getByText("2024 / 1")).toBeInTheDocument();
+      expect(onDocumentEscape).not.toHaveBeenCalled();
+    } finally {
+      document.removeEventListener("keydown", listener);
+    }
+  });
+});

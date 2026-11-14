@@ -1,7 +1,15 @@
 {
   "calendar": {
     "aria_date": "{{year}}年{{month}}月{{day}}日",
-    "title": "{{year}}年 {{month}}月"
+    "title": "{{year}}年 {{month}}月",
+    "choose_month": "月を選ぶ",
+    "choose_year": "年を選ぶ",
+    "months": "{{year}}年の月",
+    "years": "{{start}}年から{{end}}年",
+    "prev_year": "前の年",
+    "next_year": "次の年",
+    "prev_years": "前の{{n}}年",
+    "next_years": "次の{{n}}年"
   },
   "countdown": {
     "remaining": "残り{{time}}"
