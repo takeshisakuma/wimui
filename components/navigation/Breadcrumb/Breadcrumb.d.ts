@@ -1,0 +1,54 @@
+import { default as React } from '../../../../node_modules/react';
+import { Icon } from '../../media/Icon/Icon';
+import { ComponentSizeBasic } from '../../../types/tokens';
+type BreadcrumbItem = {
+    label: React.ReactNode;
+    href?: string;
+    iconName?: React.ComponentProps<typeof Icon>["name"];
+};
+type BreadcrumbProps = {
+    /**
+     * Items to display, from the root to the current page.
+     */
+    items: BreadcrumbItem[];
+    /**
+     * Separator displayed between items. Defaults to a chevron icon.
+     */
+    separator?: React.ReactNode;
+    /**
+     * Size of the breadcrumb.
+     * @default "md"
+     */
+    size?: ComponentSizeBasic;
+    /**
+     * What happens when the items do not fit on one line. `"wrap"` moves them onto more lines;
+     * `"collapse"` keeps the first item and the current page and folds the levels in between
+     * into a "…" button that lists them.
+     * @default "wrap"
+     */
+    overflow?: "wrap" | "collapse";
+    /**
+     * Accessible name of the "…" button, from the number of hidden levels. Defaults to a localized
+     * "Show hidden levels (n)".
+     */
+    moreLabel?: (count: number) => string;
+    /**
+     * Additional CSS class name for the container.
+     */
+    className?: string;
+    /**
+     * Accessible label of the navigation landmark. Defaults to a localized "breadcrumb" label.
+     */
+    ariaLabel?: string;
+    /**
+     * If true, the breadcrumb will be rendered as its child, merging its props onto that child.
+     */
+    asChild?: boolean;
+    /**
+     * The element that becomes the breadcrumb's root (in place of `nav`) when
+     * `asChild` is set. The list of items is rendered inside it. Ignored without `asChild`.
+     */
+    children?: React.ReactNode;
+};
+export declare const Breadcrumb: React.ForwardRefExoticComponent<BreadcrumbProps & React.RefAttributes<HTMLElement>>;
+export {};

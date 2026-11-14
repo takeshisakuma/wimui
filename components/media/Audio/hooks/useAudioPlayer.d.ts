@@ -1,0 +1,47 @@
+import { default as React } from '../../../../../node_modules/react';
+import { AudioTrack } from '../Audio';
+interface UseAudioPlayerOptions {
+    playlist: AudioTrack[];
+    loop: boolean;
+    muted: boolean;
+    fadeIn: boolean | number;
+    fadeOut: boolean | number;
+    crossfade: boolean | number;
+    visualizer: boolean;
+    hotkeys: boolean;
+    autoPlay: boolean;
+}
+export declare function useAudioPlayer({ playlist, loop, muted, fadeIn, fadeOut, crossfade, visualizer, hotkeys, autoPlay: _autoPlay, }: UseAudioPlayerOptions): {
+    isPlaying: boolean;
+    currentTime: number;
+    duration: number;
+    volume: number;
+    isMuted: boolean;
+    repeatMode: 0 | 1 | 2;
+    shuffleMode: boolean;
+    currentTrackIndex: number;
+    currentPlaybackRate: number;
+    isBassBoost: boolean;
+    remainingSleepTime: number | null;
+    currentTrack: AudioTrack;
+    setVolume: React.Dispatch<React.SetStateAction<number>>;
+    setIsMuted: React.Dispatch<React.SetStateAction<boolean>>;
+    setRepeatMode: React.Dispatch<React.SetStateAction<0 | 1 | 2>>;
+    setShuffleMode: React.Dispatch<React.SetStateAction<boolean>>;
+    setCurrentPlaybackRate: React.Dispatch<React.SetStateAction<number>>;
+    setIsBassBoost: React.Dispatch<React.SetStateAction<boolean>>;
+    setDuration: React.Dispatch<React.SetStateAction<number>>;
+    activeAudioRef: React.RefObject<HTMLAudioElement | null>;
+    nextAudioRef: React.RefObject<HTMLAudioElement | null>;
+    canvasRef: React.RefObject<HTMLCanvasElement | null>;
+    togglePlay: () => void;
+    handleSeek: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    handleVolumeChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    handleTimeUpdate: () => void;
+    handleEnded: () => void;
+    playNext: (dir?: 1 | -1) => void;
+    toggleSleepTimer: () => void;
+    playActivePlayer: () => void;
+    formatTime: (time: number) => string;
+};
+export {};

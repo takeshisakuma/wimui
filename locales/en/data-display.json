@@ -1,0 +1,25 @@
+{
+  "calendar": {
+    "aria_date": "{{year}}-{{month}}-{{day}}",
+    "title": "{{year}} / {{month}}"
+  },
+  "countdown": {
+    "remaining": "{{time}} remaining"
+  },
+  "table": {
+    "header_component": "Component",
+    "header_overview": "Overview"
+  },
+  "avatar_group": {
+    "show_everyone": "Show everyone"
+  },
+  "selection_bar": {
+    "label": "Bulk actions",
+    "selected": "{{count}} selected",
+    "cleared": "Selection cleared",
+    "clear": "Clear selection"
+  },
+  "infinite_scroll": {
+    "loading": "Loading more…"
+  }
+}

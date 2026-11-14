@@ -1,0 +1,25 @@
+{
+  "calendar": {
+    "aria_date": "{{day}}/{{month}}/{{year}}",
+    "title": "{{month}}/{{year}}"
+  },
+  "countdown": {
+    "remaining": "{{time}} restantes"
+  },
+  "table": {
+    "header_component": "Componente",
+    "header_overview": "Visão Geral"
+  },
+  "avatar_group": {
+    "show_everyone": "Mostrar todos"
+  },
+  "selection_bar": {
+    "label": "Ações em lote",
+    "selected": "Selecionados: {{count}}",
+    "cleared": "Seleção removida",
+    "clear": "Limpar seleção"
+  },
+  "infinite_scroll": {
+    "loading": "Carregando mais…"
+  }
+}
