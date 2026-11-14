@@ -457,6 +457,7 @@ export function BillingOverview() {
 
 Exported hooks. Prefer them over hand-rolled equivalents (`matchMedia` listeners, textarea height math, sort state).
 
+- **useAnnounce** — `import { useAnnounce } from "wimui"` — Announce the result of an action to screen readers — "Saved", "3 results", "Moved to Done".
 - **useAutoResize** — `import { useAutoResize } from "wimui"` — Grow a `<textarea>` with its content, up to `maxRows` rows; past that it scrolls. `Textarea` and `PromptInput` already do this — use the hook only for a textarea you render yourself.
 - **useBreakpoint** — `import { useBreakpoint } from "wimui"` — Resolve the current active breakpoint — the largest whose min-width the viewport satisfies. Returns the smallest breakpoint below the first threshold. SSR-safe (defaults to the smallest until mounted).
 - **useBreakpointDown** — `import { useBreakpointDown } from "wimui"` — Track whether the viewport is below a named breakpoint (max-width), mirroring the SCSS `down()` mixin — the JS equivalent of HamburgerMenu's `visibleBelow`. SSR-safe.
