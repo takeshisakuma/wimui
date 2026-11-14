@@ -118,7 +118,10 @@ export async function literalTypeAliases(root) {
       if (e.isDirectory()) return walk(p);
       return /\.tsx?$/.test(e.name) && !/\.(test|stories)\.tsx?$/.test(e.name) ? [p] : [];
     });
-  const files = ['src/types', 'src/components'].flatMap((d) => walk(path.join(root, d)));
+  // 読む順を固定する（readdir の順は OS で違う。同じ名前の別名が 2 つあるとき、どちらが残るかが変わる）
+  const files = ['src/types', 'src/components']
+    .flatMap((d) => walk(path.join(root, d)))
+    .sort((a, b) => (a.split(path.sep).join('/') < b.split(path.sep).join('/') ? -1 : 1));
   const program = ts.createProgram(files, {
     jsx: ts.JsxEmit.ReactJSX,
     target: ts.ScriptTarget.ES2022,
@@ -159,9 +162,14 @@ export async function literalTypeAliases(root) {
       else return; // リテラル以外が混ざる（string & {} など）
     }
     if (vals.length === 0) return;
+    // 宣言の順が取れない別名（テンプレートリテラルで組む @floating-ui の `Placement`・`Extract<>`）は、
+    // 型チェッカーの内部の順がファイルを読む順で変わり、Linux の CI と Windows で並びがずれた
+    // （#1137 の check:llms）。そのときは文字コード順に並べ、どこで生成しても同じにする
     const ordered = declaredOrder(symbol);
     if (ordered && ordered.length === vals.length && ordered.every((v) => vals.includes(v))) {
       vals = ordered;
+    } else {
+      vals.sort();
     }
     const prev = values.get(name);
     if (prev && [...prev].sort().join('|') !== [...vals].sort().join('|')) ambiguous.add(name);

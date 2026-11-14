@@ -2967,7 +2967,7 @@ dismissed by an outside click or Escape.
     - `defaultOpen: boolean` = false — If true, the popover component will manage its own open state.
     - `open: boolean` — If provided, controls the open state.
     - `onOpenChange: (open: boolean) => void` — Callback when open state changes.
-    - `placement: "top" | "right" | "bottom" | "left" | "top-end" | "top-start" | "right-end" | "right-start" | "bottom-end" | "bottom-start" | "left-end" | "left-start"` = "bottom-start" — Preferred placement of the popover.
+    - `placement: "bottom" | "bottom-end" | "bottom-start" | "left" | "left-end" | "left-start" | "right" | "right-end" | "right-start" | "top" | "top-end" | "top-start"` = "bottom-start" — Preferred placement of the popover.
     - `variant: "default" | "glass"` = "default" — The variant of the popover content.
 - **Portal** — Out-of-hierarchy render
     - `children: React.ReactNode` (required) — The content to be rendered in the portal
@@ -2978,7 +2978,7 @@ dismissed by an outside click or Escape.
     - `delay: number` = 200 — Delay before showing the tooltip in ms.
     - `open: boolean` — If provided, controls the open state.
     - `onOpenChange: (open: boolean) => void` — Callback when open state changes.
-    - `placement: "top" | "right" | "bottom" | "left" | "top-end" | "top-start" | "right-end" | "right-start" | "bottom-end" | "bottom-start" | "left-end" | "left-start"` = "top" — Preferred placement of the tooltip.
+    - `placement: "bottom" | "bottom-end" | "bottom-start" | "left" | "left-end" | "left-start" | "right" | "right-end" | "right-start" | "top" | "top-end" | "top-start"` = "top" — Preferred placement of the tooltip.
     - `variant: "default" | "glass"` = "default" — The variant of the tooltip content.
 
 ### typography — `import { … } from "wimui/typography"`
