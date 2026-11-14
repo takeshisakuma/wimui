@@ -1,0 +1,2842 @@
+{
+  "version": "0.71.0",
+  "records": [
+    {
+      "at": "2026-11-14T06:13:30.768Z",
+      "pkg": "wimui@0.71.0",
+      "version": "0.71.0",
+      "model": "sonnet",
+      "repeat": 2,
+      "tasks": [
+        "sign-in",
+        "notification-settings",
+        "orders-table",
+        "kpi-overview",
+        "delete-confirm",
+        "no-projects",
+        "signup-profile",
+        "app-shell",
+        "file-upload",
+        "save-feedback"
+      ],
+      "summary": {
+        "with": {
+          "runs": 20,
+          "agentErrors": 0,
+          "tscErrors": 4,
+          "compiles": 17,
+          "missingExport": 0,
+          "missingModule": 0,
+          "propErrors": 4,
+          "unknownTokens": 0,
+          "cssContract": 20,
+          "expectHit": "54/56",
+          "slopHits": 0,
+          "hardcodedStyles": 32,
+          "rawHeadings": 6,
+          "readLlms": 20,
+          "readDts": 3,
+          "turns": 260,
+          "costUsd": 1.9961
+        },
+        "without": {
+          "runs": 20,
+          "agentErrors": 0,
+          "tscErrors": 0,
+          "compiles": 20,
+          "missingExport": 0,
+          "missingModule": 0,
+          "propErrors": 0,
+          "unknownTokens": 0,
+          "cssContract": 20,
+          "expectHit": "52/56",
+          "slopHits": 0,
+          "hardcodedStyles": 69,
+          "rawHeadings": 16,
+          "readLlms": 0,
+          "readDts": 92,
+          "turns": 308,
+          "costUsd": 2.6307
+        }
+      },
+      "runs": [
+        {
+          "task": "sign-in",
+          "arm": "with",
+          "rep": 1,
+          "agent": {
+            "tools": {
+              "Glob": 3,
+              "Read": 8,
+              "Write": 1
+            },
+            "reads": {
+              "llms": true,
+              "readme": false,
+              "dts": 0,
+              "wimuiFiles": [
+                "dist/llms/Input.md",
+                "dist/llms/Checkbox.md",
+                "dist/llms/Button.md",
+                "dist/llms/Link.md",
+                "dist/llms/Card.md",
+                "dist/llms/Stack.md",
+                "dist/llms/Title.md",
+                "dist/llms/PasswordInput.md"
+              ]
+            },
+            "isError": false,
+            "costUsd": 0.0923963,
+            "durationMs": 18309,
+            "turns": 13,
+            "usage": {
+              "input": 10,
+              "output": 2111,
+              "cacheRead": 68583,
+              "cacheWrite": 16102
+            },
+            "reply": "src/App.tsx"
+          },
+          "score": {
+            "files": [
+              "src/App.tsx"
+            ],
+            "lines": 70,
+            "tsc": {
+              "total": 1,
+              "missingExport": 0,
+              "missingModule": 0,
+              "propErrors": 1,
+              "errors": [
+                {
+                  "file": "../../../AppData/Local/Temp/wimui-vibe-5hwWk0/with/sign-in-1/src/App.tsx",
+                  "line": 45,
+                  "code": "TS2322",
+                  "message": "Type '\"error\" | \"default\"' is not assignable to type 'FieldIntent | undefined'."
+                }
+              ]
+            },
+            "unknownTokens": [],
+            "cssContract": true,
+            "imported": [
+              "Button",
+              "Card",
+              "Checkbox",
+              "Input",
+              "Link",
+              "PasswordInput",
+              "Stack",
+              "Title"
+            ],
+            "expect": {
+              "hit": 4,
+              "of": 4
+            },
+            "hardcodedStyles": 1,
+            "rawHeadings": 0,
+            "slop": {
+              "hits": 0,
+              "rules": []
+            }
+          }
+        },
+        {
+          "task": "sign-in",
+          "arm": "with",
+          "rep": 2,
+          "agent": {
+            "tools": {
+              "Glob": 4,
+              "Read": 8,
+              "Write": 1,
+              "Grep": 6,
+              "Edit": 1
+            },
+            "reads": {
+              "llms": true,
+              "readme": false,
+              "dts": 0,
+              "wimuiFiles": [
+                "dist/llms/Input.md",
+                "dist/llms/PasswordInput.md",
+                "dist/llms/Checkbox.md",
+                "dist/llms/Button.md",
+                "dist/llms/Link.md",
+                "dist/llms/Card.md",
+                "dist/llms/Stack.md",
+                "dist/llms/Title.md"
+              ]
+            },
+            "isError": false,
+            "costUsd": 0.15075840000000001,
+            "durationMs": 37646,
+            "turns": 21,
+            "usage": {
+              "input": 24,
+              "output": 3942,
+              "cacheRead": 253744,
+              "cacheWrite": 21479
+            },
+            "reply": "I checked the `intent` value and the `style` props against the type declarations. I couldn't run `tsc` or the app, so none of it has been compiled or tried in a browser.\n\nFiles written: `src/App.tsx`"
+          },
+          "score": {
+            "files": [
+              "src/App.tsx"
+            ],
+            "lines": 72,
+            "tsc": {
+              "total": 0,
+              "missingExport": 0,
+              "missingModule": 0,
+              "propErrors": 0,
+              "errors": []
+            },
+            "unknownTokens": [],
+            "cssContract": true,
+            "imported": [
+              "Button",
+              "Card",
+              "Checkbox",
+              "Input",
+              "Link",
+              "PasswordInput",
+              "Stack",
+              "Title"
+            ],
+            "expect": {
+              "hit": 4,
+              "of": 4
+            },
+            "hardcodedStyles": 1,
+            "rawHeadings": 0,
+            "slop": {
+              "hits": 0,
+              "rules": []
+            }
+          }
+        },
+        {
+          "task": "notification-settings",
+          "arm": "with",
+          "rep": 1,
+          "agent": {
+            "tools": {
+              "Glob": 2,
+              "Read": 6,
+              "Grep": 2,
+              "Write": 1
+            },
+            "reads": {
+              "llms": true,
+              "readme": false,
+              "dts": 0,
+              "wimuiFiles": [
+                "dist/llms/Switch.md",
+                "dist/llms/Card.md",
+                "dist/llms/Button.md",
+                "dist/llms-full.txt",
+                "dist/llms-full.txt",
+                "dist/llms-full.txt"
+              ]
+            },
+            "isError": false,
+            "costUsd": 0.1063903,
+            "durationMs": 28435,
+            "turns": 12,
+            "usage": {
+              "input": 14,
+              "output": 3302,
+              "cacheRead": 104303,
+              "cacheWrite": 15728
+            },
+            "reply": "I wrote `src/App.tsx`. I haven't type-checked or run it, and I didn't confirm that `Switch` accepts `checked` and `onChange` (the docs only show `defaultChecked`)."
+          },
+          "score": {
+            "files": [
+              "src/App.tsx"
+            ],
+            "lines": 144,
+            "tsc": {
+              "total": 0,
+              "missingExport": 0,
+              "missingModule": 0,
+              "propErrors": 0,
+              "errors": []
+            },
+            "unknownTokens": [],
+            "cssContract": true,
+            "imported": [
+              "Button",
+              "Card",
+              "Divider",
+              "Group",
+              "Stack",
+              "Switch",
+              "Text",
+              "Title"
+            ],
+            "expect": {
+              "hit": 3,
+              "of": 3
+            },
+            "hardcodedStyles": 1,
+            "rawHeadings": 0,
+            "slop": {
+              "hits": 0,
+              "rules": []
+            }
+          }
+        },
+        {
+          "task": "notification-settings",
+          "arm": "with",
+          "rep": 2,
+          "agent": {
+            "tools": {
+              "Glob": 2,
+              "Read": 4,
+              "Grep": 4,
+              "Write": 1
+            },
+            "reads": {
+              "llms": true,
+              "readme": false,
+              "dts": 0,
+              "wimuiFiles": [
+                "dist/llms/Switch.md",
+                "dist/llms/Card.md",
+                "dist/llms/Button.md",
+                "dist/llms-full.txt"
+              ]
+            },
+            "isError": false,
+            "costUsd": 0.111628,
+            "durationMs": 24981,
+            "turns": 12,
+            "usage": {
+              "input": 14,
+              "output": 3290,
+              "cacheRead": 108440,
+              "cacheWrite": 16964
+            },
+            "reply": "I wrote `src/App.tsx`. I haven't type-checked or run it."
+          },
+          "score": {
+            "files": [
+              "src/App.tsx"
+            ],
+            "lines": 130,
+            "tsc": {
+              "total": 0,
+              "missingExport": 0,
+              "missingModule": 0,
+              "propErrors": 0,
+              "errors": []
+            },
+            "unknownTokens": [],
+            "cssContract": true,
+            "imported": [
+              "Button",
+              "Card",
+              "Divider",
+              "Group",
+              "Stack",
+              "Switch",
+              "Text",
+              "Title"
+            ],
+            "expect": {
+              "hit": 3,
+              "of": 3
+            },
+            "hardcodedStyles": 1,
+            "rawHeadings": 0,
+            "slop": {
+              "hits": 0,
+              "rules": []
+            }
+          }
+        },
+        {
+          "task": "orders-table",
+          "arm": "with",
+          "rep": 1,
+          "agent": {
+            "tools": {
+              "Glob": 3,
+              "Read": 4,
+              "Grep": 5,
+              "Write": 1
+            },
+            "reads": {
+              "llms": true,
+              "readme": false,
+              "dts": 1,
+              "wimuiFiles": [
+                "dist/llms/DataGrid.md",
+                "dist/llms/Pagination.md",
+                "dist/llms/Badge.md",
+                "dist/components/data-display/DataGrid/DataGrid.d.ts"
+              ]
+            },
+            "isError": false,
+            "costUsd": 0.1090884,
+            "durationMs": 29202,
+            "turns": 14,
+            "usage": {
+              "input": 18,
+              "output": 3078,
+              "cacheRead": 143684,
+              "cacheWrite": 15976
+            },
+            "reply": "I wrote `src/App.tsx`. I didn't run it or type-check it."
+          },
+          "score": {
+            "files": [
+              "src/App.tsx"
+            ],
+            "lines": 96,
+            "tsc": {
+              "total": 0,
+              "missingExport": 0,
+              "missingModule": 0,
+              "propErrors": 0,
+              "errors": []
+            },
+            "unknownTokens": [],
+            "cssContract": true,
+            "imported": [
+              "Badge",
+              "DataGrid",
+              "DataGridColumn"
+            ],
+            "expect": {
+              "hit": 2,
+              "of": 3
+            },
+            "hardcodedStyles": 2,
+            "rawHeadings": 1,
+            "slop": {
+              "hits": 0,
+              "rules": []
+            }
+          }
+        },
+        {
+          "task": "orders-table",
+          "arm": "with",
+          "rep": 2,
+          "agent": {
+            "tools": {
+              "Glob": 4,
+              "Read": 4,
+              "Grep": 2,
+              "Write": 1
+            },
+            "reads": {
+              "llms": true,
+              "readme": false,
+              "dts": 0,
+              "wimuiFiles": [
+                "dist/llms/DataGrid.md",
+                "dist/llms/Table.md",
+                "dist/llms/Pagination.md",
+                "dist/llms/Badge.md"
+              ]
+            },
+            "isError": false,
+            "costUsd": 0.10358130000000002,
+            "durationMs": 22950,
+            "turns": 12,
+            "usage": {
+              "input": 12,
+              "output": 2679,
+              "cacheRead": 86313,
+              "cacheWrite": 17034
+            },
+            "reply": "Finishing up: the screen is written, and I haven't type-checked it.\n\nsrc/App.tsx"
+          },
+          "score": {
+            "files": [
+              "src/App.tsx"
+            ],
+            "lines": 111,
+            "tsc": {
+              "total": 0,
+              "missingExport": 0,
+              "missingModule": 0,
+              "propErrors": 0,
+              "errors": []
+            },
+            "unknownTokens": [],
+            "cssContract": true,
+            "imported": [
+              "Badge",
+              "DataGrid",
+              "DataGridColumn",
+              "Pagination"
+            ],
+            "expect": {
+              "hit": 3,
+              "of": 3
+            },
+            "hardcodedStyles": 3,
+            "rawHeadings": 1,
+            "slop": {
+              "hits": 0,
+              "rules": []
+            }
+          }
+        },
+        {
+          "task": "kpi-overview",
+          "arm": "with",
+          "rep": 1,
+          "agent": {
+            "tools": {
+              "Glob": 3,
+              "Read": 2,
+              "Grep": 1,
+              "Write": 1
+            },
+            "reads": {
+              "llms": true,
+              "readme": false,
+              "dts": 0,
+              "wimuiFiles": [
+                "dist/llms/Stats.md",
+                "dist/llms/Grid.md"
+              ]
+            },
+            "isError": false,
+            "costUsd": 0.06421,
+            "durationMs": 18483,
+            "turns": 8,
+            "usage": {
+              "input": 12,
+              "output": 1556,
+              "cacheRead": 72420,
+              "cacheWrite": 10346
+            },
+            "reply": "Finishing up: I've written the screen and haven't type-checked it or run it. I'm leaving it as is.\n\nsrc/App.tsx"
+          },
+          "score": {
+            "files": [
+              "src/App.tsx"
+            ],
+            "lines": 71,
+            "tsc": {
+              "total": 1,
+              "missingExport": 0,
+              "missingModule": 0,
+              "propErrors": 1,
+              "errors": [
+                {
+                  "file": "../../../AppData/Local/Temp/wimui-vibe-5hwWk0/with/kpi-overview-1/src/App.tsx",
+                  "line": 52,
+                  "code": "TS2322",
+                  "message": "Type '{ children: string; order: number; }' is not assignable to type 'IntrinsicAttributes & TitleProps & RefAttributes<HTMLHeadingElement>'."
+                }
+              ]
+            },
+            "unknownTokens": [],
+            "cssContract": true,
+            "imported": [
+              "Grid",
+              "Stack",
+              "Stats",
+              "Text",
+              "Title"
+            ],
+            "expect": {
+              "hit": 2,
+              "of": 2
+            },
+            "hardcodedStyles": 1,
+            "rawHeadings": 0,
+            "slop": {
+              "hits": 0,
+              "rules": []
+            }
+          }
+        },
+        {
+          "task": "kpi-overview",
+          "arm": "with",
+          "rep": 2,
+          "agent": {
+            "tools": {
+              "Glob": 3,
+              "Grep": 4,
+              "Read": 2,
+              "Write": 1,
+              "Edit": 1
+            },
+            "reads": {
+              "llms": true,
+              "readme": false,
+              "dts": 0,
+              "wimuiFiles": [
+                "dist/llms/Stats.md",
+                "dist/llms/Grid.md"
+              ]
+            },
+            "isError": false,
+            "costUsd": 0.080697,
+            "durationMs": 26604,
+            "turns": 12,
+            "usage": {
+              "input": 18,
+              "output": 2297,
+              "cacheRead": 126390,
+              "cacheWrite": 11263
+            },
+            "reply": "I wrote `src/App.tsx`. I haven't run the type-check or a build; I only checked prop names against the wimui docs."
+          },
+          "score": {
+            "files": [
+              "src/App.tsx"
+            ],
+            "lines": 42,
+            "tsc": {
+              "total": 0,
+              "missingExport": 0,
+              "missingModule": 0,
+              "propErrors": 0,
+              "errors": []
+            },
+            "unknownTokens": [],
+            "cssContract": true,
+            "imported": [
+              "Grid",
+              "Stack",
+              "Stats",
+              "Text",
+              "Title"
+            ],
+            "expect": {
+              "hit": 2,
+              "of": 2
+            },
+            "hardcodedStyles": 1,
+            "rawHeadings": 0,
+            "slop": {
+              "hits": 0,
+              "rules": []
+            }
+          }
+        },
+        {
+          "task": "delete-confirm",
+          "arm": "with",
+          "rep": 1,
+          "agent": {
+            "tools": {
+              "Glob": 3,
+              "Read": 3,
+              "Grep": 1,
+              "Write": 1
+            },
+            "reads": {
+              "llms": true,
+              "readme": false,
+              "dts": 0,
+              "wimuiFiles": [
+                "dist/llms/Dialog.md",
+                "dist/llms/Button.md",
+                "dist/llms/Stack.md"
+              ]
+            },
+            "isError": false,
+            "costUsd": 0.0649187,
+            "durationMs": 16619,
+            "turns": 9,
+            "usage": {
+              "input": 10,
+              "output": 1611,
+              "cacheRead": 61887,
+              "cacheWrite": 10650
+            },
+            "reply": "src/App.tsx"
+          },
+          "score": {
+            "files": [
+              "src/App.tsx"
+            ],
+            "lines": 55,
+            "tsc": {
+              "total": 0,
+              "missingExport": 0,
+              "missingModule": 0,
+              "propErrors": 0,
+              "errors": []
+            },
+            "unknownTokens": [],
+            "cssContract": true,
+            "imported": [
+              "Button",
+              "Dialog",
+              "Stack"
+            ],
+            "expect": {
+              "hit": 2,
+              "of": 2
+            },
+            "hardcodedStyles": 0,
+            "rawHeadings": 0,
+            "slop": {
+              "hits": 0,
+              "rules": []
+            }
+          }
+        },
+        {
+          "task": "delete-confirm",
+          "arm": "with",
+          "rep": 2,
+          "agent": {
+            "tools": {
+              "Glob": 3,
+              "Read": 2,
+              "Grep": 2,
+              "Write": 1
+            },
+            "reads": {
+              "llms": true,
+              "readme": false,
+              "dts": 0,
+              "wimuiFiles": [
+                "dist/llms/Dialog.md",
+                "dist/llms/Button.md"
+              ]
+            },
+            "isError": false,
+            "costUsd": 0.0648208,
+            "durationMs": 15535,
+            "turns": 9,
+            "usage": {
+              "input": 10,
+              "output": 1872,
+              "cacheRead": 61048,
+              "cacheWrite": 9994
+            },
+            "reply": "I wrote `src/App.tsx`. I haven't run it or type-checked it, and I didn't confirm that the `trash` icon name exists in wimui."
+          },
+          "score": {
+            "files": [
+              "src/App.tsx"
+            ],
+            "lines": 72,
+            "tsc": {
+              "total": 0,
+              "missingExport": 0,
+              "missingModule": 0,
+              "propErrors": 0,
+              "errors": []
+            },
+            "unknownTokens": [],
+            "cssContract": true,
+            "imported": [
+              "Button",
+              "Dialog",
+              "WimProvider"
+            ],
+            "expect": {
+              "hit": 2,
+              "of": 2
+            },
+            "hardcodedStyles": 5,
+            "rawHeadings": 0,
+            "slop": {
+              "hits": 0,
+              "rules": []
+            }
+          }
+        },
+        {
+          "task": "no-projects",
+          "arm": "with",
+          "rep": 1,
+          "agent": {
+            "tools": {
+              "Glob": 2,
+              "Read": 4,
+              "Write": 1
+            },
+            "reads": {
+              "llms": true,
+              "readme": false,
+              "dts": 0,
+              "wimuiFiles": [
+                "dist/llms/EmptyState.md",
+                "dist/llms/Button.md",
+                "dist/llms/Dialog.md",
+                "dist/llms/Input.md"
+              ]
+            },
+            "isError": false,
+            "costUsd": 0.070892,
+            "durationMs": 15614,
+            "turns": 8,
+            "usage": {
+              "input": 10,
+              "output": 1875,
+              "cacheRead": 61420,
+              "cacheWrite": 11495
+            },
+            "reply": "I wrote `src/App.tsx`. I didn't run a type-check or build, so it is untested."
+          },
+          "score": {
+            "files": [
+              "src/App.tsx"
+            ],
+            "lines": 105,
+            "tsc": {
+              "total": 0,
+              "missingExport": 0,
+              "missingModule": 0,
+              "propErrors": 0,
+              "errors": []
+            },
+            "unknownTokens": [],
+            "cssContract": true,
+            "imported": [
+              "Button",
+              "Dialog",
+              "EmptyState",
+              "Input"
+            ],
+            "expect": {
+              "hit": 2,
+              "of": 2
+            },
+            "hardcodedStyles": 3,
+            "rawHeadings": 1,
+            "slop": {
+              "hits": 0,
+              "rules": []
+            }
+          }
+        },
+        {
+          "task": "no-projects",
+          "arm": "with",
+          "rep": 2,
+          "agent": {
+            "tools": {
+              "Glob": 3,
+              "Read": 4,
+              "Grep": 1,
+              "Write": 1
+            },
+            "reads": {
+              "llms": true,
+              "readme": false,
+              "dts": 0,
+              "wimuiFiles": [
+                "dist/llms/EmptyState.md",
+                "dist/llms/Button.md",
+                "dist/llms/Icon.md",
+                "dist/llms/Input.md"
+              ]
+            },
+            "isError": false,
+            "costUsd": 0.0795004,
+            "durationMs": 19148,
+            "turns": 10,
+            "usage": {
+              "input": 14,
+              "output": 1928,
+              "cacheRead": 94524,
+              "cacheWrite": 12685
+            },
+            "reply": "I wrote `src/App.tsx`. I didn't run the type-checker or the app."
+          },
+          "score": {
+            "files": [
+              "src/App.tsx"
+            ],
+            "lines": 66,
+            "tsc": {
+              "total": 0,
+              "missingExport": 0,
+              "missingModule": 0,
+              "propErrors": 0,
+              "errors": []
+            },
+            "unknownTokens": [],
+            "cssContract": true,
+            "imported": [
+              "Button",
+              "EmptyState",
+              "Input"
+            ],
+            "expect": {
+              "hit": 2,
+              "of": 2
+            },
+            "hardcodedStyles": 6,
+            "rawHeadings": 1,
+            "slop": {
+              "hits": 0,
+              "rules": []
+            }
+          }
+        },
+        {
+          "task": "signup-profile",
+          "arm": "with",
+          "rep": 1,
+          "agent": {
+            "tools": {
+              "Glob": 4,
+              "Read": 10,
+              "Grep": 3,
+              "Write": 1
+            },
+            "reads": {
+              "llms": true,
+              "readme": false,
+              "dts": 1,
+              "wimuiFiles": [
+                "dist/llms/Stepper.md",
+                "dist/llms/Select.md",
+                "dist/llms/DatePicker.md",
+                "dist/llms/Input.md",
+                "dist/llms/Button.md",
+                "dist/llms/FieldTemplate.md",
+                "dist/llms/Stack.md",
+                "dist/llms/Title.md",
+                "dist/llms/Card.md",
+                "dist/components/data-display/Card/Card.d.ts"
+              ]
+            },
+            "isError": false,
+            "costUsd": 0.14772670000000002,
+            "durationMs": 32172,
+            "turns": 19,
+            "usage": {
+              "input": 18,
+              "output": 3747,
+              "cacheRead": 182287,
+              "cacheWrite": 22998
+            },
+            "reply": "`padding=\"xl\"` is valid, and `style` is accepted because `Card` extends the div props. I haven't run `tsc`, so the file is unchecked.\n\nFiles written: `src/App.tsx`"
+          },
+          "score": {
+            "files": [
+              "src/App.tsx"
+            ],
+            "lines": 111,
+            "tsc": {
+              "total": 0,
+              "missingExport": 0,
+              "missingModule": 0,
+              "propErrors": 0,
+              "errors": []
+            },
+            "unknownTokens": [],
+            "cssContract": true,
+            "imported": [
+              "Button",
+              "Card",
+              "DatePicker",
+              "Input",
+              "Select",
+              "Stack",
+              "Stepper",
+              "Title"
+            ],
+            "expect": {
+              "hit": 4,
+              "of": 4
+            },
+            "hardcodedStyles": 1,
+            "rawHeadings": 0,
+            "slop": {
+              "hits": 0,
+              "rules": []
+            }
+          }
+        },
+        {
+          "task": "signup-profile",
+          "arm": "with",
+          "rep": 2,
+          "agent": {
+            "tools": {
+              "Glob": 3,
+              "Read": 8,
+              "Grep": 3,
+              "Write": 1
+            },
+            "reads": {
+              "llms": true,
+              "readme": false,
+              "dts": 0,
+              "wimuiFiles": [
+                "dist/llms/Input.md",
+                "dist/llms/DatePicker.md",
+                "dist/llms/Select.md",
+                "dist/llms/Stepper.md",
+                "dist/llms/Button.md",
+                "dist/llms/Stack.md",
+                "dist/llms/Card.md",
+                "dist/llms/Title.md"
+              ]
+            },
+            "isError": false,
+            "costUsd": 0.12273239999999999,
+            "durationMs": 24317,
+            "turns": 16,
+            "usage": {
+              "input": 16,
+              "output": 3080,
+              "cacheRead": 144884,
+              "cacheWrite": 19353
+            },
+            "reply": "I wrote `src/App.tsx`. I couldn't run a type-check, so it's untested. I did confirm that the Card `padding=\"xl\"` value I used is valid."
+          },
+          "score": {
+            "files": [
+              "src/App.tsx"
+            ],
+            "lines": 99,
+            "tsc": {
+              "total": 0,
+              "missingExport": 0,
+              "missingModule": 0,
+              "propErrors": 0,
+              "errors": []
+            },
+            "unknownTokens": [],
+            "cssContract": true,
+            "imported": [
+              "Button",
+              "Card",
+              "DatePicker",
+              "Input",
+              "Select",
+              "Stack",
+              "Stepper",
+              "Title"
+            ],
+            "expect": {
+              "hit": 4,
+              "of": 4
+            },
+            "hardcodedStyles": 1,
+            "rawHeadings": 0,
+            "slop": {
+              "hits": 0,
+              "rules": []
+            }
+          }
+        },
+        {
+          "task": "app-shell",
+          "arm": "with",
+          "rep": 1,
+          "agent": {
+            "tools": {
+              "Glob": 4,
+              "Read": 8,
+              "Grep": 3,
+              "Write": 1,
+              "Bash": 1,
+              "Edit": 1
+            },
+            "reads": {
+              "llms": true,
+              "readme": false,
+              "dts": 0,
+              "wimuiFiles": [
+                "dist/llms/AppShell.md",
+                "dist/llms/Avatar.md",
+                "dist/llms/Header.md",
+                "dist/llms.txt",
+                "dist/llms/Sidebar.md",
+                "dist/llms/Title.md",
+                "dist/llms/HamburgerMenu.md",
+                "dist/llms/Stack.md"
+              ]
+            },
+            "isError": false,
+            "costUsd": 0.15145920000000002,
+            "durationMs": 32643,
+            "turns": 19,
+            "usage": {
+              "input": 20,
+              "output": 3677,
+              "cacheRead": 198052,
+              "cacheWrite": 23711
+            },
+            "reply": "I wrote `src/App.tsx`. I couldn't run the TypeScript compiler because Bash is disabled in this session, so it hasn't been type-checked or rendered."
+          },
+          "score": {
+            "files": [
+              "src/App.tsx"
+            ],
+            "lines": 64,
+            "tsc": {
+              "total": 0,
+              "missingExport": 0,
+              "missingModule": 0,
+              "propErrors": 0,
+              "errors": []
+            },
+            "unknownTokens": [],
+            "cssContract": true,
+            "imported": [
+              "AppShell",
+              "Avatar",
+              "HamburgerMenu",
+              "Header",
+              "Sidebar",
+              "Stack",
+              "Title",
+              "WimProvider"
+            ],
+            "expect": {
+              "hit": 2,
+              "of": 2
+            },
+            "hardcodedStyles": 0,
+            "rawHeadings": 0,
+            "slop": {
+              "hits": 0,
+              "rules": []
+            }
+          }
+        },
+        {
+          "task": "app-shell",
+          "arm": "with",
+          "rep": 2,
+          "agent": {
+            "tools": {
+              "Glob": 3,
+              "Read": 6,
+              "Grep": 2,
+              "Write": 1
+            },
+            "reads": {
+              "llms": true,
+              "readme": false,
+              "dts": 0,
+              "wimuiFiles": [
+                "dist/llms/AppShell.md",
+                "dist/llms/Avatar.md",
+                "dist/llms.txt",
+                "dist/llms/Sidebar.md",
+                "dist/llms/Header.md",
+                "dist/llms/HamburgerMenu.md"
+              ]
+            },
+            "isError": false,
+            "costUsd": 0.1083813,
+            "durationMs": 23820,
+            "turns": 13,
+            "usage": {
+              "input": 14,
+              "output": 2433,
+              "cacheRead": 106153,
+              "cacheWrite": 18352
+            },
+            "reply": "I wrote `src/App.tsx`. I haven't type-checked or run it, and I didn't confirm that `Sidebar.Item` accepts `onClick` and `aria-current`."
+          },
+          "score": {
+            "files": [
+              "src/App.tsx"
+            ],
+            "lines": 52,
+            "tsc": {
+              "total": 0,
+              "missingExport": 0,
+              "missingModule": 0,
+              "propErrors": 0,
+              "errors": []
+            },
+            "unknownTokens": [],
+            "cssContract": true,
+            "imported": [
+              "AppShell",
+              "Avatar",
+              "HamburgerMenu",
+              "Header",
+              "Sidebar",
+              "Stack",
+              "Title"
+            ],
+            "expect": {
+              "hit": 2,
+              "of": 2
+            },
+            "hardcodedStyles": 0,
+            "rawHeadings": 0,
+            "slop": {
+              "hits": 0,
+              "rules": []
+            }
+          }
+        },
+        {
+          "task": "file-upload",
+          "arm": "with",
+          "rep": 1,
+          "agent": {
+            "tools": {
+              "Glob": 3,
+              "Read": 6,
+              "Write": 1
+            },
+            "reads": {
+              "llms": true,
+              "readme": false,
+              "dts": 0,
+              "wimuiFiles": [
+                "dist/llms/FileUpload.md",
+                "dist/llms/Dropzone.md",
+                "dist/llms/Progress.md",
+                "dist/llms/Stack.md",
+                "dist/llms/Text.md",
+                "dist/llms/EmptyState.md"
+              ]
+            },
+            "isError": false,
+            "costUsd": 0.0811779,
+            "durationMs": 23825,
+            "turns": 11,
+            "usage": {
+              "input": 12,
+              "output": 2271,
+              "cacheRead": 77919,
+              "cacheWrite": 12663
+            },
+            "reply": "Finished writing the screen; I haven't type-checked or run it.\n\nsrc/App.tsx"
+          },
+          "score": {
+            "files": [
+              "src/App.tsx"
+            ],
+            "lines": 89,
+            "tsc": {
+              "total": 0,
+              "missingExport": 0,
+              "missingModule": 0,
+              "propErrors": 0,
+              "errors": []
+            },
+            "unknownTokens": [],
+            "cssContract": true,
+            "imported": [
+              "Dropzone",
+              "EmptyState",
+              "Progress",
+              "Stack",
+              "Text"
+            ],
+            "expect": {
+              "hit": 2,
+              "of": 2
+            },
+            "hardcodedStyles": 1,
+            "rawHeadings": 0,
+            "slop": {
+              "hits": 0,
+              "rules": []
+            }
+          }
+        },
+        {
+          "task": "file-upload",
+          "arm": "with",
+          "rep": 2,
+          "agent": {
+            "tools": {
+              "Glob": 3,
+              "Read": 6,
+              "Grep": 2,
+              "Write": 1
+            },
+            "reads": {
+              "llms": true,
+              "readme": false,
+              "dts": 0,
+              "wimuiFiles": [
+                "dist/llms/FileUpload.md",
+                "dist/llms/Dropzone.md",
+                "dist/llms/Progress.md",
+                "dist/llms/Stack.md",
+                "dist/llms/Button.md",
+                "dist/llms/Text.md"
+              ]
+            },
+            "isError": false,
+            "costUsd": 0.10200580000000001,
+            "durationMs": 28890,
+            "turns": 13,
+            "usage": {
+              "input": 14,
+              "output": 3211,
+              "cacheRead": 96278,
+              "cacheWrite": 15060
+            },
+            "reply": "I wrote `src/App.tsx`. I didn't compile or run it, so it's untested. I also didn't check the `Title` `order` prop, the `Badge` `intent` values or whether `Stack` accepts `style`. Uploads are simulated with a timer, not sent to a server."
+          },
+          "score": {
+            "files": [
+              "src/App.tsx"
+            ],
+            "lines": 124,
+            "tsc": {
+              "total": 2,
+              "missingExport": 0,
+              "missingModule": 0,
+              "propErrors": 2,
+              "errors": [
+                {
+                  "file": "../../../AppData/Local/Temp/wimui-vibe-5hwWk0/with/file-upload-2/src/App.tsx",
+                  "line": 61,
+                  "code": "TS2322",
+                  "message": "Type '{ children: string; order: number; }' is not assignable to type 'IntrinsicAttributes & TitleProps & RefAttributes<HTMLHeadingElement>'."
+                },
+                {
+                  "file": "../../../AppData/Local/Temp/wimui-vibe-5hwWk0/with/file-upload-2/src/App.tsx",
+                  "line": 84,
+                  "code": "TS2322",
+                  "message": "Type '{ children: (string | number)[]; order: number; }' is not assignable to type 'IntrinsicAttributes & TitleProps & RefAttributes<HTMLHeadingElement>'."
+                }
+              ]
+            },
+            "unknownTokens": [],
+            "cssContract": true,
+            "imported": [
+              "Badge",
+              "Button",
+              "Dropzone",
+              "FileUpload",
+              "Progress",
+              "Stack",
+              "Text",
+              "Title"
+            ],
+            "expect": {
+              "hit": 2,
+              "of": 2
+            },
+            "hardcodedStyles": 1,
+            "rawHeadings": 0,
+            "slop": {
+              "hits": 0,
+              "rules": []
+            }
+          }
+        },
+        {
+          "task": "save-feedback",
+          "arm": "with",
+          "rep": 1,
+          "agent": {
+            "tools": {
+              "Glob": 3,
+              "Read": 5,
+              "Grep": 3,
+              "Write": 1
+            },
+            "reads": {
+              "llms": true,
+              "readme": false,
+              "dts": 0,
+              "wimuiFiles": [
+                "dist/llms/Toast.md",
+                "dist/llms/Input.md",
+                "dist/llms/Textarea.md",
+                "dist/llms/Button.md",
+                "dist/llms/Stack.md"
+              ]
+            },
+            "isError": false,
+            "costUsd": 0.09323709999999999,
+            "durationMs": 23171,
+            "turns": 13,
+            "usage": {
+              "input": 16,
+              "output": 2263,
+              "cacheRead": 119551,
+              "cacheWrite": 14655
+            },
+            "reply": "src/App.tsx"
+          },
+          "score": {
+            "files": [
+              "src/App.tsx"
+            ],
+            "lines": 62,
+            "tsc": {
+              "total": 0,
+              "missingExport": 0,
+              "missingModule": 0,
+              "propErrors": 0,
+              "errors": []
+            },
+            "unknownTokens": [],
+            "cssContract": true,
+            "imported": [
+              "Button",
+              "Input",
+              "Stack",
+              "Textarea",
+              "Toast"
+            ],
+            "expect": {
+              "hit": 4,
+              "of": 4
+            },
+            "hardcodedStyles": 0,
+            "rawHeadings": 1,
+            "slop": {
+              "hits": 0,
+              "rules": []
+            }
+          }
+        },
+        {
+          "task": "save-feedback",
+          "arm": "with",
+          "rep": 2,
+          "agent": {
+            "tools": {
+              "Glob": 3,
+              "Read": 4,
+              "Grep": 7,
+              "Write": 1
+            },
+            "reads": {
+              "llms": true,
+              "readme": false,
+              "dts": 1,
+              "wimuiFiles": [
+                "dist/llms/Toast.md",
+                "dist/llms/Input.md",
+                "dist/llms/Textarea.md",
+                "dist/components/feedback/Toast/Toast.d.ts"
+              ]
+            },
+            "isError": false,
+            "costUsd": 0.0904619,
+            "durationMs": 26139,
+            "turns": 16,
+            "usage": {
+              "input": 16,
+              "output": 2826,
+              "cacheRead": 112899,
+              "cacheWrite": 12720
+            },
+            "reply": "src/App.tsx"
+          },
+          "score": {
+            "files": [
+              "src/App.tsx"
+            ],
+            "lines": 66,
+            "tsc": {
+              "total": 0,
+              "missingExport": 0,
+              "missingModule": 0,
+              "propErrors": 0,
+              "errors": []
+            },
+            "unknownTokens": [],
+            "cssContract": true,
+            "imported": [
+              "Button",
+              "Input",
+              "Stack",
+              "Textarea",
+              "ToastProvider",
+              "useToast"
+            ],
+            "expect": {
+              "hit": 3,
+              "of": 4
+            },
+            "hardcodedStyles": 3,
+            "rawHeadings": 1,
+            "slop": {
+              "hits": 0,
+              "rules": []
+            }
+          }
+        },
+        {
+          "task": "sign-in",
+          "arm": "without",
+          "rep": 1,
+          "agent": {
+            "tools": {
+              "Glob": 4,
+              "Read": 8,
+              "Write": 1
+            },
+            "reads": {
+              "llms": false,
+              "readme": true,
+              "dts": 7,
+              "wimuiFiles": [
+                "README.md",
+                "dist/components/form/Input/Input.d.ts",
+                "dist/components/form/PasswordInput/PasswordInput.d.ts",
+                "dist/components/form/Checkbox/Checkbox.d.ts",
+                "dist/components/form/Button/Button.d.ts",
+                "dist/components/navigation/Link/Link.d.ts",
+                "dist/components/layout/Stack/Stack.d.ts",
+                "dist/components/typography/Title/Title.d.ts"
+              ]
+            },
+            "isError": false,
+            "costUsd": 0.140877,
+            "durationMs": 19686,
+            "turns": 14,
+            "usage": {
+              "input": 12,
+              "output": 2157,
+              "cacheRead": 119550,
+              "cacheWrite": 26832
+            },
+            "reply": "I've finished writing the screen and haven't run a type-check or the app. The files I wrote are below.\n\nsrc/App.tsx"
+          },
+          "score": {
+            "files": [
+              "src/App.tsx"
+            ],
+            "lines": 61,
+            "tsc": {
+              "total": 0,
+              "missingExport": 0,
+              "missingModule": 0,
+              "propErrors": 0,
+              "errors": []
+            },
+            "unknownTokens": [],
+            "cssContract": true,
+            "imported": [
+              "Button",
+              "Checkbox",
+              "Input",
+              "Link",
+              "PasswordInput",
+              "Stack",
+              "Title"
+            ],
+            "expect": {
+              "hit": 4,
+              "of": 4
+            },
+            "hardcodedStyles": 3,
+            "rawHeadings": 0,
+            "slop": {
+              "hits": 0,
+              "rules": []
+            }
+          }
+        },
+        {
+          "task": "sign-in",
+          "arm": "without",
+          "rep": 2,
+          "agent": {
+            "tools": {
+              "Glob": 5,
+              "Read": 9,
+              "Write": 1
+            },
+            "reads": {
+              "llms": false,
+              "readme": true,
+              "dts": 8,
+              "wimuiFiles": [
+                "README.md",
+                "dist/components/form/Input/Input.d.ts",
+                "dist/components/form/PasswordInput/PasswordInput.d.ts",
+                "dist/components/form/Checkbox/Checkbox.d.ts",
+                "dist/components/form/Button/Button.d.ts",
+                "dist/components/layout/Stack/Stack.d.ts",
+                "dist/components/data-display/Card/Card.d.ts",
+                "dist/components/navigation/Link/Link.d.ts",
+                "dist/components/typography/Title/Title.d.ts"
+              ]
+            },
+            "isError": false,
+            "costUsd": 0.156667,
+            "durationMs": 21694,
+            "turns": 16,
+            "usage": {
+              "input": 14,
+              "output": 2450,
+              "cacheRead": 155870,
+              "cacheWrite": 29138
+            },
+            "reply": "src/App.tsx"
+          },
+          "score": {
+            "files": [
+              "src/App.tsx"
+            ],
+            "lines": 90,
+            "tsc": {
+              "total": 0,
+              "missingExport": 0,
+              "missingModule": 0,
+              "propErrors": 0,
+              "errors": []
+            },
+            "unknownTokens": [],
+            "cssContract": true,
+            "imported": [
+              "Button",
+              "Card",
+              "CardBody",
+              "CardHeader",
+              "Checkbox",
+              "Input",
+              "Link",
+              "PasswordInput",
+              "Stack",
+              "Title"
+            ],
+            "expect": {
+              "hit": 4,
+              "of": 4
+            },
+            "hardcodedStyles": 2,
+            "rawHeadings": 0,
+            "slop": {
+              "hits": 0,
+              "rules": []
+            }
+          }
+        },
+        {
+          "task": "notification-settings",
+          "arm": "without",
+          "rep": 1,
+          "agent": {
+            "tools": {
+              "Glob": 4,
+              "Read": 8,
+              "Grep": 1,
+              "Write": 1
+            },
+            "reads": {
+              "llms": false,
+              "readme": true,
+              "dts": 7,
+              "wimuiFiles": [
+                "README.md",
+                "dist/components/form/Switch/Switch.d.ts",
+                "dist/components/form/SwitchGroup/SwitchGroup.d.ts",
+                "dist/components/data-display/Card/Card.d.ts",
+                "dist/components/form/Button/Button.d.ts",
+                "dist/components/layout/Stack/Stack.d.ts",
+                "dist/components/typography/Text/Text.d.ts",
+                "dist/components/feedback/Alert/Alert.d.ts"
+              ]
+            },
+            "isError": false,
+            "costUsd": 0.1626938,
+            "durationMs": 28649,
+            "turns": 15,
+            "usage": {
+              "input": 14,
+              "output": 3197,
+              "cacheRead": 152678,
+              "cacheWrite": 28857
+            },
+            "reply": "src/App.tsx"
+          },
+          "score": {
+            "files": [
+              "src/App.tsx"
+            ],
+            "lines": 122,
+            "tsc": {
+              "total": 0,
+              "missingExport": 0,
+              "missingModule": 0,
+              "propErrors": 0,
+              "errors": []
+            },
+            "unknownTokens": [],
+            "cssContract": true,
+            "imported": [
+              "Alert",
+              "Button",
+              "Card",
+              "Container",
+              "Stack",
+              "Switch",
+              "Text"
+            ],
+            "expect": {
+              "hit": 3,
+              "of": 3
+            },
+            "hardcodedStyles": 3,
+            "rawHeadings": 1,
+            "slop": {
+              "hits": 0,
+              "rules": []
+            }
+          }
+        },
+        {
+          "task": "notification-settings",
+          "arm": "without",
+          "rep": 2,
+          "agent": {
+            "tools": {
+              "Glob": 3,
+              "Read": 5,
+              "Grep": 1,
+              "Write": 1
+            },
+            "reads": {
+              "llms": false,
+              "readme": true,
+              "dts": 4,
+              "wimuiFiles": [
+                "README.md",
+                "dist/components/form/Switch/Switch.d.ts",
+                "dist/components/data-display/Card/Card.d.ts",
+                "dist/components/form/Button/Button.d.ts",
+                "dist/components/feedback/Alert/Alert.d.ts"
+              ]
+            },
+            "isError": false,
+            "costUsd": 0.15067830000000002,
+            "durationMs": 28537,
+            "turns": 11,
+            "usage": {
+              "input": 14,
+              "output": 3122,
+              "cacheRead": 148743,
+              "cacheWrite": 26139
+            },
+            "reply": "I wrote `src/App.tsx`. I didn't type-check or run it, and I didn't confirm that the `outline` button variant, the `success` alert intent, or the `Card`, `CardBody`, `CardHeader` and `CardFooter` exports exist in wimui."
+          },
+          "score": {
+            "files": [
+              "src/App.tsx"
+            ],
+            "lines": 130,
+            "tsc": {
+              "total": 0,
+              "missingExport": 0,
+              "missingModule": 0,
+              "propErrors": 0,
+              "errors": []
+            },
+            "unknownTokens": [],
+            "cssContract": true,
+            "imported": [
+              "Alert",
+              "Button",
+              "Card",
+              "CardBody",
+              "CardFooter",
+              "CardHeader",
+              "Switch"
+            ],
+            "expect": {
+              "hit": 3,
+              "of": 3
+            },
+            "hardcodedStyles": 11,
+            "rawHeadings": 2,
+            "slop": {
+              "hits": 0,
+              "rules": []
+            }
+          }
+        },
+        {
+          "task": "orders-table",
+          "arm": "without",
+          "rep": 1,
+          "agent": {
+            "tools": {
+              "Glob": 3,
+              "Read": 2,
+              "Grep": 6,
+              "Write": 1
+            },
+            "reads": {
+              "llms": false,
+              "readme": false,
+              "dts": 2,
+              "wimuiFiles": [
+                "dist/components/data-display/DataGrid/DataGrid.d.ts",
+                "dist/components/data-display/Badge/Badge.d.ts"
+              ]
+            },
+            "isError": false,
+            "costUsd": 0.1063481,
+            "durationMs": 28352,
+            "turns": 13,
+            "usage": {
+              "input": 18,
+              "output": 2884,
+              "cacheRead": 149721,
+              "cacheWrite": 15625
+            },
+            "reply": "I wrote `src/App.tsx`. I didn't run a type-check or build."
+          },
+          "score": {
+            "files": [
+              "src/App.tsx"
+            ],
+            "lines": 99,
+            "tsc": {
+              "total": 0,
+              "missingExport": 0,
+              "missingModule": 0,
+              "propErrors": 0,
+              "errors": []
+            },
+            "unknownTokens": [],
+            "cssContract": true,
+            "imported": [
+              "Badge",
+              "DataGrid",
+              "DataGridColumn"
+            ],
+            "expect": {
+              "hit": 2,
+              "of": 3
+            },
+            "hardcodedStyles": 2,
+            "rawHeadings": 1,
+            "slop": {
+              "hits": 0,
+              "rules": []
+            }
+          }
+        },
+        {
+          "task": "orders-table",
+          "arm": "without",
+          "rep": 2,
+          "agent": {
+            "tools": {
+              "Glob": 4,
+              "Read": 3,
+              "Grep": 7,
+              "Write": 1,
+              "Edit": 2
+            },
+            "reads": {
+              "llms": false,
+              "readme": false,
+              "dts": 3,
+              "wimuiFiles": [
+                "dist/components/data-display/DataGrid/DataGrid.d.ts",
+                "dist/components/data-display/Badge/Badge.d.ts",
+                "dist/components/data-display/Tag/Tag.d.ts"
+              ]
+            },
+            "isError": false,
+            "costUsd": 0.13672050000000002,
+            "durationMs": 34064,
+            "turns": 18,
+            "usage": {
+              "input": 24,
+              "output": 3726,
+              "cacheRead": 238845,
+              "cacheWrite": 18882
+            },
+            "reply": "I wrote `src/App.tsx`. I haven't type-checked or run it."
+          },
+          "score": {
+            "files": [
+              "src/App.tsx"
+            ],
+            "lines": 112,
+            "tsc": {
+              "total": 0,
+              "missingExport": 0,
+              "missingModule": 0,
+              "propErrors": 0,
+              "errors": []
+            },
+            "unknownTokens": [],
+            "cssContract": true,
+            "imported": [
+              "Badge",
+              "DataGrid",
+              "DataGridColumn"
+            ],
+            "expect": {
+              "hit": 2,
+              "of": 3
+            },
+            "hardcodedStyles": 3,
+            "rawHeadings": 1,
+            "slop": {
+              "hits": 0,
+              "rules": []
+            }
+          }
+        },
+        {
+          "task": "kpi-overview",
+          "arm": "without",
+          "rep": 1,
+          "agent": {
+            "tools": {
+              "Glob": 3,
+              "Grep": 4,
+              "Read": 4,
+              "Write": 1
+            },
+            "reads": {
+              "llms": false,
+              "readme": true,
+              "dts": 3,
+              "wimuiFiles": [
+                "README.md",
+                "dist/components/data-display/Stats/Stats.d.ts",
+                "dist/components/layout/SimpleGrid/SimpleGrid.d.ts",
+                "dist/components/typography/Text/Text.d.ts"
+              ]
+            },
+            "isError": false,
+            "costUsd": 0.1220092,
+            "durationMs": 24466,
+            "turns": 13,
+            "usage": {
+              "input": 14,
+              "output": 2706,
+              "cacheRead": 114692,
+              "cacheWrite": 20863
+            },
+            "reply": "I wrote `src/App.tsx`. I haven't type-checked it. In particular, `color=\"muted\"` on `Text` and `spacing=\"lg\"` on `SimpleGrid` are guesses I didn't check against wimui's types."
+          },
+          "score": {
+            "files": [
+              "src/App.tsx"
+            ],
+            "lines": 77,
+            "tsc": {
+              "total": 0,
+              "missingExport": 0,
+              "missingModule": 0,
+              "propErrors": 0,
+              "errors": []
+            },
+            "unknownTokens": [],
+            "cssContract": true,
+            "imported": [
+              "SimpleGrid",
+              "Stats",
+              "Text"
+            ],
+            "expect": {
+              "hit": 2,
+              "of": 2
+            },
+            "hardcodedStyles": 3,
+            "rawHeadings": 1,
+            "slop": {
+              "hits": 0,
+              "rules": []
+            }
+          }
+        },
+        {
+          "task": "kpi-overview",
+          "arm": "without",
+          "rep": 2,
+          "agent": {
+            "tools": {
+              "Glob": 2,
+              "Grep": 6,
+              "Read": 4,
+              "Write": 1
+            },
+            "reads": {
+              "llms": false,
+              "readme": true,
+              "dts": 3,
+              "wimuiFiles": [
+                "README.md",
+                "dist/components/data-display/Stats/Stats.d.ts",
+                "dist/components/layout/SimpleGrid/SimpleGrid.d.ts",
+                "dist/index.d.ts"
+              ]
+            },
+            "isError": false,
+            "costUsd": 0.10884439999999998,
+            "durationMs": 28752,
+            "turns": 14,
+            "usage": {
+              "input": 18,
+              "output": 3105,
+              "cacheRead": 148664,
+              "cacheWrite": 15723
+            },
+            "reply": "I wrote `src/App.tsx`. I didn't run a type check or build, and I didn't confirm that `Container` accepts `size=\"lg\"` or that `spacing=\"lg\"` is a valid token."
+          },
+          "score": {
+            "files": [
+              "src/App.tsx"
+            ],
+            "lines": 112,
+            "tsc": {
+              "total": 0,
+              "missingExport": 0,
+              "missingModule": 0,
+              "propErrors": 0,
+              "errors": []
+            },
+            "unknownTokens": [],
+            "cssContract": true,
+            "imported": [
+              "Container",
+              "SimpleGrid",
+              "Stats",
+              "Text",
+              "Title"
+            ],
+            "expect": {
+              "hit": 2,
+              "of": 2
+            },
+            "hardcodedStyles": 2,
+            "rawHeadings": 0,
+            "slop": {
+              "hits": 0,
+              "rules": []
+            }
+          }
+        },
+        {
+          "task": "delete-confirm",
+          "arm": "without",
+          "rep": 1,
+          "agent": {
+            "tools": {
+              "Glob": 4,
+              "Read": 2,
+              "Grep": 5,
+              "Write": 1
+            },
+            "reads": {
+              "llms": false,
+              "readme": false,
+              "dts": 2,
+              "wimuiFiles": [
+                "dist/components/overlay/Dialog/Dialog.d.ts",
+                "dist/components/form/Button/Button.d.ts"
+              ]
+            },
+            "isError": false,
+            "costUsd": 0.0846793,
+            "durationMs": 23725,
+            "turns": 13,
+            "usage": {
+              "input": 16,
+              "output": 2248,
+              "cacheRead": 121473,
+              "cacheWrite": 12505
+            },
+            "reply": "src/App.tsx"
+          },
+          "score": {
+            "files": [
+              "src/App.tsx"
+            ],
+            "lines": 72,
+            "tsc": {
+              "total": 0,
+              "missingExport": 0,
+              "missingModule": 0,
+              "propErrors": 0,
+              "errors": []
+            },
+            "unknownTokens": [],
+            "cssContract": true,
+            "imported": [
+              "Button",
+              "Dialog"
+            ],
+            "expect": {
+              "hit": 2,
+              "of": 2
+            },
+            "hardcodedStyles": 6,
+            "rawHeadings": 1,
+            "slop": {
+              "hits": 0,
+              "rules": []
+            }
+          }
+        },
+        {
+          "task": "delete-confirm",
+          "arm": "without",
+          "rep": 2,
+          "agent": {
+            "tools": {
+              "Glob": 4,
+              "Read": 2,
+              "Grep": 8,
+              "Write": 1,
+              "Edit": 1
+            },
+            "reads": {
+              "llms": false,
+              "readme": false,
+              "dts": 2,
+              "wimuiFiles": [
+                "dist/components/overlay/Dialog/Dialog.d.ts",
+                "dist/components/form/Button/Button.d.ts"
+              ]
+            },
+            "isError": false,
+            "costUsd": 0.1142113,
+            "durationMs": 27655,
+            "turns": 17,
+            "usage": {
+              "input": 20,
+              "output": 2995,
+              "cacheRead": 180653,
+              "cacheWrite": 16539
+            },
+            "reply": "I wrote `src/App.tsx`. I didn't run it or type-check it."
+          },
+          "score": {
+            "files": [
+              "src/App.tsx"
+            ],
+            "lines": 71,
+            "tsc": {
+              "total": 0,
+              "missingExport": 0,
+              "missingModule": 0,
+              "propErrors": 0,
+              "errors": []
+            },
+            "unknownTokens": [],
+            "cssContract": true,
+            "imported": [
+              "Button",
+              "Dialog"
+            ],
+            "expect": {
+              "hit": 2,
+              "of": 2
+            },
+            "hardcodedStyles": 6,
+            "rawHeadings": 1,
+            "slop": {
+              "hits": 0,
+              "rules": []
+            }
+          }
+        },
+        {
+          "task": "no-projects",
+          "arm": "without",
+          "rep": 1,
+          "agent": {
+            "tools": {
+              "Glob": 3,
+              "Read": 4,
+              "Grep": 4,
+              "Write": 1,
+              "Edit": 1
+            },
+            "reads": {
+              "llms": false,
+              "readme": true,
+              "dts": 3,
+              "wimuiFiles": [
+                "dist/components/data-display/EmptyState/EmptyState.d.ts",
+                "README.md",
+                "dist/components/form/Button/Button.d.ts",
+                "dist/components/media/Icon/Icon.d.ts"
+              ]
+            },
+            "isError": false,
+            "costUsd": 0.09253700000000001,
+            "durationMs": 27377,
+            "turns": 14,
+            "usage": {
+              "input": 22,
+              "output": 2282,
+              "cacheRead": 178090,
+              "cacheWrite": 12966
+            },
+            "reply": "I wrote `src/App.tsx`. I didn't run or type-check it, and the \"Create your first project\" button's click handler is an empty TODO."
+          },
+          "score": {
+            "files": [
+              "src/App.tsx"
+            ],
+            "lines": 25,
+            "tsc": {
+              "total": 0,
+              "missingExport": 0,
+              "missingModule": 0,
+              "propErrors": 0,
+              "errors": []
+            },
+            "unknownTokens": [],
+            "cssContract": true,
+            "imported": [
+              "Button",
+              "EmptyState"
+            ],
+            "expect": {
+              "hit": 2,
+              "of": 2
+            },
+            "hardcodedStyles": 3,
+            "rawHeadings": 1,
+            "slop": {
+              "hits": 0,
+              "rules": []
+            }
+          }
+        },
+        {
+          "task": "no-projects",
+          "arm": "without",
+          "rep": 2,
+          "agent": {
+            "tools": {
+              "Glob": 3,
+              "Read": 2,
+              "Grep": 2,
+              "Write": 1
+            },
+            "reads": {
+              "llms": false,
+              "readme": false,
+              "dts": 2,
+              "wimuiFiles": [
+                "dist/components/data-display/EmptyState/EmptyState.d.ts",
+                "dist/components/form/Button/Button.d.ts"
+              ]
+            },
+            "isError": false,
+            "costUsd": 0.072409,
+            "durationMs": 15923,
+            "turns": 9,
+            "usage": {
+              "input": 12,
+              "output": 1382,
+              "cacheRead": 85690,
+              "cacheWrite": 12499
+            },
+            "reply": "Writing is done; I'm just giving the final summary now.\n\nsrc/App.tsx"
+          },
+          "score": {
+            "files": [
+              "src/App.tsx"
+            ],
+            "lines": 34,
+            "tsc": {
+              "total": 0,
+              "missingExport": 0,
+              "missingModule": 0,
+              "propErrors": 0,
+              "errors": []
+            },
+            "unknownTokens": [],
+            "cssContract": true,
+            "imported": [
+              "Button",
+              "EmptyState"
+            ],
+            "expect": {
+              "hit": 2,
+              "of": 2
+            },
+            "hardcodedStyles": 3,
+            "rawHeadings": 1,
+            "slop": {
+              "hits": 0,
+              "rules": []
+            }
+          }
+        },
+        {
+          "task": "signup-profile",
+          "arm": "without",
+          "rep": 1,
+          "agent": {
+            "tools": {
+              "Glob": 4,
+              "Read": 9,
+              "Grep": 2,
+              "Write": 1
+            },
+            "reads": {
+              "llms": false,
+              "readme": true,
+              "dts": 8,
+              "wimuiFiles": [
+                "README.md",
+                "dist/components/navigation/Stepper/Stepper.d.ts",
+                "dist/components/form/Select/Select.d.ts",
+                "dist/components/form/DatePicker/DatePicker.d.ts",
+                "dist/components/form/Input/Input.d.ts",
+                "dist/components/form/Button/Button.d.ts",
+                "dist/components/layout/Stack/Stack.d.ts",
+                "dist/components/data-display/Card/Card.d.ts",
+                "dist/components/typography/Text/Text.d.ts"
+              ]
+            },
+            "isError": false,
+            "costUsd": 0.1857645,
+            "durationMs": 29475,
+            "turns": 17,
+            "usage": {
+              "input": 18,
+              "output": 3414,
+              "cacheRead": 221965,
+              "cacheWrite": 32348
+            },
+            "reply": "I wrote `src/App.tsx`. I didn't run a type-check or build, so it is untested."
+          },
+          "score": {
+            "files": [
+              "src/App.tsx"
+            ],
+            "lines": 113,
+            "tsc": {
+              "total": 0,
+              "missingExport": 0,
+              "missingModule": 0,
+              "propErrors": 0,
+              "errors": []
+            },
+            "unknownTokens": [],
+            "cssContract": true,
+            "imported": [
+              "Button",
+              "Card",
+              "DatePicker",
+              "Input",
+              "Select",
+              "Stack",
+              "Stepper",
+              "Text"
+            ],
+            "expect": {
+              "hit": 4,
+              "of": 4
+            },
+            "hardcodedStyles": 1,
+            "rawHeadings": 1,
+            "slop": {
+              "hits": 0,
+              "rules": []
+            }
+          }
+        },
+        {
+          "task": "signup-profile",
+          "arm": "without",
+          "rep": 2,
+          "agent": {
+            "tools": {
+              "Glob": 4,
+              "Read": 8,
+              "Write": 1
+            },
+            "reads": {
+              "llms": false,
+              "readme": true,
+              "dts": 7,
+              "wimuiFiles": [
+                "README.md",
+                "dist/components/navigation/Stepper/Stepper.d.ts",
+                "dist/components/form/Select/Select.d.ts",
+                "dist/components/form/DatePicker/DatePicker.d.ts",
+                "dist/components/layout/Stack/Stack.d.ts",
+                "dist/components/form/Input/Input.d.ts",
+                "dist/components/form/Button/Button.d.ts",
+                "dist/components/data-display/Card/Card.d.ts"
+              ]
+            },
+            "isError": false,
+            "costUsd": 0.162723,
+            "durationMs": 23780,
+            "turns": 14,
+            "usage": {
+              "input": 14,
+              "output": 2884,
+              "cacheRead": 150270,
+              "cacheWrite": 29707
+            },
+            "reply": "I wrote `src/App.tsx`. I haven't type-checked it or run it. I also didn't confirm that `variant=\"outline\"` is a valid `ButtonVariant`."
+          },
+          "score": {
+            "files": [
+              "src/App.tsx"
+            ],
+            "lines": 110,
+            "tsc": {
+              "total": 0,
+              "missingExport": 0,
+              "missingModule": 0,
+              "propErrors": 0,
+              "errors": []
+            },
+            "unknownTokens": [],
+            "cssContract": true,
+            "imported": [
+              "Button",
+              "Card",
+              "DatePicker",
+              "Input",
+              "Select",
+              "Stack",
+              "Stepper"
+            ],
+            "expect": {
+              "hit": 4,
+              "of": 4
+            },
+            "hardcodedStyles": 3,
+            "rawHeadings": 1,
+            "slop": {
+              "hits": 0,
+              "rules": []
+            }
+          }
+        },
+        {
+          "task": "app-shell",
+          "arm": "without",
+          "rep": 1,
+          "agent": {
+            "tools": {
+              "Glob": 5,
+              "Read": 6,
+              "Grep": 4,
+              "Write": 1
+            },
+            "reads": {
+              "llms": false,
+              "readme": false,
+              "dts": 6,
+              "wimuiFiles": [
+                "dist/components/layout/AppShell/AppShell.d.ts",
+                "dist/components/data-display/Avatar/Avatar.d.ts",
+                "dist/components/typography/Title/Title.d.ts",
+                "dist/components/navigation/TabNavigation/TabNavigation.d.ts",
+                "dist/components/form/Button/Button.d.ts",
+                "dist/components/layout/Stack/Stack.d.ts"
+              ]
+            },
+            "isError": false,
+            "costUsd": 0.1033142,
+            "durationMs": 28040,
+            "turns": 17,
+            "usage": {
+              "input": 18,
+              "output": 2580,
+              "cacheRead": 144822,
+              "cacheWrite": 15749
+            },
+            "reply": "src/App.tsx"
+          },
+          "score": {
+            "files": [
+              "src/App.tsx"
+            ],
+            "lines": 46,
+            "tsc": {
+              "total": 0,
+              "missingExport": 0,
+              "missingModule": 0,
+              "propErrors": 0,
+              "errors": []
+            },
+            "unknownTokens": [],
+            "cssContract": true,
+            "imported": [
+              "AppShell",
+              "Avatar",
+              "Button",
+              "Stack",
+              "Title"
+            ],
+            "expect": {
+              "hit": 2,
+              "of": 2
+            },
+            "hardcodedStyles": 4,
+            "rawHeadings": 0,
+            "slop": {
+              "hits": 0,
+              "rules": []
+            }
+          }
+        },
+        {
+          "task": "app-shell",
+          "arm": "without",
+          "rep": 2,
+          "agent": {
+            "tools": {
+              "Glob": 5,
+              "Read": 7,
+              "Grep": 7,
+              "Write": 1
+            },
+            "reads": {
+              "llms": false,
+              "readme": false,
+              "dts": 5,
+              "wimuiFiles": [
+                "dist/components/layout/AppShell/AppShell.d.ts",
+                "dist/components/data-display/Avatar/Avatar.d.ts",
+                "package.json",
+                "dist/components/layout/Sidebar/Sidebar.d.ts",
+                "dist/components/typography/Title/Title.d.ts",
+                "dist/components/layout/Navbar/Navbar.d.ts",
+                "dist/components/layout/Sidebar/Sidebar.js"
+              ]
+            },
+            "isError": false,
+            "costUsd": 0.2218016,
+            "durationMs": 38759,
+            "turns": 21,
+            "usage": {
+              "input": 24,
+              "output": 4161,
+              "cacheRead": 361036,
+              "cacheWrite": 36010
+            },
+            "reply": "Every component I used is exported from the root, so the imports resolve. I haven't run the app or the type checker.\n\nFiles written: `src/App.tsx`"
+          },
+          "score": {
+            "files": [
+              "src/App.tsx"
+            ],
+            "lines": 77,
+            "tsc": {
+              "total": 0,
+              "missingExport": 0,
+              "missingModule": 0,
+              "propErrors": 0,
+              "errors": []
+            },
+            "unknownTokens": [],
+            "cssContract": true,
+            "imported": [
+              "AppShell",
+              "Avatar",
+              "HamburgerMenu",
+              "Sidebar",
+              "Title"
+            ],
+            "expect": {
+              "hit": 2,
+              "of": 2
+            },
+            "hardcodedStyles": 2,
+            "rawHeadings": 0,
+            "slop": {
+              "hits": 0,
+              "rules": []
+            }
+          }
+        },
+        {
+          "task": "file-upload",
+          "arm": "without",
+          "rep": 1,
+          "agent": {
+            "tools": {
+              "Glob": 4,
+              "Read": 6,
+              "Grep": 2,
+              "Write": 1
+            },
+            "reads": {
+              "llms": false,
+              "readme": false,
+              "dts": 6,
+              "wimuiFiles": [
+                "dist/components/form/FileUpload/FileUpload.d.ts",
+                "dist/components/form/Dropzone/Dropzone.d.ts",
+                "dist/components/feedback/Progress/Progress.d.ts",
+                "dist/components/layout/Stack/Stack.d.ts",
+                "dist/components/typography/Text/Text.d.ts",
+                "dist/components/data-display/Badge/Badge.d.ts"
+              ]
+            },
+            "isError": false,
+            "costUsd": 0.10660910000000001,
+            "durationMs": 24475,
+            "turns": 14,
+            "usage": {
+              "input": 12,
+              "output": 2870,
+              "cacheRead": 85691,
+              "cacheWrite": 17329
+            },
+            "reply": "Wrote `src/App.tsx`. I haven't compiled it or run it, and the upload progress is simulated."
+          },
+          "score": {
+            "files": [
+              "src/App.tsx"
+            ],
+            "lines": 106,
+            "tsc": {
+              "total": 0,
+              "missingExport": 0,
+              "missingModule": 0,
+              "propErrors": 0,
+              "errors": []
+            },
+            "unknownTokens": [],
+            "cssContract": true,
+            "imported": [
+              "Badge",
+              "Dropzone",
+              "Progress",
+              "Stack",
+              "Text"
+            ],
+            "expect": {
+              "hit": 2,
+              "of": 2
+            },
+            "hardcodedStyles": 2,
+            "rawHeadings": 0,
+            "slop": {
+              "hits": 0,
+              "rules": []
+            }
+          }
+        },
+        {
+          "task": "file-upload",
+          "arm": "without",
+          "rep": 2,
+          "agent": {
+            "tools": {
+              "Glob": 5,
+              "Read": 7,
+              "Grep": 6,
+              "Write": 1
+            },
+            "reads": {
+              "llms": false,
+              "readme": true,
+              "dts": 6,
+              "wimuiFiles": [
+                "dist/components/form/Dropzone/Dropzone.d.ts",
+                "dist/components/form/FileUpload/FileUpload.d.ts",
+                "README.md",
+                "dist/components/feedback/Progress/Progress.d.ts",
+                "dist/components/layout/Stack/Stack.d.ts",
+                "dist/components/data-display/List/List.d.ts",
+                "dist/components/form/Button/Button.d.ts"
+              ]
+            },
+            "isError": false,
+            "costUsd": 0.13934629999999998,
+            "durationMs": 42404,
+            "turns": 20,
+            "usage": {
+              "input": 24,
+              "output": 4206,
+              "cacheRead": 219863,
+              "cacheWrite": 18813
+            },
+            "reply": "I wrote `src/App.tsx`, but I haven't type-checked or run it. It uses wimui's `Dropzone`, `FileUpload`, `List`, `Progress`, `Badge`, `Button` and `Stack`. The upload progress is simulated with a timer, because there is no backend.\n\n`src/App.tsx`"
+          },
+          "score": {
+            "files": [
+              "src/App.tsx"
+            ],
+            "lines": 117,
+            "tsc": {
+              "total": 0,
+              "missingExport": 0,
+              "missingModule": 0,
+              "propErrors": 0,
+              "errors": []
+            },
+            "unknownTokens": [],
+            "cssContract": true,
+            "imported": [
+              "Badge",
+              "Button",
+              "Dropzone",
+              "FileUpload",
+              "List",
+              "ListItem",
+              "Progress",
+              "Stack"
+            ],
+            "expect": {
+              "hit": 2,
+              "of": 2
+            },
+            "hardcodedStyles": 2,
+            "rawHeadings": 2,
+            "slop": {
+              "hits": 0,
+              "rules": []
+            }
+          }
+        },
+        {
+          "task": "save-feedback",
+          "arm": "without",
+          "rep": 1,
+          "agent": {
+            "tools": {
+              "Glob": 3,
+              "Grep": 10,
+              "Read": 5,
+              "Write": 1
+            },
+            "reads": {
+              "llms": false,
+              "readme": true,
+              "dts": 4,
+              "wimuiFiles": [
+                "README.md",
+                "dist/components/feedback/Toast/Toast.d.ts",
+                "dist/components/form/Input/Input.d.ts",
+                "dist/components/form/Textarea/Textarea.d.ts",
+                "dist/components/form/Button/Button.d.ts"
+              ]
+            },
+            "isError": false,
+            "costUsd": 0.1273823,
+            "durationMs": 35468,
+            "turns": 20,
+            "usage": {
+              "input": 24,
+              "output": 3344,
+              "cacheRead": 227183,
+              "cacheWrite": 17794
+            },
+            "reply": "I wrote `src/App.tsx`. I haven't run a type-check or the app, but I checked the intent values and the `wimui/form` and `wimui/feedback` exports against the library's type files."
+          },
+          "score": {
+            "files": [
+              "src/App.tsx"
+            ],
+            "lines": 75,
+            "tsc": {
+              "total": 0,
+              "missingExport": 0,
+              "missingModule": 0,
+              "propErrors": 0,
+              "errors": []
+            },
+            "unknownTokens": [],
+            "cssContract": true,
+            "imported": [
+              "Button",
+              "Input",
+              "Textarea",
+              "ToastProvider",
+              "useToast"
+            ],
+            "expect": {
+              "hit": 3,
+              "of": 4
+            },
+            "hardcodedStyles": 4,
+            "rawHeadings": 1,
+            "slop": {
+              "hits": 0,
+              "rules": []
+            }
+          }
+        },
+        {
+          "task": "save-feedback",
+          "arm": "without",
+          "rep": 2,
+          "agent": {
+            "tools": {
+              "Glob": 4,
+              "Grep": 7,
+              "Read": 5,
+              "Write": 1
+            },
+            "reads": {
+              "llms": false,
+              "readme": true,
+              "dts": 4,
+              "wimuiFiles": [
+                "README.md",
+                "dist/components/feedback/Toast/Toast.d.ts",
+                "dist/components/feedback/Snackbar/Snackbar.d.ts",
+                "dist/components/form/Input/Input.d.ts",
+                "dist/components/form/Textarea/Textarea.d.ts"
+              ]
+            },
+            "isError": false,
+            "costUsd": 0.1350557,
+            "durationMs": 33923,
+            "turns": 18,
+            "usage": {
+              "input": 24,
+              "output": 3225,
+              "cacheRead": 241937,
+              "cacheWrite": 19641
+            },
+            "reply": "Checked the toast intents and `\"danger\"` is valid, so no change is needed.\n\n`src/App.tsx`"
+          },
+          "score": {
+            "files": [
+              "src/App.tsx"
+            ],
+            "lines": 82,
+            "tsc": {
+              "total": 0,
+              "missingExport": 0,
+              "missingModule": 0,
+              "propErrors": 0,
+              "errors": []
+            },
+            "unknownTokens": [],
+            "cssContract": true,
+            "imported": [
+              "Button",
+              "Input",
+              "Textarea",
+              "ToastProvider",
+              "useToast"
+            ],
+            "expect": {
+              "hit": 3,
+              "of": 4
+            },
+            "hardcodedStyles": 4,
+            "rawHeadings": 1,
+            "slop": {
+              "hits": 0,
+              "rules": []
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
