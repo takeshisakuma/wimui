@@ -36,10 +36,16 @@ export interface UseTableSortReturn<T> {
 }
 
 /**
- * Hook for managing table sorting logic
+ * Sort rows on the client for `Table`: clicking the same column cycles ascending → descending → unsorted.
+ * For server-side sorting, keep the state yourself and pass `onSortChange`.
+ *
  * @param data - The data array to sort
- * @param options - Optional configuration
- * @returns Sorted data and sorting utilities
+ * @param options - `initialSort` and `onSortChange`
+ * @returns `sortedData`, `sortConfig`, `handleSort(key)` and `getSortDirection(key)`
+ *
+ * @example
+ * const { sortedData, handleSort, getSortDirection } = useTableSort(rows);
+ * // <Table.Head sortable sortDirection={getSortDirection("name")} onSort={() => handleSort("name")}>
  */
 export function useTableSort<T extends Record<string, unknown>>(
   data: T[],

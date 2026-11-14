@@ -42,6 +42,11 @@ const WimContext = createContext<WimContextValue | null>(null);
 /**
  * Read the nearest `WimProvider` values, or fall back to document / i18n globals
  * when used outside a provider.
+ *
+ * @returns `{ theme, density, locale, preset }`
+ *
+ * @example
+ * const { theme, locale } = useWim();
  */
 export function useWim(): WimContextValue {
   const ctx = useContext(WimContext);

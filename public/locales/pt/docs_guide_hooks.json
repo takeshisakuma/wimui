@@ -1,0 +1,25 @@
+{
+  "guide": {
+    "hooks_title": "Hooks",
+    "hooks_desc": "Os hooks que você pode importar do pacote. Prefira-os a escrever a mesma coisa por conta própria — um listener de matchMedia, o cálculo da altura de um textarea, o estado de ordenação. A linha de import, a assinatura e o exemplo de cada hook são gerados a partir do código-fonte (JSDoc), então correspondem à versão instalada.",
+    "hooks_group_responsive": "Responsivo",
+    "hooks_group_responsive_desc": "Leem a viewport em JavaScript. Para o layout, prefira CSS (os tokens de breakpoint e as container queries); use estes hooks só quando a própria estrutura renderizada precisa mudar.",
+    "hooks_group_feedback": "Feedback",
+    "hooks_group_feedback_desc": "Mostram uma mensagem a partir de um handler de evento. Cada um precisa do seu provider uma vez perto da raiz do app e lança um erro quando chamado fora dele.",
+    "hooks_group_data": "Dados",
+    "hooks_group_input": "Entrada",
+    "hooks_group_settings": "Configurações",
+    "hooks_signature": "Assinatura",
+    "hooks_example": "Exemplo",
+    "hooks_use_media_query": "Acompanha se uma media query CSS corresponde no momento. Antes da primeira renderização no cliente, retorna o valor padrão que você passar (false se omitido), para que servidor e cliente renderizem a mesma marcação.",
+    "hooks_use_breakpoint": "O nome do maior breakpoint que a viewport alcança no momento (xs, sm, md, lg, xl). Até o componente ser montado, retorna o menor.",
+    "hooks_use_breakpoint_up": "Se a viewport está no breakpoint indicado ou acima dele. O equivalente em JavaScript do mixin SCSS up().",
+    "hooks_use_breakpoint_down": "Se a viewport está abaixo do breakpoint indicado. O equivalente em JavaScript do mixin SCSS down() e do visibleBelow do HamburgerMenu.",
+    "hooks_use_toast": "Mostra uma mensagem curta que se fecha sozinha — uma confirmação pontual do que o usuário acabou de fazer. Para um estado que continua valendo (um limite, uma indisponibilidade), use um Alert na própria página. Requer ToastProvider.",
+    "hooks_use_snackbar": "Mostra uma única barra de mensagem na borda da tela. Uma nova mensagem substitui a atual. Adequado para mensagens com uma ação, como Desfazer. Requer SnackbarProvider.",
+    "hooks_use_notification": "Mostra um cartão de notificação em um canto da tela. As notificações se empilham e servem para eventos que aconteceram em outro lugar (uma exportação concluída, um novo comentário). Requer NotificationProvider.",
+    "hooks_use_table_sort": "Ordena as linhas no cliente para a Table. Ativar a mesma coluna alterna entre crescente, decrescente e sem ordenação. Para ordenar no servidor, mantenha o estado você mesmo e use onSortChange.",
+    "hooks_use_auto_resize": "Faz um textarea crescer com o conteúdo até um número de linhas e depois rolar. Textarea e PromptInput já fazem isso — use o hook só em um textarea que você mesmo renderiza.",
+    "hooks_use_wim": "Lê o tema, a densidade, o locale e o preset do WimProvider mais próximo (ou do documento, quando não há nenhum)."
+  }
+}

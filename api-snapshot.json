@@ -837,9 +837,6 @@
       "useBreakpoint (value)",
       "useBreakpointDown (value)",
       "useBreakpointUp (value)",
-      "useDialog (value)",
-      "useDrawer (value)",
-      "useLightbox (value)",
       "useMediaQuery (value)",
       "useNotification (value)",
       "UserIcon (value)",
@@ -1548,9 +1545,7 @@
       "TooltipContentProps (type)",
       "TooltipProps (type)",
       "TooltipTrigger (value)",
-      "TooltipTriggerProps (type)",
-      "useDialog (value)",
-      "useDrawer (value)"
+      "TooltipTriggerProps (type)"
     ],
     "./typography": [
       "Blockquote (value)",
@@ -1603,7 +1598,6 @@
       "LightboxRootProps (type)",
       "LightboxTrigger (value)",
       "LightboxTriggerProps (type)",
-      "useLightbox (value)",
       "Video (value)",
       "VideoLabels (type)"
     ],

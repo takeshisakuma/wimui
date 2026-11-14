@@ -257,7 +257,8 @@ const HEADING_EMITTERS = {
   Title: 1,             // @storybook/blocks — <h1>
   Stories: 2,           // @storybook/blocks — <h2> "Stories"（各ストーリーは h3）
   Docgen: 2,            // stories/Docgen.tsx — 各節の <h2>
-  ComponentDashboard: 1 // stories/ComponentDashboard.tsx — <h1> + カテゴリの <h2>
+  ComponentDashboard: 1, // stories/ComponentDashboard.tsx — <h1> + カテゴリの <h2>
+  HookDoc: 4            // stories/HookDoc.tsx — 「シグネチャ」「例」の <h4>（docs/Hooks.mdx の各 hook の <h3> の下）
 };
 
 // コードブロックと <style> の中は見出しではない（`# comment` や `h3 { }` を拾わない）。
