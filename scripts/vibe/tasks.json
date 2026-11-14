@@ -1,0 +1,55 @@
+{
+  "_comment": "T371。利用者の AI が wimui で書く画面の依頼。部品名は出さず、体験で書く（部品名を出すと「名前を知っているか」しか測れない）。expect は採点だけに使う: 各要素は「どれか 1 つを wimui から import していれば当たり」の候補の組。",
+  "tasks": [
+    {
+      "id": "sign-in",
+      "prompt": "Build a sign-in screen: email and password fields, a way to stay signed in on this device, a submit action, and a link for people who forgot their password. Show an error under the email field when it is empty on submit.",
+      "expect": [["Input", "PasswordInput"], ["Checkbox", "Switch"], ["Button"], ["Link", "LinkButton"]]
+    },
+    {
+      "id": "notification-settings",
+      "prompt": "Build a notification settings page. Group the options into sections (email, push, weekly digest), each option can be turned on or off, and there is a save action at the bottom.",
+      "expect": [["Switch", "SwitchGroup", "Checkbox"], ["Card", "Fieldset"], ["Button"]]
+    },
+    {
+      "id": "orders-table",
+      "prompt": "Build an orders list for an admin: order number, customer, amount, and a status that is visually distinguishable (paid, pending, refunded). People need to move through pages of results.",
+      "expect": [["Table", "DataGrid"], ["Badge", "Tag", "Chip"], ["Pagination"]]
+    },
+    {
+      "id": "kpi-overview",
+      "prompt": "Build an overview screen that shows four key numbers for this month (revenue, new customers, churn, average order value), each with how it changed compared with last month.",
+      "expect": [["Stats"], ["Grid", "SimpleGrid", "Dashboard"]]
+    },
+    {
+      "id": "delete-confirm",
+      "prompt": "Build a project row with a delete action. Deleting asks the person to confirm first, explains that it cannot be undone, and lets them back out.",
+      "expect": [["Dialog", "Popconfirm"], ["Button", "IconButton"]]
+    },
+    {
+      "id": "no-projects",
+      "prompt": "Build what a new user sees on the projects page before they have created any project, with a clear way to create the first one.",
+      "expect": [["EmptyState", "Result"], ["Button"]]
+    },
+    {
+      "id": "signup-profile",
+      "prompt": "Build the second step of a sign-up flow: full name, country (picked from a list), date of birth, and a back / continue pair of actions. Show which step of three the person is on.",
+      "expect": [["Select", "Combobox"], ["DatePicker"], ["Stepper"], ["Button"]]
+    },
+    {
+      "id": "app-shell",
+      "prompt": "Build the frame of an internal tool: a top bar with the product name and the signed-in user's avatar, a side navigation with five sections, and a main content area showing the current section's title.",
+      "expect": [["AppShell", "Sidebar", "Navbar", "Header"], ["Avatar"]]
+    },
+    {
+      "id": "file-upload",
+      "prompt": "Build an area where people add files by dragging them in or choosing them, and see each file's upload progress in a list.",
+      "expect": [["FileUpload", "Dropzone"], ["Progress", "ProgressRing"]]
+    },
+    {
+      "id": "save-feedback",
+      "prompt": "Build a small profile edit form (display name, bio). After saving, let the person know briefly that it worked without blocking the page.",
+      "expect": [["Toast", "Snackbar", "Notification"], ["Input"], ["Textarea", "CounterTextarea"], ["Button"]]
+    }
+  ]
+}

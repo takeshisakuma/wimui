@@ -411,6 +411,7 @@
     "audit:i18n-ignore": "node scripts/check-i18n-ignore.js",
     "scaffold": "node scripts/scaffold-component.js",
     "llms:build": "node scripts/generate-llms.js",
+    "vibe": "node scripts/vibe/run.mjs",
     "check:doc-drift": "node scripts/check-doc-drift.js",
     "check:prop-values": "node scripts/check-prop-values.js",
     "check:a11y-boilerplate": "node scripts/check-a11y-boilerplate.js",
