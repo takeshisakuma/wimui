@@ -66,8 +66,8 @@
 | 差し込む表示 | 結果 | 扱い |
 |---|---|---|
 | `role="alert"` を中身ごと差し込む（`FieldError`・RichTextEditor のアップロード失敗） | **読まれた** | そのままでよい。誤りのように、すぐ割り込んで告げるものに限る |
-| `role="status"` / `aria-live` を中身ごと差し込む（DataGrid の空・Combobox の該当なし・Transfer の空） | 読まれない | 表示は飾りのまま差し込み、文字は根に先に置いた領域へ書く（`useAnnounceAppearance`） |
-| `aria-live` の中で、文字を数文字ずつ書き足す（StreamingText） | 書き足すたびに読み直す・言語の切り替えや箇条書きの位置を挟み続ける | 途中は `aria-busy` だけにし、書き上がったら 1 回だけ告げる |
+| `role="status"` / `aria-live` を中身ごと差し込む（DataGrid の空・Combobox の該当なし・Transfer の空） | 読まれない | 表示は飾りのまま差し込み、文字は根に先に置いた領域へ書く（`useAnnounceAppearance`）。直したあと、同じ日に聞き直して読まれた（Transfer は空の表示ではなく、移動の告知で伝える） |
+| `aria-live` の中で、文字を数文字ずつ書き足す（StreamingText） | 書き足すたびに読み直す・言語の切り替えや箇条書きの位置を挟み続ける | 途中は `aria-busy` だけにし、書き上がったら 1 回だけ告げる。直したあと聞き直して、通しで読まれた |
 
 ```tsx
 // 空の表示・該当なし・読み込み中のように、条件で差し込む表示
@@ -75,7 +75,7 @@ const { ref, region } = useAnnounceAppearance(rows.length === 0);
 return <div>{region}{rows.length === 0 && <div ref={ref}>{emptyMessage}</div>}</div>;
 ```
 
-**部品そのものが差し込まれる側**（`Spinner`）は、親の中に先に在る領域を持てない。空の領域と一緒に現れ、0.5 秒待ってから文を入れている（**この形が読まれるかは、2026-11-14 の時点で未確認**）。中身ごと告げる親（`InfiniteScroll`）の中では、`AnnouncedByParent` で黙る。
+**部品そのものが差し込まれる側**（`Spinner`）は、親の中に先に在る領域を持てない。空の領域と一緒に現れ、0.5 秒待ってから文を入れている（2026-11-14 に聞いて、**読まれた**。押したボタンを `disabled` にしてフォーカスを落とすと、ページの題名の読み直しに消される）。中身ごと告げる親（`InfiniteScroll`）の中では、`AnnouncedByParent` で黙る（同じ日に聞いて、「さらに読み込み中…」は 1 回だけ読まれた）。
 
 この形は `src/components/_internal/useAnnounce.tsx` にまとめてある（T367）。**部品は自前の領域を書かず、このフックを使う**（`npm run check:announce` が、`VisuallyHidden` に `role="status"` / `role="alert"` / `aria-live` を付けた部品を落とす。`audit:lib`）。
 
