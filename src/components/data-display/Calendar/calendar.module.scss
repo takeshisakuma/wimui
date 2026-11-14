@@ -52,6 +52,81 @@
     color: var(--wim-color-text-primary);
   }
   
+  // 見出しを押すと、月の一覧 → 年の一覧へ上がる（T381）。見た目は見出しの文字のまま、押せることはホバーの地で示す
+  .titleBtn {
+    padding: var(--wim-spacing-2xs) var(--wim-spacing-sm);
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+    background: transparent;
+    border: var(--wim-border-width-thin) solid transparent;
+    border-radius: var(--wim-radius-sm);
+    transition: background-color var(--wim-duration-base) var(--wim-easing-standard);
+
+    &:hover:not(:disabled) {
+      background-color: var(--wim-color-surface-hover);
+    }
+
+    &:active:not(:disabled) {
+      @include pressed.tinted;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+
+  // 月・年の一覧（3 列 × 4 行）。日の表に近い高さを保ち、選ぶ前後で枠が跳ねないようにする
+  .levelGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--wim-spacing-sm);
+
+    [role="row"] {
+      display: contents;
+    }
+  }
+
+  .levelCell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: var(--wim-height-md);
+    font-size: var(--wim-font-size-md);
+    color: var(--wim-color-text-primary);
+    cursor: pointer;
+    background: transparent;
+    border: var(--wim-border-width-thin) solid transparent;
+    border-radius: var(--wim-radius-sm);
+    transition: background-color var(--wim-duration-base) var(--wim-easing-standard);
+
+    &:hover:not(:disabled, .selected) {
+      background-color: var(--wim-color-surface-hover);
+    }
+
+    &:active:not(:disabled, .selected) {
+      @include pressed.tinted;
+    }
+
+    &[aria-current="date"] {
+      font-weight: var(--wim-font-weight-bold);
+      color: var(--wim-color-text-accent);
+      border-color: oklch(from var(--wim-color-primary) l c h / 0.3);
+    }
+
+    &.selected {
+      font-weight: var(--wim-font-weight-semibold);
+      color: var(--wim-color-text-on-primary);
+      background-color: var(--wim-color-primary);
+    }
+
+    &:disabled {
+      color: var(--wim-color-text-disabled);
+      text-decoration: line-through;
+      cursor: not-allowed;
+    }
+  }
+
   .navBtn {
     display: flex;
     align-items: center;

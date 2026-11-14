@@ -1,7 +1,15 @@
 {
   "calendar": {
     "aria_date": "{{year}}-{{month}}-{{day}}",
-    "title": "{{year}} / {{month}}"
+    "title": "{{year}} / {{month}}",
+    "choose_month": "Choose month",
+    "choose_year": "Choose year",
+    "months": "Months of {{year}}",
+    "years": "Years {{start}} to {{end}}",
+    "prev_year": "Previous year",
+    "next_year": "Next year",
+    "prev_years": "Previous {{n}} years",
+    "next_years": "Next {{n}} years"
   },
   "countdown": {
     "remaining": "{{time}} remaining"

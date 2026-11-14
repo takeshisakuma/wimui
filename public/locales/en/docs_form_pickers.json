@@ -317,7 +317,7 @@
     "otpinput_anatomy_fields_label": "fields",
     "colorinput_keyboard_desc": "Tab focuses the color input field. Standard keyboard input is supported for hex values. Escape cancels editing.",
     "colorpicker_keyboard_desc": "Tab moves focus within the color picker. Arrow keys adjust hue and saturation values. Escape closes the picker.",
-    "datepicker_keyboard_desc": "Tab focuses the date input field. Arrow keys navigate the calendar. Enter selects a date. Escape closes the calendar.",
+    "datepicker_keyboard_desc": "Tab focuses the date input field. Arrow keys navigate the calendar. Enter selects a date. Escape closes the calendar. Inside the calendar, the title opens the list of months and then of years, so a distant date (a birth date, say) takes a few presses. Escape inside those lists goes back one level; Escape in the day view closes the calendar.",
     "daterangepicker_keyboard_desc": "Tab moves between start and end date fields. Arrow keys navigate the calendar. Enter selects dates. Escape closes the calendar.",
     "inputmask_keyboard_desc": "Tab focuses the masked input field. Standard keyboard input is supported within the mask pattern. Escape cancels where applicable.",
     "rangeslider_keyboard_desc": "Tab focuses each slider thumb. Arrow keys adjust the value. Home and End move to min and max values respectively.",

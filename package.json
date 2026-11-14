@@ -192,7 +192,7 @@
         "react/jsx-runtime"
       ],
       "gzip": true,
-      "limit": "215 kB"
+      "limit": "217 kB"
     },
     {
       "name": "wimui/form 全部 (gzip)",
@@ -204,7 +204,7 @@
         "react/jsx-runtime"
       ],
       "gzip": true,
-      "limit": "95 kB"
+      "limit": "96 kB"
     },
     {
       "name": "wimui/form/rich-text-editor (gzip, Tiptap は peer)",
@@ -248,7 +248,7 @@
         "react/jsx-runtime"
       ],
       "gzip": true,
-      "limit": "93 kB"
+      "limit": "95 kB"
     },
     {
       "name": "wimui/charts 全部 (gzip)",
@@ -279,7 +279,7 @@
       "name": "UMD Bundle (gzip)",
       "path": "dist/wimui.umd.js",
       "gzip": true,
-      "limit": "164 kB",
+      "limit": "165 kB",
       "disablePlugins": [
         "@size-limit/esbuild"
       ]

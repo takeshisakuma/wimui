@@ -96,7 +96,7 @@
     "datepicker_kb_2": "矢印キーで日付を移動し、Enter で選択できます。",
     "datepicker_kb_3": "Escape でカレンダーを閉じます。",
     "datepicker_keyboard": "キーボード操作",
-    "datepicker_keyboard_desc": "Tabで日付入力フィールドにフォーカスします。矢印キーでカレンダーを移動します。Enterで日付を選択します。Escapeでカレンダーを閉じます。",
+    "datepicker_keyboard_desc": "Tabで日付入力フィールドにフォーカスします。矢印キーでカレンダーを移動します。Enterで日付を選択します。Escapeでカレンダーを閉じます。 カレンダーの中では、見出しから月の一覧、さらに年の一覧へ上がれるので、生年月日のような遠い日付も数回の操作で選べます。月や年の一覧の中の Escape は 1 段下りるだけで、日の表示での Escape はカレンダーを閉じます。",
     "datepicker_long_desc": "デイトピッカーコンポーネントの詳細情報と使用方法について説明します。",
     "datepicker_main_features": "主な機能",
     "datepicker_op_close": "カレンダーを閉じる",

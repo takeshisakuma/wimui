@@ -5,7 +5,15 @@ import type { WimNamespace } from "../instance";
 export type DataDisplayKey =
   | "avatar_group.show_everyone"
   | "calendar.aria_date"
+  | "calendar.choose_month"
+  | "calendar.choose_year"
+  | "calendar.months"
+  | "calendar.next_year"
+  | "calendar.next_years"
+  | "calendar.prev_year"
+  | "calendar.prev_years"
   | "calendar.title"
+  | "calendar.years"
   | "countdown.remaining"
   | "infinite_scroll.loading"
   | "kanban.moved"
@@ -20,6 +28,16 @@ export const dataDisplayNs: WimNamespace<"data-display", DataDisplayKey> = {
   name: "data-display",
   resources: {
     "en": {
+      "calendar": {
+        "choose_month": "Choose month",
+        "choose_year": "Choose year",
+        "months": "Months of {{year}}",
+        "years": "Years {{start}} to {{end}}",
+        "prev_year": "Previous year",
+        "next_year": "Next year",
+        "prev_years": "Previous {{n}} years",
+        "next_years": "Next {{n}} years"
+      },
       "countdown": {
         "remaining": "{{time}} remaining"
       },
@@ -40,6 +58,16 @@ export const dataDisplayNs: WimNamespace<"data-display", DataDisplayKey> = {
       }
     },
     "ja": {
+      "calendar": {
+        "choose_month": "月を選ぶ",
+        "choose_year": "年を選ぶ",
+        "months": "{{year}}年の月",
+        "years": "{{start}}年から{{end}}年",
+        "prev_year": "前の年",
+        "next_year": "次の年",
+        "prev_years": "前の{{n}}年",
+        "next_years": "次の{{n}}年"
+      },
       "countdown": {
         "remaining": "残り{{time}}"
       },
@@ -60,6 +88,16 @@ export const dataDisplayNs: WimNamespace<"data-display", DataDisplayKey> = {
       }
     },
     "pt": {
+      "calendar": {
+        "choose_month": "Escolher mês",
+        "choose_year": "Escolher ano",
+        "months": "Meses de {{year}}",
+        "years": "Anos de {{start}} a {{end}}",
+        "prev_year": "Ano anterior",
+        "next_year": "Próximo ano",
+        "prev_years": "{{n}} anos anteriores",
+        "next_years": "Próximos {{n}} anos"
+      },
       "countdown": {
         "remaining": "{{time}} restantes"
       },
