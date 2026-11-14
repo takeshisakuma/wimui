@@ -71,6 +71,9 @@
   }
 
   .card {
+    // 本文の内側の余白。移動ボタンの位置（上の揃えと右の余白）も、この値から決める
+    --kanban-card-padding: 0.75rem;
+
     position: relative;
     box-sizing: border-box;
     cursor: grab;
@@ -95,7 +98,7 @@
   }
 
   .cardContent {
-    padding: 0.75rem;
+    padding: var(--kanban-card-padding);
   }
 
   /*
@@ -106,8 +109,13 @@
    */
   .cardMove {
     position: absolute;
-    top: var(--wim-spacing-xs);
-    right: var(--wim-spacing-xs);
+
+    // ボタンの中心を、本文の 1 行目の中心にそろえる（1 行のカードでは上下の真ん中になる）。
+    // カードの上下の真ん中にしないのは、題名と担当者・期限を重ねた背の高いカードで、本文に重なるため。
+    // `.cardContent` の上の余白 + (1 行の高さ − ボタンの高さ) / 2。`1lh` はカードから継いだ行の高さ。
+    // 右の余白は、本文の左の余白とそろえる
+    top: calc(var(--kanban-card-padding) + (1lh - var(--wim-height-sm)) / 2);
+    right: var(--kanban-card-padding);
     opacity: 0;
     transition: opacity var(--wim-duration-fast) var(--wim-easing-standard);
 
