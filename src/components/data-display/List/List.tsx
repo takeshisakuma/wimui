@@ -27,7 +27,7 @@ export interface ListProps extends React.HTMLAttributes<HTMLElement> {
   hoverable?: boolean;
 }
 
-export const List = React.forwardRef<HTMLElement, ListProps>(
+const ListRoot = React.forwardRef<HTMLElement, ListProps>(
   ({ asChild = false, size = "md", spacing = "normal", bordered = false, fullWidth = false, hoverable = false, children, className, ...props }, ref) => {
     const Component = asChild ? Slot : "ul";
 
@@ -110,6 +110,15 @@ export const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
   },
 );
 
-List.displayName = "List";
+// 子を `List.Item` でも書けるようにする（T377）。ほかの「親.子」の部品と同じ形。
+// 以前は displayName だけが "List.Item" で、AI 向けのファイルもそう載せていたが、実際には無かった
+export const List = ListRoot as typeof ListRoot & {
+  Item: typeof ListItem;
+};
+
+List.Item = ListItem;
+
+// 本体に付ける（`List` と同じオブジェクト）。`List` に付けると docgen が ListRoot を別の部品として数える
+ListRoot.displayName = "List";
 ListItem.displayName = "List.Item";
 

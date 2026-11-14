@@ -58,7 +58,7 @@ export interface LightboxProps {
   defaultIndex?: number;
 }
 
-export const Lightbox = ({
+const LightboxBase = ({
   children,
   open: controlledOpen,
   onOpenChange,
@@ -423,13 +423,18 @@ export interface LightboxComponent extends React.FC<LightboxProps> {
   Gallery: typeof LightboxGallery;
 }
 
-export const LightboxRoot = Lightbox as unknown as LightboxComponent;
+// 子は実行時に付けていたが、export する `Lightbox` の型に無く、`<Lightbox.Trigger>` は tsc で落ちた
+// （T377。AI 向けのファイルが Lightbox.Trigger と載せている）。`Lightbox` そのものを子付きの型にする
+export const Lightbox = LightboxBase as unknown as LightboxComponent;
+/** Same as `Lightbox`. Kept for existing imports. */
+export const LightboxRoot = Lightbox;
 
-LightboxRoot.Trigger = LightboxTrigger;
-LightboxRoot.Content = LightboxContent;
-LightboxRoot.Gallery = LightboxGallery;
+Lightbox.Trigger = LightboxTrigger;
+Lightbox.Content = LightboxContent;
+Lightbox.Gallery = LightboxGallery;
 
-LightboxRoot.displayName = "Lightbox";
+// 本体に付ける（`Lightbox` と同じオブジェクト）。docgen はこの代入で props を「Lightbox」に結び付ける
+LightboxBase.displayName = "Lightbox";
 LightboxTrigger.displayName = "Lightbox.Trigger";
 LightboxContent.displayName = "Lightbox.Content";
 LightboxGallery.displayName = "Lightbox.Gallery";

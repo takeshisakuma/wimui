@@ -17,6 +17,7 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { resolveLocale } from './lib/locale-keys.js';
 import { literalTypeAliases } from './lib/prop-types.js';
+import { compoundMemberChecker } from './lib/compound-members.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
@@ -870,6 +871,20 @@ const failOnLeftoverAliases = (label, text) => {
   process.exit(1);
 };
 for (const o of outputs) failOnLeftoverAliases(o.file.replace(ROOT, '').replace(/\\/g, '/'), o.content);
+
+// 部品ごとのファイルに載せる「親.子」が、公開している親の型で本当に書けるか（T377）。
+// docgen の名前は displayName から来るので、親に子が無くても「List.Item」の節が立つ
+{
+  const canWrite = await compoundMemberChecker(ROOT, [...EXPORT_CATS]);
+  const notWritable = Object.keys(docgen)
+    .filter((k) => k.includes('.') && seen.has(k.split('.')[0]))
+    .filter((k) => canWrite(k) !== true);
+  if (notWritable.length > 0) {
+    console.error(`✗ 部品ごとのファイルに載る「親.子」のうち、親の型で書けないもの: ${notWritable.join(', ')}`);
+    console.error('  親に子を付け、型にも載せてください（例: `export const List = ListRoot as typeof ListRoot & { Item: typeof ListItem }`。T377）。');
+    process.exit(1);
+  }
+}
 
 if (process.argv.includes('--check')) {
   const stale = outputs.filter(
