@@ -786,7 +786,7 @@ number of pixels. Prefer the token so the gap follows the theme.
     - `actions: ReactNode` — Action elements (buttons, etc.)
     - `variant: "dashed" | "solid" | "none"` = "dashed" — Border variant
     - `bgVariant: "default" | "transparent" | "muted"` = "default" — Background variant
-    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size variation
+    - `size: "sm" | "md" | "lg"` = "md" — Size variation
     - `align: "start" | "center"` = "center" — Horizontal alignment of the icon, text and actions. Centred content only reads
 as deliberate when the area is the one thing in its region — a drop target or a
 whole result page. Inside a card, a table or a column of prose, use `"start"`
@@ -915,7 +915,7 @@ number of pixels. Prefer the token so the gap follows the theme.
     - `position: React.CSSProperties["position"]` — Position
 - **Toolbar** — Action strip for IconButton, ToggleGroup, and related controls with toolbar keyboard navigation. (aka Action Bar)
     - `asChild: boolean` = false — If true, the component will be rendered as its child, merging its props onto that child.
-    - `size: ComponentSizeBasic` = "md" — Visual density for padding and gap.
+    - `size: "lg" | "md" | "sm"` = "md" — Visual density for padding and gap.
 @default "md"
     - `orientation: "horizontal" | "vertical"` = "horizontal" — Layout axis of the toolbar.
 @default "horizontal"
@@ -968,9 +968,9 @@ children. Defaults to the built-in "Show hidden tools (n)" (en / ja / pt).
     - `asChild: boolean` = false — If true, the button will be rendered as its child, merging its props onto that child.
 Useful for using the button styles with Link components (e.g. from React Router or Next.js).
     - `backgroundColor: T | (string & {})` — Overrides the button background color with a design token. Usually the `variant` prop is enough; use this prop only as a last resort.
-    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size of the button
+    - `size: "sm" | "md" | "lg"` = "md" — Size of the button
     - `variant: "solid" | "outline" | "ghost"` = "outline" — Visual style variant of the button
-    - `intent: ButtonIntent` = "default" — Design intent of the button (visual / semantic state). Unrelated to the ARIA role attribute.
+    - `intent: "default" | "danger" | "success"` = "default" — Design intent of the button (visual / semantic state). Unrelated to the ARIA role attribute.
     - `icon: React.ComponentProps<typeof Icon>["name"] | React.ReactNode` — Icon name or custom icon element. An icon-only button (no children) needs `aria-label` or `aria-labelledby`: the icon name is not used as the accessible name.
     - `iconPosition: "left" | "right"` = "left" — Position of the icon relative to the label
     - `loading: boolean` = false — Whether to show a loading indicator and disable interaction
@@ -1004,7 +1004,7 @@ Useful for using the button styles with Link components (e.g. from React Router 
     - `separator: string` = " / " — Custom separator for the display value
     - `allowClear: boolean` = false — Whether to show a clear button when a value is selected
     - `aria-label: string` — Accessible label for the trigger when no visible label is provided
-    - `width: FieldWidth | string | number` — Fixed width of the field (width token, CSS value, or number in px)
+    - `width: ("xs" | "sm" | "md" | "lg" | "xl") | string | number` — Fixed width of the field (width token, CSS value, or number in px)
     - `fullWidth: boolean` = false — Whether to take full width of parent
 - **Checkbox** — Multiple choice
     - `asChild: boolean` = false — Whether to render as a child element.
@@ -1028,7 +1028,7 @@ of a checkbox group. Use with `description` when the options need explaining.
     - `required: boolean` — Whether to show the required indicator
     - `disabled: boolean` — Whether the whole group is disabled
 - **ColorInput** — Input with color preview (aka Color Well, Color Field)
-    - `intent: FieldIntent` = "default" — Semantic intent of the field (e.g. error state)
+    - `intent: "default" | "danger"` = "default" — Semantic intent of the field (e.g. error state)
     - `variant: "outline" | "ghost"` = "outline" — Visual style variant of the field
     - `fullWidth: boolean` = false — Whether to take full width of parent
     - `leftIcon: React.ComponentProps<typeof Icon>["name"]` — Icon name to display on the left side
@@ -1041,7 +1041,7 @@ of a checkbox group. Use with `description` when the options need explaining.
     - `showPasswordToggle: boolean` = true — Whether to show the visibility toggle when type is "password"
     - `rightIconClassName: string` — Additional class name for the right icon
     - `rightIconRotated: boolean` — Whether to rotate the right icon 180 degrees (e.g. for an open state)
-    - `width: FieldWidth | string | number` — Fixed width of the field (width token, CSS value, or number in px)
+    - `width: ("xs" | "sm" | "md" | "lg" | "xl") | string | number` — Fixed width of the field (width token, CSS value, or number in px)
     - `label: React.ReactNode` — Field label
     - `error: string` — Error message
     - `required: boolean` — Whether to show the required indicator
@@ -1060,7 +1060,7 @@ so the unit does not have to be repeated in the label.
     - `styles: { root?: string; inner?: string; icon?: string; icons?: string; iconItem?: string; iconButton?: string; }` — Custom styles for internal parts
     - `asChild: boolean` = false — Whether to render as a child element.
 - **ColorPicker** — Color selection picker
-    - `intent: FieldIntent` = "default" — Semantic intent of the field (e.g. error state)
+    - `intent: "default" | "danger"` = "default" — Semantic intent of the field (e.g. error state)
     - `variant: "outline" | "ghost"` = "outline" — Visual style variant of the field
     - `fullWidth: boolean` = false — Whether to take full width of parent
     - `leftIcon: React.ComponentProps<typeof Icon>["name"]` — Icon name to display on the left side
@@ -1073,7 +1073,7 @@ so the unit does not have to be repeated in the label.
     - `showPasswordToggle: boolean` = true — Whether to show the visibility toggle when type is "password"
     - `rightIconClassName: string` — Additional class name for the right icon
     - `rightIconRotated: boolean` — Whether to rotate the right icon 180 degrees (e.g. for an open state)
-    - `width: FieldWidth | string | number` — Fixed width of the field (width token, CSS value, or number in px)
+    - `width: ("xs" | "sm" | "md" | "lg" | "xl") | string | number` — Fixed width of the field (width token, CSS value, or number in px)
     - `label: React.ReactNode` — Field label
     - `error: string` — Error message
     - `required: boolean` — Whether to show the required indicator
@@ -1109,7 +1109,7 @@ so the unit does not have to be repeated in the label.
     - `labels: { noResults?: React.ReactNode; }` = {} — Labels for internationalization
 - **CopyButton** — Copy to clipboard
     - `value: string` (required) — Text copied to the clipboard
-    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size of the button
+    - `size: "sm" | "md" | "lg"` = "md" — Size of the button
     - `className: string` — Additional class names
     - `aria-label: string` — Accessible label for the button
     - `aria-labelledby: string` — ID of the element that labels the button. Takes precedence over `aria-label`.
@@ -1120,7 +1120,7 @@ so the unit does not have to be repeated in the label.
     - `children: React.ReactNode` — Trigger content when `asChild` is true
 - **CounterTextarea** — Textarea with character count display
     - `asChild: boolean` — If true, the textarea element will be rendered as its child, merging its props onto that child.
-    - `intent: FieldIntent` — Semantic intent of the field (e.g. error state)
+    - `intent: "default" | "danger"` — Semantic intent of the field (e.g. error state)
     - `variant: "outline" | "ghost"` — Visual style variant of the field
     - `fullWidth: boolean` = false — Whether to take full width of parent
     - `fieldSizing: "fixed" | "content"` — Sizing behavior: "fixed" keeps the height, "content" grows with the text
@@ -1128,7 +1128,7 @@ so the unit does not have to be repeated in the label.
     - `error: string` — Error message
     - `required: boolean` — Whether to show the required indicator
     - `layout: "vertical" | "horizontal"` — Layout direction of label and field
-    - `width: FieldWidth | string | number` — Fixed width of the field (width token, CSS value, or number in px)
+    - `width: ("xs" | "sm" | "md" | "lg" | "xl") | string | number` — Fixed width of the field (width token, CSS value, or number in px)
     - `showCount: boolean` = true — Whether to show the character count.
 @default true
     - `counterPosition: "bottom" | "overlay"` = "bottom" — Position of the counter.
@@ -1136,9 +1136,9 @@ so the unit does not have to be repeated in the label.
 "overlay" shows it inside the textarea (bottom-right).
 @default "bottom"
 - **CreditCardInput** — Payment card input with brand detection
-    - `onBrandChange: (brand: CreditCardBrand) => void` — Callback when the card brand is detected.
+    - `onBrandChange: (brand: ("visa" | "mastercard" | "amex" | "discover" | "jcb" | "diners" | "generic")) => void` — Callback when the card brand is detected.
     - `asChild: boolean` = false — Whether to render as a child component.
-    - `intent: FieldIntent` = "default" — Semantic intent of the field (e.g. error state)
+    - `intent: "default" | "danger"` = "default" — Semantic intent of the field (e.g. error state)
     - `variant: "outline" | "ghost"` = "outline" — Visual style variant of the field
     - `fullWidth: boolean` = false — Whether to take full width of parent
     - `leftIcon: React.ComponentProps<typeof Icon>["name"]` — Icon name to display on the left side
@@ -1150,7 +1150,7 @@ so the unit does not have to be repeated in the label.
     - `showPasswordToggle: boolean` = true — Whether to show the visibility toggle when type is "password"
     - `rightIconClassName: string` — Additional class name for the right icon
     - `rightIconRotated: boolean` — Whether to rotate the right icon 180 degrees (e.g. for an open state)
-    - `width: FieldWidth | string | number` — Fixed width of the field (width token, CSS value, or number in px)
+    - `width: ("xs" | "sm" | "md" | "lg" | "xl") | string | number` — Fixed width of the field (width token, CSS value, or number in px)
     - `label: React.ReactNode` — Field label
     - `error: string` — Error message
     - `required: boolean` — Whether to show the required indicator
@@ -1168,7 +1168,7 @@ Use it when the field already does the same thing from the keyboard.
 so the unit does not have to be repeated in the label.
     - `styles: { root?: string; inner?: string; icon?: string; icons?: string; iconItem?: string; iconButton?: string; }` — Custom styles for internal parts
 - **DatePicker** — Date selection
-    - `intent: FieldIntent` = "default" — Semantic intent of the field (e.g. error state)
+    - `intent: "default" | "danger"` = "default" — Semantic intent of the field (e.g. error state)
     - `variant: "outline" | "ghost"` = "outline" — Visual style variant of the field
     - `fullWidth: boolean` = false — Whether to take full width of parent
     - `value: Date | null` — Selected date value (`null` = cleared; omit/`undefined` = uncontrolled)
@@ -1185,7 +1185,7 @@ so the unit does not have to be repeated in the label.
     - `required: boolean` — Whether to show the required indicator
     - `layout: "vertical" | "horizontal"` — Layout direction of label and field
     - `labels: { placeholder?: string; }` — Labels for manual translation
-    - `width: FieldWidth | string | number` — Fixed width of the field (width token, CSS value, or number in px)
+    - `width: ("xs" | "sm" | "md" | "lg" | "xl") | string | number` — Fixed width of the field (width token, CSS value, or number in px)
     - `asChild: boolean` = false — Whether to render as a child element.
 - **DateRangePicker** — Date range selection
     - `startProps: React.ComponentProps<typeof DatePicker>` — Props passed to the start-date DatePicker
@@ -1263,7 +1263,7 @@ it undefined to let the field track its own selection.
     - `className: string` — Additional class names
     - `iconName: React.ComponentProps<typeof Icon>["name"]` — Icon name shown on the button
     - `iconPosition: "left" | "right"` — Position of the icon relative to the button label
-    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size of the button
+    - `size: "sm" | "md" | "lg"` = "md" — Size of the button
     - `error: string` — Error message
     - `required: boolean` — Whether to show the required indicator
     - `layout: "vertical" | "horizontal"` = "vertical" — Layout direction of label and field
@@ -1279,9 +1279,9 @@ it undefined to let the field track its own selection.
 `primary` は variant 未指定とまったく同じ規則に落ちる重複、
 `default` は**既定の見た目ではなく枠線のある outline** で名前が逆、
 SCSS には誰も付けない `.default_intent` が「temporary name」のまま残っていた。
-    - `intent: ButtonIntent` = "default" — Intent of the button (semantic meaning)
+    - `intent: "default" | "danger" | "success"` = "default" — Intent of the button (semantic meaning)
     - `shape: "circle" | "square"` = "circle" — Shape of the button
-    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size of the button
+    - `size: "sm" | "md" | "lg"` = "md" — Size of the button
     - `label: React.ReactNode` — Label text for extended FAB
     - `shrink: boolean` = false — Whether to shrink the extended FAB (hide label)
     - `position: "bottom-right" | "bottom-left" | "bottom-center" | "top-right" | "top-left" | "inline"` = "bottom-right" — Position of the button
@@ -1297,9 +1297,9 @@ text to take a name from, and the icon name is not used as one.
     - `iconName: React.ComponentProps<typeof Icon>["name"]` (required) — Icon name to display
     - `aria-label: string` (required) — Accessible label for the icon-only button
     - `backgroundColor: T | (string & {})` — Overrides the button background color with a design token. Usually the `variant` prop is enough; use this prop only as a last resort.
-    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size of the button
+    - `size: "sm" | "md" | "lg"` = "md" — Size of the button
     - `variant: "solid" | "outline" | "ghost"` = "outline" — Visual style variant of the button
-    - `intent: ButtonIntent` = "default" — Design intent of the button (visual / semantic state). Unrelated to the ARIA role attribute.
+    - `intent: "default" | "danger" | "success"` = "default" — Design intent of the button (visual / semantic state). Unrelated to the ARIA role attribute.
     - `icon: React.ComponentProps<typeof Icon>["name"] | React.ReactNode` — Icon name or custom icon element. An icon-only button (no children) needs `aria-label` or `aria-labelledby`: the icon name is not used as the accessible name.
     - `loading: boolean` = false — Whether to show a loading indicator and disable interaction
     - `justify: "start" | "center" | "end" | "between"` = "center" — Horizontal alignment of the button content
@@ -1342,7 +1342,7 @@ the server must send matching CORS headers or the image will not load at all.
     - `fullWidth: boolean` = false — Whether to take full width of parent
     - `label: React.ReactNode` — Accessible label for the text and edit button
 - **Input** — Single-line input fields for text, numbers, or emails
-    - `intent: FieldIntent` = "default" — Semantic intent of the field (e.g. error state)
+    - `intent: "default" | "danger"` = "default" — Semantic intent of the field (e.g. error state)
     - `variant: "outline" | "ghost"` = "outline" — Visual style variant of the field
     - `fullWidth: boolean` = false — Whether to take full width of parent
     - `leftIcon: React.ComponentProps<typeof Icon>["name"]` — Icon name to display on the left side
@@ -1355,7 +1355,7 @@ the server must send matching CORS headers or the image will not load at all.
     - `showPasswordToggle: boolean` = true — Whether to show the visibility toggle when type is "password"
     - `rightIconClassName: string` — Additional class name for the right icon
     - `rightIconRotated: boolean` — Whether to rotate the right icon 180 degrees (e.g. for an open state)
-    - `width: FieldWidth | string | number` — Fixed width of the field (width token, CSS value, or number in px)
+    - `width: ("xs" | "sm" | "md" | "lg" | "xl") | string | number` — Fixed width of the field (width token, CSS value, or number in px)
     - `label: React.ReactNode` — Field label
     - `error: string` — Error message
     - `required: boolean` — Whether to show the required indicator
@@ -1375,10 +1375,10 @@ so the unit does not have to be repeated in the label.
     - `asChild: boolean` = false — Whether to render as a child element.
 - **InputBase** — Standardizes the visual container, icon slots (Prefix/Suffix), and clear button behavior for text-based inputs.
     - `children: React.ReactNode` (required) — Inner form control element(s) wrapped by the shell
-    - `intent: FieldIntent | WimIntent` = "default" — Semantic intent of the field (e.g. error state)
+    - `intent: ("default" | "danger") | ("primary" | "success" | "warning" | "danger" | "info" | "neutral" | "default")` = "default" — Semantic intent of the field (e.g. error state)
     - `variant: "outline" | "ghost"` = "outline" — Visual style variant of the field
     - `fullWidth: boolean` = false — Whether to take full width of parent
-    - `width: FieldWidth | string | number` — Fixed width of the field (width token, CSS value, or number in px)
+    - `width: ("xs" | "sm" | "md" | "lg" | "xl") | string | number` — Fixed width of the field (width token, CSS value, or number in px)
     - `className: string` — Additional class names
     - `disabled: boolean` — Whether the field is disabled
     - `leftIcon: React.ComponentProps<typeof Icon>["name"]` — Icon name to display on the left side
@@ -1402,7 +1402,7 @@ make room rather than running underneath it.
 - **InputMask** — Formatted inputs
     - `mask: string` (required) — Mask pattern ('9': digit, 'a': letter, '*': alphanumeric; other characters are shown as-is)
     - `maskChar: string` = "_" — Placeholder character for unfilled mask positions
-    - `intent: FieldIntent` = "default" — Semantic intent of the field (e.g. error state)
+    - `intent: "default" | "danger"` = "default" — Semantic intent of the field (e.g. error state)
     - `variant: "outline" | "ghost"` = "outline" — Visual style variant of the field
     - `fullWidth: boolean` = false — Whether to take full width of parent
     - `leftIcon: React.ComponentProps<typeof Icon>["name"]` — Icon name to display on the left side
@@ -1415,7 +1415,7 @@ make room rather than running underneath it.
     - `showPasswordToggle: boolean` = true — Whether to show the visibility toggle when type is "password"
     - `rightIconClassName: string` — Additional class name for the right icon
     - `rightIconRotated: boolean` — Whether to rotate the right icon 180 degrees (e.g. for an open state)
-    - `width: FieldWidth | string | number` — Fixed width of the field (width token, CSS value, or number in px)
+    - `width: ("xs" | "sm" | "md" | "lg" | "xl") | string | number` — Fixed width of the field (width token, CSS value, or number in px)
     - `label: React.ReactNode` — Field label
     - `error: string` — Error message
     - `required: boolean` — Whether to show the required indicator
@@ -1435,9 +1435,9 @@ so the unit does not have to be repeated in the label.
     - `asChild: boolean` = false — Whether to render as a child element.
 - **LinkButton** — Anchor styled as button
     - `iconPosition: "left" | "right"` = "left" — Position of the icon relative to the label
-    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size of the button
+    - `size: "sm" | "md" | "lg"` = "md" — Size of the button
     - `variant: "solid" | "outline" | "ghost"` = "outline" — Visual style variant of the button
-    - `intent: ButtonIntent` = "default" — Design intent of the button (visual / semantic state). Unrelated to the ARIA role attribute.
+    - `intent: "default" | "danger" | "success"` = "default" — Design intent of the button (visual / semantic state). Unrelated to the ARIA role attribute.
     - `justify: "start" | "center" | "end" | "between"` = "center" — Horizontal alignment of the button content
     - `fullWidth: boolean` = false — Whether the button should take up the full width of its container
 - **Mentions** — @ / # suggestions
@@ -1462,7 +1462,7 @@ so the unit does not have to be repeated in the label.
     - `aria-label: string` — Accessible label for the trigger when no visible label is provided
     - `aria-labelledby: string` — ID of the element that labels the field
     - `aria-describedby: string` — ID of the element that describes the field
-    - `width: FieldWidth | string | number` — Fixed width of the field (width token, CSS value, or number in px)
+    - `width: ("xs" | "sm" | "md" | "lg" | "xl") | string | number` — Fixed width of the field (width token, CSS value, or number in px)
     - `fullWidth: boolean` = false — Whether to take full width of parent
 - **NumberInput** — Input with step adjustments (aka Spin Button, Numeric Stepper)
     - `mode: "number" | "text"` = "number" — 'number': uses the native type="number" (e.g. quantity steppers)
@@ -1485,7 +1485,7 @@ box and receives a **1-based** position — the first box is `1`, not `0`.
     - `asChild: boolean` = false — Whether to render as a child element.
     - `fullWidth: boolean` = false — Whether to take full width of parent
 - **PasswordInput** — Password with toggle
-    - `intent: FieldIntent` = "default" — Semantic intent of the field (e.g. error state)
+    - `intent: "default" | "danger"` = "default" — Semantic intent of the field (e.g. error state)
     - `variant: "outline" | "ghost"` = "outline" — Visual style variant of the field
     - `fullWidth: boolean` = false — Whether to take full width of parent
     - `leftIcon: React.ComponentProps<typeof Icon>["name"]` — Icon name to display on the left side
@@ -1495,7 +1495,7 @@ box and receives a **1-based** position — the first box is `1`, not `0`.
     - `allowClear: boolean` = false — Whether to show a clear button when value is present
     - `rightIconClassName: string` — Additional class name for the right icon
     - `rightIconRotated: boolean` — Whether to rotate the right icon 180 degrees (e.g. for an open state)
-    - `width: FieldWidth | string | number` — Fixed width of the field (width token, CSS value, or number in px)
+    - `width: ("xs" | "sm" | "md" | "lg" | "xl") | string | number` — Fixed width of the field (width token, CSS value, or number in px)
     - `label: React.ReactNode` — Field label
     - `error: string` — Error message
     - `required: boolean` — Whether to show the required indicator
@@ -1518,7 +1518,7 @@ so the unit does not have to be repeated in the label.
     - `score: 0 | 1 | 2 | 3 | 4` — Strength score (the default calculation is used when omitted)
 0: very weak, 1: weak, 2: fair, 3: strong, 4: very strong
     - `showLabel: boolean` = true — Whether to show the strength label
-    - `calculateLevel: (password: string) => PasswordStrengthLevel` = (password: string): PasswordStrengthLevel => {
+    - `calculateLevel: (password: string) => (0 | 1 | 2 | 3 | 4)` = (password: string): PasswordStrengthLevel => {
   if (!password) return 0;
   let score = 0;
   if (password.length >= 8) score++;
@@ -1602,7 +1602,7 @@ of a radio group. Use with `description` when the options need explaining.
     - `allowHalf: boolean` = false — Whether to allow half stars
     - `disabled: boolean` = false — Whether the rating is disabled
     - `readOnly: boolean` = false — Read-only flag (display only; unlike disabled it is not grayed out)
-    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size of the stars
+    - `size: "sm" | "md" | "lg"` = "md" — Size of the stars
     - `onChange: (value: number) => void` — Callback when the value changes
     - `className: string` — Additional class names
     - `label: React.ReactNode` — Accessible label
@@ -1621,10 +1621,10 @@ allows, whichever format is used.
 editor is created; changing it later does not convert the content.
     - `placeholder: string` — Placeholder shown when the editor is empty
     - `disabled: boolean` — Whether the editor is disabled
-    - `intent: FieldIntent` = "default" — Semantic intent of the field (e.g. error state)
+    - `intent: "default" | "danger"` = "default" — Semantic intent of the field (e.g. error state)
     - `variant: "outline" | "ghost"` = "outline" — Visual style variant of the field
     - `fullWidth: boolean` = false — Whether to take full width of parent
-    - `width: FieldWidth | string | number` — Fixed width of the field (width token, CSS value, or number in px)
+    - `width: ("xs" | "sm" | "md" | "lg" | "xl") | string | number` — Fixed width of the field (width token, CSS value, or number in px)
     - `minHeight: number | string` = 200 — Minimum height of the editing area
     - `label: React.ReactNode` — Field label
     - `error: string` — Error message
@@ -1632,7 +1632,7 @@ editor is created; changing it later does not convert the content.
     - `layout: "vertical" | "horizontal"` — Layout direction of label and field
     - `className: string` — Additional class names
     - `id: string` — Unique ID for the component
-    - `toolbar: RichTextEditorToolbarItem[]` = [
+    - `toolbar: ("bold" | "italic" | "underline" | "strikethrough" | "h1" | "h2" | "h3" | "ul" | "ol" | "link" | "unlink" | "image" | "removeFormat" | "separator")[]` = [
   "bold",
   "italic",
   "underline",
@@ -1656,7 +1656,7 @@ editor is created; changing it later does not convert the content.
     - `onImageUpload: (file: File) => Promise<string>` — Uploads an image file and resolves to its URL (http, https or relative). When given, the image dialog offers a file picker
 and image files pasted or dropped into the editor are uploaded and inserted. The editor stores only the URL it gets back.
 - **SearchInput** — Search with clear button (aka Search Field, Search Bar)
-    - `intent: FieldIntent` = "default" — Semantic intent of the field (e.g. error state)
+    - `intent: "default" | "danger"` = "default" — Semantic intent of the field (e.g. error state)
     - `variant: "outline" | "ghost"` = "outline" — Visual style variant of the field
     - `fullWidth: boolean` = false — Whether to take full width of parent
     - `leftIcon: React.ComponentProps<typeof Icon>["name"]` — Icon name to display on the left side
@@ -1669,7 +1669,7 @@ and image files pasted or dropped into the editor are uploaded and inserted. The
     - `showPasswordToggle: boolean` = true — Whether to show the visibility toggle when type is "password"
     - `rightIconClassName: string` — Additional class name for the right icon
     - `rightIconRotated: boolean` — Whether to rotate the right icon 180 degrees (e.g. for an open state)
-    - `width: FieldWidth | string | number` — Fixed width of the field (width token, CSS value, or number in px)
+    - `width: ("xs" | "sm" | "md" | "lg" | "xl") | string | number` — Fixed width of the field (width token, CSS value, or number in px)
     - `label: React.ReactNode` — Field label
     - `error: string` — Error message
     - `required: boolean` — Whether to show the required indicator
@@ -1691,7 +1691,7 @@ so the unit does not have to be repeated in the label.
     - `options: Option[]` (required) — List of segment options
     - `value: string` (required) — Selected value
     - `onChange: (value: string) => void` (required) — Callback when the selected value changes
-    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size of the control
+    - `size: "sm" | "md" | "lg"` = "md" — Size of the control
     - `fullWidth: boolean` = false — Whether to take full width of parent
     - `className: string` — Additional class names
     - `label: string` — Accessible label
@@ -1721,12 +1721,12 @@ so the unit does not have to be repeated in the label.
     - `allowClear: boolean` = false — Whether to show a clear button when a value is selected
     - `fullWidth: boolean` = false — Whether to take full width of parent
     - `id: string` — Unique ID for the component
-    - `intent: FieldIntent` = "default" — Semantic intent of the field (e.g. error state)
+    - `intent: "default" | "danger"` = "default" — Semantic intent of the field (e.g. error state)
     - `error: string` — Error message
     - `required: boolean` — Whether to show the required indicator
     - `layout: "vertical" | "horizontal"` — Layout direction of label and field
     - `noOptionsFoundLabel: string` — Label shown when no options match the search
-    - `width: FieldWidth | string | number` — Fixed width of the field (width token, CSS value, or number in px)
+    - `width: ("xs" | "sm" | "md" | "lg" | "xl") | string | number` — Fixed width of the field (width token, CSS value, or number in px)
     - `asChild: boolean` = false — Whether to render as a child element.
     - `styles: { root?: string; trigger?: string; value?: string; dropdown?: string; list?: string; option?: string; search?: string; searchInput?: string; groupLabel?: string; separator?: string; empty?: string; inputBase?: React.ComponentProps<typeof InputBase>["styles"]; }` — Custom styles for internal parts
 - **SignaturePad** — Handwritten signature input
@@ -1764,10 +1764,10 @@ so the unit does not have to be repeated in the label.
     - `asChild: boolean` = false — Whether to render as a child element.
     - `styles: { root?: string; labelWrapper?: string; label?: string; content?: string; error?: string; }` — Custom styles for internal parts
 - **SmartSearchInput** — Smart search input enabling both traditional search and AI prompting.
-    - `intent: FieldIntent` = "default" — Semantic intent of the field (e.g. error state)
+    - `intent: "default" | "danger"` = "default" — Semantic intent of the field (e.g. error state)
     - `variant: "outline" | "ghost"` = "outline" — Visual style variant of the field
     - `fullWidth: boolean` = false — Whether to take full width of parent
-    - `width: FieldWidth | string | number` — Fixed width of the field (width token, CSS value, or number in px)
+    - `width: ("xs" | "sm" | "md" | "lg" | "xl") | string | number` — Fixed width of the field (width token, CSS value, or number in px)
     - `label: React.ReactNode` — Field label
     - `error: string` — Error message
     - `required: boolean` — Whether to show the required indicator
@@ -1785,14 +1785,14 @@ so the unit does not have to be repeated in the label.
     - `actions: SplitButtonAction[]` (required) — Secondary actions listed behind the toggle.
     - `variant: "solid" | "outline" | "ghost"` = "solid" — Visual style, applied to both halves so they read as one control.
     - `intent: "default" | "danger" | "success"` = "default" — Intent (semantic color), applied to both halves.
-    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size of both halves.
+    - `size: "sm" | "md" | "lg"` = "md" — Size of both halves.
     - `disabled: boolean` = false — Disable the whole control.
     - `loading: boolean` = false — Show a loading state on the main action.
     - `toggleLabel: string` (required) — Accessible name for the toggle half. The main half is named by its own text,
 but the toggle only shows a chevron, so it needs one of its own.
 - **Switch** — A binary switch for instantly toggling settings between on and off states (aka Toggle, Toggle Switch)
     - `asChild: boolean` = false — If true, the component will be rendered as its child, merging its props onto that child.
-    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size of the switch
+    - `size: "sm" | "md" | "lg"` = "md" — Size of the switch
     - `className: string` — Additional class names
     - `children: React.ReactNode` — Label content rendered next to the switch
     - `error: boolean` = false — Whether to display as an error state (aria-invalid is applied)
@@ -1814,10 +1814,10 @@ but the toggle only shows a chevron, so it needs one of its own.
     - `onChange: (tags: string[]) => void` — Callback when the tags change
     - `placeholder: string` — Placeholder for the input
     - `disabled: boolean` = false — Whether the input is disabled
-    - `intent: FieldIntent` = "default" — Semantic intent of the field (e.g. error state)
+    - `intent: "default" | "danger"` = "default" — Semantic intent of the field (e.g. error state)
     - `variant: "outline" | "ghost"` = "outline" — Visual style variant of the field
     - `fullWidth: boolean` = false — Whether to take full width of parent
-    - `width: FieldWidth | string | number` — Fixed width of the field (width token, CSS value, or number in px)
+    - `width: ("xs" | "sm" | "md" | "lg" | "xl") | string | number` — Fixed width of the field (width token, CSS value, or number in px)
     - `label: React.ReactNode` — Field label
     - `error: string` — Error message
     - `required: boolean` — Whether to show the required indicator
@@ -1826,7 +1826,7 @@ but the toggle only shows a chevron, so it needs one of its own.
     - `maxTags: number` — Maximum number of tags that can be entered
 - **Textarea** — Multi-line input fields for longer text entries like descriptions or comments
     - `asChild: boolean` = false — If true, the textarea element will be rendered as its child, merging its props onto that child.
-    - `intent: FieldIntent` = "default" — Semantic intent of the field (e.g. error state)
+    - `intent: "default" | "danger"` = "default" — Semantic intent of the field (e.g. error state)
     - `variant: "outline" | "ghost"` = "outline" — Visual style variant of the field
     - `fullWidth: boolean` = false — Whether to take full width of parent
     - `fieldSizing: "fixed" | "content"` = "fixed" — Sizing behavior: "fixed" keeps the height, "content" grows with the text
@@ -1834,21 +1834,21 @@ but the toggle only shows a chevron, so it needs one of its own.
     - `error: string` — Error message
     - `required: boolean` — Whether to show the required indicator
     - `layout: "vertical" | "horizontal"` — Layout direction of label and field
-    - `width: FieldWidth | string | number` — Fixed width of the field (width token, CSS value, or number in px)
+    - `width: ("xs" | "sm" | "md" | "lg" | "xl") | string | number` — Fixed width of the field (width token, CSS value, or number in px)
 - **ThemeToggle** — Light / dark / system theme switcher
     - `value: "light" | "dark" | "system"` — Selected mode (controlled)
     - `defaultValue: "light" | "dark" | "system"` = "system" — Initially selected mode (uncontrolled)
-    - `onChange: (mode: ThemeMode) => void` — Callback when the mode changes
-    - `modes: ThemeMode[]` = ["light", "dark"] — Modes to offer, in cycle order
+    - `onChange: (mode: ("light" | "dark" | "system")) => void` — Callback when the mode changes
+    - `modes: ("light" | "dark" | "system")[]` = ["light", "dark"] — Modes to offer, in cycle order
     - `variant: "icon" | "segmented"` = "icon" — "icon" cycles modes on a single button; "segmented" shows one button per mode
-    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size of the control
+    - `size: "sm" | "md" | "lg"` = "md" — Size of the control
     - `storageKey: string | null` = "wim-theme" — localStorage key used to persist the choice; pass null to disable persistence
     - `applyToDocument: boolean` = true — Whether to apply the selected mode to the document root as `data-theme`
     - `labels: { /** Label for the light mode */ light?: string; /** Label for the dark mode */ dark?: string; /** Label for the system (auto) mode */ system?: string; /** Accessible label / group label for the control */ toggle?: string; }` — Labels for internationalization
     - `className: string` — Additional class names
     - `asChild: boolean` = false — Whether to render as a child element.
 - **TimePicker** — Time selection
-    - `intent: FieldIntent` = "default" — Semantic intent of the field (e.g. error state)
+    - `intent: "default" | "danger"` = "default" — Semantic intent of the field (e.g. error state)
     - `variant: "outline" | "ghost"` = "outline" — Visual style variant of the field
     - `fullWidth: boolean` = false — Whether to take full width of parent
     - `allowClear: boolean` = true — Whether to show a clear button when value is present
@@ -1860,7 +1860,7 @@ but the toggle only shows a chevron, so it needs one of its own.
     - `showPasswordToggle: boolean` = true — Whether to show the visibility toggle when type is "password"
     - `rightIconClassName: string` — Additional class name for the right icon
     - `rightIconRotated: boolean` — Whether to rotate the right icon 180 degrees (e.g. for an open state)
-    - `width: FieldWidth | string | number` — Fixed width of the field (width token, CSS value, or number in px)
+    - `width: ("xs" | "sm" | "md" | "lg" | "xl") | string | number` — Fixed width of the field (width token, CSS value, or number in px)
     - `label: React.ReactNode` — Field label
     - `error: string` — Error message
     - `required: boolean` — Whether to show the required indicator
@@ -1884,7 +1884,7 @@ so the unit does not have to be repeated in the label.
     - `defaultValue: string | string[]` — Initially selected value(s) (uncontrolled)
     - `onChange: (value: string | string[]) => void` — Callback when the selection changes
     - `selectionMode: "single" | "multiple"` = "single" — Whether one or multiple options can be selected
-    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size of the toggle buttons
+    - `size: "sm" | "md" | "lg"` = "md" — Size of the toggle buttons
     - `fullWidth: boolean` = false — Whether to take full width of parent
     - `className: string` — Additional class names
     - `disabled: boolean` = false — Whether the group is disabled
@@ -1938,7 +1938,7 @@ so the unit does not have to be repeated in the label.
     - `aria-label: string` — Accessible label for the trigger when no visible label is provided
     - `aria-labelledby: string` — ID of the element that labels the field
     - `aria-describedby: string` — ID of the element that describes the field
-    - `width: FieldWidth | string | number` — Fixed width of the field (width token, CSS value, or number in px)
+    - `width: ("xs" | "sm" | "md" | "lg" | "xl") | string | number` — Fixed width of the field (width token, CSS value, or number in px)
     - `fullWidth: boolean` = false — Whether to take full width of parent
 
 ### feedback — `import { … } from "wimui/feedback"`
@@ -1955,7 +1955,7 @@ section of the page.
 
 @default "div"
     - `description: React.ReactNode` — Description text of the alert
-    - `intent: FeedbackIntent` = "default" — Intent (semantic state) of the alert
+    - `intent: "default" | "info" | "success" | "warning" | "danger"` = "default" — Intent (semantic state) of the alert
 @default "default"
     - `icon: React.ReactNode` — Custom icon. When omitted, a default icon matching the intent is displayed.
     - `onClose: () => void` — Called when the close button is clicked. Providing it shows the close button.
@@ -1968,7 +1968,7 @@ section of the page.
 - **Banner** — Top prominent messages
     - `title: React.ReactNode` — Title of the banner
     - `description: React.ReactNode` — Description text of the banner
-    - `intent: FeedbackIntent` = "default" — Intent (semantic state) of the banner
+    - `intent: "default" | "info" | "success" | "warning" | "danger"` = "default" — Intent (semantic state) of the banner
 @default "default"
     - `icon: boolean | React.ReactNode` = true — Whether to show the icon, or a custom icon element
 @default true
@@ -1987,7 +1987,7 @@ When a function is passed, it is called as (error, errorInfo, reset) => ReactNod
     - `children: React.ReactNode` — Element the indicator dot is attached to. If omitted, only the dot is rendered.
     - `color: T | (string & {})` = "primary" — Color of the dot. Accepts a design token color name or any CSS color value.
 @default "primary"
-    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size of the dot.
+    - `size: "sm" | "md" | "lg"` = "md" — Size of the dot.
 @default "md"
     - `position: "top-right" | "top-left" | "bottom-right" | "bottom-left"` = "top-right" — Corner of the children the dot is placed at.
 @default "top-right"
@@ -2000,7 +2000,7 @@ When a function is passed, it is called as (error, errorInfo, reset) => ReactNod
 - **Loader** — Animated indicators to show that data is loading or processing
     - `variant: "bars" | "dots" | "pulse"` = "bars" — Animation style of the loader.
 @default "bars"
-    - `size: Extract<ComponentSize, "sm" | "md" | "lg" | "xl">` = "md" — Size of the loader.
+    - `size: "sm" | "md" | "lg" | "xl"` = "md" — Size of the loader.
 @default "md"
     - `color: "currentColor" | WimColor` = "primary" — Color of the loader. Accepts a design token color name or "currentColor".
 @default "primary"
@@ -2039,7 +2039,7 @@ origin while the card it was meant to cover was 1248x75.
     - `title: ReactNode` (required) — The title of notification
     - `description: ReactNode` — The description of notification
     - `icon: ReactNode` — The icon of notification
-    - `intent: FeedbackIntent` = "default" — The intent of notification
+    - `intent: "default" | "info" | "success" | "warning" | "danger"` = "default" — The intent of notification
 @default "default"
     - `onClose: (id?: string) => void` — Callback when notification is closed
     - `closable: boolean` = true — Whether to show close button
@@ -2052,9 +2052,9 @@ origin while the card it was meant to cover was 1248x75.
 @default 0
     - `max: number` = 100 — Maximum value of the progress bar.
 @default 100
-    - `intent: IndicatorIntent` = "primary" — Intent (semantic color) of the bar.
+    - `intent: "primary" | "success" | "warning" | "danger" | "info" | "neutral"` = "primary" — Intent (semantic color) of the bar.
 @default "primary"
-    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size of the bar.
+    - `size: "sm" | "md" | "lg"` = "md" — Size of the bar.
 @default "md"
     - `label: string` — Text label displayed above the bar. Also used as the accessible name unless
 `aria-label` / `aria-labelledby` is given.
@@ -2071,9 +2071,9 @@ type therefore requires one of `label` / `aria-label` / `aria-labelledby`.
 @default 0
     - `max: number` = 100 — Maximum value of the progress ring.
 @default 100
-    - `intent: IndicatorIntent` = "primary" — Intent (semantic color) of the ring.
+    - `intent: "primary" | "success" | "warning" | "danger" | "info" | "neutral"` = "primary" — Intent (semantic color) of the ring.
 @default "primary"
-    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size of the ring.
+    - `size: "sm" | "md" | "lg"` = "md" — Size of the ring.
 @default "md"
     - `label: string` — Text label displayed below the ring. Also used as the accessible name unless
 `aria-label` / `aria-labelledby` is given.
@@ -2086,7 +2086,7 @@ type therefore requires one of `label` / `aria-label` / `aria-labelledby`.
     - `indeterminate: boolean` = false — If true, shows an indeterminate animation instead of a value.
 @default false
 - **Result** — Task status indicator
-    - `intent: Extract< WimIntent, "default" | "success" | "danger" | "info" | "warning" >` = "default" — Semantic intent — determines the icon and color. `default` draws no icon unless `icon` is passed.
+    - `intent: "default" | "success" | "danger" | "info" | "warning"` = "default" — Semantic intent — determines the icon and color. `default` draws no icon unless `icon` is passed.
 @default "default"
     - `status: "404" | "403" | "500"` — HTTP error status — adds a status-specific CSS class and shows a neutral icon.
 Use for error pages (404, 403, 500).
@@ -2104,7 +2104,7 @@ follows the theme and never needs a hand-mixed colour.
     - `className: string` — Custom class name
     - `children: ReactNode` — The children
 - **ScrollProgress** — Reading progress indicator
-    - `intent: IndicatorIntent` = "primary" — 意味の軸。兄弟の `Progress` / `ProgressRing` と同じ語彙にそろえてある。
+    - `intent: "primary" | "success" | "warning" | "danger" | "info" | "neutral"` = "primary" — 意味の軸。兄弟の `Progress` / `ProgressRing` と同じ語彙にそろえてある。
 
 以前は `color` という名前で、値も独自（`secondary` を含む）だった。
 塗っているものは `Progress.intent` と構造まで同一だったので、prop 名だけが
@@ -2127,7 +2127,7 @@ follows the theme and never needs a hand-mixed colour.
     - `message: string` (required) — Message displayed in the snackbar
     - `open: boolean` = false — Whether the snackbar is shown
 @default false
-    - `intent: FeedbackIntent` = "default" — Intent (semantic state)
+    - `intent: "default" | "info" | "success" | "warning" | "danger"` = "default" — Intent (semantic state)
 @default "default"
     - `position: "top-left" | "top-center" | "top-right" | "bottom-left" | "bottom-center" | "bottom-right"` = "bottom-center" — Position on the screen
 @default "bottom-center"
@@ -2140,7 +2140,7 @@ follows the theme and never needs a hand-mixed colour.
     - `onClose: () => void` — Called when the snackbar is closed
     - `className: string` — Additional CSS class name
 - **Spinner** — A rotating icon indicating background activity or data fetching (aka Activity Indicator)
-    - `size: Extract<ComponentSize, "sm" | "md" | "lg" | "xl">` = "md" — Size of the spinner.
+    - `size: "sm" | "md" | "lg" | "xl"` = "md" — Size of the spinner.
 @default "md"
     - `color: "currentColor" | WimColor` = "primary" — Color of the spinner. Accepts a design token color name or "currentColor".
 @default "primary"
@@ -2151,7 +2151,7 @@ follows the theme and never needs a hand-mixed colour.
     - `id: string` — Identifier of the toast, passed to onClose. Used by ToastProvider to manage a stack.
     - `title: string` — Title of the toast.
     - `description: string` — Description text displayed below the title.
-    - `intent: FeedbackIntent` = "default" — Intent (semantic state) of the toast.
+    - `intent: "default" | "info" | "success" | "warning" | "danger"` = "default" — Intent (semantic state) of the toast.
 @default "default"
     - `duration: number` = 3000 — Time in milliseconds before the toast closes automatically. Set 0 to disable auto-close.
 @default 3000
@@ -2200,7 +2200,7 @@ follows the theme and never needs a hand-mixed colour.
 - **Breadcrumb** — Location trace (aka Path Bar, Path Control)
     - `items: BreadcrumbItem[]` (required) — Items to display, from the root to the current page.
     - `separator: React.ReactNode` — Separator displayed between items. Defaults to a chevron icon.
-    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size of the breadcrumb.
+    - `size: "sm" | "md" | "lg"` = "md" — Size of the breadcrumb.
 @default "md"
     - `overflow: "wrap" | "collapse"` = "wrap" — What happens when the items do not fit on one line. `"wrap"` moves them onto more lines;
 `"collapse"` keeps the first item and the current page and folds the levels in between
@@ -2224,7 +2224,7 @@ into a "…" button that lists them.
     - `onOpenChange: (open: boolean) => void` — Called with the next open state: the opposite of `open` when the button is pressed, and
 false when Escape is pressed while the menu is open. Escape also moves focus back to the
 button. Without this callback the button cannot close on Escape, because `open` is controlled.
-    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size of the hamburger menu
+    - `size: "sm" | "md" | "lg"` = "md" — Size of the hamburger menu
     - `color: string` — Color of the bars
     - `visibleBelow: "xs" | "sm" | "md" | "lg" | "xl"` — Show only below the given breakpoint (e.g. "md" matches Sidebar's mobile drawer range)
     - `className: string` — Custom class name
@@ -2240,13 +2240,13 @@ button. Without this callback the button cannot close on Escape, because `open` 
 （既定 `div`）と同じ形。
     - `separator: string` = "+" — Separator displayed between keys
 @default "+"
-    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size of the list
+    - `size: "sm" | "md" | "lg"` = "md" — Size of the list
 @default "md"
 - **Link** — Hyperlinks
     - `asChild: boolean` = false — If true, the link will be rendered as its child, merging its props onto that child.
 Useful for using the link styles with Link components from React Router or Next.js.
     - `label: React.ReactNode` — Link text or element. Alternative to children.
-    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Font size of the link.
+    - `size: "sm" | "md" | "lg"` = "md" — Font size of the link.
 @default "md"
     - `priority: "primary" | "secondary" | "tertiary"` = "primary" — Visual emphasis of the link.
 @default "primary"
@@ -2328,7 +2328,7 @@ scans stay green while the bar hangs outside its parent.
 - **TabNavigation** — Tab-based navigation
     - `variant: "underline" | "pill" | "contained"` = "underline" — Visual style of the tabs
     - `align: "start" | "center" | "end" | "justify"` = "start" — Alignment of the tabs
-    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size of the tabs
+    - `size: "sm" | "md" | "lg"` = "md" — Size of the tabs
 - **Tabs** — A container to organize related content into switchable view panels
     - `asChild: boolean` = false — If true, the tabs root will be rendered as its child, merging its props onto that child.
     - `defaultValue: string` — Value of the tab selected initially, for uncontrolled usage.
@@ -2354,13 +2354,13 @@ scans stay green while the bar hangs outside its parent.
     - `alt: string` = "" — Alternative text for the image
     - `initials: string` — Initials shown as a fallback when no image is available
     - `icon: React.ReactNode` — Icon shown as a fallback when no image or initials are available
-    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size of the avatar
+    - `size: "sm" | "md" | "lg"` = "md" — Size of the avatar
     - `shape: "circle" | "rounded"` = "circle" — Shape of the avatar
-    - `intent: IndicatorIntent` — Intent (semantic color) applied to the avatar
+    - `intent: "primary" | "success" | "warning" | "danger" | "info" | "neutral"` — Intent (semantic color) applied to the avatar
 - **AvatarGroup** — Stacked avatars (aka Face Pile)
     - `children: React.ReactNode` (required) — Avatar elements to group
     - `max: number` — Maximum number of avatars to show before collapsing into a count. Ignored with `overflow="collapse"`.
-    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size applied to the avatars
+    - `size: "sm" | "md" | "lg"` = "md" — Size applied to the avatars
     - `total: number` — Total number of avatars (used to compute the overflow count). Ignored with `overflow="collapse"`.
     - `overflow: "count" | "collapse"` = "count" — How the avatars that do not fit are handled. `"count"` cuts them by `max` / `total` and shows
 "+N" as text; `"collapse"` shows as many as fit the width and turns "+N" into a button that
@@ -2372,9 +2372,9 @@ lists the hidden people by name.
     - `children: React.ReactNode` — Content to display
     - `content: React.ReactNode` — Content to display (alternative to children)
     - `icon: React.ReactNode` — Icon
-    - `intent: IndicatorIntent` — Intent (semantic state)
+    - `intent: "primary" | "success" | "warning" | "danger" | "info" | "neutral"` — Intent (semantic state)
     - `variant: "solid" | "outline" | "subtle"` — Visual style variant
-    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` — Size
+    - `size: "sm" | "md" | "lg"` — Size
     - `interactive: boolean` = false — Whether to enable the interactive state
 - **Barcode** — Draws a scannable Code 128 or EAN-13 barcode.
     - `value: string` (required) — Value to encode. For `ean13`, 12 digits (the check digit is calculated) or
@@ -2462,9 +2462,9 @@ Cannot be combined with `onDelete` (T99).
     - `icon: React.ReactNode` — Icon
     - `selected: boolean` = false — Whether the chip is selected
     - `disabled: boolean` = false — Whether the chip is disabled
-    - `intent: IndicatorIntent` = "neutral" — Intent (semantic state)
+    - `intent: "primary" | "success" | "warning" | "danger" | "info" | "neutral"` = "neutral" — Intent (semantic state)
     - `variant: "solid" | "outline" | "subtle"` = "solid" — Visual style variant
-    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size
+    - `size: "sm" | "md" | "lg"` = "md" — Size
     - `deleteAriaLabel: string` — Accessible label for the delete button
     - `className: string` — Additional class names
 - **Comment** — Shows one comment in a discussion, with its actions and nested replies.
@@ -2499,7 +2499,7 @@ that instant (useful for snapshots and tests).
     - `variant: "digital" | "units"` = "digital" — "digital" renders a compact colon-separated clock (04:12:33);
 "units" renders one labeled segment per unit (days / hours / min / sec).
 @default "digital"
-    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size of the numbers and labels.
+    - `size: "sm" | "md" | "lg"` = "md" — Size of the numbers and labels.
 @default "md"
     - `locale: string` — BCP 47 locale override for unit labels (e.g. "en", "ja", "pt-BR").
 @default current i18next language
@@ -2546,7 +2546,7 @@ drops secondary text below the AA contrast floor.
     - `children: React.ReactNode` (required) — DescriptionListItem elements
     - `className: string` — Additional class names
     - `layout: "horizontal" | "vertical" | "compact"` = "horizontal" — Layout of terms and descriptions
-    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size of the text
+    - `size: "sm" | "md" | "lg"` = "md" — Size of the text
     - `border: boolean` = false — Whether to show borders (alias of bordered)
     - `bordered: boolean` = false — Whether to show borders
 - **EmptyState** — Missing data placeholder (aka Blank Slate, Zero State)
@@ -2598,11 +2598,11 @@ in; use `"center"` only when the empty state is the only thing in its region.
 - **Leaderboard** — Display a ranked list of entries with scores. Medal colors for the top three are opt-in.
     - `entries: LeaderboardEntry[]` (required) — List of ranking entries
     - `unit: string` — Label for the score unit
-    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size
+    - `size: "sm" | "md" | "lg"` = "md" — Size
     - `showMedals: boolean` = false — Whether to paint the rank badges of the top three in gold, silver and bronze (off by default: the number and the order already say the rank)
 - **List** — Structurally organized items in bullet points or numbered formats
     - `asChild: boolean` = false — Whether to render as a child element.
-    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size of the list items
+    - `size: "sm" | "md" | "lg"` = "md" — Size of the list items
     - `spacing: "tight" | "normal" | "loose"` = "normal" — Spacing between items
     - `bordered: boolean` = false — Whether to show borders between items
     - `fullWidth: boolean` = false — Whether to take full width of parent
@@ -2678,7 +2678,7 @@ with empty spacer rows. Use it for tables with hundreds of rows, together with
     - `showLabel: boolean` = false — Whether the label is shown next to the dot. The label is always exposed to
 assistive technology; this only controls whether it is also visible.
 @default false
-    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size of the dot.
+    - `size: "sm" | "md" | "lg"` = "md" — Size of the dot.
 @default "md"
     - `position: "top-right" | "top-left" | "bottom-right" | "bottom-left"` = "bottom-right" — Corner the dot is placed at. Only applies when `children` is given.
 @default "bottom-right"
@@ -2718,7 +2718,7 @@ renders inline, next to whatever follows it.
     - `onReact: (emoji: string, active: boolean) => void` — Callback when a reaction is added or removed
     - `showAddButton: boolean` = false — Whether to show the add button
     - `onAdd: () => void` — Callback when the add button is clicked
-    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size
+    - `size: "sm" | "md" | "lg"` = "md" — Size
     - `disabled: boolean` = false — Whether the component is disabled
 - **RelativeTime** — Display a timestamp as a localized relative phrase ("3 minutes ago", "yesterday") that updates automatically as time passes.
     - `date: Date | string | number` (required) — The date to display, as a Date object, ISO 8601 string, or epoch milliseconds.
@@ -2817,9 +2817,9 @@ Cannot be combined with `onDelete` — the delete control is a second element, a
 `asChild` requires a single React element child (T99).
     - `children: React.ReactNode` — Content to display
     - `content: React.ReactNode` — Content to display (alternative to children)
-    - `intent: IndicatorIntent` — Intent (semantic state)
+    - `intent: "primary" | "success" | "warning" | "danger" | "info" | "neutral"` — Intent (semantic state)
     - `variant: "solid" | "outline" | "subtle"` — Visual style variant
-    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` — Size
+    - `size: "sm" | "md" | "lg"` — Size
     - `icon: React.ReactNode` — Icon
     - `onDelete: (e: React.MouseEvent<HTMLButtonElement>) => void` — Delete event. When provided, a × button is shown. Incompatible with `asChild`.
     - `disabled: boolean` — Whether the tag is disabled
@@ -2957,7 +2957,7 @@ dismissed by an outside click or Escape.
     - `onCancel: () => void` — Callback when the user clicks the cancel button
     - `okText: ReactNode` = "OK" — Text of the confirm button
     - `cancelText: ReactNode` = "Cancel" — Text of the cancel button
-    - `okType: ButtonIntent` = "default" — Color role of the confirm button
+    - `okType: "default" | "danger" | "success"` = "default" — Color role of the confirm button
     - `children: ReactNode` (required) — The target element which the Popconfirm will be attached to
     - `icon: ReactNode` — Customize the icon
     - `disabled: boolean` = false — Whether to show the popconfirm
@@ -2967,7 +2967,7 @@ dismissed by an outside click or Escape.
     - `defaultOpen: boolean` = false — If true, the popover component will manage its own open state.
     - `open: boolean` — If provided, controls the open state.
     - `onOpenChange: (open: boolean) => void` — Callback when open state changes.
-    - `placement: Placement` = "bottom-start" — Preferred placement of the popover.
+    - `placement: "top" | "right" | "bottom" | "left" | "top-end" | "top-start" | "right-end" | "right-start" | "bottom-end" | "bottom-start" | "left-end" | "left-start"` = "bottom-start" — Preferred placement of the popover.
     - `variant: "default" | "glass"` = "default" — The variant of the popover content.
 - **Portal** — Out-of-hierarchy render
     - `children: React.ReactNode` (required) — The content to be rendered in the portal
@@ -2978,14 +2978,14 @@ dismissed by an outside click or Escape.
     - `delay: number` = 200 — Delay before showing the tooltip in ms.
     - `open: boolean` — If provided, controls the open state.
     - `onOpenChange: (open: boolean) => void` — Callback when open state changes.
-    - `placement: Placement` = "top" — Preferred placement of the tooltip.
+    - `placement: "top" | "right" | "bottom" | "left" | "top-end" | "top-start" | "right-end" | "right-start" | "bottom-end" | "bottom-start" | "left-end" | "left-start"` = "top" — Preferred placement of the tooltip.
     - `variant: "default" | "glass"` = "default" — The variant of the tooltip content.
 
 ### typography — `import { … } from "wimui/typography"`
 
 - **Blockquote** — Visually separates external quotes or text to be emphasized.
     - `asChild: boolean` = false — If true, the blockquote will be rendered as its child, merging its props onto that child.
-    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Font size of the quote.
+    - `size: "sm" | "md" | "lg"` = "md" — Font size of the quote.
 @default "md"
     - `color: T | (string & {})` — Text color. Accepts a design token color name or any CSS color value.
     - `content: React.ReactNode` — Quoted content. Alternative to children.
@@ -3008,7 +3008,7 @@ dismissed by an outside click or Escape.
     - `asChild: boolean` = false — If true, the component will be rendered as its child.
 - **Kbd** — Keyboard shortcuts
     - `asChild: boolean` = false — If true, the Kbd will be rendered as its child, merging its props onto that child.
-    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size of the key cap.
+    - `size: "sm" | "md" | "lg"` = "md" — Size of the key cap.
 @default "md"
     - `children: React.ReactNode` — Key label(s) to display.
 - **Label** — Descriptive text for input fields, including required/optional marks
@@ -3039,10 +3039,10 @@ Defaults to the localized `form.optional` string.
     - `asChild: boolean` = false — If true, the Legend will be rendered as its child, merging its props onto that child.
 - **Span** — Lightweight wrapper for inline text or short labels with icon support
     - `asChild: boolean` = false — If true, the span will be rendered as its child, merging its props onto that child.
-    - `size: Extract<ComponentSize, "xs" | "sm" | "md" | "lg" | "xl">` = "md" — Font size of the text.
+    - `size: "xs" | "sm" | "md" | "lg" | "xl"` = "md" — Font size of the text.
 @default "md"
     - `color: T | (string & {})` — Text color. Accepts a design token color name or any CSS color value.
-    - `weight: WimFontWeightKey` = "normal" — Font weight.
+    - `weight: "bold" | "medium" | "normal" | "semibold"` = "normal" — Font weight.
 @default "normal"
     - `fontStyle: "normal" | "italic"` = "normal" — Font style.
 @default "normal"
@@ -3065,10 +3065,10 @@ Defaults to the localized `form.optional` string.
 @default t("spoiler.show_less")
 - **Text** — Has appropriate line-height and spacing to ensure readability of long text.
     - `asChild: boolean` = false — If true, the text will be rendered as its child, merging its props onto that child.
-    - `size: Extract<ComponentSize, "xs" | "sm" | "md" | "lg" | "xl">` = "md" — Font size of the text.
+    - `size: "xs" | "sm" | "md" | "lg" | "xl"` = "md" — Font size of the text.
 @default "md"
     - `color: T | (string & {})` — Text color. Accepts a design token color name or any CSS color value.
-    - `weight: WimFontWeightKey` = "normal" — Font weight.
+    - `weight: "bold" | "medium" | "normal" | "semibold"` = "normal" — Font weight.
 @default "normal"
     - `lineHeight: T | (string & {})` — Line height. Accepts a design token name or any CSS line-height value.
     - `fontStyle: "normal" | "italic"` = "normal" — Font style.
@@ -3164,7 +3164,7 @@ Ignored when `truncate` is set (one line wins; they cannot both apply).
     - `backdropFilter: ImageFilterOptions` — Filter applied to the background (effective with transparent images)
     - `hoverBackdropFilter: ImageFilterOptions` — Filter applied to the background on hover
     - `transition: "none" | "fast" | "normal" | "slow"` = "normal" — Animation speed when switching filters
-    - `noise: ComponentSize | "none"` — Intensity of the film-grain (noise) effect
+    - `noise: ("xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl") | "none"` — Intensity of the film-grain (noise) effect
     - `duotone: ImageDuotoneOptions` — Duotone settings
     - `overlay: ImageOverlayOptions` — Overlay settings
     - `zoom: boolean | number` = false — Zoom factor on hover (e.g. 1.1) or true (defaults to 1.05)
@@ -3471,13 +3471,13 @@ enough on its own.
 - **AgentStatus** — Real-time agent state indicator (thinking / running / waiting)
     - `status: "idle" | "thinking" | "running" | "waiting" | "done" | "error"` (required) — Current state of the agent
     - `message: string` — Optional description of what the agent is doing; falls back to the localized status label
-    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size variant
+    - `size: "sm" | "md" | "lg"` = "md" — Size variant
     - `showLabel: boolean` = true — Whether to show the text label next to the indicator
     - `className: string` — Additional CSS class
 - **AIResponseFeedback** — Thumbs-up/down feedback controls and regenerate button for AI responses.
-    - `feedback: AIFeedbackValue | null` — Currently selected feedback value (controlled)
-    - `defaultFeedback: AIFeedbackValue | null` = null — Default feedback value (uncontrolled)
-    - `onFeedback: (value: AIFeedbackValue | null) => void` — Called when user clicks a feedback button. Passes null when deselected.
+    - `feedback: ("positive" | "negative") | null` — Currently selected feedback value (controlled)
+    - `defaultFeedback: ("positive" | "negative") | null` = null — Default feedback value (uncontrolled)
+    - `onFeedback: (value: ("positive" | "negative") | null) => void` — Called when user clicks a feedback button. Passes null when deselected.
     - `showRegenerate: boolean` = false — Whether to show the regenerate button
     - `onRegenerate: () => void` — Called when the regenerate button is clicked
     - `disabled: boolean` = false — Whether all buttons are disabled
@@ -3533,7 +3533,7 @@ written in the markdown. Default `"2xl"` keeps the historical mapping
     - `value: string` — Selected model id (controlled)
     - `defaultValue: string` — Initially selected model id (uncontrolled)
     - `onChange: (id: string, model: ModelOption) => void` — Callback when the selected model changes
-    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size of the trigger
+    - `size: "sm" | "md" | "lg"` = "md" — Size of the trigger
     - `disabled: boolean` = false — Whether the selector is disabled
     - `fullWidth: boolean` = false — Whether to take full width of parent
     - `showPricing: boolean` = true — Whether to show pricing metadata in the dropdown
@@ -3604,7 +3604,7 @@ page: under an `h1` use `2`, under an `h3` use `4`. Has no effect when
 - **UsageMeter** — UsageMeter (also exported as TokenCounter) visualizes token consumption against a budget such as a model's context window — a labeled bar plus a numeric readout that shifts to warning and danger colors near the limit. (aka Level Indicator, Capacity Indicator, Meter)
     - `used: number` (required) — Number of tokens used so far
     - `max: number` — Maximum available tokens (e.g. the context window). Omit for a counter-only display.
-    - `size: Extract<ComponentSize, "sm" | "md" | "lg">` = "md" — Size of the meter
+    - `size: "sm" | "md" | "lg"` = "md" — Size of the meter
     - `showBar: boolean` = true — Whether to render the progress bar (requires `max`)
     - `showPercentage: boolean` = false — Whether to show the percentage instead of the raw count in the readout
     - `warnThreshold: number` = 0.75 — Fraction (0–1) at which the meter turns to the warning color
