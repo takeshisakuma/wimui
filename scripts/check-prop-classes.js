@@ -24,7 +24,10 @@ import path from 'node:path';
 import { globSync } from 'glob';
 // 値の解決規則は共通モジュールに置く（T54 と同じものを使う。片方だけが
 // `(typeof CONST)[number]` を解けると、もう片方が同じ変更を見落とす）。
-import { enumerableValues } from './lib/prop-types.js';
+import { enumerableValues, literalTypeAliases } from './lib/prop-types.js';
+
+// 名前だけの型の別名（`FieldIntent` など）を値へ解く表（T378）
+const { values: literalAliases } = await literalTypeAliases(process.cwd());
 
 // 2026-07-26 実測。内訳は実行結果に出る。
 // 11 → 6: 既定値の除外で偽陽性 2 件が消え、トークンが実在する 3 値（Card の
@@ -83,7 +86,7 @@ for (const tsx of globSync('src/components/**/*.tsx', { posix: true })) {
     }
     const component = owner;
     const propDef = docgen[owner].props[prop];
-    const values = enumerableValues(propDef.tsType, tsx);
+    const values = enumerableValues(propDef.tsType, tsx, literalAliases);
     if (!values) {
       skipped.push(`${component}.${prop}: 値を列挙できない型（${propDef.tsType?.raw ?? '?'}）`);
       continue;

@@ -22,9 +22,17 @@ import path from 'node:path';
  * は**上限の無い `number`** の話であって、閉じた数値リテラルの union には当てはまらない。
  * `true` / `false` は集めない ── `.foo-true` というクラスを書く習慣がこの repo に無く、
  * 「クラスが無い」と言われても直しようがないため。
+ *
+ * **名前だけの別名も解く**（T378）。docgen は import した別名を辿らず、`intent: FieldIntent`
+ * は `{ name: "FieldIntent" }` だけになる。以前はここで null を返し、2 つのガードとも
+ * その prop を「列挙できない型」として対象外にしていた ── 値を減らす破壊的変更も、
+ * 値に対応するクラスの欠落も見落とす。`aliases` は `literalTypeAliases()` の `values`。
  */
-export function literalValues(tsType) {
+export function literalValues(tsType, aliases) {
   if (!tsType) return null;
+  if (aliases?.has(tsType.name) && !tsType.elements) {
+    return aliases.get(tsType.name).map((v) => (v.startsWith('"') ? JSON.parse(v) : v));
+  }
   if (tsType.name === 'literal') {
     const raw = String(tsType.value);
     const quoted = raw.match(/^"(.*)"$/);
@@ -34,7 +42,7 @@ export function literalValues(tsType) {
   if (tsType.name === 'union' && Array.isArray(tsType.elements)) {
     const out = [];
     for (const el of tsType.elements) {
-      const vs = literalValues(el);
+      const vs = literalValues(el, aliases);
       if (!vs) return null; // number など、値を列挙できない要素が混ざっている
       out.push(...vs);
     }
@@ -85,10 +93,10 @@ export function resolveConstArray(raw, tsxPath) {
 
 /**
  * 値を列挙できるなら配列で、できないなら null。
- * `tsxPath` を渡すと `(typeof CONST)[number]` も解ける。
+ * `tsxPath` を渡すと `(typeof CONST)[number]` も、`aliases` を渡すと名前だけの別名も解ける。
  */
-export function enumerableValues(tsType, tsxPath) {
-  const direct = literalValues(tsType);
+export function enumerableValues(tsType, tsxPath, aliases) {
+  const direct = literalValues(tsType, aliases);
   if (direct) return direct;
   return tsxPath ? resolveConstArray(tsType?.raw, tsxPath) : null;
 }
