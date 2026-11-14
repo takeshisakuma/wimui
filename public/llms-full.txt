@@ -2573,7 +2573,7 @@ in; use `"center"` only when the empty state is the only thing in its region.
     - `hasMore: boolean` = false — Whether there is more data to load.
     - `loading: boolean` = false — Whether data is currently loading.
     - `onLoadMore: () => void` (required) — Callback to load the next batch of data.
-    - `loader: React.ReactNode` — Element shown while loading.
+    - `loader: React.ReactNode` — Element shown while loading. Defaults to a spinner with a localized "Loading more…" text. Its text is announced to screen readers when loading starts.
     - `threshold: number` = 250 — Scroll threshold (px). onLoadMore is called when the scroll position gets this close to the bottom.
     - `className: string` — Additional class names.
     - `container: React.RefObject<HTMLElement | null>` — Target whose scroll events are observed (defaults to window).

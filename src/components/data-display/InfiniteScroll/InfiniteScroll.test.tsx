@@ -44,13 +44,14 @@ describe("InfiniteScroll", () => {
     expect(screen.getByText("Content")).toBeInTheDocument();
   });
 
-  it("shows loader element with role=status when loading is true", () => {
+  // T353: loader に既定が無く、読み込み中は空の role="status" だけが差し込まれていた（見えず、読まれない）
+  it("shows a default loader with text while loading", () => {
     render(
       <InfiniteScroll onLoadMore={() => {}} hasMore={false} loading={true}>
         <div>Content</div>
       </InfiniteScroll>,
     );
-    expect(screen.getByRole("status")).toBeInTheDocument();
+    expect(screen.getByText("Loading more…")).toBeInTheDocument();
   });
 
   it("does not show loader when loading is false", () => {
@@ -59,7 +60,25 @@ describe("InfiniteScroll", () => {
         <div>Content</div>
       </InfiniteScroll>,
     );
-    expect(screen.queryByRole("status")).not.toBeInTheDocument();
+    expect(screen.queryByText("Loading more…")).not.toBeInTheDocument();
+  });
+
+  it("announces the loader text once, from a region that was there before loading started", () => {
+    const { rerender } = render(
+      <InfiniteScroll onLoadMore={() => {}} hasMore={true} loading={false}>
+        <div>Content</div>
+      </InfiniteScroll>,
+    );
+    const region = screen.getByRole("status");
+    expect(region).toBeEmptyDOMElement();
+    rerender(
+      <InfiniteScroll onLoadMore={() => {}} hasMore={true} loading={true}>
+        <div>Content</div>
+      </InfiniteScroll>,
+    );
+    // 既定の Spinner は親が告げるので黙る＝領域は 1 つだけ
+    expect(screen.getAllByRole("status")).toEqual([region]);
+    expect(region).toHaveTextContent("Loading more…");
   });
 
   it("renders custom loader content inside status element", () => {

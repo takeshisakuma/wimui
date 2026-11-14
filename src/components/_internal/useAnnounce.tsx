@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { createContext, useCallback, useEffect, useRef, useState } from "react";
 import { VisuallyHidden } from "../layout/VisuallyHidden/VisuallyHidden";
 
 /**
@@ -16,6 +16,12 @@ import { VisuallyHidden } from "../layout/VisuallyHidden/VisuallyHidden";
  */
 
 export type AnnounceRole = "status" | "alert";
+
+/**
+ * 中身ごと告げる部品（InfiniteScroll の読み込み中）の中では、中に置かれた部品（ラベル付きの Spinner）が
+ * 自分でも告げると、同じ文が 2 度読まれる。告げる側がこの文脈で包み、中の部品は黙る。
+ */
+export const AnnouncedByParent = createContext(false);
 
 export type AnnounceOptions = {
   /** 何 ms 待ってから文を入れるか。待つあいだ、領域は空にしておく */
@@ -64,6 +70,34 @@ export function useAnnounce({
   );
 
   return { announce, clear, region };
+}
+
+/**
+ * 表示が現れたときに、その文字を告げる（T353）。空の表示・該当なし・読み込み中のように、
+ * 部品の中に条件で差し込む表示向け。差し込む表示そのものに `role="status"` / `aria-live` を
+ * 付けても、領域ごと現れるので読まれない（2026-11-14、ナレーター + Chrome で DataGrid・Combobox・
+ * Transfer の 3 部品とも読まれなかった）。表示は飾りのまま差し込み、文字は部品の根に先に置いた
+ * 領域へ書く。
+ *
+ * `ref` は差し込む表示に付ける。文字は描かれたあとの `textContent` から取るので、利用者が
+ * ReactNode を渡した表示でも告げられる。最初の描画では告げない。消えたら領域を空にする。
+ */
+export function useAnnounceAppearance<T extends HTMLElement = HTMLDivElement>(
+  shown: boolean,
+  options?: { role?: AnnounceRole; delay?: number },
+) {
+  const { announce, clear, region } = useAnnounce({ role: options?.role });
+  const ref = useRef<T>(null);
+  const previous = useRef(shown);
+  const delay = options?.delay;
+  useEffect(() => {
+    if (previous.current === shown) return;
+    previous.current = shown;
+    const text = shown ? (ref.current?.textContent ?? "").trim() : "";
+    if (text) announce(text, { delay });
+    else clear();
+  }, [shown, announce, clear, delay]);
+  return { ref, region };
 }
 
 /**

@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import classNames from "classnames";
 import { WimColor, ComponentSizeExtended } from "../../../types/tokens";
 import { getColorValue } from "../../../utilities/style-utils";
+import { AnnouncedByParent, useAnnounce } from "../../_internal/useAnnounce";
 import styles from "./spinner.module.scss";
+
+// 現れてから告げるまでの待ち。領域が文と一緒に差し込まれると読まれない（T353）ので、
+// 空の領域が支援技術に見えてから文を入れる
+const ANNOUNCE_DELAY_MS = 500;
 
 type SpinnerProps = React.ComponentPropsWithoutRef<"div"> & {
   /**
@@ -41,6 +46,17 @@ export const Spinner = ({
   const mappedColors = ["primary", "secondary", "success", "warning", "danger", "neutral"];
   const useClassNameForColor = typeof color === "string" && mappedColors.includes(color);
 
+  // Spinner は「何かを始めたあとに差し込まれる」部品なので、親の中に先に在る領域を持てない。
+  // 自分の領域を空で置き、少し待ってから文を入れる。ほかの部品と違い、現れたこと自体が告げる
+  // 出来事なので、最初の描画でも告げる。中身ごと告げる親（InfiniteScroll）の中では黙る
+  const announcedByParent = useContext(AnnouncedByParent);
+  const selfAnnounce = Boolean(label) && !announcedByParent;
+  const { announce, clear, region } = useAnnounce();
+  useEffect(() => {
+    if (selfAnnounce && label) announce(label, { delay: ANNOUNCE_DELAY_MS });
+    else clear();
+  }, [selfAnnounce, label, announce, clear]);
+
   return (
     <div
       className={classNames(
@@ -52,8 +68,6 @@ export const Spinner = ({
       // の中身は回る図形だけで、読み上げる内容の変化が起きない ──「ARIA は
       // 付いているのに機能していない」状態になり、`LoadingOverlay` のように
       // 自前の live region を持つ親の中では領域が二重になっていた。
-      role={label ? "status" : undefined}
-      aria-live={label ? "polite" : undefined}
       style={{
         color: !useClassNameForColor ? getColorValue(color) : undefined,
         ...(style as React.CSSProperties),
@@ -94,6 +108,7 @@ export const Spinner = ({
         />
       </svg>
       {label && <span className={styles.label}>{label}</span>}
+      {selfAnnounce && region}
     </div>
   );
 };

@@ -7,6 +7,7 @@ export type DataDisplayKey =
   | "calendar.aria_date"
   | "calendar.title"
   | "countdown.remaining"
+  | "infinite_scroll.loading"
   | "selection_bar.clear"
   | "selection_bar.cleared"
   | "selection_bar.label"
@@ -29,6 +30,9 @@ export const dataDisplayNs: WimNamespace<"data-display", DataDisplayKey> = {
         "selected": "{{count}} selected",
         "cleared": "Selection cleared",
         "clear": "Clear selection"
+      },
+      "infinite_scroll": {
+        "loading": "Loading more…"
       }
     },
     "ja": {
@@ -43,6 +47,9 @@ export const dataDisplayNs: WimNamespace<"data-display", DataDisplayKey> = {
         "selected": "{{count}} 件を選択中",
         "cleared": "選択を解除しました",
         "clear": "選択を解除"
+      },
+      "infinite_scroll": {
+        "loading": "さらに読み込み中…"
       }
     },
     "pt": {
@@ -57,6 +64,9 @@ export const dataDisplayNs: WimNamespace<"data-display", DataDisplayKey> = {
         "selected": "Selecionados: {{count}}",
         "cleared": "Seleção removida",
         "clear": "Limpar seleção"
+      },
+      "infinite_scroll": {
+        "loading": "Carregando mais…"
       }
     }
   },

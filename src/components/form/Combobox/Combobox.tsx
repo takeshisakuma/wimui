@@ -5,6 +5,7 @@ import { InputBase } from "../InputBase";
 import { FieldTemplate } from "../FieldTemplate";
 import { useInlineFloating } from "../../_internal/useInlineFloating";
 import { useMergedRef } from "../../../hooks/useMergedRef";
+import { useAnnounceAppearance } from "../../_internal/useAnnounce";
 import styles from "./combobox.module.scss";
 
 export type ComboboxOption = {
@@ -154,6 +155,9 @@ export const Combobox = ({
     // 描いたままで、向きと横のずれだけを受け取る。
     const { setReference: setFloatingReference, setFloating, floatingProps } = useInlineFloating({ open: isOpen });
     const setRootRef = useMergedRef(containerRef, setFloatingReference);
+    // 該当なしは、ポップオーバーごと差し込む表示。文字は根に先に置いた領域で告げる（T353）
+    const showNoResults = isOpen && filteredOptions.length === 0;
+    const { ref: noResultsRef, region: noResultsRegion } = useAnnounceAppearance(showNoResults);
 
     return (
       <FieldTemplate
@@ -172,6 +176,7 @@ export const Combobox = ({
           onMouseMove={() => setIsKeyboardNavigating(false)}
           data-keyboard-nav={isKeyboardNavigating}
         >
+          {noResultsRegion}
           <InputBase
             disabled={disabled}
             allowClear={allowClear}
@@ -247,9 +252,9 @@ export const Combobox = ({
             </ul>
           </div>
         )}
-        {isOpen && filteredOptions.length === 0 && (
+        {showNoResults && (
           <div className={styles.dropdown} ref={setFloating} {...floatingProps}>
-            <div className={styles.empty} role="region" aria-live="polite">
+            <div className={styles.empty} ref={noResultsRef}>
               {noResults}
             </div>
           </div>

@@ -227,8 +227,10 @@ const TransferList = ({
         }}
         style={useVirtual ? { overflow: "hidden", padding: 0 } : undefined}
       >
+        {/* 空の表示は差し込む表示なので領域にしない（T353。aria-live を付けても読まれなかった）。
+            空になるのは移したときだけで、そのことは下の useAnnounce の告知が言う */}
         {data.length === 0 ? (
-          <div className={styles.empty} aria-live="polite">
+          <div className={styles.empty}>
             {noData}
           </div>
         ) : useVirtual ? (

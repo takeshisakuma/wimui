@@ -103,6 +103,18 @@ describe("DataGrid", () => {
     expect(screen.getByText("No data found")).toBeInTheDocument();
   });
 
+  // T353: 空の表示を role="status" ごと差し込んでも読まれなかった（ナレーター + Chrome）。
+  // 行が 0 になったら、先に在る領域へ文字を書く。ReactNode を渡しても文字で告げる
+  it("announces the empty message when the rows run out, from a region that was already there", () => {
+    const { rerender } = render(
+      <DataGrid columns={mockColumns} data={mockRows} emptyMessage={<span>No <b>users</b> found</span>} />,
+    );
+    const regions = screen.getAllByRole("status");
+    rerender(<DataGrid columns={mockColumns} data={[]} emptyMessage={<span>No <b>users</b> found</span>} />);
+    expect(screen.getAllByRole("status")).toEqual(regions);
+    expect(regions.some((r) => r.textContent === "No users found")).toBe(true);
+  });
+
   it("renders loading state", () => {
     const { container } = render(<DataGrid columns={mockColumns} data={mockRows} loading />);
 

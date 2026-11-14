@@ -86,7 +86,9 @@ export const AppearsAfterAction: Story = {
     const [loading, setLoading] = React.useState(false);
     return (
       <Stack gap="md" align="start">
-        <Button onClick={() => setLoading(true)} disabled={loading}>
+        {/* 押したボタンを disabled にすると、フォーカスが文書へ落ち、ナレーターがページの題名を
+            読み直して告知を消した（T353）。押せない状態は aria-disabled で示し、フォーカスは残す */}
+        <Button onClick={() => !loading && setLoading(true)} aria-disabled={loading || undefined}>
           {t("story.spinner_load_report")}
         </Button>
         {loading && <Spinner {...args} label={t("story.spinner_label_loading")} />}

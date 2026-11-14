@@ -1,6 +1,7 @@
-import { render, screen } from "@testing-library/react";
-import { describe, it, expect } from "vitest";
+import { act, render, screen } from "@testing-library/react";
+import { describe, it, expect, vi } from "vitest";
 import { Spinner } from "./Spinner";
+import { AnnouncedByParent } from "../../_internal/useAnnounce";
 
 describe("Spinner", () => {
   it("renders svg indicator", () => {
@@ -33,14 +34,31 @@ describe("Spinner", () => {
 
   // T228: ラベルがあるときだけ live region にする（読み上げる内容があるのは
   // その場合だけ）。
-  it("is a live region only when a label is rendered", () => {
-    const { rerender } = render(<Spinner />);
-    expect(screen.queryByRole("status")).toBeNull();
-
-    rerender(<Spinner label="Loading..." />);
+  // T353: 中身ごと差し込まれた role="status" は読まれなかった。空の領域と一緒に現れ、
+  // 待ってから文を入れる
+  it("announces the label from an empty region after a short wait", () => {
+    vi.useFakeTimers();
+    render(<Spinner label="Loading..." />);
     const status = screen.getByRole("status");
-    expect(status).toHaveAttribute("aria-live", "polite");
+    expect(status).toBeEmptyDOMElement();
+    act(() => vi.advanceTimersByTime(500));
     expect(status).toHaveTextContent("Loading...");
+    vi.useRealTimers();
+  });
+
+  it("has no region without a label", () => {
+    render(<Spinner />);
+    expect(screen.queryByRole("status")).toBeNull();
+  });
+
+  it("stays quiet inside a parent that announces its content", () => {
+    render(
+      <AnnouncedByParent.Provider value={true}>
+        <Spinner label="Loading..." />
+      </AnnouncedByParent.Provider>,
+    );
+    expect(screen.queryByRole("status")).toBeNull();
+    expect(screen.getByText("Loading...")).toBeInTheDocument();
   });
 
   it("applies labelPosition bottom", () => {

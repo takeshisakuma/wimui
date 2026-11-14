@@ -5,7 +5,7 @@ import classNames from "classnames";
 import { Table } from "../Table/Table";
 import { Checkbox } from "../../form/Checkbox/Checkbox";
 import { Pagination } from "../../navigation/Pagination/Pagination";
-import { useAnnounce } from "../../_internal/useAnnounce";
+import { useAnnounce, useAnnounceAppearance } from "../../_internal/useAnnounce";
 import { useFixedColumns, type FixedColumnInfo } from "./useFixedColumns";
 import { useDataGridKeyboard } from "./useDataGridKeyboard";
 import { useInfiniteScroll } from "./useInfiniteScroll";
@@ -261,6 +261,9 @@ export function DataGrid<T extends Record<string, unknown>>({
   // `aria-sort` と行の並びだけなので、告げないと何も読まれない（ナレーター + Chrome の実機で、
   // 昇順・降順が読まれなかった）。先に在る領域の文字を書き換える（Pagination と同じ形）。
   const { announce: announceSort, region: sortAnnouncementRegion } = useAnnounce();
+  // 空の表示は、行が 0 になったときに差し込む。文字は先に在る領域で告げる（T353）
+  const showEmpty = data.length === 0 && Boolean(emptyMessage);
+  const { ref: emptyRef, region: emptyRegion } = useAnnounceAppearance(showEmpty);
 
   return (
     <div
@@ -276,6 +279,7 @@ export function DataGrid<T extends Record<string, unknown>>({
       aria-busy={isBusy || undefined}
     >
       {sortAnnouncementRegion}
+      {emptyRegion}
       <div
         className={styles.container}
         style={{ height, maxHeight }}
@@ -442,8 +446,8 @@ export function DataGrid<T extends Record<string, unknown>>({
             })}
           </Table.Body>
         </Table>
-        {data.length === 0 && emptyMessage && (
-          <div role="status" className={styles.empty}>
+        {showEmpty && (
+          <div ref={emptyRef} className={styles.empty}>
             {emptyMessage}
           </div>
         )}
