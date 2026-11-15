@@ -117,3 +117,101 @@ describe("ToastProvider", () => {
     expect(container.ownerDocument.querySelectorAll('[role="status"]')).toHaveLength(1);
   });
 });
+
+// T393: 読んでいる間は消さない。以前は止める口が無く、閉じるボタンにフォーカスを置いたままでも消えた。
+describe("Toast: the auto-close timer pauses while the toast is in use", () => {
+  beforeEach(() => {
+    vi.useFakeTimers();
+  });
+
+  const toastOf = (container: HTMLElement) => container.querySelector(".wim-toast") as HTMLElement;
+
+  it("does not close while the pointer is over it, and resumes from the remaining time", () => {
+    const handleClose = vi.fn();
+    const { container } = render(<Toast title="Message" duration={1000} onClose={handleClose} />);
+
+    act(() => {
+      vi.advanceTimersByTime(800);
+    });
+    fireEvent.mouseEnter(toastOf(container));
+    act(() => {
+      vi.advanceTimersByTime(5000);
+    });
+    expect(handleClose).not.toHaveBeenCalled();
+
+    // 残りは 1000 + 300 - 800 = 500ms。最初から数え直さない
+    fireEvent.mouseLeave(toastOf(container));
+    act(() => {
+      vi.advanceTimersByTime(490);
+    });
+    expect(handleClose).not.toHaveBeenCalled();
+    act(() => {
+      vi.advanceTimersByTime(20);
+    });
+    expect(handleClose).toHaveBeenCalledTimes(1);
+  });
+
+  it("does not close while focus is inside it", () => {
+    const handleClose = vi.fn();
+    render(<Toast title="Message" duration={1000} onClose={handleClose} />);
+
+    const closeButton = screen.getByLabelText("Close");
+    act(() => closeButton.focus());
+    act(() => {
+      vi.advanceTimersByTime(5000);
+    });
+    expect(handleClose).not.toHaveBeenCalled();
+    expect(closeButton).toHaveFocus();
+
+    act(() => closeButton.blur());
+    act(() => {
+      vi.advanceTimersByTime(1000 + 300 + 10);
+    });
+    expect(handleClose).toHaveBeenCalledTimes(1);
+  });
+
+  it("stays paused while either the pointer or focus is still there", () => {
+    const handleClose = vi.fn();
+    const { container } = render(<Toast title="Message" duration={1000} onClose={handleClose} />);
+
+    const closeButton = screen.getByLabelText("Close");
+    fireEvent.mouseEnter(toastOf(container));
+    act(() => closeButton.focus());
+    // ポインターが離れても、フォーカスが中にあるうちは止まったまま
+    fireEvent.mouseLeave(toastOf(container));
+    act(() => {
+      vi.advanceTimersByTime(5000);
+    });
+    expect(handleClose).not.toHaveBeenCalled();
+  });
+
+  it("a new toast does not extend the life of the ones already shown", () => {
+    const Trigger = () => {
+      const { show } = useToast();
+      return (
+        <>
+          <button onClick={() => show({ title: "First", duration: 1000 })}>first</button>
+          <button onClick={() => show({ title: "Second", duration: 1000 })}>second</button>
+        </>
+      );
+    };
+    const { container } = render(
+      <ToastProvider>
+        <Trigger />
+      </ToastProvider>,
+    );
+
+    fireEvent.click(screen.getByText("first"));
+    act(() => {
+      vi.advanceTimersByTime(900);
+    });
+    fireEvent.click(screen.getByText("second"));
+    // 1 つ目は、出てから 1300ms で消える。2 つ目が出たことで、数え直さない
+    act(() => {
+      vi.advanceTimersByTime(450);
+    });
+    const titles = Array.from(container.ownerDocument.querySelectorAll(".wim-toast")).map((el) => el.textContent);
+    expect(titles.some((text) => text?.includes("First"))).toBe(false);
+    expect(titles.some((text) => text?.includes("Second"))).toBe(true);
+  });
+});

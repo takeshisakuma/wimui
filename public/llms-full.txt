@@ -2161,7 +2161,7 @@ follows the theme and never needs a hand-mixed colour.
     - `description: string` — Description text displayed below the title.
     - `intent: "default" | "info" | "success" | "warning" | "danger"` = "default" — Intent (semantic state) of the toast.
 @default "default"
-    - `duration: number` = 3000 — Time in milliseconds before the toast closes automatically. Set 0 to disable auto-close.
+    - `duration: number` = 3000 — Time in milliseconds before the toast closes automatically. The timer pauses while the pointer is over the toast or focus is inside it, and resumes from the remaining time. Set 0 to disable auto-close.
 @default 3000
     - `open: boolean` = true — Whether the toast is shown.
 @default true

@@ -41,7 +41,7 @@ export type ToastProps = {
    */
   intent?: FeedbackIntent;
   /**
-   * Time in milliseconds before the toast closes automatically. Set 0 to disable auto-close.
+   * Time in milliseconds before the toast closes automatically. The timer pauses while the pointer is over the toast or focus is inside it, and resumes from the remaining time. Set 0 to disable auto-close.
    * @default 3000
    */
   duration?: number;
@@ -87,14 +87,36 @@ export const Toast = ({
     if (onClose) onClose(id);
   }, [onClose, id]);
 
+  // 読んでいる間は消さない（T393）。ポインターが載っている間と、フォーカスが中にある間は、
+  // タイマーを止める。以前は止める口が無く、閉じるボタンにフォーカスを置いたままでも消えて、
+  // フォーカスが文書へ落ちていた（キーボードでは、3 秒以内に届かなければ閉じるボタンを押せない）。
+  const hovered = useRef(false);
+  const focusWithin = useRef(false);
+  const [paused, setPaused] = useState(false);
+  const syncPaused = () => setPaused(hovered.current || focusWithin.current);
+
+  // 残り時間。止めたところから再開する（離れるたびに最初から数え直すと、いつまでも消えない）。
+  // 開き直したときと、duration が変わったときに、最初へ戻す
+  const remaining = useRef(duration + 300); // Add extra buffer for animation
   useEffect(() => {
-    if (open && duration > 0 && internalVisible) {
+    if (open) remaining.current = duration + 300;
+  }, [open, duration]);
+
+  useEffect(() => {
+    if (open && duration > 0 && internalVisible && !paused) {
+      const startedAt = Date.now();
       const timer = setTimeout(() => {
         handleClose();
-      }, duration + 300); // Add extra buffer for animation
-      return () => clearTimeout(timer);
+      }, remaining.current);
+      return () => {
+        clearTimeout(timer);
+        // 止まった理由が一時停止でも、`onClose` の作り直し（ToastProvider は描画のたびに作り直す）でも、
+        // 経った分だけを引く。以前は作り直しのたびに最初から数え直していて、新しいトーストが出ると、
+        // 前から出ているトーストの寿命まで延びていた
+        remaining.current = Math.max(0, remaining.current - (Date.now() - startedAt));
+      };
     }
-  }, [open, duration, id, onClose, internalVisible, handleClose]);
+  }, [open, duration, internalVisible, handleClose, paused]);
 
   const announcedByProvider = useContext(ToastAnnouncedByProviderContext);
   // 単体で `open` を切り替えて使うときの告知。出たら読み、消えたら空に戻す（最初の描画では告げない）
@@ -116,6 +138,24 @@ export const Toast = ({
       role={ariaLabelAttr || ariaLabelledBy ? "group" : undefined}
       aria-label={ariaLabelledBy ? undefined : ariaLabelAttr}
       aria-labelledby={ariaLabelledBy}
+      onMouseEnter={() => {
+        hovered.current = true;
+        syncPaused();
+      }}
+      onMouseLeave={() => {
+        hovered.current = false;
+        syncPaused();
+      }}
+      onFocus={() => {
+        focusWithin.current = true;
+        syncPaused();
+      }}
+      onBlur={(e) => {
+        // 中の要素どうしで移っただけなら、まだ中にある
+        if (e.currentTarget.contains(e.relatedTarget)) return;
+        focusWithin.current = false;
+        syncPaused();
+      }}
     >
       {(intent === "success" ||
         intent === "warning" ||

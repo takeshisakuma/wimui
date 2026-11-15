@@ -100,7 +100,7 @@
     "toast_prop_aria-labelledby": "トーストの名前になる要素の ID。`aria-label` より優先されます。",
     "toast_prop_className": "追加の CSS クラス名。",
     "toast_prop_description": "タイトルの下に表示する説明文。",
-    "toast_prop_duration": "自動で閉じるまでの時間（ミリ秒）。0 を指定すると自動で閉じません。\n@default 3000",
+    "toast_prop_duration": "自動で閉じるまでの時間（ミリ秒）。ポインターが載っている間と、フォーカスが中にある間はタイマーが止まり、離れると残り時間から再開します。0 を指定すると自動で閉じません。\n@default 3000",
     "toast_prop_id": "トーストの識別子。onClose に渡されます。ToastProvider がスタック管理に使用します。",
     "toast_prop_intent": "トーストのインテント（意味的状態）。\n@default \"default\"",
     "toast_prop_onClose": "トーストが閉じられる時に id を引数に呼び出されます。",
