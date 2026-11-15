@@ -24,6 +24,22 @@
   font-size: inherit;
 }
 
+/*
+ * ページの途中にある見出しは、同じ種類で最初のものでも、上の余白を空ける（T401）。
+ * addon-docs の見出しの規則は `margin: 20px 0 8px` に `&:first-of-type { margin-top: 0 }` を
+ * 重ねる。ページの先頭に来た見出しのための規則だが、`:first-of-type` は「同じ親の中で、
+ * その種類で最初」なので、本文の途中にある最初の h2 / h3 / h4 にも当たり、その 1 つだけが
+ * 上の要素に詰まっていた（2026-11-15 実測: 全 299 の文書ページのうち 298 ページ・492 か所。
+ * Guides/Hooks では、最初の hook の「Signature」だけが import の枠に付いていた）。
+ * 入れ物の先頭（`:first-child`）は、これまでどおり 0 のまま。
+ * h1 は含めない ── ページの題で、前に見えない要素が置かれたページ（11 ページ）では
+ * `:first-child` に当たらず、題の上に余白が増える。
+ * 20px は、addon-docs が 2 つ目以降の見出しに当てている値。
+ */
+.sbdocs-content :is(h2, h3, h4, h5, h6):first-of-type:not(:first-child, .sb-unstyled, .sb-unstyled *) {
+  margin-top: 20px;
+}
+
 /* Canvas (Story preview enclosure) */
 .sbdocs-preview {
   border-radius: 4px !important;
