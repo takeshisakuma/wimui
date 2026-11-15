@@ -1476,7 +1476,7 @@ so the unit does not have to be repeated in the label.
     - `mode: "number" | "text"` = "number" — 'number': uses the native type="number" (e.g. quantity steppers)
 'text': uses type="text" + inputmode (e.g. card numbers or IDs where leading zeros must be kept)
     - `hideSpinButton: boolean` = true — Whether to hide the spin buttons
-    - `allowDecimal: boolean` = false — Whether to allow decimal points (effective only when mode="number")
+    - `allowDecimal: boolean` = false — Whether to allow decimals (effective only when mode="number"). When false, both "." and "," are blocked — a browser in a locale that writes decimals with a comma takes "," as the decimal separator.
     - `allowNegative: boolean` = false — Whether to allow negative numbers (effective only when mode="number")
     - `asChild: boolean` = false — Whether to render as a child element.
 - **OtpInput** — One-time password fields (aka Pin Input, Input OTP, PIN Code Input)

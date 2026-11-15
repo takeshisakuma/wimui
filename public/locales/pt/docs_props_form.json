@@ -397,7 +397,7 @@
     "multiSelect_prop_required": "Se deve exibir o indicador de obrigatório",
     "multiSelect_prop_value": "Valores selecionados (controlado)",
     "multiSelect_prop_width": "Largura fixa do campo (token de width, valor CSS ou número em px)",
-    "numberInput_prop_allowDecimal": "Se deve permitir casas decimais (efetivo apenas quando mode=\"number\")",
+    "numberInput_prop_allowDecimal": "Se deve permitir casas decimais (efetivo apenas quando mode=\"number\"). Quando false, tanto \".\" quanto \",\" são bloqueados — um navegador em um idioma que escreve decimais com vírgula aceita \",\" como separador decimal.",
     "numberInput_prop_allowNegative": "Se deve permitir números negativos (efetivo apenas quando mode=\"number\")",
     "numberInput_prop_asChild": "Se deve renderizar como um elemento filho.",
     "numberInput_prop_hideSpinButton": "Se deve ocultar os botões de incremento",

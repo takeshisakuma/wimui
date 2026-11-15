@@ -15391,7 +15391,7 @@
       "multiSelect_prop_required": "Whether to show the required indicator",
       "multiSelect_prop_value": "Selected values (controlled)",
       "multiSelect_prop_width": "Fixed width of the field (width token, CSS value, or number in px)",
-      "numberInput_prop_allowDecimal": "Whether to allow decimal points (effective only when mode=\"number\")",
+      "numberInput_prop_allowDecimal": "Whether to allow decimals (effective only when mode=\"number\"). When false, both \".\" and \",\" are blocked — a browser in a locale that writes decimals with a comma takes \",\" as the decimal separator.",
       "numberInput_prop_allowNegative": "Whether to allow negative numbers (effective only when mode=\"number\")",
       "numberInput_prop_asChild": "Whether to render as a child element.",
       "numberInput_prop_hideSpinButton": "Whether to hide the spin buttons",
