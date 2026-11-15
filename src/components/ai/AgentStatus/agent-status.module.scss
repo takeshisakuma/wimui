@@ -39,6 +39,13 @@
     background: currentcolor;
     border-radius: 50%;
 
+    /* 強制カラー（T391）。点は currentcolor の背景だけで、地に溶ける。 */
+    @media (forced-colors: active) {
+      color: ButtonText;
+      forced-color-adjust: none;
+      background-color: ButtonText;
+    }
+
     .sm & {
       width: 6px; /* Exception: Geometric Harmony — sm ドット（md の 0.75 倍） */
       height: 6px; /* Exception: Geometric Harmony — sm ドット（md の 0.75 倍） */
@@ -76,6 +83,14 @@
       border: var(--wim-border-width-thick) solid currentcolor;
       border-top-color: transparent;
       animation: agent-spin 0.75s linear infinite;
+
+      @media (forced-colors: active) {
+        color: ButtonText;
+        forced-color-adjust: none;
+        background-color: transparent;
+        border-color: ButtonText;
+        border-top-color: transparent;
+      }
     }
   }
 

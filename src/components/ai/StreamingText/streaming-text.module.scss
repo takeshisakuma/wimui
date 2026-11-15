@@ -114,6 +114,13 @@
     background: var(--wim-color-text-primary);
     border-radius: 1px; /* Exception: Browser Rendering Fixes — thin cursor edge smoothing */
     animation: blink 1s step-end infinite;
+
+    /* 強制カラー（T391）。カーソルは背景色だけの細い棒なので地に溶ける。 */
+    @media (forced-colors: active) {
+      color: ButtonText;
+      forced-color-adjust: none;
+      background-color: ButtonText;
+    }
   }
 
   @keyframes blink {

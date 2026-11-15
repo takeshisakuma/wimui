@@ -37,6 +37,13 @@
       overflow: hidden;
       background-color: var(--wim-color-scrollbar-track); // Use a light gray from track
 
+      /* 強制カラー（T391）。レールと現在位置の印は背景色だけなので地に溶ける。 */
+      @media (forced-colors: active) {
+        color: ButtonText;
+        forced-color-adjust: none;
+        background-color: ButtonText;
+      }
+
       .inkBall {
         position: absolute;
         left: 0;
@@ -48,6 +55,12 @@
           top var(--wim-transition-base),
           height var(--wim-transition-base),
           opacity var(--wim-transition-base);
+
+        @media (forced-colors: active) {
+          color: HighlightText;
+          forced-color-adjust: none;
+          background-color: Highlight;
+        }
       }
     }
 

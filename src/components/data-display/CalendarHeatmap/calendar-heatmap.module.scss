@@ -69,6 +69,45 @@
     &.level2 { background-color: var(--wim-comp-heatmap-level-2); }
     &.level3 { background-color: var(--wim-comp-heatmap-level-3); }
     &.level4 { background-color: var(--wim-comp-heatmap-level-4); }
+
+    /* 強制カラー（T391）。セルは背景色だけなので地に溶ける。段はシステム色で残す。
+       ホバーはトークン色を塗るので、同じブロックでロックする。 */
+    @media (forced-colors: active) {
+      &,
+      &:hover,
+      &.level0,
+      &.level0:hover {
+        color: ButtonText;
+        outline: var(--wim-border-width-thin) solid ButtonText;
+        forced-color-adjust: none;
+        background-color: Canvas;
+      }
+
+      &.level1,
+      &.level1:hover {
+        outline-color: GrayText;
+        background-color: GrayText;
+      }
+
+      &.level2,
+      &.level2:hover {
+        outline-color: ButtonText;
+        background-color: ButtonText;
+      }
+
+      &.level3,
+      &.level3:hover {
+        outline-color: LinkText;
+        background-color: LinkText;
+      }
+
+      &.level4,
+      &.level4:hover {
+        color: HighlightText;
+        outline-color: HighlightText;
+        background-color: Highlight;
+      }
+    }
   }
 
   .labels {

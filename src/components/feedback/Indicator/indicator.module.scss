@@ -64,6 +64,20 @@
       background-color: var(--wim-color-line);
     }
 
+    /* 強制カラー（T391）。点は背景色だけなので地に溶ける。枠つきの点も塗りを残す。 */
+    @media (forced-colors: active) {
+      &,
+      &.primary,
+      &.success,
+      &.danger,
+      &.warning,
+      &.neutral {
+        color: ButtonText;
+        forced-color-adjust: none;
+        background-color: ButtonText;
+      }
+    }
+
     // Positions
     &.top-right {
       top: 0;

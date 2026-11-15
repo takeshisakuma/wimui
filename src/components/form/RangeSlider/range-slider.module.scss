@@ -25,6 +25,12 @@
     &.danger:not(.disabled) {
       .track {
         background-color: var(--wim-color-danger);
+
+        @media (forced-colors: active) {
+          color: HighlightText;
+          forced-color-adjust: none;
+          background-color: Highlight;
+        }
       }
 
       .thumb {
@@ -47,6 +53,13 @@
     height: 6px; /* Exception: Geometric Harmony — サム(18px)の1/3比でトラック高さを設定 */
     background-color: var(--wim-color-border-secondary);
     border-radius: var(--wim-radius-full);
+
+    /* 強制カラー（T391）。軌道は背景色だけなので地に溶ける。 */
+    @media (forced-colors: active) {
+      color: ButtonText;
+      forced-color-adjust: none;
+      background-color: ButtonText;
+    }
   }
 
   .track {
@@ -54,6 +67,12 @@
     height: 100%;
     background-color: var(--wim-color-primary);
     border-radius: var(--wim-radius-full);
+
+    @media (forced-colors: active) {
+      color: HighlightText;
+      forced-color-adjust: none;
+      background-color: Highlight;
+    }
   }
 
   .thumb {
@@ -78,6 +97,11 @@
       transform var(--wim-duration-extra-fast) var(--wim-easing-standard),
       z-index 0s;
     will-change: left;
+
+    /* 軌道が色の置き換えを止めている。つまみはコントロールなので戻す。 */
+    @media (forced-colors: active) {
+      forced-color-adjust: auto;
+    }
 
     &.active {
       z-index: 2;
