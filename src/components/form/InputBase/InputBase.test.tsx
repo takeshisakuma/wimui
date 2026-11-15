@@ -1,3 +1,4 @@
+import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { InputBase } from "./InputBase";
@@ -127,6 +128,26 @@ describe("InputBase", () => {
   it("does not show clear button when allowClear=false", () => {
     render(<InputBase allowClear={false} hasValue><input /></InputBase>);
     expect(screen.queryByRole("button", { name: /clear input/i })).not.toBeInTheDocument();
+  });
+
+  // T392: 消去ボタンは、値が空になると消える。フォーカスを置いたまま消えると、文書へ落ちていた。
+  it("moves focus to the control when the clear button is pressed", () => {
+    const Field = () => {
+      const [value, setValue] = React.useState("abc");
+      return (
+        <InputBase allowClear hasValue={value !== ""} onClear={() => setValue("")}>
+          <input aria-label="Name" value={value} onChange={(e) => setValue(e.target.value)} />
+        </InputBase>
+      );
+    };
+    render(<Field />);
+
+    const clear = screen.getByRole("button", { name: /clear input/i });
+    clear.focus();
+    fireEvent.click(clear);
+
+    expect(screen.queryByRole("button", { name: /clear input/i })).not.toBeInTheDocument();
+    expect(screen.getByLabelText("Name")).toHaveFocus();
   });
 
   it("calls onClear when clear button is clicked", () => {
