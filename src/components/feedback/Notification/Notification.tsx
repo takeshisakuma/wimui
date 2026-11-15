@@ -40,7 +40,7 @@ export type NotificationProps = {
    */
   intent?: FeedbackIntent;
   /**
-   * Callback when notification is closed
+   * Callback when notification is closed. When the close button disappears while it has focus, focus moves to the focusable element just before the component. To send it somewhere else, move focus inside this callback.
    */
   onClose?: (id?: string) => void;
   /**
