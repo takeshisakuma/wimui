@@ -134,7 +134,12 @@ export const InputBase = ({
       name: "CloseIcon",
       onClick: (e) => {
         e.stopPropagation();
+        // 消去ボタンは、値が空になると描かれなくなる。フォーカスを置いたまま消えると、フォーカスは
+        // 文書（body）へ落ち、キーボードの利用者は Tab で入力欄を探し直すことになる（T392）。
+        // 消える前に、この欄の操作要素（入力欄か、選択系の引き金）へ移しておく。
+        const control = e.currentTarget.closest(".wim-input-base")?.querySelector<HTMLElement>(`.${localStyles.inner}`);
         onClear?.();
+        control?.focus();
       },
       ariaLabel: resolvedClearAriaLabel,
     });
