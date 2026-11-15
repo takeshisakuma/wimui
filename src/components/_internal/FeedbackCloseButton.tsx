@@ -4,6 +4,7 @@ import { commonNs } from "@/i18n/generated/common";
 import { Icon } from "../media/Icon/Icon";
 import { ComponentSize } from "../../types/tokens";
 import { CloseIcon } from "@/icon";
+import { moveFocusOutside } from "./focusHandoff";
 
 /**
  * Props for the FeedbackCloseButton component.
@@ -67,19 +68,7 @@ const useFocusHandoff = (ref: React.RefObject<HTMLButtonElement | null>) => {
     const button = ref.current;
     return () => {
       if (!button || document.activeElement !== button) return;
-      const root = button.closest(ROOTS) ?? button;
-      const stops = Array.from(
-        document.querySelectorAll<HTMLElement>("a[href], button, input, select, textarea, [tabindex]"),
-      ).filter(
-        (el) =>
-          el.tabIndex >= 0 &&
-          !(el as HTMLButtonElement).disabled &&
-          !root.contains(el) &&
-          // jsdom には無い（テストでは、見えているものとして扱う）
-          (el.checkVisibility?.({ checkVisibilityCSS: true }) ?? true),
-      );
-      const before = stops.filter((el) => root.compareDocumentPosition(el) & Node.DOCUMENT_POSITION_PRECEDING);
-      (before[before.length - 1] ?? stops[0])?.focus({ preventScroll: true });
+      moveFocusOutside(button.closest(ROOTS) ?? button);
     };
   }, [ref]);
 };

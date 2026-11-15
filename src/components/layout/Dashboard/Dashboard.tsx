@@ -1,4 +1,5 @@
-import React, { createContext, useCallback, useContext, useMemo, useState } from "react";
+import React, { createContext, useCallback, useContext, useMemo, useRef, useState } from "react";
+import { useFocusHandoff } from "../../_internal/focusHandoff";
 import classNames from "classnames";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { componentsNs } from "@/i18n/generated/components";
@@ -234,9 +235,14 @@ export const DashboardWidgetCard = ({
   const { t } = useWimTranslation(componentsNs);
 
   const { id, title, description, content, span = 1, rowSpan = 1 } = widget;
+  // ウィジェットを消すのは使う側（onRemove）。ボタンにフォーカスを置いたままカードが外れると、
+  // フォーカスは文書（body）へ落ちる（T402）。消えるときに、カードの外の直前の停止点へ渡す。
+  const rootRef = useRef<HTMLDivElement>(null);
+  useFocusHandoff(rootRef);
 
   return (
     <Card
+      ref={rootRef}
       variant="outline"
       padding="md"
       radius="md"

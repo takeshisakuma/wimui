@@ -1,4 +1,5 @@
 import { describe, it, expect, vi } from "vitest";
+import { useState } from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { Dashboard } from "./Dashboard";
 import type { DashboardWidget } from "./Dashboard";
@@ -79,6 +80,49 @@ describe("Dashboard", () => {
     const removeBtns = screen.getAllByRole("button", { name: /^Remove /i });
     fireEvent.click(removeBtns[0]);
     expect(onRemove).toHaveBeenCalledWith("w1");
+  });
+
+  // T402: ウィジェットを消すのは使う側。ボタンにフォーカスを置いたまま消えると、文書へ落ちていた。
+  it("keeps focus on the previous widget when one is removed", () => {
+    const Removable = () => {
+      const [widgets, setWidgets] = useState(sampleWidgets);
+      return (
+        <Dashboard
+          widgets={widgets}
+          editable
+          showEditToggle={false}
+          onRemove={(id) => setWidgets((current) => current.filter((widget) => widget.id !== id))}
+        />
+      );
+    };
+    render(<Removable />);
+    const users = screen.getByRole("button", { name: "Remove Users" });
+    users.focus();
+    fireEvent.click(users);
+    expect(screen.queryByText("Users")).not.toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Remove Revenue" })).toHaveFocus();
+  });
+
+  it("does not move focus when a widget is removed from outside", () => {
+    const Removable = () => {
+      const [widgets, setWidgets] = useState(sampleWidgets);
+      return (
+        <>
+          <button type="button">Before</button>
+          <Dashboard
+            widgets={widgets}
+            editable
+            showEditToggle={false}
+            onRemove={(id) => setWidgets((current) => current.filter((widget) => widget.id !== id))}
+          />
+        </>
+      );
+    };
+    render(<Removable />);
+    const before = screen.getByRole("button", { name: "Before" });
+    before.focus();
+    fireEvent.click(screen.getByRole("button", { name: "Remove Users" }));
+    expect(before).toHaveFocus();
   });
 
   it("shows add button when editable and onAdd is provided", () => {

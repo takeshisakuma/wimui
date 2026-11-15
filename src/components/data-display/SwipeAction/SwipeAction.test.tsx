@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from "vitest";
 import { render, screen, fireEvent, act } from "@testing-library/react";
-import { createRef } from "react";
+import { createRef, useState } from "react";
 import { SwipeAction, SwipeActionRef, SwipeActionItem, SwipeActionProps } from "./SwipeAction";
 import { SwipeableList } from "./SwipeableList";
 import styles from "./swipe-action.module.scss";
@@ -21,7 +21,7 @@ const swipe = (el: HTMLElement, from: number, to: number, end = true) => {
   if (end) fireEvent.touchEnd(el);
 };
 
-const deleteAction = (onClick = vi.fn()): SwipeActionItem => ({
+const deleteAction = (onClick: () => void = vi.fn()): SwipeActionItem => ({
   icon: "TrashIcon",
   label: "Delete",
   onClick,
@@ -97,6 +97,33 @@ describe("SwipeAction", () => {
     // 80 + (200 - 80) * 0.3 = 116
     swipe(content, 0, 200, false);
     expect(content.style.transform).toBe("translateX(116px)");
+  });
+
+  // T402: 行を消すのは使う側。削除ボタンにフォーカスを置いたまま行が消えると、文書へ落ちていた。
+  it("keeps focus on the previous row when this row is removed", () => {
+    const Rows = () => {
+      const [ids, setIds] = useState(["a", "b"]);
+      return (
+        <>
+          {ids.map((id) => (
+            <SwipeAction
+              key={id}
+              rightActions={[
+                deleteAction(() => setIds((current) => current.filter((item) => item !== id))),
+              ]}
+            >
+              {id}
+            </SwipeAction>
+          ))}
+        </>
+      );
+    };
+    render(<Rows />);
+    const remove = screen.getAllByRole("button", { name: "Delete" })[1];
+    remove.focus();
+    fireEvent.click(remove);
+    expect(screen.queryByText("b")).not.toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Delete" })).toHaveFocus();
   });
 
   it("runs the action and closes on click", () => {

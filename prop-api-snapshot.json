@@ -11427,6 +11427,47 @@
     "ThoughtStep.status": {
       "type": "\"pending\" | \"completed\" | \"error\""
     },
+    "ThreadItem.active": {
+      "type": "boolean"
+    },
+    "ThreadItem.deleteLabel": {
+      "type": "string"
+    },
+    "ThreadItem.onDelete": {
+      "type": "(id: string) => void"
+    },
+    "ThreadItem.onSelect": {
+      "type": "(id: string) => void"
+    },
+    "ThreadItem.thread": {
+      "type": "{ /** Unique identifier of the thread */ id: string; /** Title of the conversation */ title: string; /** Short preview of the last message */ preview?: string; /** Pre-formatted timestamp string shown on the right */ timestamp?: string; /** Icon name shown before the title */ iconName?: React.ComponentProps<typeof Icon>[\"name\"]; /** Whether the thread has unread activity (shows a dot) */ unread?: boolean; }",
+      "shape": {
+        "iconName": {
+          "required": false,
+          "type": "React.ComponentProps<typeof Icon>[\"name\"]"
+        },
+        "id": {
+          "required": true,
+          "type": "string"
+        },
+        "preview": {
+          "required": false,
+          "type": "string"
+        },
+        "timestamp": {
+          "required": false,
+          "type": "string"
+        },
+        "title": {
+          "required": true,
+          "type": "string"
+        },
+        "unread": {
+          "required": false,
+          "type": "boolean"
+        }
+      }
+    },
     "ThreadList.activeId": {
       "required": false,
       "type": "string"
