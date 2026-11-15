@@ -301,7 +301,15 @@ export const QueryBuilder = ({
     announce(groupAdded);
   };
 
-  const handleRemove = (targetId: string) => {
+  // 削除ボタンは、押すと自分の行（グループ）ごと消える。フォーカスを置いたまま消えると、フォーカスは
+  // 文書（body）へ落ちる（T392）。消える前に、隣の行の削除ボタンへ移す（続けて消せる）。
+  // 隣が無ければ、そのグループの「ルールを追加」へ。
+  const handleRemove = (targetId: string, item: Element | null) => {
+    const sibling = item?.nextElementSibling ?? item?.previousElementSibling;
+    (
+      sibling?.querySelector<HTMLElement>(`.${styles.removeRule}, .${styles.removeGroup}`) ??
+      item?.parentElement?.parentElement?.querySelector<HTMLElement>(`:scope > .${styles.groupActions} button`)
+    )?.focus();
     const deepRemove = (item: QueryGroup): QueryGroup => {
       return {
         ...item,
@@ -360,7 +368,7 @@ export const QueryBuilder = ({
               variant="ghost"
               size="md"
               intent="danger"
-              onClick={() => handleRemove(group.id)}
+              onClick={(e) => handleRemove(group.id, e.currentTarget.closest(`.${styles.group}`))}
               className={styles.removeGroup}
             />
           )}
@@ -514,7 +522,7 @@ export const QueryBuilder = ({
             variant="ghost"
             size="md"
             intent="danger"
-            onClick={() => handleRemove(rule.id)}
+            onClick={(e) => handleRemove(rule.id, e.currentTarget.closest(`.${styles.rule}`))}
             className={styles.removeRule}
           />
         </div>
