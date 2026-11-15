@@ -118,6 +118,20 @@
         background-color: var(--wim-color-text-on-disabled);
       }
     }
+
+    /* 強制カラー（T391）。輪は枠なので残るが、選択の点は背景の色だけで描いているので、地に溶けて
+       「どれも選ばれていない」ように見える。点をシステムの色で塗り直す。通常の表示は変えない。 */
+    @media (forced-colors: active) {
+      &::after,
+      &.danger:not(:disabled)::after {
+        forced-color-adjust: none;
+        background-color: Highlight;
+      }
+
+      &:disabled::after {
+        background-color: GrayText;
+      }
+    }
   }
 
 }
