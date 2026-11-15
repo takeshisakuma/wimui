@@ -66,6 +66,46 @@
     &.selected {
       border-color: var(--wim-color-primary);
       box-shadow: inset 0 0 0 var(--wim-border-width-thin) var(--wim-color-primary);
+
+      /* 強制カラー（T391）。選択は枠の色だけなので、全カードの枠が同じ色になると消える */
+      @media (forced-colors: active) {
+        color: HighlightText;
+        forced-color-adjust: none;
+        background-color: Highlight;
+        border-color: Highlight;
+        box-shadow: none;
+
+        .description {
+          color: HighlightText;
+        }
+
+        .toggle {
+          color: ButtonText;
+          background: ButtonFace;
+          border-color: ButtonText;
+        }
+
+        .toggle:hover {
+          color: ButtonText;
+          background: ButtonFace;
+          border-color: ButtonText;
+        }
+      }
+
+      /* ホバーの枠色（トークン）が、置き換えを止めた選択中の枠に勝たないようにする */
+      &.selectable:hover {
+        @media (forced-colors: active) {
+          color: HighlightText;
+          background-color: Highlight;
+          border-color: Highlight;
+        }
+      }
+    }
+
+    &.selected:focus-visible {
+      @media (forced-colors: active) {
+        outline-color: HighlightText;
+      }
     }
   }
 
