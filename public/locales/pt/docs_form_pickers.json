@@ -29,7 +29,7 @@
     "colorinput_scenario_1": "Definições de Marca: Permitir que os administradores especifiquem cores primárias exatas para a sua aplicação white-label.",
     "colorinput_scenario_2": "Editores CSS: Fornecer uma forma de introduzir e pré-visualizar códigos hex numa ferramenta focada em programadores.",
     "colorinput_title": "Campo para selecionar cores e introduzir códigos hex com pré-visualização",
-    "colorpicker_a11y_desc": "Este é um invólucro fino em torno de Input: acrescenta layout e estilo e nenhum ARIA próprio, então os papéis, o nome acessível e o comportamento de teclado vêm todos de Input. Leia as notas de acessibilidade daquele componente — o que é obrigatório lá é obrigatório aqui, e as props que você repassa chegam inalteradas.",
+    "colorpicker_a11y_desc": "O campo em si é um Input com type=\"color\": o papel, o nome acessível e o comportamento de teclado vêm do Input e do navegador, então leia as notas de acessibilidade daquele componente. Quando swatches é passado, as amostras formam um grupo de rádio chamado \"Amostras de cor\" (altere com swatchesLabel); cada amostra é lida pelo seu label, ou pelo valor quando não há label. Dê nome ao campo com a prop label em vez de envolvê-lo em um <label>, senão os nomes das amostras são lidos como parte do nome do campo.",
     "colorpicker_anatomy_content": "A paleta visual ou espetro onde os usuários podem selecionar interativamente uma cor.",
     "colorpicker_anatomy_content_label": "Paleta",
     "colorpicker_anatomy_root": "O gatilho ou contêiner que gere a visibilidade do selecionador e o estado da seleção atual.",
@@ -39,7 +39,7 @@
     "colorpicker_choice_alt_when": "Quando uma alternativa mais simples como o ColorInput se adequa melhor ao caso de uso.",
     "colorpicker_choice_self_when": "Quando a funcionalidade ColorPicker com opções padrão é necessária.",
     "colorpicker_design_intent": "O ColorPicker fornece uma interface visual para selecionar cores de um espetro. Destina-se a cenários onde os usuários precisam de explorar criativamente e 'encontrar' uma cor em vez de introduzir um valor conhecido.",
-    "colorpicker_keyboard_desc": "O Tab move o foco dentro do selecionador de cor. As teclas de seta ajustam os valores de matiz e saturação. Escape fecha o selecionador.",
+    "colorpicker_keyboard_desc": "O Tab chega ao campo, e Enter ou Espaço abre a caixa de cores do próprio navegador. Com swatches, o grupo é mais uma parada do Tab: as teclas de seta (e Home / End) movem entre as amostras e escolhem aquela em que param.",
     "colorpicker_long_desc": "Um componente para os usuários escolherem cores. Envolve a entrada nativa type=\"color\" e ajusta os seus estilos.",
     "colorpicker_scenario_1": "Ferramentas de Design: Escolher uma cor de fundo personalizada para um diapositivo de apresentação.",
     "colorpicker_scenario_2": "Personalização do Usuário: Deixar os usuários escolherem uma cor de destaque para o tema do seu painel.",
@@ -325,6 +325,8 @@
     "timepicker_keyboard_desc": "O Tab foca o campo de entrada de hora. As teclas de seta ajustam as horas e os minutos. Escape fecha o painel do selecionador de hora.",
     "timepicker_scenario_1": "Gestão de Turnos: Definir as horas de início e fim para turnos de trabalho de funcionários.",
     "timepicker_scenario_2": "Alarmes e Lembretes: Escolher uma hora de gatilho específica para notificações do sistema.",
-    "timepicker_title": "Uma entrada especializada para selecionar horas e minutos específicos"
+    "timepicker_title": "Uma entrada especializada para selecionar horas e minutos específicos",
+    "colorpicker_swatches_title": "Amostras",
+    "colorpicker_swatches_desc": "Passe swatches para oferecer cores predefinidas, como a paleta da marca, ao lado do seletor nativo. Escolher uma define o valor e dispara onChange da mesma forma que o seletor nativo."
   }
 }

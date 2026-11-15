@@ -2559,6 +2559,7 @@
       ]
     },
     "ColorPicker.label": {
+      "required": false,
       "type": "React.ReactNode"
     },
     "ColorPicker.layout": {
@@ -2637,6 +2638,24 @@
     },
     "ColorPicker.suffix": {
       "type": "React.ReactNode"
+    },
+    "ColorPicker.swatches": {
+      "required": false,
+      "type": "ColorPickerSwatch[]",
+      "shape": {
+        "label": {
+          "required": false,
+          "type": "string"
+        },
+        "value": {
+          "required": true,
+          "type": "string"
+        }
+      }
+    },
+    "ColorPicker.swatchesLabel": {
+      "required": false,
+      "type": "string"
     },
     "ColorPicker.variant": {
       "required": false,

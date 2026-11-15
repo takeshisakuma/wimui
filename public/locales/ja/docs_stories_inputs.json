@@ -267,6 +267,13 @@
     "checkbox_card_wrap_desc": "包装紙とメッセージカード・300 円",
     "checkbox_card_door": "置き配にする",
     "checkbox_card_receipt": "紙の領収書",
-    "checkbox_card_receipt_desc": "別送。宛名は注文者の名前になります"
+    "checkbox_card_receipt_desc": "別送。宛名は注文者の名前になります",
+    "colorpicker_swatches": "ブランドの色",
+    "colorpicker_swatch_blue": "青",
+    "colorpicker_swatch_green": "緑",
+    "colorpicker_swatch_amber": "琥珀",
+    "colorpicker_swatch_red": "赤",
+    "colorpicker_swatch_violet": "紫",
+    "colorpicker_swatch_gray": "灰色"
   }
 }

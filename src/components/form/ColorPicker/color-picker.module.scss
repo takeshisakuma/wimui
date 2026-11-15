@@ -4,19 +4,82 @@
        ほかの入力欄より 2px 高くなる（T313）。 */
     padding: 0 !important;
     cursor: pointer;
-  
+
     &::-webkit-color-swatch-wrapper {
       padding: 0;
     }
-  
+
     &::-webkit-color-swatch {
       border: none;
       border-radius: var(--wim-radius-sm);
     }
-  
+
     &::-moz-color-swatch {
       border: none;
       border-radius: var(--wim-radius-sm);
+    }
+  }
+
+  /* 見本の色（`swatches`）があるときだけの器。無いときは今までどおり Input だけを描く（T382） */
+  .root {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wim-spacing-sm);
+    align-items: flex-start;
+
+    &.fullWidth {
+      align-items: stretch;
+    }
+  }
+
+  .swatches {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--wim-spacing-xs);
+  }
+
+  .swatch {
+    /* 1 つずつ正確に押す対象なので、密度で縮めない下限の 24px（WCAG 2.5.8）にそろえる */
+    width: var(--wim-tap-target-min);
+    height: var(--wim-tap-target-min);
+    padding: 0;
+    cursor: pointer;
+
+    /* 色そのものが中身なので、強制カラーで塗りを消させない。枠はシステムカラーで描き直す */
+    forced-color-adjust: none;
+    background-color: var(--wim-swatch-fill);
+    border: var(--wim-border-width-thin) solid var(--wim-color-border);
+    border-radius: var(--wim-radius-sm);
+
+    /* 選んでいる見本は、地の色の隙間を挟んだ輪で示す（見本の色に関わらず見分けられる） */
+    &[aria-checked="true"] {
+      box-shadow:
+        0 0 0 var(--wim-border-width-thick) var(--wim-color-surface),
+        0 0 0 calc(var(--wim-border-width-thick) * 2) var(--wim-color-text-primary);
+    }
+
+    &:focus-visible {
+      outline: var(--wim-border-width-thick) solid var(--wim-color-focus-outline);
+      outline-offset: calc(var(--wim-border-width-thick) * 3);
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: var(--wim-opacity-disabled);
+    }
+
+    @media (forced-colors: active) {
+      border-color: CanvasText;
+
+      &[aria-checked="true"] {
+        border-color: Highlight;
+        border-width: var(--wim-border-width-thick);
+        box-shadow: none;
+      }
+
+      &:focus-visible {
+        outline-color: Highlight;
+      }
     }
   }
 }

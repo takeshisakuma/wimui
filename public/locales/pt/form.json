@@ -128,5 +128,8 @@
     "status_moved_to_source": "Movidos para a lista disponível: {{count}}",
     "status_moved_to_target": "Movidos para a lista selecionada: {{count}}",
     "target": "Selecionado"
+  },
+  "color_picker": {
+    "swatches": "Amostras de cor"
   }
 }

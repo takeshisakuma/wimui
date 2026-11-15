@@ -128,5 +128,8 @@
   "artifact_overlay": {
     "minimize": "Minimize",
     "maximize": "Maximize"
+  },
+  "color_picker": {
+    "swatches": "Color swatches"
   }
 }

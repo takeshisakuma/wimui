@@ -31,6 +31,7 @@ export type FormKey =
   | "code_diff_viewer.reject"
   | "code_diff_viewer.split_view"
   | "code_diff_viewer.unified_view"
+  | "color_picker.swatches"
   | "combobox.no_results"
   | "dropzone.description"
   | "fileupload.button"
@@ -208,6 +209,9 @@ export const formNs: WimNamespace<"form", FormKey> = {
       "artifact_overlay": {
         "minimize": "Minimize",
         "maximize": "Maximize"
+      },
+      "color_picker": {
+        "swatches": "Color swatches"
       }
     },
     "ja": {
@@ -327,6 +331,9 @@ export const formNs: WimNamespace<"form", FormKey> = {
         "status_moved_to_source": "{{count}} 件を選択可能リストに移動しました",
         "status_moved_to_target": "{{count}} 件を選択済みリストに移動しました",
         "target": "選択済み"
+      },
+      "color_picker": {
+        "swatches": "色の見本"
       }
     },
     "pt": {
@@ -446,6 +453,9 @@ export const formNs: WimNamespace<"form", FormKey> = {
         "status_moved_to_source": "Movidos para a lista disponível: {{count}}",
         "status_moved_to_target": "Movidos para a lista selecionada: {{count}}",
         "target": "Selecionado"
+      },
+      "color_picker": {
+        "swatches": "Amostras de cor"
       }
     }
   },

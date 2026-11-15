@@ -267,6 +267,13 @@
     "checkbox_card_wrap_desc": "Paper and a message card · ¥300",
     "checkbox_card_door": "Leave at the door",
     "checkbox_card_receipt": "Paper receipt",
-    "checkbox_card_receipt_desc": "Mailed separately, made out to the name on the order"
+    "checkbox_card_receipt_desc": "Mailed separately, made out to the name on the order",
+    "colorpicker_swatches": "Brand color",
+    "colorpicker_swatch_blue": "Blue",
+    "colorpicker_swatch_green": "Green",
+    "colorpicker_swatch_amber": "Amber",
+    "colorpicker_swatch_red": "Red",
+    "colorpicker_swatch_violet": "Violet",
+    "colorpicker_swatch_gray": "Gray"
   }
 }
