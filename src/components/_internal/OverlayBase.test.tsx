@@ -1,10 +1,36 @@
 import { render, screen, fireEvent } from "@testing-library/react";
+import { useState } from "react";
 import { afterEach, describe, it, expect, vi } from "vitest";
 import { OverlayBase } from "./OverlayBase";
 
 afterEach(() => {
   document.body.style.overflow = "";
+  document.body.style.paddingRight = "";
+  document.body.style.scrollbarGutter = "";
 });
+
+function TwoOverlays({
+  outer,
+  inner,
+  onOuter,
+  onInner,
+}: {
+  outer: boolean;
+  inner: boolean;
+  onOuter: (open: boolean) => void;
+  onInner: (open: boolean) => void;
+}) {
+  return (
+    <>
+      <OverlayBase open={outer} onOpenChange={onOuter}>
+        <button>Outer</button>
+      </OverlayBase>
+      <OverlayBase open={inner} onOpenChange={onInner}>
+        <button>Inner</button>
+      </OverlayBase>
+    </>
+  );
+}
 
 describe("OverlayBase", () => {
   it("renders children when open", () => {
@@ -132,6 +158,75 @@ describe("OverlayBase", () => {
         <button>Content</button>
       </OverlayBase>,
     );
+    expect(document.body.style.overflow).toBe("auto");
+  });
+
+  it("reserves the scrollbar width so the page does not grow when locked", () => {
+    const original = Object.getOwnPropertyDescriptor(document.documentElement, "clientWidth");
+    Object.defineProperty(document.documentElement, "clientWidth", {
+      configurable: true,
+      get() {
+        return document.body.style.overflow === "hidden" ? 1280 : 1270;
+      },
+    });
+    document.body.style.overflow = "auto";
+    document.body.style.paddingRight = "4px";
+    try {
+      const { unmount } = render(
+        <OverlayBase open onOpenChange={() => {}}>
+          <button>Content</button>
+        </OverlayBase>,
+      );
+      expect(document.body.style.overflow).toBe("hidden");
+      expect(document.body.style.paddingRight).toBe("14px");
+      expect(document.body.style.scrollbarGutter).toBe("auto");
+      unmount();
+      expect(document.body.style.overflow).toBe("auto");
+      expect(document.body.style.paddingRight).toBe("4px");
+      expect(document.body.style.scrollbarGutter).toBe("");
+    } finally {
+      if (original) Object.defineProperty(document.documentElement, "clientWidth", original);
+    }
+  });
+
+  it("keeps the scroll lock when the inner overlay closes first", () => {
+    document.body.style.overflow = "auto";
+    function Harness() {
+      const [outer, setOuter] = useState(true);
+      const [inner, setInner] = useState(true);
+      return (
+        <>
+          <button type="button" onClick={() => setInner(false)}>Close inner</button>
+          <button type="button" onClick={() => setOuter(false)}>Close outer</button>
+          <TwoOverlays outer={outer} inner={inner} onOuter={setOuter} onInner={setInner} />
+        </>
+      );
+    }
+    render(<Harness />);
+    expect(document.body.style.overflow).toBe("hidden");
+    fireEvent.click(screen.getByRole("button", { name: "Close inner" }));
+    expect(document.body.style.overflow).toBe("hidden");
+    fireEvent.click(screen.getByRole("button", { name: "Close outer" }));
+    expect(document.body.style.overflow).toBe("auto");
+  });
+
+  it("keeps the scroll lock when the outer overlay closes first", () => {
+    document.body.style.overflow = "auto";
+    function Harness() {
+      const [outer, setOuter] = useState(true);
+      const [inner, setInner] = useState(true);
+      return (
+        <>
+          <button type="button" onClick={() => setOuter(false)}>Close outer</button>
+          <button type="button" onClick={() => setInner(false)}>Close inner</button>
+          <TwoOverlays outer={outer} inner={inner} onOuter={setOuter} onInner={setInner} />
+        </>
+      );
+    }
+    render(<Harness />);
+    fireEvent.click(screen.getByRole("button", { name: "Close outer" }));
+    expect(document.body.style.overflow).toBe("hidden");
+    fireEvent.click(screen.getByRole("button", { name: "Close inner" }));
     expect(document.body.style.overflow).toBe("auto");
   });
 });
