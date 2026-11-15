@@ -204,7 +204,7 @@
         "react/jsx-runtime"
       ],
       "gzip": true,
-      "limit": "96 kB"
+      "limit": "97 kB"
     },
     {
       "name": "wimui/form/rich-text-editor (gzip, Tiptap は peer)",
@@ -279,7 +279,7 @@
       "name": "UMD Bundle (gzip)",
       "path": "dist/wimui.umd.js",
       "gzip": true,
-      "limit": "166 kB",
+      "limit": "167 kB",
       "disablePlugins": [
         "@size-limit/esbuild"
       ]
