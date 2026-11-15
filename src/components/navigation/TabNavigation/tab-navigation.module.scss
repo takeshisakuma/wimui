@@ -155,6 +155,11 @@
 
       .list:has(.item.active:hover:not(.disabled)) .slider {
         background-color: oklch(from var(--wim-color-primary) calc(l * 0.9) c h);
+
+        /* 強制カラー（T391）。置き換えを止めているので、ホバーの色がそのまま出る ── Highlight のままにする */
+        @media (forced-colors: active) {
+          background-color: Highlight;
+        }
       }
 
       &.ready .slider {
@@ -178,6 +183,9 @@
           &:focus-visible {
             box-shadow: inset 0 0 0 var(--wim-focus-outline-width) var(--wim-color-text-on-primary);
           }
+
+          /* 強制カラー（T391）。選択中の項目は、スライダーの面（mixin が Highlight で塗る）の上に載る */
+          @include indicator.indicator-forced-colors-content;
         }
       }
     }
@@ -208,6 +216,8 @@
 
         &.active {
           color: var(--wim-color-text-primary);
+
+          @include indicator.indicator-forced-colors-content;
         }
       }
     }
