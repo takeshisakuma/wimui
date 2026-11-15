@@ -754,7 +754,7 @@ npm run measure:forced-colors-state -- --selftest            # 対照を注入�
 
 **測り方**: state は、選択の印（`aria-selected` / `aria-checked` / `aria-pressed` / `aria-current`・`input:checked`）を持つ要素の矩形を撮り、選択をほかへ移して（ほかを押しても外れなければ、自分を押して切り替えて）撮り直し、画素の差を通常の表示と強制カラーで比べる。shapes は、通常の表示で「文字も枠も持たず、背景の色が地と違う要素」に印を付け、強制カラーで地と同じ色になったかを見る。
 
-- **先に `--selftest` を流す。** 背景だけで選択を示すタブが lost、下線でも示すタブが visible、背景だけの図形が lost、透明の枠つきと `forced-color-adjust: none` が残る、の 5 つが合うこと。道具を変えたら必ず
+- **先に `--selftest` を流す。** 背景だけで選択を示すタブが lost、下線でも示すタブが visible、背景だけの図形が lost、透明の枠つきと `forced-color-adjust: none` が残る、絵そのもの（img）と素の range は図形に数えない、`appearance: none` で背景だけにしたチェックは lost、の 8 つが合うこと。道具を変えたら必ず
 - **「印を持つストーリー数」と unmoved を先に見る。** 描画前に探すと 0 件になる。unmoved は「押しても状態が変わらなかった」で、測れていない ── 現在のページ・今日の日付のように、動かせない印が大半（2026-11-15 は 33）
 - **合否は画素で決める。** computed style が違っていても、画素が同じなら見えていない（Radio の点は、不透明度が変わるのに、地の色で描かれていた）
 - **lost と weak の境目は、回によって動く。** CodeDiffViewer / JsonDiffViewer の表示切替は、同じビルドで 0 画素の回と 28 画素の回があった（通常は 868 画素）。**lost と weak を足した数で前回と比べる**。weak も直す候補として読む
@@ -770,11 +770,13 @@ npm run measure:forced-colors-state -- --selftest            # 対照を注入�
 | 2 本目（ToggleGroup・TabNavigation・ThemeToggle・Toolbar と、スライダーの mixin）のあと | 24 | 15 | 52 | 33 | 288 / 313 |
 | 3 本目（選択を項目の面・枠で示す部品。下の一覧）のあと | 0 | 5 | 86 | 33 | 280 / 313 |
 | 4 本目（背景だけの図形。下の一覧）のあと | 未測定 | 未測定 | 未測定 | 未測定 | 3 / 313 |
+| 残った 3 個のあと（2026-11-16。下） | 未測定 | 未測定 | 未測定 | 未測定 | 0 / 311 |
 
 - 直ったのは 19 組: Switch 1・SwitchGroup 3・RadioGroup 6・SegmentedControl 7・QueryBuilder の中の SegmentedControl 2。RadioGroup のカード型の 2 は weak に入った（通常はカードの面も変わるので差が大きく、強制カラーでは点の 60 画素だけ ── 点は見えている）
 - **2 本目で直ったのは 11 組**: ToggleGroup 5・ThemeToggle 3・TabNavigation 2・Toolbar 1（lost + weak は 50 → 39）。スライダーと下線の mixin（`src/styles/_indicator-mixins.scss`）が Highlight で塗るようにしたので、下の「残り」のうち ToggleGroup・ThemeToggle・TabNavigation・Toolbar は済み。**Tabs の縦並びは lost のまま**（下線は塗られるが、縦の姿では差が 0 画素 ── 未調査）
 - **3 本目で直ったのは 34 組**（lost + weak は 39 → 5。組 124・エラー 0・unmoved 33 は 2 本目と同じ）。選択を項目そのものの面か枠で示している部品: Tabs の縦並び（下線はリストの右端にあって項目の矩形に掛からない。透明の右枠は全項目に色が付く）・Pagination（DataGrid の中も）・Calendar の日と月年・範囲の中の日・TreeView・Carousel の点・ThreadList・TreeDiagram・AIResponseFeedback・Reaction・CodeDiffViewer / JsonDiffViewer の表示切替・Radio と Checkbox のカード。**残る weak は ScheduleView の 5 だけ**（FullCalendar のボタン。通常は 1,200〜2,000 画素、強制カラーは 2 画素）。shapes は Carousel の点が減って 280（lost を持つ部品は 22）
 - **4 本目で直したのは図形**（state は取り直していない。ScheduleView の weak 5 は 3 本目のまま）。shapes の lost は 280 → 3（図形 313・ストーリー 1,117・エラー 0。lost を持つ部品は 22 → 3）。直したのは AgentStatus・Anchor・BottomSheet のつまみ・CalendarHeatmap・GanttChart・HamburgerMenu・ImageCompare の仕切り・Indicator・Loader（LoadingOverlay の印も同じクラス）・Presence・Progress・RangeSlider・Slider の値・StreamingText・ThoughtProcess・ThreadList の未読点・Timeline・UsageMeter。**残る 3 個はストーリーが置いた飾り**: AppShell の `appshell-modern-brand__mark`、Image の glassmorphism が img に足したガラス面、ImageCompare の controlled が置いた素の range。BentoGrid に出ていたバー 2 本は Progress で、Progress を塗ると消えた。**戻すと鳴る**: CalendarHeatmap の強制カラーの規則だけ外して測り直すと、セル 80 が lost に戻った。規則は戻してからコミットした
+- **残った 3 個（2026-11-16）**: 強制カラーの画素で見ると、消えていたのは 1 個だけだった。AppShell の印は 1 色（地の色）だけになっていた ── ストーリーの CSS に強制カラーの規則を足した。Image の img は写真がそのまま描かれ（色 4 万種）、素の range は軌道とつまみがシステムの色で描かれていた ── どちらも道具の数え間違いで、絵そのもの（`img` / `canvas` / `video`）と、ブラウザが描くコントロール（`appearance` が `none` でない range・checkbox・radio・progress・meter）を図形に数えないようにした。全量で 0 / 311。前回との差は、この 2 個が数えられなくなっただけ（ストーリーとクラスの組で突き合わせた）
 - **残り**（1 本目の時点の lost）: Carousel の点 6・ToggleGroup 5・CodeDiffViewer と JsonDiffViewer の表示切替（lost 4・weak 8 を合わせて 12）・ThemeToggle 3・Pagination 2（DataGrid の中も 2）・TabNavigation 2・Tabs 1・Calendar 1・AIResponseFeedback 1・ThreadList 1・Toolbar 1・TreeDiagram 1・TreeView 1。weak: ScheduleView 5・RangeCalendar 2・CheckboxGroup 1・Reaction 1
 - **shapes の残り 302**: Loader 61・CalendarHeatmap 80・Timeline 22・Progress 20・GanttChart 17・UsageMeter 16・ThoughtProcess 11 ほか 27 部品（T391 に一覧）
 - 直し方は `docs/rules/css.md` の「強制カラーで、状態と図形を消さない」
