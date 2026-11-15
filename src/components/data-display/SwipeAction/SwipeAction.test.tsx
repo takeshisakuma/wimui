@@ -21,7 +21,7 @@ const swipe = (el: HTMLElement, from: number, to: number, end = true) => {
   if (end) fireEvent.touchEnd(el);
 };
 
-const deleteAction = (onClick = vi.fn()): SwipeActionItem => ({
+const deleteAction = (onClick: () => void = vi.fn()): SwipeActionItem => ({
   icon: "TrashIcon",
   label: "Delete",
   onClick,
