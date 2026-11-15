@@ -63,6 +63,52 @@ describe("NumberInput", () => {
     expect(dispatchKey("e")).toBe(true);
   });
 
+  // T394: 小数をコンマで書く言語のブラウザは、"," を小数点として受け取る。"." だけを止めると、
+  // allowDecimal={false} のまま 1,5 が 1.5 として入っていた。
+  it("blocks the comma as well as the period when decimals are not allowed", () => {
+    render(<NumberInput />);
+    const input = screen.getByRole("spinbutton");
+    expect(fireEvent.keyDown(input, { key: ",", cancelable: true })).toBe(false);
+    expect(fireEvent.keyDown(input, { key: ".", cancelable: true })).toBe(false);
+  });
+
+  it("lets the comma and the period through when decimals are allowed", () => {
+    render(<NumberInput allowDecimal />);
+    const input = screen.getByRole("spinbutton");
+    expect(fireEvent.keyDown(input, { key: ",", cancelable: true })).toBe(true);
+    expect(fireEvent.keyDown(input, { key: ".", cancelable: true })).toBe(true);
+  });
+
+  it("does not take a pasted value that has a blocked character", () => {
+    const onPaste = vi.fn();
+    render(<NumberInput onPaste={onPaste} />);
+    const input = screen.getByRole("spinbutton");
+    const paste = (text: string) => fireEvent.paste(input, { clipboardData: { getData: () => text } });
+
+    expect(paste("1,5")).toBe(false);
+    expect(paste("1.5")).toBe(false);
+    expect(paste("-3")).toBe(false);
+    expect(paste("15")).toBe(true);
+    // 利用者の onPaste は、止めたときも呼ぶ（onKeyDown と同じ）
+    expect(onPaste).toHaveBeenCalledTimes(4);
+  });
+
+  it("takes a pasted decimal or negative value when they are allowed", () => {
+    render(<NumberInput allowDecimal allowNegative />);
+    const input = screen.getByRole("spinbutton");
+    const paste = (text: string) => fireEvent.paste(input, { clipboardData: { getData: () => text } });
+
+    expect(paste("-1,5")).toBe(true);
+    expect(paste("1e5")).toBe(false);
+  });
+
+  it("does not block anything in mode='text'", () => {
+    render(<NumberInput mode="text" />);
+    const input = screen.getByRole("textbox");
+    expect(fireEvent.keyDown(input, { key: ",", cancelable: true })).toBe(true);
+    expect(fireEvent.paste(input, { clipboardData: { getData: () => "00-12" } })).toBe(true);
+  });
+
   it("renders as text input in mode='text'", () => {
     render(<NumberInput mode="text" placeholder="Text mode" />);
     const input = screen.getByPlaceholderText("Text mode");

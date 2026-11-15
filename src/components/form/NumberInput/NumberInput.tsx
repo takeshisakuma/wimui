@@ -12,7 +12,7 @@ export interface NumberInputProps extends React.ComponentPropsWithoutRef<typeof 
   mode?: "number" | "text";
   /** Whether to hide the spin buttons */
   hideSpinButton?: boolean;
-  /** Whether to allow decimal points (effective only when mode="number") */
+  /** Whether to allow decimals (effective only when mode="number"). When false, both "." and "," are blocked — a browser in a locale that writes decimals with a comma takes "," as the decimal separator. */
   allowDecimal?: boolean;
   /** Whether to allow negative numbers (effective only when mode="number") */
   allowNegative?: boolean;
@@ -31,6 +31,7 @@ export const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(
       allowDecimal = false,
       allowNegative = false,
       onKeyDown,
+      onPaste,
       className,
       asChild = false,
       children,
@@ -44,19 +45,30 @@ export const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(
     const inputMode = mode === "text" ? "numeric" : props.inputMode;
     const pattern = mode === "text" ? "[0-9]*" : props.pattern;
 
-    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-      if (mode === "number") {
-        // 不適切な文字の入力をブロック (指数表記 e, E, +, -, .)
-        const blockedKeys = ["e", "E"];
-        if (!allowNegative) blockedKeys.push("-", "+");
-        if (!allowDecimal) blockedKeys.push(".");
+    // 不適切な文字の入力をブロック (指数表記 e, E, +, -, 小数の区切り)。
+    // 小数の区切りは "." と "," の両方を止める（T394）。`<input type="number">` は、小数をコンマで書く
+    // 言語のブラウザ（pt-BR・de など）では "," を小数点として受け取るので、"." だけを止めると
+    // `allowDecimal={false}` のまま `1,5` が 1.5 として入っていた
+    const blockedKeys = mode === "number" ? ["e", "E"] : [];
+    if (mode === "number" && !allowNegative) blockedKeys.push("-", "+");
+    if (mode === "number" && !allowDecimal) blockedKeys.push(".", ",");
 
-        if (blockedKeys.includes(e.key)) {
-          e.preventDefault();
-        }
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+      if (blockedKeys.includes(e.key)) {
+        e.preventDefault();
       }
 
       onKeyDown?.(e);
+    };
+
+    // キーで止めた文字は、貼り付けでも通さない
+    const handlePaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
+      const text = e.clipboardData.getData("text");
+      if (blockedKeys.some((key) => text.includes(key))) {
+        e.preventDefault();
+      }
+
+      onPaste?.(e);
     };
 
     const Component = asChild ? Slot : Input;
@@ -69,6 +81,7 @@ export const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(
         inputMode={inputMode}
         pattern={pattern}
         onKeyDown={handleKeyDown}
+        onPaste={handlePaste}
         className={classNames("wim-number-input", className)}
         inputClassName={classNames(hideSpinButton && inputStyles.hideSpin)}
       >

@@ -397,7 +397,7 @@
     "multiSelect_prop_required": "必須表示にするかどうか",
     "multiSelect_prop_value": "選択された値（制御時）",
     "multiSelect_prop_width": "フィールドの固定幅（width トークン、CSS 値、または px 単位の数値）",
-    "numberInput_prop_allowDecimal": "小数点を許可するか (mode=\"number\" の場合のみ有効)",
+    "numberInput_prop_allowDecimal": "小数を許可するか (mode=\"number\" の場合のみ有効)。false のときは \".\" と \",\" の両方を止めます（小数をコンマで書く言語のブラウザは、\",\" を小数点として受け取るため）。",
     "numberInput_prop_allowNegative": "負の数を許可するか (mode=\"number\" の場合のみ有効)",
     "numberInput_prop_asChild": "子要素としてレンダリングするかどうか。",
     "numberInput_prop_hideSpinButton": "スピンボタンを非表示にするか",
