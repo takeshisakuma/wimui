@@ -2,11 +2,19 @@ import { describe, it, expect, afterEach } from "vitest";
 import { getLocaleWeekStart, toIntlLocale } from "./weekStart";
 
 describe("getLocaleWeekStart (T388)", () => {
+  // 実行環境の実装（Node 26 は getWeekInfo、Node 22 は weekInfo のプロパティ）を差し替えて試すので、
+  // 両方を元の記述子へ戻す。無かったものだけを消す ── 以前は weekInfo を無条件に消していて、
+  // Node 22（CI）では本物の実装が 2 つ目のテストから無くなっていた
   const proto = Intl.Locale.prototype as unknown as Record<string, unknown>;
-  const original = Object.getOwnPropertyDescriptor(proto, "getWeekInfo");
+  const originals = {
+    getWeekInfo: Object.getOwnPropertyDescriptor(proto, "getWeekInfo"),
+    weekInfo: Object.getOwnPropertyDescriptor(proto, "weekInfo"),
+  };
   afterEach(() => {
-    if (original) Object.defineProperty(proto, "getWeekInfo", original);
-    delete proto.weekInfo;
+    for (const [name, descriptor] of Object.entries(originals)) {
+      if (descriptor) Object.defineProperty(proto, name, descriptor);
+      else delete proto[name];
+    }
   });
 
   it("starts on Sunday for the bundled locales without a region", () => {
@@ -34,6 +42,7 @@ describe("getLocaleWeekStart (T388)", () => {
 
   it("falls back to Sunday when the browser has no week info", () => {
     Object.defineProperty(proto, "getWeekInfo", { value: undefined, configurable: true, writable: true });
+    Object.defineProperty(proto, "weekInfo", { value: undefined, configurable: true, writable: true });
     expect(getLocaleWeekStart("de")).toBe(0);
   });
 });
