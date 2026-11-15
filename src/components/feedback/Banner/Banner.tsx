@@ -29,7 +29,7 @@ type BannerProps = {
    */
   extra?: React.ReactNode;
   /**
-   * Called when the close button is clicked. Providing it shows the close button.
+   * Called when the close button is clicked. Providing it shows the close button. When the close button disappears while it has focus, focus moves to the focusable element just before the component. To send it somewhere else, move focus inside this callback.
    */
   onClose?: () => void;
   /**

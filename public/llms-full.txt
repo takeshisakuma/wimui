@@ -1966,7 +1966,7 @@ section of the page.
     - `intent: "default" | "info" | "success" | "warning" | "danger"` = "default" — Intent (semantic state) of the alert
 @default "default"
     - `icon: React.ReactNode` — Custom icon. When omitted, a default icon matching the intent is displayed.
-    - `onClose: () => void` — Called when the close button is clicked. Providing it shows the close button.
+    - `onClose: () => void` — Called when the close button is clicked. Providing it shows the close button. When the close button disappears while it has focus, focus moves to the focusable element just before the component. To send it somewhere else, move focus inside this callback.
     - `className: string` — Additional CSS class name
     - `children: React.ReactNode` — Content of the alert (treated as the description)
 - **Autosave** — Inline status indicator for automatic save state
@@ -1981,7 +1981,7 @@ section of the page.
     - `icon: boolean | React.ReactNode` = true — Whether to show the icon, or a custom icon element
 @default true
     - `extra: React.ReactNode` — Action element (e.g. a Button component)
-    - `onClose: () => void` — Called when the close button is clicked. Providing it shows the close button.
+    - `onClose: () => void` — Called when the close button is clicked. Providing it shows the close button. When the close button disappears while it has focus, focus moves to the focusable element just before the component. To send it somewhere else, move focus inside this callback.
     - `className: string` — Additional CSS class name
     - `children: React.ReactNode` — Content of the banner
 - **ErrorBoundary** — Runtime error fallback
@@ -2049,7 +2049,7 @@ origin while the card it was meant to cover was 1248x75.
     - `icon: ReactNode` — The icon of notification
     - `intent: "default" | "info" | "success" | "warning" | "danger"` = "default" — The intent of notification
 @default "default"
-    - `onClose: (id?: string) => void` — Callback when notification is closed
+    - `onClose: (id?: string) => void` — Callback when notification is closed. When the close button disappears while it has focus, focus moves to the focusable element just before the component. To send it somewhere else, move focus inside this callback.
     - `closable: boolean` = true — Whether to show close button
     - `className: string` — Additional class name
     - `aria-label: string` — Accessible name for the notification.

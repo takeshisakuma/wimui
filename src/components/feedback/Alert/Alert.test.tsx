@@ -1,3 +1,4 @@
+import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { Alert } from "./Alert";
@@ -77,5 +78,80 @@ describe("Alert", () => {
   it("still becomes a heading when one is asked for", () => {
     render(<Alert title="Section" titleTag="h3" />);
     expect(screen.getByRole("heading", { level: 3 })).toHaveTextContent("Section");
+  });
+
+  // T392: 閉じるボタンは、押すと Alert ごと消える。フォーカスを置いたまま消えると、文書へ落ちていた。
+  describe("focus after closing", () => {
+    const closeWithKeyboard = () => {
+      const close = screen.getByRole("button", { name: /close/i });
+      close.focus();
+      fireEvent.click(close);
+      expect(screen.queryByRole("alert")).not.toBeInTheDocument();
+    };
+
+    it("hands focus to the stop just before the alert", () => {
+      render(
+        <>
+          <button>First</button>
+          <button>Before</button>
+          <Alert title="Saved" onClose={() => {}} />
+          <button>After</button>
+        </>,
+      );
+      closeWithKeyboard();
+      expect(screen.getByRole("button", { name: "Before" })).toHaveFocus();
+    });
+
+    it("hands focus to the first stop when nothing comes before the alert", () => {
+      render(
+        <>
+          <Alert title="Saved" onClose={() => {}} />
+          <button>After</button>
+        </>,
+      );
+      closeWithKeyboard();
+      expect(screen.getByRole("button", { name: "After" })).toHaveFocus();
+    });
+
+    it("does not pick a stop inside the alert, or one that Tab cannot reach", () => {
+      render(
+        <>
+          <button>Before</button>
+          <button tabIndex={-1}>Unreachable</button>
+          <button disabled>Disabled</button>
+          <Alert title="Saved" description={<a href="#details">Details</a>} onClose={() => {}} />
+        </>,
+      );
+      closeWithKeyboard();
+      expect(screen.getByRole("button", { name: "Before" })).toHaveFocus();
+    });
+
+    it("leaves focus where onClose put it", () => {
+      const Screen = () => {
+        const save = React.useRef<HTMLButtonElement>(null);
+        return (
+          <>
+            <button>Before</button>
+            <Alert title="Failed" onClose={() => save.current?.focus()} />
+            <button ref={save}>Save</button>
+          </>
+        );
+      };
+      render(<Screen />);
+      closeWithKeyboard();
+      expect(screen.getByRole("button", { name: "Save" })).toHaveFocus();
+    });
+
+    it("does not move focus when the close button did not have it", () => {
+      render(
+        <>
+          <button>Before</button>
+          <Alert title="Saved" onClose={() => {}} />
+        </>,
+      );
+      fireEvent.click(screen.getByRole("button", { name: /close/i }));
+      expect(screen.queryByRole("alert")).not.toBeInTheDocument();
+      expect(document.body).toHaveFocus();
+    });
   });
 });
