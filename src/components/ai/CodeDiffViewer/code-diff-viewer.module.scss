@@ -81,6 +81,13 @@
     &.active {
       color: var(--wim-color-text-primary);
       background: var(--wim-color-ghost-bg-active);
+
+      /* 強制カラー（T391）。表示の切り替えは、薄い地の色だけで示している */
+      @media (forced-colors: active) {
+        color: HighlightText;
+        forced-color-adjust: none;
+        background: Highlight;
+      }
     }
 
     & + & {

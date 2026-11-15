@@ -103,6 +103,24 @@
 
     &.active {
       background: var(--wim-color-primary-muted);
+
+      /* 強制カラー（T391）。現在の会話は淡い面だけで示している。中の文字は各自の色を持つ */
+      @media (forced-colors: active) {
+        color: HighlightText;
+        forced-color-adjust: none;
+        background: Highlight;
+
+        .icon,
+        .title,
+        .timestamp,
+        .preview {
+          color: HighlightText;
+        }
+
+        .unread {
+          background: HighlightText;
+        }
+      }
     }
   }
 
