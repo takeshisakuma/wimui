@@ -114,6 +114,13 @@ export const ModernApp: Story = {
             background: var(--wim-color-primary);
             border-radius: var(--wim-radius-md);
           }
+          /* 背景だけの図形は、強制カラーで地に溶ける（T391）。docs/rules/css.md */
+          @media (forced-colors: active) {
+            .appshell-modern-brand__mark {
+              forced-color-adjust: none;
+              background: ButtonText;
+            }
+          }
           .appshell-modern-brand__name {
             font-size: var(--wim-font-size-lg);
             font-weight: var(--wim-font-weight-bold);

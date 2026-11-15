@@ -332,7 +332,12 @@ const markShapes = () => {
   let n = 0;
   for (const el of document.querySelectorAll('#storybook-root *, body > div:not(#storybook-root):not(#storybook-docs) *')) {
     if (el instanceof SVGElement || el.closest('svg')) continue;
+    // 絵そのもの（img など）は、背景が地に溶けても中身が描かれる（Image の glassmorphism で誤って数えた）
+    if (el.matches('img, canvas, video')) continue;
     const cs = getComputedStyle(el);
+    // ブラウザが描くコントロールは、強制カラーでもシステムの色で描かれる（素の range で誤って数えた）。
+    // `appearance: none` にして背景で描き直したものは、ここを通らず数える
+    if (el.matches('input[type=range], input[type=checkbox], input[type=radio], progress, meter') && cs.appearance !== 'none') continue;
     if (cs.visibility === 'hidden' || cs.display === 'none' || +cs.opacity === 0) continue;
     const r = el.getBoundingClientRect();
     if (r.width < 2 || r.height < 2 || r.width * r.height < 12) continue;
@@ -389,13 +394,21 @@ const readShapes = () => {
   });
 };
 
-/** 対照。背景だけ（lost のはず）・透明の枠つき・`forced-color-adjust: none`（どちらも残るはず）。 */
+/**
+ * 対照。背景だけ（lost のはず）・透明の枠つき・`forced-color-adjust: none`（どちらも残るはず）。
+ * 絵そのものと、ブラウザが描くコントロールは図形に数えない。`appearance: none` で背景だけにした
+ * コントロールは数える（lost のはず ── 除外が広すぎないことの対照）。
+ */
 const injectShapeControls = () => {
   const d = document.createElement('div');
+  const pixel = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
   d.innerHTML =
     '<div class="ctl-bg" style="width:40px;height:8px;background:#0a58ca"></div>' +
     '<div class="ctl-border" style="width:40px;height:8px;background:#0a58ca;border:1px solid transparent"></div>' +
-    '<div class="ctl-adjust" style="width:40px;height:8px;background:#0a58ca;forced-color-adjust:none"></div>';
+    '<div class="ctl-adjust" style="width:40px;height:8px;background:#0a58ca;forced-color-adjust:none"></div>' +
+    `<img class="ctl-img" alt="" src="${pixel}" style="display:block;width:40px;height:8px;background:#0a58ca">` +
+    '<input class="ctl-range" type="range" aria-label="ctl" style="display:block;width:40px;margin:0;background:#0a58ca">' +
+    '<input class="ctl-check-none" type="checkbox" aria-label="ctl" style="display:block;appearance:none;width:16px;height:16px;margin:0;background:#0a58ca">';
   document.querySelector('#storybook-root').appendChild(d);
 };
 
@@ -481,8 +494,15 @@ if (PART === 'all' || PART === 'shapes') {
   if (SELFTEST) {
     const shapes = result.rows.flatMap((r) => r.shapes || []);
     const lostOf = (cls) => shapes.find((s) => s.cls === cls)?.lost;
-    const ok = lostOf('ctl-bg') === true && lostOf('ctl-border') === false && lostOf('ctl-adjust') === false;
-    console.log(`\nselftest shapes: 背景だけ → ${lostOf('ctl-bg')}（true のはず）/ 透明の枠 → ${lostOf('ctl-border')}（false のはず）/ forced-color-adjust: none → ${lostOf('ctl-adjust')}（false のはず）: ${ok ? 'OK' : 'NG'}`);
+    const counted = (cls) => shapes.some((s) => s.cls === cls);
+    const ok =
+      lostOf('ctl-bg') === true &&
+      lostOf('ctl-border') === false &&
+      lostOf('ctl-adjust') === false &&
+      !counted('ctl-img') &&
+      !counted('ctl-range') &&
+      lostOf('ctl-check-none') === true;
+    console.log(`\nselftest shapes: 背景だけ → ${lostOf('ctl-bg')}（true のはず）/ 透明の枠 → ${lostOf('ctl-border')}（false のはず）/ forced-color-adjust: none → ${lostOf('ctl-adjust')}（false のはず）/ 絵そのもの → ${counted('ctl-img') ? '数えた' : '数えない'}・素の range → ${counted('ctl-range') ? '数えた' : '数えない'}（どちらも数えないはず）/ appearance: none のチェック → ${lostOf('ctl-check-none')}（true のはず）: ${ok ? 'OK' : 'NG'}`);
     selftestOk &&= ok;
   }
 }
