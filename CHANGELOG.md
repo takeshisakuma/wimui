@@ -1,5 +1,38 @@
 # wimui
 
+## 0.74.0
+
+### Minor Changes
+
+- e9c1696: `ColorPicker` に `swatches` を足した。ブランドの色のような決まった色を、ネイティブの選ぶ面の隣に見本として並べ、押すとその色が値になる（`onChange` もネイティブで選んだときと同じに呼ばれる）。見本はラジオグループで、矢印キーで選べ、`label`（無ければ値）で読み上げられる。グループの名前は `swatchesLabel` で変えられる。あわせて `ColorPicker` が `ref` を入力欄へ転送するようにした。
+- 07793f3: `Calendar` / `RangeCalendar` / `DatePicker` の週の始まりの既定を、ロケールから決めるようにした（T388）。`weekStartsOn` を渡さないとき、`setWimLocale`（または `WimProvider` の `locale`）に渡したロケールの週の始まりに従う（`en-GB`・`de` は月曜、`en`・`ja`・`pt` は日曜）。これまでは常に日曜だったので、`de` や `en-GB` を渡している画面では月曜始まりに変わる。日曜のままにしたいときは `weekStartsOn={0}` を渡す。土曜始まりのロケールと、`Intl.Locale` の週の情報を持たないブラウザ（Firefox 152 以前など）は日曜。
+
+  あわせて、`setWimLocale("en-GB")` の地域を暦に使うようにした。文言はこれまでどおり内蔵の言語（`en`）で引くが、曜日名と月名は `en-GB` の書き方になる。
+
+### Patch Changes
+
+- 05e3c7e: 入力欄の消去ボタンを押したあと、フォーカスがその欄（入力欄、または選択系の引き金）へ移るようにした（T392）。消去ボタンは値が空になると消えるので、これまではキーボードで押すとフォーカスが文書へ落ち、次の Tab がページの先頭から始まっていた。`Input`・`SearchInput`・`Select`・`MultiSelect`・`Combobox`・`Cascader`・`TreeSelect`・`DatePicker`・`TimePicker` が対象。
+- 94472ee: `Alert`・`Notification`・`Banner`・`Toast`・`Snackbar` の閉じるボタンが、フォーカスを持ったまま消えるとき、フォーカスが部品の直前のフォーカスできる要素へ移るようにした（T392）。前に無ければ、ページの最初の要素へ移る。これまではフォーカスが文書へ落ち、次の Tab がページの先頭から始まっていた。
+
+  行き先を変えたいときは、`onClose` の中でフォーカスを移す（使う側が移していれば、部品は何もしない）。
+
+  ```tsx
+  <Alert onClose={() => saveButtonRef.current?.focus()} />
+  ```
+
+- 58b1825: 強制カラー（Windows のコントラスト テーマ）で、選択中の項目が見えるようにした（T391 の 3 本目）。対象は Tabs の縦並び、Pagination、Calendar（範囲の中の日を含む）、TreeView、Carousel の点、ThreadList、TreeDiagram、AIResponseFeedback、Reaction、CodeDiffViewer と JsonDiffViewer の表示切替、Radio と Checkbox のカード。通常の表示は変わらない。
+- 705bd1e: 強制カラー（Windows のコントラスト テーマ）で、背景色だけで描いた図形が見えるようにした（T391 の 4 本目）。対象は AgentStatus、Anchor、BottomSheet のつまみ、CalendarHeatmap、GanttChart、HamburgerMenu、ImageCompare の仕切り、Indicator、Loader（LoadingOverlay の印も同じ）、Presence、Progress、RangeSlider、Slider、StreamingText、ThoughtProcess、ThreadList の未読点、Timeline、UsageMeter。通常の表示は変わらない。
+- cc24009: 強制カラー（Windows のコントラスト テーマ）で、`ToggleGroup`・`TabNavigation`（pills / contained）・`ThemeToggle`（segmented）・`Toolbar` の中の切り替えの、選択中の項目が見えるようにした（T391 の 2 本目）。`Tabs`・`TabNavigation` の選択の下線も、強調色で描かれる。通常の表示は変わらない。
+- 8284494: 強制カラー（Windows のコントラスト テーマ）で、`Switch`・`Radio`・`SegmentedControl` の選択・オンの状態が見えるようにした（T391 の 1 本目）。これまでは、背景の色だけで示していたので、`Switch` は部品ごと地に溶け（ラベルの文字だけが残る）、`Radio` は選択の点が消え、`SegmentedControl` はどれが選ばれているか分からなかった。システムの色（`Highlight` / `HighlightText` / `ButtonText` / `GrayText`）で塗り直す。通常の表示は変わらない。
+- 49164b3: `NumberInput` の `allowDecimal={false}`（既定）が、小数をコンマで書く言語のブラウザでも効くようにした（T394）。これまでは `.` のキーだけを止めていたので、表示言語が pt-BR や de のブラウザでは、`1,5` と打つと値が 1.5 になっていた。`,` も止める。あわせて、キーで止めている文字（指数の `e`、`allowNegative` でないときの `-` / `+`、`allowDecimal` でないときの `.` / `,`）を含む貼り付けも受け取らないようにした。
+- 468d342: Dialog、Drawer、BottomSheet、Lightbox を開いても、ページがスクロールバーの幅だけ横にずれないようにした（T395）。スクロールを止めている間は `body` の `scrollbar-gutter` を外し、画面のスクロールバーが消えた分だけ余白を足す。面を重ねて開いたときは、最後の 1 枚を閉じるまでスクロールを止めたままにする。
+- 74d344d: `QueryBuilder` のルール・グループの削除ボタンと、`JsonViewer` の項目の削除ボタンを押したあと、フォーカスが部品の中に残るようにした（T392）。削除ボタンは自分の行ごと消えるので、これまではキーボードで押すとフォーカスが文書へ落ち、次の Tab がページの先頭から始まっていた。行き先は、隣の行の削除ボタン（続けて消せる）。隣が無ければ、`QueryBuilder` はそのグループの「ルールを追加」、`JsonViewer` は親の「追加」。
+- d744836: `Toast` の自動で消えるタイマーが、ポインターが載っている間と、フォーカスが中にある間は止まるようにした（T393）。離れると、残り時間から再開する。これまでは止める手段が無く、読んでいる途中でも、閉じるボタンにフォーカスを置いたままでも `duration`（既定 3 秒）で消え、フォーカスが文書へ落ちていた。
+
+  あわせて、`ToastProvider` で新しいトーストを出すと、前から出ているトーストの残り時間が最初から数え直されていたのを直した。それぞれのトーストは、出てから `duration` で消える。
+
+- a8c55d1: アイコンだけのボタンで、Tooltip の文がボタンの名前と同じときは、その文を説明としては読み上げに渡さないようにした（T398）。名前と違う文のツールチップは、これまでどおり説明として結ぶ。
+
 ## 0.73.0
 
 ### Minor Changes
