@@ -170,6 +170,13 @@
 
   .connector {
     background-color: var(--wim-color-border);
+
+    /* 強制カラー（T391）。Timeline の線に重ねた色も、システム色に戻す。 */
+    @media (forced-colors: active) {
+      color: ButtonText;
+      forced-color-adjust: none;
+      background-color: ButtonText;
+    }
   }
 
   .spinner {

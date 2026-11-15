@@ -82,6 +82,27 @@
       animation: progress-indeterminate var(--progress-indeterminate-duration, 1.5s) infinite linear;
     }
   }
+
+  /* 強制カラー（T391）。軌道と値は背景色だけなので地に溶ける。値は軌道と違う色にする。 */
+  @media (forced-colors: active) {
+    .track {
+      color: ButtonText;
+      forced-color-adjust: none;
+      background-color: ButtonText;
+    }
+
+    .bar,
+    .primary .bar,
+    .success .bar,
+    .warning .bar,
+    .danger .bar,
+    .neutral .bar,
+    .info .bar {
+      color: HighlightText;
+      forced-color-adjust: none;
+      background-color: Highlight;
+    }
+  }
 }
 
 @keyframes progress-indeterminate {

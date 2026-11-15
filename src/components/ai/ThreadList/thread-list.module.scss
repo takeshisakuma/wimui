@@ -153,6 +153,13 @@
     height: var(--wim-spacing-xs);
     background: var(--wim-color-primary);
     border-radius: var(--wim-radius-full);
+
+    /* 強制カラー（T391）。現在の会話以外の未読点。選択中の行は上で HighlightText にする。 */
+    @media (forced-colors: active) {
+      color: ButtonText;
+      forced-color-adjust: none;
+      background-color: ButtonText;
+    }
   }
 
   .title {

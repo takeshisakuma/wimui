@@ -129,6 +129,7 @@ Windows のコントラスト テーマなどの強制カラー（forced-colors�
 - **選択の印が項目の外（兄弟の下線・スライダー）にあるとき、項目の矩形に掛からなければ差にならない。** 縦の Tabs は下線を `Highlight` で塗っても、印が項目の右の外に出て、その項目の画素は変わらなかった。その向きでは項目そのものを塗る。透明の枠は `Canvas` に戻し、選択の差に使わない。
 - **`Highlight` で塗った要素のフォーカスの輪は、`HighlightText` で描く。** フォーカスの mixin は輪を `Highlight` にするので、`Highlight` の面の内側に出す輪（`$inset: true`）は面に溶けます。置き換えを止めた要素では、影で描いた輪もトークンの色のまま出るので、`box-shadow: none` で消します（SegmentedControl の選択中の項目）。
 - **下に敷いたスライダー・下線で選択を示す部品は、mixin を使う。** `indicator-slider-contained` / `indicator-slider-underline`（`src/styles/_indicator-mixins.scss`）は、強制カラーでは面を `Highlight` で塗ります。面の上に文字が載る部品は、選択中の項目に `@include indicator.indicator-forced-colors-content` を、**フォーカスのブロックよりあとに**書きます（文字と輪を `HighlightText` にする）。項目そのものが面を持つなら `indicator-forced-colors-surface` も。ホバーで面の色を変えている規則があれば、強制カラーでは `Highlight` のままにする上書きも要ります（置き換えを止めているので、トークンの色がそのまま出る）。
+- **背景だけの図形が入れ子のときは、親と子でシステム色を変える。** 軌道は `ButtonText`、その上の値は `Highlight`。同じ色にすると、値の親が軌道なので差が無く、値だけ消える（Progress・UsageMeter・Slider）。ホバーがトークン色を塗る規則は、強制カラーのブロックでもう一度システム色にロックする（CalendarHeatmap・GanttChart）。`forced-color-adjust: none` は子孫へ継ぐので、中のコントロール（Slider のつまみ）は `auto` に戻す。
 - 疑似要素（`::before` / `::after`）で描いた印にも、同じように書けます（Radio の点）。
 - 無効の状態は `GrayText`。強制カラーでは `opacity` で薄くしても区別にならないので、色で示します。
 - 色のほかに形でも示せるなら、そのほうが強い（チェックの印・下線・枠の太さ）。新しい部品は、選択を背景の色だけに頼らない形を先に考える。

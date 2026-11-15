@@ -58,6 +58,13 @@ $hamburger-layer-border-radius: 4px !default; // Exception: Geometric Harmony �
         height: $hamburger-layer-height;
         background-color: var(--wim-hamburger-color, #{$hamburger-layer-color});
         border-radius: $hamburger-layer-border-radius;
+
+        /* 強制カラー（T391）。3 本のうち実体は真ん中だけで、上下は疑似要素。どちらも背景色だけ。 */
+        @media (forced-colors: active) {
+          color: ButtonText;
+          forced-color-adjust: none;
+          background-color: ButtonText;
+        }
       }
 
       &::before,

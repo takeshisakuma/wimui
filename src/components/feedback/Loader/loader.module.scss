@@ -187,6 +187,17 @@
         height: 64px; // Exception: Geometric Harmony — サイズ間比率を維持するバー/ドット寸法
       }
     }
+
+    /* 強制カラー（T391）。棒・点・脈は currentcolor の背景だけで、地に溶ける。 */
+    @media (forced-colors: active) {
+      &.bars .item,
+      &.dots .item,
+      &.pulse .item {
+        color: ButtonText;
+        forced-color-adjust: none;
+        background-color: ButtonText;
+      }
+    }
   }
 
   @keyframes wim-loader-bars {

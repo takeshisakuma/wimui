@@ -22,6 +22,12 @@
     &.danger:not(.disabled) {
       .track {
         background-color: var(--wim-color-danger);
+
+        @media (forced-colors: active) {
+          color: HighlightText;
+          forced-color-adjust: none;
+          background-color: Highlight;
+        }
       }
 
       .thumb {
@@ -44,6 +50,13 @@
     height: var(--wim-spacing-sm);
     background-color: var(--wim-color-border-secondary);
     border-radius: var(--wim-radius-full);
+
+    /* 強制カラー（T391）。軌道は背景色だけなので地に溶ける。 */
+    @media (forced-colors: active) {
+      color: ButtonText;
+      forced-color-adjust: none;
+      background-color: ButtonText;
+    }
   }
 
   .track {
@@ -51,6 +64,12 @@
     height: 100%;
     background-color: var(--wim-color-primary);
     border-radius: var(--wim-radius-full);
+
+    @media (forced-colors: active) {
+      color: HighlightText;
+      forced-color-adjust: none;
+      background-color: Highlight;
+    }
   }
 
   .thumb {
@@ -71,6 +90,11 @@
     transform: translate(-50%, -50%);
     transition: box-shadow var(--wim-transition-fast);
     will-change: left;
+
+    /* 軌道が色の置き換えを止めている。つまみはコントロールなので戻す。 */
+    @media (forced-colors: active) {
+      forced-color-adjust: auto;
+    }
 
     &:hover {
       z-index: 2;
