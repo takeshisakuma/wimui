@@ -6891,10 +6891,6 @@
       "required": false,
       "type": "string[]"
     },
-    "Menu.defaultSelectedKeys": {
-      "required": false,
-      "type": "string[]"
-    },
     "Menu.mode": {
       "required": true,
       "values": [
@@ -6924,9 +6920,6 @@
     "MenuInner.defaultOpenKeys": {
       "type": "string[]"
     },
-    "MenuInner.defaultSelectedKeys": {
-      "type": "string[]"
-    },
     "MenuInner.mode": {
       "type": "\"vertical\" | \"horizontal\" | \"inline\""
     },
@@ -6947,9 +6940,6 @@
     },
     "MenuItem.icon": {
       "type": "ReactNode"
-    },
-    "MenuItem.itemKey": {
-      "type": "string"
     },
     "MenuItem.onClick": {
       "type": "() => void"

@@ -50,8 +50,6 @@ export type MenuProps = {
   asChild?: boolean;
   /** Mode of the menu */
   mode?: "vertical" | "horizontal" | "inline";
-  /** Default selected keys */
-  defaultSelectedKeys?: string[];
   /** Default opened submenu keys */
   defaultOpenKeys?: string[];
   /** Accessible name for the menu. */
@@ -209,8 +207,6 @@ export type MenuItemProps = {
   danger?: boolean;
   className?: string;
   icon?: ReactNode;
-  /** Unique key for this item */
-  itemKey?: string;
   /**
    * If true, merge item props onto the child (keep a wrapping `<li role="none">` for valid menu markup).
    */

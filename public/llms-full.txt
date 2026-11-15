@@ -2958,7 +2958,6 @@ dismissed by an outside click or Escape.
     - `className: string` — Additional CSS class name for the container.
     - `asChild: boolean` = false — If true, the menu root will be rendered as its child, merging its props onto that child.
     - `mode: "vertical" | "horizontal" | "inline"` = "vertical" — Mode of the menu
-    - `defaultSelectedKeys: string[]` — Default selected keys
     - `defaultOpenKeys: string[]` = [] — Default opened submenu keys
     - `aria-label: string` — Accessible name for the menu.
     - `aria-labelledby: string` — ID of the element that labels the menu. Takes precedence over `aria-label`.
