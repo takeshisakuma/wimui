@@ -205,7 +205,25 @@ const JsonNode = ({
           <button 
             type="button"
             className={classNames(localStyles.nodeAction, localStyles.delete)} 
-            onClick={(e) => { e.stopPropagation(); onDelete(path); }} 
+            onClick={(e) => {
+              e.stopPropagation();
+              // 削除ボタンは、押すと自分の行ごと消える。フォーカスを置いたまま消えると、フォーカスは
+              // 文書（body）へ落ちる（T392）。消えたあと、同じ位置に来た行（無ければ手前の行）の
+              // 削除ボタンへ移す。兄弟が無くなったら、親の「追加」へ。
+              // 位置で覚える ── 配列の子は key が添字なので、消える前の隣の要素は、消えたあと別の値を映す。
+              const node = e.currentTarget.closest(`.${localStyles.node}`);
+              const siblings = node?.parentElement;
+              const index = siblings && node ? Array.from(siblings.children).indexOf(node) : -1;
+              const parent = siblings?.closest(`.${localStyles.node}`);
+              onDelete(path);
+              requestAnimationFrame(() => {
+                const next = siblings?.isConnected ? siblings.children[Math.min(index, siblings.children.length - 1)] : undefined;
+                (
+                  next?.querySelector<HTMLElement>(`.${localStyles.delete}`) ??
+                  parent?.querySelector<HTMLElement>(`.${localStyles.nodeAction}`)
+                )?.focus();
+              });
+            }}
             title={t("jsonViewer.deleteItem")}
             aria-label={t("jsonViewer.deleteItem")}
           >

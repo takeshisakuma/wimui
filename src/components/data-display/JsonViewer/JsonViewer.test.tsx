@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { JsonViewer } from "./JsonViewer";
 import styles from "./json-viewer.module.scss";
 
@@ -192,6 +192,31 @@ describe("JsonViewer", () => {
       fireEvent.click(screen.getAllByTitle("Delete item")[0]);
       expect(onChange).toHaveBeenCalledWith({ b: 2 });
       expect(screen.queryByText("a:")).not.toBeInTheDocument();
+    });
+
+    // T392: 削除ボタンは自分の行ごと消える。フォーカスを置いたまま消えると、文書へ落ちていた。
+    // 配列の途中の行は、直す前から残っていた（key が添字なので、同じ要素が次の値を映す）。
+    // 1 本目は、直したあとも行き先が 1 つ先へずれないことの確認。落ちていたのは 2 本目の形。
+    it("keeps focus on the delete button of the row that takes the place of the deleted one", async () => {
+      render(<JsonViewer data={[1, 2, 3]} editable />);
+      const first = screen.getAllByTitle("Delete item")[0];
+      first.focus();
+      fireEvent.click(first);
+
+      await waitFor(() => expect(screen.getAllByTitle("Delete item")[0]).toHaveFocus());
+      expect(screen.getAllByTitle("Delete item")).toHaveLength(2);
+    });
+
+    it("moves focus to the previous row when the last row is deleted, and to the parent's add button when none is left", async () => {
+      render(<JsonViewer data={{ a: 1, b: 2 }} editable />);
+      const last = screen.getAllByTitle("Delete item")[1];
+      last.focus();
+      fireEvent.click(last);
+      await waitFor(() => expect(screen.getAllByTitle("Delete item")[0]).toHaveFocus());
+      expect(screen.getAllByTitle("Delete item")).toHaveLength(1);
+
+      fireEvent.click(screen.getAllByTitle("Delete item")[0]);
+      await waitFor(() => expect(screen.getByTitle("Add item")).toHaveFocus());
     });
 
     it("deletes an item from an array", () => {

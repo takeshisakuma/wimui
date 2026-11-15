@@ -121,6 +121,40 @@ describe("QueryBuilder", () => {
     expect(screen.queryByRole("group", { name: "Rule" })).not.toBeInTheDocument();
   });
 
+  // T392: 削除ボタンは自分の行ごと消える。フォーカスを置いたまま消えると、文書へ落ちていた。
+  it("moves focus to the next rule's remove button when a rule is removed", async () => {
+    await renderQB({});
+    act(() => {
+      fireEvent.click(screen.getByText("Add rule"));
+    });
+    act(() => {
+      fireEvent.click(screen.getByText("Add rule"));
+    });
+    const [first, second] = screen.getAllByRole("button", { name: "Remove" });
+    first.focus();
+    act(() => {
+      fireEvent.click(first);
+    });
+
+    expect(first).not.toBeInTheDocument();
+    expect(second).toHaveFocus();
+  });
+
+  it("moves focus to the group's add button when the last rule is removed", async () => {
+    await renderQB({});
+    act(() => {
+      fireEvent.click(screen.getByText("Add rule"));
+    });
+    const remove = screen.getByRole("button", { name: "Remove" });
+    remove.focus();
+    act(() => {
+      fireEvent.click(remove);
+    });
+
+    expect(remove).not.toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Add rule" })).toHaveFocus();
+  });
+
   it("calls onChange with rule removed (controlled)", async () => {
     const onChange = vi.fn();
     const existingRule = { id: "r1", field: "firstName", operator: "=", value: "" } as const;
