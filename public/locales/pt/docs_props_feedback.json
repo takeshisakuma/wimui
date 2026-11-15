@@ -100,7 +100,7 @@
     "toast_prop_aria-labelledby": "ID do elemento que rotula o toast. Tem precedência sobre `aria-label`.",
     "toast_prop_className": "Nome de classe CSS adicional.",
     "toast_prop_description": "Texto de descrição exibido abaixo do título.",
-    "toast_prop_duration": "Tempo em milissegundos antes de o toast fechar automaticamente. Use 0 para desativar o fechamento automático.\n@default 3000",
+    "toast_prop_duration": "Tempo em milissegundos antes de o toast fechar automaticamente. O temporizador pausa enquanto o ponteiro está sobre o toast ou o foco está dentro dele, e continua a partir do tempo restante. Use 0 para desativar o fechamento automático.\n@default 3000",
     "toast_prop_id": "Identificador do toast, passado para onClose. Usado pelo ToastProvider para gerenciar uma pilha.",
     "toast_prop_intent": "Intenção (estado semântico) do toast.\n@default \"default\"",
     "toast_prop_onClose": "Chamado com o id do toast quando ele é fechado.",

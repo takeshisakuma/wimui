@@ -14980,7 +14980,7 @@
       "toast_prop_aria-labelledby": "ID of the element that labels the toast. Takes precedence over `aria-label`.",
       "toast_prop_className": "Additional CSS class name.",
       "toast_prop_description": "Description text displayed below the title.",
-      "toast_prop_duration": "Time in milliseconds before the toast closes automatically. Set 0 to disable auto-close.\n@default 3000",
+      "toast_prop_duration": "Time in milliseconds before the toast closes automatically. The timer pauses while the pointer is over the toast or focus is inside it, and resumes from the remaining time. Set 0 to disable auto-close.\n@default 3000",
       "toast_prop_id": "Identifier of the toast, passed to onClose. Used by ToastProvider to manage a stack.",
       "toast_prop_intent": "Intent (semantic state) of the toast.\n@default \"default\"",
       "toast_prop_onClose": "Called with the toast id when the toast is closed.",
