@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect, useId, useImperativeHandle } from "react";
+import { useFocusHandoff } from "../../_internal/focusHandoff";
 import classNames from "classnames";
 import { Slot } from "@radix-ui/react-slot";
 import localStyles from "./swipe-action.module.scss";
@@ -66,6 +67,10 @@ export const SwipeAction = React.forwardRef<SwipeActionRef, SwipeActionProps>(
     const startX = useRef(0);
     const currentOffset = useRef(0);
     const containerRef = useRef<HTMLDivElement>(null);
+    // 行を消すのは使う側（操作の onClick）。ボタンにフォーカスを置いたまま行が外れると、
+    // フォーカスは文書（body）へ落ちる（T402）。行は並びを知らないので、文書の順で外の直前の
+    // 停止点へ渡す。行が残る操作は、下の runAction が内容へ戻す（この効果は外れるときだけ働く）。
+    useFocusHandoff(containerRef);
 
     useImperativeHandle(ref, () => ({
       close: () => {
@@ -198,7 +203,7 @@ export const SwipeAction = React.forwardRef<SwipeActionRef, SwipeActionProps>(
       setOffset(0);
       listContext?.reportClose(id);
       // 閉じると押したボタンは内容の裏へ戻るので、フォーカスをそこに残さず行の内容へ戻す。
-      // 行が操作で消えた（削除など）ときは、要素ごと無くなるので何もしない。
+      // 行ごと消えたときは、内容も外れる。その受け渡しは useFocusHandoff が行う（T402）。
       if (target && document.activeElement === target) contentRef.current?.focus();
     };
 

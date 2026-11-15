@@ -4,6 +4,7 @@ import { commonNs } from "@/i18n/generated/common";
 import classNames from "classnames";
 import { Icon } from "../../media/Icon/Icon";
 import { PlusIcon, CloseIcon } from "@/icon";
+import { useFocusHandoff } from "../../_internal/focusHandoff";
 import styles from "./thread-list.module.scss";
 
 /** A single conversation entry in the list. */
@@ -89,45 +90,16 @@ export const ThreadList = React.forwardRef<HTMLElement, ThreadListProps>(
           <p className={styles.empty}>{empty}</p>
         ) : (
           <ul className={styles.list}>
-            {threads.map((thread) => {
-              const isActive = thread.id === activeId;
-              return (
-                <li key={thread.id} className={styles.item}>
-                  <button
-                    type="button"
-                    className={classNames(styles.thread, isActive && styles.active)}
-                    aria-current={isActive || undefined}
-                    onClick={() => onSelect?.(thread.id)}
-                  >
-                    {thread.iconName && (
-                      <span className={styles.icon} aria-hidden="true">
-                        <Icon name={thread.iconName} size="sm" />
-                      </span>
-                    )}
-                    <span className={styles.body}>
-                      <span className={styles.titleRow}>
-                        {thread.unread && <span className={styles.unread} aria-hidden="true" />}
-                        <span className={styles.title}>{thread.title}</span>
-                        {thread.timestamp && (
-                          <span className={styles.timestamp}>{thread.timestamp}</span>
-                        )}
-                      </span>
-                      {thread.preview && <span className={styles.preview}>{thread.preview}</span>}
-                    </span>
-                  </button>
-                  {onDelete && (
-                    <button
-                      type="button"
-                      className={styles.deleteButton}
-                      aria-label={deleteLabel}
-                      onClick={() => onDelete(thread.id)}
-                    >
-                      <Icon component={CloseIcon} size="sm" />
-                    </button>
-                  )}
-                </li>
-              );
-            })}
+            {threads.map((thread) => (
+              <ThreadItem
+                key={thread.id}
+                thread={thread}
+                active={thread.id === activeId}
+                deleteLabel={deleteLabel}
+                onSelect={onSelect}
+                onDelete={onDelete}
+              />
+            ))}
           </ul>
         )}
       </nav>
@@ -136,6 +108,62 @@ export const ThreadList = React.forwardRef<HTMLElement, ThreadListProps>(
 );
 
 ThreadList.displayName = "ThreadList";
+
+/**
+ * 会話を消すのは使う側（onDelete）。削除ボタンにフォーカスを置いたまま行が外れると、
+ * フォーカスは文書（body）へ落ちる（T402）。消えるときに、行の外の直前の停止点へ渡す。
+ */
+const ThreadItem = ({
+  thread,
+  active,
+  deleteLabel,
+  onSelect,
+  onDelete,
+}: {
+  thread: Thread;
+  active: boolean;
+  deleteLabel: string;
+  onSelect?: (id: string) => void;
+  onDelete?: (id: string) => void;
+}) => {
+  const ref = React.useRef<HTMLLIElement>(null);
+  useFocusHandoff(ref);
+
+  return (
+    <li ref={ref} className={styles.item}>
+      <button
+        type="button"
+        className={classNames(styles.thread, active && styles.active)}
+        aria-current={active || undefined}
+        onClick={() => onSelect?.(thread.id)}
+      >
+        {thread.iconName && (
+          <span className={styles.icon} aria-hidden="true">
+            <Icon name={thread.iconName} size="sm" />
+          </span>
+        )}
+        <span className={styles.body}>
+          <span className={styles.titleRow}>
+            {thread.unread && <span className={styles.unread} aria-hidden="true" />}
+            <span className={styles.title}>{thread.title}</span>
+            {thread.timestamp && <span className={styles.timestamp}>{thread.timestamp}</span>}
+          </span>
+          {thread.preview && <span className={styles.preview}>{thread.preview}</span>}
+        </span>
+      </button>
+      {onDelete && (
+        <button
+          type="button"
+          className={styles.deleteButton}
+          aria-label={deleteLabel}
+          onClick={() => onDelete(thread.id)}
+        >
+          <Icon component={CloseIcon} size="sm" />
+        </button>
+      )}
+    </li>
+  );
+};
 
 /** Alias of {@link ThreadList} for apps that prefer the "conversation" vocabulary. */
 export const ConversationList = ThreadList;
