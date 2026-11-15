@@ -2405,7 +2405,9 @@ what a scanner would read.
     - `maxDate: Date` — Latest selectable date
     - `disabledDates: Date[]` — Dates that cannot be selected
     - `isDateDisabled: (date: Date) => boolean` — Function returning whether a given date is disabled
-    - `weekStartsOn: 0 | 1` = 0 — First day of the week (0 = Sunday, 1 = Monday)
+    - `weekStartsOn: 0 | 1` — First day of the week (0 = Sunday, 1 = Monday). In `Calendar`, it defaults
+to the locale's first day (`en-GB` and `de` start on Monday; a locale that
+starts on Saturday, or a browser without `Intl.Locale` week info, falls back to Sunday).
     - `className: string` — Additional class names
     - `disabled: boolean` = false — Whether the calendar is disabled
     - `onChange: (date: Date) => void` — Callback when a date is selected (single mode)
@@ -2721,7 +2723,8 @@ renders inline, next to whatever follows it.
     - `maxDate: Date` — 選択可能な最大日付。
     - `disabledDates: Date[]` — 無効化する日付の配列。
     - `isDateDisabled: (date: Date) => boolean` — 特定の日付を無効化する関数。
-    - `weekStartsOn: 0 | 1` — 週の開始曜日。0 = 日曜始まり、1 = 月曜始まり。デフォルトは 0。
+    - `weekStartsOn: 0 | 1` — First day of the week (0 = Sunday, 1 = Monday). Defaults to the locale's
+first day, as in `Calendar`.
 - **Reaction** — Display emoji reaction buttons with toggleable state and counts
     - `reactions: ReactionItem[]` (required) — List of reactions
     - `onReact: (emoji: string, active: boolean) => void` — Callback when a reaction is added or removed

@@ -1,6 +1,7 @@
 import { render, screen, fireEvent, act } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { Calendar } from "./Calendar";
+import { setWimLocale } from "../../../i18n/instance";
 import React from "react";
 import styles from "./calendar.module.scss";
 
@@ -115,6 +116,25 @@ describe("Calendar", () => {
     expect(focusedDay()).toBe("2024-1-15");
     press("End");
     expect(focusedDay()).toBe("2024-1-21");
+  });
+
+  it("starts the week from the locale's first day when weekStartsOn is omitted (T388)", () => {
+    act(() => setWimLocale("en-GB"));
+    try {
+      const { unmount } = render(<Calendar defaultValue={new Date(2024, 0, 17)} />);
+      focusDay("2024-1-17");
+      press("Home");
+      expect(focusedDay()).toBe("2024-1-15");
+      expect(screen.getAllByRole("columnheader")[0]).toHaveTextContent("Mon");
+      unmount();
+      // 渡した値はロケールより優先する
+      render(<Calendar defaultValue={new Date(2024, 0, 17)} weekStartsOn={0} />);
+      focusDay("2024-1-17");
+      press("Home");
+      expect(focusedDay()).toBe("2024-1-14");
+    } finally {
+      act(() => setWimLocale("en"));
+    }
   });
 
   it("skips disabled days in the direction of travel", () => {

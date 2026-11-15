@@ -36,6 +36,10 @@ let currentLocale: string = wimLocales.includes(FALLBACK_LOCALE)
   ? FALLBACK_LOCALE
   : (wimLocales[0] ?? FALLBACK_LOCALE);
 
+// 渡されたままのロケール（"en-GB" など）。文言は内蔵の言語へ丸めた currentLocale で引くが、
+// 暦（週の始まり・曜日名・月名）は地域で変わるので、丸める前の値で決める（T388）
+let formatLocale: string = currentLocale;
+
 const listeners = new Set<LocaleListener>();
 
 /** 現在のロケール（例: "en" / "ja" / "pt"）を返す。 */
@@ -44,8 +48,17 @@ export function getWimLocale(): string {
 }
 
 /**
+ * 暦の計算（`Intl`）に使うロケール。`setWimLocale` に渡したままの値（"en-GB" など）。
+ * `Intl` が読める値とは限らないので、使う側で `toIntlLocale` を通す。部品の中だけで使う。
+ */
+export function getWimFormatLocale(): string {
+  return formatLocale;
+}
+
+/**
  * ライブラリ内蔵コンポーネントの表示言語を切り替える。
  * 未対応の言語コードは言語サブタグ（"ja-JP" → "ja"）で解決を試みる。
+ * 地域（"en-GB" の "GB"）は文言には効かないが、暦（Calendar の週の始まり・曜日名・月名）には効く。
  */
 export function setWimLocale(locale: string): void {
   const base = typeof locale === "string" ? locale.split("-")[0] : "";
@@ -54,8 +67,9 @@ export function setWimLocale(locale: string): void {
     : wimLocales.includes(base)
       ? base
       : locale;
-  if (next === currentLocale) return;
+  if (next === currentLocale && locale === formatLocale) return;
   currentLocale = next;
+  formatLocale = locale;
   for (const listener of listeners) listener();
 }
 

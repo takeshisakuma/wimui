@@ -1,9 +1,11 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
+import { getWimFormatLocale, getWimLocale, subscribeWimLocale } from "@/i18n/instance";
 import classNames from "classnames";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { commonNs } from "@/i18n/generated/common";
 import { dataDisplayNs } from "@/i18n/generated/data-display";
 import { useCalendar, UseCalendarProps, isSameDay, isToday } from "./useCalendar";
+import { getLocaleWeekStart, toIntlLocale } from "../../_internal/weekStart";
 import { Icon } from "../../media/Icon/Icon";
 import { VisuallyHidden } from "../../layout/VisuallyHidden/VisuallyHidden";
 import styles from "./calendar.module.scss";
@@ -77,11 +79,18 @@ export const Calendar = ({
   maxDate,
   disabledDates,
   isDateDisabled,
-  weekStartsOn = 0,
+  weekStartsOn: weekStartsOnProp,
   ...props
 }: CalendarProps) => {
   // 内蔵の翻訳は `t(` の呼び出しから使うキーを拾う（i18n:bundle）。名前空間は配列で渡す
-  const { t, i18n } = useWimTranslation([commonNs, dataDisplayNs]);
+  const { t } = useWimTranslation([commonNs, dataDisplayNs]);
+  // 渡されなければ、ロケールの週の始まり（en-GB・de は月曜、en・ja・pt は日曜。T388）
+  // 暦（Intl）は丸める前のロケール（"en-GB" など）で決める。翻訳のフックに足すと、暦を使わない
+  // 全部品（{ Button } 単体も）が読む分が増えるので、ここだけで購読する
+  const requestedLocale = useSyncExternalStore(subscribeWimLocale, getWimFormatLocale, getWimFormatLocale);
+  const formatLocale = useMemo(() => toIntlLocale(requestedLocale, getWimLocale()), [requestedLocale]);
+  const localeWeekStart = useMemo(() => getLocaleWeekStart(formatLocale), [formatLocale]);
+  const weekStartsOn = weekStartsOnProp ?? localeWeekStart;
   const {
     viewDate,
     setViewDate,
@@ -359,21 +368,21 @@ export const Calendar = ({
   // 1970-01-04 は日曜なので、そこから 7 日ぶんが日曜始まりの並びになる
   // （下の `weekStartsOn` の回転ロジックはこの並びを前提にしている）。
   const weekDayNames = useMemo(() => {
-    const format = new Intl.DateTimeFormat(i18n.language, {
+    const format = new Intl.DateTimeFormat(formatLocale, {
       weekday: "short",
       timeZone: "UTC",
     });
     return Array.from({ length: 7 }, (_, i) =>
       format.format(new Date(Date.UTC(1970, 0, 4 + i))),
     );
-  }, [i18n.language]);
+  }, [formatLocale]);
   const monthShortFormat = useMemo(
-    () => new Intl.DateTimeFormat(i18n.language, { month: "short", timeZone: "UTC" }),
-    [i18n.language],
+    () => new Intl.DateTimeFormat(formatLocale, { month: "short", timeZone: "UTC" }),
+    [formatLocale],
   );
   const monthLongFormat = useMemo(
-    () => new Intl.DateTimeFormat(i18n.language, { year: "numeric", month: "long", timeZone: "UTC" }),
-    [i18n.language],
+    () => new Intl.DateTimeFormat(formatLocale, { year: "numeric", month: "long", timeZone: "UTC" }),
+    [formatLocale],
   );
   const displayWeekDayNames = [...weekDayNames];
   if (weekStartsOn === 1) {

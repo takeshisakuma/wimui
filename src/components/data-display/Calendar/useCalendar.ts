@@ -31,7 +31,11 @@ export interface UseCalendarProps {
   disabledDates?: Date[];
   /** Function returning whether a given date is disabled */
   isDateDisabled?: (date: Date) => boolean;
-  /** First day of the week (0 = Sunday, 1 = Monday) */
+  /**
+   * First day of the week (0 = Sunday, 1 = Monday). In `Calendar`, it defaults
+   * to the locale's first day (`en-GB` and `de` start on Monday; a locale that
+   * starts on Saturday, or a browser without `Intl.Locale` week info, falls back to Sunday).
+   */
   weekStartsOn?: 0 | 1;
 }
 
