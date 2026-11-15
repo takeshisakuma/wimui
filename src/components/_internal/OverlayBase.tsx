@@ -1,4 +1,5 @@
-import React, { ReactNode, useEffect } from "react";
+import React, { ReactNode, useEffect, useLayoutEffect } from "react";
+import { lockBodyScroll } from "./bodyScrollLock";
 import { Portal } from "../overlay/Portal/Portal";
 import { Transition } from "../layout/Transition/Transition";
 import { FocusTrap } from "../overlay/FocusTrap/FocusTrap";
@@ -108,15 +109,10 @@ export const OverlayBase = ({
     };
   }, [open, onOpenChange, closeOnEscape]);
 
-  // Lock body scroll
-  useEffect(() => {
-    if (open) {
-      const originalStyle = window.getComputedStyle(document.body).overflow;
-      document.body.style.overflow = "hidden";
-      return () => {
-        document.body.style.overflow = originalStyle;
-      };
-    }
+  // スクロールを止める。描画の前に幅を埋める（描いてからだと、1 フレームずれる）。
+  useLayoutEffect(() => {
+    if (!open) return;
+    return lockBodyScroll();
   }, [open]);
 
   return (
