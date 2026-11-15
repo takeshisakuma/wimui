@@ -88,6 +88,26 @@
         border-color: var(--wim-color-primary);
       }
 
+      /* 強制カラーでは背景が地の色に置き換わり、表示中のビューのボタンがほかと同じ姿になる（T391。
+         画素の差は通常 1,200〜2,000、強制カラーは 2）。置き換えを止めて、システムの色で塗る。
+         ホバーの規則がトークンの色を塗り直さないよう、ホバー中も同じ色にロックする。クラスを重ねて
+         いるのは、下のフォーカスの規則と同じ理由（FullCalendar の `.fc .fc-button-primary:not(:disabled)
+         .fc-button-active` に、順序に頼らず勝つため）。 */
+      @media (forced-colors: active) {
+        &.fc-button.fc-button.fc-button-active,
+        &.fc-button.fc-button.fc-button-active:hover:not(:disabled) {
+          color: HighlightText;
+          forced-color-adjust: none;
+          background: Highlight;
+          border-color: Highlight;
+        }
+
+        /* 置き換えを止めた要素は、outline もトークンの色のまま出る */
+        &.fc-button.fc-button.fc-button.fc-button-active:focus-visible {
+          outline-color: Highlight;
+        }
+      }
+
       /* FullCalendar は `.fc .fc-button:focus { outline: 0; box-shadow: … }` で、灰色の影の輪だけで
          フォーカスを示す（フォーカス色ではなく、強制カラーでは影ごと消える）。影を外し、キーボードの
          ときは既定と同じ outline を出す。クラスを 3 つ重ねているのは、FullCalendar のいちばん強い規則
