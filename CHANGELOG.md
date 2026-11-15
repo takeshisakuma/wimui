@@ -1,5 +1,13 @@
 # wimui
 
+## 0.74.2
+
+### Patch Changes
+
+- c62d23a: `Anchor` の別名に Table of Contents / TableOfContents を足した（Mantine の `TableOfContents` に当たる部品）。同梱の `llms.txt` と `llms/Anchor.md` に `aka` として出るので、その名前で探しても `Anchor` に届く。
+- 2396c31: 強制カラー（Windows のコントラスト テーマ）で、`ScheduleView` の表示切替（月・週・日）のうち、表示中のビューのボタンが見分けられるようにした（T391）。通常の表示は変わらない。
+- 8254e04: `Kanban` の「列へ移動」の一覧で、項目のフォーカスの輪が一覧の端で切れていたのを直した。輪を項目の内側に描くので、どの項目でも四辺が見える。
+
 ## 0.74.1
 
 ### Patch Changes
