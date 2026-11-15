@@ -312,7 +312,7 @@ export function BillingOverview() {
 ### navigation — `import { … } from "wimui/navigation"`
 
 - **Affix** — Sticky elements (aka Sticky)
-- **Anchor** — Smooth scroll links (aka Scrollspy)
+- **Anchor** — Smooth scroll links (aka Scrollspy, Table of Contents, TableOfContents)
 - **BackTop** — Back to top button (aka Back to Top)
 - **Breadcrumb** — Location trace (aka Path Bar, Path Control)
 - **CommandPalette** — Cmd+K search overlay (aka Command Bar, Quick Open)

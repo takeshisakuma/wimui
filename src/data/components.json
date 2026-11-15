@@ -946,7 +946,9 @@
         "pc": true,
         "mobile": true,
         "aliases": [
-          "Scrollspy"
+          "Scrollspy",
+          "Table of Contents",
+          "TableOfContents"
         ]
       },
       {
