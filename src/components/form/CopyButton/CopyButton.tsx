@@ -81,7 +81,9 @@ export const CopyButton = ({
           // Button が、名前の無いアイコンだけのボタンにアイコン名（"CopyIcon"）を名前として付ける。
           aria-label={ariaLabel || labelText}
           aria-labelledby={ariaLabelledBy}
-          aria-describedby={ariaDescribedBy}
+          // 未指定の `undefined` を渡すと、ツールチップが付ける `aria-describedby` を上書きして消す。
+          // 名前とツールチップの文が同じときは Tooltip 側で外す（T398）。
+          {...(ariaDescribedBy ? { "aria-describedby": ariaDescribedBy } : {})}
         >
           {asChild ? children : undefined}
         </Button>

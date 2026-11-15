@@ -53,4 +53,44 @@ describe("Tooltip", () => {
     expect(screen.queryByText("Tooltip info")).not.toBeInTheDocument();
     vi.useRealTimers();
   });
+
+  it("describes the trigger when the tooltip text differs from the name", () => {
+    render(
+      <Tooltip open>
+        <TooltipTrigger>Hover me</TooltipTrigger>
+        <TooltipContent>Tooltip info</TooltipContent>
+      </Tooltip>,
+    );
+    const trigger = screen.getByRole("button", { name: "Hover me" });
+    const describedBy = trigger.getAttribute("aria-describedby");
+    expect(describedBy).toBeTruthy();
+    expect(document.getElementById(describedBy!)?.textContent).toContain("Tooltip info");
+  });
+
+  it("does not describe the trigger when the tooltip text repeats the name", () => {
+    render(
+      <Tooltip open>
+        <TooltipTrigger asChild>
+          <button type="button" aria-label="Helpful">icon</button>
+        </TooltipTrigger>
+        <TooltipContent>Helpful</TooltipContent>
+      </Tooltip>,
+    );
+    expect(screen.getByRole("button", { name: "Helpful" })).not.toHaveAttribute("aria-describedby");
+  });
+
+  it("keeps a description the caller passed, even when the tooltip repeats the name", () => {
+    render(
+      <>
+        <span id="hint">Extra</span>
+        <Tooltip open>
+          <TooltipTrigger asChild>
+            <button type="button" aria-label="Helpful" aria-describedby="hint">icon</button>
+          </TooltipTrigger>
+          <TooltipContent>Helpful</TooltipContent>
+        </Tooltip>
+      </>,
+    );
+    expect(screen.getByRole("button", { name: "Helpful" })).toHaveAttribute("aria-describedby", "hint");
+  });
 });

@@ -47,6 +47,15 @@ describe("AIResponseFeedback", () => {
     expect(onRegenerate).toHaveBeenCalled();
   });
 
+  it("does not describe a button with the same text as its name", () => {
+    render(<AIResponseFeedback showRegenerate />);
+    for (const name of ["Helpful", "Not helpful", "Regenerate response"]) {
+      const button = screen.getByRole("button", { name });
+      fireEvent.focus(button);
+      expect(button).not.toHaveAttribute("aria-describedby");
+    }
+  });
+
   it("disables all buttons when disabled", () => {
     render(<AIResponseFeedback disabled showRegenerate />);
     screen.getAllByRole("button").forEach((btn) => {
