@@ -75,6 +75,13 @@
     width: var(--wim-border-width-thick);
     background: var(--wim-color-white);
     transform: translateX(-50%);
+
+    /* 強制カラー（T391）。仕切り線は背景色だけなので地に溶ける。 */
+    @media (forced-colors: active) {
+      color: ButtonText;
+      forced-color-adjust: none;
+      background-color: ButtonText;
+    }
   }
 
   .handle {

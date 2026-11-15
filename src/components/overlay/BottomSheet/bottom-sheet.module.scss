@@ -59,6 +59,13 @@
     margin: var(--wim-spacing-sm) auto;
     background-color: var(--border-strong, var(--wim-color-border));
     border-radius: var(--wim-radius-sm);
+
+    /* 強制カラー（T391）。つまみは背景色だけなので地に溶ける。 */
+    @media (forced-colors: active) {
+      color: ButtonText;
+      forced-color-adjust: none;
+      background-color: ButtonText;
+    }
   }
   
   .header {

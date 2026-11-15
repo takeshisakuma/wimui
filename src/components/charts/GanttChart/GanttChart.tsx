@@ -293,7 +293,6 @@ export const GanttChart = ({
                       height: rowHeight - 12,
                       top: 6,
                       "--gantt-bar-bg": task.color ?? "var(--wim-color-primary)",
-                      backgroundColor: "var(--gantt-bar-bg)",
                     } as React.CSSProperties}
                     tabIndex={0}
                     aria-label={mergedLabels.ariaTaskBar(

@@ -152,10 +152,18 @@
     color: var(--wim-color-text-on-primary);
     cursor: default;
     outline: none;
+    background-color: var(--gantt-bar-bg, var(--wim-color-primary));
     border-radius: var(--wim-radius-component);
     transition:
       box-shadow var(--wim-duration-fast) var(--wim-easing-standard),
       background-color var(--wim-duration-fast) var(--wim-easing-standard);
+
+    /* 強制カラー（T391）。バーは背景色だけなので地に溶ける。ホバーのトークン色もロックする。 */
+    @media (forced-colors: active) {
+      color: HighlightText;
+      forced-color-adjust: none;
+      background-color: Highlight;
+    }
 
     &:focus-visible {
       @include focus.forced-colors-outline;
@@ -168,10 +176,18 @@
 
       &:hover {
         background-color: oklch(from var(--gantt-bar-bg, var(--wim-color-primary)) calc(l * 0.9) c h);
+
+        @media (forced-colors: active) {
+          background-color: Highlight;
+        }
       }
 
       &:active {
         background-color: oklch(from var(--gantt-bar-bg, var(--wim-color-primary)) calc(l * 0.8) c h);
+
+        @media (forced-colors: active) {
+          background-color: Highlight;
+        }
       }
     }
   }
@@ -182,6 +198,15 @@
     pointer-events: none;
     background-color: var(--wim-color-overlay-medium);
     border-right: var(--wim-border-width-thin) solid var(--wim-color-glass-border);
+
+    /* 親のバーが色の置き換えを止めるので、進捗の帯はシステム色で塗り直す。 */
+    @media (forced-colors: active) {
+      color: Highlight;
+      forced-color-adjust: none;
+      background-color: HighlightText;
+      border-right-color: HighlightText;
+    }
+
     border-radius: var(--wim-radius-component) 0 0 var(--wim-radius-component);
   }
 }

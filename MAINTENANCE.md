@@ -769,10 +769,12 @@ npm run measure:forced-colors-state -- --selftest            # 対照を注入�
 | Switch・Radio・SegmentedControl を直したあと | 31 | 19 | 41 | 33 | 302 / 313 |
 | 2 本目（ToggleGroup・TabNavigation・ThemeToggle・Toolbar と、スライダーの mixin）のあと | 24 | 15 | 52 | 33 | 288 / 313 |
 | 3 本目（選択を項目の面・枠で示す部品。下の一覧）のあと | 0 | 5 | 86 | 33 | 280 / 313 |
+| 4 本目（背景だけの図形。下の一覧）のあと | 未測定 | 未測定 | 未測定 | 未測定 | 3 / 313 |
 
 - 直ったのは 19 組: Switch 1・SwitchGroup 3・RadioGroup 6・SegmentedControl 7・QueryBuilder の中の SegmentedControl 2。RadioGroup のカード型の 2 は weak に入った（通常はカードの面も変わるので差が大きく、強制カラーでは点の 60 画素だけ ── 点は見えている）
 - **2 本目で直ったのは 11 組**: ToggleGroup 5・ThemeToggle 3・TabNavigation 2・Toolbar 1（lost + weak は 50 → 39）。スライダーと下線の mixin（`src/styles/_indicator-mixins.scss`）が Highlight で塗るようにしたので、下の「残り」のうち ToggleGroup・ThemeToggle・TabNavigation・Toolbar は済み。**Tabs の縦並びは lost のまま**（下線は塗られるが、縦の姿では差が 0 画素 ── 未調査）
 - **3 本目で直ったのは 34 組**（lost + weak は 39 → 5。組 124・エラー 0・unmoved 33 は 2 本目と同じ）。選択を項目そのものの面か枠で示している部品: Tabs の縦並び（下線はリストの右端にあって項目の矩形に掛からない。透明の右枠は全項目に色が付く）・Pagination（DataGrid の中も）・Calendar の日と月年・範囲の中の日・TreeView・Carousel の点・ThreadList・TreeDiagram・AIResponseFeedback・Reaction・CodeDiffViewer / JsonDiffViewer の表示切替・Radio と Checkbox のカード。**残る weak は ScheduleView の 5 だけ**（FullCalendar のボタン。通常は 1,200〜2,000 画素、強制カラーは 2 画素）。shapes は Carousel の点が減って 280（lost を持つ部品は 22）
+- **4 本目で直したのは図形**（state は取り直していない。ScheduleView の weak 5 は 3 本目のまま）。shapes の lost は 280 → 3（図形 313・ストーリー 1,117・エラー 0。lost を持つ部品は 22 → 3）。直したのは AgentStatus・Anchor・BottomSheet のつまみ・CalendarHeatmap・GanttChart・HamburgerMenu・ImageCompare の仕切り・Indicator・Loader（LoadingOverlay の印も同じクラス）・Presence・Progress・RangeSlider・Slider の値・StreamingText・ThoughtProcess・ThreadList の未読点・Timeline・UsageMeter。**残る 3 個はストーリーが置いた飾り**: AppShell の `appshell-modern-brand__mark`、Image の glassmorphism が img に足したガラス面、ImageCompare の controlled が置いた素の range。BentoGrid に出ていたバー 2 本は Progress で、Progress を塗ると消えた。**戻すと鳴る**: CalendarHeatmap の強制カラーの規則だけ外して測り直すと、セル 80 が lost に戻った。規則は戻してからコミットした
 - **残り**（1 本目の時点の lost）: Carousel の点 6・ToggleGroup 5・CodeDiffViewer と JsonDiffViewer の表示切替（lost 4・weak 8 を合わせて 12）・ThemeToggle 3・Pagination 2（DataGrid の中も 2）・TabNavigation 2・Tabs 1・Calendar 1・AIResponseFeedback 1・ThreadList 1・Toolbar 1・TreeDiagram 1・TreeView 1。weak: ScheduleView 5・RangeCalendar 2・CheckboxGroup 1・Reaction 1
 - **shapes の残り 302**: Loader 61・CalendarHeatmap 80・Timeline 22・Progress 20・GanttChart 17・UsageMeter 16・ThoughtProcess 11 ほか 27 部品（T391 に一覧）
 - 直し方は `docs/rules/css.md` の「強制カラーで、状態と図形を消さない」

@@ -1,4 +1,4 @@
-import React, { useState, ReactNode, useRef } from "react";
+import React, { useState, useLayoutEffect, ReactNode, useRef } from "react";
 import {
   useFloating,
   autoUpdate,
@@ -38,7 +38,62 @@ type TooltipContextValue = {
   arrowRef: React.RefObject<SVGSVGElement | null>;
   placement: string;
   variant: "default" | "glass";
+  /** ツールチップの文。名前と同じときは説明として結ばない（T398）。 */
+  descriptionText: string;
+  setDescriptionText: (text: string) => void;
+  floatingId: string | undefined;
 };
+
+function normalizeText(value: string): string {
+  return value.replace(/\s+/g, " ").trim();
+}
+
+function textOf(node: ReactNode): string {
+  if (node == null || typeof node === "boolean") return "";
+  if (typeof node === "string" || typeof node === "number") return String(node);
+  if (Array.isArray(node)) return node.map(textOf).join("");
+  if (React.isValidElement(node)) {
+    const props = node.props as { children?: ReactNode };
+    return textOf(props.children);
+  }
+  return "";
+}
+
+/** 引き金のアクセシブルな名前。`aria-labelledby`、`aria-label`、中の文字の順。 */
+function triggerName(props: Record<string, unknown>, children: ReactNode): string {
+  const labelledBy = props["aria-labelledby"];
+  if (typeof labelledBy === "string" && labelledBy.trim() && typeof document !== "undefined") {
+    const text = labelledBy
+      .split(/\s+/)
+      .filter(Boolean)
+      .map((id) => document.getElementById(id)?.textContent ?? "")
+      .join(" ");
+    return normalizeText(text);
+  }
+  const label = props["aria-label"];
+  if (typeof label === "string") return normalizeText(label);
+  return normalizeText(textOf(children));
+}
+
+/**
+ * 名前とツールチップの文が同じとき、ツールチップ自身の id を `aria-describedby` から外す。
+ * 利用者が別に渡した id は残す。
+ */
+function withoutDuplicateDescription(
+  props: Record<string, unknown>,
+  children: ReactNode,
+  description: string,
+  floatingId: string | undefined,
+) {
+  if (!description || !floatingId) return;
+  const describedBy = props["aria-describedby"];
+  if (typeof describedBy !== "string" || !describedBy.trim()) return;
+  const name = triggerName(props, children);
+  if (!name || name !== description) return;
+  const ids = describedBy.split(/\s+/).filter((id) => id && id !== floatingId);
+  if (ids.length > 0) props["aria-describedby"] = ids.join(" ");
+  else delete props["aria-describedby"];
+}
 
 // Context to share state between components
 const TooltipContext = React.createContext<TooltipContextValue | null>(null);
@@ -84,6 +139,7 @@ export const Tooltip = ({
   variant = "default",
 }: TooltipProps) => {
   const [uncontrolledOpen, setUncontrolledOpen] = useState(false);
+  const [descriptionText, setDescriptionText] = useState("");
 
   const open = controlledOpen ?? uncontrolledOpen;
   const setOpen = (newOpen: boolean) => {
@@ -154,6 +210,9 @@ export const Tooltip = ({
         arrowRef,
         placement: finalPlacement,
         variant,
+        descriptionText,
+        setDescriptionText,
+        floatingId: context.floatingId,
       }}
     >
       <div className={classNames("wim-tooltip", styles.root, className)}>
@@ -199,12 +258,26 @@ export const TooltipTrigger = React.forwardRef<
         className,
         childProps.className as string | undefined,
       ),
-    }) as React.HTMLAttributes<Element>;
+    }) as Record<string, unknown>;
+    withoutDuplicateDescription(
+      referenceProps,
+      children,
+      context.descriptionText,
+      context.floatingId,
+    );
     return React.cloneElement(children, {
       ...referenceProps,
       "data-state": context.open ? "open" : "closed",
     } as React.HTMLAttributes<Element>);
   }
+
+  const referenceProps = context.getReferenceProps(props) as Record<string, unknown>;
+  withoutDuplicateDescription(
+    referenceProps,
+    children,
+    context.descriptionText,
+    context.floatingId,
+  );
 
   return (
     <button
@@ -212,9 +285,7 @@ export const TooltipTrigger = React.forwardRef<
       type="button"
       className={classNames(styles.trigger, className)}
       data-state={context.open ? "open" : "closed"}
-      {...(context.getReferenceProps(
-        props,
-      ) as React.ButtonHTMLAttributes<HTMLButtonElement>)}
+      {...(referenceProps as React.ButtonHTMLAttributes<HTMLButtonElement>)}
     >
       {children}
     </button>
@@ -245,8 +316,13 @@ export const TooltipContent = React.forwardRef<
     floatingStyles,
     getFloatingProps,
     arrowRef,
+    setDescriptionText,
   } = context;
   const ref = useMergeRefs([refs.setFloating, propRef]);
+  const text = normalizeText(textOf(children));
+  useLayoutEffect(() => {
+    setDescriptionText(text);
+  }, [text, setDescriptionText]);
 
   if (!open) return null;
 

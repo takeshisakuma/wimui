@@ -90,6 +90,13 @@
     flex-grow: 1;
     width: var(--wim-border-width-thick);
     background-color: var(--wim-color-border);
+
+    /* 強制カラー（T391）。線は背景色だけなので地に溶ける。 */
+    @media (forced-colors: active) {
+      color: ButtonText;
+      forced-color-adjust: none;
+      background-color: ButtonText;
+    }
   }
 
   .point {
@@ -114,6 +121,16 @@
     @each $name, $pairs in intents.$token-colors {
       &.#{$name} {
         background-color: #{map.get($pairs, "base")};
+      }
+    }
+
+    /* 強制カラー（T391）。アイコンの無い点は背景色だけなので地に溶ける。
+       アイコン付きは枠があるので、色の置き換えは止めない。 */
+    &:not(.icon) {
+      @media (forced-colors: active) {
+        color: ButtonText;
+        forced-color-adjust: none;
+        background-color: ButtonText;
       }
     }
 
