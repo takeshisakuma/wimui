@@ -112,3 +112,27 @@ export const FullWidth: Story = {
     layout: "padded",
   },
 };
+
+export const Swatches: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      // 見本のボタンは <label> の中に置かない（入力欄の名前に見本の名前が混ざる）。label prop で渡す
+      <ColorPicker
+        {...args}
+        label={t("story.colorpicker_swatches")}
+        swatches={[
+          { value: "#3b82f6", label: t("story.colorpicker_swatch_blue") },
+          { value: "#10b981", label: t("story.colorpicker_swatch_green") },
+          { value: "#f59e0b", label: t("story.colorpicker_swatch_amber") },
+          { value: "#ef4444", label: t("story.colorpicker_swatch_red") },
+          { value: "#8b5cf6", label: t("story.colorpicker_swatch_violet") },
+          { value: "#6b7280", label: t("story.colorpicker_swatch_gray") },
+        ]}
+      />
+    );
+  },
+  args: {
+    defaultValue: "#10b981",
+  },
+};

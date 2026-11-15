@@ -29,7 +29,7 @@
     "colorinput_scenario_1": "ブランド設定: 管理者がホワイトラベルアプリの正確なメインカラーを指定できるようにします。",
     "colorinput_scenario_2": "CSSエディタ: 開発者向けツールで16進数コードを入力・プレビューする手段を提供します。",
     "colorinput_title": "色の選択とコード入力が可能なカラープレビュー付きフィールド",
-    "colorpicker_a11y_desc": "これは Input の薄いラッパーです。レイアウトとスタイルを足すだけで ARIA は自分では付けないので、ロールもアクセシブル名もキーボードの挙動もすべて Input 側が持ちます。そちらのアクセシビリティの記述を読んでください ── あちらで必須のものはここでも必須で、渡した props はそのまま届きます。",
+    "colorpicker_a11y_desc": "入力欄そのものは type=\"color\" の Input です。ロールもアクセシブル名もキーボードの挙動も Input とブラウザが持つので、そちらのアクセシビリティの記述を読んでください。swatches を渡すと、見本は「色の見本」という名前のラジオグループになります（swatchesLabel で変えられます）。見本はそれぞれ label で、label が無ければ値で読み上げられます。入力欄の名前は <label> で囲まず label prop で付けてください ── 囲むと、見本の名前まで入力欄の名前として読まれます。",
     "colorpicker_anatomy_content": "ユーザーが対話的に色を選択できるビジュアルパレットまたはスペクトラム。",
     "colorpicker_anatomy_content_label": "パレット",
     "colorpicker_anatomy_root": "ピッカーの表示状態と現在の選択状態を管理するトリガーまたはコンテナ。",
@@ -39,7 +39,7 @@
     "colorpicker_choice_alt_when": "ColorInputのようなシンプルな代替手段がユースケースに適している場合。",
     "colorpicker_choice_self_when": "標準オプションのColorPicker機能が必要な場合。",
     "colorpicker_design_intent": "ColorPickerは、スペクトラムから色を選択するためのビジュアルインターフェースを提供します。既知の数値を入力するのではなく、ユーザーが創造的に探索して色を「見つける」必要があるシナリオを意図しています。",
-    "colorpicker_keyboard_desc": "Tab でカラーピッカー内にフォーカスを移動します。矢印キーで色相・彩度の値を調整します。Escapeでピッカーを閉じます。",
+    "colorpicker_keyboard_desc": "Tab で入力欄に移り、Enter か Space でブラウザの色の選択画面が開きます。swatches があると、見本のグループが Tab の停止点として 1 つ増えます。矢印キー（と Home / End）で見本の間を移り、移った先の色がそのまま選ばれます。",
     "colorpicker_long_desc": "ユーザーが色を選択するためのコンポーネントです。ネイティブの input type=\"color\" をラップしてスタイルを調整しています。",
     "colorpicker_scenario_1": "デザインツール: プレゼンスライドのカスタム背景色を選択します。",
     "colorpicker_scenario_2": "ユーザーパーソナライズ: ダッシュボードテーマのアクセントカラーをユーザー自身で選べるようにします。",
@@ -325,6 +325,8 @@
     "timepicker_keyboard_desc": "Tab キーで時刻入力フィールドにフォーカスします。矢印キーで時間・分を調整します。Escape キーで時刻ピッカーパネルを閉じます。",
     "timepicker_scenario_1": "シフト管理: 従業員の勤務シフトの開始時刻と終了時刻を設定する。",
     "timepicker_scenario_2": "アラームとリマインダー: システム通知の特定のトリガー時刻を選択する。",
-    "timepicker_title": "時間と分を特定の形式で選択するための専用入力フィールド"
+    "timepicker_title": "時間と分を特定の形式で選択するための専用入力フィールド",
+    "colorpicker_swatches_title": "見本の色",
+    "colorpicker_swatches_desc": "swatches を渡すと、ブランドの色のような決まった色を、ネイティブの選ぶ面の隣に並べられます。見本を選ぶと値が変わり、ネイティブの選ぶ面で選んだときと同じように onChange が呼ばれます。 react-hook-form でリセット（reset()）を使うなら、register ではなく Controller でつないでください。reset() はイベントを出さずに値を書き換えるので、選択中の見本の表示が次の操作まで元に戻りません。"
   }
 }

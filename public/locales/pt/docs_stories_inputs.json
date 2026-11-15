@@ -267,6 +267,13 @@
     "checkbox_card_wrap_desc": "Papel e cartão com mensagem · R$ 9,90",
     "checkbox_card_door": "Deixar na porta",
     "checkbox_card_receipt": "Recibo em papel",
-    "checkbox_card_receipt_desc": "Enviado separadamente, no nome de quem fez o pedido"
+    "checkbox_card_receipt_desc": "Enviado separadamente, no nome de quem fez o pedido",
+    "colorpicker_swatches": "Cor da marca",
+    "colorpicker_swatch_blue": "Azul",
+    "colorpicker_swatch_green": "Verde",
+    "colorpicker_swatch_amber": "Âmbar",
+    "colorpicker_swatch_red": "Vermelho",
+    "colorpicker_swatch_violet": "Violeta",
+    "colorpicker_swatch_gray": "Cinza"
   }
 }

@@ -1063,6 +1063,14 @@ so the unit does not have to be repeated in the label.
     - `intent: "default" | "danger"` = "default" — Semantic intent of the field (e.g. error state)
     - `variant: "outline" | "ghost"` = "outline" — Visual style variant of the field
     - `fullWidth: boolean` = false — Whether to take full width of parent
+    - `swatches: ColorPickerSwatch[]` — Preset colors shown next to the field. Choosing one sets it as the value
+and fires `onChange` like the native picker does. Use `#rrggbb` (or `#rgb`).
+Name the field with the `label` prop rather than wrapping it in a `<label>`:
+the swatch buttons inside a `<label>` would be read as part of the field's name.
+With react-hook-form, use `Controller` rather than `register` if the form is
+reset: `reset()` writes the input without an event, so the selected swatch
+would not follow until the next change.
+    - `swatchesLabel: string` — Accessible name of the swatch group
     - `leftIcon: React.ComponentProps<typeof Icon>["name"]` — Icon name to display on the left side
     - `rightIcon: React.ComponentProps<typeof Icon>["name"]` — Icon name to display on the right side
     - `leftIconColor: React.ComponentProps<typeof Icon>["color"]` — Color of the left icon

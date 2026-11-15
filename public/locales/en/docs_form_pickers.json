@@ -28,7 +28,7 @@
     "colorinput_scenario_1": "Brand Settings: Allowing admins to specify exact primary colors for their white-label app.",
     "colorinput_scenario_2": "CSS Editors: Providing a way to enter and preview hex codes in a developer-focused tool.",
     "colorinput_title": "Field for selecting colors and entering hex codes with preview",
-    "colorpicker_a11y_desc": "This is a thin wrapper around Input: it adds layout and styling and no ARIA of its own, so the roles, the accessible name and the keyboard behaviour all come from Input. Read that component's accessibility notes — anything required there is required here, and props you pass through reach it unchanged.",
+    "colorpicker_a11y_desc": "The field itself is Input with type=\"color\": its role, accessible name and keyboard behaviour come from Input and the browser, so read that component's accessibility notes. When swatches are passed, they form a radio group named \"Color swatches\" (change it with swatchesLabel); each swatch is read by its label, or by its value when no label is given. Name the field with the label prop rather than wrapping it in a <label>, or the swatch names are read as part of the field's name.",
     "colorpicker_anatomy_content": "The visual palette or spectrum where users can interactively select a color.",
     "colorpicker_anatomy_content_label": "Palette",
     "colorpicker_anatomy_root": "The trigger or container that manages the picker's visibility and current selection state.",
@@ -316,7 +316,7 @@
     "daterangepicker_scenario_report": "Defining report date ranges for analytics or data exports.",
     "otpinput_anatomy_fields_label": "fields",
     "colorinput_keyboard_desc": "Tab focuses the color input field. Standard keyboard input is supported for hex values. Escape cancels editing.",
-    "colorpicker_keyboard_desc": "Tab moves focus within the color picker. Arrow keys adjust hue and saturation values. Escape closes the picker.",
+    "colorpicker_keyboard_desc": "Tab reaches the field, then Enter or Space opens the browser's own color dialog. With swatches, the group is one more Tab stop: arrow keys (and Home / End) move between swatches and choose the one they land on.",
     "datepicker_keyboard_desc": "Tab focuses the date input field. Arrow keys navigate the calendar. Enter selects a date. Escape closes the calendar. Inside the calendar, the title opens the list of months and then of years, so a distant date (a birth date, say) takes a few presses. Escape inside those lists goes back one level; Escape in the day view closes the calendar.",
     "daterangepicker_keyboard_desc": "Tab moves between start and end date fields. Arrow keys navigate the calendar. Enter selects dates. Escape closes the calendar.",
     "inputmask_keyboard_desc": "Tab focuses the masked input field. Standard keyboard input is supported within the mask pattern. Escape cancels where applicable.",
@@ -325,6 +325,8 @@
     "timepicker_keyboard_desc": "Tab focuses the time input field. Arrow keys adjust hours and minutes. Escape closes the time picker panel.",
     "numberinput_keyboard_desc": "Tab focuses the input. Arrow Up increments the value; Arrow Down decrements it. Home moves to the minimum value; End moves to the maximum. Standard keyboard input is also supported.",
     "otpinput_keyboard_desc": "Each digit field is individually focusable. Tab moves between fields. After entering a digit, focus advances automatically to the next field. Backspace clears the current field and moves focus back.",
-    "phoneinput_keyboard_desc": "Tab focuses the country selector first, then the phone number input. On the selector, Enter, Space or the arrow keys open the list; the arrow keys, Home and End move between countries; Enter or Space selects; Esc closes without changing. Tab closes the list and moves on. Typing letters jumps to the country whose name starts with them (repeat one letter to cycle through the matches). If no displayed name matches, the English name and then the country code (for example, jp) are tried. Typing digits jumps by dial code."
+    "phoneinput_keyboard_desc": "Tab focuses the country selector first, then the phone number input. On the selector, Enter, Space or the arrow keys open the list; the arrow keys, Home and End move between countries; Enter or Space selects; Esc closes without changing. Tab closes the list and moves on. Typing letters jumps to the country whose name starts with them (repeat one letter to cycle through the matches). If no displayed name matches, the English name and then the country code (for example, jp) are tried. Typing digits jumps by dial code.",
+    "colorpicker_swatches_title": "Swatches",
+    "colorpicker_swatches_desc": "Pass swatches to offer preset colors, such as a brand palette, next to the native picker. Choosing one sets the value and fires onChange the same way the native picker does. With react-hook-form, use Controller rather than register if you reset the form: reset() rewrites the field without an event, so the selected swatch does not follow until the next change."
   }
 }
