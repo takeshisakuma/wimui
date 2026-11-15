@@ -94,6 +94,46 @@
 - 色は `--wim-color-focus-outline`（primary を直接使わない。dark で 1.61:1）。
 - 書き方は `npm run check:focus-indicator` が見ます。**実際に見えるか**（親が切り取る・別の規則が勝つ）はコードから決められないので、フォーカス表示を触ったら `npm run measure:focus-forced-colors -- --only <ストーリー ID の一部>` で測ってください（手順は `MAINTENANCE.md` 12-4）。
 
+# 強制カラーで、状態と図形を消さない
+
+Windows のコントラスト テーマなどの強制カラー（forced-colors）では、`background-color` がページの地の色に、文字と枠の色がシステムの色に置き換わります。**背景の色だけで示した「選択中」「オン」と、背景の色だけで描いた図形は、そこで消えます**（2026-11-15 の実測・T391: 選択の印が消えるものが 51 ストーリー・16 部品、背景だけの図形が地に溶けるものが 307 個・29 部品。Switch は部品ごと見えず、ラベルの文字だけが残っていた）。フォーカス表示は上の節、こちらは状態と図形です。
+
+直すときは、**強制カラーでだけ効く規則**を足します。通常の表示は変えません。
+
+```scss
+/* 選択中・オンを、背景の色で示している */
+.item.active {
+  background-color: var(--wim-color-primary);
+
+  @media (forced-colors: active) {
+    color: HighlightText;
+    forced-color-adjust: none;
+    background-color: Highlight;
+  }
+}
+
+/* 背景の色だけで描いた図形（軌道・値・点・線） */
+.track {
+  background-color: var(--wim-color-border-secondary);
+
+  @media (forced-colors: active) {
+    forced-color-adjust: none;
+    background-color: ButtonText;
+  }
+}
+```
+
+- **`forced-color-adjust: none` を書いた要素は、色を全部自分で決める。** 置き換えが止まるので、その要素の文字・枠・影・outline は、書いた色のまま出ます。システムの色（`Highlight` / `HighlightText` / `ButtonText` / `ButtonFace` / `Canvas` / `CanvasText` / `GrayText`）だけで塗り、トークンの色を残さない。フォーカスの outline も、同じ要素なら `Highlight` へ書き直します（Switch）。
+- **地と文字は組で指定する。** `Highlight` の地には `HighlightText`、`ButtonFace` の地には `ButtonText`。地だけ `Highlight` にして文字を置き換えに任せると、テーマによっては読めない組になります。選択の面が別の要素（下に敷いたスライダー）のときは、面と、上に載る文字の両方に書きます（SegmentedControl）。
+- **「選ばれていない側にも透明の枠」では、選択を示せない。** 強制カラーでは透明の枠にも色が付くので、選択中にも、そうでない側にも同じ枠が出て、差が消えます（計測の対照を作るときに踏んだ）。枠で示すなら、選択中の側だけが枠を持つ形にする。図形の輪郭を残す目的（どの状態でも在る形）なら、透明の枠でよい。
+- **`Highlight` で塗った要素のフォーカスの輪は、`HighlightText` で描く。** フォーカスの mixin は輪を `Highlight` にするので、`Highlight` の面の内側に出す輪（`$inset: true`）は面に溶けます。置き換えを止めた要素では、影で描いた輪もトークンの色のまま出るので、`box-shadow: none` で消します（SegmentedControl の選択中の項目）。
+- 疑似要素（`::before` / `::after`）で描いた印にも、同じように書けます（Radio の点）。
+- 無効の状態は `GrayText`。強制カラーでは `opacity` で薄くしても区別にならないので、色で示します。
+- 色のほかに形でも示せるなら、そのほうが強い（チェックの印・下線・枠の太さ）。新しい部品は、選択を背景の色だけに頼らない形を先に考える。
+
+**実際に見えるか**は、コードからは決められません（上に別の面が載る・親が切り取る）。状態や図形の色を触ったら、`npm run measure:forced-colors-state -- --only <ストーリー ID の一部>` で測ってください（手順は `MAINTENANCE.md` 12-5）。合否は、選択を移す前後の**画素の差**で決まります ── computed style が違っていても、画素が同じなら見えていません。
+
+
 # `!important` の使用
 
 新規コードで `!important` を使用する場合は以下の方針に従ってください。

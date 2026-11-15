@@ -16,7 +16,7 @@ AI エージェント向けの skill は `.agents/skills/` が実体です（Cod
 |---|---|
 | コンポーネントの実装・API・レスポンシブ・a11y・複合 UI をレシピにするか公開するか | `docs/rules/implementation.md` |
 | トークン追加・CSS クラス名・角丸・シャドウ・足りないときのフロー・z-index の選び方・近い名前のトークン（disabled / subtle）と公開テーマ契約 | `docs/rules/tokens.md` |
-| hover / active・`!important`・`@layer`・ダークモードの作り方 | `docs/rules/css.md` |
+| hover / active・`!important`・`@layer`・ダークモードの作り方・強制カラーで選択やオンの状態と図形を消さない書き方 | `docs/rules/css.md` |
 | 翻訳キーの追加・PT-BR 語彙・ロケール分割・キー追加の手順・ランタイムとドキュメントの境界（どの namespace に置くか・同梱されるか） | `docs/rules/i18n.md` |
 | MDX を書く・docs ページの構成・Docgen の差し込み | `docs/rules/mdx.md` |
 | ストーリーの階層・サイドバー・ストーリーと argTypes の書き方・Windows で Storybook が起動しないとき | `docs/rules/storybook.md` |

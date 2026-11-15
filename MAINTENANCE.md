@@ -737,6 +737,44 @@ npm run measure:focus-forced-colors -- --report tmp-focus-forced-colors   # ま�
 - **Patterns も測った**（2026-10-04・T296。`--scope Patterns/`）。58 ストーリー・**停止点 230 / 停止点 0 のストーリー 4 / エラー 0 / 突き合わせ漏れ 0**。230 の停止点は通常も強制カラーも全部 outline で、消える・弱い停止点は 0。停止点 0 の 4 つ（`patterns-marketing--testimonial` / `--feature-section` / `--comparison-table`、`patterns-roastery--default`）は、Tab で届く要素が実際に 0 個の画面（対照の `patterns-hiring--default` は 38 個で、同じ数え方で Tab が届く）。Components と同じく、Tab は最大 8 回・閉じたポップアップは最初の 1 つだけなので、画面の奥の停止点は測っていない
 - CI には載せていない（全量で 20 分強）。**ガードが「書き方」を見張り、この道具は「実物」を見る**という分担
 
+### 12-5. 強制カラーで、選択・オンの状態と背景だけの図形が見えるかを測り直す
+
+12-4 はフォーカス表示、こちらは**状態と図形**。強制カラーでは `background-color` が地の色に置き換わるので、背景の色だけで示した「選択中」「オン」と、背景の色だけで描いた図形（軌道・値・点・線）は消える（T391）。書き方のガードは無い ── 「背景だけで状態を示している」は、SCSS からは決められない（下に敷いた別の要素が面を持つ・文字の色も変わる）。**実物を測るこの道具だけが見張り。**
+
+```bash
+npm run build-storybook
+npx http-server@14 storybook-static -p 6006 -c-1 --silent   # 別ターミナル
+
+npm run measure:forced-colors-state                          # Components を全量（state → shapes。合わせて 10〜15 分 / 6 並列）
+npm run measure:forced-colors-state -- --only switch         # ストーリー ID の部分一致で絞る
+npm run measure:forced-colors-state -- --part state --shots  # 片方だけ・前後の画像も残す
+npm run measure:forced-colors-state -- --report              # 取り直さず、前回の結果を集計し直す
+npm run measure:forced-colors-state -- --selftest            # 対照を注入して、区分が合うかを確かめる
+```
+
+**測り方**: state は、選択の印（`aria-selected` / `aria-checked` / `aria-pressed` / `aria-current`・`input:checked`）を持つ要素の矩形を撮り、選択をほかへ移して（ほかを押しても外れなければ、自分を押して切り替えて）撮り直し、画素の差を通常の表示と強制カラーで比べる。shapes は、通常の表示で「文字も枠も持たず、背景の色が地と違う要素」に印を付け、強制カラーで地と同じ色になったかを見る。
+
+- **先に `--selftest` を流す。** 背景だけで選択を示すタブが lost、下線でも示すタブが visible、背景だけの図形が lost、透明の枠つきと `forced-color-adjust: none` が残る、の 5 つが合うこと。道具を変えたら必ず
+- **「印を持つストーリー数」と unmoved を先に見る。** 描画前に探すと 0 件になる。unmoved は「押しても状態が変わらなかった」で、測れていない ── 現在のページ・今日の日付のように、動かせない印が大半（2026-11-15 は 33）
+- **合否は画素で決める。** computed style が違っていても、画素が同じなら見えていない（Radio の点は、不透明度が変わるのに、地の色で描かれていた）
+- **lost と weak の境目は、回によって動く。** CodeDiffViewer / JsonDiffViewer の表示切替は、同じビルドで 0 画素の回と 28 画素の回があった（通常は 868 画素）。**lost と weak を足した数で前回と比べる**。weak も直す候補として読む
+- **直したあとは「0 件」を信用しない。** 直す前のビルドを同じ道具に通して、lost と出ることを確かめてある（下の実測）
+- 測っていないもの: 閉じたポップアップの中（開いた姿のストーリーの分だけ）・疑似要素だけで描いた図形（Slider のつまみなど）・SVG・グラフ・実機のパレット（模擬とは色が違う）
+
+**2026-11-15 の実測**（Components 1,117 ストーリー・印を持つストーリー 121・124 組・エラー 0。直す前後で同じ）:
+
+| | state: lost | weak | visible | unmoved | shapes: lost / 図形 |
+|---|---|---|---|---|---|
+| 直す前（main の `57f8d6b9`） | 48 | 19 | 24 | 33 | 307 / 313 |
+| Switch・Radio・SegmentedControl を直したあと | 31 | 19 | 41 | 33 | 302 / 313 |
+
+- 直ったのは 19 組: Switch 1・SwitchGroup 3・RadioGroup 6・SegmentedControl 7・QueryBuilder の中の SegmentedControl 2。RadioGroup のカード型の 2 は weak に入った（通常はカードの面も変わるので差が大きく、強制カラーでは点の 60 画素だけ ── 点は見えている）
+- **残り**（lost）: Carousel の点 6・ToggleGroup 5・CodeDiffViewer と JsonDiffViewer の表示切替（lost 4・weak 8 を合わせて 12）・ThemeToggle 3・Pagination 2（DataGrid の中も 2）・TabNavigation 2・Tabs 1・Calendar 1・AIResponseFeedback 1・ThreadList 1・Toolbar 1・TreeDiagram 1・TreeView 1。weak: ScheduleView 5・RangeCalendar 2・CheckboxGroup 1・Reaction 1
+- **shapes の残り 302**: Loader 61・CalendarHeatmap 80・Timeline 22・Progress 20・GanttChart 17・UsageMeter 16・ThoughtProcess 11 ほか 27 部品（T391 に一覧）
+- 直し方は `docs/rules/css.md` の「強制カラーで、状態と図形を消さない」
+- CI には載せていない（全量で 10 分強・lost と weak の境目が揺れる）。四半期に 12-4 と続けて流す
+
+
 ### 13. VRT スナップショットの衛生
 
 ```bash

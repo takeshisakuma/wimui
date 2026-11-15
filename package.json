@@ -397,6 +397,7 @@
     "a11y:incomplete:update": "node scripts/update-a11y-incomplete.js",
     "a11y:incomplete:measure": "node scripts/measure-a11y-incomplete.mjs",
     "measure:focus-forced-colors": "node scripts/measure-focus-forced-colors.mjs",
+    "measure:forced-colors-state": "node scripts/measure-forced-colors-state.mjs",
     "measure:doc-aria-claims": "node scripts/measure-doc-aria-claims.mjs",
     "smoke": "npm run build && node scripts/smoke/run.mjs",
     "smoke:full": "npm run build && node scripts/smoke/run.mjs --full",
