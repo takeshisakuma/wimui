@@ -6369,7 +6369,7 @@
       "otpinput_keyboard_desc": "Each digit field is individually focusable. Tab moves between fields. After entering a digit, focus advances automatically to the next field. Backspace clears the current field and moves focus back.",
       "phoneinput_keyboard_desc": "Tab focuses the country selector first, then the phone number input. On the selector, Enter, Space or the arrow keys open the list; the arrow keys, Home and End move between countries; Enter or Space selects; Esc closes without changing. Tab closes the list and moves on. Typing letters jumps to the country whose name starts with them (repeat one letter to cycle through the matches). If no displayed name matches, the English name and then the country code (for example, jp) are tried. Typing digits jumps by dial code.",
       "colorpicker_swatches_title": "Swatches",
-      "colorpicker_swatches_desc": "Pass swatches to offer preset colors, such as a brand palette, next to the native picker. Choosing one sets the value and fires onChange the same way the native picker does."
+      "colorpicker_swatches_desc": "Pass swatches to offer preset colors, such as a brand palette, next to the native picker. Choosing one sets the value and fires onChange the same way the native picker does. With react-hook-form, use Controller rather than register if you reset the form: reset() rewrites the field without an event, so the selected swatch does not follow until the next change."
     }
   },
   "docs_guide_a11y_usability": {

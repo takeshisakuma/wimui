@@ -327,6 +327,6 @@
     "timepicker_scenario_2": "Alarmes e Lembretes: Escolher uma hora de gatilho específica para notificações do sistema.",
     "timepicker_title": "Uma entrada especializada para selecionar horas e minutos específicos",
     "colorpicker_swatches_title": "Amostras",
-    "colorpicker_swatches_desc": "Passe swatches para oferecer cores predefinidas, como a paleta da marca, ao lado do seletor nativo. Escolher uma define o valor e dispara onChange da mesma forma que o seletor nativo."
+    "colorpicker_swatches_desc": "Passe swatches para oferecer cores predefinidas, como a paleta da marca, ao lado do seletor nativo. Escolher uma define o valor e dispara onChange da mesma forma que o seletor nativo. Com react-hook-form, use Controller em vez de register se for redefinir o formulário: reset() reescreve o campo sem disparar um evento, então a amostra selecionada só acompanha na próxima alteração."
   }
 }

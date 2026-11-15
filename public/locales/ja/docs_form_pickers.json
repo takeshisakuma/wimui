@@ -327,6 +327,6 @@
     "timepicker_scenario_2": "アラームとリマインダー: システム通知の特定のトリガー時刻を選択する。",
     "timepicker_title": "時間と分を特定の形式で選択するための専用入力フィールド",
     "colorpicker_swatches_title": "見本の色",
-    "colorpicker_swatches_desc": "swatches を渡すと、ブランドの色のような決まった色を、ネイティブの選ぶ面の隣に並べられます。見本を選ぶと値が変わり、ネイティブの選ぶ面で選んだときと同じように onChange が呼ばれます。"
+    "colorpicker_swatches_desc": "swatches を渡すと、ブランドの色のような決まった色を、ネイティブの選ぶ面の隣に並べられます。見本を選ぶと値が変わり、ネイティブの選ぶ面で選んだときと同じように onChange が呼ばれます。 react-hook-form でリセット（reset()）を使うなら、register ではなく Controller でつないでください。reset() はイベントを出さずに値を書き換えるので、選択中の見本の表示が次の操作まで元に戻りません。"
   }
 }

@@ -28,6 +28,9 @@ export type ColorPickerProps = Omit<InputProps, "type"> & {
    * and fires `onChange` like the native picker does. Use `#rrggbb` (or `#rgb`).
    * Name the field with the `label` prop rather than wrapping it in a `<label>`:
    * the swatch buttons inside a `<label>` would be read as part of the field's name.
+   * With react-hook-form, use `Controller` rather than `register` if the form is
+   * reset: `reset()` writes the input without an event, so the selected swatch
+   * would not follow until the next change.
    */
   swatches?: ColorPickerSwatch[];
   /** Accessible name of the swatch group */
