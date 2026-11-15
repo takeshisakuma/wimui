@@ -188,12 +188,28 @@
     box-shadow: 0 0 0 var(--wim-border-width-thick) var(--wim-comp-carousel-ring);
     transition: background-color var(--wim-transition-fast);
 
+    /* 強制カラー（T391）。点は背景の色だけで描いている。現在位置は Highlight、ほかは枠だけ残す */
+    @media (forced-colors: active) {
+      forced-color-adjust: none;
+      background-color: ButtonFace;
+      box-shadow: inset 0 0 0 var(--wim-border-width-thick) ButtonText;
+    }
+
     &.active {
       background-color: var(--wim-color-primary);
+
+      @media (forced-colors: active) {
+        background-color: Highlight;
+        box-shadow: inset 0 0 0 var(--wim-border-width-thick) HighlightText;
+      }
     }
 
     &:hover:not(.active) {
       background-color: var(--wim-comp-carousel-indicator-hover-bg);
+
+      @media (forced-colors: active) {
+        background-color: ButtonFace;
+      }
     }
   }
 }

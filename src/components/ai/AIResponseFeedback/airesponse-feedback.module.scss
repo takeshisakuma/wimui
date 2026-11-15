@@ -51,10 +51,30 @@
     background: oklch(from var(--wim-color-success) l c h / 0.08);
     border-color: var(--wim-color-success);
 
+    /* 強制カラー（T391）。選んだ反応は薄い色の面だけで示している */
+    @media (forced-colors: active) {
+      color: HighlightText;
+      forced-color-adjust: none;
+      background: Highlight;
+      border-color: Highlight;
+    }
+
     &:hover:not(:disabled) {
       color: var(--wim-color-success);
       background: oklch(from var(--wim-color-success) l c h / 0.14);
       border-color: var(--wim-color-success);
+
+      @media (forced-colors: active) {
+        color: HighlightText;
+        background: Highlight;
+        border-color: Highlight;
+      }
+    }
+
+    &:focus-visible {
+      @media (forced-colors: active) {
+        outline-color: HighlightText;
+      }
     }
   }
 
@@ -63,10 +83,29 @@
     background: oklch(from var(--wim-color-danger) l c h / 0.08);
     border-color: var(--wim-color-danger);
 
+    @media (forced-colors: active) {
+      color: HighlightText;
+      forced-color-adjust: none;
+      background: Highlight;
+      border-color: Highlight;
+    }
+
     &:hover:not(:disabled) {
       color: var(--wim-color-danger);
       background: oklch(from var(--wim-color-danger) l c h / 0.14);
       border-color: var(--wim-color-danger);
+
+      @media (forced-colors: active) {
+        color: HighlightText;
+        background: Highlight;
+        border-color: Highlight;
+      }
+    }
+
+    &:focus-visible {
+      @media (forced-colors: active) {
+        outline-color: HighlightText;
+      }
     }
   }
 

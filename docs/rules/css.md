@@ -126,6 +126,7 @@ Windows のコントラスト テーマなどの強制カラー（forced-colors�
 - **`forced-color-adjust: none` を書いた要素は、色を全部自分で決める。** 置き換えが止まるので、その要素の文字・枠・影・outline は、書いた色のまま出ます。システムの色（`Highlight` / `HighlightText` / `ButtonText` / `ButtonFace` / `Canvas` / `CanvasText` / `GrayText`）だけで塗り、トークンの色を残さない。フォーカスの outline も、同じ要素なら `Highlight` へ書き直します（Switch）。
 - **地と文字は組で指定する。** `Highlight` の地には `HighlightText`、`ButtonFace` の地には `ButtonText`。地だけ `Highlight` にして文字を置き換えに任せると、テーマによっては読めない組になります。選択の面が別の要素（下に敷いたスライダー）のときは、面と、上に載る文字の両方に書きます（SegmentedControl）。
 - **「選ばれていない側にも透明の枠」では、選択を示せない。** 強制カラーでは透明の枠にも色が付くので、選択中にも、そうでない側にも同じ枠が出て、差が消えます（計測の対照を作るときに踏んだ）。枠で示すなら、選択中の側だけが枠を持つ形にする。図形の輪郭を残す目的（どの状態でも在る形）なら、透明の枠でよい。
+- **選択の印が項目の外（兄弟の下線・スライダー）にあるとき、項目の矩形に掛からなければ差にならない。** 縦の Tabs は下線を `Highlight` で塗っても、印が項目の右の外に出て、その項目の画素は変わらなかった。その向きでは項目そのものを塗る。透明の枠は `Canvas` に戻し、選択の差に使わない。
 - **`Highlight` で塗った要素のフォーカスの輪は、`HighlightText` で描く。** フォーカスの mixin は輪を `Highlight` にするので、`Highlight` の面の内側に出す輪（`$inset: true`）は面に溶けます。置き換えを止めた要素では、影で描いた輪もトークンの色のまま出るので、`box-shadow: none` で消します（SegmentedControl の選択中の項目）。
 - **下に敷いたスライダー・下線で選択を示す部品は、mixin を使う。** `indicator-slider-contained` / `indicator-slider-underline`（`src/styles/_indicator-mixins.scss`）は、強制カラーでは面を `Highlight` で塗ります。面の上に文字が載る部品は、選択中の項目に `@include indicator.indicator-forced-colors-content` を、**フォーカスのブロックよりあとに**書きます（文字と輪を `HighlightText` にする）。項目そのものが面を持つなら `indicator-forced-colors-surface` も。ホバーで面の色を変えている規則があれば、強制カラーでは `Highlight` のままにする上書きも要ります（置き換えを止めているので、トークンの色がそのまま出る）。
 - 疑似要素（`::before` / `::after`）で描いた印にも、同じように書けます（Radio の点）。

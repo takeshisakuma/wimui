@@ -96,8 +96,34 @@
     &.selected > .labelContainer {
       background-color: color-mix(in oklch, var(--wim-color-primary) 12%, var(--wim-color-surface));
 
+      /* 強制カラー（T391）。選択行は淡い面だけで示している。中のチェックは部品側の色に戻す */
+      @media (forced-colors: active) {
+        color: HighlightText;
+        forced-color-adjust: none;
+        background-color: Highlight;
+
+        .expandBtn,
+        .icon {
+          color: HighlightText;
+          background-color: transparent;
+        }
+
+        .expandBtn:hover {
+          color: HighlightText;
+          background-color: transparent;
+        }
+
+        .checkbox {
+          forced-color-adjust: auto;
+        }
+      }
+
       &:hover {
         background-color: color-mix(in oklch, var(--wim-color-primary) 16%, var(--wim-color-surface));
+
+        @media (forced-colors: active) {
+          background-color: Highlight;
+        }
       }
     }
   
@@ -125,6 +151,11 @@
        @include focus.forced-colors-outline;
 
        box-shadow: var(--wim-shadow-focus);
+
+       @media (forced-colors: active) {
+         outline-color: HighlightText;
+         box-shadow: none;
+       }
     }
   }
 

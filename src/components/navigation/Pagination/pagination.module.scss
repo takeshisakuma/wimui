@@ -81,6 +81,30 @@
         cursor: default;
         background-color: var(--wim-color-primary);
         border-color: var(--wim-color-primary);
+
+        /* 強制カラー（T391）。現在のページは背景の色だけで示している。
+           印は中のボタン（`aria-current`）に付く。ボタンの透明な地が親の塗りを隠すので、両方塗る。 */
+        @media (forced-colors: active) {
+          color: HighlightText;
+          forced-color-adjust: none;
+          background-color: Highlight;
+          border-color: Highlight;
+        }
+
+        .button {
+          @media (forced-colors: active) {
+            color: HighlightText;
+            forced-color-adjust: none;
+            background-color: Highlight;
+          }
+
+          &:focus-visible {
+            @media (forced-colors: active) {
+              outline-color: HighlightText;
+              box-shadow: none;
+            }
+          }
+        }
       }
 
       &.disabled {

@@ -38,6 +38,32 @@
     &:has(input:checked) {
       background-color: var(--wim-color-primary-subtle);
       border-color: var(--wim-color-primary);
+
+      /* 強制カラー（T391）。カードの選択は淡い面と枠の色だけ。中のチェックは部品側の色に戻す。
+         面を Highlight で塗ると、中のチェック（同じ Highlight）が溶けるので、枠で示す。 */
+      @media (forced-colors: active) {
+        color: CanvasText;
+        forced-color-adjust: none;
+        background-color: Canvas;
+        border-color: Highlight;
+        box-shadow: inset 0 0 0 var(--wim-border-width-thick) Highlight;
+
+        .label,
+        .description {
+          color: CanvasText;
+        }
+
+        input {
+          forced-color-adjust: auto;
+        }
+      }
+    }
+
+    &:hover:not(:has(input:disabled)):has(input:checked) {
+      @media (forced-colors: active) {
+        background-color: Canvas;
+        border-color: Highlight;
+      }
     }
   }
 }
