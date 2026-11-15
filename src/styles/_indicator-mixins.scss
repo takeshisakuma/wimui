@@ -24,6 +24,36 @@
   isolation: isolate;
 }
 
+/*
+ * 強制カラー（T391）。選択を示す面（スライダー・下線・塗った項目）は背景の色だけで描いているので、
+ * そのままでは地の色に置き換わって消える。Highlight で塗る。スライダーの mixin（下の 2 つ）は
+ * これを含むので、**面の上に文字が載る部品は、選択中の項目に `indicator-forced-colors-content` を書くこと**
+ * （書かないと、Highlight の上に本文の色の文字が載る）。規則は docs/rules/css.md。
+ */
+@mixin indicator-forced-colors-surface {
+  @media (forced-colors: active) {
+    forced-color-adjust: none;
+    background-color: Highlight;
+  }
+}
+
+/*
+ * Highlight の面の上に載る、選択中の項目の文字とフォーカスの輪。
+ * 輪は、面に溶けない色（HighlightText）で描く。置き換えを止めているので、影で描いた輪は
+ * トークンの色のまま出る ── 消す。フォーカスのブロックより**あと**に include すること。
+ */
+@mixin indicator-forced-colors-content {
+  @media (forced-colors: active) {
+    color: HighlightText;
+    forced-color-adjust: none;
+
+    &:focus-visible {
+      outline-color: HighlightText;
+      box-shadow: none;
+    }
+  }
+}
+
 /* The floating slider for segmented/contained variant */
 @mixin indicator-slider-contained($radius: var(--wim-radius-sm), $bg: var(--wim-color-surface), $shadow: var(--wim-shadow-sm), $offset: var(--wim-spacing-md)) {
   @include indicator-slider-base;
@@ -35,6 +65,8 @@
   background-color: $bg;
   border-radius: $radius;
   box-shadow: $shadow;
+
+  @include indicator-forced-colors-surface;
 }
 
 /* Underline slider variant */
@@ -47,6 +79,8 @@
   height: $height;
   background-color: $color;
   border-radius: var(--wim-radius-sm) var(--wim-radius-sm) 0 0;
+
+  @include indicator-forced-colors-surface;
 }
 
 /* Base style for items within an indicator container */

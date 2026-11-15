@@ -767,9 +767,11 @@ npm run measure:forced-colors-state -- --selftest            # 対照を注入�
 |---|---|---|---|---|---|
 | 直す前（main の `57f8d6b9`） | 48 | 19 | 24 | 33 | 307 / 313 |
 | Switch・Radio・SegmentedControl を直したあと | 31 | 19 | 41 | 33 | 302 / 313 |
+| 2 本目（ToggleGroup・TabNavigation・ThemeToggle・Toolbar と、スライダーの mixin）のあと | 24 | 15 | 52 | 33 | 288 / 313 |
 
 - 直ったのは 19 組: Switch 1・SwitchGroup 3・RadioGroup 6・SegmentedControl 7・QueryBuilder の中の SegmentedControl 2。RadioGroup のカード型の 2 は weak に入った（通常はカードの面も変わるので差が大きく、強制カラーでは点の 60 画素だけ ── 点は見えている）
-- **残り**（lost）: Carousel の点 6・ToggleGroup 5・CodeDiffViewer と JsonDiffViewer の表示切替（lost 4・weak 8 を合わせて 12）・ThemeToggle 3・Pagination 2（DataGrid の中も 2）・TabNavigation 2・Tabs 1・Calendar 1・AIResponseFeedback 1・ThreadList 1・Toolbar 1・TreeDiagram 1・TreeView 1。weak: ScheduleView 5・RangeCalendar 2・CheckboxGroup 1・Reaction 1
+- **2 本目で直ったのは 11 組**: ToggleGroup 5・ThemeToggle 3・TabNavigation 2・Toolbar 1（lost + weak は 50 → 39）。スライダーと下線の mixin（`src/styles/_indicator-mixins.scss`）が Highlight で塗るようにしたので、下の「残り」のうち ToggleGroup・ThemeToggle・TabNavigation・Toolbar は済み。**Tabs の縦並びは lost のまま**（下線は塗られるが、縦の姿では差が 0 画素 ── 未調査）
+- **残り**（1 本目の時点の lost）: Carousel の点 6・ToggleGroup 5・CodeDiffViewer と JsonDiffViewer の表示切替（lost 4・weak 8 を合わせて 12）・ThemeToggle 3・Pagination 2（DataGrid の中も 2）・TabNavigation 2・Tabs 1・Calendar 1・AIResponseFeedback 1・ThreadList 1・Toolbar 1・TreeDiagram 1・TreeView 1。weak: ScheduleView 5・RangeCalendar 2・CheckboxGroup 1・Reaction 1
 - **shapes の残り 302**: Loader 61・CalendarHeatmap 80・Timeline 22・Progress 20・GanttChart 17・UsageMeter 16・ThoughtProcess 11 ほか 27 部品（T391 に一覧）
 - 直し方は `docs/rules/css.md` の「強制カラーで、状態と図形を消さない」
 - CI には載せていない（全量で 10 分強・lost と weak の境目が揺れる）。四半期に 12-4 と続けて流す

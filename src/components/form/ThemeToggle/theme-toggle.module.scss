@@ -90,6 +90,15 @@
       color: var(--wim-color-text-primary);
       background: var(--wim-color-surface);
       box-shadow: var(--wim-shadow-xs);
+
+      /* 強制カラー（T391）。選択中は面の色と影だけで示しているので、どちらも消える。
+         Highlight で塗り、アイコンを HighlightText にする（規則は docs/rules/css.md）。 */
+      @media (forced-colors: active) {
+        color: HighlightText;
+        forced-color-adjust: none;
+        background: Highlight;
+        box-shadow: none;
+      }
     }
 
   }

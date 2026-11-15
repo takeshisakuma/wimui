@@ -127,6 +127,7 @@ Windows のコントラスト テーマなどの強制カラー（forced-colors�
 - **地と文字は組で指定する。** `Highlight` の地には `HighlightText`、`ButtonFace` の地には `ButtonText`。地だけ `Highlight` にして文字を置き換えに任せると、テーマによっては読めない組になります。選択の面が別の要素（下に敷いたスライダー）のときは、面と、上に載る文字の両方に書きます（SegmentedControl）。
 - **「選ばれていない側にも透明の枠」では、選択を示せない。** 強制カラーでは透明の枠にも色が付くので、選択中にも、そうでない側にも同じ枠が出て、差が消えます（計測の対照を作るときに踏んだ）。枠で示すなら、選択中の側だけが枠を持つ形にする。図形の輪郭を残す目的（どの状態でも在る形）なら、透明の枠でよい。
 - **`Highlight` で塗った要素のフォーカスの輪は、`HighlightText` で描く。** フォーカスの mixin は輪を `Highlight` にするので、`Highlight` の面の内側に出す輪（`$inset: true`）は面に溶けます。置き換えを止めた要素では、影で描いた輪もトークンの色のまま出るので、`box-shadow: none` で消します（SegmentedControl の選択中の項目）。
+- **下に敷いたスライダー・下線で選択を示す部品は、mixin を使う。** `indicator-slider-contained` / `indicator-slider-underline`（`src/styles/_indicator-mixins.scss`）は、強制カラーでは面を `Highlight` で塗ります。面の上に文字が載る部品は、選択中の項目に `@include indicator.indicator-forced-colors-content` を、**フォーカスのブロックよりあとに**書きます（文字と輪を `HighlightText` にする）。項目そのものが面を持つなら `indicator-forced-colors-surface` も。ホバーで面の色を変えている規則があれば、強制カラーでは `Highlight` のままにする上書きも要ります（置き換えを止めているので、トークンの色がそのまま出る）。
 - 疑似要素（`::before` / `::after`）で描いた印にも、同じように書けます（Radio の点）。
 - 無効の状態は `GrayText`。強制カラーでは `opacity` で薄くしても区別にならないので、色で示します。
 - 色のほかに形でも示せるなら、そのほうが強い（チェックの印・下線・枠の太さ）。新しい部品は、選択を背景の色だけに頼らない形を先に考える。
