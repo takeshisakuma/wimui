@@ -2185,7 +2185,7 @@ follows the theme and never needs a hand-mixed colour.
     - `children: React.ReactNode` (required) — Children to be rendered inside the affix
     - `className: string` — Additional class names
     - `style: React.CSSProperties` — Style attribute
-- **Anchor** — Smooth scroll links (aka Scrollspy)
+- **Anchor** — Smooth scroll links (aka Scrollspy, Table of Contents, TableOfContents)
     - `items: AnchorLinkItem[]` = [] — Array of anchor link configurations
     - `bounds: number` = 5 — Bounding distance (in pixels) for triggering active state
     - `offset: number` = 0 — Offset (in pixels) from top when clicking to scroll
