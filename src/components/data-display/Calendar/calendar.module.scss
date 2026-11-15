@@ -118,6 +118,14 @@
       font-weight: var(--wim-font-weight-semibold);
       color: var(--wim-color-text-on-primary);
       background-color: var(--wim-color-primary);
+
+      /* 強制カラー（T391）。選んだ月・年は背景の色だけで示している */
+      @media (forced-colors: active) {
+        color: HighlightText;
+        forced-color-adjust: none;
+        background-color: Highlight;
+        border-color: Highlight;
+      }
     }
 
     &:disabled {
@@ -239,9 +247,22 @@
       font-weight: var(--wim-font-weight-semibold);
       color: var(--wim-color-text-on-primary);
       background-color: var(--wim-color-primary);
+
+      /* 強制カラー（T391）。選んだ日は背景の色だけで示している */
+      @media (forced-colors: active) {
+        color: HighlightText;
+        forced-color-adjust: none;
+        background-color: Highlight;
+        border-color: Highlight;
+      }
   
       &:hover:not(:disabled) {
         background-color: var(--wim-color-primary);
+
+        @media (forced-colors: active) {
+          color: HighlightText;
+          background-color: Highlight;
+        }
       }
     }
   
@@ -249,8 +270,20 @@
       background-color: oklch(from var(--wim-color-primary) l c h / 0.1);
       border-radius: 0;
 
+      /* 強制カラー（T391）。範囲の中の日も、薄い背景だけなので地に溶ける */
+      @media (forced-colors: active) {
+        color: HighlightText;
+        forced-color-adjust: none;
+        background-color: Highlight;
+      }
+
       &:hover:not(:disabled) {
         background-color: oklch(from var(--wim-color-primary) l c h / 0.2);
+
+        @media (forced-colors: active) {
+          color: HighlightText;
+          background-color: Highlight;
+        }
       }
 
       // 範囲の中の日は、ホバーの地（20%）が押下の地（15%）より濃い。地ではなく縮みで示す

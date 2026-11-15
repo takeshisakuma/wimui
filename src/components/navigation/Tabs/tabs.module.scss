@@ -90,6 +90,29 @@
             border-right-color: transparent;
           }
         }
+
+        /* 強制カラー（T391）。縦の印はリスト右端の 2px で、項目の矩形に掛からない。
+           透明の枠は全項目に色が付くので、選択の差にならない。選択中の項目そのものを塗る。 */
+        @media (forced-colors: active) {
+          border-color: Canvas;
+        }
+
+        &.active {
+          @include indicator.indicator-forced-colors-surface;
+          @include indicator.indicator-forced-colors-content;
+
+          @media (forced-colors: active) {
+            border-color: Highlight;
+          }
+
+          &:hover:not(:disabled) {
+            @media (forced-colors: active) {
+              color: HighlightText;
+              background-color: Highlight;
+              border-color: Highlight;
+            }
+          }
+        }
       }
 
       .content {
