@@ -42,7 +42,8 @@ export type RangeCalendarProps = {
    */
   isDateDisabled?: (date: Date) => boolean;
   /**
-   * 週の開始曜日。0 = 日曜始まり、1 = 月曜始まり。デフォルトは 0。
+   * First day of the week (0 = Sunday, 1 = Monday). Defaults to the locale's
+   * first day, as in `Calendar`.
    */
   weekStartsOn?: 0 | 1;
 };

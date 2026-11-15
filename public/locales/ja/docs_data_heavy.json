@@ -30,7 +30,7 @@
     "calendar_selected_date": "日付の事前選択",
     "calendar_title": "カレンダー表示",
     "calendar_week_start": "週の開始曜日",
-    "calendar_week_start_desc": "`weekStartsOn` プロパティで週の開始曜日を設定できます。`0` で日曜始まり（デフォルト）、`1` で月曜始まりになります。",
+    "calendar_week_start_desc": "`weekStartsOn` プロパティで週の開始曜日を設定できます。`0` で日曜始まり、`1` で月曜始まりです。渡さないときは、setWimLocale（または WimProvider）に渡したロケールに地域まで含めて従います。en-GB や de は月曜始まり、en・ja・pt は日曜始まりです。土曜始まりのロケールと、Intl.Locale の週の情報を持たないブラウザでは日曜始まりになります。",
     "datagrid_a11y_desc": "表は role=\"grid\" で、aria-rowcount と aria-colcount は描画中のページではなくデータ全体の件数を出します（ページングや仮想化で件数が嘘にならないようにするため）。見出しセルは role=\"columnheader\"、本体のセルは role=\"gridcell\" です。フォーカスはセルを巡る roving tabindex 方式で、タブ移動できるセルは常に 1 つだけです（行と列の組で追跡）。そのため矢印キーはグリッド内を動き、Tab はグリッドから出ます。読み込み中は aria-busy を立てます。",
     "datagrid_anatomy_content": "コンテンツ：メインコンテンツまたは子要素がレンダリングされるプライマリエリア。",
     "datagrid_anatomy_content_label": "Content",

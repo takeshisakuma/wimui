@@ -30,7 +30,7 @@
     "calendar_selected_date": "Data Pré-selecionada",
     "calendar_title": "Visualização de calendário",
     "calendar_week_start": "Dia de Início da Semana",
-    "calendar_week_start_desc": "Use a prop `weekStartsOn` para definir o primeiro dia da semana. `0` começa no domingo (padrão), `1` começa na segunda-feira.",
+    "calendar_week_start_desc": "Use a prop `weekStartsOn` para definir o primeiro dia da semana: `0` começa no domingo, `1` na segunda-feira. Sem ela, o calendário segue a localidade passada a setWimLocale (ou WimProvider), incluindo a região: en-GB e de começam na segunda-feira, en, ja e pt no domingo. Uma localidade que começa no sábado, ou um navegador sem as informações de semana de Intl.Locale, volta ao domingo.",
     "datagrid_a11y_desc": "A tabela é role=\"grid\" com aria-rowcount e aria-colcount descrevendo o conjunto completo de dados, e não a página renderizada, para que paginação e virtualização não informem um tamanho incorreto. Células de cabeçalho são role=\"columnheader\" e as do corpo são role=\"gridcell\". O foco usa roving tabindex sobre as células: exatamente uma célula é tabulável, rastreada como um par linha/coluna, de modo que as setas movem dentro da grade e Tab sai dela. aria-busy é definido enquanto os dados carregam.",
     "datagrid_anatomy_content": "A área principal onde o conteúdo ou filhos são renderizados.",
     "datagrid_anatomy_content_label": "Conteúdo",

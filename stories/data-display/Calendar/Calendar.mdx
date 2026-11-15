@@ -180,11 +180,14 @@ nextMonth.setMonth(today.getMonth() + 1);
 <p><T k="doc.calendar_week_start_desc" /></p>
 
 ```jsx
-{/* 日曜始まり（デフォルト！E*/}
+{/* Sunday first */}
 <Calendar weekStartsOn={0} onChange={(date) => console.log(date)} />
 
-{/* 月曜始まめE*/}
+{/* Monday first */}
 <Calendar weekStartsOn={1} onChange={(date) => console.log(date)} />
+
+{/* Omitted: follows the locale (setWimLocale("en-GB") starts on Monday) */}
+<Calendar onChange={(date) => console.log(date)} />
 ```
 
 ### <T k="doc.calendar_combine_features" />

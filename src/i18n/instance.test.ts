@@ -1,5 +1,6 @@
 import { describe, it, expect, beforeEach, vi } from "vitest";
 import {
+  getWimFormatLocale,
   getWimLocale,
   setWimLocale,
   subscribeWimLocale,
@@ -14,6 +15,22 @@ import { componentsNs } from "./generated/components";
 describe("wim i18n store", () => {
   beforeEach(() => {
     setWimLocale("en");
+  });
+
+  it("keeps the region for calendar formatting while resolving strings by language (T388)", () => {
+    setWimLocale("en-GB");
+    expect(getWimLocale()).toBe("en");
+    expect(getWimFormatLocale()).toBe("en-GB");
+  });
+
+  it("notifies when only the region changes (T388)", () => {
+    setWimLocale("en-GB");
+    const listener = vi.fn();
+    const unsubscribe = subscribeWimLocale(listener);
+    setWimLocale("en-US");
+    unsubscribe();
+    expect(listener).toHaveBeenCalledTimes(1);
+    expect(getWimFormatLocale()).toBe("en-US");
   });
 
   it("defaults to 'en'", () => {

@@ -30,7 +30,7 @@
     "calendar_selected_date": "Pre-selected Date",
     "calendar_title": "Calendar view",
     "calendar_week_start": "Week Start Day",
-    "calendar_week_start_desc": "Use the `weekStartsOn` prop to set the first day of the week. `0` starts on Sunday (default), `1` starts on Monday.",
+    "calendar_week_start_desc": "Use the `weekStartsOn` prop to set the first day of the week: `0` starts on Sunday, `1` on Monday. Without it, the calendar follows the locale passed to setWimLocale (or WimProvider), including its region: en-GB and de start on Monday, en, ja and pt on Sunday. A locale that starts on Saturday, or a browser without Intl.Locale week info, falls back to Sunday.",
     "datagrid_a11y_desc": "The table is role=\"grid\" with aria-rowcount and aria-colcount describing the full data set rather than the rendered page, so paging and virtualization do not misreport the size. Header cells are role=\"columnheader\" and body cells are role=\"gridcell\". Focus is a roving tabindex over cells: exactly one cell is tabbable, tracked as a row/column pair, so arrow keys move within the grid and Tab leaves it. aria-busy is set while data is loading.",
     "datagrid_anatomy_content": "The primary area where main content or children are rendered.",
     "datagrid_anatomy_content_label": "Content",
