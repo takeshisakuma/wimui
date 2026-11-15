@@ -83,6 +83,47 @@ test.describe("Kanban: moving a card from the keyboard", () => {
     await expect(firstMove).toHaveAttribute("aria-expanded", "false");
   });
 
+  test("the focus ring of every move option stays inside the menu", async ({ page }) => {
+    // 一覧は `overflow: hidden`。外側に描いた輪は切れて、左右が出ず、端の項目は上下の片方も出なかった
+    // （実機で見つかった。閉じた姿しか測らない掃引には写らない）。輪の箱が、一覧の内側に収まること
+    await page.keyboard.press("Tab");
+    await page.keyboard.press("Tab");
+    await page.keyboard.press("Enter");
+    const menu = page.getByRole("group", { name: "Move to column" });
+    await expect(menu).toBeVisible();
+
+    const options = menu.getByRole("button");
+    const count = await options.count();
+    expect(count).toBeGreaterThanOrEqual(3);
+    for (let i = 0; i < count; i += 1) {
+      await page.keyboard.press("Tab");
+      const option = options.nth(i);
+      await expect(option).toBeFocused();
+      const clipped = await option.evaluate((el) => {
+        const cs = getComputedStyle(el);
+        const reach = parseFloat(cs.outlineWidth) + parseFloat(cs.outlineOffset);
+        const r = el.getBoundingClientRect();
+        const list = el.parentElement as HTMLElement;
+        const b = list.getBoundingClientRect();
+        // 切り取るのは padding box（枠の内側）
+        const inner = {
+          left: b.left + list.clientLeft,
+          top: b.top + list.clientTop,
+          right: b.left + list.clientLeft + list.clientWidth,
+          bottom: b.top + list.clientTop + list.clientHeight,
+        };
+        return {
+          drawn: cs.outlineStyle !== "none" && parseFloat(cs.outlineWidth) > 0,
+          left: r.left - reach < inner.left - 0.5,
+          top: r.top - reach < inner.top - 0.5,
+          right: r.right + reach > inner.right + 0.5,
+          bottom: r.bottom + reach > inner.bottom + 0.5,
+        };
+      });
+      expect(clipped, `option ${i}`).toEqual({ drawn: true, left: false, top: false, right: false, bottom: false });
+    }
+  });
+
   test("hovering a card shows its move button for mouse users who cannot drag", async ({ page }) => {
     const card = column(page, "To Do").getByRole("listitem").first();
     const move = card.getByRole("button", { name: "Move card" });
