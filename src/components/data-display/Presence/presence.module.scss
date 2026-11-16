@@ -14,4 +14,47 @@
     line-height: 1;
     color: var(--wim-color-text-secondary);
   }
+
+  /*
+   * 状態ごとの形（T397）。色を除いても 4 つが見分けられるように、
+   * online = 塗りの丸 / away = 右半分を抜いた丸 / busy = 横棒を抜いた丸 / offline = 輪。
+   * 点は Indicator が最後の子として描くので、Indicator の根に付けた印から選ぶ。
+   * 抜きの色は、角に付けた点の縁と同じ地の色。強制カラーでは Canvas にする（点は ButtonText で塗られる）。
+   * 線の太さは、縁を除いた内側の径の 1/4（縁の内側に描くので、角に付けた点は縁の分だけ小さい）。
+   */
+  .shape {
+    --presence-cutout: var(--wim-color-surface);
+
+    > :last-child {
+      --presence-inner: var(--indicator-size);
+      --presence-stroke: calc(var(--presence-inner) / 4);
+
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    &.attached > :last-child {
+      --presence-inner: calc(var(--indicator-size) - 2 * var(--indicator-border-width));
+    }
+
+    &.away > :last-child {
+      background-image: linear-gradient(to right, transparent 50%, var(--presence-cutout) 50%);
+    }
+
+    &.busy > :last-child {
+      background-image: linear-gradient(var(--presence-cutout), var(--presence-cutout));
+      background-size: 60% var(--presence-stroke);
+    }
+
+    /* 地の線の色（line）のままの輪は細くて消えるので、文字の 3 番手の濃さで描く */
+    &.offline > :last-child {
+      background-image: linear-gradient(var(--presence-cutout), var(--presence-cutout));
+      box-shadow: inset 0 0 0 var(--presence-stroke) var(--presence-ink, var(--wim-color-text-tertiary));
+    }
+
+    @media (forced-colors: active) {
+      --presence-cutout: Canvas;
+      --presence-ink: ButtonText;
+    }
+  }
 }

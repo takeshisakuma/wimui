@@ -80,6 +80,25 @@ export const Sizes: Story = {
 };
 
 /**
+ * 4 つの状態を、ラベルなしで 3 つの大きさに並べる。色を除いても形で見分けられるかを
+ * 見るためのストーリー（T397）── 塗りの丸・右半分を抜いた丸・横棒を抜いた丸・輪。
+ */
+export const Shapes: Story = {
+  render: (args: PresenceProps) => (
+    <Stack gap="md">
+      {(["sm", "md", "lg"] as const).map((size) => (
+        <Stack key={size} direction="row" gap="lg" align="center">
+          <Presence {...args} status="online" size={size} />
+          <Presence {...args} status="away" size={size} />
+          <Presence {...args} status="busy" size={size} />
+          <Presence {...args} status="offline" size={size} />
+        </Stack>
+      ))}
+    </Stack>
+  ),
+};
+
+/**
  * 共同編集中のドキュメントの参加者一覧。**在席は名前の隣ではなくアバターの角**に付き、
  * 説明文の側は「いま何をしているか」を持つ。オフラインの行だけ最終アクセスに変わり、
  * 長い名前は 1 行に収まらない ── 揃っていない行が混ざるのが実際の一覧。
