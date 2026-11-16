@@ -84,7 +84,7 @@
     "focustrap_anatomy_root": "The wrapper component that monitors focus events and prevents the focus from leaving the defined boundary.",
     "focustrap_anatomy_root_label": "Root",
     "focustrap_auto_focus": "Auto Focus",
-    "focustrap_auto_focus_desc": "Setting the autoFocus prop to true shifts focus to the first focusable element as soon as the trap becomes active.",
+    "focustrap_auto_focus_desc": "When the trap becomes active (`initialFocus`, on by default), focus moves to the element marked with `data-autofocus`, or to the first focusable element when nothing is marked. Use the mark when the first element in DOM order is not where the user should start — a help link before a field, or the cancel button of a destructive confirmation.",
     "focustrap_best_practice_1": "Ensure that the user has a clear way to exit the trap, such as a close button or pressing the Escape key.",
     "focustrap_best_practice_2": "Only activate the trap when necessary (e.g., when a Modal is open) to avoid confusing users with unexpected focus behavior.",
     "focustrap_choice_alt_when": "When you only need to focus a single element once on mount (use a standard autoFocus property instead).",

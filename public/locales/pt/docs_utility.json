@@ -86,7 +86,7 @@
     "focustrap_anatomy_root": "O componente wrapper que monitora eventos de foco e evita que o foco saia do limite definido.",
     "focustrap_anatomy_root_label": "Root",
     "focustrap_auto_focus": "Foco Automático",
-    "focustrap_auto_focus_desc": "Definir a prop autoFocus como true move o foco para o primeiro elemento focável assim que o trap se torna ativo.",
+    "focustrap_auto_focus_desc": "Quando o trap fica ativo (`initialFocus`, ligado por padrão), o foco vai para o elemento marcado com `data-autofocus`, ou para o primeiro elemento focável quando nada está marcado. Use a marca quando o primeiro elemento na ordem do DOM não é onde o usuário deve começar — um link de ajuda antes de um campo, ou o botão de cancelar de uma confirmação destrutiva.",
     "focustrap_best_practice_1": "Certifique-se de que haja uma maneira clara para o usuário sair do trap, como um botão de fechar ou pressionando a tecla Escape.",
     "focustrap_best_practice_2": "Ative o trap apenas quando necessário (ex: quando um modal está aberto) para evitar confundir os usuários com comportamentos de foco inesperados.",
     "focustrap_choice_alt_when": "Quando você precisa apenas focar em um único elemento uma vez na montagem (use a propriedade autoFocus padrão).",

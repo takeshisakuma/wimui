@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
-import { Button, Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, Input, Label } from "wimui";
+import { Button, Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, Input, Label, Link } from "wimui";
 
 
 const meta: Meta<typeof Dialog> = {
@@ -267,6 +267,53 @@ export const Open: Story = {
   tags: ["!autodocs"],
   args: {
     ...Default.args,
+    defaultOpen: true,
+  },
+};
+
+/**
+ * 最初のフォーカス先を選ぶ（T399）。説明文の中のリンクが DOM で先に来るが、開いたら名前の欄に
+ * 置きたい ── 置きたい要素に `data-autofocus` を付ける。印が無ければ、DOM の最初の要素（ここでは
+ * リンク）へ置かれる。破壊的な操作の確認で、取り消しのボタンへ置くときも同じ書き方。
+ */
+export const InitialFocusTarget: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <Dialog {...args}>
+        <DialogTrigger asChild>
+          <Button variant="outline">{t("story.dialog_rename_open")}</Button>
+        </DialogTrigger>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>{t("story.dialog_rename_title")}</DialogTitle>
+            <DialogDescription>
+              {t("story.dialog_rename_desc")} <Link href="#naming-rules">{t("story.dialog_rename_rules")}</Link>
+            </DialogDescription>
+          </DialogHeader>
+          <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem", padding: "1rem 0" }}>
+            <Label htmlFor="project-name" label={t("story.dialog_rename_label")} />
+            <Input id="project-name" defaultValue={t("story.dialog_rename_value")} fullWidth data-autofocus />
+          </div>
+          <DialogFooter>
+            <DialogClose asChild>
+              <Button variant="outline">{t("story.dialog_cancel")}</Button>
+            </DialogClose>
+            <DialogClose asChild>
+              <Button variant="solid">{t("story.dialog_rename_save")}</Button>
+            </DialogClose>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    );
+  },
+};
+
+export const InitialFocusTargetOpen: Story = {
+  ...InitialFocusTarget,
+  // docs ページは <Stories /> で全ストーリーを並べる。載せると、ページを開いた瞬間に開いてしまう。
+  tags: ["!autodocs"],
+  args: {
     defaultOpen: true,
   },
 };

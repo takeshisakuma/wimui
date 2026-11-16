@@ -11,6 +11,7 @@ import { waitForStoryReady } from "./story-ready";
 // 面の前後に番兵のボタンを置く。番兵か body に着いたら「外へ出た」。
 const STORIES = [
   "components-overlays-dialog--open",
+  "components-overlays-dialog--initial-focus-target-open",
   "components-overlays-drawer--open",
   "components-overlays-bottomsheet--open",
   "components-media-lightbox--open",
@@ -58,3 +59,23 @@ for (const id of STORIES) {
     });
   }
 }
+
+// **開いたときの最初のフォーカス先を、印（`data-autofocus`）で選べるか（T399）。**
+//
+// このストーリーは、説明文の中のリンクが DOM で名前の欄より先に来る。印が効かなければ、
+// フォーカスは DOM の最初の停止点（リンク）へ置かれる。実ブラウザで、開いた直後の位置を見る。
+test("focuses the element marked with data-autofocus when the dialog opens", async ({ page }) => {
+  await page.goto("/iframe.html?id=components-overlays-dialog--initial-focus-target-open&viewMode=story&globals=locale:en");
+  await waitForStoryReady(page);
+  const dialog = page.locator('[role="dialog"][aria-modal="true"]');
+  await expect(dialog).toBeVisible();
+
+  // 前提: 印の付いた要素は、ダイアログの最初の停止点ではない（ここが崩れると、この検査は何も測らない）
+  const firstStop = await dialog.locator("a[href], button, input").first().evaluate((el) => el.tagName.toLowerCase());
+  expect(firstStop).toBe("a");
+
+  await expect
+    .poll(() => page.evaluate(() => document.activeElement?.hasAttribute("data-autofocus") ?? false))
+    .toBe(true);
+  await expect(page.getByRole("textbox", { name: "Project name" })).toBeFocused();
+});

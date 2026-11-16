@@ -2943,7 +2943,11 @@ dismissed by an outside click or Escape.
     - `children: React.ReactNode` (required) — Content to trap focus within.
     - `active: boolean` = true — Whether the trap is active.
 @default true
-    - `initialFocus: boolean` = true — Whether to focus the first focusable element on mount.
+    - `initialFocus: boolean` = true — Whether to move focus into the trap when it becomes active. Focus goes to
+the element marked with `data-autofocus` (e.g. the cancel button of a
+destructive confirmation), or to the first focusable element when nothing
+is marked.
+@default true
     - `className: string` — Additional CSS class name.
 - **HoverCard** — Rich content on hover
     - `children: ReactNode` (required) — Hover card parts (HoverCardTrigger and HoverCardContent).

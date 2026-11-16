@@ -13,7 +13,11 @@ export type FocusTrapProps = {
    */
   active?: boolean;
   /**
-   * Whether to focus the first focusable element on mount.
+   * Whether to move focus into the trap when it becomes active. Focus goes to
+   * the element marked with `data-autofocus` (e.g. the cancel button of a
+   * destructive confirmation), or to the first focusable element when nothing
+   * is marked.
+   * @default true
    */
   initialFocus?: boolean;
   /**
@@ -77,9 +81,16 @@ export const FocusTrap = ({
     };
 
     if (initialFocus) {
-      const focusableElements = getFocusableElements();
-      if (focusableElements.length > 0) {
-        focusableElements[0].focus();
+      // 印（data-autofocus）を付けた要素を先に試す（T399）。props を増やさずに、破壊的な操作の確認で
+      // 取り消しへ置くなど、DOM の順と違う先を選べる。フォーカスできない要素に付いていたら、
+      // 印が無いのと同じに扱い、DOM の最初の要素へ置く。
+      const marked = root.querySelector<HTMLElement>("[data-autofocus]");
+      marked?.focus();
+      if (!marked || document.activeElement !== marked) {
+        const focusableElements = getFocusableElements();
+        if (focusableElements.length > 0) {
+          focusableElements[0].focus();
+        }
       }
     }
 

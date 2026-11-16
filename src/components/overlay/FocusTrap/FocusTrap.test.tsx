@@ -23,6 +23,36 @@ describe("FocusTrap", () => {
     expect(screen.getByText("First")).toHaveFocus();
   });
 
+  // T399: 印を付けた要素が DOM の最初でなくても、そこへ置く
+  it("focuses the element marked with data-autofocus first", () => {
+    render(
+      <FocusTrap>
+        <button>Delete</button>
+        <button data-autofocus>Cancel</button>
+      </FocusTrap>,
+    );
+    expect(screen.getByText("Cancel")).toHaveFocus();
+  });
+
+  it("falls back to the first element when the marked element cannot take focus", () => {
+    render(
+      <FocusTrap>
+        <button>First</button>
+        <p data-autofocus>Not focusable</p>
+      </FocusTrap>,
+    );
+    expect(screen.getByText("First")).toHaveFocus();
+  });
+
+  it("ignores the mark when initialFocus=false", () => {
+    render(
+      <FocusTrap initialFocus={false}>
+        <button data-autofocus>Marked</button>
+      </FocusTrap>,
+    );
+    expect(screen.getByText("Marked")).not.toHaveFocus();
+  });
+
   it("does not auto focus when initialFocus=false", () => {
     const btn = document.createElement("button");
     btn.textContent = "Outside";

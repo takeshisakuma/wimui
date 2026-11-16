@@ -123,6 +123,7 @@
     "dialog_a11y_2": "O conteúdo tem role=\"dialog\". Para um diálogo que exige uma resposta antes de o usuário continuar, como a confirmação de uma exclusão, passe role=\"alertdialog\" ao Dialog: os leitores de tela passam a tratá-lo como um alerta e leem sua descrição ao abrir, e clicar fora deixa de fechá-lo por padrão.",
     "dialog_a11y_3": "Vinculado a títulos e descrições via aria-labelledby e aria-describedby.",
     "dialog_a11y_4": "Suporta o fechamento do diálogo via tecla Escape.",
+    "dialog_a11y_initial_focus": "Ao abrir, o foco vai para o elemento marcado com `data-autofocus`, ou para o primeiro elemento focável. No exemplo abaixo, um link de ajuda vem primeiro na descrição, então o campo de nome recebe a marca. A mesma marca funciona em `Drawer` e `BottomSheet`.",
     "dialog_a11y_trap": "Ativa uma armadilha de foco para manter a navegação pelo teclado dentro do diálogo, garantindo acessibilidade para usuários de tecnologia assistiva.",
     "dialog_accessibility_gaze": "Accessibility Gaze",
     "dialog_accessibility_gaze_desc": "Accessibility Gaze Desc",
