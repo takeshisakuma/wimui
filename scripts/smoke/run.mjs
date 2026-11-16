@@ -25,6 +25,7 @@ import { mkdtempSync, cpSync, writeFileSync, readFileSync, rmSync, existsSync } 
 import { tmpdir } from "node:os";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
+import { checkTypes } from "./types.mjs";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const repoRoot = join(here, "..", "..");
@@ -228,7 +229,10 @@ try {
   );
 
   console.log(`[smoke] installing into isolated consumer via ${pm} (${peers.length} peers)...`);
-  execSync(installCmd(tarball, peers), { cwd: consumer, stdio: "inherit" });
+  // React の型は、TypeScript の利用者なら入れている。無いと React に頼る部品の型がすべて any に落ち、
+  // 型の検査（types.mjs）が配布物の欠陥と見分けられない
+  const typePkgs = ["@types/react", "@types/react-dom"].map((n) => `${n}@${pkg.devDependencies[n]}`);
+  execSync(installCmd(tarball, [...peers, ...typePkgs]), { cwd: consumer, stdio: "inherit" });
 
   for (const f of ["assert.mjs", "assert.cjs", "checks.cjs", "manifest.json"]) {
     cpSync(join(here, f), join(consumer, f));
@@ -242,6 +246,10 @@ try {
       failed = true;
     }
   }
+
+  // 型は設定ごとに解決のされ方が違う（#1188）。毎回見る
+  // any を許さないのは、optional peer まで全部入れた --full の回だけ（入れていない peer の型は any になって当然）
+  if (!checkTypes(consumer, repoRoot, { strictAny: profile === "full" })) failed = true;
 
   if (treeshake) {
     const ok = await runTreeshake(consumer);
