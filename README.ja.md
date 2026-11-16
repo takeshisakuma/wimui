@@ -306,13 +306,13 @@ peer 依存コンポーネントは**コンポーネント別の専用サブパ�
 | AreaChart, BarChart 等 | `wimui/charts` | `recharts` |
 | Markdown | `wimui/data-display/markdown` | `react-markdown` `remark-gfm` |
 | QRCode | `wimui/data-display/qr-code` | `qrcode.react` |
-| NodeGraph | `wimui/data-display/node-graph` | `@xyflow/react` |
+| NodeGraph | `wimui/data-display/node-graph` | `@xyflow/react`（`^12`。@12 を付けて入れてください。React Flow 13 にはまだ対応しておらず、版を指定しないと 13 が入ります） |
 | ScheduleView | `wimui/data-display/schedule-view` | `@fullcalendar/core` `@fullcalendar/react` `@fullcalendar/daygrid` `@fullcalendar/timegrid` `@fullcalendar/interaction`（`^6`。@6 を付けて入れてください。FullCalendar 7 には対応しておらず、pnpm は版を指定しないと core と react の最新（7）を入れます） |
 | JsonDiffViewer | `wimui/data-display/json-diff-viewer` | `diff` |
 | StreamingText | `wimui/ai/streaming-text` | `react-markdown` `remark-gfm` |
 | MarkdownRenderer | `wimui/ai/markdown-renderer` | `react-markdown` `remark-gfm` |
 | CodeDiffViewer | `wimui/ai/code-diff-viewer` | `diff` |
-| InteractiveGraph | `wimui/ai/interactive-graph` | `@xyflow/react` |
+| InteractiveGraph | `wimui/ai/interactive-graph` | `@xyflow/react`（`^12`） |
 | Audio（`showMetadata` 時のみ） | `wimui` または `wimui/media` | `music-metadata` |
 | FormField / zodResolver | `wimui/rhf` | `react-hook-form` `^7.55` / `@hookform/resolvers` `^5.1 \|\| ^6 \|\| ^7` / `zod` `^4` |
 

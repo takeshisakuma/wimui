@@ -124,6 +124,7 @@ CI・テスト・監査体制は堅い（typecheck / coverage 80% / axe-core WCA
 
 | # | 改善 | 内容 | 状態 |
 |---|---|---|---|
+| T403 | **`@xyflow/react` 13 で、NodeGraph と InteractiveGraph が動くかを確かめる** | 起票 2026-11-17。13.0.0 が 2026-11-16 に出て、週次の `check:peer-majors` が落ちた（Dependency Audit #640。peer が `>=12.0.0` で、確かめていない 13 を許していた）。ユーザー判断で、まず peer を `^12.0.0` に絞り、Dependabot に major の ignore を入れた。**残っているのは、13 を実際に動かすこと**: devDependencies を 13 に上げたブランチで、型チェック・単体テスト（2 部品とも `@xyflow/react` をモックしているので、動く証拠にはならない）・ビルド・tarball の smoke・2 部品のストーリーを流す。NodeGraph は VRT の対象外なので、絵は人が見る。13 は依存に `react-compiler-runtime` が加わり、`@xyflow/system` が 0.0.x から 1.0.0 になっている。動いたら peer を `^12.0.0 \|\| ^13.0.0` にし、`dependabot.yml` の ignore・`MAINTENANCE.md` の表の行・README の 2 つの表の注記を外す。依存の major 更新なので、マージはユーザーの判断 | 未着手（P3） |
 
 ### llms.txt / AI 合成可能性（2026-07-23 起票）
 
