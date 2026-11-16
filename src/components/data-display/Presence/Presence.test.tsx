@@ -42,6 +42,26 @@ describe("Presence", () => {
     expect(dotOf(container).className).toContain(color);
   });
 
+  // 色を除いても見分けられるように、状態ごとに形を変える（T397）。形は CSS が描くので、印の付き方を測る
+  it("gives each status its own shape", () => {
+    const shapes = (["online", "away", "busy", "offline"] as const).map((status) => {
+      const { container } = render(<Presence status={status} />);
+      const root = container.querySelector(".wim-indicator") as HTMLElement;
+      expect(root.className).toContain("shape");
+      return root.className;
+    });
+    expect(new Set(shapes).size).toBe(4);
+  });
+
+  it("marks the shape as attached when the dot sits on a corner", () => {
+    const { container } = render(
+      <Presence status="away">
+        <img src="a.png" alt="Ada" />
+      </Presence>,
+    );
+    expect(container.querySelector(".wim-indicator")?.className).toContain("attached");
+  });
+
   it("attaches the dot to a corner of its children", () => {
     const { container } = render(
       <Presence status="online" position="top-right">
