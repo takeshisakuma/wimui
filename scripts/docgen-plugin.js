@@ -658,6 +658,20 @@ export async function generateHooksDocgen() {
 }
 
 /**
+ * 部品ごとの「アクセシビリティを、どこまで確かめてあるか」の材料（T400）を `src/data/docgen-a11y.json` に書く。
+ * 部品ページの「確かめたこと」の表（`Docgen` の test の節）と一覧ページが読む。実機の読み上げの記録は
+ * 人が書く正本（`src/data/a11y-screen-reader.json`）を、ページが直接読むので、ここには入れない。
+ */
+export async function generateA11yDocgen() {
+  const rootDir = path.resolve(__dirname, '..');
+  const { collectA11yStatus } = await import('./lib/a11y-status.js');
+  const targetFile = path.join(rootDir, 'src/data/docgen-a11y.json');
+  const content = JSON.stringify(collectA11yStatus(rootDir), null, 2);
+  if (fs.existsSync(targetFile) && fs.readFileSync(targetFile, 'utf-8') === content) return;
+  fs.writeFileSync(targetFile, content);
+}
+
+/**
  * Vite プラグイン
  */
 export default function docgenPlugin() {
@@ -666,6 +680,7 @@ export default function docgenPlugin() {
     async buildStart() {
       await generateDocgenData();
       await generateHooksDocgen();
+      await generateA11yDocgen();
     },
     async handleHotUpdate({ file }) {
       if (file.includes('src/components') && (file.endsWith('.tsx') || file.endsWith('.scss'))) {

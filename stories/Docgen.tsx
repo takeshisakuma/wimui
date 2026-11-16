@@ -6,6 +6,7 @@ import { T } from './T';
 import { renderDescription } from './renderDescription';
 import { Command } from './Command';
 import { formatImportSnippet, resolveImportInfo } from './peerImports';
+import { A11yStatusTable } from './A11yStatus';
 import indexData from '@/data/docgen_index.json';
 import './docgen.scss';
 
@@ -232,6 +233,7 @@ export const Docgen = ({ componentName, section }: DocgenProps) => {
         <h2><T k="doc.test_title" /></h2>
         <p><T k="doc.test_description" /></p>
         <Command>{commandText}</Command>
+        <A11yStatusTable componentName={componentName} />
       </section>
     );
   };
