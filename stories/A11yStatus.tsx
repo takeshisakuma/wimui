@@ -118,3 +118,56 @@ export const A11yStatusTable = ({ componentName }: { componentName: string }) =>
     </div>
   );
 };
+
+/**
+ * 全部品の一覧（T400 の 3 本目・`docs/A11yStatus.mdx`）。部品ページの表と同じ材料を、1 行 1 部品で並べる。
+ * 「未確認」の部品も並べる ── 次に実機で聞く部品を選ぶときにも使う。
+ */
+export const A11yStatusList = () => {
+  const { t } = useTranslation(ALL_NAMESPACES, { i18n });
+  const automated = useA11yAutomated();
+  if (automated === undefined) return <div className="docgen-loading"><T k="doc.docgen_loading" /></div>;
+  if (automated === null) return <div className="docgen-error"><T k="doc.a11y_list_no_data" /></div>;
+
+  const names = Object.keys(automated).sort((a, b) => a.localeCompare(b));
+  const latest = new Map(names.map((name) => [name, latestScreenReader(name)]));
+  const summary = {
+    total: names.length,
+    e2e: names.filter((name) => automated[name].e2e.length > 0).length,
+    sr: names.filter((name) => latest.get(name)).length,
+  };
+  const srShort = (record?: ScreenReaderRecord) => {
+    if (!record) return t('doc.a11y_status_sr_none');
+    const key = { ok: 'doc.a11y_list_sr_ok', fixed: 'doc.a11y_list_sr_fixed', 'fixed-unheard': 'doc.a11y_list_sr_fixed_unheard' }[record.result];
+    return t(key, { date: record.date });
+  };
+
+  return (
+    <div className="wim-a11y-status-list">
+      <p>{t('doc.a11y_list_summary', summary)}</p>
+      <table className="docgen-table">
+        <thead>
+          <tr>
+            <th scope="col"><T k="doc.a11y_list_component" /></th>
+            <th scope="col"><T k="doc.a11y_status_axe" /></th>
+            <th scope="col"><T k="doc.a11y_status_e2e" /></th>
+            <th scope="col"><T k="doc.a11y_status_sr" /></th>
+          </tr>
+        </thead>
+        <tbody>
+          {names.map((name) => {
+            const auto = automated[name];
+            return (
+              <tr key={name}>
+                <th scope="row"><code>{name}</code></th>
+                <td>{t(auto.stories > 0 ? 'doc.a11y_list_axe_done' : 'doc.a11y_status_axe_none')}</td>
+                <td>{auto.e2e.length > 0 ? t('doc.a11y_list_e2e_done', { count: auto.e2e.length }) : t('doc.a11y_status_e2e_none')}</td>
+                <td>{srShort(latest.get(name))}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  );
+};
