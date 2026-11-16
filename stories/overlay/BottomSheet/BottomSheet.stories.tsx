@@ -151,7 +151,9 @@ export const SingleAction: Story = {
 export const Open: Story = {
   ...Default,
   // docs ページは <Stories /> で全ストーリーを並べる。載せると、ページを開いた瞬間に開いてしまう。
+  // MDX の docs ページでは `!autodocs` の印は効かない（自動生成の docs ページ用）ので、docs.disable で外す
   tags: ["!autodocs"],
+  parameters: { docs: { disable: true } },
   args: {
     defaultOpen: true,
   },

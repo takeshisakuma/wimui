@@ -1,0 +1,1086 @@
+{
+  "AgentStatus": {
+    "stories": 8,
+    "e2e": []
+  },
+  "AIResponseFeedback": {
+    "stories": 5,
+    "e2e": []
+  },
+  "ArtifactsOverlay": {
+    "stories": 1,
+    "e2e": []
+  },
+  "ChatUI": {
+    "stories": 12,
+    "e2e": []
+  },
+  "CodeBlock": {
+    "stories": 9,
+    "e2e": [
+      "codeblock.e2e.spec.ts"
+    ]
+  },
+  "CodeDiffViewer": {
+    "stories": 7,
+    "e2e": []
+  },
+  "InteractiveGraph": {
+    "stories": 1,
+    "e2e": []
+  },
+  "MarkdownRenderer": {
+    "stories": 1,
+    "e2e": []
+  },
+  "ModelSelector": {
+    "stories": 8,
+    "e2e": [
+      "control-heights.e2e.spec.ts",
+      "inline-floating.e2e.spec.ts",
+      "modelselector.e2e.spec.ts",
+      "open-surfaces.e2e.spec.ts"
+    ]
+  },
+  "PromptInput": {
+    "stories": 5,
+    "e2e": []
+  },
+  "SourceCitation": {
+    "stories": 4,
+    "e2e": []
+  },
+  "StreamingText": {
+    "stories": 3,
+    "e2e": []
+  },
+  "Terminal": {
+    "stories": 4,
+    "e2e": []
+  },
+  "ThoughtProcess": {
+    "stories": 5,
+    "e2e": [
+      "lang-nesting.e2e.spec.ts"
+    ]
+  },
+  "ThreadList": {
+    "stories": 3,
+    "e2e": [
+      "dismiss-focus.e2e.spec.ts"
+    ]
+  },
+  "UsageMeter": {
+    "stories": 5,
+    "e2e": []
+  },
+  "VoiceVisualizer": {
+    "stories": 11,
+    "e2e": []
+  },
+  "BaseListItem": {
+    "stories": 5,
+    "e2e": []
+  },
+  "AreaChart": {
+    "stories": 2,
+    "e2e": []
+  },
+  "BarChart": {
+    "stories": 2,
+    "e2e": []
+  },
+  "BoxPlot": {
+    "stories": 4,
+    "e2e": []
+  },
+  "CandlestickChart": {
+    "stories": 3,
+    "e2e": []
+  },
+  "Charts": {
+    "stories": 1,
+    "e2e": []
+  },
+  "FunnelChart": {
+    "stories": 1,
+    "e2e": []
+  },
+  "GanttChart": {
+    "stories": 4,
+    "e2e": []
+  },
+  "GaugeChart": {
+    "stories": 2,
+    "e2e": []
+  },
+  "Heatmap": {
+    "stories": 1,
+    "e2e": []
+  },
+  "LineChart": {
+    "stories": 2,
+    "e2e": []
+  },
+  "PieChart": {
+    "stories": 2,
+    "e2e": []
+  },
+  "RadarChart": {
+    "stories": 1,
+    "e2e": []
+  },
+  "SankeyChart": {
+    "stories": 3,
+    "e2e": []
+  },
+  "ScatterChart": {
+    "stories": 1,
+    "e2e": []
+  },
+  "Sparkline": {
+    "stories": 6,
+    "e2e": []
+  },
+  "Treemap": {
+    "stories": 2,
+    "e2e": []
+  },
+  "WaterfallChart": {
+    "stories": 3,
+    "e2e": []
+  },
+  "Accordion": {
+    "stories": 3,
+    "e2e": []
+  },
+  "Avatar": {
+    "stories": 6,
+    "e2e": []
+  },
+  "AvatarGroup": {
+    "stories": 5,
+    "e2e": [
+      "avatargroup.e2e.spec.ts",
+      "inline-floating.e2e.spec.ts"
+    ]
+  },
+  "Badge": {
+    "stories": 12,
+    "e2e": []
+  },
+  "Barcode": {
+    "stories": 5,
+    "e2e": []
+  },
+  "Calendar": {
+    "stories": 4,
+    "e2e": [
+      "calendar.e2e.spec.ts"
+    ]
+  },
+  "RangeCalendar": {
+    "stories": 4,
+    "e2e": [
+      "calendar.e2e.spec.ts"
+    ]
+  },
+  "CalendarHeatmap": {
+    "stories": 1,
+    "e2e": []
+  },
+  "Card": {
+    "stories": 6,
+    "e2e": []
+  },
+  "Carousel": {
+    "stories": 8,
+    "e2e": []
+  },
+  "Chip": {
+    "stories": 8,
+    "e2e": []
+  },
+  "Comment": {
+    "stories": 5,
+    "e2e": []
+  },
+  "Countdown": {
+    "stories": 8,
+    "e2e": []
+  },
+  "DataGrid": {
+    "stories": 17,
+    "e2e": []
+  },
+  "DescriptionList": {
+    "stories": 6,
+    "e2e": []
+  },
+  "EmptyState": {
+    "stories": 7,
+    "e2e": []
+  },
+  "FAQSection": {
+    "stories": 4,
+    "e2e": []
+  },
+  "InfiniteScroll": {
+    "stories": 1,
+    "e2e": []
+  },
+  "JsonDiffViewer": {
+    "stories": 5,
+    "e2e": []
+  },
+  "JsonViewer": {
+    "stories": 4,
+    "e2e": [
+      "remove-focus.e2e.spec.ts"
+    ]
+  },
+  "Kanban": {
+    "stories": 3,
+    "e2e": [
+      "kanban.e2e.spec.ts"
+    ]
+  },
+  "Leaderboard": {
+    "stories": 6,
+    "e2e": []
+  },
+  "List": {
+    "stories": 7,
+    "e2e": []
+  },
+  "Markdown": {
+    "stories": 1,
+    "e2e": []
+  },
+  "Marquee": {
+    "stories": 5,
+    "e2e": []
+  },
+  "NodeGraph": {
+    "stories": 5,
+    "e2e": []
+  },
+  "PivotTable": {
+    "stories": 7,
+    "e2e": [
+      "pivottable.e2e.spec.ts",
+      "story-remount.e2e.spec.ts"
+    ]
+  },
+  "Presence": {
+    "stories": 6,
+    "e2e": []
+  },
+  "PullToRefresh": {
+    "stories": 2,
+    "e2e": []
+  },
+  "QRCode": {
+    "stories": 4,
+    "e2e": []
+  },
+  "Reaction": {
+    "stories": 6,
+    "e2e": []
+  },
+  "RelativeTime": {
+    "stories": 8,
+    "e2e": []
+  },
+  "ScheduleView": {
+    "stories": 5,
+    "e2e": []
+  },
+  "SelectionBar": {
+    "stories": 2,
+    "e2e": []
+  },
+  "SortableList": {
+    "stories": 2,
+    "e2e": []
+  },
+  "Stats": {
+    "stories": 7,
+    "e2e": []
+  },
+  "SwipeAction": {
+    "stories": 4,
+    "e2e": [
+      "dismiss-focus.e2e.spec.ts"
+    ]
+  },
+  "Table": {
+    "stories": 12,
+    "e2e": []
+  },
+  "Tag": {
+    "stories": 7,
+    "e2e": []
+  },
+  "Timeline": {
+    "stories": 4,
+    "e2e": []
+  },
+  "TreeDiagram": {
+    "stories": 5,
+    "e2e": []
+  },
+  "TreeView": {
+    "stories": 7,
+    "e2e": []
+  },
+  "VirtualList": {
+    "stories": 4,
+    "e2e": []
+  },
+  "Alert": {
+    "stories": 8,
+    "e2e": [
+      "feedback-close-focus.e2e.spec.ts",
+      "lang-nesting.e2e.spec.ts"
+    ]
+  },
+  "Autosave": {
+    "stories": 5,
+    "e2e": []
+  },
+  "Banner": {
+    "stories": 10,
+    "e2e": []
+  },
+  "ErrorBoundary": {
+    "stories": 2,
+    "e2e": []
+  },
+  "Indicator": {
+    "stories": 6,
+    "e2e": []
+  },
+  "Loader": {
+    "stories": 4,
+    "e2e": []
+  },
+  "LoadingOverlay": {
+    "stories": 9,
+    "e2e": []
+  },
+  "Notification": {
+    "stories": 7,
+    "e2e": [
+      "feedback-close-focus.e2e.spec.ts"
+    ]
+  },
+  "Progress": {
+    "stories": 4,
+    "e2e": []
+  },
+  "ProgressRing": {
+    "stories": 5,
+    "e2e": []
+  },
+  "Result": {
+    "stories": 9,
+    "e2e": []
+  },
+  "ScrollProgress": {
+    "stories": 2,
+    "e2e": [
+      "scrollprogress.e2e.spec.ts"
+    ]
+  },
+  "Skeleton": {
+    "stories": 7,
+    "e2e": []
+  },
+  "Snackbar": {
+    "stories": 9,
+    "e2e": []
+  },
+  "Spinner": {
+    "stories": 5,
+    "e2e": []
+  },
+  "Toast": {
+    "stories": 7,
+    "e2e": [
+      "lang-nesting.e2e.spec.ts",
+      "toast.e2e.spec.ts"
+    ]
+  },
+  "Tour": {
+    "stories": 3,
+    "e2e": [
+      "move-following.e2e.spec.ts",
+      "tour.e2e.spec.ts"
+    ]
+  },
+  "Button": {
+    "stories": 10,
+    "e2e": []
+  },
+  "ButtonGroup": {
+    "stories": 8,
+    "e2e": [
+      "joined-shadow.e2e.spec.ts"
+    ]
+  },
+  "Cascader": {
+    "stories": 6,
+    "e2e": [
+      "control-heights.e2e.spec.ts",
+      "inline-floating.e2e.spec.ts",
+      "open-surfaces.e2e.spec.ts"
+    ]
+  },
+  "Checkbox": {
+    "stories": 7,
+    "e2e": []
+  },
+  "CheckboxGroup": {
+    "stories": 5,
+    "e2e": []
+  },
+  "ColorInput": {
+    "stories": 4,
+    "e2e": [
+      "control-heights.e2e.spec.ts"
+    ]
+  },
+  "ColorPicker": {
+    "stories": 7,
+    "e2e": [
+      "control-heights.e2e.spec.ts"
+    ]
+  },
+  "Combobox": {
+    "stories": 4,
+    "e2e": [
+      "control-heights.e2e.spec.ts",
+      "inline-floating.e2e.spec.ts",
+      "input-affordances.e2e.spec.ts",
+      "open-surfaces.e2e.spec.ts"
+    ]
+  },
+  "CopyButton": {
+    "stories": 3,
+    "e2e": []
+  },
+  "CounterTextarea": {
+    "stories": 2,
+    "e2e": []
+  },
+  "CreditCardInput": {
+    "stories": 4,
+    "e2e": [
+      "control-heights.e2e.spec.ts"
+    ]
+  },
+  "DatePicker": {
+    "stories": 7,
+    "e2e": [
+      "calendar.e2e.spec.ts",
+      "control-heights.e2e.spec.ts",
+      "datepicker.e2e.spec.ts",
+      "focus-trap.e2e.spec.ts",
+      "inline-floating.e2e.spec.ts",
+      "input-affordances.e2e.spec.ts",
+      "open-surfaces.e2e.spec.ts"
+    ]
+  },
+  "DateRangePicker": {
+    "stories": 2,
+    "e2e": [
+      "control-heights.e2e.spec.ts",
+      "focus-trap.e2e.spec.ts",
+      "open-surfaces.e2e.spec.ts"
+    ]
+  },
+  "Dropzone": {
+    "stories": 8,
+    "e2e": []
+  },
+  "FieldError": {
+    "stories": 2,
+    "e2e": []
+  },
+  "Fieldset": {
+    "stories": 4,
+    "e2e": []
+  },
+  "FieldTemplate": {
+    "stories": 4,
+    "e2e": [
+      "error-stories.e2e.spec.ts"
+    ]
+  },
+  "FileUpload": {
+    "stories": 6,
+    "e2e": []
+  },
+  "FloatButton": {
+    "stories": 13,
+    "e2e": []
+  },
+  "IconButton": {
+    "stories": 4,
+    "e2e": [
+      "control-heights.e2e.spec.ts",
+      "themetoggle.e2e.spec.ts"
+    ]
+  },
+  "ImageCropper": {
+    "stories": 4,
+    "e2e": [
+      "imagecropper.e2e.spec.ts"
+    ]
+  },
+  "InlineEdit": {
+    "stories": 5,
+    "e2e": []
+  },
+  "Input": {
+    "stories": 10,
+    "e2e": [
+      "control-heights.e2e.spec.ts",
+      "error-stories.e2e.spec.ts",
+      "inputbase-clear.e2e.spec.ts"
+    ]
+  },
+  "InputBase": {
+    "stories": 6,
+    "e2e": []
+  },
+  "InputGroup": {
+    "stories": 6,
+    "e2e": [
+      "joined-shadow.e2e.spec.ts"
+    ]
+  },
+  "InputMask": {
+    "stories": 5,
+    "e2e": []
+  },
+  "LinkButton": {
+    "stories": 3,
+    "e2e": []
+  },
+  "Mentions": {
+    "stories": 2,
+    "e2e": []
+  },
+  "MultiSelect": {
+    "stories": 6,
+    "e2e": [
+      "control-heights.e2e.spec.ts",
+      "inline-floating.e2e.spec.ts",
+      "multiselect.e2e.spec.ts",
+      "open-surfaces.e2e.spec.ts"
+    ]
+  },
+  "NumberInput": {
+    "stories": 5,
+    "e2e": [
+      "control-heights.e2e.spec.ts"
+    ]
+  },
+  "OtpInput": {
+    "stories": 5,
+    "e2e": [
+      "otpinput.e2e.spec.ts"
+    ]
+  },
+  "PasswordInput": {
+    "stories": 2,
+    "e2e": [
+      "control-heights.e2e.spec.ts"
+    ]
+  },
+  "PasswordStrength": {
+    "stories": 2,
+    "e2e": []
+  },
+  "PhoneInput": {
+    "stories": 4,
+    "e2e": [
+      "control-heights.e2e.spec.ts",
+      "inline-floating.e2e.spec.ts",
+      "open-surfaces.e2e.spec.ts",
+      "phoneinput.e2e.spec.ts"
+    ]
+  },
+  "QueryBuilder": {
+    "stories": 2,
+    "e2e": [
+      "remove-focus.e2e.spec.ts"
+    ]
+  },
+  "Radio": {
+    "stories": 5,
+    "e2e": []
+  },
+  "RadioGroup": {
+    "stories": 7,
+    "e2e": []
+  },
+  "RangeSlider": {
+    "stories": 5,
+    "e2e": [
+      "rangeslider.e2e.spec.ts"
+    ]
+  },
+  "Rating": {
+    "stories": 8,
+    "e2e": []
+  },
+  "RichTextEditor": {
+    "stories": 11,
+    "e2e": [
+      "richtexteditor.e2e.spec.ts"
+    ]
+  },
+  "SearchInput": {
+    "stories": 3,
+    "e2e": [
+      "control-heights.e2e.spec.ts"
+    ]
+  },
+  "SegmentedControl": {
+    "stories": 7,
+    "e2e": []
+  },
+  "Select": {
+    "stories": 10,
+    "e2e": [
+      "control-heights.e2e.spec.ts",
+      "inline-floating.e2e.spec.ts",
+      "inputbase-clear.e2e.spec.ts",
+      "open-surfaces.e2e.spec.ts",
+      "select.e2e.spec.ts"
+    ]
+  },
+  "SignaturePad": {
+    "stories": 5,
+    "e2e": [
+      "signaturepad.e2e.spec.ts"
+    ]
+  },
+  "Slider": {
+    "stories": 5,
+    "e2e": []
+  },
+  "SmartSearchInput": {
+    "stories": 4,
+    "e2e": []
+  },
+  "SplitButton": {
+    "stories": 6,
+    "e2e": [
+      "dropdown.e2e.spec.ts",
+      "joined-shadow.e2e.spec.ts",
+      "open-surfaces.e2e.spec.ts",
+      "splitbutton.e2e.spec.ts"
+    ]
+  },
+  "Switch": {
+    "stories": 7,
+    "e2e": []
+  },
+  "SwitchGroup": {
+    "stories": 3,
+    "e2e": []
+  },
+  "TagInput": {
+    "stories": 5,
+    "e2e": []
+  },
+  "Textarea": {
+    "stories": 7,
+    "e2e": [
+      "error-stories.e2e.spec.ts"
+    ]
+  },
+  "ThemeToggle": {
+    "stories": 6,
+    "e2e": [
+      "themetoggle.e2e.spec.ts"
+    ]
+  },
+  "TimePicker": {
+    "stories": 6,
+    "e2e": [
+      "control-heights.e2e.spec.ts",
+      "input-affordances.e2e.spec.ts"
+    ]
+  },
+  "ToggleGroup": {
+    "stories": 6,
+    "e2e": []
+  },
+  "Transfer": {
+    "stories": 5,
+    "e2e": []
+  },
+  "TreeSelect": {
+    "stories": 7,
+    "e2e": [
+      "control-heights.e2e.spec.ts",
+      "focus-trap.e2e.spec.ts",
+      "inline-floating.e2e.spec.ts",
+      "input-affordances.e2e.spec.ts",
+      "open-surfaces.e2e.spec.ts",
+      "treeselect.e2e.spec.ts"
+    ]
+  },
+  "FieldCharacterCount": {
+    "stories": 3,
+    "e2e": []
+  },
+  "IndicatorBase": {
+    "stories": 3,
+    "e2e": []
+  },
+  "OverlayBase": {
+    "stories": 1,
+    "e2e": []
+  },
+  "StatusContent": {
+    "stories": 1,
+    "e2e": []
+  },
+  "AppShell": {
+    "stories": 6,
+    "e2e": []
+  },
+  "AspectRatio": {
+    "stories": 3,
+    "e2e": []
+  },
+  "BentoGrid": {
+    "stories": 1,
+    "e2e": []
+  },
+  "Box": {
+    "stories": 5,
+    "e2e": []
+  },
+  "Center": {
+    "stories": 3,
+    "e2e": []
+  },
+  "Container": {
+    "stories": 3,
+    "e2e": []
+  },
+  "Dashboard": {
+    "stories": 3,
+    "e2e": [
+      "dismiss-focus.e2e.spec.ts"
+    ]
+  },
+  "Divider": {
+    "stories": 2,
+    "e2e": []
+  },
+  "Flex": {
+    "stories": 4,
+    "e2e": []
+  },
+  "Footer": {
+    "stories": 2,
+    "e2e": []
+  },
+  "Grid": {
+    "stories": 3,
+    "e2e": []
+  },
+  "Group": {
+    "stories": 3,
+    "e2e": []
+  },
+  "Header": {
+    "stories": 5,
+    "e2e": []
+  },
+  "InteractiveArea": {
+    "stories": 8,
+    "e2e": []
+  },
+  "Masonry": {
+    "stories": 3,
+    "e2e": []
+  },
+  "Navbar": {
+    "stories": 5,
+    "e2e": []
+  },
+  "OverflowList": {
+    "stories": 3,
+    "e2e": []
+  },
+  "ScrollArea": {
+    "stories": 4,
+    "e2e": []
+  },
+  "Sidebar": {
+    "stories": 3,
+    "e2e": []
+  },
+  "SimpleGrid": {
+    "stories": 3,
+    "e2e": []
+  },
+  "Splitter": {
+    "stories": 5,
+    "e2e": []
+  },
+  "Stack": {
+    "stories": 3,
+    "e2e": []
+  },
+  "Toolbar": {
+    "stories": 4,
+    "e2e": [
+      "inline-floating.e2e.spec.ts",
+      "toolbar.e2e.spec.ts"
+    ]
+  },
+  "Transition": {
+    "stories": 2,
+    "e2e": []
+  },
+  "VisuallyHidden": {
+    "stories": 2,
+    "e2e": []
+  },
+  "Watermark": {
+    "stories": 4,
+    "e2e": []
+  },
+  "Audio": {
+    "stories": 7,
+    "e2e": [
+      "story-ready.e2e.spec.ts"
+    ]
+  },
+  "Gallery": {
+    "stories": 5,
+    "e2e": []
+  },
+  "Icon": {
+    "stories": 9,
+    "e2e": []
+  },
+  "Image": {
+    "stories": 10,
+    "e2e": []
+  },
+  "ImageCompare": {
+    "stories": 4,
+    "e2e": []
+  },
+  "Lightbox": {
+    "stories": 4,
+    "e2e": [
+      "focus-trap.e2e.spec.ts",
+      "lightbox.e2e.spec.ts"
+    ]
+  },
+  "Video": {
+    "stories": 6,
+    "e2e": []
+  },
+  "Affix": {
+    "stories": 2,
+    "e2e": [
+      "move-following.e2e.spec.ts"
+    ]
+  },
+  "Anchor": {
+    "stories": 1,
+    "e2e": [
+      "anchor.e2e.spec.ts",
+      "move-following.e2e.spec.ts"
+    ]
+  },
+  "BackTop": {
+    "stories": 3,
+    "e2e": []
+  },
+  "Breadcrumb": {
+    "stories": 6,
+    "e2e": [
+      "breadcrumb.e2e.spec.ts",
+      "inline-floating.e2e.spec.ts"
+    ]
+  },
+  "CommandPalette": {
+    "stories": 3,
+    "e2e": [
+      "focus-trap.e2e.spec.ts"
+    ]
+  },
+  "HamburgerMenu": {
+    "stories": 5,
+    "e2e": [
+      "hamburgermenu.e2e.spec.ts"
+    ]
+  },
+  "KeyboardShortcuts": {
+    "stories": 5,
+    "e2e": []
+  },
+  "Link": {
+    "stories": 9,
+    "e2e": []
+  },
+  "Menubar": {
+    "stories": 2,
+    "e2e": [
+      "inline-floating.e2e.spec.ts",
+      "menubar.e2e.spec.ts",
+      "open-surfaces.e2e.spec.ts"
+    ]
+  },
+  "Pagination": {
+    "stories": 6,
+    "e2e": []
+  },
+  "SpeedDial": {
+    "stories": 6,
+    "e2e": [
+      "speeddial.e2e.spec.ts"
+    ]
+  },
+  "Stepper": {
+    "stories": 7,
+    "e2e": [
+      "stepper.e2e.spec.ts"
+    ]
+  },
+  "TabBar": {
+    "stories": 3,
+    "e2e": []
+  },
+  "TabNavigation": {
+    "stories": 5,
+    "e2e": []
+  },
+  "Tabs": {
+    "stories": 3,
+    "e2e": [
+      "tabs.e2e.spec.ts"
+    ]
+  },
+  "BottomSheet": {
+    "stories": 3,
+    "e2e": [
+      "focus-trap.e2e.spec.ts"
+    ]
+  },
+  "ContextMenu": {
+    "stories": 7,
+    "e2e": [
+      "contextmenu.e2e.spec.ts",
+      "open-surfaces.e2e.spec.ts"
+    ]
+  },
+  "Dialog": {
+    "stories": 9,
+    "e2e": [
+      "focus-trap.e2e.spec.ts",
+      "overlay-scroll-lock.e2e.spec.ts"
+    ]
+  },
+  "Drawer": {
+    "stories": 7,
+    "e2e": [
+      "drawer.e2e.spec.ts",
+      "focus-trap.e2e.spec.ts"
+    ]
+  },
+  "Dropdown": {
+    "stories": 3,
+    "e2e": [
+      "dropdown.e2e.spec.ts"
+    ]
+  },
+  "FocusTrap": {
+    "stories": 2,
+    "e2e": []
+  },
+  "HoverCard": {
+    "stories": 4,
+    "e2e": [
+      "inline-floating.e2e.spec.ts"
+    ]
+  },
+  "Menu": {
+    "stories": 7,
+    "e2e": []
+  },
+  "Popconfirm": {
+    "stories": 5,
+    "e2e": [
+      "open-surfaces.e2e.spec.ts"
+    ]
+  },
+  "Popover": {
+    "stories": 7,
+    "e2e": []
+  },
+  "Portal": {
+    "stories": 4,
+    "e2e": []
+  },
+  "Tooltip": {
+    "stories": 7,
+    "e2e": []
+  },
+  "Blockquote": {
+    "stories": 8,
+    "e2e": []
+  },
+  "Code": {
+    "stories": 3,
+    "e2e": []
+  },
+  "Highlight": {
+    "stories": 6,
+    "e2e": []
+  },
+  "Kbd": {
+    "stories": 6,
+    "e2e": []
+  },
+  "Label": {
+    "stories": 3,
+    "e2e": []
+  },
+  "Legend": {
+    "stories": 2,
+    "e2e": []
+  },
+  "Span": {
+    "stories": 12,
+    "e2e": []
+  },
+  "Spoiler": {
+    "stories": 6,
+    "e2e": []
+  },
+  "Text": {
+    "stories": 9,
+    "e2e": []
+  },
+  "Title": {
+    "stories": 8,
+    "e2e": [
+      "lang-nesting.e2e.spec.ts"
+    ]
+  }
+}
