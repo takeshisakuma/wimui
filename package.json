@@ -373,6 +373,8 @@
     "check:prop-api": "node scripts/check-prop-api.js",
     "check:hooks-docs": "node scripts/check-hooks-docs.js",
     "prove:hooks-docs": "node scripts/prove-hooks-docs.mjs",
+    "check:a11y-screen-reader": "node scripts/check-a11y-screen-reader.js",
+    "prove:a11y-screen-reader": "node scripts/prove-a11y-screen-reader.mjs",
     "check:spread-order": "node scripts/check-spread-order.js",
     "check:spread-order:update": "node scripts/check-spread-order.js --update",
     "check:prop-api:update": "node scripts/check-prop-api.js --update",
@@ -719,6 +721,9 @@
     }
   },
   "lint-staged": {
+    "{src/data/a11y-screen-reader.json,src/data/components.json,MAINTENANCE.md,IMPROVEMENTS.md,docs/history/improvements-ledger.md}": [
+      "node scripts/check-a11y-screen-reader.js"
+    ],
     "{DESIGN.md,docs/design/*.md}": [
       "node scripts/check-doc-token-refs.js",
       "node scripts/check-doc-token-values.js"

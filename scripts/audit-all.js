@@ -72,6 +72,13 @@ const checks = [
   },
   {
     category: "docs",
+    // T400（2026-11-16）。実機の読み上げの記録は人が書く唯一のデータで、部品ページの「確かめたこと」の
+    // 表の材料になる。打ち間違いの部品名は表から黙って消え、たどれない出典は記録を検証できなくする。
+    name: "Screen reader records point at real components and traceable sources",
+    command: "node scripts/check-a11y-screen-reader.js",
+  },
+  {
+    category: "docs",
     // T229（2026-08-23）。同じキーが複数のロケールファイルに在ると、i18next は
     // 先の名前空間だけを返すので**負けている複製は一度も表示されない**。
     // `check-i18n-quality` の重複検出は 1 ファイルの中しか見ないため構造的に見えない。
