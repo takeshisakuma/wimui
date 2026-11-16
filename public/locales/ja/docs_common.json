@@ -296,6 +296,27 @@
     "registry_width_js": "自身の幅（JS）",
     "registry_width_js_desc": "自身の幅を JavaScript で測って形を変える（列数・表示の型・入りきらない項目を「…」へ移す）。",
     "registry_width_none": "幅によって形は切り替わらない。",
-    "kb_typeahead": "打った文字で名前が始まる、次の項目へ移る（無効の項目は飛ばす）"
+    "kb_typeahead": "打った文字で名前が始まる、次の項目へ移る（無効の項目は飛ばす）",
+    "a11y_status_title": "アクセシビリティの確認状況",
+    "a11y_status_desc": "この部品について、これまでに確かめたこと。未確認は「まだ誰も確かめていない」という意味で、問題があるという意味ではありません。",
+    "a11y_status_check": "確かめたこと",
+    "a11y_status_state": "状況",
+    "a11y_status_axe": "自動検査（axe）",
+    "a11y_status_axe_done": "全ストーリーを、ライトとダークの両方で確認済み",
+    "a11y_status_axe_none": "検査するストーリーがありません",
+    "a11y_status_e2e": "ブラウザでの操作テスト",
+    "a11y_status_e2e_done": "あり: {{files}}",
+    "a11y_status_e2e_none": "なし",
+    "a11y_status_sr": "実機の読み上げ",
+    "a11y_status_sr_ok": "確認済み（{{date}}・{{reader}} + {{browser}}）",
+    "a11y_status_sr_fixed": "{{date}} に {{reader}} + {{browser}} で外れが見つかり、直して聞き直し済み",
+    "a11y_status_sr_fixed_unheard": "{{date}} に {{reader}} + {{browser}} で外れが見つかり、直した（直したあとは聞き直していない）",
+    "a11y_status_sr_none": "未確認",
+    "a11y_status_note": "ブラウザでの操作テストは、E2E テストのファイルに書かれたストーリー ID から数えています。全ストーリーから対象を拾うテスト（密度・ストーリーの自動操作・押したときの見た目）は数えていません。実機の読み上げは、人が聞いた結果を記録したものです。",
+    "a11y_reader_narrator": "ナレーター",
+    "a11y_reader_nvda": "NVDA",
+    "a11y_reader_jaws": "JAWS",
+    "a11y_reader_voiceover": "VoiceOver",
+    "a11y_reader_talkback": "TalkBack"
   }
 }

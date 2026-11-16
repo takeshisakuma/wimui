@@ -108,13 +108,11 @@ describe("check-changeset-needed", () => {
     const root = path.resolve(import.meta.dirname, "..");
     const dataDir = path.join(root, "src", "data");
     // docgen_*.json・docgen-hooks.json・.docgen-cache.json は gitignore された生成物で、PR の差分に出てこない
-    // （docgen-hooks.json は T380。カテゴリの JSON の掃除に消されないよう、名前を docgen_ で始めていない）
+    // （docgen-hooks.json は T380、docgen-a11y.json は T400。カテゴリの JSON の掃除に消されないよう、名前を docgen_ で始めていない）
+    const generated = new Set(["docgen-hooks.json", "docgen-a11y.json"]);
     const tracked = fs
       .readdirSync(dataDir)
-      .filter(
-        (name) =>
-          name.endsWith(".json") && !name.startsWith("docgen_") && name !== "docgen-hooks.json" && !name.startsWith("."),
-      )
+      .filter((name) => name.endsWith(".json") && !name.startsWith("docgen_") && !generated.has(name) && !name.startsWith("."))
       .map((name) => `src/data/${name}`);
 
     it("src/data のファイルは、出荷される / されないのどちらかに載っている", () => {

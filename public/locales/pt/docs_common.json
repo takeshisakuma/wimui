@@ -296,6 +296,27 @@
     "registry_width_js": "Própria largura (JS)",
     "registry_width_js_desc": "Mede a própria largura com JavaScript e muda o layout (colunas, modo de exibição, itens movidos para um menu de excedentes).",
     "registry_width_none": "O layout não muda com a largura.",
-    "kb_typeahead": "Move para o próximo item cujo nome começa com as letras digitadas (itens desativados são ignorados)"
+    "kb_typeahead": "Move para o próximo item cujo nome começa com as letras digitadas (itens desativados são ignorados)",
+    "a11y_status_title": "Verificações de acessibilidade",
+    "a11y_status_desc": "O que já foi verificado neste componente. Não verificado significa que ninguém verificou ainda, não que haja um problema.",
+    "a11y_status_check": "Verificação",
+    "a11y_status_state": "Situação",
+    "a11y_status_axe": "Verificação automática (axe)",
+    "a11y_status_axe_done": "Verificado em todas as histórias, nos temas claro e escuro",
+    "a11y_status_axe_none": "Não há histórias para verificar",
+    "a11y_status_e2e": "Testes de interação no navegador",
+    "a11y_status_e2e_done": "Testado em: {{files}}",
+    "a11y_status_e2e_none": "Nenhum",
+    "a11y_status_sr": "Leitor de tela (dispositivo real)",
+    "a11y_status_sr_ok": "Verificado em {{date}} com {{reader}} e {{browser}}",
+    "a11y_status_sr_fixed": "Problema encontrado em {{date}} com {{reader}} e {{browser}}, corrigido e verificado de novo",
+    "a11y_status_sr_fixed_unheard": "Problema encontrado em {{date}} com {{reader}} e {{browser}} e corrigido; não verificado de novo desde então",
+    "a11y_status_sr_none": "Ainda não verificado",
+    "a11y_status_note": "Os testes de interação no navegador são contados a partir dos IDs de histórias escritos nos arquivos de testes de ponta a ponta; testes que escolhem os alvos entre todas as histórias (densidade, funções play, estados pressionados) não são contados. Os resultados de leitor de tela são registrados à mão.",
+    "a11y_reader_narrator": "Narrador",
+    "a11y_reader_nvda": "NVDA",
+    "a11y_reader_jaws": "JAWS",
+    "a11y_reader_voiceover": "VoiceOver",
+    "a11y_reader_talkback": "TalkBack"
   }
 }
