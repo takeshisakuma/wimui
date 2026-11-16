@@ -320,7 +320,7 @@
   ],
   "scripts": {
     "dev": "npm run generate:icons && npm run i18n:bundle && vite",
-    "build": "npm run generate:icons && npm run i18n:bundle && npm run llms:build && vite build && vite build --mode umd && node scripts/build-style-entries.js && node scripts/fix-cjs-empty-css.js && node scripts/prune-dist-assets.js",
+    "build": "npm run generate:icons && npm run i18n:bundle && npm run llms:build && vite build && vite build --mode umd && node scripts/fix-dts-extensions.js && node scripts/build-style-entries.js && node scripts/fix-cjs-empty-css.js && node scripts/prune-dist-assets.js",
     "generate:icons": "node scripts/generate-icons.js",
     "generate:responsive": "node scripts/generate-responsive.js",
     "size": "size-limit",
