@@ -1,5 +1,19 @@
 # wimui
 
+## 0.75.0
+
+### Minor Changes
+
+- 3ac374b: 開いた面の最初のフォーカス先を、`data-autofocus` の印で選べるようにした（T399）。`FocusTrap` は、有効になったとき、印を付けた要素へフォーカスを置き、印が無ければ今までどおり DOM の最初のフォーカスできる要素へ置く。`FocusTrap` を使う `Dialog`・`Drawer`・`BottomSheet`・`CommandPalette` などに効く。props は増えない。印を付けた要素がフォーカスを取れないときは、印が無いのと同じに扱う。
+- 8e87959: **破壊的変更（型だけ）**: `Menu` の `defaultSelectedKeys` と、`MenuItem` の `itemKey` を型から外した（T396）。どちらも型に宣言してあるだけで、実装は一度も読んでいなかった ── 渡しても何も起きず、`MenuItem` の `itemKey` は DOM へそのまま流れていた。挙動は変わらない。渡しているコードは、その prop を消すだけでよい。
+
+  `SubMenu` の `itemKey`（開閉の状態の鍵）と、`Menu` の `defaultOpenKeys` は今までどおり。
+
+### Patch Changes
+
+- 2d0ecc5: 型の `.d.ts` の相対 import に拡張子を付けた（#1188）。`moduleResolution: "node16"` / `"nodenext"` の TypeScript で、ルートの export 864 個のうち 844 個が見えず、残りは `any` になっていた（`"bundler"` では見えていた）。あわせて、アイコン（`AlertCircleIcon` など 88 個）の型が、どの設定でも `any` になっていたのを直した（配布物に無い `*.svg?react` の宣言を参照していた）。JavaScript の出力は変わらない。
+- 114429e: `Presence` の 4 つの状態を、色だけでなく形でも描き分けるようにした（T397）。オンライン＝塗りの丸・離席中＝右半分を抜いた丸・取り込み中＝横棒を抜いた丸・オフライン＝輪。色を除いても（WCAG 1.4.1）、強制カラーでも見分けられる。オフラインの輪は、地の線の色では細くて消えるので、文字の 3 番手の濃さ（`--wim-color-text-tertiary`）で描く。props は変わらない。
+
 ## 0.74.2
 
 ### Patch Changes
