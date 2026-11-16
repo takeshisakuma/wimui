@@ -39,6 +39,7 @@ import { execFileSync } from "node:child_process";
  * （載せ忘れはテストが落とす）。
  */
 export const UNSHIPPED_DATA = {
+  "src/data/a11y-screen-reader.json": "実機の読み上げの記録。部品の文書ページと一覧ページだけが読む（T400）",
   "src/data/chart-palette.json": "check:chart-palette の基準値のスナップショット",
   "src/data/component-responsive.json": "Storybook の Registry の列だけが読む",
   "src/data/peer-imports.json": "check:imports とストーリーの peer 表示だけが読む",
