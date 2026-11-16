@@ -317,6 +317,17 @@
     "a11y_reader_nvda": "NVDA",
     "a11y_reader_jaws": "JAWS",
     "a11y_reader_voiceover": "VoiceOver",
-    "a11y_reader_talkback": "TalkBack"
+    "a11y_reader_talkback": "TalkBack",
+    "a11y_list_title": "部品ごとのアクセシビリティの確認状況",
+    "a11y_list_desc": "各部品のページの表と同じ 3 つを、1 行 1 部品で並べたものです。未確認は「まだ誰も確かめていない」という意味で、問題があるという意味ではありません。読み上げの記録が無い部品が、次に実機で聞く候補です。",
+    "a11y_list_summary": "部品 {{total}} 個のうち、ブラウザでの操作テストあり {{e2e}} 個・実機の読み上げで確認 {{sr}} 個",
+    "a11y_list_component": "部品",
+    "a11y_list_axe_done": "確認済み",
+    "a11y_list_e2e_done": "あり（{{count}} ファイル）",
+    "a11y_list_sr_ok": "確認済み（{{date}}）",
+    "a11y_list_sr_fixed": "直して聞き直し済み（{{date}}）",
+    "a11y_list_sr_fixed_unheard": "直した・聞き直していない（{{date}}）",
+    "a11y_list_link": "部品ごとの確認状況は、各部品のページの「テスト」の節の表に、全部品の一覧は「Accessibility Status」のページにあります。",
+    "a11y_list_no_data": "アクセシビリティの材料がまだ作られていません（src/data/docgen-a11y.json は Storybook の起動時に作られます）。"
   }
 }

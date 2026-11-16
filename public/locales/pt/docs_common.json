@@ -317,6 +317,17 @@
     "a11y_reader_nvda": "NVDA",
     "a11y_reader_jaws": "JAWS",
     "a11y_reader_voiceover": "VoiceOver",
-    "a11y_reader_talkback": "TalkBack"
+    "a11y_reader_talkback": "TalkBack",
+    "a11y_list_title": "Situação de acessibilidade por componente",
+    "a11y_list_desc": "As mesmas três verificações da tabela de cada página de componente, uma linha por componente. Não verificado significa que ninguém verificou ainda, não que haja um problema. Os componentes sem registro de leitor de tela são os próximos a ouvir.",
+    "a11y_list_summary": "Componentes: {{total}} / com testes de interação no navegador: {{e2e}} / verificados com leitor de tela: {{sr}}",
+    "a11y_list_component": "Componente",
+    "a11y_list_axe_done": "Verificado",
+    "a11y_list_e2e_done": "Arquivos de teste: {{count}}",
+    "a11y_list_sr_ok": "Verificado ({{date}})",
+    "a11y_list_sr_fixed": "Corrigido e verificado de novo ({{date}})",
+    "a11y_list_sr_fixed_unheard": "Corrigido, não verificado de novo ({{date}})",
+    "a11y_list_link": "Para cada componente, veja a tabela de situação de acessibilidade na seção de testes da página dele, ou a lista de todos os componentes na página Accessibility Status.",
+    "a11y_list_no_data": "Os dados de acessibilidade ainda não foram gerados (src/data/docgen-a11y.json é criado quando o Storybook inicia)."
   }
 }

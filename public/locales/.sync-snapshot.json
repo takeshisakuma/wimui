@@ -3250,7 +3250,18 @@
       "a11y_reader_nvda": "NVDA",
       "a11y_reader_jaws": "JAWS",
       "a11y_reader_voiceover": "VoiceOver",
-      "a11y_reader_talkback": "TalkBack"
+      "a11y_reader_talkback": "TalkBack",
+      "a11y_list_title": "Accessibility status by component",
+      "a11y_list_desc": "The same three checks as the table on each component page, one row per component. Not checked means nobody has verified it yet, not that it fails. Components without a screen reader record are the ones to listen to next.",
+      "a11y_list_summary": "Components: {{total}} / with browser interaction tests: {{e2e}} / checked with a screen reader: {{sr}}",
+      "a11y_list_component": "Component",
+      "a11y_list_axe_done": "Checked",
+      "a11y_list_e2e_done": "Test files: {{count}}",
+      "a11y_list_sr_ok": "Checked ({{date}})",
+      "a11y_list_sr_fixed": "Fixed and rechecked ({{date}})",
+      "a11y_list_sr_fixed_unheard": "Fixed, not rechecked ({{date}})",
+      "a11y_list_link": "For each component, see the accessibility status table in its Testing section, or the list of all components on the Accessibility Status page.",
+      "a11y_list_no_data": "The accessibility data has not been generated (src/data/docgen-a11y.json is created when Storybook starts)."
     },
     "config": {
       "install_title": "Install",

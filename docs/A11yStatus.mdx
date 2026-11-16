@@ -1,0 +1,18 @@
+import { Meta } from "@storybook/blocks";
+import { T } from "../stories/T";
+import { A11yStatusList } from "../stories/A11yStatus";
+
+{/*
+  部品ごとのアクセシビリティの確認状況の一覧（T400）。部品ページの「テスト」の節の表と同じ材料:
+  自動検査は全ストーリー、操作テストは vrt/*.e2e.spec.ts のストーリー ID、実機の読み上げは
+  src/data/a11y-screen-reader.json（人が書く正本）。未確認の部品も隠さずに並べる。
+*/}
+
+<Meta title="Foundation/Accessibility Status" />
+
+<h1><T k="doc.a11y_list_title" /></h1>
+<p><T k="doc.a11y_list_desc" /></p>
+
+<A11yStatusList />
+
+<p><T k="doc.a11y_status_note" /></p>
