@@ -86,7 +86,7 @@
     "focustrap_anatomy_root": "フォーカスイベントを監視し、定義された境界からフォーカスが外れるのを防ぐラッパーコンポーネント。",
     "focustrap_anatomy_root_label": "Root",
     "focustrap_auto_focus": "自動フォーカス",
-    "focustrap_auto_focus_desc": "autoFocus プロップを true に設定すると、トラップが有効になった瞬間に最初のフォーカス可能要素へフォーカスを移動します。",
+    "focustrap_auto_focus_desc": "トラップが有効になると（`initialFocus`。既定でオン）、`data-autofocus` の印を付けた要素へ、印が無ければ最初のフォーカス可能要素へフォーカスを移します。DOM の最初の要素が始めるべき場所でないとき ── 入力欄の前にあるヘルプのリンクや、破壊的な操作の確認での取り消しのボタン ── に印を使います。",
     "focustrap_best_practice_1": "閉じボタンやエスケープキーの押下など、ユーザーがトラップを抜ける明確な方法があることを確認してください。",
     "focustrap_best_practice_2": "予期しないフォーカス動作でユーザーを混乱させないよう、必要な場合（例：モーダルが開いているとき）にのみトラップをアクティブにしてください。",
     "focustrap_choice_alt_when": "マウント時に一度だけ単一の要素にフォーカスする必要がある場合（代わりに標準の autoFocus プロパティを使用）。",
