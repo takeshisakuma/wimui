@@ -126,6 +126,14 @@
       }
     }
 
+    /* single モードの選択済みアイテムも、下に敷いたスライダーがプライマリ色なので、既定の輪の色
+       （light では primary）が面に溶けていた（2026-11-17 の実測: フォーカスの前後で変わる画素が 12 個。
+       複数選択は 392 個）。multiple と同じ白い輪にする。強制カラーでは下の `indicator-forced-colors-content`
+       が影を消し、outline を HighlightText にする */
+    &.single .item.active:focus-visible {
+      box-shadow: inset 0 0 0 var(--wim-border-width-thick) var(--wim-color-white);
+    }
+
     /* 強制カラー（T391）。1 つ選ぶ形はスライダーの面（mixin が Highlight で塗る）の上に、
        複数選ぶ形は項目そのものの面に、選択中の文字が載る。 */
     .item.active {

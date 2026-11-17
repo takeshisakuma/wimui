@@ -19,6 +19,22 @@
     min-width: var(--wim-width-sm);
     height: 100%;
     container-type: inline-size;
+
+    /* 表（role="grid"）は Tab の停止点だが、スクロールするのは `.container`。表の輪は器に切られ、
+       器の内側に描くと、左と上の辺が固定した列・見出しのセル（`position: sticky` と z-index）の下に
+       隠れた（実測: 左の辺 2%）。重なりの外に出すため、スクロールしない根の外側に、既定と同じ形で描く
+       （T404）。根は地を持たないので、角丸は輪の形のためだけに置く。表は Table の内側の器の中にあるので、
+       直接の子ではなく子孫で見る */
+    &:has(table:focus-visible) {
+      outline: var(--wim-focus-outline-width) solid var(--wim-color-focus-outline);
+      outline-offset: var(--wim-focus-outline-offset);
+      border-radius: var(--wim-radius-component);
+
+      table:focus-visible {
+        // focus-indicator-ok: 代わりの輪は、この根（`&:has(table:focus-visible)`）が描く（強制カラーでも outline）
+        outline: none;
+      }
+    }
   }
 
   .container {

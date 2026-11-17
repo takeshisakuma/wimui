@@ -1,3 +1,4 @@
+@use "../../../styles/focus-mixins" as focus;
 
 @layer component {
   .root {
@@ -29,6 +30,11 @@
     min-width: 0;
     min-height: 0;
     overflow: auto;
+
+    /* 面はスクロールする停止点で、根の `overflow: hidden` と隣の面に接している。外側の輪は切れるので内側に描く（T404） */
+    &:focus-visible {
+      @include focus.inset-outline;
+    }
   }
 
   .handle {
@@ -54,6 +60,11 @@
       &::after {
         background-color: var(--wim-splitter-handle-active-color, var(--wim-color-primary));
       }
+    }
+
+    // 取っ手は根の端から端まで伸びるので、外側の輪は両端の辺が根に切られる（T405）
+    &:focus-visible {
+      @include focus.inset-outline;
     }
 
     /* When inside horizontal root */

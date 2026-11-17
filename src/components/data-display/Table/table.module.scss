@@ -1,3 +1,4 @@
+@use "../../../styles/focus-mixins" as focus;
 @use "../../../tokens/generated/tokens" as tokens;
 @use "../../../tokens/breakpoints" as breakpoints;
 
@@ -377,12 +378,18 @@
     &.sortable {
       cursor: pointer;
       user-select: none;
-  
+
       &:hover {
         background-color: var(--wim-color-surface-hover);
       }
     }
-  
+
+    /* セルは隣のセルと表の器の端に接していて、外側の輪は器（`overflow: auto`）に切られ、
+       隣のセルにも重なる。並べ替えの見出しと DataGrid の矢印キーで動くセルは内側に描く（T405） */
+    &:focus-visible {
+      @include focus.inset-outline;
+    }
+
     // 選択の列は中身（チェックボックス）の幅まで縮め、表の余りを受け取らない。
     // 表は table-layout: auto で、幅を px で指定した列には、余りが指定の幅に比例して配られる。
     // 以前は 60px を指定していたので、1280px の画面では 130px まで伸びていた（セルの
@@ -397,7 +404,7 @@
       padding-left: var(--wim-table-cell-padding-x);
       text-align: center;
     }
-  
+
     &.stickyLeft {
       position: sticky;
       z-index: var(--wim-z-sticky, 20);
@@ -471,6 +478,11 @@
   .cell {
     padding: var(--wim-table-cell-padding-y) var(--wim-table-cell-padding-x);
     vertical-align: middle;
+
+    // `.head` と同じ理由（DataGrid の矢印キーで動くセル）
+    &:focus-visible {
+      @include focus.inset-outline;
+    }
 
     /* 識別子（ロット番号・SKU・ID）を途中で折らない。狭い列では既定の折り返しが
        1 文字ずつの縦積みになるため。あふれは .container の overflow-x が引き受ける

@@ -1,3 +1,4 @@
+@use "../../../styles/focus-mixins" as focus;
 @use "../../../styles/token-common" as *;
 @use "../../../styles/pressed-mixins" as pressed;
 
@@ -111,6 +112,15 @@
 
     &:active {
       @include pressed.tinted;
+    }
+
+    /* 負の右マージンで札の右端に寄せてあり、札の `overflow: hidden` が外側の輪の右の辺を切る（T405）。
+       内側に描き、色は文字の色にする ── 札は intent の色で塗られることがあり、輪の既定の色が溶ける */
+    &:focus-visible {
+      @include focus.inset-outline;
+
+      outline-color: currentcolor;
+      opacity: 1;
     }
   }
 }

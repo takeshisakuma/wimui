@@ -1,3 +1,5 @@
+@use "../../../styles/focus-mixins" as focus;
+
 @layer component {
   .container {
     position: relative;
@@ -63,6 +65,14 @@
 
     &:active {
       background-color: oklch(from var(--bg) calc(l * 0.9) c h);
+    }
+
+    /* ボタンは行の器（`overflow: hidden`）の端から端まで並ぶので、外側の輪は 3 辺が切れる（T405）。
+       内側に描き、色は文字の色にする ── 面は primary などで塗られていて、輪の既定の色（primary）は溶ける */
+    &:focus-visible {
+      @include focus.inset-outline;
+
+      outline-color: currentcolor;
     }
 
     &.primary { --bg: var(--wim-color-primary); }

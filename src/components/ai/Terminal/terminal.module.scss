@@ -1,3 +1,4 @@
+@use "../../../styles/focus-mixins" as focus;
 @use "../../../styles/font-mixins" as font;
 @use "../../../styles/pressed-mixins" as pressed;
 
@@ -126,6 +127,11 @@
     font-size: var(--wim-font-size-sm);
     line-height: var(--wim-line-height-loose);
     color: var(--wim-color-text-primary);
+
+    /* スクロールするログで、Tab の停止点になる。窓の角丸の `overflow: hidden` が外側の輪を切るので内側に描く（T404） */
+    &:focus-visible {
+      @include focus.inset-outline;
+    }
   }
 
   /* `width: max-content` が無いと、`.line` は親幅に固定され `.content` の
