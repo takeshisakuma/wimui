@@ -102,6 +102,58 @@ describe("Popover", () => {
     expect(screen.getByRole("dialog", { name: "Heading B" })).toBeInTheDocument();
   });
 
+  it("keeps focus where it is when open from the first render", async () => {
+    render(
+      <Popover defaultOpen>
+        <PopoverTrigger>Open</PopoverTrigger>
+        <PopoverContent>
+          <button type="button">Inside</button>
+        </PopoverContent>
+      </Popover>,
+    );
+
+    expect(screen.getByRole("button", { name: "Inside" })).toBeInTheDocument();
+    // FloatingFocusManager moves focus after a frame; wait past it before checking
+    await new Promise((resolve) => setTimeout(resolve, 50));
+    expect(document.body).toHaveFocus();
+  });
+
+  it("moves focus into the content when the user opens it", async () => {
+    render(
+      <Popover>
+        <PopoverTrigger>Open</PopoverTrigger>
+        <PopoverContent>
+          <button type="button">Inside</button>
+        </PopoverContent>
+      </Popover>,
+    );
+
+    fireEvent.click(screen.getByText("Open"));
+    await waitFor(() => {
+      expect(screen.getByRole("button", { name: "Inside" })).toHaveFocus();
+    });
+  });
+
+  it("moves focus in on a later open, after starting open and closing", async () => {
+    render(
+      <Popover defaultOpen>
+        <PopoverTrigger>Open</PopoverTrigger>
+        <PopoverContent>
+          <PopoverClose>Close</PopoverClose>
+        </PopoverContent>
+      </Popover>,
+    );
+
+    fireEvent.click(screen.getByText("Close"));
+    await waitFor(() => {
+      expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+    });
+    fireEvent.click(screen.getByText("Open"));
+    await waitFor(() => {
+      expect(screen.getByRole("button", { name: /close/i })).toHaveFocus();
+    });
+  });
+
   it("closes when clicking outside", async () => {
     render(
       <div>
