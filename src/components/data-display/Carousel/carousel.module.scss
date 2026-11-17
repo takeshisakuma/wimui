@@ -24,6 +24,11 @@
     column-gap: var(--wim-spacing-md);
     align-items: center;
 
+    /* 外に出した矢印は根の左右の端に、点は下端に接する。根はスライドを切るために `overflow: hidden`
+       なので、外側の輪がそこで切れていた（T405）。点は小さく内側に描けないので、輪の広がりぶんの
+       余白を取る */
+    padding: calc(var(--wim-focus-outline-width) + var(--wim-focus-outline-offset));
+
     .viewport {
       grid-row: 1;
       grid-column: 2;

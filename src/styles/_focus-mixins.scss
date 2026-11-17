@@ -37,3 +37,19 @@
     outline-color: Highlight;
   }
 }
+
+/*
+ * 線幅ぶん内側に描くフォーカスの輪（T404 / T405）。
+ *
+ * 既定の輪（base.scss）は外側に offset 2px で描くので、`overflow` で切り取る親に接した要素では切れる。
+ * 2026-11-17 の実測（全 1,203 ストーリーで Tab を回した）では、次の 2 つの形で輪が 0〜1 辺しか見えなかった:
+ *   - フォーカスを受けるスクロール領域（コードの本文・ログ・分割の面・tablist）。角丸のために
+ *     `overflow: hidden` の親に包まれ、外側の輪が丸ごと切れる
+ *   - 角丸の群や行の端に接した項目（スワイプで出るボタン・表の見出しのセル・閉じるボタン）
+ * outline のままなので、強制カラーでも消えない（色は Highlight に置き換わる）。
+ * 外側に描く余地がある要素には使わない（既定の外側の輪のほうが、要素の中身に重ならない）。
+ */
+@mixin inset-outline {
+  outline: var(--wim-focus-outline-width) solid var(--wim-color-focus-outline);
+  outline-offset: calc(-1 * var(--wim-focus-outline-width));
+}

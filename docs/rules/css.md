@@ -89,6 +89,17 @@
   }
   ```
 
+- **切り取る親に接する要素は、内側の輪にする。** 既定の輪は外側（offset 2px）なので、`overflow: hidden` / `auto` の親の端に接した要素では切れます（2026-11-17 の実測: スクロールする本文・ログ・分割の面・角丸の群の端の項目・表のセルで、輪が 0〜1 辺しか見えなかった。T404 / T405）。outline のまま内側へ寄せる `focus.inset-outline` を使います（強制カラーでも消えない）。
+  - **面が輪の色（primary など）で塗られている要素は、輪の色を変える。** 内側の輪は面の上に描かれるので、同じ色だと溶けます。文字の色（`outline-color: currentcolor`）か、白の輪にします（SwipeAction・Tag の閉じるボタン・ToggleGroup の選択中の項目）。
+  - **フォーカスを受ける要素と、スクロールする要素が別のときは、輪を見えている側に描く。** 中の要素に内側で描いても、横にあふれた分は画面の外になります。`&:has(> .list:focus-visible)` のように器に描き、中の要素の outline は消す（`focus-indicator-ok:` に理由を書く）。器の中に `position: sticky` と z-index を持つ子（固定した列・見出し）があると、器の輪はその下に隠れるので、スクロールしない外側に描きます（DataGrid）。
+
+  ```scss
+  // 切り取る親に接する要素
+  &:focus-visible {
+    @include focus.inset-outline;
+  }
+  ```
+
 - 外枠の `:focus-within` に輪を出す部品（入力欄）も同じです。中の `input` で outline を消しているので、外枠のブロックに mixin を書きます。
 - hover と同じブロックに書かない（強制カラーでホバーにも輪が出る）。フォーカスのブロックを分けます。
 - 色は `--wim-color-focus-outline`（primary を直接使わない。dark で 1.61:1）。

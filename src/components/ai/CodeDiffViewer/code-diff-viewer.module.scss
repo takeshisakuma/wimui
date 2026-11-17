@@ -1,3 +1,4 @@
+@use "../../../styles/focus-mixins" as focus;
 @use "../../../styles/font-mixins" as font;
 @use "../../../styles/pressed-mixins" as pressed;
 
@@ -76,6 +77,11 @@
       @include pressed.ghost;
     }
 
+    /* 2 つのボタンは角丸の枠（`overflow: hidden`）に隙間なく並ぶので、外側の輪は端の 3 辺が切れる（T405） */
+    &:focus-visible {
+      @include focus.inset-outline;
+    }
+
     // 選択中は、ホバーより 1 段濃い地にする。同じ地だと、選択中でないボタンをホバーしたときに、
     // どちらが選ばれているかが見分けられない。
     &.active {
@@ -87,6 +93,11 @@
         color: HighlightText;
         forced-color-adjust: none;
         background: Highlight;
+
+        // 置き換えを止めているので、Highlight の面の内側の輪は面に溶けない色で描く
+        &:focus-visible {
+          outline-color: HighlightText;
+        }
       }
     }
 
@@ -216,6 +227,11 @@
   .body {
     overflow-x: auto;
     line-height: var(--wim-line-height-loose);
+
+    /* 横にスクロールする領域で、Tab の停止点になる。根の角丸の `overflow: hidden` が外側の輪を切るので内側に描く（T404） */
+    &:focus-visible {
+      @include focus.inset-outline;
+    }
   }
 
   /* Unified view */
@@ -251,6 +267,11 @@
     flex: 1;
     min-width: 0;
     overflow-x: auto;
+
+    // `.body` と同じ理由（左右の面もそれぞれ横にスクロールする停止点）
+    &:focus-visible {
+      @include focus.inset-outline;
+    }
   }
 
   .splitDivider {

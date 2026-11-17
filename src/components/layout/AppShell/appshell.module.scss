@@ -1,3 +1,4 @@
+@use "../../../styles/focus-mixins" as focus;
 @use "../../../tokens/breakpoints" as breakpoints;
 
 @layer component {
@@ -48,6 +49,12 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+    }
+
+    /* スクロールする本文で、Tab の停止点になる。画面いっぱいの `.body` / 根の `overflow: hidden` が
+       外側の輪を切るので内側に描く（T404） */
+    &:focus-visible {
+      @include focus.inset-outline;
     }
   }
 

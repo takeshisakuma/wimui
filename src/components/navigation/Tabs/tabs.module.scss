@@ -154,6 +154,12 @@
         /* Chrome, Safari and Opera */
       }
 
+      /* 横にスクロールする停止点。根の角丸の `overflow: hidden` が外側の輪を切るので内側に描く（T404）。
+         左右の辺は上のマスクで薄くなる（上下の辺は出る） */
+      &:focus-visible {
+        @include focus.inset-outline;
+      }
+
       &.dragging {
         scroll-behavior: auto;
         cursor: grabbing;

@@ -23,6 +23,18 @@
       align-items: center;
       width: 100%;
       min-width: min-content;
+
+      // 輪はスクロールする根に描く（下の `:has`）。ここに描くと、根の `overflow-x` に切られて見えない
+      &:focus-visible {
+        // focus-indicator-ok: 代わりの輪は根の `&:has(> .list:focus-visible)` が描く（強制カラーでも outline）
+        outline: none;
+      }
+    }
+
+    /* tablist は Tab の停止点だが、横にスクロールするのは根。tablist の外側の輪は根に切られ、
+       内側に描いても横にあふれた分は画面の外になる ── 見えている枠（根）の内側に描く（T404） */
+    &:has(> .list:focus-visible) {
+      @include focus.inset-outline;
     }
 
     /* Alignment */

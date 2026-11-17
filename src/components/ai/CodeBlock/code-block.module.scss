@@ -1,3 +1,4 @@
+@use "../../../styles/focus-mixins" as focus;
 @use "../../../styles/font-mixins" as font;
 @use "../../../styles/pressed-mixins" as pressed;
 
@@ -103,6 +104,11 @@
 
   .body {
     overflow-x: auto;
+
+    /* 横にスクロールする領域で、Tab の停止点になる。根の角丸の `overflow: hidden` が外側の輪を切るので内側に描く（T404） */
+    &:focus-visible {
+      @include focus.inset-outline;
+    }
 
     &.collapsed {
       // 行の高さは `.pre` と同じ式で出す（文字の大きさ × 行の高さ）。足すのは `.pre` の上の余白だけ。
