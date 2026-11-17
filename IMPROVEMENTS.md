@@ -269,6 +269,18 @@ T389 の推奨の順（欠陥が見つかりやすい Fluent と Carbon を先�
 | # | 項目 | 優先 | 内容 | 検証方法 |
 |---|---|---|---|---|
 
+### フォーカスの輪の切れと、文書ページで開いている面（2026-11-17 起票・定期点検 7-4）
+
+`MAINTENANCE.md` 7-4 の候補 2 つ（開いた一覧の項目の輪が切り取る祖先の外へ出る・文書ページを開いた直後に開いている面）を測った回。測ったのは手元の `storybook-static`（2026-11-17 の main・`584d58d9`）。**輪の計測**: 全 1,203 ストーリーで Tab を回り、閉じた引き金（`aria-expanded="false"`）は開いて矢印と Tab で中を回った（停止点 5,012・エラー 0）。輪の箱（`outline` の幅 + offset、または blur 0 の影の広がり）が、**包含ブロックの連鎖にある**切り取る祖先（`overflow` が `visible` でない・`contain: paint`）の padding box から出る辺を数えた ── 絶対・固定配置の要素は、間にある static の祖先には切られないので数えない。対照: Kanban の「列へ移動」の項目に直す前の外側の輪を注入すると 12 停止点が鳴り、今の CSS では 0。外れた束ごとに 1 つ、四辺の輪の線の画素をフォーカス中と blur 後で比べて、実際に描かれた辺を数えた（下の「描かれた辺」）。**開いた一覧の項目で切れるものは、Kanban（直し済み）のほかに 0**。外れは閉じた姿に出た: 121 ストーリー・397 停止点。
+
+**起票しなかったもの**: React Flow の部品（NodeGraph / InteractiveGraph のズームのボタン・帰属表示のリンク。外部ライブラリの CSS と WIM の器の `overflow: hidden`）── 直すなら T404 / T405 と同じ回に、器の側で見る。ストーリーとパターンの器が切るもの（Affix の `Basic`・BackTop の `SpecificTarget`・FloatButton の `AutoShrink` のスクロール枠、Audit の器の `Box`、Playground の `summary` を切る `Card`）は、部品の欠陥ではない。QueryBuilder の一覧（`ul[role=listbox]`）が切れた 1 件は、掃引が Escape で閉じた 250ms 後に開き直したため、閉じかけの一覧に Tab が入った測り方の産物（普通に開いて Tab を押すと、次の入力欄へ移る）。**文書ページ**: 300 ページで、開いた面・ダイアログ・スクロールの固定・背後を隠す属性・body 以外のフォーカスを数えた（対照: #1196 より前のビルドで Dialog 3 本・BottomSheet 1 本が鳴り、今の main では 0）。旗が立った 13 ページのうち、チャート 9 ページは Recharts が文字の幅を測る要素（`recharts_measurement_span`・`top: -20000px`）の誤検出、Dropdown の `AlignmentRight` と Tooltip の `Variants` は、面を VRT に写すために意図して開いた形（T264 / T280。面は引き金の 4〜8px 隣に出て、フォーカスは取らない）。
+
+| # | 項目 | 優先 | 内容 | 検証方法 |
+|---|---|---|---|---|
+| T404 | **フォーカスできるスクロール領域の輪が、外側に描かれて自分の親に切られる** | 未着手（P2） | 起票 2026-11-17。スクロールする領域（`tabIndex={0}` か、Chrome がスクロールする要素を停止点にするもの）が既定の外側の輪を持ち、角丸や枠のために `overflow: hidden` の親に包まれている。描かれた辺: DataGrid の grid（表そのもの。`div._container` に切られる）0/4・AppShell の `main` 0/4・TabNavigation の tablist 0/4・Splitter の panel 0/4・Tabs の tablist 1/4・CodeBlock の本文 1/4（上だけ）・CodeDiffViewer / JsonDiffViewer の本文と左右の面 1/4・Terminal のログ 1/4。0/4 はフォーカスの表示が無いのと同じ（WCAG 2.4.7）。直し方の見込み: Kanban（#1183）と同じく、線幅ぶん内側に描く（`outline-offset: calc(-1 * var(--wim-focus-outline-width))`）。共通の mixin にするかは直す PR で決める | `tmp-t389-scripts/ring-clip-sweep.mjs`（全ストーリーの掃引）と `ring-visible.mjs`（画素で四辺）を `scripts/` に移し、直したあとに 8 部品で外れ 0・描かれた辺 4/4。直す前のビルドで鳴ることを確かめる。CI の検査に昇格するかは、直したあとに決める |
+| T405 | **切り取る群の端に置かれた項目の輪が切れる** | 未着手（P2） | 起票 2026-11-17。項目が角丸の群（`overflow: hidden`）の端に接していて、外側の輪の端の辺が切れる。描かれた辺: ToggleGroup の単一選択 0/4・SwipeAction のアクションのボタン 0〜1/4・Gantt の棒（時間軸のスクロール枠）ほぼ 0・CodeDiffViewer / JsonDiffViewer の表示切り替えのボタン 1/4・表の見出しのセル（DataGrid・Table。左端と上端）1〜2/4・Carousel の矢印と点（中身を差し替えたストーリー）1〜3/4・TabNavigation の選択中のタブ 3/4・Tag の閉じるボタン（TagInput）3/4。**目視が要るもの**: SegmentedControl と ToggleGroup の複数選択は、形の上では左・上・下が切れるのに、画素では 4/4 だった（blur で部品の見た目そのものが変わり、差に出た可能性がある）── 直す前に絵で確かめる。SwipeAction は、切れない辺まで 0 のものがあり、ボタンが前面の要素の下にある可能性も見る | T404 と同じ道具で、直したあとに外れ 0・描かれた辺 4/4。SegmentedControl / ToggleGroup の複数選択と SwipeAction は、フォーカス中の絵を並べて人が見る |
+| T406 | **Popover の文書ページを開くと、フォーカスが開いた面へ移る** | 未着手（P3） | 起票 2026-11-17。`Variants` のストーリーは、面を VRT に写すために `open` で既定と glass を並べている（T280）。文書ページの `<Stories />` もこれを描き、開いた直後にフォーカスが glass の面へ移る。キーボードの利用者が最初に Tab を押すと、約 1,860px 下の「Show code」へ飛び、それより上は飛ばされる（開いた時点でページは動かない ── Radix が `preventScroll` で移すため）。同じく開いた形の Dropdown の `AlignmentRight` と Tooltip の `Variants` は、フォーカスを取らない。直し方はユーザー判断: A 開いたまま、フォーカスを取らない（`onOpenAutoFocus` を止める）／ B 文書ページに載せない（`parameters.docs.disable`。#1196 の Dialog と同じ） | `tmp-t389-scripts/docs-open-sweep.mjs` で、文書ページ 300 で body 以外のフォーカスが 0。Popover の文書ページで、最初の Tab がページの先頭の停止点へ行く |
+
 
 ### コンポーネント追加の検討（2026-09-28 起票）
 
