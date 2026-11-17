@@ -220,6 +220,11 @@ export const PopoverContent = React.forwardRef<
   const hasName = props["aria-label"] != null || props["aria-labelledby"] != null;
   const labelledBy = hasName ? props["aria-labelledby"] : triggerId;
   const ref = useMergeRefs([refs.setFloating, propRef]);
+  // Move focus in only when the user opened it. A popover already open on the first render
+  // (shown as an example, or a hint on page load) must not pull focus and the reader away
+  // from the top of the page. Modal popovers still take focus: they trap it.
+  const [focusOnOpen, setFocusOnOpen] = React.useState(!open);
+  if (!open && !focusOnOpen) setFocusOnOpen(true);
 
   return (
     <FloatingPortal>
@@ -227,7 +232,11 @@ export const PopoverContent = React.forwardRef<
         show={open}
         preset="fade"
       >
-        <FloatingFocusManager context={floatingContext} modal={modal}>
+        <FloatingFocusManager
+          context={floatingContext}
+          modal={modal}
+          initialFocus={modal || focusOnOpen ? 0 : -1}
+        >
           <div
             ref={ref}
             style={{ ...floatingStyles, ...style }}
