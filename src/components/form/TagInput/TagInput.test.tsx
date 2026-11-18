@@ -137,4 +137,48 @@ describe("TagInput", () => {
     fireEvent.click(screen.getByText("a").closest("div")!);
     expect(document.activeElement).toBe(getInput());
   });
+
+  // T409: 貼り付けた文字は 1 つの値として入り、コンマを含むタグができていた
+  describe("pasting", () => {
+    const paste = (text: string) => fireEvent.paste(getInput(), { clipboardData: { getData: () => text } });
+
+    it("splits pasted text on commas, line breaks and tabs into separate tags", () => {
+      const onChange = vi.fn();
+      render(<TagInput onChange={onChange} />);
+      paste("react, vue,\nsvelte\tsolid");
+      expect(onChange).toHaveBeenLastCalledWith(["react", "vue", "svelte", "solid"]);
+      expect(onChange).toHaveBeenCalledTimes(1);
+      expect(getInput().value).toBe("");
+    });
+
+    it("drops empty pieces and duplicates, including tags that already exist", () => {
+      const onChange = vi.fn();
+      render(<TagInput defaultValue={["react"]} onChange={onChange} />);
+      paste("react, , vue, vue,");
+      expect(onChange).toHaveBeenLastCalledWith(["react", "vue"]);
+    });
+
+    it("keeps what does not fit maxTags in the input instead of losing it", () => {
+      const onChange = vi.fn();
+      render(<TagInput maxTags={2} onChange={onChange} />);
+      paste("a, b, c, d");
+      expect(onChange).toHaveBeenLastCalledWith(["a", "b"]);
+      expect(getInput().value).toBe("c, d");
+    });
+
+    it("leaves pasted text without a separator to the browser", () => {
+      const onChange = vi.fn();
+      render(<TagInput onChange={onChange} />);
+      const event = paste("react");
+      expect(event).toBe(true); // 既定の動作（入力欄へ入る）を止めていない
+      expect(onChange).not.toHaveBeenCalled();
+    });
+
+    it("also splits on Enter when the input already holds separated text (drop, autofill)", () => {
+      const onChange = vi.fn();
+      render(<TagInput onChange={onChange} />);
+      typeAndEnter("go, rust");
+      expect(onChange).toHaveBeenLastCalledWith(["go", "rust"]);
+    });
+  });
 });

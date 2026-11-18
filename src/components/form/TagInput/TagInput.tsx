@@ -8,6 +8,9 @@ import { FieldTemplate } from "../FieldTemplate/FieldTemplate";
 import { FieldIntent, FieldVariant, FieldWidth } from "../../../types/tokens";
 import styles from "./tag-input.module.scss";
 
+/** タグの区切り: コンマ・改行・タブ（表計算ソフトのセルを貼り付けたとき） */
+const TAG_SEPARATOR = /[,\r\n\t]/;
+
 export interface TagInputProps extends Omit<React.ComponentPropsWithoutRef<"div">, "onChange"> {
   /** List of tags (controlled) */
   value?: string[];
@@ -43,7 +46,7 @@ export interface TagInputProps extends Omit<React.ComponentPropsWithoutRef<"div"
 
 /**
  * Input component for managing free-form tags.
- * Tags are committed with the Enter key or a comma.
+ * Tags are committed with the Enter key or a comma. Pasted text is split on commas, line breaks and tabs.
  */
 export const TagInput = React.forwardRef<HTMLDivElement, TagInputProps>(
   (
@@ -85,21 +88,33 @@ export const TagInput = React.forwardRef<HTMLDivElement, TagInputProps>(
       setInputValue(e.target.value);
     };
 
-    const addTag = (tag: string) => {
-      const trimmedTag = tag.trim();
-      if (!trimmedTag) return;
-      if (tags.includes(trimmedTag)) {
-        setInputValue("");
-        return;
+    // 区切りで分けてタグにする（T409）。打ったときはコンマのキーで分かれるが、貼り付けた文字は 1 つの
+    // 値として入り、コンマを含むタグができていた。空と重複は捨て、`maxTags` に入りきらない分は入力欄に残す
+    const addTags = (text: string) => {
+      const newTags = [...tags];
+      const rest: string[] = [];
+      for (const piece of text.split(TAG_SEPARATOR)) {
+        const tag = piece.trim();
+        if (!tag || newTags.includes(tag)) continue;
+        if (maxTags && newTags.length >= maxTags) rest.push(tag);
+        else newTags.push(tag);
       }
-      if (maxTags && tags.length >= maxTags) return;
-
-      const newTags = [...tags, trimmedTag];
+      setInputValue(rest.join(", "));
+      if (newTags.length === tags.length) return;
       if (!isControlled) {
         setInternalTags(newTags);
       }
       onChange?.(newTags);
-      setInputValue("");
+    };
+
+    const handlePaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
+      const text = e.clipboardData.getData("text");
+      if (!TAG_SEPARATOR.test(text)) return;
+      e.preventDefault();
+      const input = e.currentTarget;
+      const start = input.selectionStart ?? inputValue.length;
+      const end = input.selectionEnd ?? inputValue.length;
+      addTags(inputValue.slice(0, start) + text + inputValue.slice(end));
     };
 
     const removeTag = (tagToRemove: string) => {
@@ -114,7 +129,7 @@ export const TagInput = React.forwardRef<HTMLDivElement, TagInputProps>(
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
       if (e.key === "Enter" || e.key === ",") {
         e.preventDefault();
-        addTag(inputValue);
+        addTags(inputValue);
       } else if (e.key === "Backspace" && inputValue === "" && tags.length > 0) {
         removeTag(tags[tags.length - 1]);
       }
@@ -193,6 +208,7 @@ export const TagInput = React.forwardRef<HTMLDivElement, TagInputProps>(
                 value={inputValue}
                 onChange={handleInputChange}
                 onKeyDown={handleKeyDown}
+                onPaste={handlePaste}
                 disabled={disabled}
                 placeholder={tags.length === 0 ? resolvedPlaceholder : ""}
                 className={styles.input}
