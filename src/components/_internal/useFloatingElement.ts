@@ -71,8 +71,7 @@ export const useFloatingElement = ({
   const { context } = data;
 
   // 引き金が見えなくなったら閉じる（面が画面の左上に残らないように。T412）
-  const reference = data.elements.reference;
-  useCloseWhenReferenceGone(isOpen, reference instanceof Element ? reference : null, () => setOpen(false));
+  useCloseWhenReferenceGone(isOpen, data.elements.reference, () => setOpen(false));
 
   const click = useClick(context, { enabled: trigger === "click" });
   const hover = useHover(context, {

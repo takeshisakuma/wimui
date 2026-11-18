@@ -191,7 +191,7 @@ const DropdownInner = forwardRef<HTMLDivElement, DropdownProps>(
     // Dialog の中で開いても、Escape で閉じるのはメニューだけ（T408）
     useEscapeLayer(isOpen, close);
     // 引き金が見えなくなったら閉じる（メニューが画面の左上に残らないように。T412）
-    useCloseWhenReferenceGone(isOpen, elements.reference instanceof Element ? elements.reference : null, close);
+    useCloseWhenReferenceGone(isOpen, elements.reference, close);
 
     const typeahead = useTypeahead();
 
