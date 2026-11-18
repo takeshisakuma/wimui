@@ -1,5 +1,18 @@
 # wimui
 
+## 0.76.0
+
+### Minor Changes
+
+- f329db1: コードから確認を尋ねて答えを待つ `ConfirmProvider` と `useConfirm` を足した（T387）。`ConfirmProvider` をアプリの根の近くに 1 回置くと、`useConfirm()` が `confirm({ title, description?, confirmLabel?, cancelLabel?, intent? })` を返し、確認で `true`、取り消し・Escape・Provider が外れたときは `false` で終わる `Promise` になる。中身は `role="alertdialog"` の `Dialog` で、最初のフォーカスは確認のボタン（`intent: "danger"` のときは取り消しのボタン）。続けて呼ぶと順に開き、最後に閉じたあと、開く前にフォーカスがあった要素へ戻す。確認のボタンの既定の文言に、共通の翻訳 `action.ok` を足した。
+- 0bb99c6: 部品の内側の要素に、CSS で狙える部位名 `data-part` を付けた（T384）。まず `Calendar`（`header`・`prev-button`・`next-button`・`title`・`title-button`・`day-grid`・`weekday`・`day`・`month-grid`・`month`・`year-grid`・`year`）、`Select`（`trigger`・`value`・`dropdown`・`search`・`search-input`・`list`・`option`・`group-label`・`separator`・`empty`）、`Kanban`（`column`・`column-header`・`column-title`・`column-count`・`column-body`・`card`・`card-content`・`move-button`・`move-menu`・`move-option`）。部品の CSS は `@layer component` の中なので、レイヤーの外に書いた `.my-calendar [data-part="day"] { … }` が詳細度に関係なく勝つ。状態は部位名ではなく、既存の `aria-selected` などで狙う。部位名は変えない約束で、各部品の文書の Anatomy 節と `dist/llms/<Component>.md` に載る。props は変わらない。
+
+### Patch Changes
+
+- e603b3b: `Dialog`・`Drawer`・`BottomSheet` の中で開いた一覧・暦・メニュー・ダイアログに Escape を押したとき、閉じるのは一番上の面だけにした（T408）。これまでは `Select`・`MultiSelect`・`Combobox`・`DatePicker`・`Dropdown`・入れ子の `Dialog` で、外側のダイアログも同じ Escape で閉じ、入力中のフォームがダイアログごと消えた。中の部品が閉じているとき（引き金にフォーカスがあるとき）の Escape は、今までどおり外側のダイアログを閉じる。props は変わらない。
+- 331ef56: Fluent UI の部品の名前で探しても見つかるよう、18 部品に別名を足した（`llms.txt` / `llms-full.txt` の索引に載る）。`Alert` に Message Bar、`SearchInput` に Search Box、`Progress` に Progress Bar、`HamburgerMenu` に Hamburger、`Toast` に Toaster、`MultiSelect` に Tag Picker、`ColorPicker` に Swatch Picker、`Tour` に Teaching Popover / Coach Mark、`Rating` に Rating Display、`TreeView` に Tree / Flat Tree、`Tabs` に Tab List、`OverflowList` に Overflow、`FieldTemplate` に Field、`Popover` に Info Label / Info Button、`Drawer` に Overlay Drawer、`Dropdown` に Menu Button、`Tag` に Interaction Tag、`Sidebar` に Nav Drawer。部品の振る舞いは変わらない。
+- e428af5: `TagInput` に貼り付けた文字を、コンマ・改行・タブで分けてタグにするようにした（T409）。これまでは「react, vue, svelte」を貼り付けて Enter を押すと、コンマを含んだ 1 つのタグになった（打ったときはコンマで分かれる）。前後の空白は除き、空のものと重複は捨て、`maxTags` に入りきらない分は入力欄に残す。Enter で確定するときも、入力欄の文字を同じ区切りで分ける。区切りを含まない貼り付けは今までどおり入力欄に入る。props は変わらない。
+
 ## 0.75.2
 
 ### Patch Changes
