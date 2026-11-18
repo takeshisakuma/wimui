@@ -1,5 +1,12 @@
 # wimui
 
+## 0.76.2
+
+### Patch Changes
+
+- ca0f6a1: Carbon の部品の名前で探しても見つかるよう、31 部品に 35 語の別名を足した（`llms.txt` / `llms-full.txt` の索引に載る）。`CodeBlock` に Code Snippet、`SegmentedControl` に Content Switcher、`DataGrid` に Data Table、`Stepper` に Progress Indicator、`Drawer` に Side Panel、`Card` に Tile、`AppShell` に UI Shell、`Popover` に Toggletip、`Spinner` に Inline Loading / Loading、`List` に Contained List / Ordered List / Unordered List など。部品の振る舞いは変わらない。
+- fb92ffa: `Popover` と `Dropdown` を開いたまま引き金が見えなくなったら（`display: none` などで大きさが 0 になった・文書から外れた）、面を閉じるようにした（T412）。これまでは、面が引き金から離れて画面の左上に浮いたまま残った（画面幅で引き金を隠すツールバーや、タブを切り替えて引き金が消える画面で起きる）。スクロールして引き金が画面の外へ出ただけでは閉じない。props は変わらない。
+
 ## 0.76.1
 
 ### Patch Changes
