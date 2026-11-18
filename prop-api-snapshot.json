@@ -2908,6 +2908,9 @@
       "required": false,
       "type": "React.ReactNode"
     },
+    "ConfirmProvider.children": {
+      "type": "React.ReactNode"
+    },
     "Container.asChild": {
       "type": "boolean"
     },

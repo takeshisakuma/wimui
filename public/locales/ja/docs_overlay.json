@@ -501,7 +501,22 @@
     "contextmenu_table_row_usage": "表の行では asChild を渡す。トリガーが tbody の直下に div を出す代わりに、<tr> 側へマージされる:",
     "tooltip_best_practice_infotip": "説明を出すためだけの (i) アイコン（Info Tip）には、Tooltip ではなく IconButton と Popover を使う（Popover のページの Info Tip の例）。Tooltip はホバーとフォーカスでしか開かないのでタッチ画面では開かず、引き金に余白が無いので、アイコンの大きさがそのまま押せる範囲になる。",
     "popover_infotip_title": "Info Tip",
-    "popover_infotip_desc": "短い説明を出す (i) アイコン。IconButton（aria-label がアイコンと開いた dialog の名前になり、size が押せる大きさを決める）と Popover（クリックとタップで開き、Esc か外側のクリックで閉じ、フォーカスをアイコンへ戻す）で組む。読み手が必ず知るべきことはページ本体に書き、Info Tip は補うだけにする。"
+    "popover_infotip_desc": "短い説明を出す (i) アイコン。IconButton（aria-label がアイコンと開いた dialog の名前になり、size が押せる大きさを決める）と Popover（クリックとタップで開き、Esc か外側のクリックで閉じ、フォーカスをアイコンへ戻す）で組む。読み手が必ず知るべきことはページ本体に書き、Info Tip は補うだけにする。",
+    "confirm_long_desc": "コードから確認のダイアログを開き、答えを Promise で返します。ConfirmProvider をアプリの根の近くに 1 回置くと、useConfirm() が confirm(options) を返します。確認すると true、取り消しや Escape では false で終わります。",
+    "confirm_design_intent": "確認のたびに Dialog と open の state と 2 つのボタンを配線すると、同じコードが増え、答えを受け取る場所が尋ねたコードから離れます。confirm() は、尋ねることと操作を 1 か所にまとめます。ハンドラーが尋ね、待ち、true のときだけ先へ進みます。中身は role=\"alertdialog\" の Dialog なので、フォーカス・Escape・読み上げは、自分で書いた Dialog と同じに振る舞います。",
+    "confirm_choice_matrix_desc": "どれも操作の前に尋ねます。どこに出すか・中に何を置くかで選びます。",
+    "confirm_choice_confirm_when": "コード（イベントハンドラー・非同期の処理の途中）から尋ねる「はい / いいえ」。題・説明・2 つのボタンだけ。",
+    "confirm_choice_popconfirm_when": "押したボタンのすぐ横に出す軽い確認。やり直しやすい操作に。",
+    "confirm_choice_dialog_when": "2 つのボタンでは足りないとき（名前を打たせる欄・チェックボックス・変わるものの一覧）。",
+    "confirm_a11y_role": "ダイアログは role=\"alertdialog\" と aria-modal を持ち、題が名前、説明が説明になります。開いたとき、読み上げは両方を読みます。",
+    "confirm_a11y_focus": "フォーカスは確認のボタンへ、intent が \"danger\" のときは取り消しのボタンへ移ります。開いた直後に Enter を押しても、破壊的な操作は走りません。閉じると、開く前にフォーカスがあった要素へ戻ります（続けて呼んだときも）。",
+    "confirm_scenario_delete": "ファイル・プロジェクト・メンバーを消す前に await confirm({ intent: \"danger\" }) を呼び、true のときだけ消す。",
+    "confirm_scenario_publish": "公開や全員への送信のように、すぐにほかの人へ届く操作の前に。",
+    "confirm_best_practice_1": "確認のボタンには既定の「OK」ではなく操作の名前（「削除」「公開」）を付け、題はその操作を尋ねる文にする。",
+    "confirm_best_practice_2": "取り消せる操作の前には尋ねない。実行してから Snackbar で「元に戻す」を出す。毎回聞かれる確認は、読まずに押されるようになる。",
+    "confirm_usage_desc": "ConfirmProvider を WimProvider の内側に 1 回置き、その下のどのハンドラーからでも confirm() を呼びます。",
+    "confirm_ex_publish_desc": "intent を付けないときは、確認のボタンに最初のフォーカスが置かれます。",
+    "confirm_keyboard_desc": "Tab と Shift+Tab で 2 つのボタンの間を移り、ダイアログの外へは出ません。Enter か Space でフォーカスのあるボタンを押します。Escape は取り消し（false で終わる）。背景を押しても閉じません（答えが要るダイアログのため）。"
   },
   "overlay": {
     "attn_full": "ユーザーの注意を完全に引きつける。",
@@ -567,6 +582,8 @@
     "tour_desc": "特定の要素を順番に強調して使い道を教えます。",
     "tour_usage": "オンボーディング、新機能案内、操作ガイド",
     "type": "種類",
-    "vert_list_desc": "垂直方向のリスト選択。"
+    "vert_list_desc": "垂直方向のリスト選択。",
+    "confirm_judgment": "コードから 1 つの「はい / いいえ」を尋ね、答えを待つ。",
+    "confirm_usage": "取り消せない操作の前の確認を、イベントハンドラーから（await confirm()）。"
   }
 }

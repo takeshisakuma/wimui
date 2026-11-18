@@ -501,7 +501,22 @@
     "contextmenu_table_row_usage": "On a table row, pass asChild so the trigger merges onto the <tr> instead of putting a <div> under <tbody>:",
     "tooltip_best_practice_infotip": "For an (i) icon whose only job is to reveal an explanation (an Info Tip), use an IconButton with a Popover instead (see the Info Tip example on the Popover page). A Tooltip opens only on hover and focus, so it never opens on a touch screen, and its trigger has no padding, so the icon alone is the target.",
     "popover_infotip_title": "Info Tip",
-    "popover_infotip_desc": "An (i) icon that reveals a short explanation. Build it from an IconButton (its aria-label names the icon and the opened dialog; its size sets the target) and a Popover (opens on click and tap, closes on Escape or an outside click, and returns focus to the icon). Keep anything the reader must know in the page itself; the tip only adds to it."
+    "popover_infotip_desc": "An (i) icon that reveals a short explanation. Build it from an IconButton (its aria-label names the icon and the opened dialog; its size sets the target) and a Popover (opens on click and tap, closes on Escape or an outside click, and returns focus to the icon). Keep anything the reader must know in the page itself; the tip only adds to it.",
+    "confirm_long_desc": "Opens a confirmation dialog from code and returns the answer as a Promise. Place ConfirmProvider once near the root; useConfirm() returns a confirm(options) function that resolves to true when the user confirms and false when they cancel or press Escape.",
+    "confirm_design_intent": "Wiring a Dialog, its open state and two buttons for every question repeats the same code and lets the answer drift away from the code that asked. confirm() keeps the question and the action in one place: the handler asks, waits, and continues only on true. Inside, it is a Dialog with role=\"alertdialog\", so focus, Escape and the announcement behave the same as the Dialog you would have written.",
+    "confirm_choice_matrix_desc": "All three ask before an action. Pick by where the question appears and what it needs to hold.",
+    "confirm_choice_confirm_when": "A yes/no question asked from code (an event handler, a step in an async flow). Title, description and two buttons only.",
+    "confirm_choice_popconfirm_when": "A light question next to the button that triggers it, for an action that is easy to redo.",
+    "confirm_choice_dialog_when": "The question needs more than two buttons: a field to type the name, a checkbox, or a list of what will change.",
+    "confirm_a11y_role": "The dialog is role=\"alertdialog\" with aria-modal; the title is its name and the description is its description, so screen readers read both when it opens.",
+    "confirm_a11y_focus": "Focus moves to the confirm button, or to the cancel button when intent is \"danger\", so pressing Enter right away does not run a destructive action. When the dialog closes, focus returns to the element that had it before, also after several calls in a row.",
+    "confirm_scenario_delete": "Before deleting a file, a project or a member: await confirm({ intent: \"danger\" }) and delete only on true.",
+    "confirm_scenario_publish": "Before an action that reaches other people at once, such as publishing or sending to everyone.",
+    "confirm_best_practice_1": "Name the action in the confirm button (\"Delete\", \"Publish\") instead of the default \"OK\", and phrase the title as the question about that action.",
+    "confirm_best_practice_2": "Do not ask before an action that can be undone. Run it and offer Undo in a Snackbar; a question asked every time is answered without reading.",
+    "confirm_usage_desc": "Place ConfirmProvider once inside WimProvider, then call confirm() from any handler below it.",
+    "confirm_ex_publish_desc": "Without intent, the confirm button has the initial focus.",
+    "confirm_keyboard_desc": "Tab and Shift+Tab move between the two buttons and stay inside the dialog. Enter or Space presses the focused button. Escape cancels (resolves to false). Clicking the backdrop does nothing, because the dialog needs an answer."
   },
   "overlay": {
     "attn_full": "Attracts user attention completely.",
@@ -567,6 +582,8 @@
     "tour_desc": "Sequentially highlights specific elements to teach their usage.",
     "tour_usage": "Onboarding, new feature announcements, operation guides.",
     "type": "Type",
-    "vert_list_desc": "Vertical list selection."
+    "vert_list_desc": "Vertical list selection.",
+    "confirm_judgment": "Asks one yes/no question in code and waits for the answer.",
+    "confirm_usage": "Confirming an action that cannot be undone, from an event handler (await confirm())."
   }
 }

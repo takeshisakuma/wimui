@@ -22,6 +22,7 @@
     "hooks_use_auto_resize": "textarea を、中身に合わせて指定した行数まで伸ばし、それを超えたらスクロールにします。Textarea と PromptInput はすでにこうなっています。自分で描く textarea にだけ使ってください。",
     "hooks_use_wim": "いちばん近い WimProvider から、テーマ・密度・ロケール・プリセットを読みます（無ければ文書の状態から読みます）。",
     "hooks_group_a11y": "アクセシビリティ",
-    "hooks_use_announce": "操作の結果をスクリーンリーダーに告げます（「保存しました」「3 件」など）。返ってくる region を 1 回描き、最初の描画から置いたままにして、announce を呼びます。WIM UI が実機のスクリーンリーダーで確かめた形です。status の要素を文ごと後から差し込む形は、読まれないことが多くあります。Toast・Kanban・Transfer などの部品は、自分の結果をすでに告げています。"
+    "hooks_use_announce": "操作の結果をスクリーンリーダーに告げます（「保存しました」「3 件」など）。返ってくる region を 1 回描き、最初の描画から置いたままにして、announce を呼びます。WIM UI が実機のスクリーンリーダーで確かめた形です。status の要素を文ごと後から差し込む形は、読まれないことが多くあります。Toast・Kanban・Transfer などの部品は、自分の結果をすでに告げています。",
+    "hooks_use_confirm": "操作の前に確認を尋ね、答えを待ちます。await confirm() は true か false で終わります。取り消せない操作の前に使います。ConfirmProvider が要ります。"
   }
 }

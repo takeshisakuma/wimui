@@ -249,6 +249,18 @@
     "overlay_variant_glass": "Glass",
     "popover_infotip_price": "€34.80 incl. VAT",
     "popover_infotip_label": "About this price",
-    "popover_infotip_body": "Shipping (€5.50) is not included. You will see the total on the next step, before you pay."
+    "popover_infotip_body": "Shipping (€5.50) is not included. You will see the total on the next step, before you pay.",
+    "confirm_files_label": "Shared files",
+    "confirm_file_meta": "PDF · 2.4 MB · shared with 6 people",
+    "confirm_delete": "Delete",
+    "confirm_delete_title": "Delete “Q3-report.pdf”?",
+    "confirm_delete_desc": "The 6 people it is shared with lose access. This cannot be undone.",
+    "confirm_deleted": "Q3-report.pdf was deleted.",
+    "confirm_kept": "Q3-report.pdf was kept.",
+    "confirm_publish": "Publish",
+    "confirm_publish_title": "Publish the changes to the help center?",
+    "confirm_publish_desc": "Readers see the new version of 3 articles right away.",
+    "confirm_published": "The changes were published.",
+    "confirm_not_published": "Nothing was published."
   }
 }

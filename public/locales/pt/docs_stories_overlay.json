@@ -249,6 +249,18 @@
     "transition_slide_content": "Deslizar!",
     "popover_infotip_price": "R$ 34,80 com impostos",
     "popover_infotip_label": "Sobre este preço",
-    "popover_infotip_body": "O frete (R$ 5,50) não está incluído. Você verá o total na próxima etapa, antes de pagar."
+    "popover_infotip_body": "O frete (R$ 5,50) não está incluído. Você verá o total na próxima etapa, antes de pagar.",
+    "confirm_files_label": "Arquivos compartilhados",
+    "confirm_file_meta": "PDF · 2,4 MB · compartilhado com 6 pessoas",
+    "confirm_delete": "Excluir",
+    "confirm_delete_title": "Excluir “Q3-report.pdf”?",
+    "confirm_delete_desc": "As 6 pessoas com quem ele é compartilhado perdem o acesso. Esta ação não pode ser desfeita.",
+    "confirm_deleted": "Q3-report.pdf foi excluído.",
+    "confirm_kept": "Q3-report.pdf foi mantido.",
+    "confirm_publish": "Publicar",
+    "confirm_publish_title": "Publicar as alterações na central de ajuda?",
+    "confirm_publish_desc": "Os leitores veem a nova versão de 3 artigos imediatamente.",
+    "confirm_published": "As alterações foram publicadas.",
+    "confirm_not_published": "Nada foi publicado."
   }
 }

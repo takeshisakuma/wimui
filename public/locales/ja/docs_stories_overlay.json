@@ -249,6 +249,18 @@
     "transition_slide_content": "スライド！",
     "popover_infotip_price": "3,480 円（税込）",
     "popover_infotip_label": "この価格について",
-    "popover_infotip_body": "送料 550 円は含みません。合計は、支払いの前に次の画面で出ます。"
+    "popover_infotip_body": "送料 550 円は含みません。合計は、支払いの前に次の画面で出ます。",
+    "confirm_files_label": "共有ファイル",
+    "confirm_file_meta": "PDF・2.4 MB・6 人と共有",
+    "confirm_delete": "削除",
+    "confirm_delete_title": "「Q3-report.pdf」を削除しますか？",
+    "confirm_delete_desc": "共有している 6 人が開けなくなります。この操作は取り消せません。",
+    "confirm_deleted": "Q3-report.pdf を削除しました。",
+    "confirm_kept": "Q3-report.pdf は残しました。",
+    "confirm_publish": "公開",
+    "confirm_publish_title": "変更をヘルプセンターに公開しますか？",
+    "confirm_publish_desc": "3 本の記事の新しい版が、読者にすぐ表示されます。",
+    "confirm_published": "変更を公開しました。",
+    "confirm_not_published": "公開しませんでした。"
   }
 }

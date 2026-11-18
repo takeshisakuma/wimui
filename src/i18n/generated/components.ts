@@ -113,6 +113,7 @@ export type ComponentsKey =
   | "doc.codeBlock_desc"
   | "doc.codeDiffViewer_desc"
   | "doc.comment_desc"
+  | "doc.confirm_desc"
   | "doc.countdown_desc"
   | "doc.dashboard_desc"
   | "doc.field_character_count_desc"

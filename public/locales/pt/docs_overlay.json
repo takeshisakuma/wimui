@@ -501,7 +501,22 @@
     "contextmenu_table_row_usage": "Em uma linha de tabela, passe asChild para que o gatilho seja mesclado no <tr> em vez de colocar uma div dentro de tbody:",
     "tooltip_best_practice_infotip": "Para um ícone (i) cuja única função é mostrar uma explicação (um Info Tip), use um IconButton com um Popover (veja o exemplo Info Tip na página do Popover). O Tooltip só abre com hover e foco, então nunca abre em tela de toque, e o gatilho não tem espaçamento, então a área de toque é só o ícone.",
     "popover_infotip_title": "Info Tip",
-    "popover_infotip_desc": "Um ícone (i) que mostra uma explicação curta. Monte com um IconButton (o aria-label dá nome ao ícone e ao diálogo aberto; o size define a área de toque) e um Popover (abre com clique e toque, fecha com Esc ou clique fora e devolve o foco ao ícone). O que o leitor precisa saber fica na própria página; o Info Tip só complementa."
+    "popover_infotip_desc": "Um ícone (i) que mostra uma explicação curta. Monte com um IconButton (o aria-label dá nome ao ícone e ao diálogo aberto; o size define a área de toque) e um Popover (abre com clique e toque, fecha com Esc ou clique fora e devolve o foco ao ícone). O que o leitor precisa saber fica na própria página; o Info Tip só complementa.",
+    "confirm_long_desc": "Abre uma caixa de diálogo de confirmação pelo código e devolve a resposta como uma Promise. Coloque o ConfirmProvider uma vez perto da raiz; useConfirm() devolve uma função confirm(options) que resolve como true quando a pessoa confirma e false quando cancela ou pressiona Escape.",
+    "confirm_design_intent": "Conectar um Dialog, seu estado de abertura e dois botões para cada pergunta repete o mesmo código e afasta a resposta do código que perguntou. confirm() mantém a pergunta e a ação no mesmo lugar: o manipulador pergunta, espera e só continua com true. Por dentro, é um Dialog com role=\"alertdialog\", então o foco, o Escape e a leitura se comportam como no Dialog que você escreveria.",
+    "confirm_choice_matrix_desc": "Os três perguntam antes de uma ação. Escolha pelo lugar onde a pergunta aparece e pelo que ela precisa conter.",
+    "confirm_choice_confirm_when": "Uma pergunta de sim/não feita pelo código (um manipulador de eventos, uma etapa de um fluxo assíncrono). Apenas título, descrição e dois botões.",
+    "confirm_choice_popconfirm_when": "Uma pergunta leve ao lado do botão que a abre, para uma ação fácil de refazer.",
+    "confirm_choice_dialog_when": "A pergunta precisa de mais do que dois botões: um campo para digitar o nome, uma caixa de seleção ou uma lista do que vai mudar.",
+    "confirm_a11y_role": "A caixa de diálogo é role=\"alertdialog\" com aria-modal; o título é o nome e a descrição é a descrição, então os leitores de tela leem os dois ao abrir.",
+    "confirm_a11y_focus": "O foco vai para o botão de confirmação, ou para o botão de cancelar quando intent é \"danger\", para que pressionar Enter logo em seguida não execute uma ação destrutiva. Ao fechar, o foco volta ao elemento que o tinha antes, também depois de várias chamadas seguidas.",
+    "confirm_scenario_delete": "Antes de excluir um arquivo, um projeto ou um membro: await confirm({ intent: \"danger\" }) e excluir só com true.",
+    "confirm_scenario_publish": "Antes de uma ação que chega a outras pessoas imediatamente, como publicar ou enviar para todos.",
+    "confirm_best_practice_1": "Dê ao botão de confirmação o nome da ação (\"Excluir\", \"Publicar\") em vez do \"OK\" padrão, e escreva o título como a pergunta sobre essa ação.",
+    "confirm_best_practice_2": "Não pergunte antes de uma ação que pode ser desfeita. Execute-a e ofereça Desfazer em um Snackbar; uma pergunta feita toda vez passa a ser respondida sem leitura.",
+    "confirm_usage_desc": "Coloque o ConfirmProvider uma vez dentro do WimProvider e chame confirm() de qualquer manipulador abaixo dele.",
+    "confirm_ex_publish_desc": "Sem intent, o botão de confirmação recebe o foco inicial.",
+    "confirm_keyboard_desc": "Tab e Shift+Tab alternam entre os dois botões e ficam dentro da caixa de diálogo. Enter ou Espaço pressiona o botão focado. Escape cancela (resolve como false). Clicar no fundo não faz nada, porque a caixa de diálogo precisa de uma resposta."
   },
   "overlay": {
     "attn_full": "Atrai completamente a atenção do usuário.",
@@ -567,6 +582,8 @@
     "tour_desc": "Realça elementos específicos em sequência para ensinar seu uso.",
     "tour_usage": "Integração, anúncios de novos recursos, guias de operação.",
     "type": "Tipo",
-    "vert_list_desc": "Seleção em lista vertical."
+    "vert_list_desc": "Seleção em lista vertical.",
+    "confirm_judgment": "Faz uma pergunta de sim/não pelo código e espera a resposta.",
+    "confirm_usage": "Confirmar uma ação que não pode ser desfeita, a partir de um manipulador de eventos (await confirm())."
   }
 }
