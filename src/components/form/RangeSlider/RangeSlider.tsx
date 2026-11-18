@@ -3,7 +3,7 @@ import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { commonNs } from "@/i18n/generated/common";
 import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
-import { useSliderCommon } from "../../../utilities/slider-utils";
+import { largeStepOf, useSliderCommon } from "../../../utilities/slider-utils";
 import { FieldTemplate } from "../FieldTemplate";
 import styles from "./range-slider.module.scss";
 import { composeEventHandlers } from "../../_internal/composeEventHandlers";
@@ -255,6 +255,10 @@ export const RangeSlider = ({
       newValue = Math.max(min, targetValue - step);
     } else if (e.key === "ArrowRight" || e.key === "ArrowUp") {
       newValue = Math.min(max, targetValue + step);
+    } else if (e.key === "PageDown") {
+      newValue = Math.max(min, targetValue - largeStepOf(min, max, step));
+    } else if (e.key === "PageUp") {
+      newValue = Math.min(max, targetValue + largeStepOf(min, max, step));
     } else if (e.key === "Home") {
       newValue = min;
     } else if (e.key === "End") {
