@@ -85,19 +85,22 @@ export const Variants: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     const headingId = React.useId();
     return (
-      <div style={{ display: "flex", gap: "var(--wim-spacing-5xl)", paddingBottom: "calc(var(--wim-spacing-5xl) * 3)" }}>
+      // 面は引き金の下に開くので、横に並べると面どうしが重なる（T407）。縦に積み、各引き金の下に面の高さを空ける
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
         {(["default", "glass"] as const).map((variant) => (
-          <Popover key={variant} open variant={variant}>
-            <PopoverTrigger asChild>
-              <Button variant="outline">{t(variant === "glass" ? "story.overlay_variant_glass" : "common.default")}</Button>
-            </PopoverTrigger>
-            <PopoverContent aria-labelledby={variant === "glass" ? `${headingId}${variant}` : undefined}>
-              <div style={{ display: "flex", flexDirection: "column", gap: "var(--wim-spacing-xs)" }}>
-                <h4 id={`${headingId}${variant}`} style={{ margin: 0 }}>{t("story.popover_dimensions")}</h4>
-                <p style={{ margin: 0, color: "var(--wim-color-text-secondary)" }}>{t("story.popover_set_dim")}</p>
-              </div>
-            </PopoverContent>
-          </Popover>
+          <div key={variant} style={{ paddingBottom: "calc(var(--wim-spacing-5xl) * 3)" }}>
+            <Popover open variant={variant}>
+              <PopoverTrigger asChild>
+                <Button variant="outline">{t(variant === "glass" ? "story.overlay_variant_glass" : "common.default")}</Button>
+              </PopoverTrigger>
+              <PopoverContent aria-labelledby={variant === "glass" ? `${headingId}${variant}` : undefined}>
+                <div style={{ display: "flex", flexDirection: "column", gap: "var(--wim-spacing-xs)" }}>
+                  <h4 id={`${headingId}${variant}`} style={{ margin: 0 }}>{t("story.popover_dimensions")}</h4>
+                  <p style={{ margin: 0, color: "var(--wim-color-text-secondary)" }}>{t("story.popover_set_dim")}</p>
+                </div>
+              </PopoverContent>
+            </Popover>
+          </div>
         ))}
       </div>
     );
