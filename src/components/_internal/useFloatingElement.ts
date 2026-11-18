@@ -15,6 +15,7 @@ import {
   useFocus,
   safePolygon,
 } from "@floating-ui/react";
+import { useCloseWhenReferenceGone } from "./useCloseWhenReferenceGone";
 
 export type FloatingTriggerType = "click" | "hover" | "none";
 
@@ -68,6 +69,9 @@ export const useFloatingElement = ({
   });
 
   const { context } = data;
+
+  // 引き金が見えなくなったら閉じる（面が画面の左上に残らないように。T412）
+  useCloseWhenReferenceGone(isOpen, data.elements.reference, () => setOpen(false));
 
   const click = useClick(context, { enabled: trigger === "click" });
   const hover = useHover(context, {

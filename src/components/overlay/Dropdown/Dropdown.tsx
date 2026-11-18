@@ -7,6 +7,7 @@ import { mergeRefs } from "../../_internal/mergeRefs";
 import { findTypeaheadIndex, isTypeaheadKey, useTypeahead } from "../../_internal/typeahead";
 import { Transition } from "../../layout/Transition/Transition";
 import { useEscapeLayer } from "../../_internal/escapeStack";
+import { useCloseWhenReferenceGone } from "../../_internal/useCloseWhenReferenceGone";
 import styles from "./dropdown.module.scss";
 
 // Context to share state between components
@@ -112,7 +113,7 @@ const DropdownInner = forwardRef<HTMLDivElement, DropdownProps>(
     // スクロールコンテナ（DataGrid の overflow: auto）や overflow: hidden の内側に
     // 閉じ込められ、開いた瞬間にスクロール領域が伸びる・見えなくなる、が起きる。
     // Popover / Tooltip と同じ floating-ui の土台に揃える。
-    const { refs, floatingStyles } = useFloating({
+    const { refs, floatingStyles, elements } = useFloating({
       open: isOpen,
       placement: align === "right" ? "bottom-end" : "bottom-start",
       whileElementsMounted: autoUpdate,
@@ -189,6 +190,8 @@ const DropdownInner = forwardRef<HTMLDivElement, DropdownProps>(
 
     // Dialog の中で開いても、Escape で閉じるのはメニューだけ（T408）
     useEscapeLayer(isOpen, close);
+    // 引き金が見えなくなったら閉じる（メニューが画面の左上に残らないように。T412）
+    useCloseWhenReferenceGone(isOpen, elements.reference, close);
 
     const typeahead = useTypeahead();
 
