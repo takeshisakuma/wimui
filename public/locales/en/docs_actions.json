@@ -307,6 +307,7 @@
     "splitbutton_scenario_2": "A deploy button where Deploy to production is the default and the other environments live behind the toggle.",
     "splitbutton_best_practice_1": "Put the most-used action in the main half. If you cannot pick one, use Dropdown instead — a split button with an arbitrary default is worse than a plain menu.",
     "splitbutton_best_practice_2": "Keep the menu short. Once it passes a handful of entries it is a menu with a button stuck to it, not a split button.",
-    "buttongroup_choice_single": "Single Button"
+    "buttongroup_choice_single": "Single Button",
+    "button_best_practice_disabled": "Do not disable a submit button while the form is incomplete. Keep it pressable; when it is pressed, show an error under each missing or invalid field and move focus to the first one. A disabled button cannot say why it is disabled: it is skipped by Tab, ignores hover (and phones have no hover), and its tooltip never opens. Disable a button only while its action is running (use loading to block a double submit) or when nothing the user can do will enable it, such as a missing permission, and then explain why in visible text next to it."
   }
 }

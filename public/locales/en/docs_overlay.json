@@ -516,7 +516,8 @@
     "confirm_best_practice_2": "Do not ask before an action that can be undone. Run it and offer Undo in a Snackbar; a question asked every time is answered without reading.",
     "confirm_usage_desc": "Place ConfirmProvider once inside WimProvider, then call confirm() from any handler below it.",
     "confirm_ex_publish_desc": "Without intent, the confirm button has the initial focus.",
-    "confirm_keyboard_desc": "Tab and Shift+Tab move between the two buttons and stay inside the dialog. Enter or Space presses the focused button. Escape cancels (resolves to false). Clicking the backdrop does nothing, because the dialog needs an answer."
+    "confirm_keyboard_desc": "Tab and Shift+Tab move between the two buttons and stay inside the dialog. Enter or Space presses the focused button. Escape cancels (resolves to false). Clicking the backdrop does nothing, because the dialog needs an answer.",
+    "tooltip_best_practice_disabled": "Do not use a tooltip to explain why a button is disabled. A disabled button receives neither hover nor focus, so its tooltip never opens. Keep the button pressable and show the reason as an error when it is pressed, or write the reason as visible text next to it (see Best Practices on the Button page)."
   },
   "overlay": {
     "attn_full": "Attracts user attention completely.",
