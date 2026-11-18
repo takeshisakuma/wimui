@@ -813,7 +813,7 @@ of pixels. Prefer the token so the gap follows the theme.
     - `defaultMenuOpen: boolean` = false — Initial open state of the mobile menu (uncontrolled)
     - `isMenuOpen: boolean` — Open state of the mobile menu (controlled)
     - `onMenuOpenChange: (isOpen: boolean) => void` — Callback when the mobile menu open state changes
-- **OverflowList** — Lays out items in one row and folds the ones that do not fit into a "+N" indicator.
+- **OverflowList** — Lays out items in one row and folds the ones that do not fit into a "+N" indicator. (aka Overflow)
     - `items: T[]` (required) — Items to lay out in a single row, in reading order.
     - `renderItem: (item: T, index: number) => React.ReactNode` (required) — Renders one item. Return a single element: each top-level element is measured as one item.
     - `renderOverflow: (hiddenItems: T[]) => React.ReactNode` (required) — Renders the overflow indicator from the items that did not fit (for example a "+N" button
@@ -842,7 +842,7 @@ rendered inside it. Ignored without `asChild`.
     - `children: React.ReactNode` — Content to display
     - `scrollAxis: "x" | "y" | "both"` = "y" — Axis along which scrolling is allowed
     - `maxHeight: string` — Maximum height before scrolling (a CSS value, so units other than px are supported)
-- **Sidebar** — A collapsible navigation or informational panel on the side of the screen (aka Source List, Inspector)
+- **Sidebar** — A collapsible navigation or informational panel on the side of the screen (aka Source List, Inspector, Nav Drawer)
     - `fixed: boolean` — Fixed position
     - `collapsed: boolean` — Collapsed state
     - `width: number | string` = 260 — Width when expanded
@@ -1059,7 +1059,7 @@ Use it when the field already does the same thing from the keyboard.
 so the unit does not have to be repeated in the label.
     - `styles: { root?: string; inner?: string; icon?: string; icons?: string; iconItem?: string; iconButton?: string; }` — Custom styles for internal parts
     - `asChild: boolean` = false — Whether to render as a child element.
-- **ColorPicker** — Color selection picker
+- **ColorPicker** — Color selection picker (aka Swatch Picker)
     - `intent: "default" | "danger"` = "default" — Semantic intent of the field (e.g. error state)
     - `variant: "outline" | "ghost"` = "outline" — Visual style variant of the field
     - `fullWidth: boolean` = false — Whether to take full width of parent
@@ -1242,7 +1242,7 @@ inside a `Card` or any surface that already draws a border, where a framed
 fieldset would put a box inside a box. The `<fieldset>` and its `<legend>`
 still do their job for assistive technology.
     - `className: string` — Additional class names
-- **FieldTemplate** — Standardizes label placement, required markings, and error message display for all form-related components.
+- **FieldTemplate** — Standardizes label placement, required markings, and error message display for all form-related components. (aka Field)
     - `asChild: boolean` = false — Whether to render as a child element.
     - `label: React.ReactNode` — Label text of the field
     - `error: string` — Error message
@@ -1453,7 +1453,7 @@ so the unit does not have to be repeated in the label.
     - `trigger: string` = "@" — Character that triggers the suggestion list
     - `onSelect: (option: MentionOption) => void` — Callback when a suggestion is selected
     - `asChild: boolean` = false — Whether to render as a child element.
-- **MultiSelect** — Multiple selection
+- **MultiSelect** — Multiple selection (aka Tag Picker)
     - `options: MultiSelectOption[]` = [] — List of options
     - `value: string[]` — Selected values (controlled)
     - `onChange: (value: string[]) => void` — Callback when the selection changes
@@ -1603,7 +1603,7 @@ of a radio group. Use with `description` when the options need explaining.
     - `aria-label: string` — Accessible label when no visible label is provided
     - `aria-labelledby: string` — ID of the element that labels the slider
     - `asChild: boolean` = false — Whether to render as a child element.
-- **Rating** — Star rating (aka Star Rating, Rating Indicator)
+- **Rating** — Star rating (aka Star Rating, Rating Indicator, Rating Display)
     - `value: number` — Current value (controlled)
     - `defaultValue: number` = 0 — Default value (uncontrolled)
     - `count: number` = 5 — Total number of stars
@@ -1663,7 +1663,7 @@ editor is created; changing it later does not convert the content.
     - `aria-labelledby: string` — ID of the element that labels the editor
     - `onImageUpload: (file: File) => Promise<string>` — Uploads an image file and resolves to its URL (http, https or relative). When given, the image dialog offers a file picker
 and image files pasted or dropped into the editor are uploaded and inserted. The editor stores only the URL it gets back.
-- **SearchInput** — Search with clear button (aka Search Field, Search Bar)
+- **SearchInput** — Search with clear button (aka Search Field, Search Bar, Search Box)
     - `intent: "default" | "danger"` = "default" — Semantic intent of the field (e.g. error state)
     - `variant: "outline" | "ghost"` = "outline" — Visual style variant of the field
     - `fullWidth: boolean` = false — Whether to take full width of parent
@@ -1951,7 +1951,7 @@ so the unit does not have to be repeated in the label.
 
 ### feedback — `import { … } from "wimui/feedback"`
 
-- **Alert** — Important messages
+- **Alert** — Important messages (aka Message Bar)
     - `title: React.ReactNode` — Title of the alert
     - `titleTag: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "div" | "p" | "strong" | "span"` = "div" — HTML tag used for the alert title.
 
@@ -2054,7 +2054,7 @@ origin while the card it was meant to cover was 1248x75.
     - `className: string` — Additional class name
     - `aria-label: string` — Accessible name for the notification.
     - `aria-labelledby: string` — ID of the element that labels the notification. Takes precedence over `aria-label`.
-- **Progress** — Progress bar
+- **Progress** — Progress bar (aka Progress Bar)
   - ⚠️ Not the same as elsewhere: Material's "Progress Indicator" covers indeterminate spinners as well. WIM's `Progress` is determinate and linear only — for the indeterminate case use `Spinner`.
     - `value: number` = 0 — Current value of the progress bar.
 @default 0
@@ -2155,7 +2155,7 @@ follows the theme and never needs a hand-mixed colour.
     - `label: string` — Text label displayed next to the spinner.
     - `labelPosition: "right" | "bottom"` = "right" — Position of the label relative to the spinner.
 @default "right"
-- **Toast** — Non-intrusive floating messages that provide feedback on system operations (aka Message, Sonner)
+- **Toast** — Non-intrusive floating messages that provide feedback on system operations (aka Message, Sonner, Toaster)
     - `id: string` — Identifier of the toast, passed to onClose. Used by ToastProvider to manage a stack.
     - `title: string` — Title of the toast.
     - `description: string` — Description text displayed below the title.
@@ -2169,7 +2169,7 @@ follows the theme and never needs a hand-mixed colour.
     - `className: string` — Additional CSS class name.
     - `aria-label: string` — Accessible name for the toast.
     - `aria-labelledby: string` — ID of the element that labels the toast. Takes precedence over `aria-label`.
-- **Tour** — Sequential guided walkthroughs to onboard users or highlight features
+- **Tour** — Sequential guided walkthroughs to onboard users or highlight features (aka Teaching Popover, Coach Mark)
     - `steps: TourStep[]` (required) — Steps of the tour. Each step targets an element via a CSS selector.
     - `open: boolean` (required) — Whether the tour is shown.
     - `onClose: () => void` (required) — Called when the tour is dismissed before completion.
@@ -2225,7 +2225,7 @@ into a "…" button that lists them.
     - `children: ReactNode` (required) — Palette parts (CommandPaletteTrigger, CommandPaletteContent, etc.).
     - `open: boolean` — Controlled open state. Use together with onOpenChange.
     - `onOpenChange: (open: boolean) => void` — Called with the next state when the palette is opened or closed.
-- **HamburgerMenu** — Toggleable menu (aka Sandwich Menu, Navigation Drawer Trigger, Nav Toggle, Cheeseburger Menu, Veggie Burger Menu, Pancake Menu, Bacon Menu, Hot Dog Menu, ハンバーガーメニュー, サンドイッチメニュー)
+- **HamburgerMenu** — Toggleable menu (aka Sandwich Menu, Navigation Drawer Trigger, Nav Toggle, Cheeseburger Menu, Veggie Burger Menu, Pancake Menu, Bacon Menu, Hot Dog Menu, ハンバーガーメニュー, サンドイッチメニュー, Hamburger)
     - `asChild: boolean` = false — If true, merge button props onto the child element.
     - `open: boolean` = false — Whether the menu is open
     - `onClick: React.MouseEventHandler<HTMLButtonElement>` — Callback function when the menu is toggled
@@ -2337,7 +2337,7 @@ scans stay green while the bar hangs outside its parent.
     - `variant: "underline" | "pill" | "contained"` = "underline" — Visual style of the tabs
     - `align: "start" | "center" | "end" | "justify"` = "start" — Alignment of the tabs
     - `size: "sm" | "md" | "lg"` = "md" — Size of the tabs
-- **Tabs** — A container to organize related content into switchable view panels
+- **Tabs** — A container to organize related content into switchable view panels (aka Tab List)
     - `asChild: boolean` = false — If true, the tabs root will be rendered as its child, merging its props onto that child.
     - `defaultValue: string` — Value of the tab selected initially, for uncontrolled usage.
     - `value: string` — Controlled value of the selected tab. Use together with onChange.
@@ -2823,7 +2823,7 @@ destructive action is never triggered by momentum; the action stays available as
     - `maxHeight: string | number` — Maximum height of the container (enables vertical scrolling)
     - `containerClassName: string` — Additional class name for the scroll container
     - `card: boolean` = false — Add outer border and border-radius to the container (DataGrid look)
-- **Tag** — Compact visual descriptors used for labeling or categorizing content
+- **Tag** — Compact visual descriptors used for labeling or categorizing content (aka Interaction Tag)
     - `asChild: boolean` = false — If true, the tag will be rendered as its child, merging its props onto that child.
 Cannot be combined with `onDelete` — the delete control is a second element, and
 `asChild` requires a single React element child (T99).
@@ -2856,7 +2856,7 @@ this is given; without it the diagram is read-only.
 anything is measured; long text is truncated and read in full by assistive technology.
     - `nodeHeight: number` = 64 — Card height in px.
     - `labels: { /** Accessible name of the collapse / expand button. */ expand?: (label: string) => string; collapse?: (label: string) => string; }` — Accessible names of the collapse / expand button, for when the built-in translations do not fit.
-- **TreeView** — Hierarchical data (aka Outline View)
+- **TreeView** — Hierarchical data (aka Outline View, Tree, Flat Tree)
     - `children: React.ReactNode` — JSX-based items (children API). Use this when not using `nodes`.
     - `nodes: TreeViewNode[]` — Node array for data-driven mode.
     - `className: string` — Additional class names
@@ -2920,7 +2920,7 @@ interrupts the user and needs a response before they can continue, such as
 confirming a destructive action. An alert dialog does not close when the
 overlay is clicked unless closeOnOverlayClick is set; Escape still closes it.
 @default "dialog"
-- **Drawer** — Slide-out detail panels (aka Navigation Drawer)
+- **Drawer** — Slide-out detail panels (aka Navigation Drawer, Overlay Drawer)
     - `children: React.ReactNode` (required) — Drawer parts (DrawerTrigger, DrawerContent, etc.).
     - `open: boolean` — Controlled open state. Use together with onOpenChange.
     - `onOpenChange: (open: boolean) => void` — Called with the next state when the drawer is opened or closed.
@@ -2932,7 +2932,7 @@ overlay is clicked unless closeOnOverlayClick is set; Escape still closes it.
 @default true
     - `slideOut: boolean` = true — Whether to animate the drawer when closing.
 @default true
-- **Dropdown** — Overlay selection menu (aka Overflow Menu, Kebab Menu, Meatball Menu, Vertical Ellipsis, Horizontal Ellipsis, Three Dots Menu, More Menu, App Switcher, オーバーフローメニュー, ケバブメニュー, ミートボールメニュー)
+- **Dropdown** — Overlay selection menu (aka Overflow Menu, Kebab Menu, Meatball Menu, Vertical Ellipsis, Horizontal Ellipsis, Three Dots Menu, More Menu, App Switcher, オーバーフローメニュー, ケバブメニュー, ミートボールメニュー, Menu Button)
     - `children: ReactNode` (required) — Dropdown parts (Dropdown.Trigger and Dropdown.Menu).
     - `asChild: boolean` = false — If true, the dropdown will be rendered as its child, merging its props onto that child.
     - `defaultOpen: boolean` = false — Whether the menu starts open. Use it for a screenshot, a test, or a menu that should
@@ -2977,7 +2977,7 @@ is marked.
     - `children: ReactNode` (required) — The target element which the Popconfirm will be attached to
     - `icon: ReactNode` — Customize the icon
     - `disabled: boolean` = false — Whether to show the popconfirm
-- **Popover** — Contextual overlay
+- **Popover** — Contextual overlay (aka Info Label, Info Button)
     - `children: ReactNode` (required) — Popover parts (PopoverTrigger, PopoverContent, etc.).
     - `className: string` — Additional CSS class name for the container.
     - `defaultOpen: boolean` = false — If true, the popover component will manage its own open state.
