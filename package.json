@@ -371,6 +371,7 @@
     "check:exports": "node scripts/check-documented-exports.js",
     "check:api:update": "node scripts/check-public-api.js --update",
     "check:prop-api": "node scripts/check-prop-api.js",
+    "check:part-api": "node scripts/check-part-api.js",
     "check:hooks-docs": "node scripts/check-hooks-docs.js",
     "prove:hooks-docs": "node scripts/prove-hooks-docs.mjs",
     "check:a11y-screen-reader": "node scripts/check-a11y-screen-reader.js",
@@ -378,6 +379,7 @@
     "check:spread-order": "node scripts/check-spread-order.js",
     "check:spread-order:update": "node scripts/check-spread-order.js --update",
     "check:prop-api:update": "node scripts/check-prop-api.js --update",
+    "check:part-api:update": "node scripts/check-part-api.js --update",
     "check:hooks": "node scripts/check-root-hooks.js",
     "check:tokens": "node scripts/check-tokens.js",
     "check:tokens:update": "node scripts/check-tokens.js --update",
@@ -461,6 +463,7 @@
     "prove:opacity-forwards": "node scripts/prove-opacity-forwards.mjs",
     "prove:vrt-update-scope": "node scripts/prove-vrt-update-scope.mjs",
     "prove:prop-api": "node scripts/prove-prop-api.mjs",
+    "prove:part-api": "node scripts/prove-part-api.mjs",
     "prove:examples": "node scripts/prove-code-examples.mjs",
     "skills:link": "node scripts/link-skills.mjs",
     "check:skills-mirror": "node scripts/link-skills.mjs --check",
@@ -829,7 +832,11 @@
     "src/components/**/*.tsx": [
       "node scripts/check-src-hardcoded.js",
       "node scripts/check-numeric-length-defaults.js",
-      "node scripts/check-prop-api.js"
+      "node scripts/check-prop-api.js",
+      "node scripts/check-part-api.js"
+    ],
+    "{part-api-snapshot.json,scripts/check-part-api.js,scripts/lib/parts.js}": [
+      "node scripts/check-part-api.js"
     ],
     "{scripts/composition-rules.json,DESIGN.md}": [
       "node scripts/check-composition-rules.js"

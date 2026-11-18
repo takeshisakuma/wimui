@@ -193,6 +193,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
             <React.Fragment key={groupIndex}>
               <li
                 className={classNames(localStyles.groupLabel, stylesProp?.groupLabel)}
+                data-part="group-label"
                 role="presentation"
               >
                 <VisualUppercase>{group.label}</VisualUppercase>
@@ -204,6 +205,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
                     <li
                       key={`sep-${groupIndex}-${optIdx}`}
                       className={classNames(localStyles.separator, stylesProp?.separator)}
+                      data-part="separator"
                       role="presentation"
                     />
                   );
@@ -234,6 +236,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
                     }}
                     onMouseEnter={() => setFocusedIndex(index)}
                     role="option"
+                    data-part="option"
                     aria-selected={isSelected}
                   >
                     <li>{option.label}</li>
@@ -252,6 +255,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
             <li
               key={`sep-${index}`}
               className={classNames(localStyles.separator, stylesProp?.separator)}
+              data-part="separator"
               role="presentation"
             />
           );
@@ -282,6 +286,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
             }}
             onMouseEnter={() => setFocusedIndex(itemIndex)}
             role="option"
+            data-part="option"
             aria-selected={isSelected}
           >
             <li>{option.label}</li>
@@ -349,6 +354,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
               onKeyDown={handleKeyDown}
               tabIndex={disabled ? -1 : 0}
               role="combobox"
+              data-part="trigger"
               aria-expanded={isOpen}
               aria-haspopup="listbox"
               aria-controls={isOpen ? listId : undefined}
@@ -375,6 +381,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
                   !selectedOption && localStyles.placeholder,
                   stylesProp?.value,
                 )}
+                data-part="value"
               >
                 {selectedOption ? selectedOption.label : placeholder}
               </div>
@@ -385,15 +392,17 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
             show={isOpen && !disabled}
             preset="fade"
             className={classNames(localStyles.dropdown, stylesProp?.dropdown)}
+            data-part="dropdown"
             ref={setFloating}
             {...floatingProps}
           >
             {searchable && (
-              <div className={classNames(localStyles.search, stylesProp?.search)}>
+              <div className={classNames(localStyles.search, stylesProp?.search)} data-part="search">
                 <input
                   ref={searchInputRef}
                   type="text"
                   className={classNames(localStyles.searchInput, stylesProp?.searchInput)}
+                  data-part="search-input"
                   placeholder={searchPlaceholder}
                   value={searchValue}
                   onChange={(e) => {
@@ -411,12 +420,14 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
             <ul
               id={listId}
               className={classNames(localStyles.list, stylesProp?.list)}
+              data-part="list"
               role="listbox"
               aria-labelledby={label ? labelId : ariaLabelledBy || undefined}
             >
               {filteredOptions.length === 0 ? (
                 <li
                   className={classNames(localStyles.empty, stylesProp?.empty)}
+                  data-part="empty"
                   role="option"
                   aria-selected="false"
                 >

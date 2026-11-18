@@ -456,6 +456,13 @@ const checks = [
   },
   {
     category: "lib",
+    // 部品の内側の部位名（data-part）は利用者が CSS で狙う公開の約束。消す・変えると
+    // 利用者の CSS が黙って当たらなくなり、型にも prop の検査にも出ない（T384）。
+    name: "Part names (data-part) stay stable",
+    command: "node scripts/check-part-api.js",
+  },
+  {
+    category: "lib",
     name: "Root override hooks (wim-<name> stability)",
     command: "node scripts/check-root-hooks.js",
   },

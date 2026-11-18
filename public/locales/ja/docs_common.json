@@ -328,6 +328,8 @@
     "a11y_list_sr_fixed": "直して聞き直し済み（{{date}}）",
     "a11y_list_sr_fixed_unheard": "直した・聞き直していない（{{date}}）",
     "a11y_list_link": "部品ごとの確認状況は、各部品のページの「テスト」の節の表に、全部品の一覧は「Accessibility Status」のページにあります。",
-    "a11y_list_no_data": "アクセシビリティの材料がまだ作られていません（src/data/docgen-a11y.json は Storybook の起動時に作られます）。"
+    "a11y_list_no_data": "アクセシビリティの材料がまだ作られていません（src/data/docgen-a11y.json は Storybook の起動時に作られます）。",
+    "docgen_selector": "セレクター",
+    "anatomy_parts_note": "部位は、自分の CSS から data-part 属性で狙えます。部品のスタイルはカスケードレイヤー component の中にあるので、レイヤーの外に書いた規則が、詳細度に関係なく勝ちます。部位名は変えない公開の約束です。状態は部位名ではなく aria-* と data-* の属性（たとえば aria-selected）にあります。"
   }
 }

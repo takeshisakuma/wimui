@@ -5,6 +5,7 @@ import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
 import { parse, builtinResolvers } from 'react-docgen';
 import { glob } from 'glob';
+import { extractParts } from './lib/parts.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -19,14 +20,15 @@ const __dirname = path.dirname(__filename);
  * 出力を得ていた（2026-07-26。CI はクリーンチェックアウトなので気づけなかった）。
  *
  * 内訳:
- *   - このファイル自身の content hash — ローカルの他モジュールを import していないので、
- *     ロジック変更はすべてここに現れる（import を足すときはこの前提を見直すこと）
+ *   - このファイル自身の content hash — ローカルの他モジュールは `lib/parts.js` だけで、
+ *     その hash も足している（import を足すときは、ここにも足すこと）
  *   - react-docgen のバージョン — パーサが変われば同じ入力でも出力が変わりうる
  */
 const CACHE_VERSION = (() => {
   const selfHash = crypto
     .createHash('sha1')
     .update(fs.readFileSync(__filename, 'utf8'))
+    .update(fs.readFileSync(path.join(__dirname, 'lib/parts.js'), 'utf8'))
     .digest('hex')
     .slice(0, 12);
   const { version } = createRequire(import.meta.url)('react-docgen/package.json');
@@ -269,6 +271,10 @@ function toDocgenEntries(found, componentName, tokens, anatomy, tsxContent) {
   if (!byName.has(componentName)) {
     byName.set(componentName, { name: componentName, tokens, anatomy: anatomy.parts, anatomyStyle: anatomy.style, props: {} });
   }
+  // 部品の内側の部位名（data-part。T384）。ファイル名と同じ名前のエントリだけに付ける
+  // （ファイルの中の子部品も同じ部位を描くが、文書は親の部品のページで 1 回見せる）
+  const { parts } = extractParts(tsxContent ?? '');
+  if (parts.length > 0) byName.get(componentName).parts = parts;
   // CSS Modules の anatomy から、props 情報に基づく修飾子クラスを除外する
   if (anatomy.style === 'module' && anatomy.parts.length > 0) {
     const { names, values } = collectModifierFilters([...byName.values()]);
@@ -276,6 +282,12 @@ function toDocgenEntries(found, componentName, tokens, anatomy, tsxContent) {
     for (const entry of byName.values()) entry.anatomy = filtered;
   }
   return [...byName.values()];
+}
+
+/** 解析に失敗したときの代わりのエントリにも、部位名は付ける（ソースの文字列から読めるため） */
+function partsOf(tsxContent) {
+  const { parts } = extractParts(tsxContent ?? '');
+  return parts.length > 0 ? { parts } : {};
 }
 
 // SCSS ファイルはコンポーネント名の小文字連結（button.scss）と
@@ -402,7 +414,7 @@ function processComponent(rootDir, componentRelPath) {
     const found = Array.isArray(docgen) ? docgen : [docgen];
     parsedComponents = toDocgenEntries(found, componentName, tokens, anatomy, tsxContent);
   } catch {
-    parsedComponents = [{ name: componentName, tokens, anatomy: anatomy.parts, anatomyStyle: anatomy.style, props: {} }];
+    parsedComponents = [{ name: componentName, tokens, anatomy: anatomy.parts, anatomyStyle: anatomy.style, props: {}, ...partsOf(tsxContent) }];
   }
 
   return { contentHash, componentName, parsedComponents };
@@ -480,7 +492,7 @@ export async function generateDocgenData() {
       const found = Array.isArray(docgen) ? docgen : [docgen];
       parsedComponents = toDocgenEntries(found, componentName, tokens, anatomy, tsxContent);
     } catch {
-      parsedComponents = [{ name: componentName, tokens, anatomy: anatomy.parts, anatomyStyle: anatomy.style, props: {} }];
+      parsedComponents = [{ name: componentName, tokens, anatomy: anatomy.parts, anatomyStyle: anatomy.style, props: {}, ...partsOf(tsxContent) }];
     }
 
     cache[normalizedRel] = { contentHash, parsedComponents };
@@ -600,7 +612,7 @@ async function handleHotFile(file) {
       const found = Array.isArray(docgen) ? docgen : [docgen];
       parsedComponents = toDocgenEntries(found, componentName, tokens, anatomy, tsxContent);
     } catch {
-      parsedComponents = [{ name: componentName, tokens, anatomy: anatomy.parts, anatomyStyle: anatomy.style, props: {} }];
+      parsedComponents = [{ name: componentName, tokens, anatomy: anatomy.parts, anatomyStyle: anatomy.style, props: {}, ...partsOf(tsxContent) }];
     }
 
     cache[componentRelPath] = { contentHash, parsedComponents };

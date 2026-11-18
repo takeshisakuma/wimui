@@ -8,6 +8,7 @@
 
 - [ ] `npm run check:api`（export / バレル変更時は意図どおりなら `check:api:update` してコミット）
 - [ ] `npm run check:prop-api`（prop を足した・変えたときも落ちる。`check:prop-api:update` でスナップショットを更新してコミット）
+- [ ] `npm run check:part-api`（`data-part` を足した・変えたときも落ちる。`check:part-api:update` でスナップショットを更新してコミット）
 - [ ] `npm run check:aschild`（`asChild` を足した／必須リスト対象なら `docs/rules/implementation.md` のリストも同期）
 - [ ] `npm run audit:hardcoded`（未注記 px を増やしていない。`PX_BASELINE = 0`）
 - [ ] `npm run check:numeric-length-defaults`（`gap = 16` のように、裸の数値のまま CSS の長さになる prop 既定値が無い）
