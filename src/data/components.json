@@ -27,7 +27,8 @@
         "mobile": true,
         "aliases": [
           "Star Rating",
-          "Rating Indicator"
+          "Rating Indicator",
+          "Rating Display"
         ]
       },
       {
@@ -85,7 +86,10 @@
         "name": "Alert",
         "descKey": "doc.alert_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Message Bar"
+        ]
       },
       {
         "name": "Notification",
@@ -118,7 +122,8 @@
         "mobile": true,
         "aliases": [
           "Message",
-          "Sonner"
+          "Sonner",
+          "Toaster"
         ]
       },
       {
@@ -171,7 +176,8 @@
         "mobile": false,
         "aliases": [
           "Source List",
-          "Inspector"
+          "Inspector",
+          "Nav Drawer"
         ]
       },
       {
@@ -225,7 +231,8 @@
         "mobile": true,
         "aliases": [
           "Search Field",
-          "Search Bar"
+          "Search Bar",
+          "Search Box"
         ]
       },
       {
@@ -445,7 +452,10 @@
         "name": "Tag",
         "descKey": "doc.tag_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Interaction Tag"
+        ]
       },
       {
         "name": "JsonDiffViewer",
@@ -570,7 +580,9 @@
         "pc": true,
         "mobile": true,
         "aliases": [
-          "Outline View"
+          "Outline View",
+          "Tree",
+          "Flat Tree"
         ]
       },
       {
@@ -650,7 +662,10 @@
         "name": "FieldTemplate",
         "descKey": "doc.field_template_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Field"
+        ]
       },
       {
         "name": "InputBase",
@@ -776,7 +791,10 @@
         "name": "OverflowList",
         "descKey": "doc.overflowList_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Overflow"
+        ]
       }
     ]
   },
@@ -796,7 +814,10 @@
         "descKey": "doc.progress_desc",
         "pc": true,
         "mobile": true,
-        "disambiguation": "Material's \"Progress Indicator\" covers indeterminate spinners as well. WIM's `Progress` is determinate and linear only — for the indeterminate case use `Spinner`."
+        "disambiguation": "Material's \"Progress Indicator\" covers indeterminate spinners as well. WIM's `Progress` is determinate and linear only — for the indeterminate case use `Spinner`.",
+        "aliases": [
+          "Progress Bar"
+        ]
       },
       {
         "name": "ProgressRing",
@@ -901,7 +922,10 @@
         "name": "Tabs",
         "descKey": "doc.tab_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Tab List"
+        ]
       },
       {
         "name": "Pagination",
@@ -928,7 +952,8 @@
           "Bacon Menu",
           "Hot Dog Menu",
           "ハンバーガーメニュー",
-          "サンドイッチメニュー"
+          "サンドイッチメニュー",
+          "Hamburger"
         ],
         "pc": false,
         "mobile": true
@@ -1021,7 +1046,11 @@
         "name": "Popover",
         "descKey": "doc.popover_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Info Label",
+          "Info Button"
+        ]
       },
       {
         "name": "Tooltip",
@@ -1038,7 +1067,8 @@
         "pc": true,
         "mobile": true,
         "aliases": [
-          "Navigation Drawer"
+          "Navigation Drawer",
+          "Overlay Drawer"
         ]
       },
       {
@@ -1071,7 +1101,11 @@
         "name": "Tour",
         "descKey": "doc.tour_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Teaching Popover",
+          "Coach Mark"
+        ]
       },
       {
         "name": "Dropdown",
@@ -1087,7 +1121,8 @@
           "App Switcher",
           "オーバーフローメニュー",
           "ケバブメニュー",
-          "ミートボールメニュー"
+          "ミートボールメニュー",
+          "Menu Button"
         ],
         "pc": true,
         "mobile": true
@@ -1146,7 +1181,10 @@
         "name": "ColorPicker",
         "descKey": "doc.colorPicker_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Swatch Picker"
+        ]
       },
       {
         "name": "DateRangePicker",
@@ -1231,7 +1269,10 @@
         "name": "MultiSelect",
         "descKey": "doc.multiSelect_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Tag Picker"
+        ]
       },
       {
         "name": "SegmentedControl",
