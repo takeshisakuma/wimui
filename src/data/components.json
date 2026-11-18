@@ -11,7 +11,8 @@
         "mobile": true,
         "aliases": [
           "Upload",
-          "File Input"
+          "File Input",
+          "File Uploader"
         ]
       },
       {
@@ -107,7 +108,10 @@
         "name": "Result",
         "descKey": "doc.result_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Full Page Error"
+        ]
       },
       {
         "name": "Snackbar",
@@ -149,7 +153,10 @@
         "name": "AppShell",
         "descKey": "doc.appShell_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "UI Shell"
+        ]
       },
       {
         "name": "Header",
@@ -201,7 +208,10 @@
         "name": "Input",
         "descKey": "doc.input_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Text Input"
+        ]
       },
       {
         "name": "PasswordInput",
@@ -298,7 +308,8 @@
         "pc": true,
         "mobile": true,
         "aliases": [
-          "Editable Text"
+          "Editable Text",
+          "Edit In Place"
         ]
       },
       {
@@ -336,19 +347,29 @@
         "name": "ButtonGroup",
         "descKey": "doc.buttonGroup_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Button Set",
+          "Action Set"
+        ]
       },
       {
         "name": "SplitButton",
         "descKey": "doc.splitButton_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Combo Button"
+        ]
       },
       {
         "name": "CopyButton",
         "descKey": "doc.copyButton_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Copy"
+        ]
       },
       {
         "name": "ThemeToggle",
@@ -367,7 +388,10 @@
         "name": "Card",
         "descKey": "doc.card_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Tile"
+        ]
       },
       {
         "name": "Accordion",
@@ -403,7 +427,10 @@
         "name": "Avatar",
         "descKey": "doc.avatar_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "User Avatar"
+        ]
       },
       {
         "name": "AvatarGroup",
@@ -418,7 +445,10 @@
         "name": "Badge",
         "descKey": "doc.badge_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Icon Indicator"
+        ]
       },
       {
         "name": "Calendar",
@@ -440,7 +470,10 @@
         "name": "Indicator",
         "descKey": "doc.indicator_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Badge Indicator"
+        ]
       },
       {
         "name": "QRCode",
@@ -510,13 +543,19 @@
         "name": "Table",
         "descKey": "doc.table_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Structured List"
+        ]
       },
       {
         "name": "DataGrid",
         "descKey": "doc.dataGrid_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Data Table"
+        ]
       },
       {
         "name": "SelectionBar",
@@ -544,13 +583,21 @@
         "name": "QueryBuilder",
         "descKey": "doc.queryBuilder_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Condition Builder"
+        ]
       },
       {
         "name": "List",
         "descKey": "doc.list_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Contained List",
+          "Ordered List",
+          "Unordered List"
+        ]
       },
       {
         "name": "BaseListItem",
@@ -571,7 +618,8 @@
         "mobile": true,
         "aliases": [
           "Statistic",
-          "Stat"
+          "Stat",
+          "Big Number"
         ]
       },
       {
@@ -650,7 +698,10 @@
         "name": "Fieldset",
         "descKey": "doc.fieldset_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Form Group"
+        ]
       },
       {
         "name": "Legend",
@@ -763,7 +814,8 @@
         "aliases": [
           "Resizable",
           "Resizable Panels",
-          "Split Pane"
+          "Split Pane",
+          "Resizer"
         ]
       },
       {
@@ -793,7 +845,8 @@
         "pc": true,
         "mobile": true,
         "aliases": [
-          "Overflow"
+          "Overflow",
+          "Overflow Handler"
         ]
       }
     ]
@@ -840,7 +893,9 @@
         "pc": true,
         "mobile": true,
         "aliases": [
-          "Activity Indicator"
+          "Activity Indicator",
+          "Inline Loading",
+          "Loading"
         ]
       },
       {
@@ -931,7 +986,10 @@
         "name": "Pagination",
         "descKey": "doc.pagination_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Pagination Nav"
+        ]
       },
       {
         "name": "TabNavigation",
@@ -963,7 +1021,10 @@
         "descKey": "doc.stepper_desc",
         "pc": true,
         "mobile": true,
-        "disambiguation": "In Apple HIG and macOS, a \"Stepper\" is the control that increments a number — that is `NumberInput` here. WIM's `Stepper` shows progress through a sequence of steps, which is what Material calls a Stepper."
+        "disambiguation": "In Apple HIG and macOS, a \"Stepper\" is the control that increments a number — that is `NumberInput` here. WIM's `Stepper` shows progress through a sequence of steps, which is what Material calls a Stepper.",
+        "aliases": [
+          "Progress Indicator"
+        ]
       },
       {
         "name": "Anchor",
@@ -1039,7 +1100,8 @@
         "mobile": true,
         "aliases": [
           "Modal",
-          "Modal Dialog"
+          "Modal Dialog",
+          "Composed Modal"
         ]
       },
       {
@@ -1049,7 +1111,8 @@
         "mobile": true,
         "aliases": [
           "Info Label",
-          "Info Button"
+          "Info Button",
+          "Toggletip"
         ]
       },
       {
@@ -1068,7 +1131,8 @@
         "mobile": true,
         "aliases": [
           "Navigation Drawer",
-          "Overlay Drawer"
+          "Overlay Drawer",
+          "Side Panel"
         ]
       },
       {
@@ -1231,13 +1295,19 @@
         "name": "Radio",
         "descKey": "doc.radio_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Radio Button"
+        ]
       },
       {
         "name": "RadioGroup",
         "descKey": "doc.radioGroup_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Radio Button Group"
+        ]
       },
       {
         "name": "Switch",
@@ -1281,7 +1351,8 @@
         "mobile": true,
         "aliases": [
           "Segmented Buttons",
-          "Segmented Picker"
+          "Segmented Picker",
+          "Content Switcher"
         ]
       },
       {
@@ -1327,7 +1398,10 @@
         "name": "Text",
         "descKey": "doc.text_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Truncated Text"
+        ]
       },
       {
         "name": "Span",
@@ -1703,7 +1777,10 @@
         "name": "CodeBlock",
         "descKey": "doc.codeBlock_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Code Snippet"
+        ]
       },
       {
         "name": "CodeDiffViewer",

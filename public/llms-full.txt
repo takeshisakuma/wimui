@@ -622,7 +622,7 @@ export function RenameWorkspace() {
 
 ### layout — `import { … } from "wimui/layout"`
 
-- **AppShell** — Basic application shell layout
+- **AppShell** — Basic application shell layout (aka UI Shell)
     - `header: React.ReactNode` — Header component
     - `sidebar: React.ReactNode` — Sidebar component
     - `footer: React.ReactNode` — Footer component
@@ -813,7 +813,7 @@ of pixels. Prefer the token so the gap follows the theme.
     - `defaultMenuOpen: boolean` = false — Initial open state of the mobile menu (uncontrolled)
     - `isMenuOpen: boolean` — Open state of the mobile menu (controlled)
     - `onMenuOpenChange: (isOpen: boolean) => void` — Callback when the mobile menu open state changes
-- **OverflowList** — Lays out items in one row and folds the ones that do not fit into a "+N" indicator. (aka Overflow)
+- **OverflowList** — Lays out items in one row and folds the ones that do not fit into a "+N" indicator. (aka Overflow, Overflow Handler)
     - `items: T[]` (required) — Items to lay out in a single row, in reading order.
     - `renderItem: (item: T, index: number) => React.ReactNode` (required) — Renders one item. Return a single element: each top-level element is measured as one item.
     - `renderOverflow: (hiddenItems: T[]) => React.ReactNode` (required) — Renders the overflow indicator from the items that did not fit (for example a "+N" button
@@ -881,7 +881,7 @@ number of pixels. Prefer the token so the gap follows the theme.
 @default "2xl"
     - `verticalSpacing: number | string` — Vertical spacing between rows (defaults to `spacing`)
     - `minChildWidth: number | string` — Minimum width of each child; columns wrap automatically to fit
-- **Splitter** — Split and resize panels (aka Resizable, Resizable Panels, Split Pane)
+- **Splitter** — Split and resize panels (aka Resizable, Resizable Panels, Split Pane, Resizer)
     - `orientation: "horizontal" | "vertical"` = "horizontal" — The orientation of the splitter.
     - `children: React.ReactNode` (required) — The components to render within the splitter. Usually a combination of `Splitter.Panel` and `Splitter.Handle`.
 - **Stack** — Vertical/Horizontal alignment
@@ -979,7 +979,7 @@ Useful for using the button styles with Link components (e.g. from React Router 
     - `fullWidth: boolean` = false — Whether the button should take up the full width of its container
     - `styles: { root?: string; loader?: string; icon?: string; }` — Custom styles for internal parts
     - `className: string` — Additional class names
-- **ButtonGroup** — Group of buttons
+- **ButtonGroup** — Group of buttons (aka Button Set, Action Set)
     - `children: React.ReactNode` (required) — Buttons to group
     - `gap: string` = "8px" — Gap between buttons (ignored when joined)
     - `className: string` — Additional class names
@@ -1115,7 +1115,7 @@ so the unit does not have to be repeated in the label.
     - `fullWidth: boolean` = false — Whether to take full width of parent
     - `id: string` — Unique ID for the component
     - `labels: { noResults?: React.ReactNode; }` = {} — Labels for internationalization
-- **CopyButton** — Copy to clipboard
+- **CopyButton** — Copy to clipboard (aka Copy)
     - `value: string` (required) — Text copied to the clipboard
     - `size: "sm" | "md" | "lg"` = "md" — Size of the button
     - `className: string` — Additional class names
@@ -1232,7 +1232,7 @@ them. Leave it undefined to let the area track its own selection.
     - `content: string` (required) — Error message text
     - `className: string` — Additional class names
     - `id: string` — ID of the error message element
-- **Fieldset** — Form grouping
+- **Fieldset** — Form grouping (aka Form Group)
     - `children: React.ReactNode` (required) — Form elements to group
     - `disabled: boolean` = false — Whether all contained form elements are disabled
     - `variant: "default" | "full-width" | "plain"` = "default" — Visual variant of the fieldset.
@@ -1254,7 +1254,7 @@ still do their job for assistive technology.
     - `htmlFor: string` — ID of the element the label points to
     - `errorId: string` — ID of the error message element
     - `styles: { root?: string; labelWrapper?: string; label?: string; content?: string; error?: string; }` — Custom styles for internal parts
-- **FileUpload** — File selection (aka Upload, File Input)
+- **FileUpload** — File selection (aka Upload, File Input, File Uploader)
     - `label: React.ReactNode` — Field label
     - `buttonLabel: React.ReactNode` — Label of the file selection button
     - `noFileLabel: React.ReactNode` — Text shown when no file is selected
@@ -1338,7 +1338,7 @@ resolution of the source image; without a bound a large photo produces a large d
 @default 0.92
     - `crossOrigin: "anonymous" | "use-credentials"` — CORS mode used to load the image. Needed to crop an image served from another origin;
 the server must send matching CORS headers or the image will not load at all.
-- **InlineEdit** — A component that allows users to switch between a view-only mode and an editable mode in-place. (aka Editable Text)
+- **InlineEdit** — A component that allows users to switch between a view-only mode and an editable mode in-place. (aka Editable Text, Edit In Place)
     - `value: string` — Current text (controlled)
     - `defaultValue: string` — Initial text (uncontrolled)
     - `onChange: (value: string) => void` — Callback when the text changes while editing
@@ -1349,7 +1349,7 @@ the server must send matching CORS headers or the image will not load at all.
     - `disabled: boolean` = false — Whether editing is disabled
     - `fullWidth: boolean` = false — Whether to take full width of parent
     - `label: React.ReactNode` — Accessible label for the text and edit button
-- **Input** — Single-line input fields for text, numbers, or emails
+- **Input** — Single-line input fields for text, numbers, or emails (aka Text Input)
     - `intent: "default" | "danger"` = "default" — Semantic intent of the field (e.g. error state)
     - `variant: "outline" | "ghost"` = "outline" — Visual style variant of the field
     - `fullWidth: boolean` = false — Whether to take full width of parent
@@ -1551,7 +1551,7 @@ so the unit does not have to be repeated in the label.
     - `aria-label: string` — Accessible name for the phone number input when no visible `label` is provided.
     - `aria-labelledby: string` — ID of the element that labels the phone number input when no visible `label` is provided.
     - `aria-describedby: string` — ID of the element that describes the phone number input. Announced together with the error message.
-- **QueryBuilder** — Visual builder for constructing complex search queries.
+- **QueryBuilder** — Visual builder for constructing complex search queries. (aka Condition Builder)
     - `fields: QueryField[]` (required) — Field definitions
     - `query: QueryGroup` — Current query state (controlled)
     - `defaultQuery: QueryGroup` — Default query state (uncontrolled)
@@ -1563,11 +1563,11 @@ so the unit does not have to be repeated in the label.
     - `aria-label: string` — Accessible name for the query builder region. Takes precedence over `labels.regionAriaLabel`.
     - `aria-labelledby: string` — ID of the element that labels the query builder region. Takes precedence over `aria-label`.
     - `aria-describedby: string` — ID of the element that describes the query builder region.
-- **Radio** — Single choice
+- **Radio** — Single choice (aka Radio Button)
     - `asChild: boolean` = false — Whether to render as a child element.
     - `children: React.ReactNode` — Label content rendered next to the radio
     - `error: boolean` = false — Whether to display as an error state (aria-invalid is not supported on the radio role, so it is applied on the RadioGroup side)
-- **RadioGroup** — Shared state radio buttons
+- **RadioGroup** — Shared state radio buttons (aka Radio Button Group)
     - `options: Option[]` (required) — List of radio options
     - `value: string` — Selected value (controlled)
     - `defaultValue: string` — Initially selected value (uncontrolled)
@@ -1695,7 +1695,7 @@ Use it when the field already does the same thing from the keyboard.
 so the unit does not have to be repeated in the label.
     - `styles: { root?: string; inner?: string; icon?: string; icons?: string; iconItem?: string; iconButton?: string; }` — Custom styles for internal parts
     - `asChild: boolean` = false — Whether to render as a child element.
-- **SegmentedControl** — Button-style controls for switching between a small set of mutually exclusive options (aka Segmented Buttons, Segmented Picker)
+- **SegmentedControl** — Button-style controls for switching between a small set of mutually exclusive options (aka Segmented Buttons, Segmented Picker, Content Switcher)
     - `options: Option[]` (required) — List of segment options
     - `value: string` (required) — Selected value
     - `onChange: (value: string) => void` (required) — Callback when the selected value changes
@@ -1787,7 +1787,7 @@ so the unit does not have to be repeated in the label.
     - `onChange: (value: string) => void` — Callback when the value changes
     - `defaultValue: string` = "" — Initial value (uncontrolled)
     - `maxLength: number` — Maximum number of characters
-- **SplitButton** — SplitButton description.
+- **SplitButton** — SplitButton description. (aka Combo Button)
     - `children: React.ReactNode` — Text of the main action.
     - `onClick: React.MouseEventHandler<HTMLButtonElement>` — Called when the main action is pressed.
     - `actions: SplitButtonAction[]` (required) — Secondary actions listed behind the toggle.
@@ -1991,7 +1991,7 @@ When a function is passed, it is called as (error, errorInfo, reset) => ReactNod
     - `onReset: () => void` — Called when the error is reset.
     - `labels: { title?: string; retry?: string; showDetails?: string; hideDetails?: string; }` — Labels for manual translation overrides.
     - `children: ReactNode` (required) — Content the boundary protects.
-- **Indicator** — Small status dots
+- **Indicator** — Small status dots (aka Badge Indicator)
     - `children: React.ReactNode` — Element the indicator dot is attached to. If omitted, only the dot is rendered.
     - `color: T | (string & {})` = "primary" — Color of the dot. Accepts a design token color name or any CSS color value.
 @default "primary"
@@ -2093,7 +2093,7 @@ type therefore requires one of `label` / `aria-label` / `aria-labelledby`.
 @default false
     - `indeterminate: boolean` = false — If true, shows an indeterminate animation instead of a value.
 @default false
-- **Result** — Task status indicator
+- **Result** — Task status indicator (aka Full Page Error)
     - `intent: "default" | "success" | "danger" | "info" | "warning"` = "default" — Semantic intent — determines the icon and color. `default` draws no icon unless `icon` is passed.
 @default "default"
     - `status: "404" | "403" | "500"` — HTTP error status — adds a status-specific CSS class and shows a neutral icon.
@@ -2147,7 +2147,7 @@ follows the theme and never needs a hand-mixed colour.
     - `onAction: () => void` — Called when the action button is clicked
     - `onClose: () => void` — Called when the snackbar is closed
     - `className: string` — Additional CSS class name
-- **Spinner** — A rotating icon indicating background activity or data fetching (aka Activity Indicator)
+- **Spinner** — A rotating icon indicating background activity or data fetching (aka Activity Indicator, Inline Loading, Loading)
     - `size: "sm" | "md" | "lg" | "xl"` = "md" — Size of the spinner.
 @default "md"
     - `color: "currentColor" | WimColor` = "primary" — Color of the spinner. Accepts a design token color name or "currentColor".
@@ -2266,7 +2266,7 @@ Useful for using the link styles with Link components from React Router or Next.
     - `styles: { root?: string; label?: string; inner?: string; externalIcon?: string; }` — Custom styles for internal parts
 - **Menubar** — Desktop-style application menu bar with floating File / Edit / View submenus.
     - `asChild: boolean` = false — If true, the component will be rendered as its child, merging its props onto that child.
-- **Pagination** — Multi-page navigation
+- **Pagination** — Multi-page navigation (aka Pagination Nav)
     - `total: number` (required) — Total number of items
     - `pageSize: number` = 10 — Number of items per page
     - `current: number` = 1 — Current page number (1-indexed)
@@ -2307,7 +2307,7 @@ near the right edge pushes the page into a horizontal scroll. Anchor a
     - `aria-label: string` — Accessible name for the trigger button.
 Lands on the inner `FloatButton`, not on the wrapper `div`.
 Defaults to a translated "Open menu" / "Close menu" (en / ja / pt), following the open state.
-- **Stepper** — Visual sequence steps
+- **Stepper** — Visual sequence steps (aka Progress Indicator)
   - ⚠️ Not the same as elsewhere: In Apple HIG and macOS, a "Stepper" is the control that increments a number — that is `NumberInput` here. WIM's `Stepper` shows progress through a sequence of steps, which is what Material calls a Stepper.
     - `steps: Step[]` = [] — Array of step configurations
     - `current: number` = 0 — Index of the current active step (0-indexed)
@@ -2357,7 +2357,7 @@ scans stay green while the bar hangs outside its parent.
     - `children: React.ReactNode` (required) — Accordion.Item elements
     - `id: string` — Unique ID for the component
     - `asChild: boolean` — Whether to render as a child element.
-- **Avatar** — Profile initials/pics
+- **Avatar** — Profile initials/pics (aka User Avatar)
     - `src: string` — Image source URL
     - `alt: string` = "" — Alternative text for the image
     - `initials: string` — Initials shown as a fallback when no image is available
@@ -2375,7 +2375,7 @@ scans stay green while the bar hangs outside its parent.
 lists the hidden people by name.
 @default "count"
     - `className: string` — Additional class names
-- **Badge** — Indicators or counts
+- **Badge** — Indicators or counts (aka Icon Indicator)
     - `asChild: boolean` — If true, the badge will be rendered as its child, merging its props onto that child.
     - `children: React.ReactNode` — Content to display
     - `content: React.ReactNode` — Content to display (alternative to children)
@@ -2430,7 +2430,7 @@ starts on Saturday, or a browser without `Intl.Locale` week info, falls back to 
     - `tooltipFormatter: (date: string, count: number) => React.ReactNode` — Custom tooltip formatter.
     - `asChild: boolean` = false — Whether to render as a child component.
     - `children: React.ReactNode` — Content to render inside.
-- **Card** — Information containers
+- **Card** — Information containers (aka Tile)
     - `asChild: boolean` = false — If true, the card will be rendered as its child, merging its props onto that child.
     - `variant: "elevated" | "outline" | "flat" | "glass"` = "outline" — Visual style variant of the card
     - `interactive: boolean` = false — Whether the card is clickable: shows hover and press feedback and a pointer cursor
@@ -2523,7 +2523,7 @@ target is already in the past). Not called when baseDate is set.
     - `completedContent: React.ReactNode` — Content shown instead of the zeroed digits once the countdown ends.
     - `fallback: React.ReactNode` — Content shown when the target cannot be parsed.
     - `asChild: boolean` = false — If true, the component will be rendered as its child, merging its props onto that child.
-- **DataGrid** — Advanced data table and manipulation
+- **DataGrid** — Advanced data table and manipulation (aka Data Table)
     - `columns: DataGridColumn<T>[]` (required) — Column definitions
     - `data: T[]` (required) — Row data
     - `rowKey: string | ((record: T) => string)` = "id" — Row key: a field name or a function that derives the key from a record
@@ -2611,7 +2611,7 @@ Without it, pointer devices show the move button in the card's corner on hover o
     - `unit: string` — Label for the score unit
     - `size: "sm" | "md" | "lg"` = "md" — Size
     - `showMedals: boolean` = false — Whether to paint the rank badges of the top three in gold, silver and bronze (off by default: the number and the order already say the rank)
-- **List** — Structurally organized items in bullet points or numbered formats
+- **List** — Structurally organized items in bullet points or numbered formats (aka Contained List, Ordered List, Unordered List)
     - `asChild: boolean` = false — Whether to render as a child element.
     - `size: "sm" | "md" | "lg"` = "md" — Size of the list items
     - `spacing: "tight" | "normal" | "loose"` = "normal" — Spacing between items
@@ -2778,7 +2778,7 @@ focus moves to the first focusable element after the bar (with `DataGrid`, the g
     - `asChild: boolean` = false — If true, the component will be rendered as its child.
     - `onSortEnd: (oldIndex: number, newIndex: number) => void` — Callback called when reordering is completed.
     - `disabled: boolean` = false — Whether the entire list is disabled.
-- **Stats** — A component to highlight key performance indicators and metrics (aka Statistic, Stat)
+- **Stats** — A component to highlight key performance indicators and metrics (aka Statistic, Stat, Big Number)
     - `variant: React.ComponentProps<typeof Card>["variant"]` = "outline" — Visual style variant of the card
     - `asChild: boolean` = false — If true, the card will be rendered as its child, merging its props onto that child.
     - `interactive: boolean` = false — Whether the card is clickable: shows hover and press feedback and a pointer cursor
@@ -2809,7 +2809,7 @@ or by keyboard focus on its actions, closes the others.
     - `fullSwipe: "left" | "right" | "both"` — Sides where swiping all the way across runs the outermost action without a tap
 (`leftActions[0]` / the last of `rightActions`), as in iOS Mail. Off by default so a
 destructive action is never triggered by momentum; the action stays available as a button.
-- **Table** — Rows and columns for displaying structured data efficiently
+- **Table** — Rows and columns for displaying structured data efficiently (aka Structured List)
     - `asChild: boolean` = false — Whether to render as a child element.
     - `striped: boolean` = false — Whether to show striped (zebra) rows
     - `bordered: boolean` = false — Whether to show borders between cells
@@ -2906,7 +2906,7 @@ anything is measured; long text is truncated and read in full by assistive techn
     - `className: string` — Additional CSS class name for the container.
     - `disabled: boolean` = false — Disable the context menu
     - `asChild: boolean` = false — If true, merge trigger props onto the child element.
-- **Dialog** — Focused task windows (aka Modal, Modal Dialog)
+- **Dialog** — Focused task windows (aka Modal, Modal Dialog, Composed Modal)
     - `children: React.ReactNode` (required) — Dialog parts (Dialog.Trigger, Dialog.Content, etc.).
     - `open: boolean` — Controlled open state. Use together with onOpenChange.
     - `onOpenChange: (open: boolean) => void` — Called with the next state when the dialog is opened or closed.
@@ -2920,7 +2920,7 @@ interrupts the user and needs a response before they can continue, such as
 confirming a destructive action. An alert dialog does not close when the
 overlay is clicked unless closeOnOverlayClick is set; Escape still closes it.
 @default "dialog"
-- **Drawer** — Slide-out detail panels (aka Navigation Drawer, Overlay Drawer)
+- **Drawer** — Slide-out detail panels (aka Navigation Drawer, Overlay Drawer, Side Panel)
     - `children: React.ReactNode` (required) — Drawer parts (DrawerTrigger, DrawerContent, etc.).
     - `open: boolean` — Controlled open state. Use together with onOpenChange.
     - `onOpenChange: (open: boolean) => void` — Called with the next state when the drawer is opened or closed.
@@ -2977,7 +2977,7 @@ is marked.
     - `children: ReactNode` (required) — The target element which the Popconfirm will be attached to
     - `icon: ReactNode` — Customize the icon
     - `disabled: boolean` = false — Whether to show the popconfirm
-- **Popover** — Contextual overlay (aka Info Label, Info Button)
+- **Popover** — Contextual overlay (aka Info Label, Info Button, Toggletip)
     - `children: ReactNode` (required) — Popover parts (PopoverTrigger, PopoverContent, etc.).
     - `className: string` — Additional CSS class name for the container.
     - `defaultOpen: boolean` = false — If true, the popover component will manage its own open state.
@@ -3079,7 +3079,7 @@ Defaults to the localized `form.optional` string.
 @default t("spoiler.show_more")
     - `hideLabel: React.ReactNode` — Label of the toggle while expanded.
 @default t("spoiler.show_less")
-- **Text** — Has appropriate line-height and spacing to ensure readability of long text.
+- **Text** — Has appropriate line-height and spacing to ensure readability of long text. (aka Truncated Text)
     - `asChild: boolean` = false — If true, the text will be rendered as its child, merging its props onto that child.
     - `size: "xs" | "sm" | "md" | "lg" | "xl"` = "md" — Font size of the text.
 @default "md"
@@ -3506,7 +3506,7 @@ enough on its own.
     - `showFullscreenToggle: boolean` = false — Whether to show a full-screen toggle (default: false)
     - `className: string` — Additional CSS class
 - **ChatUI** — A comprehensive set of components for building chat interfaces with support for messages, avatars, timestamps, and interactive input.
-- **CodeBlock** — Syntax-highlighted code block with copy button, line numbers, and collapsible overflow.
+- **CodeBlock** — Syntax-highlighted code block with copy button, line numbers, and collapsible overflow. (aka Code Snippet)
     - `code: string` (required) — The code string to display
     - `language: string` — Programming language label shown in the header (e.g. "tsx", "bash")
     - `filename: string` — Optional filename shown in the header instead of the language label

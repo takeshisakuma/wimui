@@ -202,7 +202,7 @@ export function BillingOverview() {
 
 ### layout — `import { … } from "wimui/layout"`
 
-- **AppShell** — Basic application shell layout
+- **AppShell** — Basic application shell layout (aka UI Shell)
 - **AspectRatio** — Fixed ratio container
 - **BentoGrid** — Modern card grid (aka Waffle Menu, Bento Menu, Grid Menu, Candy Bar Menu, Chocolate Bar Menu, ベントーメニュー, ワッフルメニュー)
 - **Box** — Polymorphic box
@@ -218,11 +218,11 @@ export function BillingOverview() {
 - **InteractiveArea** — Foundation component for consistent interactive areas with borders and states.
 - **Masonry** — Waterfall grid
 - **Navbar** — Primary navigation
-- **OverflowList** — Lays out items in one row and folds the ones that do not fit into a "+N" indicator. (aka Overflow)
+- **OverflowList** — Lays out items in one row and folds the ones that do not fit into a "+N" indicator. (aka Overflow, Overflow Handler)
 - **ScrollArea** — A custom scrollbar component that provides high-performance, cross-browser consistent themes while maintaining a native-like feel.
 - **Sidebar** — A collapsible navigation or informational panel on the side of the screen (aka Source List, Inspector, Nav Drawer)
 - **SimpleGrid** — Responsive fixed grid
-- **Splitter** — Split and resize panels (aka Resizable, Resizable Panels, Split Pane)
+- **Splitter** — Split and resize panels (aka Resizable, Resizable Panels, Split Pane, Resizer)
 - **Stack** — Vertical/Horizontal alignment
 - **Toolbar** — Action strip for IconButton, ToggleGroup, and related controls with toolbar keyboard navigation. (aka Action Bar)
 - **Transition** — Utilities for managing smooth enter and leave animations with CSS classes
@@ -232,28 +232,28 @@ export function BillingOverview() {
 ### form — `import { … } from "wimui/form"`
 
 - **Button** — Action triggers
-- **ButtonGroup** — Group of buttons
+- **ButtonGroup** — Group of buttons (aka Button Set, Action Set)
 - **Cascader** — Hierarchical selection (aka Column View, Miller Columns)
 - **Checkbox** — Multiple choice
 - **CheckboxGroup** — Shared state checkboxes
 - **ColorInput** — Input with color preview (aka Color Well, Color Field)
 - **ColorPicker** — Color selection picker (aka Swatch Picker)
 - **Combobox** — Select with search (aka Autocomplete, Auto Complete)
-- **CopyButton** — Copy to clipboard
+- **CopyButton** — Copy to clipboard (aka Copy)
 - **CounterTextarea** — Textarea with character count display
 - **CreditCardInput** — Payment card input with brand detection
 - **DatePicker** — Date selection
 - **DateRangePicker** — Date range selection
 - **Dropzone** — Drag & drop files
 - **FieldError** — Validation messages
-- **Fieldset** — Form grouping
+- **Fieldset** — Form grouping (aka Form Group)
 - **FieldTemplate** — Standardizes label placement, required markings, and error message display for all form-related components. (aka Field)
-- **FileUpload** — File selection (aka Upload, File Input)
+- **FileUpload** — File selection (aka Upload, File Input, File Uploader)
 - **FloatButton** — Floating action buttons
 - **IconButton** — A square button containing only an icon without a text label.
 - **ImageCropper** — Front-end image cropping and rotation tool.
-- **InlineEdit** — A component that allows users to switch between a view-only mode and an editable mode in-place. (aka Editable Text)
-- **Input** — Single-line input fields for text, numbers, or emails
+- **InlineEdit** — A component that allows users to switch between a view-only mode and an editable mode in-place. (aka Editable Text, Edit In Place)
+- **Input** — Single-line input fields for text, numbers, or emails (aka Text Input)
 - **InputBase** — Standardizes the visual container, icon slots (Prefix/Suffix), and clear button behavior for text-based inputs.
 - **InputGroup** — Inputs with icons/labels
 - **InputMask** — Formatted inputs
@@ -265,19 +265,19 @@ export function BillingOverview() {
 - **PasswordInput** — Password with toggle
 - **PasswordStrength** — Visual meter to indicate password security level. (aka Strength Meter)
 - **PhoneInput** — International phone number input
-- **QueryBuilder** — Visual builder for constructing complex search queries.
-- **Radio** — Single choice
-- **RadioGroup** — Shared state radio buttons
+- **QueryBuilder** — Visual builder for constructing complex search queries. (aka Condition Builder)
+- **Radio** — Single choice (aka Radio Button)
+- **RadioGroup** — Shared state radio buttons (aka Radio Button Group)
 - **RangeSlider** — Range selection
 - **Rating** — Star rating (aka Star Rating, Rating Indicator, Rating Display)
 - **RichTextEditor** — WYSIWYG rich text editor
 - **SearchInput** — Search with clear button (aka Search Field, Search Bar, Search Box)
-- **SegmentedControl** — Button-style controls for switching between a small set of mutually exclusive options (aka Segmented Buttons, Segmented Picker)
+- **SegmentedControl** — Button-style controls for switching between a small set of mutually exclusive options (aka Segmented Buttons, Segmented Picker, Content Switcher)
 - **Select** — A dropdown menu for selecting one option from a predefined list (aka Pop-Up Button, Select Menu)
 - **SignaturePad** — Handwritten signature input
 - **Slider** — An input to capture a numeric value from a specified range by dragging a knob
 - **SmartSearchInput** — Smart search input enabling both traditional search and AI prompting.
-- **SplitButton** — SplitButton description.
+- **SplitButton** — SplitButton description. (aka Combo Button)
 - **Switch** — A binary switch for instantly toggling settings between on and off states (aka Toggle, Toggle Switch)
 - **SwitchGroup** — Shared state switches
 - **TagInput** — Input field for creating free-form tags. (aka Token Field, Chips Input)
@@ -294,18 +294,18 @@ export function BillingOverview() {
 - **Autosave** — Inline status indicator for automatic save state
 - **Banner** — Top prominent messages
 - **ErrorBoundary** — Runtime error fallback
-- **Indicator** — Small status dots
+- **Indicator** — Small status dots (aka Badge Indicator)
 - **Loader** — Animated indicators to show that data is loading or processing
 - **LoadingOverlay** — Overlay with loading indicator
 - **Notification** — Rich notification card
 - **Progress** — Progress bar (aka Progress Bar)
   - ⚠️ Not the same as elsewhere: Material's "Progress Indicator" covers indeterminate spinners as well. WIM's `Progress` is determinate and linear only — for the indeterminate case use `Spinner`.
 - **ProgressRing** — ProgressRing description.
-- **Result** — Task status indicator
+- **Result** — Task status indicator (aka Full Page Error)
 - **ScrollProgress** — Reading progress indicator
 - **Skeleton** — Placeholder for content loading states. (aka Shimmer)
 - **Snackbar** — Bottom notifications
-- **Spinner** — A rotating icon indicating background activity or data fetching (aka Activity Indicator)
+- **Spinner** — A rotating icon indicating background activity or data fetching (aka Activity Indicator, Inline Loading, Loading)
 - **Toast** — Non-intrusive floating messages that provide feedback on system operations (aka Message, Sonner, Toaster)
 - **Tour** — Sequential guided walkthroughs to onboard users or highlight features (aka Teaching Popover, Coach Mark)
 
@@ -320,9 +320,9 @@ export function BillingOverview() {
 - **KeyboardShortcuts** — Display a structured list of keyboard shortcuts
 - **Link** — Hyperlinks
 - **Menubar** — Desktop-style application menu bar with floating File / Edit / View submenus.
-- **Pagination** — Multi-page navigation
+- **Pagination** — Multi-page navigation (aka Pagination Nav)
 - **SpeedDial** — Floating action button that expands sub-actions on hover or click.
-- **Stepper** — Visual sequence steps
+- **Stepper** — Visual sequence steps (aka Progress Indicator)
   - ⚠️ Not the same as elsewhere: In Apple HIG and macOS, a "Stepper" is the control that increments a number — that is `NumberInput` here. WIM's `Stepper` shows progress through a sequence of steps, which is what Material calls a Stepper.
 - **TabBar** — Mobile bottom navigation (aka Bottom Navigation, Bottom Tab Bar)
 - **TabNavigation** — Tab-based navigation
@@ -331,18 +331,18 @@ export function BillingOverview() {
 ### data-display — `import { … } from "wimui/data-display"`
 
 - **Accordion** — Collapsible panels (aka Disclosure, Disclosure Group, Expander)
-- **Avatar** — Profile initials/pics
+- **Avatar** — Profile initials/pics (aka User Avatar)
 - **AvatarGroup** — Stacked avatars (aka Face Pile)
-- **Badge** — Indicators or counts
+- **Badge** — Indicators or counts (aka Icon Indicator)
 - **Barcode** — Draws a scannable Code 128 or EAN-13 barcode.
 - **Calendar** — Calendar view
 - **CalendarHeatmap** — GitHub-style activity graph for visualizing continuity
-- **Card** — Information containers
+- **Card** — Information containers (aka Tile)
 - **Carousel** — Content slideshow
 - **Chip** — Filter/Selection tokens (aka Pill, Token)
 - **Comment** — Shows one comment in a discussion, with its actions and nested replies.
 - **Countdown** — Display the remaining time until a target moment as a live ticking timer, for sale deadlines, OTP resend waits, and maintenance notices.
-- **DataGrid** — Advanced data table and manipulation
+- **DataGrid** — Advanced data table and manipulation (aka Data Table)
 - **DescriptionList** — Key-value pairs
 - **EmptyState** — Missing data placeholder (aka Blank Slate, Zero State)
 - **FAQSection** — Frequently Asked Questions section
@@ -351,7 +351,7 @@ export function BillingOverview() {
 - **JsonViewer** — Recursive tree viewer and editor for JSON data.
 - **Kanban** — Drag-and-drop board for visualizing workflow stages
 - **Leaderboard** — Display a ranked list of entries with scores. Medal colors for the top three are opt-in.
-- **List** — Structurally organized items in bullet points or numbered formats
+- **List** — Structurally organized items in bullet points or numbered formats (aka Contained List, Ordered List, Unordered List)
 - **Markdown** — A component for safely rendering text in Markdown format.
 - **Marquee** — Scrolling text animation (aka Ticker)
 - **NodeGraph** — Visualizes complex networks and relationships between nodes.
@@ -365,10 +365,10 @@ export function BillingOverview() {
 - **ScheduleView** — Displays tasks or events on a chronological timeline or calendar view.
 - **SelectionBar** — Bar above a table that shows the number of selected rows, the actions for them and a way to clear the selection. Announces the count to screen readers. (aka Bulk Actions, Batch Actions, Table Selection Toolbar)
 - **SortableList** — Item rearrangement and reordering
-- **Stats** — A component to highlight key performance indicators and metrics (aka Statistic, Stat)
+- **Stats** — A component to highlight key performance indicators and metrics (aka Statistic, Stat, Big Number)
 - **SwipeableList** — Container for SwipeAction rows that keeps at most one row open at a time. (aka Swipeable List)
 - **SwipeAction** — Mobile-friendly swipe actions (delete, archive) for list items.
-- **Table** — Rows and columns for displaying structured data efficiently
+- **Table** — Rows and columns for displaying structured data efficiently (aka Structured List)
 - **Tag** — Compact visual descriptors used for labeling or categorizing content (aka Interaction Tag)
 - **Timeline** — A vertical list mapping events or history in chronological order
 - **TreeDiagram** — Lays out a tree such as an org chart from the data alone, with parents centred over their children and collapsible subtrees. (aka Org Chart, Tree Chart, Hierarchy Diagram)
@@ -380,15 +380,15 @@ export function BillingOverview() {
 - **BottomSheet** — Mobile bottom overlay (aka Sheet, Action Sheet)
 - **Confirm** — Opens a confirmation dialog from code with await confirm() and returns true or false.
 - **ContextMenu** — Right-click menus
-- **Dialog** — Focused task windows (aka Modal, Modal Dialog)
-- **Drawer** — Slide-out detail panels (aka Navigation Drawer, Overlay Drawer)
+- **Dialog** — Focused task windows (aka Modal, Modal Dialog, Composed Modal)
+- **Drawer** — Slide-out detail panels (aka Navigation Drawer, Overlay Drawer, Side Panel)
 - **Dropdown** — Overlay selection menu (aka Overflow Menu, Kebab Menu, Meatball Menu, Vertical Ellipsis, Horizontal Ellipsis, Three Dots Menu, More Menu, App Switcher, オーバーフローメニュー, ケバブメニュー, ミートボールメニュー, Menu Button)
 - **FocusTrap** — Focus management
 - **HoverCard** — Rich content on hover
 - **Menu** — General menus
   - ⚠️ Not the same as elsewhere: In macOS, a "Menu" is the pull-down from a menu bar. WIM's `Menu` is the list of choices itself; for one that opens from a trigger, use `Dropdown`.
 - **Popconfirm** — Confirmation overlay
-- **Popover** — Contextual overlay (aka Info Label, Info Button)
+- **Popover** — Contextual overlay (aka Info Label, Info Button, Toggletip)
 - **Portal** — Out-of-hierarchy render
 - **Tooltip** — Information on hover (aka Help Tag)
 
@@ -402,7 +402,7 @@ export function BillingOverview() {
 - **Legend** — Group title
 - **Span** — Lightweight wrapper for inline text or short labels with icon support
 - **Spoiler** — Collapse long text such as reviews and comments to a fixed number of lines, with an accessible "show more" toggle that appears only when the text overflows.
-- **Text** — Has appropriate line-height and spacing to ensure readability of long text.
+- **Text** — Has appropriate line-height and spacing to ensure readability of long text. (aka Truncated Text)
 - **Title** — Possesses visual weight (boldness/size) to indicate page structure.
 
 ### media — `import { … } from "wimui/media"`
@@ -440,7 +440,7 @@ export function BillingOverview() {
 - **AIResponseFeedback** — Thumbs-up/down feedback controls and regenerate button for AI responses.
 - **ArtifactsOverlay** — ArtifactsOverlay is a specialized side-panel for displaying large AI-generated content (Artifacts) without interrupting the main chat context.
 - **ChatUI** — A comprehensive set of components for building chat interfaces with support for messages, avatars, timestamps, and interactive input.
-- **CodeBlock** — Syntax-highlighted code block with copy button, line numbers, and collapsible overflow.
+- **CodeBlock** — Syntax-highlighted code block with copy button, line numbers, and collapsible overflow. (aka Code Snippet)
 - **CodeDiffViewer** — Displays code changes as a side-by-side or unified diff, with line-level highlighting and Apply/Reject actions.
 - **InteractiveGraph** — InteractiveGraph provides a canvas for visualizing node-based data. Ideal for RAG knowledge bases, agent workflows, or state machines.
 - **MarkdownRenderer** — MarkdownRenderer converts a markdown string into WIM UI components. It uses react-markdown under the hood and applies WIM's typography system.
