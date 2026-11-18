@@ -48,6 +48,14 @@ describe("Combobox", () => {
     expect(input).toHaveValue("Cherry");
   });
 
+  // T411: 項目を押した瞬間に入力欄からフォーカスが外れ、選んで一覧が閉じると body へ落ちていた
+  it("does not take focus away from the input when an option is pressed", () => {
+    render(<Combobox options={options} />);
+    fireEvent.focus(screen.getByRole("combobox"));
+    // 既定の動作（押した場所へフォーカスを移す）を止めていれば false が返る
+    expect(fireEvent.mouseDown(screen.getByText("Cherry"))).toBe(false);
+  });
+
   it("selects option without onChange handler", () => {
     render(<Combobox options={options} />);
     const input = screen.getByRole("combobox");

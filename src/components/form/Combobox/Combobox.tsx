@@ -232,6 +232,9 @@ export const Combobox = ({
               className={styles.list}
               role="listbox"
               aria-labelledby={labelId}
+              // 項目はフォーカスを受けない。押した瞬間に入力欄からフォーカスが外れると、選んで一覧が閉じたあと
+              // フォーカスが文書（body）へ落ちる（T411）。押してもフォーカスを入力欄に残す
+              onMouseDown={(e) => e.preventDefault()}
             >
               {filteredOptions.map((option, index) => (
                 <BaseListItem
