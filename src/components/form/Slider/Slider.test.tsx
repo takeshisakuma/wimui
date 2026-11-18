@@ -5,6 +5,19 @@ import styles from "./slider.module.scss";
 import fieldStyles from "../FieldTemplate/field-template.module.scss";
 
 describe("Slider", () => {
+  // T410: PageUp / PageDown が効かず、0 から 70 へ動かすのに矢印を 70 回押していた
+  it("moves by a tenth of the range with PageUp / PageDown and stops at the ends", () => {
+    const onChange = vi.fn();
+    render(<Slider defaultValue={50} min={0} max={100} onChange={onChange} />);
+    const thumb = screen.getByRole("slider");
+    fireEvent.keyDown(thumb, { key: "PageUp" });
+    expect(onChange).toHaveBeenLastCalledWith(60);
+    fireEvent.keyDown(thumb, { key: "PageDown" });
+    expect(onChange).toHaveBeenLastCalledWith(50);
+    for (let i = 0; i < 8; i++) fireEvent.keyDown(thumb, { key: "PageUp" });
+    expect(thumb).toHaveAttribute("aria-valuenow", "100");
+  });
+
   it("renders with initial value", () => {
     render(<Slider defaultValue={30} />);
     const thumb = screen.getByRole("slider");
