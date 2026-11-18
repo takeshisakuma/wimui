@@ -7,6 +7,13 @@ export const clamp = (val: number, min: number, max: number) =>
   Math.max(min, Math.min(val, max));
 
 /**
+ * PageUp / PageDown で 1 回に動く幅（T410）。範囲の 10 分の 1 を step の倍数に丸め、step より小さくしない。
+ * 固定の 10 にすると、0〜1 の範囲では 1 回で端まで飛び、step 50 の範囲では目盛りからずれる。
+ */
+export const largeStepOf = (min: number, max: number, step: number) =>
+  Math.max(step, Math.round((max - min) / 10 / step) * step);
+
+/**
  * スライダーの共通ロジックを提供するカスタムフック。
  */
 export const useSliderCommon = (min: number, max: number, step: number) => {

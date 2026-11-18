@@ -53,6 +53,12 @@ describe("RangeSlider", () => {
     
     fireEvent.keyDown(thumbs[1], { key: "End" });
     expect(onChange).toHaveBeenCalledWith([0, 100]);
+
+    // T410: PageUp / PageDown は範囲の 10 分の 1
+    fireEvent.keyDown(thumbs[0], { key: "PageUp" });
+    expect(onChange).toHaveBeenLastCalledWith([10, 100]);
+    fireEvent.keyDown(thumbs[1], { key: "PageDown" });
+    expect(onChange).toHaveBeenLastCalledWith([10, 90]);
   });
 
   it("handles mouse/track interaction", () => {
