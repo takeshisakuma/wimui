@@ -143,6 +143,8 @@ export const Combobox = ({
         }
         break;
       case "Escape":
+        // 閉じたことを外側の面（Dialog など）へ知らせる。知らせないと、同じ Escape で外側も閉じる（T408）
+        if (isOpen) e.preventDefault();
         setIsOpen(false);
         break;
       case "Tab":

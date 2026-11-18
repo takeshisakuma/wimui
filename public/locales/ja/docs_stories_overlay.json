@@ -261,6 +261,24 @@
     "confirm_publish_title": "変更をヘルプセンターに公開しますか？",
     "confirm_publish_desc": "3 本の記事の新しい版が、読者にすぐ表示されます。",
     "confirm_published": "変更を公開しました。",
-    "confirm_not_published": "公開しませんでした。"
+    "confirm_not_published": "公開しませんでした。",
+    "dialog_event_open": "予定を編集",
+    "dialog_event_title": "「デザインレビュー」を編集",
+    "dialog_event_desc": "変更は、招待した全員に送られます。",
+    "dialog_event_date": "日付",
+    "dialog_event_repeat": "繰り返し",
+    "dialog_event_repeat_none": "繰り返さない",
+    "dialog_event_repeat_weekly": "毎週",
+    "dialog_event_repeat_monthly": "毎月",
+    "dialog_event_room": "会議室",
+    "dialog_event_room_placeholder": "会議室を探す",
+    "dialog_event_guests": "参加者",
+    "dialog_event_more": "その他の操作",
+    "dialog_event_duplicate": "複製",
+    "dialog_event_export": "カレンダーのファイルに書き出す",
+    "dialog_event_delete": "予定を削除…",
+    "dialog_event_delete_title": "「デザインレビュー」を削除しますか？",
+    "dialog_event_delete_desc": "4 人の参加者に取り消しの知らせが届きます。",
+    "dialog_event_delete_confirm": "予定を削除"
   }
 }

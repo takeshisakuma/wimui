@@ -261,6 +261,24 @@
     "confirm_publish_title": "Publish the changes to the help center?",
     "confirm_publish_desc": "Readers see the new version of 3 articles right away.",
     "confirm_published": "The changes were published.",
-    "confirm_not_published": "Nothing was published."
+    "confirm_not_published": "Nothing was published.",
+    "dialog_event_open": "Edit event",
+    "dialog_event_title": "Edit “Design review”",
+    "dialog_event_desc": "Changes are sent to everyone invited.",
+    "dialog_event_date": "Date",
+    "dialog_event_repeat": "Repeat",
+    "dialog_event_repeat_none": "Does not repeat",
+    "dialog_event_repeat_weekly": "Every week",
+    "dialog_event_repeat_monthly": "Every month",
+    "dialog_event_room": "Room",
+    "dialog_event_room_placeholder": "Search rooms",
+    "dialog_event_guests": "Guests",
+    "dialog_event_more": "More actions",
+    "dialog_event_duplicate": "Duplicate",
+    "dialog_event_export": "Export to calendar file",
+    "dialog_event_delete": "Delete event…",
+    "dialog_event_delete_title": "Delete “Design review”?",
+    "dialog_event_delete_desc": "The 4 guests get a cancellation notice.",
+    "dialog_event_delete_confirm": "Delete event"
   }
 }

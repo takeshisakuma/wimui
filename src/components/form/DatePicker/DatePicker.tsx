@@ -14,6 +14,7 @@ import inputStyles from "../../form/Input/input.module.scss";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { componentsNs } from "@/i18n/generated/components";
 import { composeEventHandlers } from "../../_internal/composeEventHandlers";
+import { useEscapeLayer } from "../../_internal/escapeStack";
 
 export type DatePickerLabels = {
   placeholder?: string;
@@ -133,20 +134,11 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
       return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
 
-    // Handle Escape key globally when open
-    useEffect(() => {
-      const handleEscapeKey = (e: KeyboardEvent) => {
-        if (e.key === "Escape" && isOpen) {
-          setIsOpen(false);
-          inputRef.current?.focus();
-        }
-      };
-
-      if (isOpen) {
-        document.addEventListener("keydown", handleEscapeKey);
-      }
-      return () => document.removeEventListener("keydown", handleEscapeKey);
-    }, [isOpen]);
+    // 開いている間の Escape。Dialog の中で開いても、閉じるのは暦だけ（T408）
+    useEscapeLayer(isOpen, () => {
+      setIsOpen(false);
+      inputRef.current?.focus();
+    });
 
     const formatDate = (date: Date | null): string => {
       if (!date) return "";
@@ -190,6 +182,9 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
       if (isDisabled) return;
 
       if (e.key === "Escape") {
+        // 開いていたときは止める。止めないと、暦の層が外れたあとの document で、外側の Dialog が同じ
+        // Escape を受けて閉じる（開いた直後は、フォーカスがまだ入力欄にある。T408）
+        if (isOpen) e.preventDefault();
         setIsOpen(false);
         inputRef.current?.focus();
       } else if (
