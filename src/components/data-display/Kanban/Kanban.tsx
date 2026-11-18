@@ -280,21 +280,22 @@ export const KanbanColumn = ({
         },
         className,
       )}
+      data-part="column"
       role="group"
       aria-labelledby={title ? labelId : undefined}
       onDragOver={(e) => handleDragOver(e, id)}
       onDrop={(e) => handleDrop(e, id)}
       onDragLeave={() => setDragOverColumn(null)}
     >
-      <div className={styles.columnHeader}>
-        <div id={labelId} className={styles.columnTitle} aria-hidden="true">
+      <div className={styles.columnHeader} data-part="column-header">
+        <div id={labelId} className={styles.columnTitle} data-part="column-title" aria-hidden="true">
           {title}
         </div>
         {cardCount !== undefined && (
           /* T205: 素の `div`（generic）に `aria-label` を付けても読まれる保証が
              無い（axe `aria-prohibited-attr`）。しかも文言が英語の直書きだった。
              数字は見た目、意味は読み上げ用テキストに分ける。 */
-          <div className={styles.columnCount}>
+          <div className={styles.columnCount} data-part="column-count">
             <span aria-hidden="true">{cardCount}</span>
             <VisuallyHidden>
               {t("a11y.kanban_column_count", { count: cardCount })}
@@ -302,7 +303,7 @@ export const KanbanColumn = ({
           </div>
         )}
       </div>
-      <div className={styles.columnBody} role={isCardList ? "list" : undefined}>
+      <div className={styles.columnBody} data-part="column-body" role={isCardList ? "list" : undefined}>
         <CardListContext.Provider value={isCardList}>{children}</CardListContext.Provider>
       </div>
     </div>
@@ -385,6 +386,7 @@ export const KanbanCard = ({
   return (
     <div
       role={inCardList ? "listitem" : undefined}
+      data-part="card"
       className={classNames(
         styles.card,
         {
@@ -397,7 +399,7 @@ export const KanbanCard = ({
       draggable={!disabled}
       onDragStart={(e) => colId && handleDragStart(e, id, colId)}
     >
-      <div className={styles.cardContent}>{children}</div>
+      <div className={styles.cardContent} data-part="card-content">{children}</div>
 
       {/*
         マウスのドラッグ以外でカードを動かす入口（T379）。以前はタッチ端末でしか出さず
@@ -421,6 +423,7 @@ export const KanbanCard = ({
           }}
           type="button"
           className={styles.cardMoveBtn}
+          data-part="move-button"
           onClick={() => setActiveMobileMenu(menuOpen ? null : id)}
           aria-label={t("a11y.move_card")}
           aria-expanded={menuOpen}
@@ -438,6 +441,7 @@ export const KanbanCard = ({
             ref={setFloating}
             style={floatingStyles}
             className={styles.cardMoveMenu}
+            data-part="move-menu"
             role="group"
             aria-label={t("a11y.move_to_column")}
           >
@@ -448,6 +452,7 @@ export const KanbanCard = ({
                   key={c.id}
                   type="button"
                   className={styles.cardMoveOption}
+                  data-part="move-option"
                   onClick={() => colId && handleMobileMove(id, colId, c.id)}
                 >
                   {c.title}

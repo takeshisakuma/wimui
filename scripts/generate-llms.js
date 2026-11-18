@@ -970,6 +970,16 @@ const componentDoc = ({ name, desc, aliases, disambiguation }) => {
   if (dg?.tokens?.length) {
     lines.push('', '## Design tokens it reads', '', dg.tokens.map((t) => `\`${t}\``).join(', '));
   }
+  // 部位名（data-part。T384）。利用者が CSS で内側の要素を狙う、変えない約束
+  if (dg?.parts?.length) {
+    lines.push(
+      '',
+      '## Parts (data-part)',
+      '',
+      'Style an inner element from your own CSS written outside any `@layer` (it wins over the component layer): ' +
+        dg.parts.map((p) => `\`[data-part="${p}"]\``).join(', '),
+    );
+  }
   lines.push(
     '',
     '---',

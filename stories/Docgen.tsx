@@ -46,6 +46,8 @@ interface ComponentData {
   anatomy?: string[];
   /** anatomy の抽出元: 'global' = 旧式 .wim-x__y クラス / 'module' = CSS Modules ローカルクラス */
   anatomyStyle?: 'global' | 'module';
+  /** 部品の内側の部位名（data-part。T384）。利用者が CSS で狙える公開の約束 */
+  parts?: string[];
 }
 
 const typedIndexData = indexData as Record<string, string>;
@@ -194,7 +196,37 @@ export const Docgen = ({ componentName, section }: DocgenProps) => {
     );
   };
 
+  // 部位名（data-part）を持つ部品は、それを出す。CSS Modules のローカル名はビルドでハッシュが付き、
+  // 利用者は狙えないので、部位名があるときは並べない（T384）
+  const renderParts = (parts: string[]) => {
+    const kebabName = componentName.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
+    return (
+      <section id="anatomy">
+        <h2><T k="doc.anatomy_title" /></h2>
+        <table className="docgen-table">
+          <thead>
+            <tr>
+              <th><T k="doc.docgen_part" /></th>
+              <th><T k="doc.docgen_selector" /></th>
+            </tr>
+          </thead>
+          <tbody>
+            {parts.map((part) => (
+              <tr key={part}>
+                <td><b>{part}</b></td>
+                <td><code>{`[data-part="${part}"]`}</code></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <p><T k="doc.anatomy_parts_note" /></p>
+        <pre><code>{`.my-${kebabName} [data-part="${parts[0]}"] {\n  /* … */\n}`}</code></pre>
+      </section>
+    );
+  };
+
   const renderAnatomy = () => {
+    if (data.parts && data.parts.length > 0) return renderParts(data.parts);
     if (!data.anatomy || data.anatomy.length === 0) return null;
 
     const isModule = data.anatomyStyle === 'module';

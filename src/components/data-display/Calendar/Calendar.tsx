@@ -404,10 +404,11 @@ export const Calendar = ({
       aria-label={t("a11y.calendar")}
       {...props}
     >
-      <div className={styles.header}>
+      <div className={styles.header} data-part="header">
         <button
           type="button"
           className={styles.navBtn}
+          data-part="prev-button"
           onClick={() => shiftView(-1)}
           disabled={disabled}
           aria-label={
@@ -420,12 +421,12 @@ export const Calendar = ({
         >
           <Icon component={ChevronLeftIcon} size="sm" />
         </button>
-        <div className={styles.title} aria-live="polite">
+        <div className={styles.title} data-part="title" aria-live="polite">
           {level === "year" ? (
             `${yearPageStart} – ${yearPageStart + YEARS_PER_PAGE - 1}`
           ) : (
             // 見出しを押すと 1 段上がる。名前は見えている文字から始める（WCAG 2.5.3）
-            <button type="button" className={styles.titleBtn} onClick={goUp} disabled={disabled}>
+            <button type="button" className={styles.titleBtn} data-part="title-button" onClick={goUp} disabled={disabled}>
               {level === "day" ? `${year} / ${month + 1}` : year}
               <VisuallyHidden>
                 {", "}
@@ -437,6 +438,7 @@ export const Calendar = ({
         <button
           type="button"
           className={styles.navBtn}
+          data-part="next-button"
           onClick={() => shiftView(1)}
           disabled={disabled}
           aria-label={
@@ -454,6 +456,7 @@ export const Calendar = ({
       {level === "month" && (
         <div
           className={styles.levelGrid}
+          data-part="month-grid"
           role="grid"
           aria-label={t("calendar.months", { year })}
           ref={levelGridRef}
@@ -475,6 +478,7 @@ export const Calendar = ({
                     tabIndex={m === focusedMonth ? 0 : -1}
                     disabled={disabled || isMonthDisabled(year, m)}
                     className={classNames(styles.levelCell, { [styles.selected]: selected })}
+                    data-part="month"
                     onFocus={() => setFocusedMonth(m)}
                     onClick={() => chooseMonth(m)}
                   >
@@ -490,6 +494,7 @@ export const Calendar = ({
       {level === "year" && (
         <div
           className={styles.levelGrid}
+          data-part="year-grid"
           role="grid"
           aria-label={t("calendar.years", { start: yearPageStart, end: yearPageStart + YEARS_PER_PAGE - 1 })}
           ref={levelGridRef}
@@ -509,6 +514,7 @@ export const Calendar = ({
                     tabIndex={y === focusedYear ? 0 : -1}
                     disabled={disabled || isYearDisabled(y)}
                     className={classNames(styles.levelCell, { [styles.selected]: selected })}
+                    data-part="year"
                     onFocus={() => setFocusedYear(y)}
                     onClick={() => chooseYear(y)}
                   >
@@ -522,7 +528,7 @@ export const Calendar = ({
       )}
 
       {level === "day" && (
-      <div className={styles.grid} role="grid" ref={gridRef}>
+      <div className={styles.grid} data-part="day-grid" role="grid" ref={gridRef}>
         <div role="row">
           {displayWeekDayNames.map((day, index) => {
             const actualDayIndex = (index + (weekStartsOn || 0)) % 7;
@@ -530,6 +536,7 @@ export const Calendar = ({
               <div
                 key={index}
                 role="columnheader"
+                data-part="weekday"
                 className={classNames(styles.weekday, {
                   [styles.sunday]: actualDayIndex === 0,
                   [styles.saturday]: actualDayIndex === 6,
@@ -568,6 +575,7 @@ export const Calendar = ({
                     aria-selected={selected}
                     aria-current={isTodayDate ? "date" : undefined}
                     data-calendar-day
+                    data-part="day"
                     data-date={dateLabel}
                     tabIndex={isTabStop ? 0 : -1}
                     onFocus={() => setFocusedDate(day.date)}

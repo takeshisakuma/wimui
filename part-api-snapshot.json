@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "parts": {
+    "Calendar": [
+      "day",
+      "day-grid",
+      "header",
+      "month",
+      "month-grid",
+      "next-button",
+      "prev-button",
+      "title",
+      "title-button",
+      "weekday",
+      "year",
+      "year-grid"
+    ],
+    "Kanban": [
+      "card",
+      "card-content",
+      "column",
+      "column-body",
+      "column-count",
+      "column-header",
+      "column-title",
+      "move-button",
+      "move-menu",
+      "move-option"
+    ],
+    "Select": [
+      "dropdown",
+      "empty",
+      "group-label",
+      "list",
+      "option",
+      "search",
+      "search-input",
+      "separator",
+      "trigger",
+      "value"
+    ]
+  }
+}

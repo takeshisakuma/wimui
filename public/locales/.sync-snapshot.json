@@ -3261,7 +3261,9 @@
       "a11y_list_sr_fixed": "Fixed and rechecked ({{date}})",
       "a11y_list_sr_fixed_unheard": "Fixed, not rechecked ({{date}})",
       "a11y_list_link": "For each component, see the accessibility status table in its Testing section, or the list of all components on the Accessibility Status page.",
-      "a11y_list_no_data": "The accessibility data has not been generated (src/data/docgen-a11y.json is created when Storybook starts)."
+      "a11y_list_no_data": "The accessibility data has not been generated (src/data/docgen-a11y.json is created when Storybook starts).",
+      "docgen_selector": "Selector",
+      "anatomy_parts_note": "Target a part from your own CSS with its data-part attribute. The component styles live in the component cascade layer, so a rule you write outside any layer wins regardless of specificity. Part names are a stable public contract; states are on aria-* and data-* attributes (for example aria-selected), not in the part name."
     },
     "config": {
       "install_title": "Install",

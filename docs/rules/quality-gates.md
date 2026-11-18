@@ -14,6 +14,7 @@
 |---|---|---|---|
 | 公開 API 表面 | `npm run check:api` | export / バレルを変えたとき | `exports` + バレルシンボル（`api-snapshot.json` v2）。意図的変更時のみ `check:api:update` |
 | prop シグネチャ | `npm run check:prop-api` | prop を足した・変えたとき | シンボル名では見えない prop の破壊（消えた・必須になった・型が狭まった）。**prop を足したときも落ちる**ので `check:prop-api:update` で `prop-api-snapshot.json` を更新してコミットする（2026-09-21 に強化。助言のままだと 18 prop 遅れて `Comment` が丸ごと未収録になり、**未収録の部品は prop を消しても永久に緑**だった）。鳴ることの実証は `npm run prove:prop-api` |
+| 部位名（data-part） | `npm run check:part-api` | 部品の内側の要素に `data-part` を足した・変えたとき | 利用者が CSS で狙う部位名（`[data-part="day"]`）の破壊（消えた・改名した）。型にも `check:prop-api` にも出ない。**足したときも落ちる**ので `check:part-api:update` で `part-api-snapshot.json` を更新してコミットする。名前の決め方は `docs/rules/implementation.md`。鳴ることの実証は `npm run prove:part-api`、DOM に届くことは `src/components/data-part.test.tsx` |
 | ポリモーフィック監査 | `npm run check:aschild` | `asChild` を足したとき | `asChild` 実装と `docs/rules/implementation.md` の必須リスト同期 |
 | トークン漏れ（PX） | `npm run audit:hardcoded` | SCSS を触ったとき | 色のハードコード禁止・未注記 px を増やさない（`PX_BASELINE = 0`）。詳細は `docs/TOKENIZATION_EXCEPTIONS.md` |
 | トークン漏れ（prop の既定値） | `npm run check:numeric-length-defaults` | prop の既定値に数値を置いたとき | **上は `px` という綴りを探すので、`gap = 16` のように単位が後から付く既定値には届かない**（T266。`Group` / `Masonry` / `SimpleGrid` の 3 件が「0 件」の陰にいた）。値が CSS の長さになる証拠（`` `${x}px` `` / `getSpacingValue()` / style の長さプロパティ / 間隔の prop へ転送）を見る。件数のベースラインを持たず**1 件ずつ同一行に注記**させるので、lint-staged が部分集合しか渡さない経路でも判定がぶれない |

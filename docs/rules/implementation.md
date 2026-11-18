@@ -107,6 +107,23 @@ return <div>{region}{/* 中身 */}</div>; // 領域は部品の中に、いつ�
 
 逆に、フォーカスを動かして知らせる形もある。`Tour` は、ステップごとにダイアログを作り直して、フォーカスを新しいダイアログへ入れ直す（面そのものが入れ替わるときは、こちらが合う）。
 
+## 部位名（data-part）
+
+部品の中で描く要素のうち、利用者が見た目を変えたくなるものには `data-part="…"` を付けます（T384・2026-11-15 のユーザー判断で案 (b)）。WIM の部品の CSS は `@layer component` の中なので、利用者が層の外に書いた `.my-calendar [data-part="day"] { … }` は、詳細度に関係なく勝ちます。props は増やしません（`classNames={{ day }}` のような口は足さない）。
+
+部位名は公開の約束です。`check:part-api` が `part-api-snapshot.json` に凍らせ、消す・変えると落ちます（利用者の CSS が黙って当たらなくなるため。破壊的変更として changeset に書く）。足したときも落ちるので、`npm run check:part-api:update` の差分をコミットに含めます。
+
+| 規則 | 例 |
+|---|---|
+| 役割の名前を、小文字の kebab-case で付ける。見た目の名前にしない | `prev-button`（`left-arrow` ではない）・`day`・`column-header` |
+| 状態を名前に入れない。状態は既存の `aria-*` / `data-*` / `:disabled` で狙う | `[data-part="day"][aria-selected="true"]`（`selected-day` を作らない） |
+| 同じ役割は、どの部品でも同じ名前にする。既に `styles={{ … }}` のキーがある部品は、そのキーを kebab-case にした名前にそろえる | Select の `styles.searchInput` → `search-input` |
+| 同じ役割の要素が並ぶときは、全部に同じ名前を付ける | 日付のセル全部が `day` |
+| 部品の根には付けない（`wim-<name>` のクラスと `className` がある）。公開している子部品（`KanbanBoard.Card` など）の根には付ける ── データの props から部品が中で描くとき、利用者は `className` を渡せない | Kanban の `column`・`card` |
+| 値は文字列の直書きにする。式（`data-part={x}`）はソースから名前が読めず凍らせられないので、検査で落ちる | — |
+
+付けた部位は Docgen の Anatomy 節に `[data-part="…"]` として出ます（`scripts/lib/parts.js` が、検査と文書の両方へ同じ数え方で渡す）。DOM に届くこと（`Slot` や `Transition` が属性を落とさないこと）は `src/components/data-part.test.tsx` が部品を開いて確かめるので、部位を持つ部品を足したら、そこへ全部位を出す手順を足します。
+
 ## メディアクエリ vs コンテナクエリ
 
 | 用途 | 使用するクエリ | mixin |
