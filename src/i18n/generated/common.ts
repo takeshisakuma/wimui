@@ -77,6 +77,7 @@ export type CommonKey =
   | "action.edit"
   | "action.finish"
   | "action.next"
+  | "action.ok"
   | "action.previous"
   | "action.save"
   | "action.search"
@@ -712,6 +713,7 @@ export const commonNs: WimNamespace<"common", CommonKey> = {
         "edit": "Edit",
         "finish": "Finish",
         "next": "Next",
+        "ok": "OK",
         "save": "Save",
         "previous": "Previous"
       },
@@ -915,6 +917,7 @@ export const commonNs: WimNamespace<"common", CommonKey> = {
         "edit": "編集",
         "finish": "完了",
         "next": "次へ",
+        "ok": "OK",
         "save": "保存",
         "previous": "前へ"
       },
@@ -1118,6 +1121,7 @@ export const commonNs: WimNamespace<"common", CommonKey> = {
         "edit": "Editar",
         "finish": "Concluir",
         "next": "Próximo",
+        "ok": "OK",
         "save": "Salvar",
         "previous": "Anterior"
       },

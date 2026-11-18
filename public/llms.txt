@@ -4,7 +4,7 @@
 
 ## What this is
 
-**wimui** v0.75.2 — a React 19 component library: 230 documented components across 10 categories, with design tokens, dark mode, i18n (en/ja/pt-BR) and WAI-ARIA compliant a11y. Peer deps: react ^19, react-dom ^19 (plus optional peers for specific components — see package.json).
+**wimui** v0.75.2 — a React 19 component library: 231 documented components across 10 categories, with design tokens, dark mode, i18n (en/ja/pt-BR) and WAI-ARIA compliant a11y. Peer deps: react ^19, react-dom ^19 (plus optional peers for specific components — see package.json).
 
 ## Install & required setup
 
@@ -378,6 +378,7 @@ export function BillingOverview() {
 ### overlay — `import { … } from "wimui/overlay"`
 
 - **BottomSheet** — Mobile bottom overlay (aka Sheet, Action Sheet)
+- **Confirm** — Opens a confirmation dialog from code with await confirm() and returns true or false.
 - **ContextMenu** — Right-click menus
 - **Dialog** — Focused task windows (aka Modal, Modal Dialog)
 - **Drawer** — Slide-out detail panels (aka Navigation Drawer)
@@ -462,6 +463,7 @@ Exported hooks. Prefer them over hand-rolled equivalents (`matchMedia` listeners
 - **useBreakpoint** — `import { useBreakpoint } from "wimui"` — Resolve the current active breakpoint — the largest whose min-width the viewport satisfies. Returns the smallest breakpoint below the first threshold. SSR-safe (defaults to the smallest until mounted).
 - **useBreakpointDown** — `import { useBreakpointDown } from "wimui"` — Track whether the viewport is below a named breakpoint (max-width), mirroring the SCSS `down()` mixin — the JS equivalent of HamburgerMenu's `visibleBelow`. SSR-safe.
 - **useBreakpointUp** — `import { useBreakpointUp } from "wimui"` — Track whether the viewport is at or above a named breakpoint (min-width), mirroring the SCSS `up()` mixin. SSR-safe.
+- **useConfirm** — `import { useConfirm } from "wimui/overlay"` — Ask the user to confirm an action and wait for the answer, from anywhere under `ConfirmProvider`. Resolves to true when the user confirms, and to false when they cancel, press Escape, or the provider unmounts. Use it before an action the user cannot easily undo; for an action that can be undone, run it and offer Undo in a `Snackbar` instead.
 - **useMediaQuery** — `import { useMediaQuery } from "wimui"` — Subscribe to a CSS media query and track whether it currently matches.
 - **useNotification** — `import { useNotification } from "wimui/feedback"` — Show a notification card in a corner of the screen from anywhere under `NotificationProvider`. Notifications stack, carry a title and a body, and suit events that happened elsewhere (a finished export, a new comment) rather than the result of the user's last action.
 - **useSnackbar** — `import { useSnackbar } from "wimui/feedback"` — Show a single message bar at the edge of the screen from anywhere under `SnackbarProvider`. One message at a time: showing a new one replaces the current one. Use it when the message may carry one action (for example "Undo").

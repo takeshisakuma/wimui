@@ -1,5 +1,5 @@
 {
-  "comment": "**T224 の凍結。2026-08-28 時点で 177 件 / 84 ファイル**（188 件から、例が 1 つも無かった 4 ページを直して -11）。`known` は「docs ページは在るのに、そのストーリーだけページに出ていない」もので、**これは方針どおりの状態**── docs ページは重要なバリエーションを選んで見せる場所で、全ストーリーの一覧ではない（RULES.md「ストーリー掲載時の注意点」）。`knownPageless` は「docs ページ（MDX）自体を持たない stories ファイル」で、`stories/Patterns/**`（Pattern ページは書かない）と `stories/Audit/**`（内部点検用）が大半。**欠陥なのは「そのページに例が 1 つも無い」場合だけ**なので、このラチェットは意図せず増えたときにだけ落ちる。起票時の 215 件との差は数え方 ── `<Primary />` を掲載と数えるかどうかで 26 件動く（scripts/check-story-docs.js の冒頭を参照）。 2026-10-31（T354）: 撮るためだけのストーリー 5 件（HoverCard::Placements / Timeline::RightAligned / Tour::OpenLeft / InteractiveArea::AlignStart / SpeedDial::ActionIntents）を足した。どのストーリーにも描かれていなかった値を VRT と a11y に載せるためで、docs ページには載せない。 2026-10-31（T353）: 読み上げの聞き取り用のストーリー 3 件（DataGrid::FilterToEmpty / RichTextEditor::ImageUploadFails / Spinner::AppearsAfterAction）を足した。操作のあとに告げる文が差し込まれる形を開くためで、docs ページには載せない。",
+  "comment": "**T224 の凍結。2026-08-28 時点で 177 件 / 84 ファイル**（188 件から、例が 1 つも無かった 4 ページを直して -11）。`known` は「docs ページは在るのに、そのストーリーだけページに出ていない」もので、**これは方針どおりの状態**── docs ページは重要なバリエーションを選んで見せる場所で、全ストーリーの一覧ではない（RULES.md「ストーリー掲載時の注意点」）。`knownPageless` は「docs ページ（MDX）自体を持たない stories ファイル」で、`stories/Patterns/**`（Pattern ページは書かない）と `stories/Audit/**`（内部点検用）が大半。**欠陥なのは「そのページに例が 1 つも無い」場合だけ**なので、このラチェットは意図せず増えたときにだけ落ちる。起票時の 215 件との差は数え方 ── `<Primary />` を掲載と数えるかどうかで 26 件動く（scripts/check-story-docs.js の冒頭を参照）。 2026-10-31（T354）: 撮るためだけのストーリー 5 件（HoverCard::Placements / Timeline::RightAligned / Tour::OpenLeft / InteractiveArea::AlignStart / SpeedDial::ActionIntents）を足した。どのストーリーにも描かれていなかった値を VRT と a11y に載せるためで、docs ページには載せない。 2026-10-31（T353）: 読み上げの聞き取り用のストーリー 3 件（DataGrid::FilterToEmpty / RichTextEditor::ImageUploadFails / Spinner::AppearsAfterAction）を足した。操作のあとに告げる文が差し込まれる形を開くためで、docs ページには載せない。 2026-11-18（T387）: Confirm::Open を足した。描画の直後に confirm() を呼んで開いた姿を VRT と a11y に載せるためで、docs ページに載せるとページを開いた瞬間にダイアログが開く。",
   "known": [
     "stories/ai/AgentStatus/AgentStatus.stories.tsx::Default",
     "stories/ai/AgentStatus/AgentStatus.stories.tsx::DoneState",
@@ -179,6 +179,7 @@
     "stories/navigation/SpeedDial/SpeedDial.stories.tsx::CustomIcons",
     "stories/navigation/SpeedDial/SpeedDial.stories.tsx::RightDirection",
     "stories/navigation/TabBar/TabBar.stories.tsx::Fixed",
+    "stories/overlay/Confirm/Confirm.stories.tsx::Open",
     "stories/overlay/ContextMenu/ContextMenu.stories.tsx::Disabled",
     "stories/overlay/ContextMenu/ContextMenu.stories.tsx::Open",
     "stories/overlay/Drawer/Drawer.stories.tsx::Controlled",

@@ -4,7 +4,7 @@
 
 ## What this is
 
-**wimui** v0.75.2 — a React 19 component library: 230 documented components across 10 categories, with design tokens, dark mode, i18n (en/ja/pt-BR) and WAI-ARIA compliant a11y. Peer deps: react ^19, react-dom ^19 (plus optional peers for specific components — see package.json).
+**wimui** v0.75.2 — a React 19 component library: 231 documented components across 10 categories, with design tokens, dark mode, i18n (en/ja/pt-BR) and WAI-ARIA compliant a11y. Peer deps: react ^19, react-dom ^19 (plus optional peers for specific components — see package.json).
 
 ## Install & required setup
 
@@ -2899,6 +2899,7 @@ anything is measured; long text is truncated and read in full by assistive techn
     - `defaultOpen: boolean` = false — Initial open state for uncontrolled usage.
 @default false
     - `onOpenChange: (open: boolean) => void` — Called with the next state when the sheet is opened or closed.
+- **Confirm** — Opens a confirmation dialog from code with await confirm() and returns true or false.
 - **ContextMenu** — Right-click menus
     - `children: ReactNode` (required) — Element that opens the context menu on right-click.
     - `menu: ReactNode` (required) — Menu items to display in the context menu
@@ -3688,6 +3689,15 @@ Exported hooks. Prefer them over hand-rolled equivalents (`matchMedia` listeners
 
   ```tsx
   const isDesktop = useBreakpointUp("lg");
+  ```
+
+- **useConfirm** — `import { useConfirm } from "wimui/overlay"` — Ask the user to confirm an action and wait for the answer, from anywhere under `ConfirmProvider`. Resolves to true when the user confirms, and to false when they cancel, press Escape, or the provider unmounts. Use it before an action the user cannot easily undo; for an action that can be undone, run it and offer Undo in a `Snackbar` instead.
+  - Signature: `(): ConfirmFunction`
+
+  ```tsx
+  const confirm = useConfirm();
+  const ok = await confirm({ title: "Delete this file?", confirmLabel: "Delete", intent: "danger" });
+  if (ok) await deleteFile(id);
   ```
 
 - **useMediaQuery** — `import { useMediaQuery } from "wimui"` — Subscribe to a CSS media query and track whether it currently matches.

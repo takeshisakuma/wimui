@@ -22,6 +22,7 @@
     "hooks_use_auto_resize": "Grow a textarea with its content up to a number of rows, then scroll. Textarea and PromptInput already do this — use the hook only for a textarea you render yourself.",
     "hooks_use_wim": "Read the theme, density, locale and preset from the nearest WimProvider (or from the document when there is none).",
     "hooks_group_a11y": "Accessibility",
-    "hooks_use_announce": "Announce the result of an action to screen readers (\"Saved\", \"3 results\"). Render the returned region once and keep it rendered from the first paint, then call announce. This is the pattern WIM UI verified with a real screen reader: inserting a new status element together with its text is often not read. Components such as Toast, Kanban and Transfer already announce their own results."
+    "hooks_use_announce": "Announce the result of an action to screen readers (\"Saved\", \"3 results\"). Render the returned region once and keep it rendered from the first paint, then call announce. This is the pattern WIM UI verified with a real screen reader: inserting a new status element together with its text is often not read. Components such as Toast, Kanban and Transfer already announce their own results.",
+    "hooks_use_confirm": "Ask the user to confirm an action and wait for the answer: await confirm() resolves to true or false. Use it before an action that cannot be undone. Needs ConfirmProvider."
   }
 }

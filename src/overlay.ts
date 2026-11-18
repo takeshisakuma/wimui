@@ -10,3 +10,4 @@ export * from "./components/overlay/Popover/Popover";
 export * from "./components/overlay/Tooltip/Tooltip";
 export * from "./components/overlay/Portal/Portal";
 export * from "./components/overlay/FocusTrap/FocusTrap";
+export * from "./components/overlay/Confirm/Confirm";
