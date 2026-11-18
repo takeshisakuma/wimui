@@ -261,6 +261,24 @@
     "confirm_publish_title": "Publicar as alterações na central de ajuda?",
     "confirm_publish_desc": "Os leitores veem a nova versão de 3 artigos imediatamente.",
     "confirm_published": "As alterações foram publicadas.",
-    "confirm_not_published": "Nada foi publicado."
+    "confirm_not_published": "Nada foi publicado.",
+    "dialog_event_open": "Editar evento",
+    "dialog_event_title": "Editar “Revisão de design”",
+    "dialog_event_desc": "As alterações são enviadas a todos os convidados.",
+    "dialog_event_date": "Data",
+    "dialog_event_repeat": "Repetir",
+    "dialog_event_repeat_none": "Não se repete",
+    "dialog_event_repeat_weekly": "Toda semana",
+    "dialog_event_repeat_monthly": "Todo mês",
+    "dialog_event_room": "Sala",
+    "dialog_event_room_placeholder": "Buscar salas",
+    "dialog_event_guests": "Convidados",
+    "dialog_event_more": "Mais ações",
+    "dialog_event_duplicate": "Duplicar",
+    "dialog_event_export": "Exportar para arquivo de calendário",
+    "dialog_event_delete": "Excluir evento…",
+    "dialog_event_delete_title": "Excluir “Revisão de design”?",
+    "dialog_event_delete_desc": "Os 4 convidados recebem um aviso de cancelamento.",
+    "dialog_event_delete_confirm": "Excluir evento"
   }
 }

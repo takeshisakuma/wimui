@@ -6,6 +6,7 @@ import { BaseListItem, type BaseListItemProps } from "../../_internal/BaseListIt
 import { mergeRefs } from "../../_internal/mergeRefs";
 import { findTypeaheadIndex, isTypeaheadKey, useTypeahead } from "../../_internal/typeahead";
 import { Transition } from "../../layout/Transition/Transition";
+import { useEscapeLayer } from "../../_internal/escapeStack";
 import styles from "./dropdown.module.scss";
 
 // Context to share state between components
@@ -177,22 +178,17 @@ const DropdownInner = forwardRef<HTMLDivElement, DropdownProps>(
         }
       };
 
-      const handleKeyDownGlobal = (event: KeyboardEvent) => {
-        if (event.key === "Escape") {
-          close();
-        }
-      };
-
       if (isOpen) {
         document.addEventListener("mousedown", handleClickOutside);
-        document.addEventListener("keydown", handleKeyDownGlobal);
       }
 
       return () => {
         document.removeEventListener("mousedown", handleClickOutside);
-        document.removeEventListener("keydown", handleKeyDownGlobal);
       };
     }, [isOpen, refs.floating, close]);
+
+    // Dialog の中で開いても、Escape で閉じるのはメニューだけ（T408）
+    useEscapeLayer(isOpen, close);
 
     const typeahead = useTypeahead();
 

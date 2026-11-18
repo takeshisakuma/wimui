@@ -181,6 +181,8 @@ export function useSelect({
         break;
 
       case "Escape":
+        // 閉じているときは止めない。止めると、Dialog の中に置いた Select から Escape で Dialog を閉じられない（T408）
+        if (!isOpen) break;
         setIsOpen(false);
         setSearchValue("");
         setFocusedIndex(-1);

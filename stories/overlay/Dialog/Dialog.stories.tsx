@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
-import { Button, Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, Input, Label, Link } from "wimui";
+import { Button, Combobox, DatePicker, Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Input, Label, Link, MultiSelect, Select } from "wimui";
 
 
 const meta: Meta<typeof Dialog> = {
@@ -189,6 +189,98 @@ export const Stacked: Story = {
               <Button variant="outline">{t("story.dialog_cancel")}</Button>
             </DialogClose>
             <Button variant="solid">{t("story.dialog_confirm")}</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    );
+  },
+};
+
+/**
+ * 中で一覧や暦を開くダイアログ（T408）。Escape を押したとき閉じるのは一番上の面だけ ── 開いた
+ * 一覧・暦・メニュー・削除の確認のダイアログが先に閉じ、外側のダイアログは残る。閉じた引き金に
+ * フォーカスがあるときの Escape は、外側のダイアログを閉じる。E2E（`vrt/escape-layers.e2e.spec.ts`）が
+ * このストーリーを開いて確かめる。
+ */
+export const WithPopupsInside: Story = {
+  render: function Render(args) {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <Dialog {...args}>
+        <DialogTrigger asChild>
+          <Button variant="solid">{t("story.dialog_event_open")}</Button>
+        </DialogTrigger>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>{t("story.dialog_event_title")}</DialogTitle>
+            <DialogDescription>{t("story.dialog_event_desc")}</DialogDescription>
+          </DialogHeader>
+          <div style={{ display: "grid", gap: "var(--wim-spacing-lg)", padding: "var(--wim-spacing-md) 0" }}>
+            <DatePicker label={t("story.dialog_event_date")} defaultValue={new Date(2026, 10, 24)} fullWidth />
+            <Select
+              label={t("story.dialog_event_repeat")}
+              defaultValue="weekly"
+              fullWidth
+              options={[
+                { label: t("story.dialog_event_repeat_none"), value: "none" },
+                { label: t("story.dialog_event_repeat_weekly"), value: "weekly" },
+                { label: t("story.dialog_event_repeat_monthly"), value: "monthly" },
+              ]}
+            />
+            <Combobox
+              label={t("story.dialog_event_room")}
+              placeholder={t("story.dialog_event_room_placeholder")}
+              fullWidth
+              options={[
+                { label: "Atlas (6F)", value: "atlas" },
+                { label: "Borealis (6F)", value: "borealis" },
+                { label: "Cove (3F)", value: "cove" },
+              ]}
+            />
+            <MultiSelect
+              label={t("story.dialog_event_guests")}
+              defaultValue={["ana", "kenji"]}
+              fullWidth
+              options={[
+                { label: "Ana Souza", value: "ana" },
+                { label: "Kenji Mori", value: "kenji" },
+                { label: "Lucas Pereira", value: "lucas" },
+                { label: "Yui Tanaka", value: "yui" },
+              ]}
+            />
+          </div>
+          <DialogFooter>
+            <Dropdown>
+              <DropdownTrigger asChild>
+                <Button variant="ghost">{t("story.dialog_event_more")}</Button>
+              </DropdownTrigger>
+              <DropdownMenu>
+                <DropdownItem>{t("story.dialog_event_duplicate")}</DropdownItem>
+                <DropdownItem>{t("story.dialog_event_export")}</DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
+            <Dialog role="alertdialog">
+              <DialogTrigger asChild>
+                <Button variant="outline" intent="danger">{t("story.dialog_event_delete")}</Button>
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>{t("story.dialog_event_delete_title")}</DialogTitle>
+                  <DialogDescription>{t("story.dialog_event_delete_desc")}</DialogDescription>
+                </DialogHeader>
+                <DialogFooter>
+                  <DialogClose asChild>
+                    <Button variant="outline" data-autofocus>{t("story.dialog_cancel")}</Button>
+                  </DialogClose>
+                  <DialogClose asChild>
+                    <Button variant="solid" intent="danger">{t("story.dialog_event_delete_confirm")}</Button>
+                  </DialogClose>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
+            <DialogClose asChild>
+              <Button variant="solid">{t("story.dialog_save")}</Button>
+            </DialogClose>
           </DialogFooter>
         </DialogContent>
       </Dialog>

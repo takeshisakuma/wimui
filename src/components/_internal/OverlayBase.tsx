@@ -1,5 +1,6 @@
-import React, { ReactNode, useEffect, useLayoutEffect } from "react";
+import React, { ReactNode, useLayoutEffect } from "react";
 import { lockBodyScroll } from "./bodyScrollLock";
+import { useEscapeLayer } from "./escapeStack";
 import { Portal } from "../overlay/Portal/Portal";
 import { Transition } from "../layout/Transition/Transition";
 import { FocusTrap } from "../overlay/FocusTrap/FocusTrap";
@@ -91,23 +92,8 @@ export const OverlayBase = ({
   closeOnEscape = true,
   ...rest
 }: OverlayBaseProps) => {
-  // Close on Escape
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && open && closeOnEscape) {
-        e.preventDefault();
-        e.stopPropagation();
-        onOpenChange(false);
-      }
-    };
-
-    if (open) {
-      document.addEventListener("keydown", handleKeyDown);
-    }
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [open, onOpenChange, closeOnEscape]);
+  // Escape で閉じる。重なった面のうち一番上だけが受け、中の部品が先に閉じた Escape は受けない（T408）
+  useEscapeLayer(open && closeOnEscape, () => onOpenChange(false));
 
   // スクロールを止める。描画の前に幅を埋める（描いてからだと、1 フレームずれる）。
   useLayoutEffect(() => {
