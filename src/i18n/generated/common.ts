@@ -165,6 +165,7 @@ export type CommonKey =
   | "common.status"
   | "common.style"
   | "common.success"
+  | "common.tertiary"
   | "common.title"
   | "common.type"
   | "common.usage"

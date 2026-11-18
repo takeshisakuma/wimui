@@ -820,7 +820,8 @@
       "reload": "Reload",
       "heatmap_less": "Less",
       "heatmap_more": "More",
-      "heatmap_title": "Activity map"
+      "heatmap_title": "Activity map",
+      "tertiary": "Tertiary"
     },
     "copied": "Copied",
     "copy": {
@@ -2441,7 +2442,8 @@
       "splitbutton_scenario_2": "A deploy button where Deploy to production is the default and the other environments live behind the toggle.",
       "splitbutton_best_practice_1": "Put the most-used action in the main half. If you cannot pick one, use Dropdown instead — a split button with an arbitrary default is worse than a plain menu.",
       "splitbutton_best_practice_2": "Keep the menu short. Once it passes a handful of entries it is a menu with a button stuck to it, not a split button.",
-      "buttongroup_choice_single": "Single Button"
+      "buttongroup_choice_single": "Single Button",
+      "button_best_practice_disabled": "Do not disable a submit button while the form is incomplete. Keep it pressable; when it is pressed, show an error under each missing or invalid field and move focus to the first one. A disabled button cannot say why it is disabled: it is skipped by Tab, ignores hover (and phones have no hover), and its tooltip never opens. Disable a button only while its action is running (use loading to block a double submit) or when nothing the user can do will enable it, such as a missing permission, and then explain why in visible text next to it."
     }
   },
   "docs_ai": {
@@ -10861,7 +10863,8 @@
       "confirm_best_practice_2": "Do not ask before an action that can be undone. Run it and offer Undo in a Snackbar; a question asked every time is answered without reading.",
       "confirm_usage_desc": "Place ConfirmProvider once inside WimProvider, then call confirm() from any handler below it.",
       "confirm_ex_publish_desc": "Without intent, the confirm button has the initial focus.",
-      "confirm_keyboard_desc": "Tab and Shift+Tab move between the two buttons and stay inside the dialog. Enter or Space presses the focused button. Escape cancels (resolves to false). Clicking the backdrop does nothing, because the dialog needs an answer."
+      "confirm_keyboard_desc": "Tab and Shift+Tab move between the two buttons and stay inside the dialog. Enter or Space presses the focused button. Escape cancels (resolves to false). Clicking the backdrop does nothing, because the dialog needs an answer.",
+      "tooltip_best_practice_disabled": "Do not use a tooltip to explain why a button is disabled. A disabled button receives neither hover nor focus, so its tooltip never opens. Keep the button pressable and show the reason as an error when it is pressed, or write the reason as visible text next to it (see Best Practices on the Button page)."
     },
     "overlay": {
       "attn_full": "Attracts user attention completely.",

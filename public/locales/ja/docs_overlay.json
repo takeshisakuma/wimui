@@ -516,7 +516,8 @@
     "confirm_best_practice_2": "取り消せる操作の前には尋ねない。実行してから Snackbar で「元に戻す」を出す。毎回聞かれる確認は、読まずに押されるようになる。",
     "confirm_usage_desc": "ConfirmProvider を WimProvider の内側に 1 回置き、その下のどのハンドラーからでも confirm() を呼びます。",
     "confirm_ex_publish_desc": "intent を付けないときは、確認のボタンに最初のフォーカスが置かれます。",
-    "confirm_keyboard_desc": "Tab と Shift+Tab で 2 つのボタンの間を移り、ダイアログの外へは出ません。Enter か Space でフォーカスのあるボタンを押します。Escape は取り消し（false で終わる）。背景を押しても閉じません（答えが要るダイアログのため）。"
+    "confirm_keyboard_desc": "Tab と Shift+Tab で 2 つのボタンの間を移り、ダイアログの外へは出ません。Enter か Space でフォーカスのあるボタンを押します。Escape は取り消し（false で終わる）。背景を押しても閉じません（答えが要るダイアログのため）。",
+    "tooltip_best_practice_disabled": "無効のボタンが押せない理由を、Tooltip で伝えない。無効のボタンにはホバーもフォーカスも届かないので、Tooltip は開かない。ボタンを押せるままにして押されたときにエラーとして示すか、理由をボタンの近くに見える文で書く（Button のページの Best Practices を参照）。"
   },
   "overlay": {
     "attn_full": "ユーザーの注意を完全に引きつける。",

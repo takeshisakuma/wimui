@@ -516,7 +516,8 @@
     "confirm_best_practice_2": "Não pergunte antes de uma ação que pode ser desfeita. Execute-a e ofereça Desfazer em um Snackbar; uma pergunta feita toda vez passa a ser respondida sem leitura.",
     "confirm_usage_desc": "Coloque o ConfirmProvider uma vez dentro do WimProvider e chame confirm() de qualquer manipulador abaixo dele.",
     "confirm_ex_publish_desc": "Sem intent, o botão de confirmação recebe o foco inicial.",
-    "confirm_keyboard_desc": "Tab e Shift+Tab alternam entre os dois botões e ficam dentro da caixa de diálogo. Enter ou Espaço pressiona o botão focado. Escape cancela (resolve como false). Clicar no fundo não faz nada, porque a caixa de diálogo precisa de uma resposta."
+    "confirm_keyboard_desc": "Tab e Shift+Tab alternam entre os dois botões e ficam dentro da caixa de diálogo. Enter ou Espaço pressiona o botão focado. Escape cancela (resolve como false). Clicar no fundo não faz nada, porque a caixa de diálogo precisa de uma resposta.",
+    "tooltip_best_practice_disabled": "Não use uma dica de ferramenta para explicar por que um botão está desativado. Um botão desativado não recebe hover nem foco, então a dica nunca abre. Mantenha o botão pressionável e mostre o motivo como um erro quando ele for pressionado, ou escreva o motivo em um texto visível ao lado dele (veja as Boas práticas na página do Button)."
   },
   "overlay": {
     "attn_full": "Atrai completamente a atenção do usuário.",

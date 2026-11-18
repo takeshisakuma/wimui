@@ -158,7 +158,8 @@
     "reload": "Reload",
     "heatmap_less": "Less",
     "heatmap_more": "More",
-    "heatmap_title": "Activity map"
+    "heatmap_title": "Activity map",
+    "tertiary": "Tertiary"
   },
   "copied": "Copied",
   "copy": {
