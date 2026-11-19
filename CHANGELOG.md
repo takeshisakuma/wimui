@@ -1,5 +1,16 @@
 # wimui
 
+## 0.77.0
+
+### Minor Changes
+
+- 514529f: `AILabel` を足した（`wimui` / `wimui/ai`）。値やまとまりが AI の出力であることを示す、「AI」と書いた小さなボタンで、押すと、使う側が渡した説明（`children`）が Popover で開く。読み上げの名前は「AI が作成」（言語ごと。見えている「AI」を含む）。`size` は `sm`（入力欄の `suffix` や表のセルの中）/ `md`（既定・見出しの隣）/ `lg`。押せる範囲は `sm` でも 24 × 24 px。部位名は `mark` / `content` / `title`。文言は新しい名前空間 `ai` に置いたので、AILabel を読まない入口の翻訳は増えない。
+- 0f44c98: `PageHeader` を足した（`wimui` / `wimui/layout`）。ページの頭で、パンくず（`breadcrumb`）・題（`title`）・状態（`status`）・説明（`description`）・操作（`actions`）・タブ（`tabs`）を、決まった順番と間隔で並べる。題はいつも `h1` で、大きさは 1 つ（`Title` の `lg`）。長い題は省略せずに折り返す。幅が足りないと、操作は題の下の行へ回る（コンテナクエリは使わないので、中身で幅が決まる器でも潰れない）。根は `header` ではなく `div` で、ランドマークを作らない。部位名は `breadcrumb` / `title` / `status` / `description` / `actions` / `tabs`。
+
+### Patch Changes
+
+- 514529f: `PopoverTrigger asChild` に渡した子が自分の `ref` を持っていると、面が引き金の隣ではなく画面の左上に出ていたのを直した。React 19 では子の `ref` も props に入るため、子の props を後から渡すと、位置合わせに使う ref が上書きされていた。子の `ref` には、これまでどおり要素が入る。
+
 ## 0.76.3
 
 ### Patch Changes
