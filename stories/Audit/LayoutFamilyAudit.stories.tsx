@@ -15,6 +15,8 @@ import {
   IconButton,
   Toolbar,
   OverflowList,
+  PageHeader,
+  Button,
   Text,
 } from "../../src";
 import { AuditPage, ComparisonGrid, ComponentGroup } from "./AuditUtils";
@@ -130,6 +132,24 @@ export const Overview: StoryObj = {
                 <IconButton iconName="TrashIcon" aria-label={t("action.delete")} variant="ghost" size="sm" />
               </Toolbar.Group>
             </Toolbar>
+          </ComponentGroup>
+        </ComparisonGrid>
+
+        {/* PageHeader: 操作が題の右に入る幅と、題の下へ回る幅 */}
+        <ComparisonGrid title={t("audit:layout_page_header_check")}>
+          <ComponentGroup label={t("audit:label_size", { size: "var(--wim-width-md)" })} align="stretch" maxWidth="var(--wim-width-md)">
+            <PageHeader
+              title={t("audit:sample_page_header_title")}
+              description={t("audit:sample_page_header_desc")}
+              actions={<Button variant="outline">{t("audit:sample_page_header_action")}</Button>}
+            />
+          </ComponentGroup>
+          <ComponentGroup label={t("audit:label_size", { size: "100%" })} align="stretch">
+            <PageHeader
+              title={t("audit:sample_page_header_title")}
+              description={t("audit:sample_page_header_desc")}
+              actions={<Button variant="outline">{t("audit:sample_page_header_action")}</Button>}
+            />
           </ComponentGroup>
         </ComparisonGrid>
 

@@ -136,6 +136,18 @@
     "overflowlist_folder_tax": "Imposto de renda",
     "overflowlist_folder_receipts": "Recibos médicos",
     "overflowlist_hidden_folders": "Pastas ocultas ({{count}})",
-    "overflowlist_container_width": "Contêiner: {{width}}"
+    "overflowlist_container_width": "Contêiner: {{width}}",
+    "page_header_crumb_expenses": "Despesas",
+    "page_header_crumb_reports": "Relatórios",
+    "page_header_title": "Relatórios de despesas de novembro",
+    "page_header_title_long": "Campanha de revendedores de Tohoku, 3º tri do ano fiscal 2026: despesas de viagem e representação para revisão",
+    "page_header_desc": "14 enviados · 2 devolvidos por falta de recibo",
+    "page_header_status": "Fecha em 3 dias",
+    "page_header_action_new": "Novo relatório",
+    "page_header_action_export": "Exportar CSV",
+    "page_header_action_policy": "Política de viagens",
+    "page_header_tab_submitted": "Enviados",
+    "page_header_tab_drafts": "Rascunhos",
+    "page_header_tab_returned": "Devolvidos"
   }
 }

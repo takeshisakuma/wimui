@@ -7554,6 +7554,30 @@
       "required": true,
       "type": "(hiddenItems: T[]) => React.ReactNode"
     },
+    "PageHeader.actions": {
+      "required": false,
+      "type": "React.ReactNode"
+    },
+    "PageHeader.breadcrumb": {
+      "required": false,
+      "type": "React.ReactNode"
+    },
+    "PageHeader.description": {
+      "required": false,
+      "type": "React.ReactNode"
+    },
+    "PageHeader.status": {
+      "required": false,
+      "type": "React.ReactNode"
+    },
+    "PageHeader.tabs": {
+      "required": false,
+      "type": "React.ReactNode"
+    },
+    "PageHeader.title": {
+      "required": true,
+      "type": "React.ReactNode"
+    },
     "Pagination.aria-label": {
       "type": "string"
     },

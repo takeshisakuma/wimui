@@ -122,6 +122,22 @@
     "header_sticky": "Cabeçalho Fixo/Aderente",
     "header_sticky_desc": "Usar as propriedades sticky ou fixed permite que o cabeçalho acompanhe conforme você rola a página.",
     "header_title": "Seção de cabeçalho para o topo do layout e navegação principal",
-    "header_variants": "Variantes"
+    "header_variants": "Variantes",
+    "pageheader_intro": "PageHeader é o topo de uma página: trilha, título, status, descrição, ações e abas, em ordem e espaçamento fixos. O título é sempre o h1 da página, em um único tamanho.",
+    "pageheader_design_intent": "Quando cada tela monta o próprio topo, o tamanho do título, o espaço até a trilha e a ordem das ações variam de página para página. O PageHeader tira essas decisões da tela: você passa as partes e ele as posiciona. Um título longo quebra a linha em vez de ser cortado, porque é a única linha que diz o que é a página. Em telas estreitas, as ações vão para uma linha própria abaixo do título.",
+    "pageheader_choice_self": "O topo de uma página dentro da área principal",
+    "pageheader_choice_header": "A barra no topo do app inteiro (logo, busca, conta)",
+    "pageheader_choice_title": "Um título dentro de uma seção da página",
+    "pageheader_a11y_1": "O título é renderizado como h1. Use um PageHeader por página para que ela tenha um único h1.",
+    "pageheader_a11y_2": "A raiz é um div, não header, então nunca vira um segundo landmark banner ao lado do Header do app.",
+    "pageheader_a11y_3": "As partes estão em ordem de leitura: trilha, título, status, descrição, ações, abas. A ordem visual é a mesma em qualquer largura.",
+    "pageheader_scenario_1_title": "Página de lista",
+    "pageheader_scenario_1_desc": "Trilha, título, um resumo de uma linha da lista e a ação principal da página à direita.",
+    "pageheader_scenario_2_title": "Registro com visões",
+    "pageheader_scenario_2_desc": "Um status ao lado do título e abas embaixo para alternar entre as visões do registro.",
+    "pageheader_practice_1": "Mantenha uma única ação primária. As demais, como botões outline ou ghost.",
+    "pageheader_practice_2": "Escreva a descrição com fatos sobre a página (contagens, datas), não como slogan.",
+    "pageheader_practice_3": "Não envolva o PageHeader em um Card. Ele é a moldura do conteúdo e deve ficar mais discreto que ele.",
+    "pageheader_kb": "O PageHeader não tem teclas próprias. Tab percorre os links da trilha, as ações e as abas, nessa ordem."
   }
 }

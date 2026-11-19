@@ -1,0 +1,78 @@
+@layer component {
+  .root {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wim-spacing-sm);
+    min-width: 0;
+  }
+
+  /* 長いパンくずが根の幅を押し広げないように、中身の最小の幅を 0 にする */
+  .breadcrumb {
+    min-width: 0;
+  }
+
+  /* 題と操作。コンテナクエリは使わない ── 根に `container-type` を付けると、中身で幅が決まる器
+     （`layout: centered` など）で中身の幅が 0 と扱われて潰れる（2026-08 の Barcode と同じ形）。
+     代わりに折り返しの flex にする: 題の側が最小の幅を割ると、操作は次の行へ回る。
+     1 行に 1 つだけ残った項目は `space-between` で行の始まりに置かれるので、回った操作は左に揃う。 */
+  .main {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--wim-spacing-md);
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  /* 題の基本の幅は「行の半分か 320px の大きいほう」。320px だけだと、操作が多い中幅（768px）で
+     操作が題の右に残り、長い題が 320px に詰められて 5 行になった。半分を基本にすると、
+     操作が行の半分を超えるときは、操作のほうが次の行へ回る */
+  .heading {
+    display: flex;
+    flex: 1 1 max(50%, var(--wim-width-md));
+    flex-direction: column;
+    gap: var(--wim-spacing-2xs);
+    min-width: 0;
+  }
+
+  .titleRow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--wim-spacing-xs) var(--wim-spacing-sm);
+    align-items: center;
+  }
+
+  /* Title の根は `width: 100%` なので、状態を隣に置くために中身の幅へ戻す。
+     長い題は折り返す（省略しない。2026-11-19 のユーザー判断） */
+  .title {
+    flex: 0 1 auto;
+    width: auto;
+    min-width: 0;
+    margin: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .status {
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+  }
+
+  .description {
+    font-size: var(--wim-font-size-sm);
+    color: var(--wim-color-text-secondary);
+  }
+
+  .actions {
+    display: flex;
+    flex: 0 1 auto;
+    flex-wrap: wrap;
+    gap: var(--wim-spacing-sm);
+    align-items: center;
+    min-width: 0;
+  }
+
+  .tabs {
+    min-width: 0;
+    margin-top: var(--wim-spacing-xs);
+  }
+}

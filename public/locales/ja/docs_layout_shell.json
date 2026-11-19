@@ -122,6 +122,22 @@
     "header_sticky": "固定/スティッキーヘッダー (Sticky)",
     "header_sticky_desc": "sticky または fixed プロパティを使用することで、スクロール時にヘッダーを追従させることができます。",
     "header_title": "ページ上部に配置されるヘッダーおよび主要ナビゲーション要素",
-    "header_variants": "バリエーション"
+    "header_variants": "バリエーション",
+    "pageheader_intro": "PageHeader は、ページの頭です。パンくず・題・状態・説明・操作・タブを、決まった順番と間隔で並べます。題はいつもページの h1 で、大きさは 1 つです。",
+    "pageheader_design_intent": "画面ごとにページの頭を組むと、題の大きさ・パンくずとの間隔・操作の並びが、ページによってずれます。PageHeader は、それを画面の判断から外します ── 部位を渡せば、置き方は部品が決めます。長い題は省略せずに折り返します。そのページが何かを言う、ただ 1 つの行だからです。狭い画面では、操作は題の下の行へ回ります。",
+    "pageheader_choice_self": "メインの領域の中の、ページの頭",
+    "pageheader_choice_header": "アプリ全体の上端の帯（ロゴ・検索・アカウント）",
+    "pageheader_choice_title": "ページの中の、区切りの見出し",
+    "pageheader_a11y_1": "題は h1 で描かれます。ページに h1 が 1 つになるよう、PageHeader はページに 1 つだけ置きます。",
+    "pageheader_a11y_2": "根は header ではなく div です。アプリの Header と並んで、2 つめの banner のランドマークになることはありません。",
+    "pageheader_a11y_3": "部位は読む順に並びます（パンくず・題・状態・説明・操作・タブ）。見た目の順も、どの幅でも同じです。",
+    "pageheader_scenario_1_title": "一覧の画面",
+    "pageheader_scenario_1_desc": "パンくず・題・一覧の 1 行の要約、右にページの主な操作。",
+    "pageheader_scenario_2_title": "表示を切り替える記録",
+    "pageheader_scenario_2_desc": "題の隣に状態、いちばん下に、記録の表示を切り替えるタブ。",
+    "pageheader_practice_1": "primary の操作は 1 つにします。ほかは outline か ghost のボタンにします。",
+    "pageheader_practice_2": "説明は、ページの事実（件数・日付）で書きます。宣伝文句にしないでください。",
+    "pageheader_practice_3": "PageHeader を Card で包まないでください。中身を囲む枠回りなので、中身より静かに置きます。",
+    "pageheader_kb": "PageHeader 自身のキー操作はありません。Tab で、パンくずのリンク・操作・タブの順に移ります。"
   }
 }

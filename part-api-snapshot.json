@@ -43,6 +43,14 @@
       "separator",
       "trigger",
       "value"
+    ],
+    "PageHeader": [
+      "actions",
+      "breadcrumb",
+      "description",
+      "status",
+      "tabs",
+      "title"
     ]
   }
 }
