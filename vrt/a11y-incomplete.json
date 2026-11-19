@@ -134,6 +134,18 @@
         "aria-valid-attr-value"
       ]
     },
+    "components-ai-ailabel--open": {
+      "light": [
+        "aria-hidden-focus",
+        "aria-valid-attr-value",
+        "color-contrast"
+      ],
+      "dark": [
+        "aria-hidden-focus",
+        "aria-valid-attr-value",
+        "color-contrast"
+      ]
+    },
     "components-ai-codediffviewer--applied": {
       "light": [
         "color-contrast"
