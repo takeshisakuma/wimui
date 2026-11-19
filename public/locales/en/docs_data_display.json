@@ -609,6 +609,21 @@
     "comment_keyboard_desc": "The action buttons are in the tab order in the order they are read, and each reply is reached after the comment it answers. There are no custom key bindings: a comment is content with buttons in it, and inventing shortcuts here would fight the reading order people already have.",
     "card_link_title": "Whole-card link (Card.Link)",
     "card_link_desc": "Card.Link is the card's main link, stretched over the whole card: clicking anywhere on the card follows it. Other buttons and links inside the card stay separate targets above it, so no control is nested inside the link (do not wrap the whole card in an <a> with asChild when it holds buttons). Put the link where its text reads as the card's name, usually the title. The focus ring is drawn around the card. Use one per card, together with interactive for hover feedback. Text inside the card cannot be selected by dragging while the link covers it.",
-    "card_link_props": "Card.Link Props"
+    "card_link_props": "Card.Link Props",
+    "persona_intro": "Persona shows a person as one unit: avatar, name, and up to two lines of description. The avatar size sets the text sizes and the gaps, so the same person looks the same in a list, a card or a header.",
+    "persona_design_intent": "Each screen that put an Avatar next to a name picked its own text sizes and gaps, and some gave the avatar the person's name as alternative text, so screen readers read the name twice. Persona fixes both in one place: three sizes with matched text, and an avatar that is always decorative.",
+    "persona_choice_self": "A person with a name and a role or status",
+    "persona_choice_avatar": "Only a picture of the person, the name is elsewhere",
+    "persona_choice_group": "Several people at once, as a stack",
+    "persona_a11y_1": "The name is read once. The avatar is hidden from assistive technology and never gets the name as its alternative text.",
+    "persona_a11y_2": "Presence is read right after the name (“Priya Raman, Online”), not before it. The dot on the avatar is visual only.",
+    "persona_a11y_3": "Persona is not interactive. To make it a link or a button, wrap it; the name becomes the accessible name of the wrapper.",
+    "persona_scenario_1_title": "Member list",
+    "persona_scenario_1_desc": "Size sm in each row, with the role as the description.",
+    "persona_scenario_2_title": "Profile card",
+    "persona_scenario_2_desc": "Size lg with the text below, the role and the last activity as the two lines.",
+    "persona_practice_1": "Use the second line for something that changes (a status, a time), and the first for something that does not (a role, a team).",
+    "persona_practice_2": "Keep one size in one list. Mixing sizes makes some people look more important.",
+    "persona_kb": "Persona has no keys of its own and is not a tab stop."
   }
 }

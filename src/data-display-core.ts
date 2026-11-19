@@ -42,5 +42,6 @@ export * from "./components/data-display/RelativeTime/RelativeTime";
 export * from "./components/data-display/Comment/Comment";
 export * from "./components/data-display/Countdown/Countdown";
 export * from "./components/data-display/Presence/Presence";
+export * from "./components/data-display/Persona/Persona";
 export * from "./components/data-display/Barcode/Barcode";
 export * from "./components/data-display/SelectionBar/SelectionBar";

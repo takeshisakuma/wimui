@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
-import { Avatar, HoverCard, HoverCardContent, HoverCardTrigger } from "wimui";
+import { Avatar, HoverCard, HoverCardContent, HoverCardTrigger, Persona } from "wimui";
 import avatar2 from "@/media/avatar_2.svg";
 
 
@@ -48,23 +48,14 @@ export const Default: Story = {
             <div
               style={{ display: "flex", flexDirection: "column", gap: "12px" }}
             >
-              <Avatar
-                src={avatar2}
-                alt={t("story.hovercard_name")}
+              {/* 名前は Persona が 1 回だけ読ませる。以前は大きいアバターの alt にも名前を入れていて、
+                  開いた面の中で名前が 2 回読まれていた（T414） */}
+              <Persona
                 size="lg"
+                name={t("story.hovercard_name")}
+                description={t("story.hovercard_handle")}
+                avatar={{ src: avatar2 }}
               />
-              <div
-                style={{ display: "flex", flexDirection: "column", gap: "4px" }}
-              >
-                <div style={{ fontWeight: "bold", fontSize: "16px" }}>
-                  {t("story.hovercard_name")}
-                </div>
-                <div
-                  style={{ color: "var(--wim-color-text-secondary)", fontSize: "14px" }}
-                >
-                  @sarah_m
-                </div>
-              </div>
               <div style={{ fontSize: "14px" }}>
                 {t("story.hovercard_bio")}
               </div>

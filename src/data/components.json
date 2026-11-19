@@ -531,6 +531,12 @@
         "descKey": "doc.barcode_desc",
         "pc": true,
         "mobile": true
+      },
+      {
+        "name": "Persona",
+        "descKey": "doc.persona_desc",
+        "pc": true,
+        "mobile": true
       }
     ]
   },

@@ -132,6 +132,7 @@
     "hovercard_hover_me": "Hover me (Instant)",
     "hovercard_instant_desc": "This hover card appears and disappears immediately.",
     "hovercard_name": "Sarah Miller",
+    "hovercard_handle": "@sarah_m",
     "menu_about": "About",
     "menu_account_settings": "Account Settings",
     "menu_active_item": "Active Item",

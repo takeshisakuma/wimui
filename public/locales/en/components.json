@@ -147,7 +147,8 @@
     "selectionBar_desc": "Bar above a table that shows the number of selected rows, the actions for them and a way to clear the selection. Announces the count to screen readers.",
     "confirm_desc": "Opens a confirmation dialog from code with await confirm() and returns true or false.",
     "aiLabel_desc": "Marks a value or a block as produced by AI. Pressing the mark opens an explanation of what the AI did.",
-    "pageHeader_desc": "Head of a page: breadcrumb, title (always h1), status, description, actions and tabs in a fixed order and spacing."
+    "pageHeader_desc": "Head of a page: breadcrumb, title (always h1), status, description, actions and tabs in a fixed order and spacing.",
+    "persona_desc": "Shows a person as one unit: avatar, name and up to two lines of description, with text sizes matched to the avatar. The name is read once."
   },
   "cat": {
     "ai": "AI"

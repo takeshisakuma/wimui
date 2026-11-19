@@ -32,6 +32,11 @@
       "move-menu",
       "move-option"
     ],
+    "Persona": [
+      "description",
+      "name",
+      "secondary-description"
+    ],
     "Select": [
       "dropdown",
       "empty",

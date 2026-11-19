@@ -501,6 +501,15 @@
     "selectionbar_status_paid": "Pago",
     "selectionbar_status_packed": "Embalado",
     "selectionbar_status_on_hold": "Em espera",
-    "selectionbar_grid_label": "Pedidos aguardando envio"
+    "selectionbar_grid_label": "Pedidos aguardando envio",
+    "persona_name": "Priya Raman",
+    "persona_role": "SRE · de plantão esta semana",
+    "persona_activity": "Respondeu há 5 min",
+    "persona_name_2": "Tomás Okafor",
+    "persona_role_2": "Faturamento",
+    "persona_name_3": "Hana Sato",
+    "persona_role_3": "Líder de suporte",
+    "persona_name_long": "Maria Fernanda de Albuquerque Cavalcanti",
+    "persona_role_long": "Gerente regional, Nordeste do Brasil e África lusófona"
   }
 }

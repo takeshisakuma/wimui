@@ -609,6 +609,21 @@
     "comment_keyboard_desc": "Os botões de ação entram na ordem de tabulação na mesma ordem em que são lidos, e cada resposta vem depois do comentário que responde. Não há atalhos próprios: um comentário é conteúdo com botões, e inventar atalhos aqui brigaria com a ordem de leitura que as pessoas já têm.",
     "card_link_title": "Link no cartão inteiro (Card.Link)",
     "card_link_desc": "Card.Link é o link principal do cartão, estendido sobre o cartão inteiro: clicar em qualquer ponto segue o link. Outros botões e links dentro do cartão ficam acima dele, como alvos separados, então nenhum controle fica aninhado no link (não envolva o cartão inteiro em um <a> com asChild quando ele tiver botões). Coloque o link onde o texto funciona como nome do cartão, em geral o título. O anel de foco aparece em volta do cartão. Use um por cartão, junto com interactive para o retorno de hover. Enquanto o link cobre o cartão, o texto dentro dele não pode ser selecionado arrastando.",
-    "card_link_props": "Propriedades de Card.Link"
+    "card_link_props": "Propriedades de Card.Link",
+    "persona_intro": "Persona mostra uma pessoa como uma unidade: avatar, nome e até duas linhas de descrição. O tamanho do avatar define os tamanhos do texto e os espaços, para que a mesma pessoa apareça igual em uma lista, um cartão ou um cabeçalho.",
+    "persona_design_intent": "Cada tela que colocava um Avatar ao lado de um nome escolhia os próprios tamanhos de texto e espaços, e algumas davam ao avatar o nome da pessoa como texto alternativo, fazendo o leitor de tela ler o nome duas vezes. O Persona resolve as duas coisas em um lugar: três tamanhos com o texto combinado e um avatar sempre decorativo.",
+    "persona_choice_self": "Uma pessoa com nome e função ou status",
+    "persona_choice_avatar": "Só a imagem da pessoa, o nome está em outro lugar",
+    "persona_choice_group": "Várias pessoas de uma vez, empilhadas",
+    "persona_a11y_1": "O nome é lido uma vez. O avatar fica oculto para tecnologias assistivas e nunca recebe o nome como texto alternativo.",
+    "persona_a11y_2": "A presença é lida logo após o nome (“Priya Raman, Online”), não antes. O ponto no avatar é apenas visual.",
+    "persona_a11y_3": "O Persona não é interativo. Para torná-lo um link ou botão, envolva-o; o nome vira o nome acessível do elemento.",
+    "persona_scenario_1_title": "Lista de membros",
+    "persona_scenario_1_desc": "Tamanho sm em cada linha, com a função como descrição.",
+    "persona_scenario_2_title": "Cartão de perfil",
+    "persona_scenario_2_desc": "Tamanho lg com o texto abaixo, a função e a última atividade nas duas linhas.",
+    "persona_practice_1": "Use a segunda linha para algo que muda (status, hora) e a primeira para algo que não muda (função, equipe).",
+    "persona_practice_2": "Mantenha um único tamanho em uma lista. Misturar tamanhos faz algumas pessoas parecerem mais importantes.",
+    "persona_kb": "O Persona não tem teclas próprias e não é uma parada de Tab."
   }
 }

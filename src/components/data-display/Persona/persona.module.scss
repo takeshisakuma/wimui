@@ -1,0 +1,71 @@
+@layer component {
+  .root {
+    display: inline-flex;
+    gap: var(--_gap);
+    align-items: center;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  /* 文字を下に置く形。アバターと文字を中央に揃える */
+  .below {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .avatar {
+    display: inline-flex;
+    flex: none;
+  }
+
+  .text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wim-spacing-3xs);
+    min-width: 0;
+  }
+
+  .name {
+    font-size: var(--_name-size);
+    font-weight: var(--wim-font-weight-semibold);
+    line-height: var(--wim-line-height-snug);
+    color: var(--wim-color-text-primary);
+    overflow-wrap: anywhere;
+  }
+
+  .description {
+    font-size: var(--_description-size);
+    line-height: var(--wim-line-height-snug);
+    color: var(--wim-color-text-secondary);
+    overflow-wrap: anywhere;
+  }
+
+  .secondaryDescription {
+    font-size: var(--_secondary-size);
+    line-height: var(--wim-line-height-snug);
+    color: var(--wim-color-text-tertiary);
+    overflow-wrap: anywhere;
+  }
+
+  /* アバターの大きさ 3 段に、名前・補足の文字の大きさと間隔を対応させる（T414） */
+  .sm {
+    --_gap: var(--wim-spacing-xs);
+    --_name-size: var(--wim-font-size-sm);
+    --_description-size: var(--wim-font-size-xs);
+    --_secondary-size: var(--wim-font-size-xs);
+  }
+
+  .md {
+    --_gap: var(--wim-spacing-sm);
+    --_name-size: var(--wim-font-size-md);
+    --_description-size: var(--wim-font-size-sm);
+    --_secondary-size: var(--wim-font-size-xs);
+  }
+
+  .lg {
+    --_gap: var(--wim-spacing-md);
+    --_name-size: var(--wim-font-size-lg);
+    --_description-size: var(--wim-font-size-md);
+    --_secondary-size: var(--wim-font-size-sm);
+  }
+}

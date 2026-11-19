@@ -501,6 +501,15 @@
     "selectionbar_status_paid": "支払い済み",
     "selectionbar_status_packed": "梱包済み",
     "selectionbar_status_on_hold": "保留",
-    "selectionbar_grid_label": "発送待ちの注文"
+    "selectionbar_grid_label": "発送待ちの注文",
+    "persona_name": "Priya Raman",
+    "persona_role": "SRE・今週の当番",
+    "persona_activity": "5 分前に応答",
+    "persona_name_2": "Tomás Okafor",
+    "persona_role_2": "請求の担当",
+    "persona_name_3": "佐藤 花",
+    "persona_role_3": "サポートの責任者",
+    "persona_name_long": "Maria Fernanda de Albuquerque Cavalcanti",
+    "persona_role_long": "地域の責任者（ブラジル北東部とポルトガル語圏アフリカ）"
   }
 }

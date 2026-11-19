@@ -8,6 +8,7 @@ import {
   Barcode,
   Chip,
   Countdown,
+  Persona,
   Presence,
   RelativeTime,
   Tag,
@@ -167,6 +168,32 @@ export const Overview: StoryObj = {
                 <Avatar initials="AF" size={size} intent="neutral" />
               </Presence>
             ))}
+          </ComponentGroup>
+        </ComparisonGrid>
+
+        {/* Persona: アバターの大きさ 3 段と、文字の大きさ・間隔の対応 */}
+        <ComparisonGrid title={t("audit:label_persona")}>
+          <ComponentGroup label={t("audit:label_persona_sizes")} gap="lg">
+            {sizes.map((size) => (
+              <Persona
+                key={size}
+                size={size}
+                name={t("audit:sample_persona_name")}
+                description={t("audit:sample_persona_role")}
+                secondaryDescription={t("audit:sample_persona_activity")}
+                avatar={{ initials: "ID" }}
+                presence="away"
+              />
+            ))}
+          </ComponentGroup>
+          <ComponentGroup label={t("audit:label_persona_below")}>
+            <Persona
+              size="lg"
+              textPosition="below"
+              name={t("audit:sample_persona_name")}
+              description={t("audit:sample_persona_role")}
+              avatar={{ initials: "ID" }}
+            />
           </ComponentGroup>
         </ComparisonGrid>
 

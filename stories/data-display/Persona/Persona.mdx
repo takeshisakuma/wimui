@@ -1,0 +1,78 @@
+import { Meta, Canvas, Controls, Title } from "@storybook/addon-docs/blocks";
+import * as PersonaStories from "./Persona.stories";
+import { T } from "../../T";
+import { Docgen } from "../../Docgen";
+
+<Meta of={PersonaStories} />
+
+<Title />
+
+<p><T k="docs_data_display:doc.persona_intro" /></p>
+
+<Canvas of={PersonaStories.Default} />
+<Controls of={PersonaStories.Default} />
+
+## <T k="common:doc.design_intent_title" />
+
+<p><T k="docs_data_display:doc.persona_design_intent" /></p>
+
+## <T k="common:doc.choice_matrix_title" />
+
+<table>
+  <thead>
+    <tr><th><T k="common:doc.usage" /></th><th><T k="common:doc.recommendation" /></th></tr>
+  </thead>
+  <tbody>
+    <tr><td><T k="docs_data_display:doc.persona_choice_self" /></td><td>Persona</td></tr>
+    <tr><td><T k="docs_data_display:doc.persona_choice_avatar" /></td><td>Avatar</td></tr>
+    <tr><td><T k="docs_data_display:doc.persona_choice_group" /></td><td>AvatarGroup</td></tr>
+  </tbody>
+</table>
+
+<Docgen componentName="Persona" section="anatomy" />
+
+## <T k="common:doc.a11y_spec_title" />
+
+<ul>
+  <li><T k="docs_data_display:doc.persona_a11y_1" /></li>
+  <li><T k="docs_data_display:doc.persona_a11y_2" /></li>
+  <li><T k="docs_data_display:doc.persona_a11y_3" /></li>
+</ul>
+
+## <T k="common:doc.real_world_scenarios_title" />
+
+<table>
+  <thead>
+    <tr><th><T k="common:doc.scenario" /></th><th><T k="common:doc.summary" /></th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong><T k="docs_data_display:doc.persona_scenario_1_title" /></strong></td><td><T k="docs_data_display:doc.persona_scenario_1_desc" /></td></tr>
+    <tr><td><strong><T k="docs_data_display:doc.persona_scenario_2_title" /></strong></td><td><T k="docs_data_display:doc.persona_scenario_2_desc" /></td></tr>
+  </tbody>
+</table>
+
+## <T k="common:doc.best_practices_title" />
+
+<ul>
+  <li><T k="docs_data_display:doc.persona_practice_1" /></li>
+  <li><T k="docs_data_display:doc.persona_practice_2" /></li>
+</ul>
+
+## <T k="common:doc.variations" />
+
+<Canvas of={PersonaStories.WithPresence} />
+<Canvas of={PersonaStories.Sizes} />
+<Canvas of={PersonaStories.TextBelow} />
+<Canvas of={PersonaStories.LongName} />
+
+<Docgen componentName="Persona" section="props" />
+
+<Docgen componentName="Persona" section="tokens" />
+
+## <T k="common:doc.keyboard_nav_title" />
+
+<p><T k="docs_data_display:doc.persona_kb" /></p>
+
+<Docgen componentName="Persona" section="i18n" />
+
+<Docgen componentName="Persona" section="test" />

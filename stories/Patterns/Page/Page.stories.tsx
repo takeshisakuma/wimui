@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../../i18nConstants";
 import {
   Alert,
-  Avatar,
   Badge,
   Box,
   Button,
@@ -18,6 +17,7 @@ import {
   Image,
   Input,
   InputGroup,
+  Persona,
   Rating,
   Result,
   Stack,
@@ -50,6 +50,7 @@ export const DashboardHeader: StoryObj = {
         <style>{`
           @media (max-width: 992px) {
             .desktop-only { display: none !important; }
+            .header-persona [data-part] { display: none !important; }
             .mobile-only { display: block !important; }
             .header-search { width: 100% !important; max-width: 160px; }
           }
@@ -184,33 +185,14 @@ export const DashboardHeader: StoryObj = {
                 }}
               />
             </div>
-            <Stack
-              direction="row"
-              align="center"
-              gap="sm"
+            {/* 名前と所属は Persona が並べる（T414）。狭い幅では、以前と同じく名前と所属を隠してアバターだけ残す */}
+            <Persona
+              className="header-persona"
+              size="sm"
+              name="Aoi Tanaka"
+              description={t("dashboard.header_admin")}
               style={{ cursor: "pointer" }}
-            >
-              <Avatar size="md" />
-              <Stack gap="none" className="desktop-only">
-                <span
-                  style={{
-                    fontSize: "var(--wim-font-size-sm)",
-                    fontWeight: 600,
-                    color: "var(--wim-color-text-primary)",
-                  }}
-                >
-                  Aoi Tanaka
-                </span>
-                <span
-                  style={{
-                    fontSize: "var(--wim-font-size-xs)",
-                    color: "var(--wim-color-text-secondary)",
-                  }}
-                >
-                  {t("dashboard.header_admin")}
-                </span>
-              </Stack>
-            </Stack>
+            />
           </Header.Section>
         </Header>
 
