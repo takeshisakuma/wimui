@@ -18,6 +18,7 @@ import {
   Icon,
   List,
   ListItem,
+  Persona,
   Progress,
   Stack,
   Stats,
@@ -438,26 +439,19 @@ export const Testimonial: StoryObj = {
                   size="md"
                   style={{ lineHeight: 1.6 }}
                 />
-                <Stack direction="row" align="center" gap="md">
-                  {/* 同じ灰色の人型アイコンを 3 枚並べると「置き換え待ち」に見える
-                      （DESIGN.md のセルフレビュー）。名前からイニシャルを出す。 */}
-                  <Avatar
-                    size="md"
-                    initials={p.name
+                {/* 同じ灰色の人型アイコンを 3 枚並べると「置き換え待ち」に見える
+                    （DESIGN.md のセルフレビュー）。名前からイニシャルを出す。
+                    名前は Persona が 1 回だけ読ませる（以前はアバターの alt にも名前を入れ、2 回読まれていた。T414） */}
+                <Persona
+                  name={p.name}
+                  description={p.role}
+                  avatar={{
+                    initials: p.name
                       .split(" ")
                       .map((w) => w[0])
-                      .join("")}
-                    alt={p.name}
-                  />
-                  <Stack gap="none">
-                    <Text
-                      content={p.name}
-                      size="sm"
-                      style={{ fontWeight: 600 }}
-                    />
-                    <Text content={p.role} size="xs" color="text-secondary" />
-                  </Stack>
-                </Stack>
+                      .join(""),
+                  }}
+                />
               </Stack>
             </Card>
           ))}

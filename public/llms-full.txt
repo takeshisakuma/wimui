@@ -4,7 +4,7 @@
 
 ## What this is
 
-**wimui** v0.77.0 — a React 19 component library: 233 documented components across 10 categories, with design tokens, dark mode, i18n (en/ja/pt-BR) and WAI-ARIA compliant a11y. Peer deps: react ^19, react-dom ^19 (plus optional peers for specific components — see package.json).
+**wimui** v0.77.0 — a React 19 component library: 234 documented components across 10 categories, with design tokens, dark mode, i18n (en/ja/pt-BR) and WAI-ARIA compliant a11y. Peer deps: react ^19, react-dom ^19 (plus optional peers for specific components — see package.json).
 
 ## Install & required setup
 
@@ -2660,6 +2660,17 @@ When omitted, both Backspace and Delete work.
     - `defaultEdgeOptions: DefaultEdgeOptions` — Default options applied to new edges
     - `className: string` — Additional CSS class
     - `aria-label: string` — Accessible label for the graph region
+- **Persona** — Shows a person as one unit: avatar, name and up to two lines of description, with text sizes matched to the avatar. The name is read once.
+    - `name: React.ReactNode` (required) — The person's name. Read once; the avatar is never given the name as its alternative text.
+    - `description: React.ReactNode` — First line under the name, such as a role or a team.
+    - `secondaryDescription: React.ReactNode` — Second line under the name, smaller and quieter, such as a status or a time.
+    - `avatar: { /** Image source URL. */ src?: string; /** Initials shown when there is no image. */ initials?: string; /** Icon shown when there is no image and no initials. */ icon?: React.ReactNode; }` — What the avatar shows. The avatar is decorative: the name next to it
+already says who it is.
+    - `presence: "online" | "away" | "busy" | "offline"` — Presence shown on the avatar. Announced right after the name.
+    - `size: "sm" | "md" | "lg"` = "md" — Size of the avatar. The name and description sizes and the gaps follow it.
+@default "md"
+    - `textPosition: "after" | "below"` = "after" — Where the text sits relative to the avatar.
+@default "after"
 - **PivotTable** — Draws aggregated data as a table with multi-level row and column headings, subtotals and grand totals. (aka Pivot, Cross Tab, Crosstab)
     - `rows: PivotTableAxisNode[]` (required) — The row axis as a tree. Groups are drawn as an outline: one indented row per node.
     - `columns: PivotTableAxisNode[]` (required) — The column axis as a tree. Groups become headings that span their columns.

@@ -219,7 +219,8 @@
     "selectionBar_desc": "Barra acima de uma tabela que mostra o número de linhas selecionadas, as ações para elas e uma forma de limpar a seleção. Anuncia a contagem para leitores de tela.",
     "confirm_desc": "Abre uma caixa de diálogo de confirmação pelo código com await confirm() e devolve true ou false.",
     "aiLabel_desc": "Marca um valor ou um bloco como produzido por IA. Ao pressionar a marca, abre uma explicação do que a IA fez.",
-    "pageHeader_desc": "Topo de uma página: trilha, título (sempre h1), status, descrição, ações e abas em ordem e espaçamento fixos."
+    "pageHeader_desc": "Topo de uma página: trilha, título (sempre h1), status, descrição, ações e abas em ordem e espaçamento fixos.",
+    "persona_desc": "Mostra uma pessoa como uma unidade: avatar, nome e até duas linhas de descrição, com o texto no tamanho do avatar. O nome é lido uma vez."
   },
   "effects": {
     "common_vars": "Variáveis Comuns"

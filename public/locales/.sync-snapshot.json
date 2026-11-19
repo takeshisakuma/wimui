@@ -283,6 +283,12 @@
     "label_popconfirm": "Popconfirm",
     "label_popover": "Popover",
     "label_presence": "Presence",
+    "label_persona": "Persona",
+    "label_persona_sizes": "Sizes (text after)",
+    "label_persona_below": "Text below",
+    "sample_persona_name": "Ines Duarte",
+    "sample_persona_role": "Warehouse shift lead",
+    "sample_persona_activity": "On break until 14:30",
     "label_presence_on_avatar": "On an avatar",
     "label_presence_statuses": "States (with label)",
     "label_priority_high": "High Priority",
@@ -1547,7 +1553,8 @@
       "selectionBar_desc": "Bar above a table that shows the number of selected rows, the actions for them and a way to clear the selection. Announces the count to screen readers.",
       "confirm_desc": "Opens a confirmation dialog from code with await confirm() and returns true or false.",
       "aiLabel_desc": "Marks a value or a block as produced by AI. Pressing the mark opens an explanation of what the AI did.",
-      "pageHeader_desc": "Head of a page: breadcrumb, title (always h1), status, description, actions and tabs in a fixed order and spacing."
+      "pageHeader_desc": "Head of a page: breadcrumb, title (always h1), status, description, actions and tabs in a fixed order and spacing.",
+      "persona_desc": "Shows a person as one unit: avatar, name and up to two lines of description, with text sizes matched to the avatar. The name is read once."
     },
     "cat": {
       "ai": "AI"
@@ -3996,7 +4003,22 @@
       "comment_keyboard_desc": "The action buttons are in the tab order in the order they are read, and each reply is reached after the comment it answers. There are no custom key bindings: a comment is content with buttons in it, and inventing shortcuts here would fight the reading order people already have.",
       "card_link_title": "Whole-card link (Card.Link)",
       "card_link_desc": "Card.Link is the card's main link, stretched over the whole card: clicking anywhere on the card follows it. Other buttons and links inside the card stay separate targets above it, so no control is nested inside the link (do not wrap the whole card in an <a> with asChild when it holds buttons). Put the link where its text reads as the card's name, usually the title. The focus ring is drawn around the card. Use one per card, together with interactive for hover feedback. Text inside the card cannot be selected by dragging while the link covers it.",
-      "card_link_props": "Card.Link Props"
+      "card_link_props": "Card.Link Props",
+      "persona_intro": "Persona shows a person as one unit: avatar, name, and up to two lines of description. The avatar size sets the text sizes and the gaps, so the same person looks the same in a list, a card or a header.",
+      "persona_design_intent": "Each screen that put an Avatar next to a name picked its own text sizes and gaps, and some gave the avatar the person's name as alternative text, so screen readers read the name twice. Persona fixes both in one place: three sizes with matched text, and an avatar that is always decorative.",
+      "persona_choice_self": "A person with a name and a role or status",
+      "persona_choice_avatar": "Only a picture of the person, the name is elsewhere",
+      "persona_choice_group": "Several people at once, as a stack",
+      "persona_a11y_1": "The name is read once. The avatar is hidden from assistive technology and never gets the name as its alternative text.",
+      "persona_a11y_2": "Presence is read right after the name (“Priya Raman, Online”), not before it. The dot on the avatar is visual only.",
+      "persona_a11y_3": "Persona is not interactive. To make it a link or a button, wrap it; the name becomes the accessible name of the wrapper.",
+      "persona_scenario_1_title": "Member list",
+      "persona_scenario_1_desc": "Size sm in each row, with the role as the description.",
+      "persona_scenario_2_title": "Profile card",
+      "persona_scenario_2_desc": "Size lg with the text below, the role and the last activity as the two lines.",
+      "persona_practice_1": "Use the second line for something that changes (a status, a time), and the first for something that does not (a role, a team).",
+      "persona_practice_2": "Keep one size in one list. Mixing sizes makes some people look more important.",
+      "persona_kb": "Persona has no keys of its own and is not a tab stop."
     }
   },
   "docs_data_display_complex": {
@@ -11821,7 +11843,16 @@
       "selectionbar_status_paid": "Paid",
       "selectionbar_status_packed": "Packed",
       "selectionbar_status_on_hold": "On hold",
-      "selectionbar_grid_label": "Orders waiting to ship"
+      "selectionbar_grid_label": "Orders waiting to ship",
+      "persona_name": "Priya Raman",
+      "persona_role": "SRE · on call this week",
+      "persona_activity": "Replied 5 min ago",
+      "persona_name_2": "Tomás Okafor",
+      "persona_role_2": "Billing",
+      "persona_name_3": "Hana Sato",
+      "persona_role_3": "Support lead",
+      "persona_name_long": "Maria Fernanda de Albuquerque Cavalcanti",
+      "persona_role_long": "Regional manager, Northeast Brazil and Portuguese-speaking Africa"
     }
   },
   "docs_stories_feedback": {
@@ -12743,6 +12774,7 @@
       "hovercard_hover_me": "Hover me (Instant)",
       "hovercard_instant_desc": "This hover card appears and disappears immediately.",
       "hovercard_name": "Sarah Miller",
+      "hovercard_handle": "@sarah_m",
       "menu_about": "About",
       "menu_account_settings": "Account Settings",
       "menu_active_item": "Active Item",

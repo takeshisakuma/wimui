@@ -136,6 +136,7 @@ export type ComponentsKey =
   | "doc.overlay_base_desc"
   | "doc.pageHeader_desc"
   | "doc.passwordStrength_desc"
+  | "doc.persona_desc"
   | "doc.pivotTable_desc"
   | "doc.presence_desc"
   | "doc.progressRing_desc"

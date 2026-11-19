@@ -7,6 +7,7 @@ import { render, screen, fireEvent, waitFor, cleanup } from "@testing-library/re
 import { AILabel } from "./ai/AILabel/AILabel";
 import { Calendar } from "./data-display/Calendar/Calendar";
 import { PageHeader } from "./layout/PageHeader/PageHeader";
+import { Persona } from "./data-display/Persona/Persona";
 import { KanbanBoard } from "./data-display/Kanban/Kanban";
 import { Select } from "./form/Select/Select";
 
@@ -77,6 +78,12 @@ const RECIPES: Record<string, () => Promise<Set<string>>> = {
         tabs={<nav>Views</nav>}
       />,
     );
+    seenParts(document, seen);
+    return seen;
+  },
+  Persona: async () => {
+    const seen = new Set<string>();
+    render(<Persona name="Priya Raman" description="SRE" secondaryDescription="Replied 5 min ago" />);
     seenParts(document, seen);
     return seen;
   },

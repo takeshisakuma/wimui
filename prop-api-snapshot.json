@@ -7832,6 +7832,56 @@
       "required": false,
       "type": "boolean"
     },
+    "Persona.avatar": {
+      "required": false,
+      "type": "{ /** Image source URL. */ src?: string; /** Initials shown when there is no image. */ initials?: string; /** Icon shown when there is no image and no initials. */ icon?: React.ReactNode; }",
+      "shape": {
+        "icon": {
+          "required": false,
+          "type": "React.ReactNode"
+        },
+        "initials": {
+          "required": false,
+          "type": "string"
+        },
+        "src": {
+          "required": false,
+          "type": "string"
+        }
+      }
+    },
+    "Persona.description": {
+      "required": false,
+      "type": "React.ReactNode"
+    },
+    "Persona.name": {
+      "required": true,
+      "type": "React.ReactNode"
+    },
+    "Persona.presence": {
+      "required": false,
+      "values": [
+        "away",
+        "busy",
+        "offline",
+        "online"
+      ]
+    },
+    "Persona.secondaryDescription": {
+      "required": false,
+      "type": "React.ReactNode"
+    },
+    "Persona.size": {
+      "required": false,
+      "type": "Extract<ComponentSize, \"sm\" | \"md\" | \"lg\">"
+    },
+    "Persona.textPosition": {
+      "required": false,
+      "values": [
+        "after",
+        "below"
+      ]
+    },
     "PhoneInput.aria-describedby": {
       "type": "string"
     },
