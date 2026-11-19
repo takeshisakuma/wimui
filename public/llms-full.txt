@@ -4,7 +4,7 @@
 
 ## What this is
 
-**wimui** v0.76.3 — a React 19 component library: 232 documented components across 10 categories, with design tokens, dark mode, i18n (en/ja/pt-BR) and WAI-ARIA compliant a11y. Peer deps: react ^19, react-dom ^19 (plus optional peers for specific components — see package.json).
+**wimui** v0.76.3 — a React 19 component library: 233 documented components across 10 categories, with design tokens, dark mode, i18n (en/ja/pt-BR) and WAI-ARIA compliant a11y. Peer deps: react ^19, react-dom ^19 (plus optional peers for specific components — see package.json).
 
 ## Install & required setup
 
@@ -837,6 +837,15 @@ elements. Without it, the row is a `div`, which a list may not contain.
     - `asChild: boolean` = false — If true, the list will be rendered as its child, merging its props onto that child.
     - `children: React.ReactNode` — The element that becomes the root (in place of `div`) when `asChild` is set. The items are
 rendered inside it. Ignored without `asChild`.
+- **PageHeader** — Head of a page: breadcrumb, title (always h1), status, description, actions and tabs in a fixed order and spacing.
+    - `title: React.ReactNode` (required) — The page title. Always rendered as the page's `h1` at one fixed size; a
+long title wraps instead of being cut.
+    - `breadcrumb: React.ReactNode` — Breadcrumb shown above the title (usually a `Breadcrumb`).
+    - `status: React.ReactNode` — A short status next to the title, such as a `Badge`.
+    - `description: React.ReactNode` — One or two lines under the title that say what is on the page.
+    - `actions: React.ReactNode` — Page actions, such as `Button`s. They sit to the right of the title and
+move to their own line under it when the header is too narrow.
+    - `tabs: React.ReactNode` — Navigation between the page's views, such as `TabNavigation`, at the bottom.
 - **ScrollArea** — A custom scrollbar component that provides high-performance, cross-browser consistent themes while maintaining a native-like feel.
     - `text: React.ReactNode` — Content to display (alternative to children)
     - `children: React.ReactNode` — Content to display

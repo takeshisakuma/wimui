@@ -136,6 +136,18 @@
     "overflowlist_folder_tax": "確定申告",
     "overflowlist_folder_receipts": "医療費の領収書",
     "overflowlist_hidden_folders": "省略したフォルダ（{{count}} 件）",
-    "overflowlist_container_width": "器の幅: {{width}}"
+    "overflowlist_container_width": "器の幅: {{width}}",
+    "page_header_crumb_expenses": "経費",
+    "page_header_crumb_reports": "申請",
+    "page_header_title": "11 月の経費申請",
+    "page_header_title_long": "2026 年度 第 3 四半期 東北エリア販売店向けキャンペーンの出張・接待費の審査",
+    "page_header_desc": "提出 14 件・レシートの不足で差し戻し 2 件",
+    "page_header_status": "締め切りまで 3 日",
+    "page_header_action_new": "新しい申請",
+    "page_header_action_export": "CSV に書き出す",
+    "page_header_action_policy": "出張規程",
+    "page_header_tab_submitted": "提出済み",
+    "page_header_tab_drafts": "下書き",
+    "page_header_tab_returned": "差し戻し"
   }
 }

@@ -848,6 +848,12 @@
           "Overflow",
           "Overflow Handler"
         ]
+      },
+      {
+        "name": "PageHeader",
+        "descKey": "doc.pageHeader_desc",
+        "pc": true,
+        "mobile": true
       }
     ]
   },

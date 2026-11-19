@@ -1,0 +1,77 @@
+import { Meta, Canvas, Controls, Title } from "@storybook/blocks";
+import * as PageHeaderStories from "./PageHeader.stories";
+import { T } from "../../T";
+import { Docgen } from "../../Docgen";
+
+<Meta of={PageHeaderStories} />
+
+<Title />
+
+<p><T k="docs_layout_shell:doc.pageheader_intro" /></p>
+
+<Canvas of={PageHeaderStories.Default} />
+
+## <T k="common:doc.design_intent_title" />
+
+<p><T k="docs_layout_shell:doc.pageheader_design_intent" /></p>
+
+## <T k="common:doc.choice_matrix_title" />
+
+<table>
+  <thead>
+    <tr><th><T k="common:doc.usage" /></th><th><T k="common:doc.recommendation" /></th></tr>
+  </thead>
+  <tbody>
+    <tr><td><T k="docs_layout_shell:doc.pageheader_choice_self" /></td><td>PageHeader</td></tr>
+    <tr><td><T k="docs_layout_shell:doc.pageheader_choice_header" /></td><td>Header</td></tr>
+    <tr><td><T k="docs_layout_shell:doc.pageheader_choice_title" /></td><td>Title</td></tr>
+  </tbody>
+</table>
+
+<Docgen componentName="PageHeader" section="anatomy" />
+
+## <T k="common:doc.a11y_spec_title" />
+
+<ul>
+  <li><T k="docs_layout_shell:doc.pageheader_a11y_1" /></li>
+  <li><T k="docs_layout_shell:doc.pageheader_a11y_2" /></li>
+  <li><T k="docs_layout_shell:doc.pageheader_a11y_3" /></li>
+</ul>
+
+## <T k="common:doc.real_world_scenarios_title" />
+
+<table>
+  <thead>
+    <tr><th><T k="common:doc.scenario" /></th><th><T k="common:doc.summary" /></th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong><T k="docs_layout_shell:doc.pageheader_scenario_1_title" /></strong></td><td><T k="docs_layout_shell:doc.pageheader_scenario_1_desc" /></td></tr>
+    <tr><td><strong><T k="docs_layout_shell:doc.pageheader_scenario_2_title" /></strong></td><td><T k="docs_layout_shell:doc.pageheader_scenario_2_desc" /></td></tr>
+  </tbody>
+</table>
+
+## <T k="common:doc.best_practices_title" />
+
+<ul>
+  <li><T k="docs_layout_shell:doc.pageheader_practice_1" /></li>
+  <li><T k="docs_layout_shell:doc.pageheader_practice_2" /></li>
+  <li><T k="docs_layout_shell:doc.pageheader_practice_3" /></li>
+</ul>
+
+## <T k="common:doc.variations" />
+
+<Canvas of={PageHeaderStories.WithStatusAndTabs} />
+<Canvas of={PageHeaderStories.LongTitle} />
+<Canvas of={PageHeaderStories.TitleOnly} />
+
+<Docgen componentName="PageHeader" section="props" />
+
+<Docgen componentName="PageHeader" section="tokens" />
+
+## <T k="common:doc.keyboard_nav_title" />
+
+<p><T k="docs_layout_shell:doc.pageheader_kb" /></p>
+
+<Docgen componentName="PageHeader" section="i18n" />
+
+<Docgen componentName="PageHeader" section="test" />

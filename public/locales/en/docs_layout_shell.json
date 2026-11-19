@@ -122,6 +122,22 @@
     "header_sticky": "Fixed/Sticky Header",
     "header_sticky_desc": "Using sticky or fixed properties allows the header to follow as you scroll.",
     "header_title": "Header section for layout top and primary navigation",
-    "header_variants": "Variants"
+    "header_variants": "Variants",
+    "pageheader_intro": "PageHeader is the head of a page: breadcrumb, title, status, description, actions and tabs, in a fixed order and spacing. The title is always the page's h1 at one size.",
+    "pageheader_design_intent": "When every screen builds its own head, the title size, the gap to the breadcrumb and the order of the actions drift from page to page. PageHeader takes those decisions away from the screen: you pass the parts, it places them. A long title wraps instead of being cut, because it is the one line that says what the page is. On a narrow screen the actions move to their own line under the title.",
+    "pageheader_choice_self": "The head of a page inside the main area",
+    "pageheader_choice_header": "The bar at the top of the whole app (logo, search, account)",
+    "pageheader_choice_title": "A heading inside a section of the page",
+    "pageheader_a11y_1": "The title is rendered as h1. Use one PageHeader per page so the page has a single h1.",
+    "pageheader_a11y_2": "The root is a div, not header, so it never becomes a second banner landmark next to the app's Header.",
+    "pageheader_a11y_3": "The parts are in reading order: breadcrumb, title, status, description, actions, tabs. The visual order is the same at every width.",
+    "pageheader_scenario_1_title": "List page",
+    "pageheader_scenario_1_desc": "Breadcrumb, title, a one-line summary of the list, and the page's main action on the right.",
+    "pageheader_scenario_2_title": "Record with views",
+    "pageheader_scenario_2_desc": "A status next to the title and tabs at the bottom to switch between the record's views.",
+    "pageheader_practice_1": "Keep one primary action. Put the rest as outline or ghost buttons.",
+    "pageheader_practice_2": "Write the description as facts about the page (counts, dates), not as a tagline.",
+    "pageheader_practice_3": "Do not wrap PageHeader in a Card. It is chrome around the content and should stay quieter than it.",
+    "pageheader_kb": "PageHeader has no keys of its own. Tab moves through the breadcrumb links, the actions and the tabs in that order."
   }
 }

@@ -6,6 +6,7 @@ import { describe, it, expect, vi } from "vitest";
 import { render, screen, fireEvent, waitFor, cleanup } from "@testing-library/react";
 import { AILabel } from "./ai/AILabel/AILabel";
 import { Calendar } from "./data-display/Calendar/Calendar";
+import { PageHeader } from "./layout/PageHeader/PageHeader";
 import { KanbanBoard } from "./data-display/Kanban/Kanban";
 import { Select } from "./form/Select/Select";
 
@@ -61,6 +62,21 @@ const RECIPES: Record<string, () => Promise<Set<string>>> = {
     await waitFor(() => expect(screen.getByRole("listbox")).toBeInTheDocument());
     seenParts(document, seen);
     fireEvent.change(screen.getByLabelText("Search"), { target: { value: "zzz" } });
+    seenParts(document, seen);
+    return seen;
+  },
+  PageHeader: async () => {
+    const seen = new Set<string>();
+    render(
+      <PageHeader
+        breadcrumb={<nav>Expenses</nav>}
+        title="Reports"
+        status={<span>Open</span>}
+        description="14 submitted"
+        actions={<button type="button">New</button>}
+        tabs={<nav>Views</nav>}
+      />,
+    );
     seenParts(document, seen);
     return seen;
   },

@@ -136,6 +136,18 @@
     "overflowlist_folder_tax": "Tax return",
     "overflowlist_folder_receipts": "Medical receipts",
     "overflowlist_hidden_folders": "Hidden folders ({{count}})",
-    "overflowlist_container_width": "Container: {{width}}"
+    "overflowlist_container_width": "Container: {{width}}",
+    "page_header_crumb_expenses": "Expenses",
+    "page_header_crumb_reports": "Reports",
+    "page_header_title": "November expense reports",
+    "page_header_title_long": "Q3 FY2026 Tohoku dealer campaign: travel and entertainment expenses for review",
+    "page_header_desc": "14 submitted · 2 returned for a missing receipt",
+    "page_header_status": "Closes in 3 days",
+    "page_header_action_new": "New report",
+    "page_header_action_export": "Export CSV",
+    "page_header_action_policy": "Travel policy",
+    "page_header_tab_submitted": "Submitted",
+    "page_header_tab_drafts": "Drafts",
+    "page_header_tab_returned": "Returned"
   }
 }

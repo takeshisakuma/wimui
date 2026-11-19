@@ -24,3 +24,4 @@ export * from "./components/layout/Watermark/Watermark";
 export * from "./components/layout/Dashboard/Dashboard";
 export * from "./components/layout/Toolbar/Toolbar";
 export * from "./components/layout/OverflowList/OverflowList";
+export * from "./components/layout/PageHeader/PageHeader";

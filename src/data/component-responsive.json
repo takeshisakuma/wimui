@@ -190,6 +190,7 @@
     "js"
   ],
   "OverlayBase": [],
+  "PageHeader": [],
   "Pagination": [
     "container"
   ],

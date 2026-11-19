@@ -218,7 +218,8 @@
     "overflowList_desc": "Organiza itens em uma única linha e agrupa os que não cabem em um indicador \"+N\".",
     "selectionBar_desc": "Barra acima de uma tabela que mostra o número de linhas selecionadas, as ações para elas e uma forma de limpar a seleção. Anuncia a contagem para leitores de tela.",
     "confirm_desc": "Abre uma caixa de diálogo de confirmação pelo código com await confirm() e devolve true ou false.",
-    "aiLabel_desc": "Marca um valor ou um bloco como produzido por IA. Ao pressionar a marca, abre uma explicação do que a IA fez."
+    "aiLabel_desc": "Marca um valor ou um bloco como produzido por IA. Ao pressionar a marca, abre uma explicação do que a IA fez.",
+    "pageHeader_desc": "Topo de uma página: trilha, título (sempre h1), status, descrição, ações e abas em ordem e espaçamento fixos."
   },
   "effects": {
     "common_vars": "Variáveis Comuns"
