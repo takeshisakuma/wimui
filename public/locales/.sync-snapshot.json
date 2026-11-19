@@ -35,6 +35,11 @@
     "ai_prompt_placeholder_meeting": "What time is the meeting tomorrow?",
     "ai_response_feedback_check": "AIResponseFeedback States & Interactions",
     "ai_source_citation_check": "SourceCitation & SourceCitationList",
+    "ai_label_check": "AILabel",
+    "ai_label_explanation": "Drafted by the support assistant from the last 3 messages in this ticket.",
+    "label_ai_label_in_field": "Inside a field (suffix)",
+    "ai_label_field_label": "Reply subject",
+    "ai_label_field_value": "Refund for order 48-2210",
     "ai_source_mdn_desc": "Comprehensive web technology reference.",
     "ai_source_no_url_desc": "No URL — rendered as non-interactive card.",
     "ai_source_react_desc": "Official React docs with guides and API reference.",
@@ -1536,7 +1541,8 @@
       "pivotTable_desc": "Draws aggregated data as a table with multi-level row and column headings, subtotals and grand totals.",
       "overflowList_desc": "Lays out items in one row and folds the ones that do not fit into a \"+N\" indicator.",
       "selectionBar_desc": "Bar above a table that shows the number of selected rows, the actions for them and a way to clear the selection. Announces the count to screen readers.",
-      "confirm_desc": "Opens a confirmation dialog from code with await confirm() and returns true or false."
+      "confirm_desc": "Opens a confirmation dialog from code with await confirm() and returns true or false.",
+      "aiLabel_desc": "Marks a value or a block as produced by AI. Pressing the mark opens an explanation of what the AI did."
     },
     "cat": {
       "ai": "AI"
@@ -2489,6 +2495,25 @@
     "doc.aifeedback_scenario_chat": "Chat interface: Render below each assistant message bubble to collect per-message quality signals.",
     "doc.aifeedback_scenario_search": "Search result ranking: Track thumbs-up rates to feed into RLHF pipelines or A/B testing metrics.",
     "doc.aifeedback_scenario_summary": "Document summarisation: Let users mark the summary as helpful or request a revised version via regenerate.",
+    "doc.ailabel_a11y_1": "The button is named “AI-generated” (localized), which contains the visible text, so voice control can target it by what is shown (WCAG 2.5.3).",
+    "doc.ailabel_a11y_2": "The explanation opens as a non-modal dialog named by its heading. Escape or a click outside closes it and returns focus to the label.",
+    "doc.ailabel_a11y_3": "Inside an Input's suffix, the label is part of the field's description, so the field is announced with “AI-generated” after its value.",
+    "doc.ailabel_a11y_4": "The pressable area is at least 24 × 24 px (WCAG 2.5.8) even at size sm; only the mark inside is smaller.",
+    "doc.ailabel_choice_citation": "Show the sources an AI answer was based on",
+    "doc.ailabel_choice_feedback": "Let people rate an AI answer",
+    "doc.ailabel_choice_self": "Show that one value, field or block was produced by AI",
+    "doc.ailabel_design_intent": "Rules on showing AI output (such as the transparency duties in the EU AI Act) ask that people can tell what was generated. The mark is drawn with a border only, not a color, so a field or a cell that AI filled in keeps the same voice as the rest of the screen; the details are one press away instead of always on screen.",
+    "doc.ailabel_intro": "AILabel marks a value or a block as produced by AI. It is a small button that reads “AI”; pressing it opens an explanation that the app provides — which model or assistant made the value, from what, and how to check or change it.",
+    "doc.ailabel_kb_activate": "Opens or closes the explanation.",
+    "doc.ailabel_kb_escape": "Closes the explanation and returns focus to the label.",
+    "doc.ailabel_kb_tab": "Moves focus to the label.",
+    "doc.ailabel_practice_1": "Mark only what AI produced. Once a person has edited or confirmed the value, remove the label.",
+    "doc.ailabel_practice_2": "Write the explanation as facts the person can act on: the source, the model or assistant, and what to check. Avoid a general disclaimer that is the same everywhere.",
+    "doc.ailabel_practice_3": "When a whole screen is generated, label the screen's heading once instead of every value on it.",
+    "doc.ailabel_scenario_1_desc": "Put a size sm label in the suffix of each field the assistant filled, and remove it when the person edits the value.",
+    "doc.ailabel_scenario_1_title": "Form filled in by AI",
+    "doc.ailabel_scenario_2_desc": "Place a size md label next to the heading of a generated summary, and say in the explanation what it was made from and what it does not check.",
+    "doc.ailabel_scenario_2_title": "Generated summary",
     "doc.artifactsoverlay_a11y": "The overlay is a modal-like region. Focus is trapped when open and restored on close.",
     "doc.artifactsoverlay_best_practice_1": "Provide a clear way to close the overlay and return to the chat context.",
     "doc.artifactsoverlay_best_practice_2": "Use the fullscreen toggle for complex code or large diagrams to improve readability.",
@@ -10951,6 +10976,22 @@
       "agent_status_running_msg": "Executing code…",
       "agent_status_thinking_msg": "Searching knowledge base…",
       "agent_status_waiting_msg": "Awaiting tool response…",
+      "ai_label_cat_lodging": "Lodging",
+      "ai_label_cat_meals": "Meals",
+      "ai_label_cat_train": "Train fare",
+      "ai_label_cell_explanation": "Suggested from the merchant name. Edit the row to change it.",
+      "ai_label_col_amount": "Amount",
+      "ai_label_col_category": "Category",
+      "ai_label_col_merchant": "Merchant",
+      "ai_label_field_explanation": "Filled in from the receipt photo. Check it before you submit — you can change it like any other field.",
+      "ai_label_field_label": "Category",
+      "ai_label_field_value": "Train fare",
+      "ai_label_heading": "Trip summary",
+      "ai_label_merchant_cafe": "Kissa Rin, Kokubuncho",
+      "ai_label_merchant_hotel": "Hotel Aoba Sendai",
+      "ai_label_merchant_rail": "JR East",
+      "ai_label_summary": "Two nights in Sendai for the Tohoku dealer visit. Lodging and train fares are within the travel policy; the dinner on Nov 5 has no receipt yet.",
+      "ai_label_summary_explanation": "Written by the expense assistant from the 6 receipts in this report. It does not check amounts against the card statement.",
       "aifeedback_in_context": "AI response with feedback controls",
       "aifeedback_sample_response": "React is a JavaScript library for building user interfaces. It lets you compose complex UIs from small isolated pieces of code called components.",
       "aifeedback_thanks_negative": "Thanks for letting us know.",
@@ -16947,6 +16988,12 @@
       "hooks_group_a11y": "Accessibility",
       "hooks_use_announce": "Announce the result of an action to screen readers (\"Saved\", \"3 results\"). Render the returned region once and keep it rendered from the first paint, then call announce. This is the pattern WIM UI verified with a real screen reader: inserting a new status element together with its text is often not read. Components such as Toast, Kanban and Transfer already announce their own results.",
       "hooks_use_confirm": "Ask the user to confirm an action and wait for the answer: await confirm() resolves to true or false. Use it before an action that cannot be undone. Needs ConfirmProvider."
+    }
+  },
+  "ai": {
+    "ai_label": {
+      "text": "AI",
+      "name": "AI-generated"
     }
   }
 }

@@ -217,7 +217,8 @@
     "pivotTable_desc": "集計済みのデータを、多段の行見出し・列見出しと小計・総計を持つ表として描画します。",
     "overflowList_desc": "項目を 1 行に並べ、入らない分を「+N」にまとめます。",
     "selectionBar_desc": "表の上に置き、選んだ行の数・その行への操作・選択の解除を出すバー。件数の変化をスクリーンリーダーに伝える。",
-    "confirm_desc": "await confirm() でコードから確認のダイアログを開き、true か false を返します。"
+    "confirm_desc": "await confirm() でコードから確認のダイアログを開き、true か false を返します。",
+    "aiLabel_desc": "値やまとまりが AI の出力であることを示す印。押すと、AI が何をしたかの説明が開きます。"
   },
   "effects": {
     "common_vars": "共通変数"

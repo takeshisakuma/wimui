@@ -217,7 +217,8 @@
     "pivotTable_desc": "Desenha dados agregados como uma tabela com cabeçalhos de linha e de coluna em vários níveis, subtotais e totais gerais.",
     "overflowList_desc": "Organiza itens em uma única linha e agrupa os que não cabem em um indicador \"+N\".",
     "selectionBar_desc": "Barra acima de uma tabela que mostra o número de linhas selecionadas, as ações para elas e uma forma de limpar a seleção. Anuncia a contagem para leitores de tela.",
-    "confirm_desc": "Abre uma caixa de diálogo de confirmação pelo código com await confirm() e devolve true ou false."
+    "confirm_desc": "Abre uma caixa de diálogo de confirmação pelo código com await confirm() e devolve true ou false.",
+    "aiLabel_desc": "Marca um valor ou um bloco como produzido por IA. Ao pressionar a marca, abre uma explicação do que a IA fez."
   },
   "effects": {
     "common_vars": "Variáveis Comuns"

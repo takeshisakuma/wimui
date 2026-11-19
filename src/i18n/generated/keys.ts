@@ -2,6 +2,7 @@
 // 有効な component 翻訳キーの union（全部の名前空間）。t() の型は、useWimTranslation に渡した
 // 名前空間から決まる（useWimTranslation.ts の WimKeyOf）。ここは、名前空間をまたいでキーを
 // 受け渡す場所のための型。
+import type { AiKey } from "./ai";
 import type { CommonKey } from "./common";
 import type { ComponentsKey } from "./components";
 import type { DataDisplayKey } from "./data-display";
@@ -10,6 +11,8 @@ import type { LayoutKey } from "./layout";
 import type { NavigationKey } from "./navigation";
 
 export type WimI18nKey =
+  | AiKey
+  | `ai:${AiKey}`
   | CommonKey
   | `common:${CommonKey}`
   | ComponentsKey

@@ -141,9 +141,11 @@ export const PopoverTrigger = React.forwardRef<
     throw new Error("Popover components must be wrapped in <Popover />");
   }
 
-  const childrenRef = (
-    children as React.ReactElement & { ref?: React.Ref<unknown> }
-  ).ref;
+  // React 19 では ref は子の props に入る（`element.ref` は非推奨で、読むと警告が出る）。
+  const childrenRef = React.isValidElement(children)
+    ? ((children.props as { ref?: React.Ref<unknown> }).ref ??
+      (children as React.ReactElement & { ref?: React.Ref<unknown> }).ref)
+    : undefined;
   const ref = useMergeRefs([
     context.refs.setReference,
     propRef,
@@ -164,9 +166,12 @@ export const PopoverTrigger = React.forwardRef<
     const childProps = children.props as Record<string, unknown>;
     // eslint-disable-next-line react-hooks/refs
     const referenceProps = context.getReferenceProps({
-      ref,
       ...props,
       ...(childProps as React.HTMLProps<Element>),
+      // 子の props のあとに置く。React 19 では子の ref も props に入っていて、先に置くと、
+      // 位置合わせに使う ref が子の ref で上書きされ、面が画面の左上に出る（T416 で見つけた）。
+      // 子の ref は上の useMergeRefs で束ねてある。
+      ref,
       id,
       className: classNames(
         className,

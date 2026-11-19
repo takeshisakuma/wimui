@@ -4,7 +4,7 @@
 
 ## What this is
 
-**wimui** v0.76.3 — a React 19 component library: 231 documented components across 10 categories, with design tokens, dark mode, i18n (en/ja/pt-BR) and WAI-ARIA compliant a11y. Peer deps: react ^19, react-dom ^19 (plus optional peers for specific components — see package.json).
+**wimui** v0.76.3 — a React 19 component library: 232 documented components across 10 categories, with design tokens, dark mode, i18n (en/ja/pt-BR) and WAI-ARIA compliant a11y. Peer deps: react ^19, react-dom ^19 (plus optional peers for specific components — see package.json).
 
 ## Install & required setup
 
@@ -437,6 +437,7 @@ export function BillingOverview() {
 ### ai — `import { … } from "wimui/ai"`
 
 - **AgentStatus** — Real-time agent state indicator (thinking / running / waiting)
+- **AILabel** — Marks a value or a block as produced by AI. Pressing the mark opens an explanation of what the AI did.
 - **AIResponseFeedback** — Thumbs-up/down feedback controls and regenerate button for AI responses.
 - **ArtifactsOverlay** — ArtifactsOverlay is a specialized side-panel for displaying large AI-generated content (Artifacts) without interrupting the main chat context.
 - **ChatUI** — A comprehensive set of components for building chat interfaces with support for messages, avatars, timestamps, and interactive input.

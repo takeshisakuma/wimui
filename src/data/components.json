@@ -1846,6 +1846,12 @@
           "Capacity Indicator",
           "Meter"
         ]
+      },
+      {
+        "name": "AILabel",
+        "descKey": "doc.aiLabel_desc",
+        "pc": true,
+        "mobile": true
       }
     ]
   },

@@ -4,6 +4,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { describe, it, expect, vi } from "vitest";
 import { render, screen, fireEvent, waitFor, cleanup } from "@testing-library/react";
+import { AILabel } from "./ai/AILabel/AILabel";
 import { Calendar } from "./data-display/Calendar/Calendar";
 import { KanbanBoard } from "./data-display/Kanban/Kanban";
 import { Select } from "./form/Select/Select";
@@ -29,6 +30,13 @@ const seenParts = (container: ParentNode, into: Set<string>) => {
 
 /** 部品ごとに、全部位を出すまでの手順。描いた DOM から見えた部位名を返す */
 const RECIPES: Record<string, () => Promise<Set<string>>> = {
+  AILabel: async () => {
+    const seen = new Set<string>();
+    render(<AILabel>From the receipt photo.</AILabel>);
+    fireEvent.click(screen.getByRole("button"));
+    seenParts(document, seen);
+    return seen;
+  },
   Calendar: async () => {
     const seen = new Set<string>();
     render(<Calendar defaultValue={new Date(2024, 0, 15)} />);

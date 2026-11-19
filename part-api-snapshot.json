@@ -1,6 +1,11 @@
 {
   "version": 1,
   "parts": {
+    "AILabel": [
+      "content",
+      "mark",
+      "title"
+    ],
     "Calendar": [
       "day",
       "day-grid",
