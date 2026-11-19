@@ -145,7 +145,8 @@
     "pivotTable_desc": "Draws aggregated data as a table with multi-level row and column headings, subtotals and grand totals.",
     "overflowList_desc": "Lays out items in one row and folds the ones that do not fit into a \"+N\" indicator.",
     "selectionBar_desc": "Bar above a table that shows the number of selected rows, the actions for them and a way to clear the selection. Announces the count to screen readers.",
-    "confirm_desc": "Opens a confirmation dialog from code with await confirm() and returns true or false."
+    "confirm_desc": "Opens a confirmation dialog from code with await confirm() and returns true or false.",
+    "aiLabel_desc": "Marks a value or a block as produced by AI. Pressing the mark opens an explanation of what the AI did."
   },
   "cat": {
     "ai": "AI"

@@ -1,0 +1,88 @@
+import { Meta, Canvas, Controls, Title } from "@storybook/blocks";
+import * as AILabelStories from "./AILabel.stories";
+import { T } from "../../T";
+import { Docgen } from "../../Docgen";
+
+<Meta of={AILabelStories} />
+
+<Title />
+
+<p><T k="docs_ai:doc.ailabel_intro" /></p>
+
+<Canvas of={AILabelStories.Default} />
+<Controls of={AILabelStories.Default} />
+
+## <T k="common:doc.design_intent_title" />
+
+<p><T k="docs_ai:doc.ailabel_design_intent" /></p>
+
+## <T k="common:doc.choice_matrix_title" />
+
+<table>
+  <thead>
+    <tr><th><T k="common:doc.usage" /></th><th><T k="common:doc.recommendation" /></th></tr>
+  </thead>
+  <tbody>
+    <tr><td><T k="docs_ai:doc.ailabel_choice_self" /></td><td>AILabel</td></tr>
+    <tr><td><T k="docs_ai:doc.ailabel_choice_citation" /></td><td>SourceCitation</td></tr>
+    <tr><td><T k="docs_ai:doc.ailabel_choice_feedback" /></td><td>AIResponseFeedback</td></tr>
+  </tbody>
+</table>
+
+<Docgen componentName="AILabel" section="anatomy" />
+
+## <T k="common:doc.a11y_spec_title" />
+
+<ul>
+  <li><T k="docs_ai:doc.ailabel_a11y_1" /></li>
+  <li><T k="docs_ai:doc.ailabel_a11y_2" /></li>
+  <li><T k="docs_ai:doc.ailabel_a11y_3" /></li>
+  <li><T k="docs_ai:doc.ailabel_a11y_4" /></li>
+</ul>
+
+## <T k="common:doc.real_world_scenarios_title" />
+
+<table>
+  <thead>
+    <tr><th><T k="common:doc.scenario" /></th><th><T k="common:doc.summary" /></th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong><T k="docs_ai:doc.ailabel_scenario_1_title" /></strong></td><td><T k="docs_ai:doc.ailabel_scenario_1_desc" /></td></tr>
+    <tr><td><strong><T k="docs_ai:doc.ailabel_scenario_2_title" /></strong></td><td><T k="docs_ai:doc.ailabel_scenario_2_desc" /></td></tr>
+  </tbody>
+</table>
+
+## <T k="common:doc.best_practices_title" />
+
+<ul>
+  <li><T k="docs_ai:doc.ailabel_practice_1" /></li>
+  <li><T k="docs_ai:doc.ailabel_practice_2" /></li>
+  <li><T k="docs_ai:doc.ailabel_practice_3" /></li>
+</ul>
+
+## <T k="common:doc.variations" />
+
+<Canvas of={AILabelStories.InField} />
+<Canvas of={AILabelStories.InTableCell} />
+<Canvas of={AILabelStories.Sizes} />
+
+<Docgen componentName="AILabel" section="props" />
+
+<Docgen componentName="AILabel" section="tokens" />
+
+## <T k="common:doc.keyboard_nav_title" />
+
+<table>
+  <thead>
+    <tr><th><T k="common:doc.key" /></th><th><T k="common:doc.summary" /></th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>Tab</code></td><td><T k="docs_ai:doc.ailabel_kb_tab" /></td></tr>
+    <tr><td><code>Space</code> / <code>Enter</code></td><td><T k="docs_ai:doc.ailabel_kb_activate" /></td></tr>
+    <tr><td><code>Escape</code></td><td><T k="docs_ai:doc.ailabel_kb_escape" /></td></tr>
+  </tbody>
+</table>
+
+<Docgen componentName="AILabel" section="i18n" />
+
+<Docgen componentName="AILabel" section="test" />

@@ -4,7 +4,7 @@
 
 ## What this is
 
-**wimui** v0.76.3 — a React 19 component library: 231 documented components across 10 categories, with design tokens, dark mode, i18n (en/ja/pt-BR) and WAI-ARIA compliant a11y. Peer deps: react ^19, react-dom ^19 (plus optional peers for specific components — see package.json).
+**wimui** v0.76.3 — a React 19 component library: 232 documented components across 10 categories, with design tokens, dark mode, i18n (en/ja/pt-BR) and WAI-ARIA compliant a11y. Peer deps: react ^19, react-dom ^19 (plus optional peers for specific components — see package.json).
 
 ## Install & required setup
 
@@ -3490,6 +3490,18 @@ enough on its own.
     - `size: "sm" | "md" | "lg"` = "md" — Size variant
     - `showLabel: boolean` = true — Whether to show the text label next to the indicator
     - `className: string` — Additional CSS class
+- **AILabel** — Marks a value or a block as produced by AI. Pressing the mark opens an explanation of what the AI did.
+    - `children: ReactNode` (required) — What the AI did, shown when the label is pressed — for example which model
+produced the value, from what, and how to check or replace it.
+    - `title: ReactNode` — Heading of the explanation. Defaults to the localized "AI-generated".
+    - `size: "sm" | "md" | "lg"` = "md" — Size of the mark. `sm` fits inside a field or a table cell; `md` sits next
+to a heading or in the corner of a card.
+@default "md"
+    - `placement: "bottom" | "bottom-end" | "bottom-start" | "left" | "left-end" | "left-start" | "right" | "right-end" | "right-start" | "top" | "top-end" | "top-start"` = "bottom-start" — Preferred placement of the explanation.
+@default "bottom-start"
+    - `defaultOpen: boolean` — Opens the explanation on the first render (uncontrolled).
+    - `open: boolean` — Controls whether the explanation is open.
+    - `onOpenChange: (open: boolean) => void` — Called when the explanation opens or closes.
 - **AIResponseFeedback** — Thumbs-up/down feedback controls and regenerate button for AI responses.
     - `feedback: ("positive" | "negative") | null` — Currently selected feedback value (controlled)
     - `defaultFeedback: ("positive" | "negative") | null` = null — Default feedback value (uncontrolled)

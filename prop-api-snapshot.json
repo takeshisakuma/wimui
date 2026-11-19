@@ -1,6 +1,47 @@
 {
   "version": 2,
   "props": {
+    "AILabel.children": {
+      "required": true,
+      "type": "ReactNode"
+    },
+    "AILabel.defaultOpen": {
+      "required": false,
+      "type": "boolean"
+    },
+    "AILabel.onOpenChange": {
+      "required": false,
+      "type": "(open: boolean) => void"
+    },
+    "AILabel.open": {
+      "required": false,
+      "type": "boolean"
+    },
+    "AILabel.placement": {
+      "required": false,
+      "values": [
+        "bottom",
+        "bottom-end",
+        "bottom-start",
+        "left",
+        "left-end",
+        "left-start",
+        "right",
+        "right-end",
+        "right-start",
+        "top",
+        "top-end",
+        "top-start"
+      ]
+    },
+    "AILabel.size": {
+      "required": false,
+      "type": "Extract<ComponentSize, \"sm\" | \"md\" | \"lg\">"
+    },
+    "AILabel.title": {
+      "required": false,
+      "type": "ReactNode"
+    },
     "AIResponseFeedback.defaultFeedback": {
       "required": false,
       "type": "AIFeedbackValue | null"

@@ -7,6 +7,7 @@ export * from "./components/ai/PromptInput/PromptInput";
 export * from "./components/ai/ThoughtProcess/ThoughtProcess";
 export * from "./components/ai/AIResponseFeedback/AIResponseFeedback";
 export * from "./components/ai/SourceCitation/SourceCitation";
+export * from "./components/ai/AILabel/AILabel";
 export * from "./components/ai/CodeBlock/CodeBlock";
 export * from "./components/ai/Terminal/Terminal";
 export * from "./components/ai/AgentStatus/AgentStatus";

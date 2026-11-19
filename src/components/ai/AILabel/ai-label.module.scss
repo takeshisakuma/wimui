@@ -1,0 +1,91 @@
+@use "../../../styles/pressed-mixins" as pressed;
+
+@layer component {
+  /* Popover の包み（inline-block）。行の中や入力欄の横で、文字の並びを崩さない */
+  .anchor {
+    vertical-align: middle;
+  }
+
+  /* 押せる範囲（WCAG 2.5.8 の 24×24）。塗りは中の印だけで、箱は透明 */
+  .root {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: var(--wim-tap-target-min);
+    min-height: var(--wim-tap-target-min);
+    padding: 0;
+    font-family: inherit;
+    color: var(--wim-color-text-secondary);
+
+    /* Input の suffix は pointer-events: none（単位の文字へのクリックを入力欄へ通す）。
+       pointer-events は継がれるので、中に置かれても押せるように、ここで戻す */
+    pointer-events: auto;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    border-radius: var(--wim-radius-component);
+
+    &:hover .mark {
+      color: var(--wim-color-text-primary);
+      background: var(--wim-color-ghost-bg-hover);
+      border-color: var(--wim-color-ghost-border-hover);
+    }
+
+    &:active .mark {
+      @include pressed.ghost;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: var(--wim-opacity-disabled);
+    }
+  }
+
+  /* 印。色で塗らず枠だけにする ── AI の値は「例外」ではなく、中身と同じ声量で読まれてほしい */
+  .mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: var(--wim-font-weight-semibold);
+    line-height: 1;
+    letter-spacing: var(--wim-letter-spacing-wide);
+    white-space: nowrap;
+    border: var(--wim-border-width-thin) solid var(--wim-color-border);
+    border-radius: var(--wim-radius-component);
+    transition:
+      color var(--wim-transition-fast),
+      background-color var(--wim-transition-fast),
+      border-color var(--wim-transition-fast);
+  }
+
+  .sm .mark {
+    padding: var(--wim-spacing-3xs) var(--wim-spacing-2xs);
+    font-size: var(--wim-font-size-3xs);
+  }
+
+  .md .mark {
+    padding: var(--wim-spacing-2xs) var(--wim-spacing-xs);
+    font-size: var(--wim-font-size-2xs);
+  }
+
+  .lg .mark {
+    padding: var(--wim-spacing-2xs) var(--wim-spacing-sm);
+    font-size: var(--wim-font-size-xs);
+  }
+
+  .content {
+    gap: var(--wim-spacing-xs);
+    max-width: min(var(--wim-overlay-max-width-sm), calc(100vw - var(--wim-spacing-2xl)));
+  }
+
+  .title {
+    margin: 0;
+    font-size: var(--wim-font-size-sm);
+    font-weight: var(--wim-font-weight-semibold);
+  }
+
+  .body {
+    font-size: var(--wim-font-size-sm);
+    color: var(--wim-color-text-secondary);
+  }
+}

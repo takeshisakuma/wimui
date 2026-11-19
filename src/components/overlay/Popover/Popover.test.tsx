@@ -21,6 +21,29 @@ describe("Popover", () => {
     expect(screen.getByText("Popover Content")).toBeInTheDocument();
   });
 
+  it("positions the content next to an asChild trigger that has its own ref", async () => {
+    const userRef = { current: null as HTMLButtonElement | null };
+    render(
+      <Popover placement="bottom-start">
+        <PopoverTrigger asChild>
+          <button ref={userRef} type="button">Open</button>
+        </PopoverTrigger>
+        <PopoverContent>Popover Content</PopoverContent>
+      </Popover>,
+    );
+    const trigger = screen.getByRole("button", { name: "Open" });
+    // jsdom はレイアウトを持たないので、引き金の位置だけ与える
+    trigger.getBoundingClientRect = () =>
+      ({ x: 200, y: 100, left: 200, top: 100, right: 240, bottom: 124, width: 40, height: 24, toJSON: () => ({}) }) as DOMRect;
+    fireEvent.click(trigger);
+    const dialog = await screen.findByRole("dialog");
+    // React 19 では子の ref も props に入る。子の props を後から広げると、位置合わせの ref が上書きされ、
+    // 位置が一度も計算されず、面は `translate(0px)` のまま画面の左上に出ていた（T416）。
+    // jsdom の座標そのものは当てにならないので、「計算されて、引き金の下へ動いたか」だけを見る。
+    await waitFor(() => expect(dialog.style.transform).toMatch(/^translate\([\d.]+px, [1-9][\d.]*px\)$/));
+    expect(userRef.current).toBe(trigger);
+  });
+
   it("closes when close button is clicked", async () => {
     render(
       <Popover defaultOpen>

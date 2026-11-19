@@ -9,6 +9,9 @@ import {
   AIResponseFeedback,
   SourceCitation,
   SourceCitationList,
+  AILabel,
+  Input,
+  Group,
   CodeBlock,
   Terminal,
   AgentStatus,
@@ -235,6 +238,25 @@ export const Overview: StoryObj = {
           </ComponentGroup>
           <ComponentGroup label={t("audit:label_source_citation_list")} align="stretch">
             <SourceCitationList sources={sampleSources} />
+          </ComponentGroup>
+        </ComparisonGrid>
+
+        {/* AILabel Check */}
+        <ComparisonGrid title={t("audit:ai_label_check")}>
+          <ComponentGroup label={t("audit:label_size", { size: "sm / md / lg" })}>
+            <Group gap="md" align="center">
+              <AILabel size="sm">{t("audit:ai_label_explanation")}</AILabel>
+              <AILabel size="md">{t("audit:ai_label_explanation")}</AILabel>
+              <AILabel size="lg">{t("audit:ai_label_explanation")}</AILabel>
+            </Group>
+          </ComponentGroup>
+          <ComponentGroup label={t("audit:label_ai_label_in_field")} maxWidth="var(--wim-width-md)">
+            <Input
+              label={t("audit:ai_label_field_label")}
+              defaultValue={t("audit:ai_label_field_value")}
+              fullWidth
+              suffix={<AILabel size="sm">{t("audit:ai_label_explanation")}</AILabel>}
+            />
           </ComponentGroup>
         </ComparisonGrid>
 

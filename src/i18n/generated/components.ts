@@ -105,6 +105,7 @@ export type ComponentsKey =
   | "datepicker.dialog"
   | "daterangepicker.end"
   | "daterangepicker.start"
+  | "doc.aiLabel_desc"
   | "doc.aiResponseFeedback_desc"
   | "doc.autosave_desc"
   | "doc.barcode_desc"
