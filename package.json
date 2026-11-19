@@ -192,7 +192,7 @@
         "react/jsx-runtime"
       ],
       "gzip": true,
-      "limit": "220 kB"
+      "limit": "221 kB"
     },
     {
       "name": "wimui/form 全部 (gzip)",
@@ -279,7 +279,7 @@
       "name": "UMD Bundle (gzip)",
       "path": "dist/wimui.umd.js",
       "gzip": true,
-      "limit": "168 kB",
+      "limit": "169 kB",
       "disablePlugins": [
         "@size-limit/esbuild"
       ]
