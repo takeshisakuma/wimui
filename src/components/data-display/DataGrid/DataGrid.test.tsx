@@ -613,4 +613,66 @@ describe("DataGrid", () => {
     const statusEl = document.querySelector('[role="status"]');
     expect(statusEl).toBeInTheDocument();
   });
+
+  // T420: Tab で入るのは「いまのセル」だけ。セルの間は矢印、セルの中の操作は、いまのセルのものだけが Tab に乗る
+  describe("Tab の止まり先は表の中で 1 つ", () => {
+    const actionCols = [
+      ...mockColumns,
+      {
+        key: "action",
+        title: "Action",
+        render: (_: unknown, row: { id: string }) => <button data-testid={`btn-${row.id}`}>Edit</button>,
+      },
+    ];
+    const selection = { selectedRowKeys: [], onChange: () => {} };
+    const tabbable = (container: HTMLElement) =>
+      [...container.querySelectorAll<HTMLElement>("[tabindex], button, input")].filter(
+        (el) => !el.hasAttribute("disabled") && el.getAttribute("tabindex") !== "-1",
+      );
+
+    it("does not make the table element itself a tab stop", () => {
+      render(<DataGrid columns={mockColumns} data={mockRows} />);
+      expect(screen.getByRole("grid")).not.toHaveAttribute("tabindex");
+    });
+
+    it("leaves only the current cell and what is inside it in the tab order", async () => {
+      const { container } = render(<DataGrid columns={actionCols} data={mockRows} selection={selection} />);
+      const grid = screen.getByRole("grid");
+      // 始めのいまのセルは見出しの全選択のセル。止まり先はそのセルと、中の全選択のチェックボックス
+      await waitFor(() => expect(tabbable(grid)).toHaveLength(2));
+      expect(screen.getByTestId("btn-1")).toHaveAttribute("tabindex", "-1");
+
+      // 1 行目の操作のセルへ移ると、そのセルのボタンだけが Tab に戻る
+      fireEvent.keyDown(grid, { key: "ArrowDown" });
+      fireEvent.keyDown(grid, { key: "End" });
+      await waitFor(() =>
+        expect(container.querySelector('[data-row="0"][data-col="3"]')).toHaveAttribute("tabindex", "0"),
+      );
+      expect(screen.getByTestId("btn-1")).not.toHaveAttribute("tabindex");
+      expect(screen.getByTestId("btn-2")).toHaveAttribute("tabindex", "-1");
+      expect(tabbable(grid)).toHaveLength(2);
+    });
+
+    // 以前は選択の列があると、描画が列の番号を 1 つずらし（data-col が 1 から）、キー操作は 0 から数えていた。
+    // 右矢印は選択の列で 1 回空振りし、最後の列には届かなかった
+    it("reaches every column with the arrow keys when rows can be selected", async () => {
+      const { container } = render(<DataGrid columns={actionCols} data={mockRows} selection={selection} />);
+      const grid = screen.getByRole("grid");
+      const current = () => container.querySelector('[tabindex="0"][data-row]') as HTMLElement;
+      fireEvent.keyDown(grid, { key: "ArrowRight" });
+      await waitFor(() => expect(current().dataset.col).toBe("0"));
+      fireEvent.keyDown(grid, { key: "End" });
+      await waitFor(() => expect(current().dataset.col).toBe(String(actionCols.length - 1)));
+      expect(current()).toHaveTextContent("Action");
+    });
+
+    it("makes the cell the user clicked into the current cell", async () => {
+      const { container } = render(<DataGrid columns={actionCols} data={mockRows} />);
+      fireEvent.focus(screen.getByTestId("btn-3"));
+      await waitFor(() =>
+        expect(container.querySelector('[data-row="2"][data-col="3"]')).toHaveAttribute("tabindex", "0"),
+      );
+      expect(screen.getByTestId("btn-3")).not.toHaveAttribute("tabindex");
+    });
+  });
 });

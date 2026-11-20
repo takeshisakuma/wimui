@@ -1,4 +1,4 @@
-import React, { useMemo, useCallback, useState } from "react";
+import React, { useMemo, useCallback, useState, useLayoutEffect } from "react";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { commonNs } from "@/i18n/generated/common";
 import classNames from "classnames";
@@ -246,11 +246,51 @@ export function DataGrid<T extends Record<string, unknown>>({
   };
 
   // 3. Keyboard Navigation
-  const { focusedCell, handleKeyDown, containerRef } = useDataGridKeyboard(
+  const { focusedCell, setFocusedCell, handleKeyDown, containerRef } = useDataGridKeyboard(
     columns,
     data,
     !!selection,
   );
+
+  // 3b. Tab の止まり先は表の中で 1 つ（T420）。APG の grid と同じく、Tab で入るのは「いまのセル」だけで、
+  // セルの間は矢印で移る。以前は表の本体（`<table>`）も止まり先で、セルの中のチェックボックス・ボタン・
+  // リンクも全部 Tab に残っていた（実測: Patterns/Admin/IntakeQueue の 8 行を通り抜けるのに Tab 35 回）。
+  // セルの中の操作要素は、いまのセルのものだけを Tab に乗せる。利用者の `render` の中身にも効くよう、
+  // 描画のたびに DOM で付け替える。外した要素には元の tabindex を data-wim-tab に覚えさせ、そのセルに戻ったら返す。
+  useLayoutEffect(() => {
+    const grid = containerRef.current;
+    if (!grid) return;
+    const focusables = grid.querySelectorAll<HTMLElement>(
+      'a[href],button,input,select,textarea,[contenteditable=true],[tabindex]:not([data-row])',
+    );
+    for (const el of focusables) {
+      const cell = el.closest<HTMLElement>("[data-row]");
+      if (!cell || cell === el) continue;
+      const isCurrent =
+        Number(cell.dataset.row) === focusedCell.row && Number(cell.dataset.col) === focusedCell.col;
+      if (isCurrent) {
+        if (el.dataset.wimTab !== undefined) {
+          const original = el.dataset.wimTab;
+          if (original === "") el.removeAttribute("tabindex");
+          else el.setAttribute("tabindex", original);
+          delete el.dataset.wimTab;
+        }
+      } else if (el.dataset.wimTab === undefined) {
+        el.dataset.wimTab = el.getAttribute("tabindex") ?? "";
+        el.setAttribute("tabindex", "-1");
+      }
+    }
+  });
+
+  // クリックなどでセルの中にフォーカスが入ったら、そのセルを「いまのセル」にする。表の外へ Tab で
+  // 出て戻ったとき、最後に触ったセルへ戻る（以前は最初のセルのままで、触ったセルと食い違った）
+  const handleGridFocus = (e: React.FocusEvent) => {
+    const cell = (e.target as HTMLElement).closest<HTMLElement>("[data-row]");
+    if (!cell) return;
+    const row = Number(cell.dataset.row);
+    const col = Number(cell.dataset.col);
+    if (row !== focusedCell.row || col !== focusedCell.col) setFocusedCell({ row, col });
+  };
 
   // 4. Infinite Scroll
   const { loaderRef } = useInfiniteScroll(infiniteScroll as DataGridProps<Record<string, unknown>>["infiniteScroll"]);
@@ -290,7 +330,7 @@ export function DataGrid<T extends Record<string, unknown>>({
         <Table
           ref={containerRef}
           onKeyDown={handleKeyDown}
-          tabIndex={0}
+          onFocus={handleGridFocus}
           role="grid"
           aria-label={ariaLabelledBy ? undefined : (ariaLabelAttr ?? ariaLabel ?? t("a11y.data_grid"))}
           aria-labelledby={ariaLabelledBy}
@@ -365,9 +405,9 @@ export function DataGrid<T extends Record<string, unknown>>({
                       onSortChange(col.key, nextDir);
                     }}
                     {...stickyProps}
-                    tabIndex={focusedCell.row === -1 && focusedCell.col === (selection ? colIndex + 1 : colIndex) ? 0 : -1}
+                    tabIndex={focusedCell.row === -1 && focusedCell.col === colIndex ? 0 : -1}
                     data-row={-1}
-                    data-col={selection ? colIndex + 1 : colIndex}
+                    data-col={colIndex}
                   >
                     {col.title}
                   </Table.Head>
@@ -413,8 +453,8 @@ export function DataGrid<T extends Record<string, unknown>>({
                         label={typeof col.title === "string" ? col.title : undefined}
                         {...stickyProps}
                         data-row={rowIndex}
-                        data-col={selection ? colIndex + 1 : colIndex}
-                        tabIndex={focusedCell.row === rowIndex && focusedCell.col === (selection ? colIndex + 1 : colIndex) ? 0 : -1}
+                        data-col={colIndex}
+                        tabIndex={focusedCell.row === rowIndex && focusedCell.col === colIndex ? 0 : -1}
                       >
                         {/* T85/T93: 中身を止めるのは `maxWidth` **だけ**。表は
                             `table-layout: auto` なので、セルの `width` / `max-width` は
