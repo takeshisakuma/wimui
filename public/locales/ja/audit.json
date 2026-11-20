@@ -672,5 +672,14 @@
   "label_overflow_list": "OverflowList（畳む）",
   "label_selectionbar": "選択中のバー（一括操作）",
   "sample_selectionbar_labels": "送り状を印刷",
-  "sample_selectionbar_cancel": "注文を取り消す"
+  "sample_selectionbar_cancel": "注文を取り消す",
+  "label_status": "状態: {{status}}",
+  "ai_chat_parts_check": "ツールの呼び出しと、会話の中のお知らせ",
+  "label_chat_tool_call": "ChatToolCall",
+  "label_chat_system_message": "ChatSystemMessage",
+  "ai_tool_summary": "3 ロット見つかりました",
+  "ai_system_notice_default": "モデルを速いものに切り替えました。",
+  "ai_system_notice_warning": "回答が長さの上限で途切れました。",
+  "ai_system_notice_danger": "回答が届きませんでした。",
+  "label_confirm": "Confirm"
 }
