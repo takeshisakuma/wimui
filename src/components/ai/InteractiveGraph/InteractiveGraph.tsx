@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import {
   ReactFlow,
   Background,
@@ -10,8 +10,6 @@ import {
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 import classNames from "classnames";
-import { useWim } from "@/WimProvider";
-import { getWimTheme, type WimTheme } from "@/theme";
 import styles from "./interactive-graph.module.scss";
 
 export interface InteractiveGraphProps {
@@ -34,26 +32,6 @@ export interface InteractiveGraphProps {
 }
 
 /**
- * Resolve xyflow colorMode from WIM: explicit `data-theme` wins (ThemeToggle /
- * Storybook), otherwise the provider theme (incl. `system`).
- */
-function useFlowColorMode(): WimTheme {
-  const { theme } = useWim();
-  const [attrTheme, setAttrTheme] = useState<WimTheme>(() => getWimTheme());
-
-  useEffect(() => {
-    const root = document.documentElement;
-    const sync = () => setAttrTheme(getWimTheme());
-    sync();
-    const observer = new MutationObserver(sync);
-    observer.observe(root, { attributes: true, attributeFilter: ["data-theme"] });
-    return () => observer.disconnect();
-  }, [theme]);
-
-  return attrTheme !== "system" ? attrTheme : theme;
-}
-
-/**
  * InteractiveGraph provides a canvas for visualizing node-based data.
  * Ideal for RAG knowledge bases, agent workflows, or state machines.
  * Built on @xyflow/react with WIM UI styling.
@@ -68,8 +46,6 @@ const InteractiveGraphContent: React.FC<InteractiveGraphProps> = ({
   showMiniMap = true,
   showControls = true,
 }) => {
-  const colorMode = useFlowColorMode();
-
   const containerStyle = useMemo(
     () => ({
       height,
@@ -83,11 +59,13 @@ const InteractiveGraphContent: React.FC<InteractiveGraphProps> = ({
       className={classNames("wim-interactive-graph", styles.root, className)}
       style={containerStyle}
     >
+      {/* 色のモードは渡さない。React Flow 13 は祖先の `data-theme`（WIM のテーマの契約）を自分で読み、
+          無ければ OS に従う。12 のときは `colorMode` で渡していた（`<html>` しか見ないので、
+          `WimProvider` の `root` を別の要素にしたときは外れていた） */}
       <ReactFlow
         nodes={nodes}
         edges={edges}
         fitView
-        colorMode={colorMode}
       >
         {showGrid && <Background />}
         {showMiniMap && <MiniMap className={styles.minimap} />}

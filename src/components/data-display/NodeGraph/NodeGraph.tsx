@@ -15,6 +15,8 @@ import {
   type EdgeTypes,
   type FitViewOptions,
   type DefaultEdgeOptions,
+  NodeChangeset,
+  EdgeChangeset,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 import { Icon } from "../../media/Icon/Icon";
@@ -151,16 +153,16 @@ export const NodeGraph = React.forwardRef<HTMLDivElement, NodeGraphProps>(
 
     const commitAdd = useCallback(() => {
       if (!canEdit || !name) return;
-      onNodesChange([
-        {
-          type: "add",
-          item: {
-            id: nextNodeId(nodes),
-            position: nextNodePosition(nodes),
-            data: { label: name },
+      const id = nextNodeId(nodes);
+      onNodesChange(
+        new NodeChangeset([
+          {
+            type: "add",
+            id,
+            item: { id, position: nextNodePosition(nodes), data: { label: name } },
           },
-        },
-      ]);
+        ]),
+      );
       setNaming(false);
       setDraft("");
     }, [canEdit, name, nodes, onNodesChange]);
@@ -200,10 +202,10 @@ export const NodeGraph = React.forwardRef<HTMLDivElement, NodeGraphProps>(
         }
       }
       if (edgeIds.size > 0) {
-        onEdgesChange([...edgeIds].map((id) => ({ type: "remove", id })));
+        onEdgesChange(new EdgeChangeset([...edgeIds].map((id) => ({ type: "remove" as const, id }))));
       }
       if (selectedNodeIds.size > 0) {
-        onNodesChange([...selectedNodeIds].map((id) => ({ type: "remove", id })));
+        onNodesChange(new NodeChangeset([...selectedNodeIds].map((id) => ({ type: "remove" as const, id }))));
       }
     }, [canEdit, hasSelection, selectedNodes, selectedEdges, edges, onEdgesChange, onNodesChange]);
 

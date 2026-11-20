@@ -324,3 +324,11 @@ svg.react-flow__connectionline {
   height: unset !important;
 }
 
+/* 背景の SVG は、高さを属性ではなく React Flow の CSS（100%）で持つ。上の unset が当たると
+   SVG の既定の 150px に潰れ、点の模様と地の色が上の 150px にしか出なかった（2026-05 から）。
+   React Flow 13 は外側の `.react-flow` にも地の色を塗るので、ダークでは下だけ色が違って見えた（T403） */
+.react-flow svg.react-flow__background {
+  width: 100% !important;
+  height: 100% !important;
+}
+
