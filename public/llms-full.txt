@@ -763,7 +763,7 @@ The container-query wrapper div is preserved to maintain responsive column behav
     - `justify: "start" | "center" | "end" | "between" | "around" | "stretch"` — Justification of items along the inline (horizontal) axis
     - `flow: "row" | "column" | "dense" | "row dense" | "column dense"` — Grid auto-flow direction
     - `inline: boolean` = false — Whether to render as an inline grid
-- **Group** — Flexible grouping
+- **Group** — Flexible grouping (aka Wrap)
     - `asChild: boolean` — If true, the group will be rendered as its child, merging its props onto that child.
     - `align: "start" | "center" | "end" | "stretch" | "baseline"` = "center" — Vertical alignment
     - `justify: "start" | "center" | "end" | "between" | "around" | "evenly"` = "start" — Horizontal alignment
@@ -1124,7 +1124,7 @@ so the unit does not have to be repeated in the label.
     - `fullWidth: boolean` = false — Whether to take full width of parent
     - `id: string` — Unique ID for the component
     - `labels: { noResults?: React.ReactNode; }` = {} — Labels for internationalization
-- **CopyButton** — Copy to clipboard (aka Copy)
+- **CopyButton** — Copy to clipboard (aka Copy, Clipboard)
     - `value: string` (required) — Text copied to the clipboard
     - `size: "sm" | "md" | "lg"` = "md" — Size of the button
     - `className: string` — Additional class names
@@ -1349,7 +1349,7 @@ resolution of the source image; without a bound a large photo produces a large d
 @default 0.92
     - `crossOrigin: "anonymous" | "use-credentials"` — CORS mode used to load the image. Needed to crop an image served from another origin;
 the server must send matching CORS headers or the image will not load at all.
-- **InlineEdit** — A component that allows users to switch between a view-only mode and an editable mode in-place. (aka Editable Text, Edit In Place)
+- **InlineEdit** — A component that allows users to switch between a view-only mode and an editable mode in-place. (aka Editable Text, Edit In Place, Editable)
     - `value: string` — Current text (controlled)
     - `defaultValue: string` — Initial text (uncontrolled)
     - `onChange: (value: string) => void` — Callback when the text changes while editing
@@ -1614,7 +1614,7 @@ of a radio group. Use with `description` when the options need explaining.
     - `aria-label: string` — Accessible label when no visible label is provided
     - `aria-labelledby: string` — ID of the element that labels the slider
     - `asChild: boolean` = false — Whether to render as a child element.
-- **Rating** — Star rating (aka Star Rating, Rating Indicator, Rating Display)
+- **Rating** — Star rating (aka Star Rating, Rating Indicator, Rating Display, Rating Group)
     - `value: number` — Current value (controlled)
     - `defaultValue: number` = 0 — Default value (uncontrolled)
     - `count: number` = 5 — Total number of stars
@@ -1706,7 +1706,7 @@ Use it when the field already does the same thing from the keyboard.
 so the unit does not have to be repeated in the label.
     - `styles: { root?: string; inner?: string; icon?: string; icons?: string; iconItem?: string; iconButton?: string; }` — Custom styles for internal parts
     - `asChild: boolean` = false — Whether to render as a child element.
-- **SegmentedControl** — Button-style controls for switching between a small set of mutually exclusive options (aka Segmented Buttons, Segmented Picker, Content Switcher)
+- **SegmentedControl** — Button-style controls for switching between a small set of mutually exclusive options (aka Segmented Buttons, Segmented Picker, Content Switcher, Segment Group)
     - `options: Option[]` (required) — List of segment options
     - `value: string` (required) — Selected value
     - `onChange: (value: string) => void` (required) — Callback when the selected value changes
@@ -1810,6 +1810,7 @@ so the unit does not have to be repeated in the label.
     - `toggleLabel: string` (required) — Accessible name for the toggle half. The main half is named by its own text,
 but the toggle only shows a chevron, so it needs one of its own.
 - **Switch** — A binary switch for instantly toggling settings between on and off states (aka Toggle, Toggle Switch)
+  - ⚠️ Not the same as elsewhere: In Radix, shadcn/ui and Ark UI, a "Toggle" is a button that stays pressed (`aria-pressed`) — use a one-item `ToggleGroup` here. WIM's `Switch` is the on/off control that Apple and Material call a toggle.
     - `asChild: boolean` = false — If true, the component will be rendered as its child, merging its props onto that child.
     - `size: "sm" | "md" | "lg"` = "md" — Size of the switch
     - `className: string` — Additional class names
@@ -1827,7 +1828,7 @@ but the toggle only shows a chevron, so it needs one of its own.
     - `error: string` — Error message
     - `required: boolean` — Whether to show the required indicator
     - `disabled: boolean` — Whether the whole group is disabled
-- **TagInput** — Input field for creating free-form tags. (aka Token Field, Chips Input)
+- **TagInput** — Input field for creating free-form tags. (aka Token Field, Chips Input, Tags Input)
     - `value: string[]` — List of tags (controlled)
     - `defaultValue: string[]` = [] — Initial list of tags (uncontrolled)
     - `onChange: (tags: string[]) => void` — Callback when the tags change
@@ -2086,7 +2087,7 @@ type therefore requires one of `label` / `aria-label` / `aria-labelledby`.
 @default false
     - `indeterminate: boolean` = false — If true, shows an indeterminate animation instead of a value.
 @default false
-- **ProgressRing** — ProgressRing description.
+- **ProgressRing** — ProgressRing description. (aka Progress Circle)
     - `value: number` = 0 — Current value of the progress ring.
 @default 0
     - `max: number` = 100 — Maximum value of the progress ring.
@@ -2197,7 +2198,7 @@ follows the theme and never needs a hand-mixed colour.
     - `children: React.ReactNode` (required) — Children to be rendered inside the affix
     - `className: string` — Additional class names
     - `style: React.CSSProperties` — Style attribute
-- **Anchor** — Smooth scroll links (aka Scrollspy, Table of Contents, TableOfContents)
+- **Anchor** — Smooth scroll links (aka Scrollspy, Table of Contents, TableOfContents, TOC)
     - `items: AnchorLinkItem[]` = [] — Array of anchor link configurations
     - `bounds: number` = 5 — Bounding distance (in pixels) for triggering active state
     - `offset: number` = 0 — Offset (in pixels) from top when clicking to scroll
@@ -2233,7 +2234,7 @@ into a "…" button that lists them.
     - `asChild: boolean` — If true, the breadcrumb will be rendered as its child, merging its props onto that child.
     - `children: React.ReactNode` — The element that becomes the breadcrumb's root (in place of `nav`) when
 `asChild` is set. The list of items is rendered inside it. Ignored without `asChild`.
-- **CommandPalette** — Cmd+K search overlay (aka Command Bar, Quick Open, Omnibar)
+- **CommandPalette** — Cmd+K search overlay (aka Command Bar, Quick Open, Omnibar, Command)
     - `children: ReactNode` (required) — Palette parts (CommandPaletteTrigger, CommandPaletteContent, etc.).
     - `open: boolean` — Controlled open state. Use together with onOpenChange.
     - `onOpenChange: (open: boolean) => void` — Called with the next state when the palette is opened or closed.
@@ -2320,7 +2321,7 @@ near the right edge pushes the page into a horizontal scroll. Anchor a
     - `aria-label: string` — Accessible name for the trigger button.
 Lands on the inner `FloatButton`, not on the wrapper `div`.
 Defaults to a translated "Open menu" / "Close menu" (en / ja / pt), following the open state.
-- **Stepper** — Visual sequence steps (aka Progress Indicator)
+- **Stepper** — Visual sequence steps (aka Progress Indicator, Steps)
   - ⚠️ Not the same as elsewhere: In Apple HIG and macOS, a "Stepper" is the control that increments a number — that is `NumberInput` here. WIM's `Stepper` shows progress through a sequence of steps, which is what Material calls a Stepper.
     - `steps: Step[]` = [] — Array of step configurations
     - `current: number` = 0 — Index of the current active step (0-indexed)
@@ -2514,7 +2515,7 @@ body rather than appearing alongside it.
     - `onDelete: (id: string) => void` — Shows a Delete button when set.
     - `actions: React.ReactNode` — Extra actions, placed after the built-in ones.
     - `className: string` — Additional class names
-- **Countdown** — Display the remaining time until a target moment as a live ticking timer, for sale deadlines, OTP resend waits, and maintenance notices.
+- **Countdown** — Display the remaining time until a target moment as a live ticking timer, for sale deadlines, OTP resend waits, and maintenance notices. (aka Timer)
     - `target: Date | string | number` (required) — The moment the countdown ends, as a Date object, ISO 8601 string,
 or epoch milliseconds.
     - `baseDate: Date | string | number` — Reference point used as "now". When set, the countdown is frozen at
@@ -2565,7 +2566,7 @@ drops secondary text below the AA contrast floor.
     - `ariaLabel: string` — Accessibility label for the grid
     - `aria-label: string` — Accessible name for the grid. Takes precedence over `ariaLabel`.
     - `aria-labelledby: string` — ID of the element that labels the grid. Takes precedence over `aria-label`.
-- **DescriptionList** — Key-value pairs
+- **DescriptionList** — Key-value pairs (aka Data List)
     - `children: React.ReactNode` (required) — DescriptionListItem elements
     - `className: string` — Additional class names
     - `layout: "horizontal" | "vertical" | "compact"` = "horizontal" — Layout of terms and descriptions
@@ -2605,7 +2606,7 @@ in; use `"center"` only when the empty state is the only thing in its region.
     - `after: unknown` (required) — JSON value after the change
     - `indent: number` = 2 — Indentation spaces for JSON.stringify (default: 2)
     - `view: "split" | "unified"` — Display mode inherited from CodeDiffViewer
-- **JsonViewer** — Recursive tree viewer and editor for JSON data.
+- **JsonViewer** — Recursive tree viewer and editor for JSON data. (aka JSON Tree View)
     - `data: unknown` (required) — The JSON data to display
     - `expandDepth: number` = 1 — Initial depth to expand
     - `showCopy: boolean` = true — If true, show copy button
@@ -2708,6 +2709,7 @@ with empty spacer rows. Use it for tables with hundreds of rows, together with
     - `totalColumn: boolean` = false — Adds a grand total column at the right edge.
     - `labels: { /** Heading of the grand total row / column and of each subtotal column. */ total?: string; }` — Text of the total headings, for when the built-in translations do not fit.
 - **Presence** — Shows whether a person is online, away, busy, or offline.
+  - ⚠️ Not the same as elsewhere: In Ark UI and Chakra UI, "Presence" is the helper that animates an element in and out as it mounts and unmounts — that is `Transition` here. WIM's `Presence` shows whether a person is online, away, busy or offline.
     - `status: "online" | "away" | "busy" | "offline"` (required) — Availability of the person or resource.
     - `label: string` — Text for the status. Defaults to the localized name of `status`.
     - `showLabel: boolean` = false — Whether the label is shown next to the dot. The label is always exposed to
@@ -3039,7 +3041,7 @@ is marked.
     - `block: boolean` = false — If true, renders as a block (`<pre>`) instead of inline.
 @default false
     - `language: string` — Language identifier appended as a `language-<lang>` class for syntax highlighters.
-- **Highlight** — Text highlighting
+- **Highlight** — Text highlighting (aka Mark)
     - `children: React.ReactNode` (required) — The full text to highlight substrings in.
     - `highlight: string | string[]` (required) — Substring(s) to highlight.
     - `highlightClassName: string` — Custom class name for the highlighted `<mark>` element.
@@ -3131,7 +3133,7 @@ used for "just stop at three lines".
 
 Ignored when `truncate` is set (one line wins; they cannot both apply).
     - `content: React.ReactNode` — Content of the text. Alternative to children (children take precedence only with asChild).
-- **Title** — Possesses visual weight (boldness/size) to indicate page structure.
+- **Title** — Possesses visual weight (boldness/size) to indicate page structure. (aka Heading)
     - `asChild: boolean` = false — If true, the heading will be rendered as its child, merging its props onto that child.
     - `tag: "h1" | "h2" | "h3" | "h4" | "h5" | "h6"` = "h1" — The semantic HTML tag to use.
     - `size: "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl"` = "xl" — The visual size of the title.

@@ -312,6 +312,14 @@ T389 の ⑨ の残りの Ariakit と ④ Headless UI を回した。相手の�
 |---|---|---|---|---|
 | T417 | **作例の画面で手で組んでいるページの頭を、`PageHeader` に置き換える** | 未着手（P3） | 起票 2026-11-19（T415 のあと）。**2026-11-19 ユーザー判断: 置き換える**。作例の画面は題を手で組み、大きさが md / lg / xl とばらばらで、`h1` でない画面もある（2026-11-19 の下調べ: `Title` に Breadcrumb か大きい題を組んでいる Pattern は IntakeQueue・AI・CaptionReview・Form・WholesaleApplication・ImportJob・Marketing・OnCall・Page の 9 つ）。**対象はページの頭になっている画面だけ**に絞る。2026-11-19 に 9 画面を読んで分けた: **対象 5** ＝ IntakeQueue（パンくず＋`h1`＋要約＋操作。そのまま合う）・ImportJob（文字のパンくず＋`h1`）・Page の Dashboard header（ページの題なのに `h2`）・WholesaleApplication（題の上に組織名のラベル＋`h1`＋自動保存の表示）・CaptionReview（題の上にリール名のラベル＋`h3`＋補足。ページの題なのに `h3`）。**対象外 5** ＝ Form の歓迎のカード・Page の Error / Maintenance（中央寄せの案内）・Marketing のヒーロー・OnCall の主役の帯・AI の挨拶。**2026-11-19 ユーザー判断（題の上のラベル）: パンくずへ移す**。WholesaleApplication と CaptionReview の「題の上の小さなラベル」（組織名・リール名）は「どこの中のページか」を言っているので、パンくずの先頭に置く（例: 青葉食品 株式会社 › 取引の申し込み）。PageHeader には口を足さない（説明の行へ移す案・ラベルの口を足す案は採らなかった）。T414（Persona）の PR が Marketing と Page を触るので、そのマージのあとに着手する | 置き換えた画面ごとに: 見える `h1` が 1 つ・題の大きさが PageHeader の 1 段に揃う・VRT の差分をユーザーが見る |
 
+### Chakra UI・Ark UI の部品の名前との突き合わせ（2026-11-20 起票）
+
+`MAINTENANCE.md` 15 の手順で、Chakra UI と Ark UI の部品の名前を 4 つの分け先に通した（記録は 15 の「2026-11-20 の実測（Chakra UI・Ark UI）」）。別名 15 部品・需要待ち 3 個は 15 と `components.json` に書いた。候補として残ったのは次の 1 つ。
+
+| # | 項目 | 優先 | 内容 | 検証方法 |
+|---|---|---|---|---|
+| T418 | **本文へ飛ぶリンク（skip link）を、WIM が持っていない** | 未着手（P2） | 起票 2026-11-20（Chakra UI の SkipNav から）。`src/components` に skip link を描く部品も、`AppShell` の口も無い（`skip` で探して 0 件。作例の画面にも無い）。`AppShell` はヘッダーと横の帯を本文の前に置くので、キーボードの人は本文に着くまで、毎ページそれを Tab で通り抜ける（WCAG 2.4.1 Bypass Blocks・レベル A）。ランドマーク（`header` / `nav` / `main`）があれば読み上げの人は飛べるが、目で見てキーボードを使う人には飛び先が無い。**足すかどうかはユーザーが決める**。足すなら 2 案: ①単体の `SkipLink`（`href="#main"`。フォーカスしたときだけ見える）②`AppShell` に既定で描かせ、`AppShell.Main` に飛び先の id を持たせる。②は既定で全画面に出るので、既定の姿の規則（composition.md の 15 `default_anatomy`）にも当たる | 足すなら: Tab の 1 回目で見え、押すと `main` にフォーカスが移る（E2E）・フォーカスが外れると見えない（VRT）・強制カラーで見える |
+
 ### コンポーネント追加の検討（2026-09-28 起票）
 
 ユーザーが持ち込んだ 5 候補（Swipeable List / Pivot Table / Rich Text Editor / Org Chart / Choropleth Map）を既存の部品と突き合わせた結果。**3 つは既存と重なっていた**（SwipeAction / RichTextEditor / NodeGraph・TreeView）。Choropleth Map は「採らない」と決めて `src/data/not-planned.json` と DESIGN.md「採らないチャート」に載せた（地図データの同梱が国境の政治的立場とサイズを負うこと・面積が値の大きさと一致しないこと。代わりは並べ替えた `BarChart`）。着手順は T275 → T276 → T277 → T278 → T279（T278 は 2026-09-28 にユーザー判断で ⓑ Tiptap に決定）。
