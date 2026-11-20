@@ -1,5 +1,25 @@
 # wimui
 
+## 0.79.0
+
+### Minor Changes
+
+- 51adb4f: **`NodeGraph`（`wimui/data-display/node-graph`）と `InteractiveGraph`（`wimui/ai/interactive-graph`）は、`@xyflow/react` 13 が要るようになった（12 は受けない）。** optional peer の範囲を `^12.0.0` から `^13.0.0` に変えた。この 2 部品を使っているなら、`@xyflow/react` を 13 に上げること。React Flow 13 の変更のうち、利用者の手元に出るもの:
+
+  - `onNodesChange` / `onEdgesChange` は、変更の配列ではなく `NodeChangeset` / `EdgeChangeset` を受ける。`useNodesState` / `useEdgesState` の handler をそのまま渡しているなら、書き換えは要らない。NodeGraph の追加・削除のボタンも、この形で渡す
+  - `fitViewOptions.padding` の数は px として読まれる（12 までは独自の単位）。割合で指定するなら `"10%"` のように渡す。`fitView` の既定の余白は 5% になった
+  - グラフの色は、WIM の `data-theme` を React Flow が自分で読んで合わせる（InteractiveGraph は `colorMode` を渡すのをやめた）
+
+  あわせて、2 部品とも背景の点の模様と地の色が上の 150px にしか出ていなかった欠陥を直した。
+
+### Patch Changes
+
+- f16c960: Blueprint の部品の名前で探しても見つかるよう、15 部品に 15 語の別名を足した（`llms.txt` / `llms-full.txt` の索引に載る）。`Alert` に Callout、`EmptyState` に Non-Ideal State、`CommandPalette` に Omnibar、`Combobox` に Suggest、`InputGroup` に Control Group、`KeyboardShortcuts` に Hotkeys、`DatePicker` に Date Input、`DateRangePicker` に Date Range Input など。Blueprint の DatePicker / DateRangePicker はその場に出す暦の面（WIM の `Calendar` / `RangeCalendar`）なので、`DatePicker` と `DateRangePicker` には取り違えの注意書きを付けた。部品の振る舞いは変わらない。
+- deaa7de: Chakra UI と Ark UI の部品の名前で探しても見つかるよう、15 部品に 15 語の別名を足した（`llms.txt` / `llms-full.txt` の索引に載る）。`CopyButton` に Clipboard、`CommandPalette` に Command、`DescriptionList` に Data List、`InlineEdit` に Editable、`Title` に Heading、`Stepper` に Steps、`TagInput` に Tags Input など。Ark UI の Presence（出入りのアニメーション）と、Radix・shadcn/ui・Ark UI の Toggle（押したままになるボタン）は WIM の同じ名前の部品と中身が違うので、`Presence` と `Switch` に取り違えの注意書きを付けた。部品の振る舞いは変わらない。
+- 5a99bf4: `DataGrid` を Tab で通り抜けるとき、止まるのが「いまのセル」とその中身だけになった。以前は表の本体も止まり先で、セルの中のチェックボックス・ボタン・リンクも全部 Tab に残っていた（8 行の表で Tab 35 回 → 2 回）。セルの間は矢印で移り、セルの中の操作には、そのセルにいるときに Tab で入る。利用者の `render` の中身にも効く。あわせて、選択の列（`selection`）がある表で、矢印が選択の列で 1 回空振りし、最後の列に届かなかった欠陥を直した。キーを続けて押したときに、フォーカスが遅れて戻る競合も直した。
+- 877fdb9: Magic UI の部品の名前で探しても行き先が分かるよう、`llms.txt` / `llms-full.txt` の索引を足した。6 部品に別名（`ProgressRing` に Animated Circular Progress Bar、`AvatarGroup` に Avatar Circles、`TreeView` に File Tree、`CodeDiffViewer` に Code Comparison、`ThemeToggle` に Animated Theme Toggler、`Highlight` に Highlighter）。演出の部品は「採らない」（Not in scope）に 7 つのまとまりで足し、代わりに使う部品を添えた（動く文字・飾りの背景模様・光るボタン・光るカード・機器の枠・情報を運ばない動き・外部の投稿の埋め込み）。部品の振る舞いは変わらない。
+- ab72270: `OtpInput` が、端末の SMS のコードの自動入力を受けるようになった。最初の欄に `autocomplete="one-time-code"` を付け、全部の欄に `inputmode="numeric"`（タッチ端末で数字の鍵盤）を付けた。英字を含むコードには、新しい `inputMode="text"` を渡す。自動入力や入力の補完でコード全体が 1 つの欄に入ったときは、貼り付けと同じく各欄へ分ける（以前は最後の 1 桁しか残らなかった）。1 文字ずつ打つ動きは変わらない。
+
 ## 0.78.0
 
 ### Minor Changes
