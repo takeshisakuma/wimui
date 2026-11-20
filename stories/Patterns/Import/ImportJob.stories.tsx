@@ -5,6 +5,7 @@ import { ALL_NAMESPACES } from "../../i18nConstants";
 import {
   Alert,
   Box,
+  Breadcrumb,
   Button,
   Card,
   Code,
@@ -15,6 +16,7 @@ import {
   Flex,
   Icon,
   LoadingOverlay,
+  PageHeader,
   Progress,
   Result,
   Spinner,
@@ -159,14 +161,15 @@ const ImportJobScreen = ({ initialPhase }: { initialPhase: Phase }) => {
       <div className="importjob-column">
         <Stack gap="2xl">
           {/* クローム。primary の面は置かない（主役は下のパネル）。 */}
-          <Stack gap="3xs">
-            <Text size="sm" color="text-secondary">
-              {r("breadcrumb")}
-            </Text>
-            <Title tag="h1" size="lg">
-              {r("title")}
-            </Title>
-          </Stack>
+          <PageHeader
+            breadcrumb={
+              <Breadcrumb
+                size="sm"
+                items={[{ label: r("breadcrumb_intake"), href: "#" }, { label: r("breadcrumb_upload") }]}
+              />
+            }
+            title={r("title")}
+          />
 
           {/* 主役。状態ごとに中身が丸ごと入れ替わる。
               `position="relative"` は LoadingOverlay のため（`fixed={false}` は

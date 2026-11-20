@@ -21,6 +21,7 @@ import {
   IconButton,
   InlineEdit,
   MultiSelect,
+  PageHeader,
   Popconfirm,
   RelativeTime,
   SearchInput,
@@ -30,7 +31,6 @@ import {
   Stack,
   Tag,
   Text,
-  Title,
   Toolbar,
   Tooltip,
   TooltipContent,
@@ -358,30 +358,30 @@ function IntakeQueue({
     <Box bg="surface-app" py="4xl">
       <Container size="xl">
         <Stack gap="2xl">
-          <Stack gap="sm">
-            <Breadcrumb
-              size="sm"
-              items={[
-                { label: t("intake.breadcrumb_intake"), href: "#" },
-                { label: t("intake.breadcrumb_queue") },
-              ]}
-            />
-            <Group justify="between" align="end" gap="lg" wrap="wrap">
-              <Stack gap="2xs">
-                <Title tag="h1" size="lg">
-                  {t("intake.title")}
-                </Title>
-                {loading ? (
+          <PageHeader
+            breadcrumb={
+              <Breadcrumb
+                size="sm"
+                items={[
+                  { label: t("intake.breadcrumb_intake"), href: "#" },
+                  { label: t("intake.breadcrumb_queue") },
+                ]}
+              />
+            }
+            title={t("intake.title")}
+            description={
+              loading ? (
+                // Skeleton の text は高さ 0.8em で、先頭の子だと上の余白も 0。そのまま置くと題に貼り付き、
+                // 読み込み後に 1 行ぶんの文と入れ替わって下が跳ぶ。行ボックスの高さを取り、その真ん中に置く
+                <div style={{ paddingBlock: "calc((1lh - 0.8em) / 2)" }}>
                   <Skeleton variant="text" width="18rem" />
-                ) : (
-                  <Text size="sm" color="text-secondary">
-                    {t("intake.summary", { total: TOTAL_LOTS, hold: holdCount })}
-                  </Text>
-                )}
-              </Stack>
-              <Button icon="PlusIcon">{t("intake.action_register")}</Button>
-            </Group>
-          </Stack>
+                </div>
+              ) : (
+                t("intake.summary", { total: TOTAL_LOTS, hold: holdCount })
+              )
+            }
+            actions={<Button icon="PlusIcon">{t("intake.action_register")}</Button>}
+          />
 
           <Stack gap="md">
             <Toolbar>

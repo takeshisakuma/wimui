@@ -193,7 +193,8 @@
     "title": "A biblioteca de componentes que cuida da parte chata."
   },
   "import": {
-    "breadcrumb": "Entrada / Envio em lote",
+    "breadcrumb_intake": "Entrada",
+    "breadcrumb_upload": "Envio em lote",
     "col_column": "Coluna",
     "col_line": "Linha",
     "col_reason": "Motivo da recusa",

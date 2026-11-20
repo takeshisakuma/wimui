@@ -6,6 +6,7 @@ import {
   Alert,
   Autosave,
   Box,
+  Breadcrumb,
   Button,
   Card,
   Cascader,
@@ -33,6 +34,7 @@ import {
   Link,
   NumberInput,
   OtpInput,
+  PageHeader,
   PhoneInput,
   RadioGroup,
   Result,
@@ -250,17 +252,17 @@ function WholesaleApplication({
     <Box bg="surface-app" py="4xl">
       <Container size="lg">
         <Stack gap="2xl">
-          <Group justify="between" align="end" gap="lg">
-            <Stack gap="2xs">
-              <Text size="sm" color="text-tertiary">
-                {t("wholesale.org")}
-              </Text>
-              <Title tag="h1" size="lg">
-                {t("wholesale.title")}
-              </Title>
-            </Stack>
-            <Autosave status="saved" savedAt={SAVED_AT} />
-          </Group>
+          {/* 組織名は「どこの中のページか」なので、題の上のラベルではなくパンくずの先頭に置く（T417） */}
+          <PageHeader
+            breadcrumb={
+              <Breadcrumb
+                size="sm"
+                items={[{ label: t("wholesale.org"), href: "#" }, { label: t("wholesale.title") }]}
+              />
+            }
+            title={t("wholesale.title")}
+            status={<Autosave status="saved" savedAt={SAVED_AT} />}
+          />
 
           <Grid
             cols={{ base: 1, lg: "minmax(0, 14rem) minmax(0, 1fr)" }}

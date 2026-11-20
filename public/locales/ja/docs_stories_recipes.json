@@ -193,7 +193,8 @@
     "title": "退屈な部分は、コンポーネントに任せる。"
   },
   "import": {
-    "breadcrumb": "入荷 / 一括登録",
+    "breadcrumb_intake": "入荷",
+    "breadcrumb_upload": "一括登録",
     "col_column": "列",
     "col_line": "行",
     "col_reason": "除外の理由",
