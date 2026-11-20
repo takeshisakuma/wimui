@@ -78,17 +78,6 @@ updates:
       # storybook-react-i18next が i18next ^27 と react-i18next ^18 を受けたら、**i18next と react-i18next を 1 PR で**上げ、両方の ignore を外す。
       - dependency-name: "react-i18next"
         update-types: ["version-update:semver-major"]
-      # stylelint 18 は **stylelint-config-recess-order が追随するまで上げられない**（2026-11-11・#1101）。
-      # stylelint-config-recess-order@7.10.0（現行 latest）の peer が stylelint "^16.18.0 || ^17.0.0" までで、
-      # npm ci が ERESOLVE で止まる。peer が ^18 を含んだら本 ignore を外す
-      # （ほかの stylelint-config-* / stylelint-scss / stylelint-order の peer も同時に確かめること）。
-      - dependency-name: "stylelint"
-        update-types: ["version-update:semver-major"]
-      # stylelint-config-standard-scss 18 は peer が stylelint "^18.0.0" だけなので、上の stylelint と同じ壁で止まる（2026-11-17・#1201）。
-      # こちらだけ上げると npm ci が ERESOLVE で止まり、CI が全滅する（20 ジョブとも依存のインストールで落ちた）。
-      # stylelint-config-recess-order が stylelint ^18 を受けたら、**stylelint と stylelint-config-standard-scss を 1 PR で**上げ、両方の ignore を外す。
-      - dependency-name: "stylelint-config-standard-scss"
-        update-types: ["version-update:semver-major"]
       # @xyflow/react 13 は **NodeGraph / InteractiveGraph で動くかを、まだ確かめていない**（2026-11-17）。
       # 13.0.0 は 2026-11-16 に出て、週次の `check:peer-majors` が落ちた（peer が `>=12.0.0` で、13 を許していた）。
       # peer を `^12.0.0` に絞って止めてある。13 は依存に `react-compiler-runtime` が加わり、
