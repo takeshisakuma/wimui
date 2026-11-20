@@ -1855,7 +1855,7 @@ but the toggle only shows a chevron, so it needs one of its own.
     - `required: boolean` — Whether to show the required indicator
     - `layout: "vertical" | "horizontal"` — Layout direction of label and field
     - `width: ("xs" | "sm" | "md" | "lg" | "xl") | string | number` — Fixed width of the field (width token, CSS value, or number in px)
-- **ThemeToggle** — Light / dark / system theme switcher
+- **ThemeToggle** — Light / dark / system theme switcher (aka Animated Theme Toggler)
     - `value: "light" | "dark" | "system"` — Selected mode (controlled)
     - `defaultValue: "light" | "dark" | "system"` = "system" — Initially selected mode (uncontrolled)
     - `onChange: (mode: ("light" | "dark" | "system")) => void` — Callback when the mode changes
@@ -2087,7 +2087,7 @@ type therefore requires one of `label` / `aria-label` / `aria-labelledby`.
 @default false
     - `indeterminate: boolean` = false — If true, shows an indeterminate animation instead of a value.
 @default false
-- **ProgressRing** — ProgressRing description. (aka Progress Circle)
+- **ProgressRing** — ProgressRing description. (aka Progress Circle, Animated Circular Progress Bar)
     - `value: number` = 0 — Current value of the progress ring.
 @default 0
     - `max: number` = 100 — Maximum value of the progress ring.
@@ -2379,7 +2379,7 @@ scans stay green while the bar hangs outside its parent.
     - `size: "sm" | "md" | "lg"` = "md" — Size of the avatar
     - `shape: "circle" | "rounded"` = "circle" — Shape of the avatar
     - `intent: "primary" | "success" | "warning" | "danger" | "info" | "neutral"` — Intent (semantic color) applied to the avatar
-- **AvatarGroup** — Stacked avatars (aka Face Pile)
+- **AvatarGroup** — Stacked avatars (aka Face Pile, Avatar Circles)
     - `children: React.ReactNode` (required) — Avatar elements to group
     - `max: number` — Maximum number of avatars to show before collapsing into a count. Ignored with `overflow="collapse"`.
     - `size: "sm" | "md" | "lg"` = "md" — Size applied to the avatars
@@ -2882,7 +2882,7 @@ this is given; without it the diagram is read-only.
 anything is measured; long text is truncated and read in full by assistive technology.
     - `nodeHeight: number` = 64 — Card height in px.
     - `labels: { /** Accessible name of the collapse / expand button. */ expand?: (label: string) => string; collapse?: (label: string) => string; }` — Accessible names of the collapse / expand button, for when the built-in translations do not fit.
-- **TreeView** — Hierarchical data (aka Outline View, Tree, Flat Tree)
+- **TreeView** — Hierarchical data (aka Outline View, Tree, Flat Tree, File Tree)
     - `children: React.ReactNode` — JSX-based items (children API). Use this when not using `nodes`.
     - `nodes: TreeViewNode[]` — Node array for data-driven mode.
     - `className: string` — Additional class names
@@ -3041,7 +3041,7 @@ is marked.
     - `block: boolean` = false — If true, renders as a block (`<pre>`) instead of inline.
 @default false
     - `language: string` — Language identifier appended as a `language-<lang>` class for syntax highlighters.
-- **Highlight** — Text highlighting (aka Mark)
+- **Highlight** — Text highlighting (aka Mark, Highlighter)
     - `children: React.ReactNode` (required) — The full text to highlight substrings in.
     - `highlight: string | string[]` (required) — Substring(s) to highlight.
     - `highlightClassName: string` — Custom class name for the highlighted `<mark>` element.
@@ -3554,7 +3554,7 @@ to a heading or in the corner of a card.
 Pass a CSS value (e.g. "300px") or a number of lines (e.g. 20).
 When set, an expand/collapse toggle is shown.
     - `className: string` — Additional CSS class
-- **CodeDiffViewer** — Displays code changes as a side-by-side or unified diff, with line-level highlighting and Apply/Reject actions.
+- **CodeDiffViewer** — Displays code changes as a side-by-side or unified diff, with line-level highlighting and Apply/Reject actions. (aka Code Comparison)
     - `before: string` (required) — Code before the change
     - `after: string` (required) — Code after the change
     - `language: string` — Language label shown in header
@@ -3790,9 +3790,16 @@ Exported hooks. Prefer them over hand-rolled equivalents (`matchMedia` listeners
 These exist in other systems' vocabularies and are **decisions, not gaps**. Do not hand-roll them into a wimui screen; the alternative given is the supported way to express the same intent.
 
 - **Parallax Scrolling** (aka Parallax, Scroll Parallax, Parallax Hero) — Backgrounds moving at a different speed from the foreground. The motion does not correspond to any change of state, which is what this system animates. If the goal is to show scroll position, show the position. Use `ScrollProgress` instead.
-- **Text Scramble** (aka Scramble Text, Decrypt Text, Glitch Text) — Randomising characters before settling on the real string. The reader parses the same sentence twice and gets nothing for the lost legibility. The one case where text legitimately arrives character by character is model output, which StreamingText already covers. Use `StreamingText` instead.
+- **Text Scramble** (aka Scramble Text, Decrypt Text, Glitch Text, Hyper Text) — Randomising characters before settling on the real string. The reader parses the same sentence twice and gets nothing for the lost legibility. The one case where text legitimately arrives character by character is model output, which StreamingText already covers. Use `StreamingText` instead.
 - **Spring Animation** (aka Spring Physics, Springs, Physics-based Animation) — A physics engine (mass / stiffness / damping props solved in a rAF loop). The bounce curve itself already exists as the `--wim-easing-spring` token, which is what press and swipe-return use. Adding the engine would put physics parameters into the public contract and move motion from CSS to JS. Use `--wim-easing-spring` instead.
 - **Choropleth Map** (aka Choropleth, Filled Map, Region Map, Geo Map) — A map shading regions by value. Shipping boundary data would put its size and a political stance on disputed borders into a UI library, and large regions dominate regardless of their values. Regions are compared more accurately in a sorted bar chart. Use `BarChart` instead.
+- **Animated Text Effects** (aka Animated Gradient Text, Animated Shiny Text, Aurora Text, Morphing Text, Sparkles Text, Spinning Text, Text Reveal, Typing Animation, Word Rotate, Line Shadow Text, Comic Text, Kinetic Text, Video Text, Text 3D Flip, Text Animate, Dia Text Reveal) — Text that shimmers, rotates, morphs or types itself out. It cannot be read while it moves, and keeps moving after it has been read. Emphasis is a matter of weight, colour and size; the one case where text legitimately arrives piece by piece is model output, which StreamingText covers. Use `Text` instead.
+- **Decorative Background Pattern** (aka Dot Pattern, Grid Pattern, Animated Grid Pattern, Interactive Grid Pattern, Flickering Grid, Hexagon Pattern, Striped Pattern, Retro Grid, Noise Texture, Dither Field, Light Rays, Meteors, Particles, Warp Background, Glyph Matrix, Backlight, Floating 3D Particles, Ripple) — Patterns and particles laid behind content that carry no meaning of their own. They make the background under text uneven, which costs contrast, and moving ones compete with real motion in the foreground. Separate surfaces with the surface tokens and borders instead. Use `Box` instead.
+- **Animated Button Effects** (aka Shimmer Button, Shiny Button, Rainbow Button, Pulsating Button, Ripple Button, Interactive Hover Button, Animated Subscribe Button, Confetti, Cool Mode) — Buttons that shimmer, pulse, ripple or burst into confetti. They only attract attention before the click, and once several buttons do it the primary action is lost. Rank actions with Button variants, and report the result through the state change and an announcement. Use `Button` instead.
+- **Glow and Spotlight Card** (aka Magic Card, Neon Gradient Card, Shine Border, Glare Hover, Lens, Progressive Blur, Blur Fade, Pixel Image) — Cards with glowing borders, a spotlight that follows the pointer, or content that fades in from a blur. Nothing happens for touch or keyboard users, and for pointer users it does not help tell the cards apart. Use Card variants and the heading inside the card. Use `Card` instead.
+- **Device Mockup** (aka iPhone Mockup, Android Mockup, Safari Mockup, Browser Frame, Device Frame) — Phone and browser frames around a screenshot. It is marketing artwork rather than an interface component, and the frames go out of date with every device generation. Show the screenshot with Image, with the frame baked into the image if one is needed. Use `Image` instead.
+- **Decorative Motion Graphics** (aka Globe, Icon Cloud, Orbiting Circles, Animated Beam, Dock, Scroll Based Velocity, Animated List, Dotted Map, Smooth Cursor, Pointer Effect, Hero Video Dialog) — Spinning globes, floating icon clouds, beams between logos, a magnifying dock, a custom cursor: motion that carries no information. It pulls attention away from the content and is a burden for people who reduce motion. Show relationships with NodeGraph, items with List, and a video with Video inside a Dialog. Use `List` instead.
+- **Social Post Embed** (aka Tweet Card, Client Tweet Card, Tweet Embed) — Embedding a post from a social network in that network's own look. Its appearance and the way it is fetched change on the provider's schedule, which a design system cannot keep up with. Quote it in a Blockquote or Card with a link to the source. Use `Card` instead.
 
 ---
 **One component, matching your installed version:** the package ships `dist/llms/<Component>.md` — every prop with its type and default, its sub-components, and the design tokens it reads (e.g. `node_modules/wimui/dist/llms/Select.md`, also exported as `wimui/llms/Select.md`). The hosted copy of this file tracks main and can be ahead of the release you installed.

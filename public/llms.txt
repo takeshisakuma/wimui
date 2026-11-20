@@ -286,7 +286,7 @@ export function BillingOverview() {
 - **SwitchGroup** — Shared state switches
 - **TagInput** — Input field for creating free-form tags. (aka Token Field, Chips Input, Tags Input)
 - **Textarea** — Multi-line input fields for longer text entries like descriptions or comments
-- **ThemeToggle** — Light / dark / system theme switcher
+- **ThemeToggle** — Light / dark / system theme switcher (aka Animated Theme Toggler)
 - **TimePicker** — Time selection
 - **ToggleGroup** — Toggleable buttons
 - **Transfer** — Move items between lists
@@ -305,7 +305,7 @@ export function BillingOverview() {
 - **Notification** — Rich notification card
 - **Progress** — Progress bar (aka Progress Bar)
   - ⚠️ Not the same as elsewhere: Material's "Progress Indicator" covers indeterminate spinners as well. WIM's `Progress` is determinate and linear only — for the indeterminate case use `Spinner`.
-- **ProgressRing** — ProgressRing description. (aka Progress Circle)
+- **ProgressRing** — ProgressRing description. (aka Progress Circle, Animated Circular Progress Bar)
 - **Result** — Task status indicator (aka Full Page Error)
 - **ScrollProgress** — Reading progress indicator
 - **Skeleton** — Placeholder for content loading states. (aka Shimmer)
@@ -338,7 +338,7 @@ export function BillingOverview() {
 
 - **Accordion** — Collapsible panels (aka Disclosure, Disclosure Group, Expander)
 - **Avatar** — Profile initials/pics (aka User Avatar)
-- **AvatarGroup** — Stacked avatars (aka Face Pile)
+- **AvatarGroup** — Stacked avatars (aka Face Pile, Avatar Circles)
 - **Badge** — Indicators or counts (aka Icon Indicator)
 - **Barcode** — Draws a scannable Code 128 or EAN-13 barcode.
 - **Calendar** — Calendar view
@@ -380,7 +380,7 @@ export function BillingOverview() {
 - **Tag** — Compact visual descriptors used for labeling or categorizing content (aka Interaction Tag)
 - **Timeline** — A vertical list mapping events or history in chronological order
 - **TreeDiagram** — Lays out a tree such as an org chart from the data alone, with parents centred over their children and collapsible subtrees. (aka Org Chart, Tree Chart, Hierarchy Diagram)
-- **TreeView** — Hierarchical data (aka Outline View, Tree, Flat Tree)
+- **TreeView** — Hierarchical data (aka Outline View, Tree, Flat Tree, File Tree)
 - **VirtualList** — Efficiently renders large lists by virtualizing off-screen items
 
 ### overlay — `import { … } from "wimui/overlay"`
@@ -404,7 +404,7 @@ export function BillingOverview() {
 
 - **Blockquote** — Visually separates external quotes or text to be emphasized.
 - **Code** — Code snippets
-- **Highlight** — Text highlighting (aka Mark)
+- **Highlight** — Text highlighting (aka Mark, Highlighter)
 - **Kbd** — Keyboard shortcuts (aka Key Combo)
 - **Label** — Descriptive text for input fields, including required/optional marks
 - **Legend** — Group title
@@ -450,7 +450,7 @@ export function BillingOverview() {
 - **ArtifactsOverlay** — ArtifactsOverlay is a specialized side-panel for displaying large AI-generated content (Artifacts) without interrupting the main chat context.
 - **ChatUI** — A comprehensive set of components for building chat interfaces with support for messages, avatars, timestamps, and interactive input.
 - **CodeBlock** — Syntax-highlighted code block with copy button, line numbers, and collapsible overflow. (aka Code Snippet)
-- **CodeDiffViewer** — Displays code changes as a side-by-side or unified diff, with line-level highlighting and Apply/Reject actions.
+- **CodeDiffViewer** — Displays code changes as a side-by-side or unified diff, with line-level highlighting and Apply/Reject actions. (aka Code Comparison)
 - **InteractiveGraph** — InteractiveGraph provides a canvas for visualizing node-based data. Ideal for RAG knowledge bases, agent workflows, or state machines.
 - **MarkdownRenderer** — MarkdownRenderer converts a markdown string into WIM UI components. It uses react-markdown under the hood and applies WIM's typography system.
 - **ModelSelector** — ModelSelector is a dropdown for switching between AI models, surfacing the metadata that matters when choosing one — context window size and per-token pricing.
@@ -485,9 +485,16 @@ Exported hooks. Prefer them over hand-rolled equivalents (`matchMedia` listeners
 These exist in other systems' vocabularies and are **decisions, not gaps**. Do not hand-roll them into a wimui screen; the alternative given is the supported way to express the same intent.
 
 - **Parallax Scrolling** (aka Parallax, Scroll Parallax, Parallax Hero) — Backgrounds moving at a different speed from the foreground. The motion does not correspond to any change of state, which is what this system animates. If the goal is to show scroll position, show the position. Use `ScrollProgress` instead.
-- **Text Scramble** (aka Scramble Text, Decrypt Text, Glitch Text) — Randomising characters before settling on the real string. The reader parses the same sentence twice and gets nothing for the lost legibility. The one case where text legitimately arrives character by character is model output, which StreamingText already covers. Use `StreamingText` instead.
+- **Text Scramble** (aka Scramble Text, Decrypt Text, Glitch Text, Hyper Text) — Randomising characters before settling on the real string. The reader parses the same sentence twice and gets nothing for the lost legibility. The one case where text legitimately arrives character by character is model output, which StreamingText already covers. Use `StreamingText` instead.
 - **Spring Animation** (aka Spring Physics, Springs, Physics-based Animation) — A physics engine (mass / stiffness / damping props solved in a rAF loop). The bounce curve itself already exists as the `--wim-easing-spring` token, which is what press and swipe-return use. Adding the engine would put physics parameters into the public contract and move motion from CSS to JS. Use `--wim-easing-spring` instead.
 - **Choropleth Map** (aka Choropleth, Filled Map, Region Map, Geo Map) — A map shading regions by value. Shipping boundary data would put its size and a political stance on disputed borders into a UI library, and large regions dominate regardless of their values. Regions are compared more accurately in a sorted bar chart. Use `BarChart` instead.
+- **Animated Text Effects** (aka Animated Gradient Text, Animated Shiny Text, Aurora Text, Morphing Text, Sparkles Text, Spinning Text, Text Reveal, Typing Animation, Word Rotate, Line Shadow Text, Comic Text, Kinetic Text, Video Text, Text 3D Flip, Text Animate, Dia Text Reveal) — Text that shimmers, rotates, morphs or types itself out. It cannot be read while it moves, and keeps moving after it has been read. Emphasis is a matter of weight, colour and size; the one case where text legitimately arrives piece by piece is model output, which StreamingText covers. Use `Text` instead.
+- **Decorative Background Pattern** (aka Dot Pattern, Grid Pattern, Animated Grid Pattern, Interactive Grid Pattern, Flickering Grid, Hexagon Pattern, Striped Pattern, Retro Grid, Noise Texture, Dither Field, Light Rays, Meteors, Particles, Warp Background, Glyph Matrix, Backlight, Floating 3D Particles, Ripple) — Patterns and particles laid behind content that carry no meaning of their own. They make the background under text uneven, which costs contrast, and moving ones compete with real motion in the foreground. Separate surfaces with the surface tokens and borders instead. Use `Box` instead.
+- **Animated Button Effects** (aka Shimmer Button, Shiny Button, Rainbow Button, Pulsating Button, Ripple Button, Interactive Hover Button, Animated Subscribe Button, Confetti, Cool Mode) — Buttons that shimmer, pulse, ripple or burst into confetti. They only attract attention before the click, and once several buttons do it the primary action is lost. Rank actions with Button variants, and report the result through the state change and an announcement. Use `Button` instead.
+- **Glow and Spotlight Card** (aka Magic Card, Neon Gradient Card, Shine Border, Glare Hover, Lens, Progressive Blur, Blur Fade, Pixel Image) — Cards with glowing borders, a spotlight that follows the pointer, or content that fades in from a blur. Nothing happens for touch or keyboard users, and for pointer users it does not help tell the cards apart. Use Card variants and the heading inside the card. Use `Card` instead.
+- **Device Mockup** (aka iPhone Mockup, Android Mockup, Safari Mockup, Browser Frame, Device Frame) — Phone and browser frames around a screenshot. It is marketing artwork rather than an interface component, and the frames go out of date with every device generation. Show the screenshot with Image, with the frame baked into the image if one is needed. Use `Image` instead.
+- **Decorative Motion Graphics** (aka Globe, Icon Cloud, Orbiting Circles, Animated Beam, Dock, Scroll Based Velocity, Animated List, Dotted Map, Smooth Cursor, Pointer Effect, Hero Video Dialog) — Spinning globes, floating icon clouds, beams between logos, a magnifying dock, a custom cursor: motion that carries no information. It pulls attention away from the content and is a burden for people who reduce motion. Show relationships with NodeGraph, items with List, and a video with Video inside a Dialog. Use `List` instead.
+- **Social Post Embed** (aka Tweet Card, Client Tweet Card, Tweet Embed) — Embedding a post from a social network in that network's own look. Its appearance and the way it is fetched change on the provider's schedule, which a design system cannot keep up with. Quote it in a Blockquote or Card with a link to the source. Use `Card` instead.
 
 ---
 For per-component props, types and defaults, see `llms-full.txt`.

@@ -212,6 +212,13 @@ Major Second (1.125) に近い比率に基づく、意図的にコンパクト�
 | Parallax Scrolling | 背景と前景をスクロール速度差で動かす。動きが内容の変化に対応していない。スクロール位置を伝えたいなら位置そのものを出す | `ScrollProgress` |
 | Text Scramble | 確定するまで文字をランダムに入れ替える。読み手は同じ文を 2 度読むことになり、可読性を落とした分の見返りが無い | `StreamingText` |
 | Spring Animation | 質量・剛性・減衰を prop で受ける物理アニメーション基盤。バウンスの曲線自体は既にトークンにあり、押下やスワイプの戻りはこれで足りる。基盤を持つと物理パラメータが公開契約に増え、CSS で完結していたモーションが JS 依存になる | `--wim-easing-spring` |
+| Animated Text Effects | 文字そのものを光らせる・回す・入れ替える・一字ずつ打つ。動いている間は読めず、読み終えた人にも動きが続く。強調は太さ・色・大きさで足りる（Magic UI の回・2026-11-20） | `Text`（生成中の文は `StreamingText`） |
+| Decorative Background Pattern | 内容と関係の無い模様や粒子を面の後ろに敷く。文字の地がまだらになり、動く模様は前景の動きと区別がつかない | `Box` と surface のトークン |
+| Animated Button Effects | ボタンを光らせる・脈打たせる・紙吹雪を散らす。目を引くのは押す前だけで、どのボタンにも付けると主役が分からなくなる | `Button` の variant |
+| Glow and Spotlight Card | カードの縁を光らせる・ポインターの下を照らす・ぼかしてから現す。ポインターの無い端末とキーボードでは何も起きない | `Card` の variant と題 |
+| Device Mockup | スクリーンショットを携帯やブラウザの枠に入れる飾り。宣伝の素材で UI の部品ではなく、枠は機種と年で古びる | `Image` |
+| Decorative Motion Graphics | 回る地球・浮かぶアイコン・拡大するドック・追いかけるカーソルなど、情報を運ばない動き。動きを減らす設定の人には負担になる | `NodeGraph` / `List` / `Dialog` と `Video` |
+| Social Post Embed | 外部の投稿を相手の見た目のまま埋め込む。見た目と取得の仕組みが相手の都合で変わり、デザインシステムの側で保てない | `Blockquote` / `Card` と出典のリンク |
 
 単体では非対応でも、**組み合わせで再現しようとするのも同じく対象外**。SSOT は `src/data/not-planned.json` で、`llms.txt` の "Not in scope" 節と `check:aliases` がここから導かれる（別名が既存コンポーネントと衝突しないこと・理由と代替が空でないことを検証する）。
 
