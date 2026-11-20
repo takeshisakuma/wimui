@@ -1503,6 +1503,8 @@ so the unit does not have to be repeated in the label.
 box and receives a **1-based** position — the first box is `1`, not `0`.
     - `asChild: boolean` = false — Whether to render as a child element.
     - `fullWidth: boolean` = false — Whether to take full width of parent
+    - `inputMode: "numeric" | "text"` = "numeric" — Keyboard shown on touch devices. Use `"text"` for codes that contain letters.
+@default "numeric"
 - **PasswordInput** — Password with toggle
     - `intent: "default" | "danger"` = "default" — Semantic intent of the field (e.g. error state)
     - `variant: "outline" | "ghost"` = "outline" — Visual style variant of the field

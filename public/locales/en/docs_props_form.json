@@ -406,6 +406,7 @@
     "otpInput_prop_disabled": "Whether the input is disabled",
     "otpInput_prop_error": "Error message",
     "otpInput_prop_fullWidth": "Whether to take full width of parent",
+    "otpInput_prop_inputMode": "Keyboard shown on touch devices. Use \"text\" for codes that contain letters.",
     "otpInput_prop_label": "Field label",
     "otpInput_prop_labels": "Labels for internationalization",
     "otpInput_prop_layout": "Layout direction of label and field",

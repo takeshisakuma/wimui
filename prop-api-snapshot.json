@@ -7466,6 +7466,13 @@
       "required": false,
       "type": "boolean"
     },
+    "OtpInput.inputMode": {
+      "required": false,
+      "values": [
+        "numeric",
+        "text"
+      ]
+    },
     "OtpInput.label": {
       "required": false,
       "type": "React.ReactNode"

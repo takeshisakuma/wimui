@@ -45,6 +45,11 @@ export interface OtpInputProps extends Omit<React.ComponentPropsWithoutRef<"div"
   asChild?: boolean;
   /** Whether to take full width of parent */
   fullWidth?: boolean;
+  /**
+   * Keyboard shown on touch devices. Use `"text"` for codes that contain letters.
+   * @default "numeric"
+   */
+  inputMode?: "numeric" | "text";
 }
 
 /** value を 1 文字ずつの配列（長さ length）に割り付ける。 */
@@ -73,6 +78,7 @@ export const OtpInput = forwardRef<HTMLDivElement, OtpInputProps>(
       labels = {},
       asChild = false,
       fullWidth = false,
+      inputMode = "numeric",
       children,
       // 名前と説明の参照は、ロールの無い包みではなく、読まれる要素へ届ける（T329）。
       // 名前は桁をまとめる `role="group"` へ、説明はエラーと同じく全部の桁へ。
@@ -122,6 +128,16 @@ export const OtpInput = forwardRef<HTMLDivElement, OtpInputProps>(
       index: number,
     ) => {
       const val = e.target.value;
+      // 欄に元からあった 1 文字を除いて、今回入った文字を取り出す。2 文字以上なら、SMS のコードの
+      // 自動入力（`autocomplete="one-time-code"`。iOS はコード全体を最初の欄へ入れる）か、
+      // 入力の補完がまとめて入れたもの ── 貼り付けと同じく、この欄から順に分ける（T424）。
+      // 以前は `maxLength={1}` と最後の 1 文字だけを取る処理で、コードの最後の 1 桁しか残らなかった。
+      const old = internalValues[index];
+      const inserted = old && val.startsWith(old) ? val.slice(old.length) : old && val.endsWith(old) ? val.slice(0, -old.length) : val;
+      if (inserted.length > 1) {
+        fillFrom(index, inserted);
+        return;
+      }
       const newChar = val.slice(-1);
 
       const newValues = [...internalValues];
@@ -163,24 +179,25 @@ export const OtpInput = forwardRef<HTMLDivElement, OtpInputProps>(
       }
     };
 
-    const handlePaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
-      e.preventDefault();
-      const pastedData = e.clipboardData.getData("text").slice(0, length);
-      const chars = pastedData.split("");
-
+    /** `start` の欄から順に文字を入れ、入れた最後の次の欄（無ければ最後の欄）へフォーカスを移す。 */
+    const fillFrom = (start: number, text: string) => {
+      const chars = text.slice(0, length - start).split("");
       const newValues = [...internalValues];
       chars.forEach((char, i) => {
-        if (i < length) {
-          newValues[i] = char;
-        }
+        newValues[start + i] = char;
       });
 
       setInternalValues(newValues);
       triggerChange(newValues);
 
-      // 貼り付けた最後の文字の次のboxにフォーカス、または最後のboxにフォーカス
-      const nextFocusIndex = Math.min(chars.length, length - 1);
+      const nextFocusIndex = Math.min(start + chars.length, length - 1);
       inputRefs.current[nextFocusIndex]?.focus();
+    };
+
+    // 貼り付けは、どの欄で貼っても最初の欄から入れる（コードは頭から貼るもの）
+    const handlePaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
+      e.preventDefault();
+      fillFrom(0, e.clipboardData.getData("text"));
     };
 
     const Component = asChild ? Slot : "div";
@@ -226,7 +243,10 @@ export const OtpInput = forwardRef<HTMLDivElement, OtpInputProps>(
                   disabled && styles.disabled,
                 )}
                 type="text"
-                maxLength={1}
+                // 端末の SMS のコードの候補は、`one-time-code` の欄に出る。コードは最初の欄で受けて、
+                // 上の handleInputChange が各欄へ分ける。ほかの欄に付けると、候補が欄ごとに出る
+                autoComplete={index === 0 ? "one-time-code" : "off"}
+                inputMode={inputMode}
                 value={internalValues[index]}
                 onChange={(e) => handleInputChange(e, index)}
                 onKeyDown={(e) => handleKeyDown(e, index)}

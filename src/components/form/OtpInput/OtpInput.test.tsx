@@ -180,4 +180,39 @@ describe("OtpInput", () => {
     expect(inputs[0]).toHaveAttribute("aria-label", "Digit 1");
     expect(inputs[2]).toHaveAttribute("aria-label", "Digit 3");
   });
+
+  // T424: 端末の SMS のコードの候補は `one-time-code` の欄に出る。最初の欄だけに付ける
+  it("asks for the one-time code on the first box only, with a numeric keyboard", () => {
+    render(<OtpInput length={4} />);
+    const inputs = screen.getAllByRole("textbox");
+    expect(inputs[0]).toHaveAttribute("autocomplete", "one-time-code");
+    for (const input of inputs.slice(1)) expect(input).toHaveAttribute("autocomplete", "off");
+    for (const input of inputs) expect(input).toHaveAttribute("inputmode", "numeric");
+  });
+
+  it("uses a text keyboard for codes with letters", () => {
+    render(<OtpInput length={4} inputMode="text" />);
+    for (const input of screen.getAllByRole("textbox")) expect(input).toHaveAttribute("inputmode", "text");
+  });
+
+  // iOS の自動入力はコード全体を最初の欄へ入れる。以前は最後の 1 桁しか残らなかった
+  it("spreads a whole code that arrives in one box across the boxes", () => {
+    const onChange = vi.fn();
+    render(<OtpInput length={6} onChange={onChange} />);
+    const inputs = screen.getAllByRole("textbox") as HTMLInputElement[];
+    fireEvent.change(inputs[0], { target: { value: "482913" } });
+    expect(inputs.map((i) => i.value).join("")).toBe("482913");
+    expect(onChange).toHaveBeenLastCalledWith("482913");
+    expect(document.activeElement).toBe(inputs[5]);
+  });
+
+  it("still replaces the digit when typing over a filled box", () => {
+    const onChange = vi.fn();
+    render(<OtpInput length={4} value="1" onChange={onChange} />);
+    const inputs = screen.getAllByRole("textbox") as HTMLInputElement[];
+    fireEvent.change(inputs[0], { target: { value: "12" } });
+    expect(inputs[0].value).toBe("2");
+    expect(inputs[1].value).toBe("");
+    expect(onChange).toHaveBeenLastCalledWith("2");
+  });
 });
