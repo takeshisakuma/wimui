@@ -88,8 +88,10 @@
         "descKey": "doc.alert_desc",
         "pc": true,
         "mobile": true,
+        "disambiguation": "In Fluent UI v8, a \"Callout\" is a popup anchored to an element — that is `Popover` here. WIM's `Alert` matches Blueprint's Callout: an inline message in the page flow.",
         "aliases": [
-          "Message Bar"
+          "Message Bar",
+          "Callout"
         ]
       },
       {
@@ -252,7 +254,8 @@
         "mobile": true,
         "aliases": [
           "Spin Button",
-          "Numeric Stepper"
+          "Numeric Stepper",
+          "Numeric Input"
         ]
       },
       {
@@ -341,7 +344,10 @@
         "name": "LinkButton",
         "descKey": "doc.linkButton_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Anchor Button"
+        ]
       },
       {
         "name": "ButtonGroup",
@@ -463,7 +469,8 @@
         "mobile": true,
         "aliases": [
           "Blank Slate",
-          "Zero State"
+          "Zero State",
+          "Non-Ideal State"
         ]
       },
       {
@@ -551,7 +558,8 @@
         "pc": true,
         "mobile": true,
         "aliases": [
-          "Structured List"
+          "Structured List",
+          "HTML Table"
         ]
       },
       {
@@ -602,7 +610,8 @@
         "aliases": [
           "Contained List",
           "Ordered List",
-          "Unordered List"
+          "Unordered List",
+          "Card List"
         ]
       },
       {
@@ -692,7 +701,10 @@
         "name": "InputGroup",
         "descKey": "doc.inputGroup_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Control Group"
+        ]
       },
       {
         "name": "FieldError",
@@ -982,7 +994,8 @@
         "mobile": true,
         "aliases": [
           "Path Bar",
-          "Path Control"
+          "Path Control",
+          "Breadcrumbs"
         ]
       },
       {
@@ -1053,7 +1066,11 @@
         "name": "KeyboardShortcuts",
         "descKey": "doc.keyboardShortcuts_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "disambiguation": "Blueprint's Hotkeys also registers the key bindings. WIM's `KeyboardShortcuts` only shows the list of shortcuts; bind the keys in your app.",
+        "aliases": [
+          "Hotkeys"
+        ]
       },
       {
         "name": "Menubar",
@@ -1170,7 +1187,8 @@
         "mobile": false,
         "aliases": [
           "Command Bar",
-          "Quick Open"
+          "Quick Open",
+          "Omnibar"
         ]
       },
       {
@@ -1245,7 +1263,11 @@
         "name": "DatePicker",
         "descKey": "doc.datePicker_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "disambiguation": "In Blueprint, a \"DatePicker\" is the calendar panel shown inline — that is `Calendar` here. WIM's `DatePicker` is a text field that opens a calendar, which Blueprint calls DateInput.",
+        "aliases": [
+          "Date Input"
+        ]
       },
       {
         "name": "TimePicker",
@@ -1266,7 +1288,11 @@
         "name": "DateRangePicker",
         "descKey": "doc.dateRangePicker_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "disambiguation": "In Blueprint, a \"DateRangePicker\" is the calendar panel for choosing a range — that is `RangeCalendar` here. WIM's `DateRangePicker` is a pair of date fields, which Blueprint calls DateRangeInput.",
+        "aliases": [
+          "Date Range Input"
+        ]
       },
       {
         "name": "RangeCalendar",
@@ -1390,7 +1416,8 @@
         "mobile": true,
         "aliases": [
           "Autocomplete",
-          "Auto Complete"
+          "Auto Complete",
+          "Suggest"
         ]
       }
     ]
@@ -1449,7 +1476,10 @@
         "name": "Kbd",
         "descKey": "doc.kbd_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Key Combo"
+        ]
       },
       {
         "name": "Highlight",
@@ -1589,7 +1619,8 @@
         "aliases": [
           "Scrim",
           "Backdrop",
-          "Dimming View"
+          "Dimming View",
+          "Overlay"
         ]
       },
       {

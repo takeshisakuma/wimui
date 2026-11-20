@@ -1108,7 +1108,7 @@ Use it when the field already does the same thing from the keyboard.
 so the unit does not have to be repeated in the label.
     - `styles: { root?: string; inner?: string; icon?: string; icons?: string; iconItem?: string; iconButton?: string; }` — Custom styles for internal parts
     - `asChild: boolean` = false — Whether to render as a child element.
-- **Combobox** — Select with search (aka Autocomplete, Auto Complete)
+- **Combobox** — Select with search (aka Autocomplete, Auto Complete, Suggest)
     - `options: ComboboxOption[]` = [] — List of suggestion options
     - `onChange: (option: ComboboxOption) => void` — Callback when an option is selected
     - `placeholder: string` — Placeholder for the input
@@ -1184,7 +1184,8 @@ Use it when the field already does the same thing from the keyboard.
 `kg`, `%` or `円`. It is announced with the field via `aria-describedby`,
 so the unit does not have to be repeated in the label.
     - `styles: { root?: string; inner?: string; icon?: string; icons?: string; iconItem?: string; iconButton?: string; }` — Custom styles for internal parts
-- **DatePicker** — Date selection
+- **DatePicker** — Date selection (aka Date Input)
+  - ⚠️ Not the same as elsewhere: In Blueprint, a "DatePicker" is the calendar panel shown inline — that is `Calendar` here. WIM's `DatePicker` is a text field that opens a calendar, which Blueprint calls DateInput.
     - `intent: "default" | "danger"` = "default" — Semantic intent of the field (e.g. error state)
     - `variant: "outline" | "ghost"` = "outline" — Visual style variant of the field
     - `fullWidth: boolean` = false — Whether to take full width of parent
@@ -1204,7 +1205,8 @@ so the unit does not have to be repeated in the label.
     - `labels: { placeholder?: string; }` — Labels for manual translation
     - `width: ("xs" | "sm" | "md" | "lg" | "xl") | string | number` — Fixed width of the field (width token, CSS value, or number in px)
     - `asChild: boolean` = false — Whether to render as a child element.
-- **DateRangePicker** — Date range selection
+- **DateRangePicker** — Date range selection (aka Date Range Input)
+  - ⚠️ Not the same as elsewhere: In Blueprint, a "DateRangePicker" is the calendar panel for choosing a range — that is `RangeCalendar` here. WIM's `DateRangePicker` is a pair of date fields, which Blueprint calls DateRangeInput.
     - `startProps: React.ComponentProps<typeof DatePicker>` — Props passed to the start-date DatePicker
     - `endProps: React.ComponentProps<typeof DatePicker>` — Props passed to the end-date DatePicker
     - `className: string` — Additional class names
@@ -1412,7 +1414,7 @@ make room rather than running underneath it.
     - `onClear: () => void` — Callback when the clear button is clicked
     - `clearAriaLabel: string` — Aria label for the clear button
     - `styles: { root?: string; inner?: string; icon?: string; icons?: string; iconItem?: string; iconButton?: string; }` — Custom styles for internal parts
-- **InputGroup** — Inputs with icons/labels
+- **InputGroup** — Inputs with icons/labels (aka Control Group)
     - `children: React.ReactNode` (required) — Inputs, buttons, and add-ons to combine into one unit
     - `fullWidth: boolean` = false — Whether to take full width of parent
     - `className: string` — Additional class names
@@ -1450,7 +1452,7 @@ Use it when the field already does the same thing from the keyboard.
 so the unit does not have to be repeated in the label.
     - `styles: { root?: string; inner?: string; icon?: string; icons?: string; iconItem?: string; iconButton?: string; }` — Custom styles for internal parts
     - `asChild: boolean` = false — Whether to render as a child element.
-- **LinkButton** — Anchor styled as button
+- **LinkButton** — Anchor styled as button (aka Anchor Button)
     - `iconPosition: "left" | "right"` = "left" — Position of the icon relative to the label
     - `size: "sm" | "md" | "lg"` = "md" — Size of the button
     - `variant: "solid" | "outline" | "ghost"` = "outline" — Visual style variant of the button
@@ -1481,7 +1483,7 @@ so the unit does not have to be repeated in the label.
     - `aria-describedby: string` — ID of the element that describes the field
     - `width: ("xs" | "sm" | "md" | "lg" | "xl") | string | number` — Fixed width of the field (width token, CSS value, or number in px)
     - `fullWidth: boolean` = false — Whether to take full width of parent
-- **NumberInput** — Input with step adjustments (aka Spin Button, Numeric Stepper)
+- **NumberInput** — Input with step adjustments (aka Spin Button, Numeric Stepper, Numeric Input)
     - `mode: "number" | "text"` = "number" — 'number': uses the native type="number" (e.g. quantity steppers)
 'text': uses type="text" + inputmode (e.g. card numbers or IDs where leading zeros must be kept)
     - `hideSpinButton: boolean` = true — Whether to hide the spin buttons
@@ -1960,7 +1962,8 @@ so the unit does not have to be repeated in the label.
 
 ### feedback — `import { … } from "wimui/feedback"`
 
-- **Alert** — Important messages (aka Message Bar)
+- **Alert** — Important messages (aka Message Bar, Callout)
+  - ⚠️ Not the same as elsewhere: In Fluent UI v8, a "Callout" is a popup anchored to an element — that is `Popover` here. WIM's `Alert` matches Blueprint's Callout: an inline message in the page flow.
     - `title: React.ReactNode` — Title of the alert
     - `titleTag: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "div" | "p" | "strong" | "span"` = "div" — HTML tag used for the alert title.
 
@@ -2214,7 +2217,7 @@ follows the theme and never needs a hand-mixed colour.
     - `aria-labelledby: string` — ID of the element that labels the button. Takes precedence over `aria-label`.
     - `aria-describedby: string` — ID of the element that describes the button.
     - `asChild: boolean` = false — Whether to render as a child element.
-- **Breadcrumb** — Location trace (aka Path Bar, Path Control)
+- **Breadcrumb** — Location trace (aka Path Bar, Path Control, Breadcrumbs)
     - `items: BreadcrumbItem[]` (required) — Items to display, from the root to the current page.
     - `separator: React.ReactNode` — Separator displayed between items. Defaults to a chevron icon.
     - `size: "sm" | "md" | "lg"` = "md" — Size of the breadcrumb.
@@ -2230,7 +2233,7 @@ into a "…" button that lists them.
     - `asChild: boolean` — If true, the breadcrumb will be rendered as its child, merging its props onto that child.
     - `children: React.ReactNode` — The element that becomes the breadcrumb's root (in place of `nav`) when
 `asChild` is set. The list of items is rendered inside it. Ignored without `asChild`.
-- **CommandPalette** — Cmd+K search overlay (aka Command Bar, Quick Open)
+- **CommandPalette** — Cmd+K search overlay (aka Command Bar, Quick Open, Omnibar)
     - `children: ReactNode` (required) — Palette parts (CommandPaletteTrigger, CommandPaletteContent, etc.).
     - `open: boolean` — Controlled open state. Use together with onOpenChange.
     - `onOpenChange: (open: boolean) => void` — Called with the next state when the palette is opened or closed.
@@ -2245,7 +2248,8 @@ button. Without this callback the button cannot close on Escape, because `open` 
     - `color: string` — Color of the bars
     - `visibleBelow: "xs" | "sm" | "md" | "lg" | "xl"` — Show only below the given breakpoint (e.g. "md" matches Sidebar's mobile drawer range)
     - `className: string` — Custom class name
-- **KeyboardShortcuts** — Display a structured list of keyboard shortcuts
+- **KeyboardShortcuts** — Display a structured list of keyboard shortcuts (aka Hotkeys)
+  - ⚠️ Not the same as elsewhere: Blueprint's Hotkeys also registers the key bindings. WIM's `KeyboardShortcuts` only shows the list of shortcuts; bind the keys in your app.
     - `shortcuts: ShortcutItem[]` (required) — List of shortcuts to display
     - `title: string` — Section title
     - `titleLevel: 2 | 3 | 4 | 5 | 6` — `title` を見出しとして描くときの段（T211）。渡さなければ見出しにならず `p` のまま。
@@ -2568,7 +2572,7 @@ drops secondary text below the AA contrast floor.
     - `size: "sm" | "md" | "lg"` = "md" — Size of the text
     - `border: boolean` = false — Whether to show borders (alias of bordered)
     - `bordered: boolean` = false — Whether to show borders
-- **EmptyState** — Missing data placeholder (aka Blank Slate, Zero State)
+- **EmptyState** — Missing data placeholder (aka Blank Slate, Zero State, Non-Ideal State)
     - `title: React.ReactNode` (required) — Title to display.
     - `description: React.ReactNode` — Description text to display.
     - `icon: React.ReactNode` — Icon to display.
@@ -2620,7 +2624,7 @@ Without it, pointer devices show the move button in the card's corner on hover o
     - `unit: string` — Label for the score unit
     - `size: "sm" | "md" | "lg"` = "md" — Size
     - `showMedals: boolean` = false — Whether to paint the rank badges of the top three in gold, silver and bronze (off by default: the number and the order already say the rank)
-- **List** — Structurally organized items in bullet points or numbered formats (aka Contained List, Ordered List, Unordered List)
+- **List** — Structurally organized items in bullet points or numbered formats (aka Contained List, Ordered List, Unordered List, Card List)
     - `asChild: boolean` = false — Whether to render as a child element.
     - `size: "sm" | "md" | "lg"` = "md" — Size of the list items
     - `spacing: "tight" | "normal" | "loose"` = "normal" — Spacing between items
@@ -2829,7 +2833,7 @@ or by keyboard focus on its actions, closes the others.
     - `fullSwipe: "left" | "right" | "both"` — Sides where swiping all the way across runs the outermost action without a tap
 (`leftActions[0]` / the last of `rightActions`), as in iOS Mail. Off by default so a
 destructive action is never triggered by momentum; the action stays available as a button.
-- **Table** — Rows and columns for displaying structured data efficiently (aka Structured List)
+- **Table** — Rows and columns for displaying structured data efficiently (aka Structured List, HTML Table)
     - `asChild: boolean` = false — Whether to render as a child element.
     - `striped: boolean` = false — Whether to show striped (zebra) rows
     - `bordered: boolean` = false — Whether to show borders between cells
@@ -3042,7 +3046,7 @@ is marked.
     - `highlightStyles: React.CSSProperties` — Custom styles for the highlighted `<mark>` element.
     - `as: React.ElementType` = "span" — The HTML tag or component to use for the container. Default is "span".
     - `asChild: boolean` = false — If true, the component will be rendered as its child.
-- **Kbd** — Keyboard shortcuts
+- **Kbd** — Keyboard shortcuts (aka Key Combo)
     - `asChild: boolean` = false — If true, the Kbd will be rendered as its child, merging its props onto that child.
     - `size: "sm" | "md" | "lg"` = "md" — Size of the key cap.
 @default "md"
