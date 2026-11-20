@@ -371,7 +371,11 @@ function IntakeQueue({
             title={t("intake.title")}
             description={
               loading ? (
-                <Skeleton variant="text" width="18rem" />
+                // Skeleton の text は高さ 0.8em で、先頭の子だと上の余白も 0。そのまま置くと題に貼り付き、
+                // 読み込み後に 1 行ぶんの文と入れ替わって下が跳ぶ。行ボックスの高さを取り、その真ん中に置く
+                <div style={{ paddingBlock: "calc((1lh - 0.8em) / 2)" }}>
+                  <Skeleton variant="text" width="18rem" />
+                </div>
               ) : (
                 t("intake.summary", { total: TOTAL_LOTS, hold: holdCount })
               )
