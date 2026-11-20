@@ -213,7 +213,7 @@ export function BillingOverview() {
 - **Flex** — Flexible layout
 - **Footer** — Lower navigation
 - **Grid** — Flexbox or CSS Grid system
-- **Group** — Flexible grouping
+- **Group** — Flexible grouping (aka Wrap)
 - **Header** — Upper navigation
 - **InteractiveArea** — Foundation component for consistent interactive areas with borders and states.
 - **Masonry** — Waterfall grid
@@ -240,7 +240,7 @@ export function BillingOverview() {
 - **ColorInput** — Input with color preview (aka Color Well, Color Field)
 - **ColorPicker** — Color selection picker (aka Swatch Picker)
 - **Combobox** — Select with search (aka Autocomplete, Auto Complete, Suggest)
-- **CopyButton** — Copy to clipboard (aka Copy)
+- **CopyButton** — Copy to clipboard (aka Copy, Clipboard)
 - **CounterTextarea** — Textarea with character count display
 - **CreditCardInput** — Payment card input with brand detection
 - **DatePicker** — Date selection (aka Date Input)
@@ -255,7 +255,7 @@ export function BillingOverview() {
 - **FloatButton** — Floating action buttons
 - **IconButton** — A square button containing only an icon without a text label.
 - **ImageCropper** — Front-end image cropping and rotation tool.
-- **InlineEdit** — A component that allows users to switch between a view-only mode and an editable mode in-place. (aka Editable Text, Edit In Place)
+- **InlineEdit** — A component that allows users to switch between a view-only mode and an editable mode in-place. (aka Editable Text, Edit In Place, Editable)
 - **Input** — Single-line input fields for text, numbers, or emails (aka Text Input)
 - **InputBase** — Standardizes the visual container, icon slots (Prefix/Suffix), and clear button behavior for text-based inputs.
 - **InputGroup** — Inputs with icons/labels (aka Control Group)
@@ -272,18 +272,19 @@ export function BillingOverview() {
 - **Radio** — Single choice (aka Radio Button)
 - **RadioGroup** — Shared state radio buttons (aka Radio Button Group)
 - **RangeSlider** — Range selection
-- **Rating** — Star rating (aka Star Rating, Rating Indicator, Rating Display)
+- **Rating** — Star rating (aka Star Rating, Rating Indicator, Rating Display, Rating Group)
 - **RichTextEditor** — WYSIWYG rich text editor
 - **SearchInput** — Search with clear button (aka Search Field, Search Bar, Search Box)
-- **SegmentedControl** — Button-style controls for switching between a small set of mutually exclusive options (aka Segmented Buttons, Segmented Picker, Content Switcher)
+- **SegmentedControl** — Button-style controls for switching between a small set of mutually exclusive options (aka Segmented Buttons, Segmented Picker, Content Switcher, Segment Group)
 - **Select** — A dropdown menu for selecting one option from a predefined list (aka Pop-Up Button, Select Menu)
 - **SignaturePad** — Handwritten signature input
 - **Slider** — An input to capture a numeric value from a specified range by dragging a knob
 - **SmartSearchInput** — Smart search input enabling both traditional search and AI prompting.
 - **SplitButton** — SplitButton description. (aka Combo Button)
 - **Switch** — A binary switch for instantly toggling settings between on and off states (aka Toggle, Toggle Switch)
+  - ⚠️ Not the same as elsewhere: In Radix, shadcn/ui and Ark UI, a "Toggle" is a button that stays pressed (`aria-pressed`) — use a one-item `ToggleGroup` here. WIM's `Switch` is the on/off control that Apple and Material call a toggle.
 - **SwitchGroup** — Shared state switches
-- **TagInput** — Input field for creating free-form tags. (aka Token Field, Chips Input)
+- **TagInput** — Input field for creating free-form tags. (aka Token Field, Chips Input, Tags Input)
 - **Textarea** — Multi-line input fields for longer text entries like descriptions or comments
 - **ThemeToggle** — Light / dark / system theme switcher
 - **TimePicker** — Time selection
@@ -304,7 +305,7 @@ export function BillingOverview() {
 - **Notification** — Rich notification card
 - **Progress** — Progress bar (aka Progress Bar)
   - ⚠️ Not the same as elsewhere: Material's "Progress Indicator" covers indeterminate spinners as well. WIM's `Progress` is determinate and linear only — for the indeterminate case use `Spinner`.
-- **ProgressRing** — ProgressRing description.
+- **ProgressRing** — ProgressRing description. (aka Progress Circle)
 - **Result** — Task status indicator (aka Full Page Error)
 - **ScrollProgress** — Reading progress indicator
 - **Skeleton** — Placeholder for content loading states. (aka Shimmer)
@@ -316,10 +317,10 @@ export function BillingOverview() {
 ### navigation — `import { … } from "wimui/navigation"`
 
 - **Affix** — Sticky elements (aka Sticky)
-- **Anchor** — Smooth scroll links (aka Scrollspy, Table of Contents, TableOfContents)
+- **Anchor** — Smooth scroll links (aka Scrollspy, Table of Contents, TableOfContents, TOC)
 - **BackTop** — Back to top button (aka Back to Top)
 - **Breadcrumb** — Location trace (aka Path Bar, Path Control, Breadcrumbs)
-- **CommandPalette** — Cmd+K search overlay (aka Command Bar, Quick Open, Omnibar)
+- **CommandPalette** — Cmd+K search overlay (aka Command Bar, Quick Open, Omnibar, Command)
 - **HamburgerMenu** — Toggleable menu (aka Sandwich Menu, Navigation Drawer Trigger, Nav Toggle, Cheeseburger Menu, Veggie Burger Menu, Pancake Menu, Bacon Menu, Hot Dog Menu, ハンバーガーメニュー, サンドイッチメニュー, Hamburger)
 - **KeyboardShortcuts** — Display a structured list of keyboard shortcuts (aka Hotkeys)
   - ⚠️ Not the same as elsewhere: Blueprint's Hotkeys also registers the key bindings. WIM's `KeyboardShortcuts` only shows the list of shortcuts; bind the keys in your app.
@@ -327,7 +328,7 @@ export function BillingOverview() {
 - **Menubar** — Desktop-style application menu bar with floating File / Edit / View submenus.
 - **Pagination** — Multi-page navigation (aka Pagination Nav)
 - **SpeedDial** — Floating action button that expands sub-actions on hover or click.
-- **Stepper** — Visual sequence steps (aka Progress Indicator)
+- **Stepper** — Visual sequence steps (aka Progress Indicator, Steps)
   - ⚠️ Not the same as elsewhere: In Apple HIG and macOS, a "Stepper" is the control that increments a number — that is `NumberInput` here. WIM's `Stepper` shows progress through a sequence of steps, which is what Material calls a Stepper.
 - **TabBar** — Mobile bottom navigation (aka Bottom Navigation, Bottom Tab Bar)
 - **TabNavigation** — Tab-based navigation
@@ -346,14 +347,14 @@ export function BillingOverview() {
 - **Carousel** — Content slideshow
 - **Chip** — Filter/Selection tokens (aka Pill, Token)
 - **Comment** — Shows one comment in a discussion, with its actions and nested replies.
-- **Countdown** — Display the remaining time until a target moment as a live ticking timer, for sale deadlines, OTP resend waits, and maintenance notices.
+- **Countdown** — Display the remaining time until a target moment as a live ticking timer, for sale deadlines, OTP resend waits, and maintenance notices. (aka Timer)
 - **DataGrid** — Advanced data table and manipulation (aka Data Table)
-- **DescriptionList** — Key-value pairs
+- **DescriptionList** — Key-value pairs (aka Data List)
 - **EmptyState** — Missing data placeholder (aka Blank Slate, Zero State, Non-Ideal State)
 - **FAQSection** — Frequently Asked Questions section
 - **InfiniteScroll** — Infinite scroll control
 - **JsonDiffViewer** — Compares two JSON values as a formatted side-by-side or unified diff, built on top of CodeDiffViewer.
-- **JsonViewer** — Recursive tree viewer and editor for JSON data.
+- **JsonViewer** — Recursive tree viewer and editor for JSON data. (aka JSON Tree View)
 - **Kanban** — Drag-and-drop board for visualizing workflow stages
 - **Leaderboard** — Display a ranked list of entries with scores. Medal colors for the top three are opt-in.
 - **List** — Structurally organized items in bullet points or numbered formats (aka Contained List, Ordered List, Unordered List, Card List)
@@ -363,6 +364,7 @@ export function BillingOverview() {
 - **Persona** — Shows a person as one unit: avatar, name and up to two lines of description, with text sizes matched to the avatar. The name is read once.
 - **PivotTable** — Draws aggregated data as a table with multi-level row and column headings, subtotals and grand totals. (aka Pivot, Cross Tab, Crosstab)
 - **Presence** — Shows whether a person is online, away, busy, or offline.
+  - ⚠️ Not the same as elsewhere: In Ark UI and Chakra UI, "Presence" is the helper that animates an element in and out as it mounts and unmounts — that is `Transition` here. WIM's `Presence` shows whether a person is online, away, busy or offline.
 - **PullToRefresh** — Pull-to-refresh utility for enhancing mobile user experience.
 - **QRCode** — QR generator
 - **RangeCalendar** — Range calendar view
@@ -402,14 +404,14 @@ export function BillingOverview() {
 
 - **Blockquote** — Visually separates external quotes or text to be emphasized.
 - **Code** — Code snippets
-- **Highlight** — Text highlighting
+- **Highlight** — Text highlighting (aka Mark)
 - **Kbd** — Keyboard shortcuts (aka Key Combo)
 - **Label** — Descriptive text for input fields, including required/optional marks
 - **Legend** — Group title
 - **Span** — Lightweight wrapper for inline text or short labels with icon support
 - **Spoiler** — Collapse long text such as reviews and comments to a fixed number of lines, with an accessible "show more" toggle that appears only when the text overflows.
 - **Text** — Has appropriate line-height and spacing to ensure readability of long text. (aka Truncated Text)
-- **Title** — Possesses visual weight (boldness/size) to indicate page structure.
+- **Title** — Possesses visual weight (boldness/size) to indicate page structure. (aka Heading)
 
 ### media — `import { … } from "wimui/media"`
 

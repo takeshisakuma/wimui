@@ -29,7 +29,8 @@
         "aliases": [
           "Star Rating",
           "Rating Indicator",
-          "Rating Display"
+          "Rating Display",
+          "Rating Group"
         ]
       },
       {
@@ -73,7 +74,8 @@
         "mobile": true,
         "aliases": [
           "Token Field",
-          "Chips Input"
+          "Chips Input",
+          "Tags Input"
         ]
       }
     ]
@@ -312,7 +314,8 @@
         "mobile": true,
         "aliases": [
           "Editable Text",
-          "Edit In Place"
+          "Edit In Place",
+          "Editable"
         ]
       },
       {
@@ -374,7 +377,8 @@
         "pc": true,
         "mobile": true,
         "aliases": [
-          "Copy"
+          "Copy",
+          "Clipboard"
         ]
       },
       {
@@ -525,13 +529,17 @@
         "name": "Countdown",
         "descKey": "doc.countdown_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Timer"
+        ]
       },
       {
         "name": "Presence",
         "descKey": "doc.presence_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "disambiguation": "In Ark UI and Chakra UI, \"Presence\" is the helper that animates an element in and out as it mounts and unmounts — that is `Transition` here. WIM's `Presence` shows whether a person is online, away, busy or offline."
       },
       {
         "name": "Barcode",
@@ -624,7 +632,10 @@
         "name": "DescriptionList",
         "descKey": "doc.descriptionList_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Data List"
+        ]
       },
       {
         "name": "Stats",
@@ -676,7 +687,10 @@
         "name": "JsonViewer",
         "descKey": "doc.json_viewer_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "JSON Tree View"
+        ]
       },
       {
         "name": "Comment",
@@ -810,7 +824,10 @@
         "name": "Group",
         "descKey": "doc.group_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Wrap"
+        ]
       },
       {
         "name": "Flex",
@@ -900,7 +917,10 @@
         "name": "ProgressRing",
         "descKey": "doc.progressRing_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Progress Circle"
+        ]
       },
       {
         "name": "Skeleton",
@@ -1048,7 +1068,8 @@
         "mobile": true,
         "disambiguation": "In Apple HIG and macOS, a \"Stepper\" is the control that increments a number — that is `NumberInput` here. WIM's `Stepper` shows progress through a sequence of steps, which is what Material calls a Stepper.",
         "aliases": [
-          "Progress Indicator"
+          "Progress Indicator",
+          "Steps"
         ]
       },
       {
@@ -1059,7 +1080,8 @@
         "aliases": [
           "Scrollspy",
           "Table of Contents",
-          "TableOfContents"
+          "TableOfContents",
+          "TOC"
         ]
       },
       {
@@ -1188,7 +1210,8 @@
         "aliases": [
           "Command Bar",
           "Quick Open",
-          "Omnibar"
+          "Omnibar",
+          "Command"
         ]
       },
       {
@@ -1352,6 +1375,7 @@
         "descKey": "doc.switch_desc",
         "pc": true,
         "mobile": true,
+        "disambiguation": "In Radix, shadcn/ui and Ark UI, a \"Toggle\" is a button that stays pressed (`aria-pressed`) — use a one-item `ToggleGroup` here. WIM's `Switch` is the on/off control that Apple and Material call a toggle.",
         "aliases": [
           "Toggle",
           "Toggle Switch"
@@ -1390,7 +1414,8 @@
         "aliases": [
           "Segmented Buttons",
           "Segmented Picker",
-          "Content Switcher"
+          "Content Switcher",
+          "Segment Group"
         ]
       },
       {
@@ -1431,7 +1456,10 @@
         "name": "Title",
         "descKey": "doc.title_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Heading"
+        ]
       },
       {
         "name": "Text",
@@ -1485,7 +1513,10 @@
         "name": "Highlight",
         "descKey": "doc.highlight_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Mark"
+        ]
       },
       {
         "name": "Spoiler",
