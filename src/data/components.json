@@ -385,7 +385,10 @@
         "name": "ThemeToggle",
         "descKey": "doc.themetoggle_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Animated Theme Toggler"
+        ]
       }
     ]
   },
@@ -448,7 +451,8 @@
         "pc": true,
         "mobile": true,
         "aliases": [
-          "Face Pile"
+          "Face Pile",
+          "Avatar Circles"
         ]
       },
       {
@@ -656,7 +660,8 @@
         "aliases": [
           "Outline View",
           "Tree",
-          "Flat Tree"
+          "Flat Tree",
+          "File Tree"
         ]
       },
       {
@@ -919,7 +924,8 @@
         "pc": true,
         "mobile": true,
         "aliases": [
-          "Progress Circle"
+          "Progress Circle",
+          "Animated Circular Progress Bar"
         ]
       },
       {
@@ -1515,7 +1521,8 @@
         "pc": true,
         "mobile": true,
         "aliases": [
-          "Mark"
+          "Mark",
+          "Highlighter"
         ]
       },
       {
@@ -1860,7 +1867,10 @@
         "name": "CodeDiffViewer",
         "descKey": "doc.codeDiffViewer_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Code Comparison"
+        ]
       },
       {
         "name": "Terminal",
