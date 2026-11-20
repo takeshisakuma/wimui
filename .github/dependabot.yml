@@ -78,13 +78,6 @@ updates:
       # storybook-react-i18next が i18next ^27 と react-i18next ^18 を受けたら、**i18next と react-i18next を 1 PR で**上げ、両方の ignore を外す。
       - dependency-name: "react-i18next"
         update-types: ["version-update:semver-major"]
-      # @xyflow/react 13 は **NodeGraph / InteractiveGraph で動くかを、まだ確かめていない**（2026-11-17）。
-      # 13.0.0 は 2026-11-16 に出て、週次の `check:peer-majors` が落ちた（peer が `>=12.0.0` で、13 を許していた）。
-      # peer を `^12.0.0` に絞って止めてある。13 は依存に `react-compiler-runtime` が加わり、
-      # `@xyflow/system` が 0.0.x から 1.0.0 になっている。
-      # 上げるときは **devDependencies と peerDependencies の範囲を 1 PR で**（T403）。確かめて動いたら本 ignore を外す。
-      - dependency-name: "@xyflow/react"
-        update-types: ["version-update:semver-major"]
 
   - package-ecosystem: "github-actions"
     directory: "/"

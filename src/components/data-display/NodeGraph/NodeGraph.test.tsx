@@ -13,7 +13,10 @@ vi.mock("react-i18next", async () => ({
   useTranslation: () => ({ t: (key: string) => key }),
 }));
 
-vi.mock("@xyflow/react", () => ({
+vi.mock("@xyflow/react", async () => ({
+  // 13 から onNodesChange / onEdgesChange は Changeset のクラスを受ける。部品が作る変更の形を見るので、本物を使う
+  NodeChangeset: (await vi.importActual<typeof import("@xyflow/react")>("@xyflow/react")).NodeChangeset,
+  EdgeChangeset: (await vi.importActual<typeof import("@xyflow/react")>("@xyflow/react")).EdgeChangeset,
   ReactFlow: ({
     children,
     deleteKeyCode,
@@ -30,6 +33,9 @@ vi.mock("@xyflow/react", () => ({
   MiniMap: () => <div data-testid="minimap" />,
   BackgroundVariant: { Dots: "dots", Lines: "lines", Cross: "cross" },
 }));
+
+/** 最後の呼び出しで渡された Changeset の中身（変更の並び） */
+const changesOf = (fn: ReturnType<typeof vi.fn>) => [...(fn.mock.lastCall?.[0] as Iterable<unknown>)];
 
 const scss = fs.readFileSync(
   path.join(path.dirname(fileURLToPath(import.meta.url)), "node-graph.module.scss"),
@@ -133,9 +139,10 @@ describe("NodeGraph", () => {
       />,
     );
     addNamedNode("Gate");
-    expect(onNodesChange).toHaveBeenCalledWith([
+    expect(changesOf(onNodesChange)).toEqual([
       {
         type: "add",
+        id: "node-1",
         item: {
           id: "node-1",
           position: { x: 260, y: 0 },
@@ -154,9 +161,10 @@ describe("NodeGraph", () => {
     const field = screen.getByRole("textbox", { name: "Node name" });
     fireEvent.change(field, { target: { value: "Start" } });
     fireEvent.keyDown(field, { key: "Enter" });
-    expect(onNodesChange).toHaveBeenCalledWith([
+    expect(changesOf(onNodesChange)).toEqual([
       {
         type: "add",
+        id: "node-1",
         item: {
           id: "node-1",
           position: { x: 80, y: 80 },
@@ -190,9 +198,10 @@ describe("NodeGraph", () => {
       />,
     );
     addNamedNode("Next");
-    expect(onNodesChange).toHaveBeenCalledWith([
+    expect(changesOf(onNodesChange)).toEqual([
       {
         type: "add",
+        id: "node-2",
         item: {
           id: "node-2",
           position: { x: 180, y: 40 },
@@ -214,8 +223,8 @@ describe("NodeGraph", () => {
       />,
     );
     fireEvent.click(screen.getByRole("button", { name: "Delete" }));
-    expect(onNodesChange).toHaveBeenCalledWith([{ type: "remove", id: "a" }]);
-    expect(onEdgesChange).toHaveBeenCalledWith([{ type: "remove", id: "e-ab" }]);
+    expect(changesOf(onNodesChange)).toEqual([{ type: "remove", id: "a" }]);
+    expect(changesOf(onEdgesChange)).toEqual([{ type: "remove", id: "e-ab" }]);
   });
 
   it("removes a selected edge without touching unselected nodes", () => {
@@ -234,7 +243,7 @@ describe("NodeGraph", () => {
     );
     fireEvent.click(screen.getByRole("button", { name: "Delete" }));
     expect(onNodesChange).not.toHaveBeenCalled();
-    expect(onEdgesChange).toHaveBeenCalledWith([{ type: "remove", id: "e-ab" }]);
+    expect(changesOf(onEdgesChange)).toEqual([{ type: "remove", id: "e-ab" }]);
   });
 
   it("keeps add and delete in the graph chrome", () => {

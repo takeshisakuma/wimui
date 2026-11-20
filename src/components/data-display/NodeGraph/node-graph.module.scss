@@ -108,6 +108,10 @@
  * `.controls`（`<Controls>`）/ `.miniMap`（`<MiniMap>`）と、
  * `:global(.react-flow__*)` の上書きが該当する。
  * `.root` / `.tools` / `.toolRow` / `.name` / `.tool` は自前の要素なので層の中。
+ *
+ * React Flow 13 からは、配る CSS が `@layer xyflow` に入った（T403）。それでも外に置いたままにする
+ * ── 層どうしの強さは層が最初に現れた順で決まり、利用者のアプリが CSS を読む順は決められない
+ * （InteractiveGraph の SCSS の同じ注記）。
  */
 .root {
   :global(.react-flow__node) {

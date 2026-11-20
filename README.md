@@ -304,13 +304,13 @@ Each peer-dependent component has its **own subpath** whose name documents its p
 | AreaChart, BarChart, etc. | `wimui/charts` | `recharts` |
 | Markdown | `wimui/data-display/markdown` | `react-markdown` `remark-gfm` |
 | QRCode | `wimui/data-display/qr-code` | `qrcode.react` |
-| NodeGraph | `wimui/data-display/node-graph` | `@xyflow/react` (`^12`. Install it with @12: React Flow 13 is not supported yet, and a bare install gets 13) |
+| NodeGraph | `wimui/data-display/node-graph` | `@xyflow/react` (`^13`) |
 | ScheduleView | `wimui/data-display/schedule-view` | `@fullcalendar/core` `@fullcalendar/react` `@fullcalendar/daygrid` `@fullcalendar/timegrid` `@fullcalendar/interaction` (`^6`. Install them with @6: FullCalendar 7 is not supported, and pnpm installs the latest core and react (7) unless you pin them) |
 | JsonDiffViewer | `wimui/data-display/json-diff-viewer` | `diff` |
 | StreamingText | `wimui/ai/streaming-text` | `react-markdown` `remark-gfm` |
 | MarkdownRenderer | `wimui/ai/markdown-renderer` | `react-markdown` `remark-gfm` |
 | CodeDiffViewer | `wimui/ai/code-diff-viewer` | `diff` |
-| InteractiveGraph | `wimui/ai/interactive-graph` | `@xyflow/react` (`^12`) |
+| InteractiveGraph | `wimui/ai/interactive-graph` | `@xyflow/react` (`^13`) |
 | Audio (only when `showMetadata`) | `wimui` or `wimui/media` | `music-metadata` |
 | FormField / zodResolver | `wimui/rhf` | `react-hook-form` `^7.55` / `@hookform/resolvers` `^5.1 \|\| ^6 \|\| ^7` / `zod` `^3.25 \|\| ^4` |
 
