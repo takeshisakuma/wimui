@@ -256,12 +256,12 @@ export function DataGrid<T extends Record<string, unknown>>({
   // セルの間は矢印で移る。以前は表の本体（`<table>`）も止まり先で、セルの中のチェックボックス・ボタン・
   // リンクも全部 Tab に残っていた（実測: Patterns/Admin/IntakeQueue の 8 行を通り抜けるのに Tab 35 回）。
   // セルの中の操作要素は、いまのセルのものだけを Tab に乗せる。利用者の `render` の中身にも効くよう、
-  // 描画のたびに DOM で付け替える。外した要素には元の tabindex を覚えさせ、そのセルに戻ったら返す。
+  // 描画のたびに DOM で付け替える。外した要素には元の tabindex を data-wim-tab に覚えさせ、そのセルに戻ったら返す。
   useLayoutEffect(() => {
     const grid = containerRef.current;
     if (!grid) return;
     const focusables = grid.querySelectorAll<HTMLElement>(
-      'a[href], button, input, select, textarea, [contenteditable="true"], [tabindex]:not([data-row])',
+      'a[href],button,input,select,textarea,[contenteditable=true],[tabindex]:not([data-row])',
     );
     for (const el of focusables) {
       const cell = el.closest<HTMLElement>("[data-row]");
@@ -269,14 +269,14 @@ export function DataGrid<T extends Record<string, unknown>>({
       const isCurrent =
         Number(cell.dataset.row) === focusedCell.row && Number(cell.dataset.col) === focusedCell.col;
       if (isCurrent) {
-        if (el.dataset.wimGridTabindex !== undefined) {
-          const original = el.dataset.wimGridTabindex;
+        if (el.dataset.wimTab !== undefined) {
+          const original = el.dataset.wimTab;
           if (original === "") el.removeAttribute("tabindex");
           else el.setAttribute("tabindex", original);
-          delete el.dataset.wimGridTabindex;
+          delete el.dataset.wimTab;
         }
-      } else if (el.dataset.wimGridTabindex === undefined) {
-        el.dataset.wimGridTabindex = el.getAttribute("tabindex") ?? "";
+      } else if (el.dataset.wimTab === undefined) {
+        el.dataset.wimTab = el.getAttribute("tabindex") ?? "";
         el.setAttribute("tabindex", "-1");
       }
     }
