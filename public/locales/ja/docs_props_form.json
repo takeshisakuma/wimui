@@ -406,6 +406,7 @@
     "otpInput_prop_disabled": "入力を無効化するかどうか",
     "otpInput_prop_error": "エラーメッセージ",
     "otpInput_prop_fullWidth": "親要素の幅いっぱいに広げるかどうか",
+    "otpInput_prop_inputMode": "タッチ端末で出す鍵盤。英字を含むコードには \"text\" を渡す。",
     "otpInput_prop_label": "フィールドのラベル",
     "otpInput_prop_labels": "国際化用のラベル",
     "otpInput_prop_layout": "ラベルとフィールドのレイアウト方向",

@@ -406,6 +406,7 @@
     "otpInput_prop_disabled": "Se a entrada está desabilitada",
     "otpInput_prop_error": "Mensagem de erro",
     "otpInput_prop_fullWidth": "Se deve ocupar toda a largura do elemento pai",
+    "otpInput_prop_inputMode": "Teclado exibido em dispositivos de toque. Use \"text\" para códigos com letras.",
     "otpInput_prop_label": "Rótulo do campo",
     "otpInput_prop_labels": "Rótulos para internacionalização",
     "otpInput_prop_layout": "Direção do layout do rótulo e do campo",
