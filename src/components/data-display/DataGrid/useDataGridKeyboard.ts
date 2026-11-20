@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useLayoutEffect } from "react";
 import type { DataGridColumn } from "./DataGrid";
 
 export function useDataGridKeyboard<T>(
@@ -10,9 +10,25 @@ export function useDataGridKeyboard<T>(
     { row: -1, col: selection ? -1 : 0 },
   );
   const containerRef = useRef<HTMLTableElement>(null);
+  // 矢印で移ったあと、フォーカスを移す先。状態が描画に反映された直後に移す（T420）。
+  // 以前は setTimeout(0) で後から移していて、キーを続けて押すと、あとのキー（Tab など）より
+  // 後にフォーカスが動き、Tab で入ったセルの中のボタンからセルへ引き戻されることがあった
+  const pendingFocus = useRef(false);
+
+  useLayoutEffect(() => {
+    if (!pendingFocus.current) return;
+    pendingFocus.current = false;
+    const target = containerRef.current?.querySelector(
+      `[data-row="${focusedCell.row}"][data-col="${focusedCell.col}"]`,
+    ) as HTMLElement | null;
+    target?.focus();
+  }, [focusedCell]);
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    const { row, col } = focusedCell;
+    // いまのセルは、キーを受けた要素の祖先のセルから読む。状態は描画が追いつく前だと 1 つ前のまま
+    const cell = (e.target as HTMLElement).closest<HTMLElement>("[data-row]");
+    const row = cell ? Number(cell.dataset.row) : focusedCell.row;
+    const col = cell ? Number(cell.dataset.col) : focusedCell.col;
     let nextRow = row;
     let nextCol = col;
 
@@ -71,13 +87,8 @@ export function useDataGridKeyboard<T>(
 
     if (nextRow !== row || nextCol !== col) {
       e.preventDefault();
+      pendingFocus.current = true;
       setFocusedCell({ row: nextRow, col: nextCol });
-      setTimeout(() => {
-        const target = containerRef.current?.querySelector(
-          `[data-row="${nextRow}"][data-col="${nextCol}"]`,
-        ) as HTMLElement;
-        target?.focus();
-      }, 0);
     }
   };
 
