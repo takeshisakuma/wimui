@@ -21,6 +21,7 @@ import {
   IconButton,
   InlineEdit,
   MultiSelect,
+  PageHeader,
   Popconfirm,
   RelativeTime,
   SearchInput,
@@ -30,7 +31,6 @@ import {
   Stack,
   Tag,
   Text,
-  Title,
   Toolbar,
   Tooltip,
   TooltipContent,
@@ -358,30 +358,26 @@ function IntakeQueue({
     <Box bg="surface-app" py="4xl">
       <Container size="xl">
         <Stack gap="2xl">
-          <Stack gap="sm">
-            <Breadcrumb
-              size="sm"
-              items={[
-                { label: t("intake.breadcrumb_intake"), href: "#" },
-                { label: t("intake.breadcrumb_queue") },
-              ]}
-            />
-            <Group justify="between" align="end" gap="lg" wrap="wrap">
-              <Stack gap="2xs">
-                <Title tag="h1" size="lg">
-                  {t("intake.title")}
-                </Title>
-                {loading ? (
-                  <Skeleton variant="text" width="18rem" />
-                ) : (
-                  <Text size="sm" color="text-secondary">
-                    {t("intake.summary", { total: TOTAL_LOTS, hold: holdCount })}
-                  </Text>
-                )}
-              </Stack>
-              <Button icon="PlusIcon">{t("intake.action_register")}</Button>
-            </Group>
-          </Stack>
+          <PageHeader
+            breadcrumb={
+              <Breadcrumb
+                size="sm"
+                items={[
+                  { label: t("intake.breadcrumb_intake"), href: "#" },
+                  { label: t("intake.breadcrumb_queue") },
+                ]}
+              />
+            }
+            title={t("intake.title")}
+            description={
+              loading ? (
+                <Skeleton variant="text" width="18rem" />
+              ) : (
+                t("intake.summary", { total: TOTAL_LOTS, hold: holdCount })
+              )
+            }
+            actions={<Button icon="PlusIcon">{t("intake.action_register")}</Button>}
+          />
 
           <Stack gap="md">
             <Toolbar>

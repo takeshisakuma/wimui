@@ -17,6 +17,7 @@ import {
   Image,
   Input,
   InputGroup,
+  PageHeader,
   Persona,
   Rating,
   Result,
@@ -198,9 +199,7 @@ export const DashboardHeader: StoryObj = {
 
         <Container style={{ padding: "var(--wim-spacing-4xl)" }}>
           <Stack gap="xl">
-            <Title tag="h2" size="xl">
-              {t("dashboard.overview_title")}
-            </Title>
+            <PageHeader title={t("dashboard.overview_title")} />
             <Grid
               cols="repeat(auto-fit, minmax(280px, 1fr))"
               gap={24}

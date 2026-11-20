@@ -557,7 +557,8 @@
     "empty_action": "Undo the snoozes"
   },
   "import": {
-    "breadcrumb": "Intake / Bulk upload",
+    "breadcrumb_intake": "Intake",
+    "breadcrumb_upload": "Bulk upload",
     "title": "Upload arriving lots",
     "file_meta": "lots-2026-07.csv · 218 KB · uploaded 09:12",
     "idle_title": "Nothing has been uploaded yet",

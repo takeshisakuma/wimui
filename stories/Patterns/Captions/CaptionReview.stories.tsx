@@ -5,6 +5,7 @@ import { ALL_NAMESPACES } from "../../i18nConstants";
 import {
   AppShell,
   Box,
+  Breadcrumb,
   Button,
   CommandPalette,
   CommandPaletteContent,
@@ -25,6 +26,7 @@ import {
   Group,
   Header,
   Menubar,
+  PageHeader,
   Popover,
   PopoverContent,
   PopoverTrigger,
@@ -33,7 +35,6 @@ import {
   Table,
   Tag,
   Text,
-  Title,
 } from "wimui";
 
 /**
@@ -306,15 +307,20 @@ const CaptionReviewScreen = ({
         </Sidebar>
         <AppShell.Main>
           <Stack gap="md">
-            <Stack gap="2xs">
-              <Text size="xs" color="text-tertiary">
-                {t("docs_stories_recipes:captions.reel_label")}
-              </Text>
-              <Title tag="h3" size="lg">{t("docs_stories_recipes:captions.title")}</Title>
-              <Text size="sm" color="secondary">
-                {t("docs_stories_recipes:captions.subtitle")}
-              </Text>
-            </Stack>
+            {/* 話数は「どこの中のページか」なので、題の上のラベルではなくパンくずの先頭に置く（T417） */}
+            <PageHeader
+              breadcrumb={
+                <Breadcrumb
+                  size="sm"
+                  items={[
+                    { label: t("docs_stories_recipes:captions.reel_label"), href: "#" },
+                    { label: t("docs_stories_recipes:captions.title") },
+                  ]}
+                />
+              }
+              title={t("docs_stories_recipes:captions.title")}
+              description={t("docs_stories_recipes:captions.subtitle")}
+            />
 
             {/* 390px では 5 列が入らない（実測: 表 443px / コンテナ 364px、
                 最終列は画面外）。`Table` にも `mobileCard` があるので、
