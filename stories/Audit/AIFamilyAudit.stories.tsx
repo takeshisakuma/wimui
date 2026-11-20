@@ -19,6 +19,8 @@ import {
   ChatMessageList,
   ChatMessage,
   ChatInput,
+  ChatToolCall,
+  ChatSystemMessage,
   ModelSelector,
   ThreadList,
   UsageMeter,
@@ -149,6 +151,41 @@ export const Overview: StoryObj = {
               <ChatInput placeholder={t("audit:ai_chat_input_placeholder")} showAttach />
             </Box>
           </ComponentGroup>
+        </ComparisonGrid>
+
+        {/* ChatToolCall / ChatSystemMessage Check（会話の中で、吹き出しでない部品） */}
+        <ComparisonGrid title={t("audit:ai_chat_parts_check")}>
+          {(["waiting", "running", "done", "error"] as const).map((status) => (
+            <ComponentGroup
+              key={status}
+              label={`${t("audit:label_chat_tool_call")} — ${t("audit:label_status", { status })}`}
+              align="stretch"
+              maxWidth="var(--wim-width-md)"
+            >
+              <ChatToolCall
+                name="search_lots"
+                status={status}
+                summary={status === "done" ? t("audit:ai_tool_summary") : undefined}
+                input={`{ "origin": "ET" }`}
+              />
+            </ComponentGroup>
+          ))}
+          {(
+            [
+              ["default", t("audit:ai_system_notice_default")],
+              ["warning", t("audit:ai_system_notice_warning")],
+              ["danger", t("audit:ai_system_notice_danger")],
+            ] as const
+          ).map(([intent, notice]) => (
+            <ComponentGroup
+              key={intent}
+              label={`${t("audit:label_chat_system_message")} — ${t("audit:label_intent", { intent })}`}
+              align="stretch"
+              maxWidth="var(--wim-width-md)"
+            >
+              <ChatSystemMessage intent={intent}>{notice}</ChatSystemMessage>
+            </ComponentGroup>
+          ))}
         </ComparisonGrid>
 
         {/* ThoughtProcess Check */}

@@ -21,6 +21,8 @@ import {
   Drawer,
   BottomSheet,
   ContextMenu,
+  ConfirmProvider,
+  useConfirm,
 } from "../../src";
 
 const meta: Meta = {
@@ -33,6 +35,27 @@ const meta: Meta = {
 export default meta;
 
 import { AuditPage, ComparisonGrid, ComponentGroup } from "./AuditUtils";
+
+/** `useConfirm` は `ConfirmProvider` の内側でしか呼べないので、引き金を 1 つの部品に切り出す */
+const ConfirmTrigger = () => {
+  const { t } = useTranslation([...ALL_NAMESPACES, "audit"]);
+  const confirm = useConfirm();
+  return (
+    <Button
+      variant="outline"
+      size="sm"
+      onClick={() =>
+        confirm({
+          title: t("audit:overlay_confirm_title"),
+          description: t("audit:overlay_cannot_undo"),
+          intent: "danger",
+        })
+      }
+    >
+      {t("audit:label_confirm")}
+    </Button>
+  );
+};
 
 export const Overview: StoryObj = {
   render: () => {
@@ -186,6 +209,10 @@ export const Overview: StoryObj = {
                   </BottomSheet.Body>
                 </BottomSheet.Content>
               </BottomSheet>
+
+              <ConfirmProvider>
+                <ConfirmTrigger />
+              </ConfirmProvider>
             </Stack>
           </ComponentGroup>
         </ComparisonGrid>

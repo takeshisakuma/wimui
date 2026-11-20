@@ -673,7 +673,16 @@
     "label_overflow_list": "OverflowList (folds)",
     "label_selectionbar": "Selection bar (bulk actions)",
     "sample_selectionbar_labels": "Print shipping labels",
-    "sample_selectionbar_cancel": "Cancel orders"
+    "sample_selectionbar_cancel": "Cancel orders",
+    "label_status": "Status: {{status}}",
+    "ai_chat_parts_check": "Tool Calls & System Notices",
+    "label_chat_tool_call": "ChatToolCall",
+    "label_chat_system_message": "ChatSystemMessage",
+    "ai_tool_summary": "3 lots found",
+    "ai_system_notice_default": "The model was switched to a faster one.",
+    "ai_system_notice_warning": "The answer was cut off at the length limit.",
+    "ai_system_notice_danger": "The answer never arrived.",
+    "label_confirm": "Confirm"
   },
   "common": {
     "a11y": {

@@ -672,5 +672,14 @@
   "label_overflow_list": "OverflowList (agrupa)",
   "label_selectionbar": "Barra de seleção (ações em lote)",
   "sample_selectionbar_labels": "Imprimir etiquetas de envio",
-  "sample_selectionbar_cancel": "Cancelar pedidos"
+  "sample_selectionbar_cancel": "Cancelar pedidos",
+  "label_status": "Status: {{status}}",
+  "ai_chat_parts_check": "Chamadas de ferramenta e avisos do sistema",
+  "label_chat_tool_call": "ChatToolCall",
+  "label_chat_system_message": "ChatSystemMessage",
+  "ai_tool_summary": "3 lotes encontrados",
+  "ai_system_notice_default": "O modelo foi trocado por um mais rápido.",
+  "ai_system_notice_warning": "A resposta foi cortada no limite de tamanho.",
+  "ai_system_notice_danger": "A resposta não chegou.",
+  "label_confirm": "Confirm"
 }

@@ -275,6 +275,14 @@ T389 の推奨の順（欠陥が見つかりやすい Fluent と Carbon を先�
 | # | 項目 | 優先 | 内容 | 検証方法 |
 |---|---|---|---|---|
 
+### Audit の家族ページの掲載漏れ（2026-11-20 起票）
+
+名前の突き合わせから 10 月以降に足した部品を数えたら（ユーザーの依頼）、7 つのうち 3 つが Audit の家族ページに載っていなかった。`check:audit-coverage` は緑のままだった。
+
+| # | 項目 | 優先 | 内容 | 検証方法 |
+|---|---|---|---|---|
+| T419 | **Audit の家族ページに載っていない公開部品が、`check:audit-coverage` をすり抜ける** | 未着手（P2） | 起票 2026-11-20。載っていないのは `ChatToolCall` / `ChatSystemMessage`（T363）と `ConfirmProvider` / `useConfirm`（T387）。検査の見えない形が 2 つあった: ①検査はカタログ（`components.json`）の名前しか見ない。2 つの Chat の部品はカタログでは `ChatUI` の 1 項目の中にいて、`ChatUI` は家族名として baseline に入っていた ②検査は名前と同じタグを探すだけで、`Confirm` は `<ConfirmProvider>` と `useConfirm()` で使うのでタグが無い。#1210 は `Confirm` を baseline に入れて通した。直し方（ユーザー判断で 1 と 2 を 1 本の PR に）: 1. 3 部品を家族ページに載せる（Overlay に Confirm の引き金、AI に ChatToolCall の状態 4 つと ChatSystemMessage の intent 3 つ）2. 検査が、package.json の exports の入口から公開している React の部品を型検査器で数え、カタログの名前と合わせて見る。`<Dialog.Content>` のようなドットの形も載っていると数える。名前とタグが違う部品は `AUDIT_TAGS` に置き換え先を書く（baseline に入れて黙らせない） | 3 部品を Audit から外した状態で新しい検査が 4 件（3 部品 + `Confirm`）で落ち、同じ状態で古い検査は緑のまま通る・入口が 0 件になったら止まる・lint-staged（`src/*.ts` を入口に足す）と CI の Lint ジョブ（`audit:docs`）で走る・Audit の VRT をユーザーが見る |
+
 ### Base UI・Blueprint との突き合わせ（2026-11-18 起票）
 
 T389 の候補の ⑨ Base UI と ⑤ Blueprint を回した。相手の部品の一覧は `gh api repos/mui/base-ui/contents/packages/react/src` と `gh api repos/palantir/blueprint/contents/packages/core/src/components` で取った。前回の学び（相手が**わざわざ prop や仕組みを持っている振る舞い**を拾い、WIM の同じ場面を実物で測る）に従い、4 つの振る舞いをビルドした Storybook と Playwright で測った。測定用のストーリー（Dialog / Drawer の中に開く部品を置く）は一時ブランチで作り、コミットしていない（スクリプトは `tmp-t389-scripts/escape-probe.mjs`・`misc-probe.mjs`）。**jsdom での測定は捨てた** ── 閉じるアニメーションの終わり（transitionend）が来ず、閉じたあとも中身が残るので、「閉じたか」を測れなかった。
