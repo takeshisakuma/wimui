@@ -10,6 +10,7 @@ import { getRovingIndex, isRovingKey } from "../../_internal/rovingIndex";
 import { findTypeaheadIndex, isTypeaheadKey, useTypeahead } from "../../_internal/typeahead";
 import styles from "./multiselect.module.scss";
 import { FieldTemplate } from "../FieldTemplate";
+import { HiddenFormValue } from "../../_internal/HiddenFormValue";
 import { FieldWidth } from "../../../types/tokens";
 import { CheckIcon } from "@/icon";
 
@@ -34,6 +35,10 @@ export type MultiSelectProps = {
   error?: string;
   /** Whether to show the required indicator */
   required?: boolean;
+  /**
+   * Name submitted with a native `<form>`. Each selected value is sent as its own hidden input (read them with `FormData.getAll`), and a form reset restores `defaultValue` when uncontrolled.
+   */
+  name?: string;
   /** Layout direction of label and field */
   layout?: "vertical" | "horizontal";
   /** Additional class names */
@@ -69,6 +74,7 @@ export const MultiSelect = ({
   label,
   error,
   required,
+  name,
   layout,
   className,
   disabled = false,
@@ -397,6 +403,7 @@ export const MultiSelect = ({
           </ul>
         )}
       </div>
+      <HiddenFormValue name={name} value={currentValues} disabled={disabled} onReset={() => { if (!isControlled) setInternalValue(defaultValue); }} />
     </FieldTemplate>
   );
 };

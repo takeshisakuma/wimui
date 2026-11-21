@@ -5,6 +5,7 @@ import { formNs } from "@/i18n/generated/form";
 import { Tag } from "../../data-display/Tag/Tag";
 import { InputBase } from "../InputBase/InputBase";
 import { FieldTemplate } from "../FieldTemplate/FieldTemplate";
+import { HiddenFormValue } from "../../_internal/HiddenFormValue";
 import { FieldIntent, FieldVariant, FieldWidth } from "../../../types/tokens";
 import styles from "./tag-input.module.scss";
 
@@ -36,6 +37,10 @@ export interface TagInputProps extends Omit<React.ComponentPropsWithoutRef<"div"
   error?: string;
   /** Whether to show the required indicator */
   required?: boolean;
+  /**
+   * Name submitted with a native `<form>`. Each tag is sent as its own hidden input (read them with `FormData.getAll`), and a form reset restores `defaultValue` when uncontrolled.
+   */
+  name?: string;
   /** Layout direction of label and field */
   layout?: "vertical" | "horizontal";
   /** Whether tags can be deleted */
@@ -63,6 +68,7 @@ export const TagInput = React.forwardRef<HTMLDivElement, TagInputProps>(
       label,
       error,
       required,
+      name,
       layout,
       allowDelete = true,
       maxTags,
@@ -223,6 +229,7 @@ export const TagInput = React.forwardRef<HTMLDivElement, TagInputProps>(
             </div>
           </div>
         </InputBase>
+        <HiddenFormValue name={name} value={tags} disabled={disabled} onReset={() => { if (!isControlled) setInternalTags(defaultValue); setInputValue(""); }} />
       </FieldTemplate>
     );
   }

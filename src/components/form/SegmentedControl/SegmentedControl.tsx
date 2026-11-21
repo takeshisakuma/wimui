@@ -5,6 +5,7 @@ import { Icon } from "../../media/Icon/Icon";
 import { useIndicator } from "../../_internal/useIndicator";
 import { useMergedRef } from "../../../hooks/useMergedRef";
 import { FieldTemplate } from "../FieldTemplate";
+import { HiddenFormValue } from "../../_internal/HiddenFormValue";
 import { ComponentSizeBasic } from "../../../types/tokens";
 import { getRovingIndex } from "../../_internal/rovingIndex";
 import localStyles from "./segmented-control.module.scss";
@@ -34,6 +35,10 @@ type SegmentedControlProps = {
   error?: string;
   /** Whether to show the required indicator */
   required?: boolean;
+  /**
+   * Name submitted with a native `<form>`. The selected value is sent as a hidden input. The component is controlled, so a form reset leaves the value to you.
+   */
+  name?: string;
   /** Layout direction of label and field */
   layout?: "vertical" | "horizontal";
   /** Whether the control is disabled */
@@ -75,6 +80,7 @@ export const SegmentedControl = forwardRef<HTMLDivElement, SegmentedControlProps
   label,
   error,
   required,
+  name,
   layout = "vertical",
   disabled = false,
   asChild = false,
@@ -193,6 +199,7 @@ export const SegmentedControl = forwardRef<HTMLDivElement, SegmentedControlProps
           })}
           <Slottable>{children}</Slottable>
         </Component>
+        <HiddenFormValue name={name} value={value} disabled={disabled} />
       </FieldTemplate>
     );
 });

@@ -2,6 +2,7 @@ import React, { useRef, useState, useId, forwardRef } from "react";
 import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import { FieldTemplate } from "../FieldTemplate";
+import { HiddenFormValue } from "../../_internal/HiddenFormValue";
 import styles from "./otp-input.module.scss";
 
 export type OtpInputLabels = {
@@ -32,6 +33,10 @@ export interface OtpInputProps extends Omit<React.ComponentPropsWithoutRef<"div"
   error?: string;
   /** Whether to show the required indicator */
   required?: boolean;
+  /**
+   * Name submitted with a native `<form>`. The whole code is sent as one hidden input, and a form reset clears the boxes when uncontrolled.
+   */
+  name?: string;
   /** Field label */
   label?: React.ReactNode;
   /** Layout direction of label and field */
@@ -72,6 +77,7 @@ export const OtpInput = forwardRef<HTMLDivElement, OtpInputProps>(
       disabled = false,
       error,
       required,
+      name,
       label,
       layout,
       className,
@@ -264,6 +270,7 @@ export const OtpInput = forwardRef<HTMLDivElement, OtpInputProps>(
               クラスが利用者の要素に付かなかった（T337）。 */}
           <Slottable>{children}</Slottable>
         </Component>
+        <HiddenFormValue name={name} value={internalValues.join("")} disabled={disabled} onReset={() => { if (value === undefined) setInternalValues(toDigits("", length)); }} />
       </FieldTemplate>
     );
   },

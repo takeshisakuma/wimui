@@ -778,6 +778,14 @@
     "treeSelect_prop_searchable": "ノードを絞り込むための検索入力を表示するかどうか",
     "treeSelect_prop_treeData": "選択対象のツリーノード",
     "treeSelect_prop_value": "選択された値（制御時）",
-    "treeSelect_prop_width": "フィールドの固定幅（width トークン、CSS 値、または px 単位の数値）"
+    "treeSelect_prop_width": "フィールドの固定幅（width トークン、CSS 値、または px 単位の数値）",
+    "select_prop_name": "素のフォームで送る名前。選んだ値を隠した input で送る。制御していなければ、フォームの reset で defaultValue に戻る",
+    "multiSelect_prop_name": "素のフォームで送る名前。選んだ値を 1 つずつ隠した input で送る（FormData.getAll で読む）。制御していなければ、フォームの reset で defaultValue に戻る",
+    "cascader_prop_name": "素のフォームで送る名前。選んだ経路の値を、上の段から順に 1 つずつ隠した input で送る。制御していなければ、フォームの reset で defaultValue に戻る",
+    "treeSelect_prop_name": "素のフォームで送る名前。選んだ値（multiple なら 1 つずつ）を隠した input で送る。制御していなければ、フォームの reset で選択が外れる",
+    "rating_prop_name": "素のフォームで送る名前。評価を隠した input で送る。制御していなければ、フォームの reset で defaultValue に戻る",
+    "segmentedControl_prop_name": "素のフォームで送る名前。選んだ値を隠した input で送る。制御だけの部品なので、フォームの reset のときの値は利用者が持つ",
+    "tagInput_prop_name": "素のフォームで送る名前。タグを 1 つずつ隠した input で送る（FormData.getAll で読む）。制御していなければ、フォームの reset で defaultValue に戻る",
+    "otpInput_prop_name": "素のフォームで送る名前。コード全体を 1 つの隠した input で送る。制御していなければ、フォームの reset で欄が空になる"
   }
 }

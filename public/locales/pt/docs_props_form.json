@@ -778,6 +778,14 @@
     "treeSelect_prop_searchable": "Se deve exibir um campo de busca para filtrar os nós",
     "treeSelect_prop_treeData": "Nós de árvore para seleção",
     "treeSelect_prop_value": "Valor(es) selecionado(s) (controlado)",
-    "treeSelect_prop_width": "Largura fixa do campo (token de width, valor CSS ou número em px)"
+    "treeSelect_prop_width": "Largura fixa do campo (token de width, valor CSS ou número em px)",
+    "select_prop_name": "Nome enviado com um formulário nativo. O valor selecionado é enviado em um input oculto; um reset do formulário restaura defaultValue quando não controlado.",
+    "multiSelect_prop_name": "Nome enviado com um formulário nativo. Cada valor selecionado é enviado em seu próprio input oculto (leia com FormData.getAll); um reset do formulário restaura defaultValue quando não controlado.",
+    "cascader_prop_name": "Nome enviado com um formulário nativo. Cada valor do caminho selecionado é enviado em seu próprio input oculto, do nível mais alto para baixo; um reset do formulário restaura defaultValue quando não controlado.",
+    "treeSelect_prop_name": "Nome enviado com um formulário nativo. O valor selecionado (cada valor quando multiple) é enviado em um input oculto; um reset do formulário limpa a seleção quando não controlado.",
+    "rating_prop_name": "Nome enviado com um formulário nativo. A avaliação é enviada em um input oculto; um reset do formulário restaura defaultValue quando não controlado.",
+    "segmentedControl_prop_name": "Nome enviado com um formulário nativo. O valor selecionado é enviado em um input oculto. O componente é controlado, então o valor após um reset do formulário fica a seu cargo.",
+    "tagInput_prop_name": "Nome enviado com um formulário nativo. Cada tag é enviada em seu próprio input oculto (leia com FormData.getAll); um reset do formulário restaura defaultValue quando não controlado.",
+    "otpInput_prop_name": "Nome enviado com um formulário nativo. O código inteiro é enviado em um único input oculto; um reset do formulário limpa as caixas quando não controlado."
   }
 }
