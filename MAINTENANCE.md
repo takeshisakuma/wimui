@@ -872,36 +872,7 @@ ls vrt/vrt.spec.ts-snapshots/ | grep -c '^light-'; ls vrt/vrt.spec.ts-snapshots/
 > - 矢印キーで移るタグの並び（Fluent・React Aria・Atlassian の TagGroup）
 > - 要素の大きさの変化を受け取る hook（Blueprint の ResizeSensor。公開している hooks には無い）
 >
-> **既存の部品で組める**（部品にするかは需要しだい。聞かれたら、組み方を答える）
->
-> - 選べるカード（RadioCard / CheckboxCard。Carbon の TileGroup / RadioTile・Spectrum 2 の SelectBoxGroup・Park の RadioCardGroup。`Radio` / `Checkbox` と `Card`）
-> - 素の選択（NativeSelect。素の `<select>`）
-> - 単体の Toggle（押したままになるボタン。`ToggleGroup` に項目を 1 つ）
-> - 単体の Collapsible（`Accordion` に項目を 1 つ）
-> - サイトの上部の移動先の一覧（NavigationMenu。daisyUI・PrimeReact の Megamenu。`Dropdown` にリンクを並べる）
-> - ページ上端の進捗バー（NavigationProgress / nprogress。`Progress` を `Affix` で上端に置く。2026-11-15 に T387 から移した）
-> - タイムゾーンの選択（Blueprint の TimezoneSelect。`Combobox` に `Intl.supportedValuesOf("timeZone")` を渡す）
-> - 2 つの印を入れ替える道具（Ark・daisyUI の Swap。開閉の矢印・再生と停止など。`Transition` と `Icon`）
-> - 数と「99+」を出すバッジ（Fluent の CounterBadge・Spectrum 2 の NotificationBadge・Primer の CounterLabel。`Badge` の `content` に文字で渡す）
-> - 説明の行を持つボタン（Fluent の CompoundButton。`Button` の中に 2 行の文字）
-> - 内容を押しのける引き出し（Fluent の InlineDrawer。`Splitter` か `Flex` と `Transition`）
-> - 開閉する検索欄（Carbon の ExpandableSearch。`IconButton` と `SearchInput`）
-> - 幅の広い作業用の面（Carbon の Tearsheet。`Dialog` の大きい形）
-> - 通知の一覧の面（Carbon の NotificationsPanel。`Popover` か `Drawer` に `List`）
-> - 案内の帯と初回の説明の画面（Carbon の Guidebanner / InterstitialScreen。`Banner`・`Dialog` と `Carousel`）
-> - 開いて設定を出す枠（Carbon の OptionsTile。`Accordion` の項目を `Card` の見た目で）
-> - 一覧から選んで足す面（Carbon の AddSelect。`Dialog` と `Transfer` か `MultiSelect`）
-> - AI 用の見た目のボタンと骨組み（Carbon の ChatButton / AISkeleton。`Button`・`Skeleton` と `AILabel`）
-> - 形で状態を描き分ける印（Carbon の ShapeIndicator。`Icon` と文字。`Presence` は T397 で形を持った）
-> - 文字の前に置く状態の点（Chakra の Status・daisyUI の Status・Spectrum 2 の StatusLight。点と文字。色だけで分けないこと＝7-4 の候補。`Indicator` は角に付く点だけ・`Presence` は在席の 4 状態だけ）
-> - 段を踏むダイアログ（Blueprint の MultistepDialog。`Dialog` と `Stepper`）
-> - 2 つの部分を持つタグ（Blueprint の CompoundTag。「キー: 値」の形。`Tag` の中に 2 つの文字）
-> - アイコン・題・副題の 1 まとまり（Blueprint の EntityTitle。`Group` と `Icon`・`Title`・`Text`。人なら `Persona`）
-> - 表の上の絞り込みの帯（Polaris の IndexFilters / Filters・Grommet の DataFilters。`SmartSearchInput` と `Chip`）
-> - 未保存の変更を知らせて保存と破棄を出す帯（Polaris の ContextualSaveBar。`Affix` か `Banner` と `Button`）
-> - 一覧と格子の切り替え（PrimeReact の DataView。`SegmentedControl` と `List` / `SimpleGrid`）
-> - 挿絵と操作を持つ案内のカード（Polaris の CalloutCard。`Card` と `Image`）
-> - 数の入力欄を添えたスライダー（Spectrum 2 の SliderInput。`Slider` と `NumberInput`）
+> **既存の部品で組める**（部品にするかは需要しだい）── **一覧の正本は `src/data/composable.json`**（28 件。名前・別表記・組み方・使う部品）。`llms.txt` / `llms-full.txt` の「Not a component — compose it from existing ones」の節に出て、AI が他所の名前で探したときに組み方へ届く。ここには写さない（2026-11-21・#1257）。新しい回で組めるものが出たら `composable.json` に足す（`check:aliases` が、名前の衝突と、使う部品の実在を見る）
 >
 > **既存の部品に口や形を足す**（部品は増えない。足すなら、その部品の PR で）
 >
