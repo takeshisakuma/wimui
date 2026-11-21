@@ -485,6 +485,40 @@ describe("DataGrid", () => {
     expect(grid).toHaveAttribute("aria-colcount", "3");
   });
 
+  // T421: ページ送りでは、全体の件数と全体での位置を伝える。以前は aria-rowcount がそのページの行数 + 見出しで、
+  // 各行に aria-rowindex が無く、2 ページ目の 1 行目も「4 行のうち 2 行目」と読まれていた
+  it("reports the total row count and each row's position across pages", () => {
+    render(
+      <DataGrid
+        columns={mockColumns}
+        data={mockRows}
+        pagination={{ current: 2, pageSize: 3, total: 50, onChange: () => {} }}
+      />,
+    );
+    const grid = screen.getByRole("grid");
+    expect(grid).toHaveAttribute("aria-rowcount", "51");
+    const rows = screen.getAllByRole("row");
+    expect(rows[0]).toHaveAttribute("aria-rowindex", "1");
+    // 2 ページ目の 1 行目は、全体で 4 件目＝見出しを含めて 5 行目
+    expect(rows[1]).toHaveAttribute("aria-rowindex", "5");
+    expect(rows[3]).toHaveAttribute("aria-rowindex", "7");
+  });
+
+  it("numbers rows from the header when there is no pagination", () => {
+    render(<DataGrid columns={mockColumns} data={mockRows} />);
+    const rows = screen.getAllByRole("row");
+    expect(rows.map((r) => r.getAttribute("aria-rowindex"))).toEqual(["1", "2", "3", "4"]);
+  });
+
+  it("reports an unknown row count while infinite scroll has more to load", () => {
+    const { rerender } = render(
+      <DataGrid columns={mockColumns} data={mockRows} infiniteScroll={{ hasMore: true, onLoadMore: () => {} }} />,
+    );
+    expect(screen.getByRole("grid")).toHaveAttribute("aria-rowcount", "-1");
+    rerender(<DataGrid columns={mockColumns} data={mockRows} infiniteScroll={{ hasMore: false, onLoadMore: () => {} }} />);
+    expect(screen.getByRole("grid")).toHaveAttribute("aria-rowcount", "4");
+  });
+
   it("applies aria-colcount including selection column", () => {
     render(
       <DataGrid

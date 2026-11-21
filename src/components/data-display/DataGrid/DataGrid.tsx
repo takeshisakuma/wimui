@@ -234,6 +234,17 @@ export function DataGrid<T extends Record<string, unknown>>({
     selection.onChange(newKeys, newRecords);
   };
 
+  // 全体の行数と、各行の全体での位置（T421）。ページ送りは外側で切り出したページを data に渡す作りなので、
+  // 以前は aria-rowcount が「そのページの行数 + 見出し」で、2 ページ目の 1 行目も「11 行のうち 2 行目」と
+  // 読まれていた。pagination.total（全体の件数）と、いまのページの手前にある件数から出す。
+  // 続きを読み込む形（infiniteScroll）で、まだ続きがあるあいだは全体が分からないので -1（ARIA の「不明」）。
+  const rowIndexOffset = pagination ? (pagination.current - 1) * pagination.pageSize : 0;
+  const ariaRowCount = pagination
+    ? pagination.total + 1
+    : infiniteScroll?.hasMore
+      ? -1
+      : data.length + 1;
+
   const handleSelectRow = (record: T, e: React.ChangeEvent<HTMLInputElement>) => {
     if (!selection) return;
     const checked = e.target.checked;
@@ -334,7 +345,7 @@ export function DataGrid<T extends Record<string, unknown>>({
           role="grid"
           aria-label={ariaLabelledBy ? undefined : (ariaLabelAttr ?? ariaLabel ?? t("a11y.data_grid"))}
           aria-labelledby={ariaLabelledBy}
-          aria-rowcount={data.length + 1}
+          aria-rowcount={ariaRowCount}
           aria-colcount={colCount}
           striped={striped}
           bordered={bordered}
@@ -346,7 +357,7 @@ export function DataGrid<T extends Record<string, unknown>>({
           containerClassName={styles.tableContainer}
         >
           <Table.Header>
-            <Table.Row>
+            <Table.Row aria-rowindex={1}>
               {selection && (
                 <Table.Head
                   ref={selectionHeadRef}
@@ -421,7 +432,7 @@ export function DataGrid<T extends Record<string, unknown>>({
               const isSelected = selection?.selectedRowKeys.includes(key);
 
               return (
-                <Table.Row key={key} selected={isSelected}>
+                <Table.Row key={key} selected={isSelected} aria-rowindex={rowIndexOffset + rowIndex + 2}>
                   {selection && (
                     <Table.Cell
                       role="gridcell"
