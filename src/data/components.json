@@ -31,7 +31,8 @@
           "Star Rating",
           "Rating Indicator",
           "Rating Display",
-          "Rating Group"
+          "Rating Group",
+          "Rate"
         ]
       },
       {
@@ -70,7 +71,10 @@
         "name": "ImageCropper",
         "descKey": "doc.imageCropper_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Cropper"
+        ]
       },
       {
         "name": "TagInput",
@@ -81,7 +85,8 @@
           "Token Field",
           "Chips Input",
           "Tags Input",
-          "Text Input With Tokens"
+          "Text Input With Tokens",
+          "Input Tag"
         ]
       }
     ]
@@ -102,7 +107,8 @@
           "Callout",
           "Flash",
           "Inline Alert",
-          "Inline Message"
+          "Inline Message",
+          "Section Message"
         ]
       },
       {
@@ -140,7 +146,8 @@
         "aliases": [
           "Message",
           "Sonner",
-          "Toaster"
+          "Toaster",
+          "Flag"
         ]
       },
       {
@@ -182,7 +189,8 @@
         "pc": true,
         "mobile": true,
         "aliases": [
-          "Top Bar"
+          "Top Bar",
+          "App Bar"
         ]
       },
       {
@@ -206,7 +214,8 @@
           "Source List",
           "Inspector",
           "Nav Drawer",
-          "Side Nav"
+          "Side Nav",
+          "Side Navigation"
         ]
       },
       {
@@ -310,14 +319,19 @@
           "Input OTP",
           "PIN Code Input",
           "One Time Password Field",
-          "OTP Field"
+          "OTP Field",
+          "Pin Code",
+          "Verification Code"
         ]
       },
       {
         "name": "InputMask",
         "descKey": "doc.inputMask_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Masked Input"
+        ]
       },
       {
         "name": "CreditCardInput",
@@ -455,7 +469,9 @@
         "aliases": [
           "Disclosure",
           "Disclosure Group",
-          "Expander"
+          "Expander",
+          "Collapse",
+          "Expansion Panel"
         ]
       },
       {
@@ -504,7 +520,8 @@
         "mobile": true,
         "aliases": [
           "Icon Indicator",
-          "State Label"
+          "State Label",
+          "Lozenge"
         ]
       },
       {
@@ -523,7 +540,8 @@
           "Zero State",
           "Non-Ideal State",
           "Empty Search Result",
-          "Illustrated Message"
+          "Illustrated Message",
+          "Empty"
         ]
       },
       {
@@ -629,7 +647,8 @@
         "aliases": [
           "Data Table",
           "Index Table",
-          "Table View"
+          "Table View",
+          "Dynamic Table"
         ]
       },
       {
@@ -691,7 +710,9 @@
         "mobile": true,
         "aliases": [
           "Data List",
-          "Labeled Value"
+          "Labeled Value",
+          "Descriptions",
+          "Name Value List"
         ]
       },
       {
@@ -702,7 +723,8 @@
         "aliases": [
           "Statistic",
           "Stat",
-          "Big Number"
+          "Big Number",
+          "Metric Text"
         ]
       },
       {
@@ -731,7 +753,8 @@
         "mobile": true,
         "aliases": [
           "Virtual Scroller",
-          "Virtualizer"
+          "Virtualizer",
+          "Virtual Scroll"
         ]
       },
       {
@@ -844,7 +867,10 @@
         "name": "Grid",
         "descKey": "doc.grid_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Layout Grid"
+        ]
       },
       {
         "name": "Stack",
@@ -901,7 +927,9 @@
         "mobile": true,
         "aliases": [
           "Wrap",
-          "Inline Stack"
+          "Inline Stack",
+          "Space",
+          "Inline"
         ]
       },
       {
@@ -928,7 +956,8 @@
           "Resizable",
           "Resizable Panels",
           "Split Pane",
-          "Resizer"
+          "Resizer",
+          "Resize Box"
         ]
       },
       {
@@ -992,7 +1021,8 @@
         "mobile": true,
         "disambiguation": "Material's \"Progress Indicator\" covers indeterminate spinners as well. WIM's `Progress` is determinate and linear only — for the indeterminate case use `Spinner`.",
         "aliases": [
-          "Progress Bar"
+          "Progress Bar",
+          "Progress Linear"
         ]
       },
       {
@@ -1002,7 +1032,9 @@
         "mobile": true,
         "aliases": [
           "Progress Circle",
-          "Animated Circular Progress Bar"
+          "Animated Circular Progress Bar",
+          "Radial Progress",
+          "Progress Circular"
         ]
       },
       {
@@ -1011,7 +1043,8 @@
         "pc": true,
         "mobile": true,
         "aliases": [
-          "Shimmer"
+          "Shimmer",
+          "Skeleton Loader"
         ]
       },
       {
@@ -1023,7 +1056,8 @@
           "Activity Indicator",
           "Inline Loading",
           "Loading",
-          "Progress Spinner"
+          "Progress Spinner",
+          "Spin"
         ]
       },
       {
@@ -1061,13 +1095,19 @@
         "name": "Video",
         "descKey": "doc.video_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Video Player"
+        ]
       },
       {
         "name": "Audio",
         "descKey": "doc.audio_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Audio Player"
+        ]
       },
       {
         "name": "Lightbox",
@@ -1091,7 +1131,10 @@
         "name": "ImageCompare",
         "descKey": "imagecompare_doc.subtitle",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Compare Slider"
+        ]
       }
     ]
   },
@@ -1171,7 +1214,9 @@
         "disambiguation": "In Apple HIG and macOS, a \"Stepper\" is the control that increments a number — that is `NumberInput` here. WIM's `Stepper` shows progress through a sequence of steps, which is what Material calls a Stepper.",
         "aliases": [
           "Progress Indicator",
-          "Steps"
+          "Steps",
+          "Wizard",
+          "Progress Tracker"
         ]
       },
       {
@@ -1232,7 +1277,10 @@
         "name": "FloatButton",
         "descKey": "doc.floatButton_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "FAB"
+        ]
       },
       {
         "name": "SpeedDial",
@@ -1268,7 +1316,10 @@
           "Info Button",
           "Toggletip",
           "Overlay Panel",
-          "Contextual Help"
+          "Contextual Help",
+          "Drop Button",
+          "Inline Dialog",
+          "Popup"
         ]
       },
       {
@@ -1277,7 +1328,8 @@
         "pc": true,
         "mobile": true,
         "aliases": [
-          "Help Tag"
+          "Help Tag",
+          "Tip"
         ]
       },
       {
@@ -1288,7 +1340,8 @@
         "aliases": [
           "Navigation Drawer",
           "Overlay Drawer",
-          "Side Panel"
+          "Side Panel",
+          "Side Sheet"
         ]
       },
       {
@@ -1330,8 +1383,11 @@
         "mobile": true,
         "aliases": [
           "Teaching Popover",
-          "Coach Mark"
-        ]
+          "Coach Mark",
+          "User Guide",
+          "Spotlight"
+        ],
+        "disambiguation": "In Atlassian's design system, \"Spotlight\" is the onboarding tour that highlights one element at a time — that is `Tour` here. Aceternity UI's Spotlight is a decorative lighting effect, which WIM does not provide."
       },
       {
         "name": "Dropdown",
@@ -1396,13 +1452,20 @@
         "name": "Slider",
         "descKey": "doc.slider_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Range",
+          "Range Input"
+        ]
       },
       {
         "name": "RangeSlider",
         "descKey": "doc.rangeSlider_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Range Selector"
+        ]
       },
       {
         "name": "DatePicker",
@@ -1421,7 +1484,8 @@
         "pc": true,
         "mobile": true,
         "aliases": [
-          "Time Field"
+          "Time Field",
+          "Time Input"
         ]
       },
       {
@@ -1534,7 +1598,8 @@
         "mobile": true,
         "aliases": [
           "Tag Picker",
-          "Select Panel"
+          "Select Panel",
+          "Select Multiple"
         ]
       },
       {
@@ -1603,7 +1668,8 @@
         "mobile": true,
         "aliases": [
           "Truncated Text",
-          "Truncate"
+          "Truncate",
+          "Paragraph"
         ]
       },
       {
@@ -1727,7 +1793,8 @@
         "pc": true,
         "mobile": true,
         "aliases": [
-          "Ticker"
+          "Ticker",
+          "Infinite Moving Cards"
         ]
       },
       {
@@ -1805,7 +1872,8 @@
           "Scrim",
           "Backdrop",
           "Dimming View",
-          "Overlay"
+          "Overlay",
+          "Blanket"
         ]
       },
       {
@@ -1833,7 +1901,8 @@
         "pc": true,
         "mobile": true,
         "aliases": [
-          "Chart"
+          "Chart",
+          "Data Chart"
         ]
       },
       {
@@ -1894,7 +1963,10 @@
         "name": "Treemap",
         "descKey": "doc.treemap_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Distribution"
+        ]
       },
       {
         "name": "GaugeChart",
@@ -1973,13 +2045,20 @@
         "name": "PromptInput",
         "descKey": "doc.promptInput_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "AI Chat Input"
+        ]
       },
       {
         "name": "ChatUI",
         "descKey": "doc.chatui_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Chat",
+          "AI Chat Dialogue"
+        ]
       },
       {
         "name": "StreamingText",
@@ -1997,7 +2076,10 @@
         "name": "AIResponseFeedback",
         "descKey": "doc.aiResponseFeedback_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Thumbs Rating"
+        ]
       },
       {
         "name": "SourceCitation",
@@ -2011,7 +2093,8 @@
         "pc": true,
         "mobile": true,
         "aliases": [
-          "Code Snippet"
+          "Code Snippet",
+          "Code Highlight"
         ]
       },
       {
@@ -2045,7 +2128,10 @@
         "name": "MarkdownRenderer",
         "descKey": "doc.markdownrenderer_intro",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Markdown Render"
+        ]
       },
       {
         "name": "InteractiveGraph",
