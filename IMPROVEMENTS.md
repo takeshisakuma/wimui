@@ -347,7 +347,6 @@ T389 の残りの 3 つ（③ HeroUI・⑧ Primer / Polaris・① の MUI の co
 
 | # | 項目 | 優先 | 内容 | 検証方法 |
 |---|---|---|---|---|
-| T427 | **8 つのフォームの部品が、素の `<form>` の送信の値に入らない** | 判断待ち | 起票 2026-11-20（HeroUI〔React Aria〕から。React Aria は隠した素の `<select>` などを置き、フォームの送信とブラウザの自動入力に値を渡す）。実測（vitest で各部品に `name` と値を渡して `<form>` に入れ、`new FormData(form)` を読む）: **Select・MultiSelect・Cascader・TreeSelect・Rating・SegmentedControl・TagInput・OtpInput は何も入らない**。Combobox・DatePicker・ColorPicker・Switch・Checkbox・RadioGroup・Slider・RangeSlider・NumberInput・TimePicker は入る（測り方の対照）。React 19 の `<form action>` やサーバーアクション、素の HTML のフォームでは、8 つの値が送られない。`wimui/rhf` で制御する使い方なら困らない。**直すかはユーザー判断**: 直すなら、Slider / RangeSlider と同じく、`name` を受けて隠した `<input>` を置く（複数の値は同じ `name` で並べる） | 8 部品で `FormData` に値が入る（単体テスト）・`form.reset()` で既定の値に戻る・`required` の検証 |
 | T428 | **破壊的変更のとき、利用者のコードを書き換える道具（codemod）を配っていない** | 判断待ち | 起票 2026-11-20（MUI の `@mui/codemod` から。版ごとに、import 元の変更・prop の改名を機械で直す変換を配る）。WIM は 0.x のあいだに破壊的変更を 13 回ほど出した（CHANGELOG の「破壊的変更」）。どれも changeset に移行の手順を文で書いているが、機械では直せない。いまの利用者の数なら文で足りる。**1.0 の前後でまとめて用意するかはユーザー判断**: 用意するなら、機械で直せる種類（import 元・prop の改名・公開の停止）だけを jscodeshift の変換にし、`npx wimui-codemod <版>` の形で配る | 足すなら: 変換ごとに、前のコードと後のコードの組で単体テスト・CHANGELOG の破壊的変更の行から、変換の有無をたどれる |
 
 ### コンポーネント追加の検討（2026-09-28 起票）
