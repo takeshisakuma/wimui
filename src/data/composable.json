@@ -1,0 +1,318 @@
+{
+  "$comment": "外部語彙に載っているが、WIM UI では部品にせず『既存の部品で組む』ものの単一ソース（2026-11-21）。`aliases` は『他所の名前 → 同じ部品』、`not-planned.json` は『他所の名前 → 採らない理由』、こちらは『他所の名前 → 組み方』を答える。llms.txt の『Not a component — compose it』節に出る。部品にしない理由は docs/rules/implementation.md の「複合 UI / レシピ優先」。需要（要る画面か利用者の要望）が出たら、Patterns のレシピにするか、部品にするかを決め直す。check:aliases が、名前と別表記が既存の部品・別名・採らないの語とぶつからないこと、use の部品が実在することを見る。",
+  "$fields": {
+    "name": "外部の体系で使われている呼び名（見出しになる）",
+    "aka": "同じものを指す別表記",
+    "en": "llms.txt 用。何をどう組むかを英語で。prop を書くときは実在するものだけ",
+    "ja": "人が読む用。組み方を日本語で",
+    "use": "組むのに使う WIM の部品（実在するコンポーネント名）"
+  },
+  "composable": [
+    {
+      "name": "Radio Card",
+      "aka": [
+        "Checkbox Card",
+        "Radio Card Group",
+        "Tile Group",
+        "Radio Tile",
+        "Selectable Tile",
+        "Select Box Group"
+      ],
+      "en": "A card-shaped choice. Put a `Radio` (one choice) or `Checkbox` (several) with its label and description inside a `Card`, and group them with `RadioGroup` / `CheckboxGroup` so the keyboard and form value stay native.",
+      "ja": "`Card` の中に `Radio`（1 つ選ぶ）か `Checkbox`（いくつも選ぶ）とラベル・説明を置き、`RadioGroup` / `CheckboxGroup` でまとめる。キー操作とフォームの値は素のまま",
+      "use": [
+        "Radio",
+        "RadioGroup",
+        "Checkbox",
+        "CheckboxGroup",
+        "Card"
+      ]
+    },
+    {
+      "name": "Native Select",
+      "en": "Use a plain `<select>` element; when it must match WIM styling and behaviour, use `Select`.",
+      "ja": "素の `<select>` を使う。見た目と振る舞いを揃えるなら `Select`",
+      "use": [
+        "Select"
+      ]
+    },
+    {
+      "name": "Toggle Button",
+      "en": "A single press-and-stay button (`aria-pressed`): a `ToggleGroup` with `selectionMode=\"multiple\"` and one option. For an on/off setting, use `Switch`.",
+      "ja": "押したままになるボタン（`aria-pressed`）は、`ToggleGroup` の `selectionMode=\"multiple\"` に項目を 1 つ。設定のオン・オフなら `Switch`",
+      "use": [
+        "ToggleGroup",
+        "Switch"
+      ]
+    },
+    {
+      "name": "Collapsible",
+      "en": "A single show/hide section: an `Accordion` with one item and `collapsible`.",
+      "ja": "`Accordion` に項目を 1 つ、`collapsible` を付ける",
+      "use": [
+        "Accordion"
+      ]
+    },
+    {
+      "name": "Navigation Menu",
+      "aka": [
+        "Mega Menu",
+        "Megamenu"
+      ],
+      "en": "Site-level navigation with dropdown panels: a row of `Dropdown`s whose items are links, inside `Navbar` or `Header`.",
+      "ja": "`Navbar` か `Header` の中に、項目がリンクの `Dropdown` を並べる",
+      "use": [
+        "Dropdown",
+        "Navbar",
+        "Header"
+      ]
+    },
+    {
+      "name": "Navigation Progress",
+      "aka": [
+        "NProgress",
+        "Top Loading Bar",
+        "Page Progress Bar"
+      ],
+      "en": "A thin bar at the top of the page while a route loads: a `Progress` (use `indeterminate` when the duration is unknown) kept at the top edge with `Affix` (`offsetTop={0}`).",
+      "ja": "`Progress`（長さが分からないときは `indeterminate`）を `Affix`（`offsetTop={0}`）で上端に置く",
+      "use": [
+        "Progress",
+        "Affix"
+      ]
+    },
+    {
+      "name": "Timezone Select",
+      "aka": [
+        "Time Zone Picker"
+      ],
+      "en": "A searchable list of time zones: a `Combobox` whose `options` come from `Intl.supportedValuesOf(\"timeZone\")`.",
+      "ja": "`Combobox` の `options` に `Intl.supportedValuesOf(\"timeZone\")` を渡す",
+      "use": [
+        "Combobox"
+      ]
+    },
+    {
+      "name": "Swap",
+      "en": "Swapping one icon for another (open/close chevron, play/pause): render the two `Icon`s conditionally and animate the change with `Transition`. Keep the accessible name on the button, not the icon.",
+      "ja": "2 つの `Icon` を状態で出し分け、`Transition` で入れ替える。名前はボタンの側に付ける",
+      "use": [
+        "Icon",
+        "Transition"
+      ]
+    },
+    {
+      "name": "Counter Badge",
+      "aka": [
+        "Notification Badge",
+        "Counter Label"
+      ],
+      "en": "A count such as \"99+\": pass the text to `Badge`'s `content`. To pin it to the corner of another element, use `Indicator`.",
+      "ja": "`Badge` の `content` に文字で渡す。ほかの要素の角に付けるなら `Indicator`",
+      "use": [
+        "Badge",
+        "Indicator"
+      ]
+    },
+    {
+      "name": "Compound Button",
+      "en": "A button with a second line of description: put two lines of text inside `Button` (a short label first, the description in `Text` below it).",
+      "ja": "`Button` の中に 2 行の文字（短いラベルと、その下に `Text` の説明）",
+      "use": [
+        "Button",
+        "Text"
+      ]
+    },
+    {
+      "name": "Inline Drawer",
+      "en": "A side panel that pushes the content aside instead of overlaying it: a `Splitter` (resizable) or a `Flex` row whose side pane is shown with `Transition`.",
+      "ja": "`Splitter`（幅を変えられる）か `Flex` の行に脇の面を置き、`Transition` で出し入れする",
+      "use": [
+        "Splitter",
+        "Flex",
+        "Transition"
+      ]
+    },
+    {
+      "name": "Expandable Search",
+      "en": "A search icon that opens into a field: an `IconButton` that reveals a `SearchInput` and moves focus into it.",
+      "ja": "`IconButton` を押すと `SearchInput` が開き、フォーカスを移す",
+      "use": [
+        "IconButton",
+        "SearchInput"
+      ]
+    },
+    {
+      "name": "Tearsheet",
+      "en": "A large task surface over the page: a `Dialog` or a `Drawer` holding the task. Neither has an extra-wide preset, so set the content width with your own class.",
+      "ja": "`Dialog` か `Drawer` に作業を入れる。どちらも幅の広い既定は無いので、内容の幅は利用者のクラスで決める",
+      "use": [
+        "Dialog",
+        "Drawer"
+      ]
+    },
+    {
+      "name": "Notifications Panel",
+      "en": "A panel listing recent notifications: a `List` inside a `Popover` (from a bell `IconButton`) or a `Drawer`.",
+      "ja": "ベルの `IconButton` から開く `Popover` か `Drawer` に `List`",
+      "use": [
+        "List",
+        "Popover",
+        "Drawer",
+        "IconButton"
+      ]
+    },
+    {
+      "name": "Guide Banner",
+      "aka": [
+        "Interstitial Screen"
+      ],
+      "en": "Onboarding guidance: a dismissible `Banner` in the page, or a `Dialog` containing a `Carousel` of steps for a first-run screen. For pointing at parts of the UI, use `Tour`.",
+      "ja": "閉じられる `Banner`、初回の画面なら `Dialog` に手順の `Carousel`。画面の部分を指すなら `Tour`",
+      "use": [
+        "Banner",
+        "Dialog",
+        "Carousel",
+        "Tour"
+      ]
+    },
+    {
+      "name": "Options Tile",
+      "en": "A tile that expands to reveal settings: an `Accordion` item styled with the `Card` surface.",
+      "ja": "`Accordion` の項目を `Card` の見た目で",
+      "use": [
+        "Accordion",
+        "Card"
+      ]
+    },
+    {
+      "name": "Add Select",
+      "en": "Picking items from a catalogue to add: a `Dialog` containing `Transfer` (two lists) or `MultiSelect`.",
+      "ja": "`Dialog` に `Transfer`（2 つの一覧）か `MultiSelect`",
+      "use": [
+        "Dialog",
+        "Transfer",
+        "MultiSelect"
+      ]
+    },
+    {
+      "name": "Chat Button",
+      "aka": [
+        "AI Skeleton"
+      ],
+      "en": "AI-styled controls and loading placeholders: a regular `Button` or `Skeleton` marked with `AILabel`. WIM does not give AI content a separate visual style.",
+      "ja": "`Button`・`Skeleton` に `AILabel` を添える。AI の中身に別の見た目は付けない",
+      "use": [
+        "Button",
+        "Skeleton",
+        "AILabel"
+      ]
+    },
+    {
+      "name": "Shape Indicator",
+      "en": "A status shown by shape as well as colour: an `Icon` whose shape differs per status, followed by the status text.",
+      "ja": "状態ごとに形の違う `Icon` と、状態の文字",
+      "use": [
+        "Icon"
+      ]
+    },
+    {
+      "name": "Status Dot",
+      "aka": [
+        "Status Light"
+      ],
+      "en": "A coloured dot before a status label: an `Indicator` with `inline`, followed by the status text. Never rely on the colour alone. For a person's availability, use `Presence`.",
+      "ja": "`Indicator` の `inline` と状態の文字。色だけで分けない。人の在席なら `Presence`",
+      "use": [
+        "Indicator",
+        "Presence"
+      ]
+    },
+    {
+      "name": "Multistep Dialog",
+      "aka": [
+        "Wizard Dialog"
+      ],
+      "en": "A dialog that walks through steps: a `Dialog` with a `Stepper` at the top and the current step's content below.",
+      "ja": "`Dialog` の上に `Stepper`、下にいまの手順の中身",
+      "use": [
+        "Dialog",
+        "Stepper"
+      ]
+    },
+    {
+      "name": "Compound Tag",
+      "en": "A two-part \"key: value\" tag: put the key and the value as two pieces of text inside one `Tag`.",
+      "ja": "1 つの `Tag` の中に、キーと値の 2 つの文字",
+      "use": [
+        "Tag"
+      ]
+    },
+    {
+      "name": "Entity Title",
+      "en": "An icon, title and subtitle as one unit: `Group` with an `Icon`, a `Title` and a `Text`. For a person, use `Persona`.",
+      "ja": "`Group` に `Icon`・`Title`・`Text`。人なら `Persona`",
+      "use": [
+        "Group",
+        "Icon",
+        "Title",
+        "Text",
+        "Persona"
+      ]
+    },
+    {
+      "name": "Index Filters",
+      "aka": [
+        "Filter Bar",
+        "Data Filters"
+      ],
+      "en": "A filter bar above a table: a `SearchInput` plus `Select` / `MultiSelect` controls, with the active filters shown as removable `Chip`s (`onDelete`).",
+      "ja": "`SearchInput` と `Select` / `MultiSelect`、効いている絞り込みは外せる `Chip`（`onDelete`）で",
+      "use": [
+        "SearchInput",
+        "Select",
+        "MultiSelect",
+        "Chip"
+      ]
+    },
+    {
+      "name": "Contextual Save Bar",
+      "en": "A bar announcing unsaved changes with Save and Discard: a `Banner` (or content kept in view with `Affix`) holding two `Button`s.",
+      "ja": "`Banner`（か `Affix` で見えたままにした面）に 2 つの `Button`",
+      "use": [
+        "Banner",
+        "Affix",
+        "Button"
+      ]
+    },
+    {
+      "name": "Data View",
+      "en": "Switching a collection between list and grid: a `SegmentedControl` that swaps between `List` and `SimpleGrid`.",
+      "ja": "`SegmentedControl` で `List` と `SimpleGrid` を切り替える",
+      "use": [
+        "SegmentedControl",
+        "List",
+        "SimpleGrid"
+      ]
+    },
+    {
+      "name": "Callout Card",
+      "en": "A promotional card with an illustration and a call to action: a `Card` with an `Image` and a `Button`.",
+      "ja": "`Card` に `Image` と `Button`",
+      "use": [
+        "Card",
+        "Image",
+        "Button"
+      ]
+    },
+    {
+      "name": "Slider Input",
+      "en": "A slider with a number field beside it: a `Slider` and a `NumberInput` bound to the same value.",
+      "ja": "`Slider` と `NumberInput` を同じ値に繋ぐ",
+      "use": [
+        "Slider",
+        "NumberInput"
+      ]
+    }
+  ]
+}

@@ -482,6 +482,39 @@ Exported hooks. Prefer them over hand-rolled equivalents (`matchMedia` listeners
 - **useToast** — `import { useToast } from "wimui/feedback"` — Show a short, self-dismissing message (a toast) from anywhere under `ToastProvider`. Use it for a one-off confirmation of something the user just did; for state that stays true (a limit, an outage), render an inline `Alert` instead.
 - **useWim** — `import { useWim } from "wimui"` — Read the nearest `WimProvider` values, or fall back to document / i18n globals when used outside a provider.
 
+## Not a component — compose it from existing ones
+
+These names exist in other systems' vocabularies. wimui does not ship them as components because existing components already express them; build them from the components named here instead of hand-rolling new markup.
+
+- **Radio Card** (aka Checkbox Card, Radio Card Group, Tile Group, Radio Tile, Selectable Tile, Select Box Group) — A card-shaped choice. Put a `Radio` (one choice) or `Checkbox` (several) with its label and description inside a `Card`, and group them with `RadioGroup` / `CheckboxGroup` so the keyboard and form value stay native.
+- **Native Select** — Use a plain `<select>` element; when it must match WIM styling and behaviour, use `Select`.
+- **Toggle Button** — A single press-and-stay button (`aria-pressed`): a `ToggleGroup` with `selectionMode="multiple"` and one option. For an on/off setting, use `Switch`.
+- **Collapsible** — A single show/hide section: an `Accordion` with one item and `collapsible`.
+- **Navigation Menu** (aka Mega Menu, Megamenu) — Site-level navigation with dropdown panels: a row of `Dropdown`s whose items are links, inside `Navbar` or `Header`.
+- **Navigation Progress** (aka NProgress, Top Loading Bar, Page Progress Bar) — A thin bar at the top of the page while a route loads: a `Progress` (use `indeterminate` when the duration is unknown) kept at the top edge with `Affix` (`offsetTop={0}`).
+- **Timezone Select** (aka Time Zone Picker) — A searchable list of time zones: a `Combobox` whose `options` come from `Intl.supportedValuesOf("timeZone")`.
+- **Swap** — Swapping one icon for another (open/close chevron, play/pause): render the two `Icon`s conditionally and animate the change with `Transition`. Keep the accessible name on the button, not the icon.
+- **Counter Badge** (aka Notification Badge, Counter Label) — A count such as "99+": pass the text to `Badge`'s `content`. To pin it to the corner of another element, use `Indicator`.
+- **Compound Button** — A button with a second line of description: put two lines of text inside `Button` (a short label first, the description in `Text` below it).
+- **Inline Drawer** — A side panel that pushes the content aside instead of overlaying it: a `Splitter` (resizable) or a `Flex` row whose side pane is shown with `Transition`.
+- **Expandable Search** — A search icon that opens into a field: an `IconButton` that reveals a `SearchInput` and moves focus into it.
+- **Tearsheet** — A large task surface over the page: a `Dialog` or a `Drawer` holding the task. Neither has an extra-wide preset, so set the content width with your own class.
+- **Notifications Panel** — A panel listing recent notifications: a `List` inside a `Popover` (from a bell `IconButton`) or a `Drawer`.
+- **Guide Banner** (aka Interstitial Screen) — Onboarding guidance: a dismissible `Banner` in the page, or a `Dialog` containing a `Carousel` of steps for a first-run screen. For pointing at parts of the UI, use `Tour`.
+- **Options Tile** — A tile that expands to reveal settings: an `Accordion` item styled with the `Card` surface.
+- **Add Select** — Picking items from a catalogue to add: a `Dialog` containing `Transfer` (two lists) or `MultiSelect`.
+- **Chat Button** (aka AI Skeleton) — AI-styled controls and loading placeholders: a regular `Button` or `Skeleton` marked with `AILabel`. WIM does not give AI content a separate visual style.
+- **Shape Indicator** — A status shown by shape as well as colour: an `Icon` whose shape differs per status, followed by the status text.
+- **Status Dot** (aka Status Light) — A coloured dot before a status label: an `Indicator` with `inline`, followed by the status text. Never rely on the colour alone. For a person's availability, use `Presence`.
+- **Multistep Dialog** (aka Wizard Dialog) — A dialog that walks through steps: a `Dialog` with a `Stepper` at the top and the current step's content below.
+- **Compound Tag** — A two-part "key: value" tag: put the key and the value as two pieces of text inside one `Tag`.
+- **Entity Title** — An icon, title and subtitle as one unit: `Group` with an `Icon`, a `Title` and a `Text`. For a person, use `Persona`.
+- **Index Filters** (aka Filter Bar, Data Filters) — A filter bar above a table: a `SearchInput` plus `Select` / `MultiSelect` controls, with the active filters shown as removable `Chip`s (`onDelete`).
+- **Contextual Save Bar** — A bar announcing unsaved changes with Save and Discard: a `Banner` (or content kept in view with `Affix`) holding two `Button`s.
+- **Data View** — Switching a collection between list and grid: a `SegmentedControl` that swaps between `List` and `SimpleGrid`.
+- **Callout Card** — A promotional card with an illustration and a call to action: a `Card` with an `Image` and a `Button`.
+- **Slider Input** — A slider with a number field beside it: a `Slider` and a `NumberInput` bound to the same value.
+
 ## Not in scope — deliberately not provided
 
 These exist in other systems' vocabularies and are **decisions, not gaps**. Do not hand-roll them into a wimui screen; the alternative given is the supported way to express the same intent.

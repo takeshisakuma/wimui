@@ -821,7 +821,7 @@
       "node scripts/generate-llms.js",
       "node scripts/stage-generated.js public/llms.txt public/llms-full.txt --"
     ],
-    "{src/data/components.json,src/data/not-planned.json,scripts/slop-dictionary.json,scripts/generate-llms.js}": [
+    "{src/data/components.json,src/data/not-planned.json,src/data/composable.json,scripts/slop-dictionary.json,scripts/generate-llms.js}": [
       "node scripts/check-aliases.js",
       "node scripts/generate-llms.js",
       "node scripts/stage-generated.js public/llms.txt public/llms-full.txt --"

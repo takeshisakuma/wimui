@@ -827,6 +827,22 @@ const notPlanned = [
   ),
 ].join('\n');
 
+// --- composable from existing components (2026-11-21) ---------------------
+//
+// カタログに無い名前は、採らないものだけではない。既存の部品で組めるもの（選べるカード・
+// 単体の Collapsible など）も、書かなければ「無いから自作する」と読まれ、既存の部品を
+// 使わない手書きの実装になる。組み方を名前と一緒に書く。SSOT は `src/data/composable.json`。
+const composableList = readJSON('src/data/composable.json').composable;
+const composable = [
+  `## Not a component — compose it from existing ones`,
+  ``,
+  `These names exist in other systems' vocabularies. ${pkg.name} does not ship them as components because existing components already express them; build them from the components named here instead of hand-rolling new markup.`,
+  ``,
+  ...composableList.map(
+    (c) => `- **${c.name}**${c.aka?.length ? ` (aka ${c.aka.join(', ')})` : ''} — ${c.en}`,
+  ),
+].join('\n');
+
 // --- assemble & write -----------------------------------------------------
 
 const banner = `# WIM UI — LLM guide (llms.txt)\n\n> Machine-readable map of the ${pkg.name} React component library for coding agents. Read this before generating any UI with ${pkg.name}: it defines the required CSS/setup, the correct import paths, the full component list, and the composition rules that keep screens from looking AI-generated.\n`;
@@ -843,6 +859,7 @@ const concise = [
   `> More verified full-screen recipes (auth sign-in, settings form, empty state, filtered data table, onboarding) and per-category idioms (form, navigation, feedback, overlay) are in \`llms-full.txt\`.`,
   catalogSection(false),
   `\n${hooksSection(false)}`,
+  `\n${composable}`,
   `\n${notPlanned}`,
   `\n---\nFor per-component props, types and defaults, see \`llms-full.txt\`.\n\n${perComponentPointer}`,
 ].join('\n');
@@ -856,6 +873,7 @@ const full = [
   idioms,
   catalogSection(true),
   `\n${hooksSection(true)}`,
+  `\n${composable}`,
   `\n${notPlanned}`,
   `\n---\n${perComponentPointer}`,
 ].join('\n');
