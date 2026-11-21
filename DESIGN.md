@@ -331,7 +331,7 @@ Major Second (1.125) に近い比率に基づく、意図的にコンパクト�
 | Table・DataGrid の器は角丸 4px（`component`）、Card は 12px（`container`） | 表の器は Card に揃えない | 表は「面」ではなく「格子」なので、器の丸みは部品の丸みで足りる。Table と DataGrid、Toolbar、Pagination が同じページに並ぶので、12px と 4px の器が交互に出るのを避ける（T236。`table.module.scss` のコメント）。Table のカード表示（狭い幅）も同じ |
 | Button の枠は 2px、Input の枠は 1px | 線幅は揃えない | Button は solid / outline / ghost の外寸を揃えるために全 variant で 2px の枠を持つ。Input に合わせると Button 全体の外寸が動く |
 | 開いたメニューで Tab を押すと、Dropdown・SplitButton・Menubar は閉じて引き金の次へ進み、ContextMenu は閉じて開く前の要素へ戻る | Tab の行き先は揃えない | ContextMenu は引き金のボタンを持たない（引き金はページ上の領域そのもの）ので、「引き金の次」が決まらない。開く前にフォーカスのあった要素へ戻すのが、失わない唯一の行き先（T302） |
-| ダークで、入力欄の枠（`line`）は明るく、パネルの枠（`border`）は暗い | 線の明るさは揃えない | 入力欄は 1px の線だけが「ここに入力できる」の合図なので、ダークでも消さない。パネルは面の色差でも読めるので、線は沈める（`tokens/color/semantic.json` の `line` のコメント）。**開いたリストやメニューはパネルの側**（引き金が入力欄でも、開いた面の枠と中の区切りは `border`。T320） |
+| 入力欄の枠（`line`）とパネルの枠（`border`） | 線の濃さを揃えない | 入力欄は 1px の線だけが「ここに入力できる」の合図。`line` は両テーマとも `#b6b6b6`。パネルの枠はページの段より静かにする（light `#d0d0d0`、dark `#585858`）。`line` に戻すと、枠が段より強くなる。**開いたリストやメニューはパネルの側**（引き金が入力欄でも、開いた面の枠と中の区切りは `border`。T320） |
 
 ---
 

@@ -35,10 +35,10 @@ export const CHART_THEME = {
     // 軸線と目盛り線は**非テキスト**（WCAG 1.4.11 の 3:1）。
     // **`text-disabled` はサーフェスの上でしか足りていなかった**（light 3.45 /
     // dark 3.35）── チャートは自分の背景を塗らないので、Card に入れず
-    // ページ地（`surface-app` = `#e5e5e5`）に直接置くと **2.74** まで落ちる（T215）。
+    // ページ地（`surface-app` = `#dcdcdc`）に直接置くと、`text-disabled` は **2.52** まで落ちる（T215。旧ページ `#e5e5e5` では 2.74）。
     // `text-disabled` と `text-tertiary` の間に通るトークンは無い（border 系は
     // すべて 3:1 に届かない）ので、通るうちで一番軽い `text-tertiary` を採る。
-    // 最小 6.50。**グリッド線（`grid.stroke`）は変えていない** ── あれは読み取りの
+    // ページ地の上では 5.97。**グリッド線（`grid.stroke`）は変えていない** ── あれは読み取りの
     // 補助であって、無くてもデータは読める＝装飾なので 1.4.11 の対象外。
     stroke: "var(--wim-color-text-tertiary)",
     fontSize: 12,

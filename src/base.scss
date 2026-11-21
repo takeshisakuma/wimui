@@ -286,9 +286,9 @@
   }
 
   a {
-    // 塗り用の `--wim-color-primary` は **両テーマとも #055d87 で固定**なので、
-    // dark の面（surface-app）に載せると 2.11:1 しか出ない。文字用の
-    // `text-accent` はテーマごとに反転する（light #04436e / dark #97cbe0）。
+    // 塗り用の `--wim-color-primary` は **両テーマとも #5c5791 で固定**なので、
+    // dark の面にそのまま載せると文字として足りない。文字用の
+    // `text-accent` はテーマごとに反転する（light #312c4c / dark #c3c6e1）。
     // T41 案② の実効コントラスト検査で検出。
     color: var(--wim-color-text-accent);
   }
