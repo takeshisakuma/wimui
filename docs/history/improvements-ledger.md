@@ -563,3 +563,15 @@
 | # | 項目 | 優先 | 内容 | 検証方法 |
 |---|---|---|---|---|
 | T419 | **Audit の家族ページに載っていない公開部品が、`check:audit-coverage` をすり抜ける** | **済**（2026-11-20・#1242。公開部品 357 を型検査器で数え、`AUDIT_TAGS` を足した。3 部品を家族ページへ。落ちることはローカル全量・lint-staged で実証） | 起票 2026-11-20。載っていないのは `ChatToolCall` / `ChatSystemMessage`（T363）と `ConfirmProvider` / `useConfirm`（T387）。検査の見えない形が 2 つあった: ①検査はカタログ（`components.json`）の名前しか見ない。2 つの Chat の部品はカタログでは `ChatUI` の 1 項目の中にいて、`ChatUI` は家族名として baseline に入っていた ②検査は名前と同じタグを探すだけで、`Confirm` は `<ConfirmProvider>` と `useConfirm()` で使うのでタグが無い。#1210 は `Confirm` を baseline に入れて通した。直し方（ユーザー判断で 1 と 2 を 1 本の PR に）: 1. 3 部品を家族ページに載せる（Overlay に Confirm の引き金、AI に ChatToolCall の状態 4 つと ChatSystemMessage の intent 3 つ）2. 検査が、package.json の exports の入口から公開している React の部品を型検査器で数え、カタログの名前と合わせて見る。`<Dialog.Content>` のようなドットの形も載っていると数える。名前とタグが違う部品は `AUDIT_TAGS` に置き換え先を書く（baseline に入れて黙らせない） | 3 部品を Audit から外した状態で新しい検査が 4 件（3 部品 + `Confirm`）で落ち、同じ状態で古い検査は緑のまま通る・入口が 0 件になったら止まる・lint-staged（`src/*.ts` を入口に足す）と CI の Lint ジョブ（`audit:docs`）で走る・Audit の VRT をユーザーが見る |
+
+## MUI X との突き合わせ（2026-11-20 起票・T389）
+
+| # | 項目 | 優先 | 内容 | 検証方法 |
+|---|---|---|---|---|
+| T420 | **DataGrid の Tab の止まり先が多い（表の本体とセルの中身が、それぞれ止まる）** | **済**（2026-11-21。#1249。表の本体の `tabIndex` をやめ、セルの中の操作要素はいまのセルのものだけを Tab に乗せる。通り抜ける Tab の数は Default 1・WithSelection 2・WithActions 1・FullFeatured 2・IntakeQueue 2。測っていて、選択の列があると矢印で最後の列に届かない欠陥と、キー連打の競合も見つけて直した。E2E は `vrt/datagrid-tab-stops.e2e.spec.ts`） | 起票 2026-11-20（MUI X の Tab sequence から）。表の本体（`role="grid"` の `<table>`）が `tabIndex={0}` で、フォーカスのあるセルも `tabIndex={0}` なので、**素の表でも止まり先が 2 つ**（APG と MUI X は 1 つ）。さらに、セルの中のチェックボックス・ボタン・リンクは全部 Tab に残る。実測（表を通り抜けるまでの Tab の数）: Default 2・WithSelection 8・WithActions 12・FullFeatured 13・**Patterns/Admin/IntakeQueue 35**（8 行）。MUI X は、フォーカスのあるセル以外の中身を Tab から外し（`renderCell` に `tabIndex` を渡す）、セルの中へは Enter で入る。直すなら、表の本体の `tabIndex` をやめてセルの roving に寄せ、セルの中の操作要素は、そのセルにフォーカスがあるときだけ Tab に乗せる。`selection` のチェックボックスと、利用者の `render` の中身の両方に効く口が要る | 番兵のボタンから Tab で表を通り抜ける回数が、中身に関わらず 1（E2E）・矢印でセルを移ったあと、そのセルの中の操作に Enter / Tab で届く・a11y |
+
+## Chakra UI の Zag（状態機械）との突き合わせ（2026-11-20 起票・T389）
+
+| # | 項目 | 優先 | 内容 | 検証方法 |
+|---|---|---|---|---|
+| T424 | **OtpInput の入力欄に、`autocomplete="one-time-code"` と `inputmode="numeric"` が無い** | **済**（2026-11-21。#1248。最初の欄に `autocomplete="one-time-code"`・全欄に `inputmode`（新しい prop `inputMode`、既定 `"numeric"`）。自動入力でコード全体が 1 つの欄に入ったとき各欄へ分ける処理も足した ── 属性だけだと最後の 1 桁しか残らなかった。実機のスマートフォンで SMS の候補が出るかは未確認＝人の手が要る） | 起票 2026-11-20（Zag の pin-input の `otp` から）。実測: 4 つの入力欄とも `autocomplete` も `inputmode` も無く、`type="text"`。スマートフォンでは数字の鍵盤が出ず、iOS / Android の「SMS のコードを入れる」候補も出ない（どちらも `one-time-code` を手がかりにする）。貼り付けを各欄に分ける処理（`onPaste`）は既にある。英字を含むコードの用途もあるので、`inputmode` は数字だけの既定で、口で切り替えられるようにするか決める | 各入力欄の `autocomplete` / `inputmode`（単体テスト）・実機のスマートフォンで SMS の候補が出る（人の手が要る） |
