@@ -202,7 +202,7 @@ export function BillingOverview() {
 
 ### layout — `import { … } from "wimui/layout"`
 
-- **AppShell** — Basic application shell layout (aka UI Shell)
+- **AppShell** — Basic application shell layout (aka UI Shell, Page Layout, Split Page Layout)
 - **AspectRatio** — Fixed ratio container
 - **BentoGrid** — Modern card grid (aka Waffle Menu, Bento Menu, Grid Menu, Candy Bar Menu, Chocolate Bar Menu, ベントーメニュー, ワッフルメニュー)
 - **Box** — Polymorphic box
@@ -213,19 +213,20 @@ export function BillingOverview() {
 - **Flex** — Flexible layout
 - **Footer** — Lower navigation
 - **Grid** — Flexbox or CSS Grid system
-- **Group** — Flexible grouping (aka Wrap)
-- **Header** — Upper navigation
+- **Group** — Flexible grouping (aka Wrap, Inline Stack)
+- **Header** — Upper navigation (aka Top Bar)
 - **InteractiveArea** — Foundation component for consistent interactive areas with borders and states.
 - **Masonry** — Waterfall grid
 - **Navbar** — Primary navigation
 - **OverflowList** — Lays out items in one row and folds the ones that do not fit into a "+N" indicator. (aka Overflow, Overflow Handler)
-- **PageHeader** — Head of a page: breadcrumb, title (always h1), status, description, actions and tabs in a fixed order and spacing.
-- **ScrollArea** — A custom scrollbar component that provides high-performance, cross-browser consistent themes while maintaining a native-like feel.
-- **Sidebar** — A collapsible navigation or informational panel on the side of the screen (aka Source List, Inspector, Nav Drawer)
-- **SimpleGrid** — Responsive fixed grid
+- **PageHeader** — Head of a page: breadcrumb, title (always h1), status, description, actions and tabs in a fixed order and spacing. (aka Pagehead)
+- **ScrollArea** — A custom scrollbar component that provides high-performance, cross-browser consistent themes while maintaining a native-like feel. (aka Scroll Panel, Scrollable Region)
+- **Sidebar** — A collapsible navigation or informational panel on the side of the screen (aka Source List, Inspector, Nav Drawer, Side Nav)
+- **SimpleGrid** — Responsive fixed grid (aka Inline Grid)
 - **Splitter** — Split and resize panels (aka Resizable, Resizable Panels, Split Pane, Resizer)
-- **Stack** — Vertical/Horizontal alignment
+- **Stack** — Vertical/Horizontal alignment (aka Block Stack)
 - **Toolbar** — Action strip for IconButton, ToggleGroup, and related controls with toolbar keyboard navigation. (aka Action Bar)
+  - ⚠️ Not the same as elsewhere: In React Spectrum 2, "ActionBar" is the bar of bulk actions that appears while items are selected — that is `SelectionBar` here. WIM's `Toolbar` is a persistent row of controls.
 - **Transition** — Utilities for managing smooth enter and leave animations with CSS classes
 - **VisuallyHidden** — Hide content visually while keeping it accessible to screen readers (aka Screen Reader Only, SR Only)
 - **Watermark** — Translucent text or images overlaid on content to indicate ownership or status
@@ -233,75 +234,75 @@ export function BillingOverview() {
 ### form — `import { … } from "wimui/form"`
 
 - **Button** — Action triggers
-- **ButtonGroup** — Group of buttons (aka Button Set, Action Set)
-- **Cascader** — Hierarchical selection (aka Column View, Miller Columns)
+- **ButtonGroup** — Group of buttons (aka Button Set, Action Set, Action Button Group)
+- **Cascader** — Hierarchical selection (aka Column View, Miller Columns, Cascade Select)
 - **Checkbox** — Multiple choice
 - **CheckboxGroup** — Shared state checkboxes
 - **ColorInput** — Input with color preview (aka Color Well, Color Field)
-- **ColorPicker** — Color selection picker (aka Swatch Picker)
+- **ColorPicker** — Color selection picker (aka Swatch Picker, Color Swatch Picker)
 - **Combobox** — Select with search (aka Autocomplete, Auto Complete, Suggest)
 - **CopyButton** — Copy to clipboard (aka Copy, Clipboard)
 - **CounterTextarea** — Textarea with character count display
 - **CreditCardInput** — Payment card input with brand detection
-- **DatePicker** — Date selection (aka Date Input)
+- **DatePicker** — Date selection (aka Date Input, Date Field)
   - ⚠️ Not the same as elsewhere: In Blueprint, a "DatePicker" is the calendar panel shown inline — that is `Calendar` here. WIM's `DatePicker` is a text field that opens a calendar, which Blueprint calls DateInput.
 - **DateRangePicker** — Date range selection (aka Date Range Input)
   - ⚠️ Not the same as elsewhere: In Blueprint, a "DateRangePicker" is the calendar panel for choosing a range — that is `RangeCalendar` here. WIM's `DateRangePicker` is a pair of date fields, which Blueprint calls DateRangeInput.
 - **Dropzone** — Drag & drop files
-- **FieldError** — Validation messages
+- **FieldError** — Validation messages (aka Inline Error, Error Message)
 - **Fieldset** — Form grouping (aka Form Group)
-- **FieldTemplate** — Standardizes label placement, required markings, and error message display for all form-related components. (aka Field)
-- **FileUpload** — File selection (aka Upload, File Input, File Uploader)
+- **FieldTemplate** — Standardizes label placement, required markings, and error message display for all form-related components. (aka Field, Form Control)
+- **FileUpload** — File selection (aka Upload, File Input, File Uploader, File Trigger)
 - **FloatButton** — Floating action buttons
-- **IconButton** — A square button containing only an icon without a text label.
+- **IconButton** — A square button containing only an icon without a text label. (aka Close Button)
 - **ImageCropper** — Front-end image cropping and rotation tool.
-- **InlineEdit** — A component that allows users to switch between a view-only mode and an editable mode in-place. (aka Editable Text, Edit In Place, Editable)
-- **Input** — Single-line input fields for text, numbers, or emails (aka Text Input)
+- **InlineEdit** — A component that allows users to switch between a view-only mode and an editable mode in-place. (aka Editable Text, Edit In Place, Editable, Inplace)
+- **Input** — Single-line input fields for text, numbers, or emails (aka Text Input, Text Field, Input Text)
 - **InputBase** — Standardizes the visual container, icon slots (Prefix/Suffix), and clear button behavior for text-based inputs.
 - **InputGroup** — Inputs with icons/labels (aka Control Group)
 - **InputMask** — Formatted inputs
 - **LinkButton** — Anchor styled as button (aka Anchor Button)
-- **Mentions** — @ / # suggestions
-- **MultiSelect** — Multiple selection (aka Tag Picker)
-- **NumberInput** — Input with step adjustments (aka Spin Button, Numeric Stepper, Numeric Input)
-- **OtpInput** — One-time password fields (aka Pin Input, Input OTP, PIN Code Input)
-- **PasswordInput** — Password with toggle
+- **Mentions** — @ / # suggestions (aka Mention)
+- **MultiSelect** — Multiple selection (aka Tag Picker, Select Panel)
+- **NumberInput** — Input with step adjustments (aka Spin Button, Numeric Stepper, Numeric Input, Number Field, Input Number)
+- **OtpInput** — One-time password fields (aka Pin Input, Input OTP, PIN Code Input, One Time Password Field, OTP Field)
+- **PasswordInput** — Password with toggle (aka Password Toggle Field)
 - **PasswordStrength** — Visual meter to indicate password security level. (aka Strength Meter)
 - **PhoneInput** — International phone number input
 - **QueryBuilder** — Visual builder for constructing complex search queries. (aka Condition Builder)
 - **Radio** — Single choice (aka Radio Button)
-- **RadioGroup** — Shared state radio buttons (aka Radio Button Group)
+- **RadioGroup** — Shared state radio buttons (aka Radio Button Group, Choice List)
 - **RangeSlider** — Range selection
 - **Rating** — Star rating (aka Star Rating, Rating Indicator, Rating Display, Rating Group)
-- **RichTextEditor** — WYSIWYG rich text editor
+- **RichTextEditor** — WYSIWYG rich text editor (aka Editor)
 - **SearchInput** — Search with clear button (aka Search Field, Search Bar, Search Box)
-- **SegmentedControl** — Button-style controls for switching between a small set of mutually exclusive options (aka Segmented Buttons, Segmented Picker, Content Switcher, Segment Group)
-- **Select** — A dropdown menu for selecting one option from a predefined list (aka Pop-Up Button, Select Menu)
+- **SegmentedControl** — Button-style controls for switching between a small set of mutually exclusive options (aka Segmented Buttons, Segmented Picker, Content Switcher, Segment Group, Select Button)
+- **Select** — A dropdown menu for selecting one option from a predefined list (aka Pop-Up Button, Select Menu, Picker)
 - **SignaturePad** — Handwritten signature input
 - **Slider** — An input to capture a numeric value from a specified range by dragging a knob
 - **SmartSearchInput** — Smart search input enabling both traditional search and AI prompting.
 - **SplitButton** — SplitButton description. (aka Combo Button)
-- **Switch** — A binary switch for instantly toggling settings between on and off states (aka Toggle, Toggle Switch)
+- **Switch** — A binary switch for instantly toggling settings between on and off states (aka Toggle, Toggle Switch, Input Switch)
   - ⚠️ Not the same as elsewhere: In Radix, shadcn/ui and Ark UI, a "Toggle" is a button that stays pressed (`aria-pressed`) — use a one-item `ToggleGroup` here. WIM's `Switch` is the on/off control that Apple and Material call a toggle.
 - **SwitchGroup** — Shared state switches
-- **TagInput** — Input field for creating free-form tags. (aka Token Field, Chips Input, Tags Input)
-- **Textarea** — Multi-line input fields for longer text entries like descriptions or comments
+- **TagInput** — Input field for creating free-form tags. (aka Token Field, Chips Input, Tags Input, Text Input With Tokens)
+- **Textarea** — Multi-line input fields for longer text entries like descriptions or comments (aka Input Textarea)
 - **ThemeToggle** — Light / dark / system theme switcher (aka Animated Theme Toggler)
-- **TimePicker** — Time selection
-- **ToggleGroup** — Toggleable buttons
-- **Transfer** — Move items between lists
+- **TimePicker** — Time selection (aka Time Field)
+- **ToggleGroup** — Toggleable buttons (aka Toggle Button Group)
+- **Transfer** — Move items between lists (aka Pick List)
 - **TreeSelect** — Select from tree structure
 
 ### feedback — `import { … } from "wimui/feedback"`
 
-- **Alert** — Important messages (aka Message Bar, Callout)
+- **Alert** — Important messages (aka Message Bar, Callout, Flash, Inline Alert, Inline Message)
   - ⚠️ Not the same as elsewhere: In Fluent UI v8, a "Callout" is a popup anchored to an element — that is `Popover` here. WIM's `Alert` matches Blueprint's Callout: an inline message in the page flow.
 - **Autosave** — Inline status indicator for automatic save state
 - **Banner** — Top prominent messages
 - **ErrorBoundary** — Runtime error fallback
-- **Indicator** — Small status dots (aka Badge Indicator)
+- **Indicator** — Small status dots (aka Badge Indicator, Message Indicator)
 - **Loader** — Animated indicators to show that data is loading or processing
-- **LoadingOverlay** — Overlay with loading indicator
+- **LoadingOverlay** — Overlay with loading indicator (aka Block UI)
 - **Notification** — Rich notification card
 - **Progress** — Progress bar (aka Progress Bar)
   - ⚠️ Not the same as elsewhere: Material's "Progress Indicator" covers indeterminate spinners as well. WIM's `Progress` is determinate and linear only — for the indeterminate case use `Spinner`.
@@ -310,7 +311,7 @@ export function BillingOverview() {
 - **ScrollProgress** — Reading progress indicator
 - **Skeleton** — Placeholder for content loading states. (aka Shimmer)
 - **Snackbar** — Bottom notifications
-- **Spinner** — A rotating icon indicating background activity or data fetching (aka Activity Indicator, Inline Loading, Loading)
+- **Spinner** — A rotating icon indicating background activity or data fetching (aka Activity Indicator, Inline Loading, Loading, Progress Spinner)
 - **Toast** — Non-intrusive floating messages that provide feedback on system operations (aka Message, Sonner, Toaster)
 - **Tour** — Sequential guided walkthroughs to onboard users or highlight features (aka Teaching Popover, Coach Mark)
 
@@ -318,7 +319,7 @@ export function BillingOverview() {
 
 - **Affix** — Sticky elements (aka Sticky)
 - **Anchor** — Smooth scroll links (aka Scrollspy, Table of Contents, TableOfContents, TOC)
-- **BackTop** — Back to top button (aka Back to Top)
+- **BackTop** — Back to top button (aka Back to Top, Scroll Top)
 - **Breadcrumb** — Location trace (aka Path Bar, Path Control, Breadcrumbs)
 - **CommandPalette** — Cmd+K search overlay (aka Command Bar, Quick Open, Omnibar, Command)
 - **HamburgerMenu** — Toggleable menu (aka Sandwich Menu, Navigation Drawer Trigger, Nav Toggle, Cheeseburger Menu, Veggie Burger Menu, Pancake Menu, Bacon Menu, Hot Dog Menu, ハンバーガーメニュー, サンドイッチメニュー, Hamburger)
@@ -326,20 +327,20 @@ export function BillingOverview() {
   - ⚠️ Not the same as elsewhere: Blueprint's Hotkeys also registers the key bindings. WIM's `KeyboardShortcuts` only shows the list of shortcuts; bind the keys in your app.
 - **Link** — Hyperlinks
 - **Menubar** — Desktop-style application menu bar with floating File / Edit / View submenus.
-- **Pagination** — Multi-page navigation (aka Pagination Nav)
+- **Pagination** — Multi-page navigation (aka Pagination Nav, Paginator)
 - **SpeedDial** — Floating action button that expands sub-actions on hover or click.
 - **Stepper** — Visual sequence steps (aka Progress Indicator, Steps)
   - ⚠️ Not the same as elsewhere: In Apple HIG and macOS, a "Stepper" is the control that increments a number — that is `NumberInput` here. WIM's `Stepper` shows progress through a sequence of steps, which is what Material calls a Stepper.
 - **TabBar** — Mobile bottom navigation (aka Bottom Navigation, Bottom Tab Bar)
-- **TabNavigation** — Tab-based navigation
-- **Tabs** — A container to organize related content into switchable view panels (aka Tab List)
+- **TabNavigation** — Tab-based navigation (aka Tab Menu, Tab Nav, Underline Nav, Sub Nav)
+- **Tabs** — A container to organize related content into switchable view panels (aka Tab List, Tab View, Tab Group)
 
 ### data-display — `import { … } from "wimui/data-display"`
 
 - **Accordion** — Collapsible panels (aka Disclosure, Disclosure Group, Expander)
 - **Avatar** — Profile initials/pics (aka User Avatar)
-- **AvatarGroup** — Stacked avatars (aka Face Pile, Avatar Circles)
-- **Badge** — Indicators or counts (aka Icon Indicator)
+- **AvatarGroup** — Stacked avatars (aka Face Pile, Avatar Circles, Avatar Stack)
+- **Badge** — Indicators or counts (aka Icon Indicator, State Label)
 - **Barcode** — Draws a scannable Code 128 or EAN-13 barcode.
 - **Calendar** — Calendar view
 - **CalendarHeatmap** — GitHub-style activity graph for visualizing continuity
@@ -348,16 +349,16 @@ export function BillingOverview() {
 - **Chip** — Filter/Selection tokens (aka Pill, Token)
 - **Comment** — Shows one comment in a discussion, with its actions and nested replies.
 - **Countdown** — Display the remaining time until a target moment as a live ticking timer, for sale deadlines, OTP resend waits, and maintenance notices. (aka Timer)
-- **DataGrid** — Advanced data table and manipulation (aka Data Table)
-- **DescriptionList** — Key-value pairs (aka Data List)
-- **EmptyState** — Missing data placeholder (aka Blank Slate, Zero State, Non-Ideal State)
+- **DataGrid** — Advanced data table and manipulation (aka Data Table, Index Table, Table View)
+- **DescriptionList** — Key-value pairs (aka Data List, Labeled Value)
+- **EmptyState** — Missing data placeholder (aka Blank Slate, Zero State, Non-Ideal State, Empty Search Result, Illustrated Message)
 - **FAQSection** — Frequently Asked Questions section
-- **InfiniteScroll** — Infinite scroll control
+- **InfiniteScroll** — Infinite scroll control (aka Data Scroller)
 - **JsonDiffViewer** — Compares two JSON values as a formatted side-by-side or unified diff, built on top of CodeDiffViewer.
 - **JsonViewer** — Recursive tree viewer and editor for JSON data. (aka JSON Tree View)
 - **Kanban** — Drag-and-drop board for visualizing workflow stages
 - **Leaderboard** — Display a ranked list of entries with scores. Medal colors for the top three are opt-in.
-- **List** — Structurally organized items in bullet points or numbered formats (aka Contained List, Ordered List, Unordered List, Card List)
+- **List** — Structurally organized items in bullet points or numbered formats (aka Contained List, Ordered List, Unordered List, Card List, Resource List, List View)
 - **Markdown** — A component for safely rendering text in Markdown format.
 - **Marquee** — Scrolling text animation (aka Ticker)
 - **NodeGraph** — Visualizes complex networks and relationships between nodes.
@@ -371,54 +372,54 @@ export function BillingOverview() {
 - **Reaction** — Display emoji reaction buttons with toggleable state and counts
 - **RelativeTime** — Display a timestamp as a localized relative phrase ("3 minutes ago", "yesterday") that updates automatically as time passes.
 - **ScheduleView** — Displays tasks or events on a chronological timeline or calendar view.
-- **SelectionBar** — Bar above a table that shows the number of selected rows, the actions for them and a way to clear the selection. Announces the count to screen readers. (aka Bulk Actions, Batch Actions, Table Selection Toolbar)
-- **SortableList** — Item rearrangement and reordering
+- **SelectionBar** — Bar above a table that shows the number of selected rows, the actions for them and a way to clear the selection. Announces the count to screen readers. (aka Bulk Actions, Batch Actions, Table Selection Toolbar, Select All Actions)
+- **SortableList** — Item rearrangement and reordering (aka Order List)
 - **Stats** — A component to highlight key performance indicators and metrics (aka Statistic, Stat, Big Number)
 - **SwipeableList** — Container for SwipeAction rows that keeps at most one row open at a time. (aka Swipeable List)
 - **SwipeAction** — Mobile-friendly swipe actions (delete, archive) for list items.
 - **Table** — Rows and columns for displaying structured data efficiently (aka Structured List, HTML Table)
-- **Tag** — Compact visual descriptors used for labeling or categorizing content (aka Interaction Tag)
+- **Tag** — Compact visual descriptors used for labeling or categorizing content (aka Interaction Tag, Topic Tag)
 - **Timeline** — A vertical list mapping events or history in chronological order
-- **TreeDiagram** — Lays out a tree such as an org chart from the data alone, with parents centred over their children and collapsible subtrees. (aka Org Chart, Tree Chart, Hierarchy Diagram)
-- **TreeView** — Hierarchical data (aka Outline View, Tree, Flat Tree, File Tree)
-- **VirtualList** — Efficiently renders large lists by virtualizing off-screen items
+- **TreeDiagram** — Lays out a tree such as an org chart from the data alone, with parents centred over their children and collapsible subtrees. (aka Org Chart, Tree Chart, Hierarchy Diagram, Organization Chart)
+- **TreeView** — Hierarchical data (aka Outline View, Tree, Flat Tree, File Tree, Navigation Tree)
+- **VirtualList** — Efficiently renders large lists by virtualizing off-screen items (aka Virtual Scroller, Virtualizer)
 
 ### overlay — `import { … } from "wimui/overlay"`
 
 - **BottomSheet** — Mobile bottom overlay (aka Sheet, Action Sheet)
-- **Confirm** — Opens a confirmation dialog from code with await confirm() and returns true or false.
+- **Confirm** — Opens a confirmation dialog from code with await confirm() and returns true or false. (aka Alert Dialog, Confirmation Dialog, Confirm Dialog)
 - **ContextMenu** — Right-click menus
 - **Dialog** — Focused task windows (aka Modal, Modal Dialog, Composed Modal)
 - **Drawer** — Slide-out detail panels (aka Navigation Drawer, Overlay Drawer, Side Panel)
-- **Dropdown** — Overlay selection menu (aka Overflow Menu, Kebab Menu, Meatball Menu, Vertical Ellipsis, Horizontal Ellipsis, Three Dots Menu, More Menu, App Switcher, オーバーフローメニュー, ケバブメニュー, ミートボールメニュー, Menu Button)
-- **FocusTrap** — Focus management
-- **HoverCard** — Rich content on hover
-- **Menu** — General menus
+- **Dropdown** — Overlay selection menu (aka Overflow Menu, Kebab Menu, Meatball Menu, Vertical Ellipsis, Horizontal Ellipsis, Three Dots Menu, More Menu, App Switcher, オーバーフローメニュー, ケバブメニュー, ミートボールメニュー, Menu Button, Action Menu, Dropdown Menu)
+- **FocusTrap** — Focus management (aka Trap Focus, Focus Scope)
+- **HoverCard** — Rich content on hover (aka Preview Card, Preview Trigger)
+- **Menu** — General menus (aka Action List, Tiered Menu, Panel Menu, Nav List)
   - ⚠️ Not the same as elsewhere: In macOS, a "Menu" is the pull-down from a menu bar. WIM's `Menu` is the list of choices itself; for one that opens from a trigger, use `Dropdown`.
-- **Popconfirm** — Confirmation overlay
-- **Popover** — Contextual overlay (aka Info Label, Info Button, Toggletip)
+- **Popconfirm** — Confirmation overlay (aka Confirm Popup)
+- **Popover** — Contextual overlay (aka Info Label, Info Button, Toggletip, Overlay Panel, Contextual Help)
 - **Portal** — Out-of-hierarchy render
 - **Tooltip** — Information on hover (aka Help Tag)
 
 ### typography — `import { … } from "wimui/typography"`
 
 - **Blockquote** — Visually separates external quotes or text to be emphasized.
-- **Code** — Code snippets
+- **Code** — Code snippets (aka Inline Code)
 - **Highlight** — Text highlighting (aka Mark, Highlighter)
-- **Kbd** — Keyboard shortcuts (aka Key Combo)
+- **Kbd** — Keyboard shortcuts (aka Key Combo, Keybinding Hint, Keyboard Key, Keyboard)
 - **Label** — Descriptive text for input fields, including required/optional marks
 - **Legend** — Group title
 - **Span** — Lightweight wrapper for inline text or short labels with icon support
 - **Spoiler** — Collapse long text such as reviews and comments to a fixed number of lines, with an accessible "show more" toggle that appears only when the text overflows.
-- **Text** — Has appropriate line-height and spacing to ensure readability of long text. (aka Truncated Text)
+- **Text** — Has appropriate line-height and spacing to ensure readability of long text. (aka Truncated Text, Truncate)
 - **Title** — Possesses visual weight (boldness/size) to indicate page structure. (aka Heading)
 
 ### media — `import { … } from "wimui/media"`
 
 - **Audio** — Audio playback
-- **Gallery** — Displays a responsive image grid with configurable columns, aspect ratios, multi-select, and an optional lightbox.
+- **Gallery** — Displays a responsive image grid with configurable columns, aspect ratios, multi-select, and an optional lightbox. (aka Galleria)
 - **Icon** — Visual symbols
-- **Image** — Image content
+- **Image** — Image content (aka Thumbnail)
 - **ImageCompare** — ImageCompare overlays two images and reveals them with a draggable divider — a before/after slider for comparing edits, restorations, or AI-generated results against their source.
 - **Lightbox** — A high-quality overlay component for displaying images and media with gallery and zoom functionality. (aka Image Viewer)
 - **Video** — A component for embedding and controlling local or remote video content

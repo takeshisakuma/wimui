@@ -12,7 +12,8 @@
         "aliases": [
           "Upload",
           "File Input",
-          "File Uploader"
+          "File Uploader",
+          "File Trigger"
         ]
       },
       {
@@ -40,14 +41,18 @@
         "mobile": true,
         "aliases": [
           "Column View",
-          "Miller Columns"
+          "Miller Columns",
+          "Cascade Select"
         ]
       },
       {
         "name": "Transfer",
         "descKey": "doc.transfer_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Pick List"
+        ]
       },
       {
         "name": "TreeSelect",
@@ -75,7 +80,8 @@
         "aliases": [
           "Token Field",
           "Chips Input",
-          "Tags Input"
+          "Tags Input",
+          "Text Input With Tokens"
         ]
       }
     ]
@@ -93,7 +99,10 @@
         "disambiguation": "In Fluent UI v8, a \"Callout\" is a popup anchored to an element — that is `Popover` here. WIM's `Alert` matches Blueprint's Callout: an inline message in the page flow.",
         "aliases": [
           "Message Bar",
-          "Callout"
+          "Callout",
+          "Flash",
+          "Inline Alert",
+          "Inline Message"
         ]
       },
       {
@@ -138,7 +147,10 @@
         "name": "Popconfirm",
         "descKey": "doc.popconfirm_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Confirm Popup"
+        ]
       },
       {
         "name": "Autosave",
@@ -159,14 +171,19 @@
         "pc": true,
         "mobile": true,
         "aliases": [
-          "UI Shell"
+          "UI Shell",
+          "Page Layout",
+          "Split Page Layout"
         ]
       },
       {
         "name": "Header",
         "descKey": "doc.header_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Top Bar"
+        ]
       },
       {
         "name": "Footer",
@@ -188,7 +205,8 @@
         "aliases": [
           "Source List",
           "Inspector",
-          "Nav Drawer"
+          "Nav Drawer",
+          "Side Nav"
         ]
       },
       {
@@ -214,14 +232,19 @@
         "pc": true,
         "mobile": true,
         "aliases": [
-          "Text Input"
+          "Text Input",
+          "Text Field",
+          "Input Text"
         ]
       },
       {
         "name": "PasswordInput",
         "descKey": "doc.passwordInput_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Password Toggle Field"
+        ]
       },
       {
         "name": "PasswordStrength",
@@ -257,14 +280,19 @@
         "aliases": [
           "Spin Button",
           "Numeric Stepper",
-          "Numeric Input"
+          "Numeric Input",
+          "Number Field",
+          "Input Number"
         ]
       },
       {
         "name": "Textarea",
         "descKey": "doc.textarea_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Input Textarea"
+        ]
       },
       {
         "name": "CounterTextarea",
@@ -280,7 +308,9 @@
         "aliases": [
           "Pin Input",
           "Input OTP",
-          "PIN Code Input"
+          "PIN Code Input",
+          "One Time Password Field",
+          "OTP Field"
         ]
       },
       {
@@ -299,13 +329,19 @@
         "name": "Mentions",
         "descKey": "doc.mentions_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Mention"
+        ]
       },
       {
         "name": "RichTextEditor",
         "descKey": "doc.richTextEditor_desc",
         "pc": true,
-        "mobile": false
+        "mobile": false,
+        "aliases": [
+          "Editor"
+        ]
       },
       {
         "name": "InlineEdit",
@@ -315,7 +351,8 @@
         "aliases": [
           "Editable Text",
           "Edit In Place",
-          "Editable"
+          "Editable",
+          "Inplace"
         ]
       },
       {
@@ -341,7 +378,10 @@
         "name": "IconButton",
         "descKey": "doc.iconButton_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Close Button"
+        ]
       },
       {
         "name": "LinkButton",
@@ -359,7 +399,8 @@
         "mobile": true,
         "aliases": [
           "Button Set",
-          "Action Set"
+          "Action Set",
+          "Action Button Group"
         ]
       },
       {
@@ -452,7 +493,8 @@
         "mobile": true,
         "aliases": [
           "Face Pile",
-          "Avatar Circles"
+          "Avatar Circles",
+          "Avatar Stack"
         ]
       },
       {
@@ -461,7 +503,8 @@
         "pc": true,
         "mobile": true,
         "aliases": [
-          "Icon Indicator"
+          "Icon Indicator",
+          "State Label"
         ]
       },
       {
@@ -478,7 +521,9 @@
         "aliases": [
           "Blank Slate",
           "Zero State",
-          "Non-Ideal State"
+          "Non-Ideal State",
+          "Empty Search Result",
+          "Illustrated Message"
         ]
       },
       {
@@ -487,7 +532,8 @@
         "pc": true,
         "mobile": true,
         "aliases": [
-          "Badge Indicator"
+          "Badge Indicator",
+          "Message Indicator"
         ]
       },
       {
@@ -502,7 +548,8 @@
         "pc": true,
         "mobile": true,
         "aliases": [
-          "Interaction Tag"
+          "Interaction Tag",
+          "Topic Tag"
         ]
       },
       {
@@ -580,7 +627,9 @@
         "pc": true,
         "mobile": true,
         "aliases": [
-          "Data Table"
+          "Data Table",
+          "Index Table",
+          "Table View"
         ]
       },
       {
@@ -591,7 +640,8 @@
         "aliases": [
           "Bulk Actions",
           "Batch Actions",
-          "Table Selection Toolbar"
+          "Table Selection Toolbar",
+          "Select All Actions"
         ]
       },
       {
@@ -623,7 +673,9 @@
           "Contained List",
           "Ordered List",
           "Unordered List",
-          "Card List"
+          "Card List",
+          "Resource List",
+          "List View"
         ]
       },
       {
@@ -638,7 +690,8 @@
         "pc": true,
         "mobile": true,
         "aliases": [
-          "Data List"
+          "Data List",
+          "Labeled Value"
         ]
       },
       {
@@ -661,7 +714,8 @@
           "Outline View",
           "Tree",
           "Flat Tree",
-          "File Tree"
+          "File Tree",
+          "Navigation Tree"
         ]
       },
       {
@@ -674,13 +728,20 @@
         "name": "VirtualList",
         "descKey": "doc.virtuallist_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Virtual Scroller",
+          "Virtualizer"
+        ]
       },
       {
         "name": "SortableList",
         "descKey": "doc.sortable_list_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Order List"
+        ]
       },
       {
         "name": "Kanban",
@@ -729,7 +790,11 @@
         "name": "FieldError",
         "descKey": "doc.fieldError_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Inline Error",
+          "Error Message"
+        ]
       },
       {
         "name": "Fieldset",
@@ -752,7 +817,8 @@
         "pc": true,
         "mobile": true,
         "aliases": [
-          "Field"
+          "Field",
+          "Form Control"
         ]
       },
       {
@@ -784,7 +850,10 @@
         "name": "Stack",
         "descKey": "doc.stack_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Block Stack"
+        ]
       },
       {
         "name": "Center",
@@ -831,7 +900,8 @@
         "pc": true,
         "mobile": true,
         "aliases": [
-          "Wrap"
+          "Wrap",
+          "Inline Stack"
         ]
       },
       {
@@ -844,7 +914,10 @@
         "name": "SimpleGrid",
         "descKey": "doc.simpleGrid_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Inline Grid"
+        ]
       },
       {
         "name": "Splitter",
@@ -877,7 +950,8 @@
         "mobile": true,
         "aliases": [
           "Action Bar"
-        ]
+        ],
+        "disambiguation": "In React Spectrum 2, \"ActionBar\" is the bar of bulk actions that appears while items are selected — that is `SelectionBar` here. WIM's `Toolbar` is a persistent row of controls."
       },
       {
         "name": "OverflowList",
@@ -893,7 +967,10 @@
         "name": "PageHeader",
         "descKey": "doc.pageHeader_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Pagehead"
+        ]
       }
     ]
   },
@@ -945,14 +1022,18 @@
         "aliases": [
           "Activity Indicator",
           "Inline Loading",
-          "Loading"
+          "Loading",
+          "Progress Spinner"
         ]
       },
       {
         "name": "LoadingOverlay",
         "descKey": "doc.loadingOverlay_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Block UI"
+        ]
       }
     ]
   },
@@ -971,7 +1052,10 @@
         "name": "Image",
         "descKey": "doc.image_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Thumbnail"
+        ]
       },
       {
         "name": "Video",
@@ -998,7 +1082,10 @@
         "name": "Gallery",
         "descKey": "doc.gallery_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Galleria"
+        ]
       },
       {
         "name": "ImageCompare",
@@ -1030,7 +1117,9 @@
         "pc": true,
         "mobile": true,
         "aliases": [
-          "Tab List"
+          "Tab List",
+          "Tab View",
+          "Tab Group"
         ]
       },
       {
@@ -1039,14 +1128,21 @@
         "pc": true,
         "mobile": true,
         "aliases": [
-          "Pagination Nav"
+          "Pagination Nav",
+          "Paginator"
         ]
       },
       {
         "name": "TabNavigation",
         "descKey": "doc.tabNavigation_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Tab Menu",
+          "Tab Nav",
+          "Underline Nav",
+          "Sub Nav"
+        ]
       },
       {
         "name": "HamburgerMenu",
@@ -1128,7 +1224,8 @@
         "pc": true,
         "mobile": true,
         "aliases": [
-          "Back to Top"
+          "Back to Top",
+          "Scroll Top"
         ]
       },
       {
@@ -1169,7 +1266,9 @@
         "aliases": [
           "Info Label",
           "Info Button",
-          "Toggletip"
+          "Toggletip",
+          "Overlay Panel",
+          "Contextual Help"
         ]
       },
       {
@@ -1206,7 +1305,11 @@
         "name": "HoverCard",
         "descKey": "doc.hoverCard_desc",
         "pc": true,
-        "mobile": false
+        "mobile": false,
+        "aliases": [
+          "Preview Card",
+          "Preview Trigger"
+        ]
       },
       {
         "name": "CommandPalette",
@@ -1245,7 +1348,9 @@
           "オーバーフローメニュー",
           "ケバブメニュー",
           "ミートボールメニュー",
-          "Menu Button"
+          "Menu Button",
+          "Action Menu",
+          "Dropdown Menu"
         ],
         "pc": true,
         "mobile": true
@@ -1255,7 +1360,13 @@
         "descKey": "doc.menu_desc",
         "pc": true,
         "mobile": true,
-        "disambiguation": "In macOS, a \"Menu\" is the pull-down from a menu bar. WIM's `Menu` is the list of choices itself; for one that opens from a trigger, use `Dropdown`."
+        "disambiguation": "In macOS, a \"Menu\" is the pull-down from a menu bar. WIM's `Menu` is the list of choices itself; for one that opens from a trigger, use `Dropdown`.",
+        "aliases": [
+          "Action List",
+          "Tiered Menu",
+          "Panel Menu",
+          "Nav List"
+        ]
       },
       {
         "name": "ContextMenu",
@@ -1267,7 +1378,12 @@
         "name": "Confirm",
         "descKey": "doc.confirm_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Alert Dialog",
+          "Confirmation Dialog",
+          "Confirm Dialog"
+        ]
       }
     ]
   },
@@ -1295,14 +1411,18 @@
         "mobile": true,
         "disambiguation": "In Blueprint, a \"DatePicker\" is the calendar panel shown inline — that is `Calendar` here. WIM's `DatePicker` is a text field that opens a calendar, which Blueprint calls DateInput.",
         "aliases": [
-          "Date Input"
+          "Date Input",
+          "Date Field"
         ]
       },
       {
         "name": "TimePicker",
         "descKey": "doc.timePicker_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Time Field"
+        ]
       },
       {
         "name": "ColorPicker",
@@ -1310,7 +1430,8 @@
         "pc": true,
         "mobile": true,
         "aliases": [
-          "Swatch Picker"
+          "Swatch Picker",
+          "Color Swatch Picker"
         ]
       },
       {
@@ -1373,7 +1494,8 @@
         "pc": true,
         "mobile": true,
         "aliases": [
-          "Radio Button Group"
+          "Radio Button Group",
+          "Choice List"
         ]
       },
       {
@@ -1384,7 +1506,8 @@
         "disambiguation": "In Radix, shadcn/ui and Ark UI, a \"Toggle\" is a button that stays pressed (`aria-pressed`) — use a one-item `ToggleGroup` here. WIM's `Switch` is the on/off control that Apple and Material call a toggle.",
         "aliases": [
           "Toggle",
-          "Toggle Switch"
+          "Toggle Switch",
+          "Input Switch"
         ]
       },
       {
@@ -1400,7 +1523,8 @@
         "mobile": true,
         "aliases": [
           "Pop-Up Button",
-          "Select Menu"
+          "Select Menu",
+          "Picker"
         ]
       },
       {
@@ -1409,7 +1533,8 @@
         "pc": true,
         "mobile": true,
         "aliases": [
-          "Tag Picker"
+          "Tag Picker",
+          "Select Panel"
         ]
       },
       {
@@ -1421,7 +1546,8 @@
           "Segmented Buttons",
           "Segmented Picker",
           "Content Switcher",
-          "Segment Group"
+          "Segment Group",
+          "Select Button"
         ]
       },
       {
@@ -1438,7 +1564,10 @@
         "name": "ToggleGroup",
         "descKey": "doc.toggleGroup_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Toggle Button Group"
+        ]
       },
       {
         "name": "Combobox",
@@ -1473,7 +1602,8 @@
         "pc": true,
         "mobile": true,
         "aliases": [
-          "Truncated Text"
+          "Truncated Text",
+          "Truncate"
         ]
       },
       {
@@ -1504,7 +1634,10 @@
         "name": "Code",
         "descKey": "doc.code_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Inline Code"
+        ]
       },
       {
         "name": "Kbd",
@@ -1512,7 +1645,10 @@
         "pc": true,
         "mobile": true,
         "aliases": [
-          "Key Combo"
+          "Key Combo",
+          "Keybinding Hint",
+          "Keyboard Key",
+          "Keyboard"
         ]
       },
       {
@@ -1552,7 +1688,11 @@
         "name": "ScrollArea",
         "descKey": "doc.scrollArea_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Scroll Panel",
+          "Scrollable Region"
+        ]
       },
       {
         "name": "ErrorBoundary",
@@ -1564,7 +1704,10 @@
         "name": "InfiniteScroll",
         "descKey": "doc.infiniteScroll_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Data Scroller"
+        ]
       },
       {
         "name": "ScrollProgress",
@@ -1597,7 +1740,11 @@
         "name": "FocusTrap",
         "descKey": "doc.focustrap_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Trap Focus",
+          "Focus Scope"
+        ]
       },
       {
         "name": "Transition",
@@ -1684,7 +1831,10 @@
         "name": "Charts",
         "descKey": "doc.charts_desc",
         "pc": true,
-        "mobile": true
+        "mobile": true,
+        "aliases": [
+          "Chart"
+        ]
       },
       {
         "name": "BarChart",
@@ -1766,7 +1916,8 @@
         "aliases": [
           "Org Chart",
           "Tree Chart",
-          "Hierarchy Diagram"
+          "Hierarchy Diagram",
+          "Organization Chart"
         ]
       },
       {
