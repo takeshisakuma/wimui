@@ -8,6 +8,7 @@ import { BaseListItem } from "../../_internal/BaseListItem";
 import { mergeRefs } from "../../_internal/mergeRefs";
 import { useInlineFloating } from "../../_internal/useInlineFloating";
 import { FieldTemplate } from "../FieldTemplate";
+import { HiddenFormValue } from "../../_internal/HiddenFormValue";
 import { InputBase } from "../InputBase";
 import localStyles from "./select.module.scss";
 import { useSelect } from "./useSelect";
@@ -62,6 +63,10 @@ export interface SelectProps extends Omit<React.ComponentPropsWithoutRef<"div">,
   error?: string;
   /** Whether to show the required indicator */
   required?: boolean;
+  /**
+   * Name submitted with a native `<form>`. The selected value is sent as a hidden input, and a form reset restores `defaultValue` when uncontrolled.
+   */
+  name?: string;
   /** Layout direction of label and field */
   layout?: "vertical" | "horizontal";
   /** Label shown when no options match the search */
@@ -100,6 +105,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
       label,
       error,
       required,
+      name,
       layout,
       className,
       disabled = false,
@@ -151,6 +157,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
       handleSelect,
       handleClear,
       handleKeyDown,
+      resetToDefault,
     } = useSelect({
       options,
       value,
@@ -441,6 +448,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
           {/* 利用者の要素（asChild の子）を Slottable に入れる。Slot はこれを根にして、上の中身をその中に描く。
               以前は逆（中身を Slottable に入れていた）で、asChild を付けると描画で例外になるか、部品の
               クラスが利用者の要素に付かなかった（T337）。 */}
+          <HiddenFormValue name={name} value={currentValue} disabled={disabled} onReset={resetToDefault} />
           <Slottable>{children}</Slottable>
         </RootComponent>
       </FieldTemplate>

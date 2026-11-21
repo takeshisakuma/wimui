@@ -1926,6 +1926,10 @@
         "vertical"
       ]
     },
+    "Cascader.name": {
+      "required": false,
+      "type": "string"
+    },
     "Cascader.onChange": {
       "required": false,
       "type": "(value: string[], selectedOptions: CascaderOption[]) => void"
@@ -7203,6 +7207,10 @@
         "vertical"
       ]
     },
+    "MultiSelect.name": {
+      "required": false,
+      "type": "string"
+    },
     "MultiSelect.onChange": {
       "required": false,
       "type": "(value: string[]) => void"
@@ -7501,6 +7509,10 @@
     "OtpInput.length": {
       "required": false,
       "type": "number"
+    },
+    "OtpInput.name": {
+      "required": false,
+      "type": "string"
     },
     "OtpInput.onChange": {
       "required": false,
@@ -8795,6 +8807,10 @@
         "vertical"
       ]
     },
+    "Rating.name": {
+      "required": false,
+      "type": "string"
+    },
     "Rating.onChange": {
       "required": false,
       "type": "(value: number) => void"
@@ -9546,6 +9562,10 @@
         "vertical"
       ]
     },
+    "SegmentedControl.name": {
+      "required": false,
+      "type": "string"
+    },
     "SegmentedControl.onChange": {
       "required": true,
       "type": "(value: string) => void"
@@ -9654,6 +9674,10 @@
         "horizontal",
         "vertical"
       ]
+    },
+    "Select.name": {
+      "required": false,
+      "type": "string"
     },
     "Select.noOptionsFoundLabel": {
       "required": false,
@@ -11260,6 +11284,10 @@
       "required": false,
       "type": "number"
     },
+    "TagInput.name": {
+      "required": false,
+      "type": "string"
+    },
     "TagInput.onChange": {
       "required": false,
       "type": "(tags: string[]) => void"
@@ -12614,6 +12642,10 @@
     "TreeSelect.multiple": {
       "required": false,
       "type": "boolean"
+    },
+    "TreeSelect.name": {
+      "required": false,
+      "type": "string"
     },
     "TreeSelect.onChange": {
       "required": false,

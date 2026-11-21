@@ -8,6 +8,7 @@ import { FocusTrap } from "../../overlay/FocusTrap/FocusTrap";
 import { useInlineFloating } from "../../_internal/useInlineFloating";
 import styles from "./tree-select.module.scss";
 import { FieldTemplate } from "../FieldTemplate";
+import { HiddenFormValue } from "../../_internal/HiddenFormValue";
 import { FieldWidth } from "../../../types/tokens";
 import { useMergedRef } from "../../../hooks/useMergedRef";
 
@@ -47,6 +48,10 @@ export type TreeSelectProps = {
   error?: string;
   /** Whether to show the required indicator */
   required?: boolean;
+  /**
+   * Name submitted with a native `<form>`. The selected value (each value when `multiple`) is sent as a hidden input, and a form reset clears the selection when uncontrolled.
+   */
+  name?: string;
   /** Layout direction of label and field */
   layout?: "vertical" | "horizontal";
   /** Additional class names */
@@ -98,6 +103,7 @@ export const TreeSelect = forwardRef<HTMLDivElement, TreeSelectProps>(({
   label,
   error,
   required,
+  name,
   layout,
   className,
   disabled = false,
@@ -382,6 +388,7 @@ export const TreeSelect = forwardRef<HTMLDivElement, TreeSelectProps>(({
           </div>
         </Transition>
       </RootComponent>
+      <HiddenFormValue name={name} value={currentValue} disabled={disabled} onReset={() => { if (!isControlled) setInternalValue(multiple ? [] : ""); }} />
     </FieldTemplate>
   );
 });

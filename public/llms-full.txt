@@ -1007,6 +1007,7 @@ Useful for using the button styles with Link components (e.g. from React Router 
     - `label: React.ReactNode` — Field label
     - `error: string` — Error message
     - `required: boolean` — Whether to show the required indicator
+    - `name: string` — Name submitted with a native `<form>`. Each value on the selected path is sent as its own hidden input, in order from the top level (read them with `FormData.getAll`), and a form reset restores `defaultValue` when uncontrolled.
     - `layout: "vertical" | "horizontal"` — Layout direction of label and field
     - `className: string` — Additional class names
     - `disabled: boolean` = false — Whether the field is disabled
@@ -1475,6 +1476,7 @@ so the unit does not have to be repeated in the label.
     - `label: string` — Field label
     - `error: string` — Error message
     - `required: boolean` — Whether to show the required indicator
+    - `name: string` — Name submitted with a native `<form>`. Each selected value is sent as its own hidden input (read them with `FormData.getAll`), and a form reset restores `defaultValue` when uncontrolled.
     - `layout: "vertical" | "horizontal"` — Layout direction of label and field
     - `className: string` — Additional class names
     - `disabled: boolean` = false — Whether the field is disabled
@@ -1500,6 +1502,7 @@ so the unit does not have to be repeated in the label.
     - `disabled: boolean` = false — Whether the input is disabled
     - `error: string` — Error message
     - `required: boolean` — Whether to show the required indicator
+    - `name: string` — Name submitted with a native `<form>`. The whole code is sent as one hidden input, and a form reset clears the boxes when uncontrolled.
     - `label: React.ReactNode` — Field label
     - `layout: "vertical" | "horizontal"` — Layout direction of label and field
     - `labels: { /** * Accessible name for one digit box. * * `position` is **1-based**: the first box is `1`, and the last is `length`. * It is meant to be read aloud ("Digit 3 of 6"), so it counts the way a person * would. Treating it as a 0-based index and adding one yields "Digit 2" for the * first box. * * @param position 1-based position of the box, from `1` to `length` * @default (position) => `Digit ${position}` */ digitAriaLabel?: (position: number) => string; }` = {} — Labels for internationalization. `digitAriaLabel(position)` names one digit
@@ -1632,6 +1635,7 @@ of a radio group. Use with `description` when the options need explaining.
     - `label: React.ReactNode` — Accessible label
     - `error: string` — Error message
     - `required: boolean` — Whether to show the required indicator
+    - `name: string` — Name submitted with a native `<form>`. The rating is sent as a hidden input, and a form reset restores `defaultValue` when uncontrolled.
     - `layout: "vertical" | "horizontal"` = "vertical" — Layout direction of label and field
     - `labels: { star?: (count: number) => string; readonly?: (value: number, max: number) => string; }` = {} — Labels for internationalization
     - `asChild: boolean` = false — Whether to render as a child element.
@@ -1721,6 +1725,7 @@ so the unit does not have to be repeated in the label.
     - `label: string` — Accessible label
     - `error: string` — Error message
     - `required: boolean` — Whether to show the required indicator
+    - `name: string` — Name submitted with a native `<form>`. The selected value is sent as a hidden input. The component is controlled, so a form reset leaves the value to you.
     - `layout: "vertical" | "horizontal"` = "vertical" — Layout direction of label and field
     - `disabled: boolean` = false — Whether the control is disabled
     - `asChild: boolean` = false — If true, merge radiogroup props onto the child element.
@@ -1748,6 +1753,7 @@ so the unit does not have to be repeated in the label.
     - `intent: "default" | "danger"` = "default" — Semantic intent of the field (e.g. error state)
     - `error: string` — Error message
     - `required: boolean` — Whether to show the required indicator
+    - `name: string` — Name submitted with a native `<form>`. The selected value is sent as a hidden input, and a form reset restores `defaultValue` when uncontrolled.
     - `layout: "vertical" | "horizontal"` — Layout direction of label and field
     - `noOptionsFoundLabel: string` — Label shown when no options match the search
     - `width: ("xs" | "sm" | "md" | "lg" | "xl") | string | number` — Fixed width of the field (width token, CSS value, or number in px)
@@ -1846,6 +1852,7 @@ but the toggle only shows a chevron, so it needs one of its own.
     - `label: React.ReactNode` — Field label
     - `error: string` — Error message
     - `required: boolean` — Whether to show the required indicator
+    - `name: string` — Name submitted with a native `<form>`. Each tag is sent as its own hidden input (read them with `FormData.getAll`), and a form reset restores `defaultValue` when uncontrolled.
     - `layout: "vertical" | "horizontal"` — Layout direction of label and field
     - `allowDelete: boolean` = true — Whether tags can be deleted
     - `maxTags: number` — Maximum number of tags that can be entered
@@ -1947,6 +1954,7 @@ so the unit does not have to be repeated in the label.
     - `label: React.ReactNode` — Field label
     - `error: string` — Error message
     - `required: boolean` — Whether to show the required indicator
+    - `name: string` — Name submitted with a native `<form>`. The selected value (each value when `multiple`) is sent as a hidden input, and a form reset clears the selection when uncontrolled.
     - `layout: "vertical" | "horizontal"` — Layout direction of label and field
     - `className: string` — Additional class names
     - `disabled: boolean` = false — Whether the field is disabled

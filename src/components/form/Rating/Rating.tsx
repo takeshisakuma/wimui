@@ -3,6 +3,7 @@ import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import { Icon } from "../../media/Icon/Icon";
 import { FieldTemplate } from "../FieldTemplate";
+import { HiddenFormValue } from "../../_internal/HiddenFormValue";
 import { ComponentSizeBasic } from "../../../types/tokens";
 import styles from "./rating.module.scss";
 import { StarIcon } from "@/icon";
@@ -38,6 +39,10 @@ type RatingProps = Omit<React.ComponentPropsWithoutRef<"div">, "onChange" | "def
   error?: string;
   /** Whether to show the required indicator */
   required?: boolean;
+  /**
+   * Name submitted with a native `<form>`. The rating is sent as a hidden input, and a form reset restores `defaultValue` when uncontrolled.
+   */
+  name?: string;
   /** Layout direction of label and field */
   layout?: "vertical" | "horizontal";
   /** Labels for internationalization */
@@ -62,6 +67,7 @@ export const Rating = ({
   label,
   error,
   required,
+  name,
   layout = "vertical",
   labels = {},
   asChild = false,
@@ -247,6 +253,7 @@ export const Rating = ({
         {stars}
         <Slottable>{children}</Slottable>
       </Component>
+      <HiddenFormValue name={name} value={currentValue} disabled={disabled} onReset={() => { if (!isControlled) setInternalValue(defaultValue); }} />
     </FieldTemplate>
   );
 };

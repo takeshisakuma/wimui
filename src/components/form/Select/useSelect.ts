@@ -124,6 +124,11 @@ export function useSelect({
     onChange?.("");
   };
 
+  // 囲んでいるフォームの reset（T427）。制御しているときは、値は利用者が持つので触らない
+  const resetToDefault = () => {
+    if (!isControlled) setInternalValue(defaultValue || "");
+  };
+
   // 矢印キー・Home / End の行き先は共通の計算で決める（T370）。無効の項目と区切りには止まらない
   // （以前は矢印キーだけが飛ばし、Home / End は端の無効の項目にも止まっていた）
   const isUnavailable = (index: number) =>
@@ -230,5 +235,6 @@ export function useSelect({
     handleSelect,
     handleClear,
     handleKeyDown,
+    resetToDefault,
   };
 }

@@ -16012,7 +16012,15 @@
       "treeSelect_prop_searchable": "Whether to show a search input for filtering nodes",
       "treeSelect_prop_treeData": "Tree nodes to select from",
       "treeSelect_prop_value": "Selected value(s) (controlled)",
-      "treeSelect_prop_width": "Fixed width of the field (width token, CSS value, or number in px)"
+      "treeSelect_prop_width": "Fixed width of the field (width token, CSS value, or number in px)",
+      "select_prop_name": "Name submitted with a native form. The selected value is sent as a hidden input; a form reset restores defaultValue when uncontrolled.",
+      "multiSelect_prop_name": "Name submitted with a native form. Each selected value is sent as its own hidden input (read them with FormData.getAll); a form reset restores defaultValue when uncontrolled.",
+      "cascader_prop_name": "Name submitted with a native form. Each value on the selected path is sent as its own hidden input, top level first; a form reset restores defaultValue when uncontrolled.",
+      "treeSelect_prop_name": "Name submitted with a native form. The selected value (each value when multiple) is sent as a hidden input; a form reset clears the selection when uncontrolled.",
+      "rating_prop_name": "Name submitted with a native form. The rating is sent as a hidden input; a form reset restores defaultValue when uncontrolled.",
+      "segmentedControl_prop_name": "Name submitted with a native form. The selected value is sent as a hidden input. The component is controlled, so a form reset leaves the value to you.",
+      "tagInput_prop_name": "Name submitted with a native form. Each tag is sent as its own hidden input (read them with FormData.getAll); a form reset restores defaultValue when uncontrolled.",
+      "otpInput_prop_name": "Name submitted with a native form. The whole code is sent as one hidden input; a form reset clears the boxes when uncontrolled."
     }
   },
   "docs_props_internal": {

@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback, useId } from "react";
+import { useFormReset } from "../../_internal/HiddenFormValue";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { commonNs } from "@/i18n/generated/common";
 import classNames from "classnames";
@@ -115,6 +116,10 @@ export const RangeSlider = ({
   const trackFillRef = useRef<HTMLDivElement>(null);
   const hiddenMinRef = useRef<HTMLInputElement>(null);
   const hiddenMaxRef = useRef<HTMLInputElement>(null);
+  // 囲んでいるフォームの reset で既定の値へ戻す（T427）。以前は値も位置も動かしたままだった
+  useFormReset(hiddenMinRef, () => {
+    if (!isControlled) setInternalValue(safeDefaultValue);
+  });
   const [draggingHandle, setDraggingHandle] = useState<"min" | "max" | null>(null);
   const draggingHandleRef = useRef<"min" | "max" | null>(null);
   const dragValueRef = useRef<[number, number]>([...currentValue]);

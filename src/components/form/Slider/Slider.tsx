@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback, useId, forwardRef } from "react";
+import { useFormReset } from "../../_internal/HiddenFormValue";
 import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import { largeStepOf, useSliderCommon } from "../../../utilities/slider-utils";
@@ -81,6 +82,10 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(
     const thumbRef = useRef<HTMLDivElement>(null);
     const trackFillRef = useRef<HTMLDivElement>(null);
     const hiddenInputRef = useRef<HTMLInputElement>(null);
+    // 囲んでいるフォームの reset で既定の値へ戻す（T427）。以前は値も位置も動かしたままだった
+    useFormReset(hiddenInputRef, () => {
+      if (!isControlled) setInternalValue(defaultValue);
+    });
     const isDragging = useRef(false);
     const dragValueRef = useRef(currentValue);
     const generatedId = useId();
