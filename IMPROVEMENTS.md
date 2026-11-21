@@ -340,7 +340,6 @@ T389 の振る舞いの回。Zag の machines の型（`chakra-ui/zag` の `pack
 
 | # | 項目 | 優先 | 内容 | 検証方法 |
 |---|---|---|---|---|
-| T425 | **ContextMenu だけが、先回りの文字入力（typeahead）を持っていない** | 未着手（P2） | 起票 2026-11-20（Zag の menu の `typeahead` から）。Menu・Dropdown・Menubar は `_internal/typeahead` の `useTypeahead` を使うが、ContextMenu は `useListNavigation` だけ。実測: 引き金で Enter を押して開くと最初の項目（Edit）にフォーカスが入るが、「p」「d」「c」を押しても Edit のまま（Paste・Delete・Copy へ移らない）。APG の menu は先回りの入力を求める。同じ形が 7-4 の候補にもある（共通の道具を、同じ役割の部品の一部だけが使っていない） | 開いた ContextMenu で文字を押すと、その文字で始まる項目へ移る（単体テスト・E2E）・無効の項目は飛ばす |
 | T426 | **出ている通知（Toast）へ、キーボードで飛ぶ手段が無い** | 判断待ち | 起票 2026-11-20（Zag の toast の `hotkey`。既定は Alt+T。Radix の Toast も F8）。`useToast()` の通知は Provider の場所（ふつうはアプリの末尾）にまとめて描かれるので、ページの途中の引き金からは、間にあるフォーカスできる要素を全部 Tab で越えないと閉じるボタンや操作に届かない（ストーリーでは引き金のすぐ後ろなので Tab 3 回で届き、測った数は実際より少ない）。フォーカスとホバーで消えるのを止める作りは Snackbar・Toast とも既にある。**足すかはユーザー判断**: 足すなら、通知の領域を名前つきの `region` にし、既定のキー（F8 など）でそこへフォーカスを移し、Esc で元の場所へ戻す | 足すなら: キーで通知の領域へ移り、Esc で戻る（E2E）・キーが入力欄の文字入力とぶつからない |
 
 ### HeroUI・Primer / Polaris・MUI の codemod との突き合わせ（2026-11-20 起票・T389 の最後）
