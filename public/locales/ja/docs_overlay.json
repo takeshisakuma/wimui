@@ -104,7 +104,7 @@
     "contextmenu_feat_3_desc": "個別項目やメニュー全体を disabled で無効化できます。",
     "contextmenu_feat_4": "グループ化・区切り",
     "contextmenu_feat_4_desc": "ContextMenuGroup と ContextMenuDivider で項目を導出しやすく整理できます。",
-    "contextmenu_keyboard_desc": "矢印キーでメニューアイテムを移動します。Enter または Space キーでフォーカス中のアイテムを実行します。Escape キーでメニューを閉じます。",
+    "contextmenu_keyboard_desc": "矢印キーでメニューアイテムを移動します。文字を入力すると、その文字で始まるアイテムへ移動します。Enter または Space キーでフォーカス中のアイテムを実行し、メニューを閉じます。Escape キーでメニューを閉じます。",
     "contextmenu_long_desc_1": "右クリックで表示するコンテキストメニューコンポーネントです。要素に対してファイル操作・編集などの二次アクションを提供します。",
     "contextmenu_note": "モバイルではコンテキストメニューの右クリック操作をサポートしていない场合があります。モバイル向けには BottomSheet などの代替手段を検討してください。",
     "contextmenu_scenario_1": "データ収集や表示のワークフローにContextMenuを統合する。",

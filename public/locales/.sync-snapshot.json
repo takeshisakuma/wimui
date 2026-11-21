@@ -10527,7 +10527,7 @@
       "contextmenu_feat_3_desc": "Easily disable any item or the entire menu based on permissions.",
       "contextmenu_feat_4": "Grouping and Dividers",
       "contextmenu_feat_4_desc": "Keep complex menus organized and easy to scan.",
-      "contextmenu_keyboard_desc": "Arrow keys navigate menu items. Enter or Space activates the focused item. Escape closes the menu.",
+      "contextmenu_keyboard_desc": "Arrow keys navigate menu items. Typing a letter moves to the item that starts with it. Enter or Space activates the focused item and closes the menu. Escape closes the menu.",
       "contextmenu_long_desc_1": "A component for showing context-sensitive menus on right-click. Useful for secondary actions like file operations.",
       "contextmenu_note": "Right-click context menus may not be fully supported on mobile. Consider using BottomSheet as an alternative.",
       "contextmenu_scenario_1": "Integrating ContextMenu into workflows for data collection or display.",
