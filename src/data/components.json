@@ -1246,6 +1246,18 @@
         "descKey": "doc.menubar_desc",
         "pc": true,
         "mobile": true
+      },
+      {
+        "name": "SkipLink",
+        "descKey": "doc.skipLink_desc",
+        "pc": true,
+        "mobile": true,
+        "aliases": [
+          "Skip Nav",
+          "Skip Navigation",
+          "Skip to Content",
+          "Bypass Block"
+        ]
       }
     ]
   },

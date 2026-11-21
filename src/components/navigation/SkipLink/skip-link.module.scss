@@ -1,0 +1,31 @@
+@layer component {
+  /* 外しているあいだは見えない（VisuallyHidden と同じ畳み方）。display: none や
+     visibility: hidden にすると、Tab の停止点からも消える。 */
+  .root:not(:focus) {
+    position: absolute;
+    width: 1px; /* Exception: Structural Logic — WAI-ARIA 視覚隠蔽のクリップ寸法（VisuallyHidden と同じ） */
+    height: 1px; /* Exception: Structural Logic — WAI-ARIA 視覚隠蔽のクリップ寸法（VisuallyHidden と同じ） */
+    overflow: hidden;
+    white-space: nowrap;
+    clip-path: inset(50%);
+  }
+
+  /* フォーカスしたら、画面の左上に浮かせて出す。固定ヘッダーとボトムナビ（--wim-z-header /
+     --wim-z-navbar）より上に出す必要があり、表で「常に最前面」の層は --wim-z-toast だけ。
+     フォーカスの輪は base.scss の既定（外側の outline）に任せる。 */
+  .root:focus {
+    position: fixed;
+    inset-block-start: var(--wim-spacing-md);
+    inset-inline-start: var(--wim-spacing-md);
+    z-index: var(--wim-z-toast);
+    padding: var(--wim-spacing-sm) var(--wim-spacing-md);
+    font-size: var(--wim-font-size-md);
+    font-weight: var(--wim-font-weight-bold);
+    color: var(--wim-color-text-primary);
+    text-decoration: underline;
+    background-color: var(--wim-color-surface);
+    border: var(--wim-border-width-thin) solid var(--wim-color-border);
+    border-radius: var(--wim-radius-overlay);
+    box-shadow: var(--wim-shadow-overlay);
+  }
+}

@@ -140,6 +140,13 @@
     "breadcrumb_shop_women": "レディース",
     "breadcrumb_shop_shoes": "シューズ",
     "breadcrumb_shop_running": "ランニング",
-    "breadcrumb_shop_trail": "トレイルランニングシューズ"
+    "breadcrumb_shop_trail": "トレイルランニングシューズ",
+    "skiplink_nav_label": "メイン",
+    "skiplink_home": "ホーム",
+    "skiplink_products": "製品",
+    "skiplink_pricing": "料金",
+    "skiplink_support": "サポート",
+    "skiplink_main_title": "リリースノート",
+    "skiplink_main_body": "ページの先頭で Tab を 1 回押すと、本文へ飛ぶリンクが現れます。Enter を押すと、ナビゲーションを通らずにここへフォーカスが移ります。"
   }
 }

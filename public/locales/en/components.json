@@ -148,7 +148,8 @@
     "confirm_desc": "Opens a confirmation dialog from code with await confirm() and returns true or false.",
     "aiLabel_desc": "Marks a value or a block as produced by AI. Pressing the mark opens an explanation of what the AI did.",
     "pageHeader_desc": "Head of a page: breadcrumb, title (always h1), status, description, actions and tabs in a fixed order and spacing.",
-    "persona_desc": "Shows a person as one unit: avatar, name and up to two lines of description, with text sizes matched to the avatar. The name is read once."
+    "persona_desc": "Shows a person as one unit: avatar, name and up to two lines of description, with text sizes matched to the avatar. The name is read once.",
+    "skipLink_desc": "A link at the very top of the page that jumps past the header and navigation to the main content. It stays hidden until it receives keyboard focus. AppShell renders one by default."
   },
   "cat": {
     "ai": "AI"

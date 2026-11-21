@@ -140,6 +140,13 @@
     "breadcrumb_shop_women": "Women",
     "breadcrumb_shop_shoes": "Shoes",
     "breadcrumb_shop_running": "Running",
-    "breadcrumb_shop_trail": "Trail running shoes"
+    "breadcrumb_shop_trail": "Trail running shoes",
+    "skiplink_nav_label": "Main",
+    "skiplink_home": "Home",
+    "skiplink_products": "Products",
+    "skiplink_pricing": "Pricing",
+    "skiplink_support": "Support",
+    "skiplink_main_title": "Release notes",
+    "skiplink_main_body": "From the top of the page, press Tab once to reveal the skip link, then Enter to move focus here without passing through the navigation."
   }
 }

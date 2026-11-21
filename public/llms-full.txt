@@ -4,7 +4,7 @@
 
 ## What this is
 
-**wimui** v0.79.0 — a React 19 component library: 234 documented components across 10 categories, with design tokens, dark mode, i18n (en/ja/pt-BR) and WAI-ARIA compliant a11y. Peer deps: react ^19, react-dom ^19 (plus optional peers for specific components — see package.json).
+**wimui** v0.79.0 — a React 19 component library: 235 documented components across 10 categories, with design tokens, dark mode, i18n (en/ja/pt-BR) and WAI-ARIA compliant a11y. Peer deps: react ^19, react-dom ^19 (plus optional peers for specific components — see package.json).
 
 ## Install & required setup
 
@@ -630,6 +630,8 @@ export function RenameWorkspace() {
     - `padding: boolean` = true — Add padding to main content
     - `centered: boolean` — Center main content horizontally
     - `maxWidth: number | string` — Maximum width for centered content
+    - `skipLink: boolean` = true — Render a "Skip to main content" link as the first focusable element. It stays hidden until it receives focus and moves focus to the main region (WCAG 2.4.1). Set to `false` only when the page already renders its own skip link.
+@default true
 - **AspectRatio** — Fixed ratio container
     - `ratio: number` = 1 — Aspect ratio (e.g. 16 / 9, 1, 4 / 3)
     - `children: React.ReactNode` (required) — Child content
@@ -2305,6 +2307,10 @@ Useful for URL-based pagination (e.g. wrap with a Link via PaginationPage asChil
     - `labels: { prevPage?: string; nextPage?: string; pageAriaLabel?: (page: number) => string; itemsPerPage?: string; goTo?: string; go?: string; pageSizeAriaLabel?: string; jumpToPageAriaLabel?: string; navAriaLabel?: string; totalLabel?: string; /** Announced to screen readers when the page changes. Receives the current page and the page count. */ pageStatus?: (current: number, totalPages: number) => string; }` = {} — Labels for internationalization
     - `aria-label: string` — Accessible name for the navigation landmark. Takes precedence over `labels.navAriaLabel`.
     - `aria-labelledby: string` — ID of the element that labels the navigation landmark. Takes precedence over `aria-label`.
+- **SkipLink** — A link at the very top of the page that jumps past the header and navigation to the main content. It stays hidden until it receives keyboard focus. AppShell renders one by default. (aka Skip Nav, Skip Navigation, Skip to Content, Bypass Block)
+    - `href: string` = "#main" — The `id` of the element to jump to, as a fragment (`#main`). Pressing the link moves keyboard focus to that element.
+@default "#main"
+    - `asChild: boolean` = false — If true, the component will be rendered as its child, merging its props onto that child.
 - **SpeedDial** — Floating action button that expands sub-actions on hover or click.
     - `actions: SpeedDialAction[]` (required) — Actions to display when SpeedDial is open
     - `icon: keyof typeof ALL_ICONS` = "PlusIcon" — Icon name for the main button when closed

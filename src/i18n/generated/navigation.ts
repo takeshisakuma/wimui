@@ -3,24 +3,28 @@
 import type { WimNamespace } from "../instance";
 
 export type NavigationKey =
-  | "a11y.breadcrumb_more";
+  | "a11y.breadcrumb_more"
+  | "a11y.skip_to_main_content";
 
 export const navigationNs: WimNamespace<"navigation", NavigationKey> = {
   name: "navigation",
   resources: {
     "en": {
       "a11y": {
-        "breadcrumb_more": "Show hidden levels ({{count}})"
+        "breadcrumb_more": "Show hidden levels ({{count}})",
+        "skip_to_main_content": "Skip to main content"
       }
     },
     "ja": {
       "a11y": {
-        "breadcrumb_more": "省略した階層を表示（{{count}} 件）"
+        "breadcrumb_more": "省略した階層を表示（{{count}} 件）",
+        "skip_to_main_content": "本文へスキップ"
       }
     },
     "pt": {
       "a11y": {
-        "breadcrumb_more": "Mostrar níveis ocultos ({{count}})"
+        "breadcrumb_more": "Mostrar níveis ocultos ({{count}})",
+        "skip_to_main_content": "Pular para o conteúdo principal"
       }
     }
   },

@@ -139,6 +139,10 @@
     "long_content_care": "Catering to Long Content",
     "points_title": "Design Points",
     "priority_mgmt": "Priority Management",
-    "visibility_maint": "Maintain Visibility"
+    "visibility_maint": "Maintain Visibility",
+    "skip_link": "Skip the repeated header",
+    "skiplink_desc": "The first stop in the Tab order on every page; pressing it moves focus to the main content. AppShell renders it by default.",
+    "bypass_blocks": "Bypassing repeated blocks",
+    "skiplink_usage_note": "Keyboard users otherwise Tab through the header and navigation on every page. Keep the one AppShell renders; place SkipLink yourself only on pages built without AppShell."
   }
 }

@@ -4,7 +4,7 @@
 
 ## What this is
 
-**wimui** v0.79.0 — a React 19 component library: 234 documented components across 10 categories, with design tokens, dark mode, i18n (en/ja/pt-BR) and WAI-ARIA compliant a11y. Peer deps: react ^19, react-dom ^19 (plus optional peers for specific components — see package.json).
+**wimui** v0.79.0 — a React 19 component library: 235 documented components across 10 categories, with design tokens, dark mode, i18n (en/ja/pt-BR) and WAI-ARIA compliant a11y. Peer deps: react ^19, react-dom ^19 (plus optional peers for specific components — see package.json).
 
 ## Install & required setup
 
@@ -329,6 +329,7 @@ export function BillingOverview() {
 - **Link** — Hyperlinks
 - **Menubar** — Desktop-style application menu bar with floating File / Edit / View submenus.
 - **Pagination** — Multi-page navigation (aka Pagination Nav, Paginator)
+- **SkipLink** — A link at the very top of the page that jumps past the header and navigation to the main content. It stays hidden until it receives keyboard focus. AppShell renders one by default. (aka Skip Nav, Skip Navigation, Skip to Content, Bypass Block)
 - **SpeedDial** — Floating action button that expands sub-actions on hover or click.
 - **Stepper** — Visual sequence steps (aka Progress Indicator, Steps, Wizard, Progress Tracker)
   - ⚠️ Not the same as elsewhere: In Apple HIG and macOS, a "Stepper" is the control that increments a number — that is `NumberInput` here. WIM's `Stepper` shows progress through a sequence of steps, which is what Material calls a Stepper.

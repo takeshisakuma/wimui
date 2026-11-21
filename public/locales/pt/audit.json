@@ -681,5 +681,6 @@
   "ai_system_notice_default": "O modelo foi trocado por um mais rápido.",
   "ai_system_notice_warning": "A resposta foi cortada no limite de tamanho.",
   "ai_system_notice_danger": "A resposta não chegou.",
-  "label_confirm": "Confirm"
+  "label_confirm": "Confirm",
+  "label_skiplink": "Link de salto (pressione Tab para mostrar; Enter move o foco para a trilha de navegação)"
 }

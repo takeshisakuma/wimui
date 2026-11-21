@@ -682,7 +682,8 @@
     "ai_system_notice_default": "The model was switched to a faster one.",
     "ai_system_notice_warning": "The answer was cut off at the length limit.",
     "ai_system_notice_danger": "The answer never arrived.",
-    "label_confirm": "Confirm"
+    "label_confirm": "Confirm",
+    "label_skiplink": "Skip link (press Tab to reveal; Enter moves focus to the breadcrumbs)"
   },
   "common": {
     "a11y": {
@@ -1563,7 +1564,8 @@
       "confirm_desc": "Opens a confirmation dialog from code with await confirm() and returns true or false.",
       "aiLabel_desc": "Marks a value or a block as produced by AI. Pressing the mark opens an explanation of what the AI did.",
       "pageHeader_desc": "Head of a page: breadcrumb, title (always h1), status, description, actions and tabs in a fixed order and spacing.",
-      "persona_desc": "Shows a person as one unit: avatar, name and up to two lines of description, with text sizes matched to the avatar. The name is read once."
+      "persona_desc": "Shows a person as one unit: avatar, name and up to two lines of description, with text sizes matched to the avatar. The name is read once.",
+      "skipLink_desc": "A link at the very top of the page that jumps past the header and navigation to the main content. It stays hidden until it receives keyboard focus. AppShell renders one by default."
     },
     "cat": {
       "ai": "AI"
@@ -7960,7 +7962,11 @@
       "long_content_care": "Catering to Long Content",
       "points_title": "Design Points",
       "priority_mgmt": "Priority Management",
-      "visibility_maint": "Maintain Visibility"
+      "visibility_maint": "Maintain Visibility",
+      "skip_link": "Skip the repeated header",
+      "skiplink_desc": "The first stop in the Tab order on every page; pressing it moves focus to the main content. AppShell renders it by default.",
+      "bypass_blocks": "Bypassing repeated blocks",
+      "skiplink_usage_note": "Keyboard users otherwise Tab through the header and navigation on every page. Keep the one AppShell renders; place SkipLink yourself only on pages built without AppShell."
     }
   },
   "docs_guide_philosophy": {
@@ -10419,7 +10425,24 @@
       "anchor_choice_navbar_when": "When you want to move between the main areas of the site.",
       "anchor_choice_breadcrumbs_when": "When you want to show where the current page sits in the hierarchy and let the user climb back up.",
       "breadcrumb_collapse": "Collapsing the middle levels",
-      "breadcrumb_collapse_desc": "With overflow=\"collapse\", a path that does not fit on one line keeps the first level and the current page and folds the levels in between into a \"…\" button. The button lists them as links; Escape, pressing outside or moving focus away closes the list. The row recomputes when its width changes, so the levels come back when there is room."
+      "breadcrumb_collapse_desc": "With overflow=\"collapse\", a path that does not fit on one line keeps the first level and the current page and folds the levels in between into a \"…\" button. The button lists them as links; Escape, pressing outside or moving focus away closes the list. The row recomputes when its width changes, so the levels come back when there is room.",
+      "skiplink_design_intent": "Every page repeats its header and navigation before the content. A keyboard user has to Tab through all of it on every page to reach what they came for. The skip link is the first stop in the Tab order: it appears on focus and, when pressed, moves focus straight to the main region (WCAG 2.4.1 Bypass Blocks, level A). It is invisible to mouse users, so it costs nothing on the screen.",
+      "skiplink_choice_matrix_desc": "Use the one AppShell already gives you; place SkipLink yourself only when the page is not built with AppShell.",
+      "skiplink_choice_skiplink_when": "A page laid out without AppShell. Put it first in the page and give the main content the matching id.",
+      "skiplink_choice_appshell_when": "Pages built with AppShell. It renders a skip link by default and points it at its own main region; nothing to add.",
+      "skiplink_choice_anchor_when": "Moving between sections inside a long page (a table of contents), not skipping the repeated header.",
+      "skiplink_a11y_1": "It is a real link, so screen readers announce it as one and it can be activated with Enter.",
+      "skiplink_a11y_2": "Pressing it moves keyboard focus to the target, not just the scroll position. A target that cannot take focus gets tabindex=\"-1\" so the next Tab continues from the content.",
+      "skiplink_a11y_3": "It is hidden by clipping rather than display: none, so it stays in the Tab order. In forced colors it keeps its border and focus outline.",
+      "skiplink_scenario_app": "An admin console where the header carries a search field, notifications and a user menu, and a sidebar lists twenty sections. One Tab and Enter reaches the table.",
+      "skiplink_scenario_site": "A documentation or marketing site with a long navigation bar. Readers who use the keyboard jump straight to the article.",
+      "skiplink_best_practice_1": "Make it the first focusable element on the page, before the logo and the navigation.",
+      "skiplink_best_practice_2": "Point it at the main content region (main), not at the first heading inside it, so focus lands where the content starts.",
+      "skiplink_best_practice_3": "Keep the label as the destination (\"Skip to main content\"). Do not add a second skip link unless there are several large blocks to bypass.",
+      "skiplink_basic_desc": "The link is hidden until it receives focus. Click inside the frame and press Tab once to reveal it.",
+      "skiplink_focused_title": "Focused",
+      "skiplink_focused_desc": "How the link looks while focused: pinned to the top-left corner above any fixed header.",
+      "skiplink_keyboard_desc": "Tab from the top of the page focuses the link and reveals it. Enter moves focus to the main content; the next Tab continues from there. Tab again without pressing Enter and the link hides."
     }
   },
   "docs_overlay": {
@@ -12646,7 +12669,14 @@
       "breadcrumb_shop_women": "Women",
       "breadcrumb_shop_shoes": "Shoes",
       "breadcrumb_shop_running": "Running",
-      "breadcrumb_shop_trail": "Trail running shoes"
+      "breadcrumb_shop_trail": "Trail running shoes",
+      "skiplink_nav_label": "Main",
+      "skiplink_home": "Home",
+      "skiplink_products": "Products",
+      "skiplink_pricing": "Pricing",
+      "skiplink_support": "Support",
+      "skiplink_main_title": "Release notes",
+      "skiplink_main_body": "From the top of the page, press Tab once to reveal the skip link, then Enter to move focus here without passing through the navigation."
     }
   },
   "docs_stories_overlay": {
@@ -17030,7 +17060,8 @@
   "docs_stories_probes": {},
   "navigation": {
     "a11y": {
-      "breadcrumb_more": "Show hidden levels ({{count}})"
+      "breadcrumb_more": "Show hidden levels ({{count}})",
+      "skip_to_main_content": "Skip to main content"
     }
   },
   "layout": {
