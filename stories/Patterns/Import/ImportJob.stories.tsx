@@ -177,7 +177,10 @@ const ImportJobScreen = ({ initialPhase }: { initialPhase: Phase }) => {
           <Box position="relative">
             <Card variant="outline" padding="2xl">
               {phase === "idle" && (
+                // カードの中身はこれだけなので中央に置く（EmptyState の文書どおり。ほかの状態の
+                // Result とも揃う）。以前は既定の start のままで、題と説明は左、ボタンと補足は中央と混ざっていた
                 <EmptyState
+                  align="center"
                   icon={<Icon name="UploadIcon" size="lg" color="text-tertiary" />}
                   title={r("idle_title")}
                   description={r("idle_desc")}
