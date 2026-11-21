@@ -104,7 +104,7 @@
     "contextmenu_feat_3_desc": "Feat 3 Desc",
     "contextmenu_feat_4": "Feat 4",
     "contextmenu_feat_4_desc": "Feat 4 Desc",
-    "contextmenu_keyboard_desc": "As teclas de seta navegam pelos itens do menu. Enter ou Espaço ativa o item focado. Escape fecha o menu.",
+    "contextmenu_keyboard_desc": "As teclas de seta navegam pelos itens do menu. Digitar uma letra move o foco para o item que começa com ela. Enter ou Espaço ativa o item focado e fecha o menu. Escape fecha o menu.",
     "contextmenu_long_desc_1": "Long Desc 1",
     "contextmenu_note": "Note",
     "contextmenu_scenario_1": "Integrando ContextMenu em fluxos de trabalho para coleta ou exibição de dados.",

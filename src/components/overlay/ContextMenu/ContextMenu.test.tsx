@@ -111,6 +111,103 @@ describe("ContextMenu", () => {
     expect(screen.getByText("Item 1").closest('[role="menuitem"]')).toHaveFocus();
   });
 
+  // 文字を打つと、先頭が一致する項目へ移る（T425）。以前は Edit のまま動かなかった
+  describe("typeahead", () => {
+    const openTypeaheadMenu = async (onSelectAll = vi.fn()) => {
+      render(
+        <ContextMenu
+          menu={
+            <>
+              <ContextMenuItem>Edit</ContextMenuItem>
+              <ContextMenuItem>Copy</ContextMenuItem>
+              <ContextMenuItem disabled>Paste</ContextMenuItem>
+              <ContextMenuItem>Delete</ContextMenuItem>
+              <ContextMenuItem>Cut</ContextMenuItem>
+              <ContextMenuItem onClick={onSelectAll}>Select all</ContextMenuItem>
+              <ContextMenuItem>Select none</ContextMenuItem>
+            </>
+          }
+        >
+          <div data-testid="trigger">Trigger</div>
+        </ContextMenu>,
+      );
+      fireEvent.contextMenu(screen.getByTestId("trigger"));
+      await waitFor(() => {
+        expect(item("Edit")).toHaveFocus();
+      });
+      return document.querySelector('[role="menu"]') as HTMLElement;
+    };
+    const item = (name: string) => screen.getByText(name).closest('[role="menuitem"]');
+
+    it("moves focus to the item starting with the typed letter", async () => {
+      await openTypeaheadMenu();
+      fireEvent.keyDown(item("Edit")!, { key: "d" });
+      expect(item("Delete")).toHaveFocus();
+    });
+
+    it("cycles through items when the same letter is typed again", async () => {
+      await openTypeaheadMenu();
+      fireEvent.keyDown(item("Edit")!, { key: "c" });
+      expect(item("Copy")).toHaveFocus();
+      fireEvent.keyDown(item("Copy")!, { key: "c" });
+      expect(item("Cut")).toHaveFocus();
+    });
+
+    it("skips disabled items", async () => {
+      await openTypeaheadMenu();
+      fireEvent.keyDown(item("Edit")!, { key: "p" });
+      expect(item("Edit")).toHaveFocus();
+    });
+
+    it("treats a space as part of the typed text without selecting the item", async () => {
+      const onSelectAll = vi.fn();
+      await openTypeaheadMenu(onSelectAll);
+      for (const key of ["s", "e", "l", "e", "c", "t", " "]) {
+        fireEvent.keyDown(document.activeElement!, { key });
+      }
+      expect(item("Select all")).toHaveFocus();
+      fireEvent.keyDown(document.activeElement!, { key: "n" });
+      expect(item("Select none")).toHaveFocus();
+      expect(onSelectAll).not.toHaveBeenCalled();
+    });
+
+    it("ignores letters typed with a modifier key", async () => {
+      const floatingMenu = await openTypeaheadMenu();
+      fireEvent.keyDown(floatingMenu, { key: "d", ctrlKey: true });
+      expect(item("Edit")).toHaveFocus();
+    });
+  });
+
+  // キーで選ぶと開いたままだった（クリックなら閉じる）
+  it("closes the menu when an item is activated with Enter or Space", async () => {
+    for (const key of ["Enter", " "]) {
+      const handleClick = vi.fn();
+      const { unmount } = render(
+        <ContextMenu menu={<ContextMenuItem onClick={handleClick}>Item</ContextMenuItem>}>
+          <div data-testid="trigger">Trigger</div>
+        </ContextMenu>,
+      );
+      fireEvent.contextMenu(screen.getByTestId("trigger"));
+      fireEvent.keyDown(screen.getByText("Item").closest('[role="menuitem"]')!, { key });
+      expect(handleClick).toHaveBeenCalledTimes(1);
+      await waitFor(() => {
+        expect(screen.queryByRole("menu")).not.toBeInTheDocument();
+      });
+      unmount();
+    }
+  });
+
+  it("keeps the menu open when a disabled item gets Enter", () => {
+    render(
+      <ContextMenu menu={<ContextMenuItem disabled>Item</ContextMenuItem>}>
+        <div data-testid="trigger">Trigger</div>
+      </ContextMenu>,
+    );
+    fireEvent.contextMenu(screen.getByTestId("trigger"));
+    fireEvent.keyDown(screen.getByText("Item").closest('[role="menuitem"]')!, { key: "Enter" });
+    expect(screen.getByRole("menu")).toBeInTheDocument();
+  });
+
   it("does not open menu when disabled", () => {
     render(
       <ContextMenu menu={menu} disabled>

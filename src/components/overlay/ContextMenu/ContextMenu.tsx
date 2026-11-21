@@ -22,6 +22,7 @@ import {
 } from "@floating-ui/react";
 import { Transition } from "../../layout/Transition/Transition";
 import { BaseListItem } from "../../_internal/BaseListItem";
+import { findTypeaheadIndex, isTypeaheadKey, useTypeahead } from "../../_internal/typeahead";
 import { useMergedRef } from "../../../hooks/useMergedRef";
 import styles from "./context-menu.module.scss";
 
@@ -48,6 +49,10 @@ export type ContextMenuProps = {
 const ContextMenuContext = React.createContext<{
   activeIndex: number | null;
   getItemProps: (userProps?: React.HTMLProps<HTMLElement> & { index?: number }) => Record<string, unknown>;
+  /** 先回りの文字をためているか（ためている間の空白は、項目を選ぶキーではなく文字） */
+  typing: () => boolean;
+  /** メニューを閉じる（キーで項目を選んだとき。クリックはメニューの onClick が閉じる） */
+  close: () => void;
 } | null>(null);
 
 const ContextMenuInner = ({
@@ -97,6 +102,25 @@ const ContextMenuInner = ({
     listNavigation,
   ]);
 
+  // 文字を打つと、文字の先頭が一致する項目へ移る（T425。Menu・Dropdown・Menubar と同じ道具）
+  const typeahead = useTypeahead();
+  const handleTypeahead = (e: React.KeyboardEvent<HTMLElement>) => {
+    // 並びは面の DOM から引く（FloatingList の index も DOM の順）
+    const items = Array.from(e.currentTarget.querySelectorAll<HTMLElement>('[role="menuitem"]'));
+    const next = findTypeaheadIndex({
+      query: typeahead.push(e.key),
+      current: activeIndex ?? -1,
+      count: items.length,
+      getText: (i) => items[i]?.textContent ?? "",
+      isDisabled: (i) => !items[i] || items[i]?.getAttribute("aria-disabled") === "true",
+    });
+    if (next >= 0) {
+      e.preventDefault();
+      setActiveIndex(next);
+      items[next]?.focus();
+    }
+  };
+
   const openMenu = (x: number, y: number, isKeyboard: boolean) => {
     refs.setReference({
       getBoundingClientRect() {
@@ -128,6 +152,9 @@ const ContextMenuInner = ({
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (disabled) return;
+    // メニューは Portal の中でも、React のイベントはこの引き金まで伝わる。項目の上の Enter / 空白を
+    // 「開く」と受けると、開き直して先頭の項目へ戻ってしまう（T425 の先回りの空白で見つけた）
+    if (!containerRef.current?.contains(e.target as Node)) return;
 
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
@@ -187,7 +214,11 @@ const ContextMenuInner = ({
               style={floatingStyles}
               {...(getFloatingProps({
                 onClick: handleClose,
-                onKeyDown(e: React.KeyboardEvent) {
+                onKeyDown(e: React.KeyboardEvent<HTMLElement>) {
+                  if (isTypeaheadKey(e, typeahead.typing())) {
+                    handleTypeahead(e);
+                    return;
+                  }
                   if (e.key === "Escape") handleClose();
                   // ガードを置かないので、Tab をそのまま通すとフォーカスが body の末尾（Portal の外）へ抜ける。
                   if (e.key === "Tab") {
@@ -200,7 +231,7 @@ const ContextMenuInner = ({
               // その id を持つ要素は DOM に無い（壊れた参照。axe: aria-valid-attr-value）。外す。
               aria-labelledby={undefined}
             >
-              <ContextMenuContext.Provider value={{ activeIndex, getItemProps }}>
+              <ContextMenuContext.Provider value={{ activeIndex, getItemProps, typing: typeahead.typing, close: handleClose }}>
                 <FloatingList elementsRef={elementsRef}>
                   {menu}
                 </FloatingList>
@@ -251,9 +282,15 @@ export const ContextMenuItem = ({
     index,
     onClick: () => handleClick(),
     onKeyDown: (e: React.KeyboardEvent) => {
+      // 文字をためている間の空白は先回りの文字（"select all"）。選ばずにメニューへ渡す
+      if (e.key === " " && context.typing()) return;
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
+        if (disabled) return;
         handleClick();
+        // クリックで選ぶと閉じるのに、キーで選ぶと開いたままだった。APG の menu は、選んだら閉じて
+        // 引き金へフォーカスを戻す（戻すのは FloatingFocusManager）
+        context.close();
       }
     },
   }) : {};

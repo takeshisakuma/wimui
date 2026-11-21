@@ -108,5 +108,74 @@ test.describe("ContextMenu", () => {
       await page.keyboard.press("ArrowDown");
       // No error thrown means navigation works
     });
+
+    // 文字を打つと、先頭が一致する項目へ移る（T425）。以前は Edit のまま動かなかった
+    test("typing a letter moves focus to the matching item", async ({ page }) => {
+      await page.goto(STORY_URL(BASIC_STORY));
+      await page.waitForLoadState("networkidle");
+
+      const trigger = page.getByTestId("context-menu-trigger").first();
+      await trigger.focus();
+      await page.keyboard.press("Enter");
+      await expect(page.getByRole("menuitem", { name: "Edit" })).toBeFocused();
+
+      await page.keyboard.press("p");
+      await expect(page.getByRole("menuitem", { name: "Paste" })).toBeFocused();
+      // 続けて打った文字はためて照合する（"pd"）。手が止まったと見なす 500ms を空ける
+      await page.waitForTimeout(600);
+      await page.keyboard.press("d");
+      await expect(page.getByRole("menuitem", { name: "Delete" })).toBeFocused();
+    });
+
+    test("typeahead skips disabled items", async ({ page }) => {
+      await page.goto(STORY_URL(DISABLED_ITEMS_STORY));
+      await page.waitForLoadState("networkidle");
+
+      const trigger = page.getByTestId("context-menu-trigger").first();
+      await trigger.focus();
+      await page.keyboard.press("Enter");
+      await expect(page.getByRole("menuitem").first()).toBeFocused();
+
+      await page.keyboard.press("p");
+      await expect(page.getByRole("menuitem").first()).toBeFocused();
+      // 続けて打った文字はためて照合する（"pd"）。手が止まったと見なす 500ms を空ける
+      await page.waitForTimeout(600);
+      await page.keyboard.press("s");
+      await expect(page.getByRole("menuitem", { name: "Select All" })).toBeFocused();
+    });
+
+    // 項目の上の Enter が、Portal を越えて引き金の「開く」に届き、先頭の項目へ戻っていた。
+    // また、キーで選んでもメニューが開いたままだった（クリックなら閉じる）
+    test("Enter on an item closes the menu and returns focus to the trigger", async ({ page }) => {
+      await page.goto(STORY_URL(BASIC_STORY));
+      await page.waitForLoadState("networkidle");
+
+      const trigger = page.getByTestId("context-menu-trigger").first();
+      await trigger.focus();
+      await page.keyboard.press("Enter");
+      await expect(page.getByRole("menuitem", { name: "Edit" })).toBeFocused();
+
+      await page.keyboard.press("ArrowDown");
+      await expect(page.getByRole("menuitem", { name: "Copy" })).toBeFocused();
+      await page.keyboard.press("Enter");
+      await expect(page.getByRole("menu")).toHaveCount(0);
+      await expect(trigger).toBeFocused();
+    });
+
+    test("Space on a disabled item keeps the menu open", async ({ page }) => {
+      await page.goto(STORY_URL(DISABLED_ITEMS_STORY));
+      await page.waitForLoadState("networkidle");
+
+      const trigger = page.getByTestId("context-menu-trigger").first();
+      await trigger.focus();
+      await page.keyboard.press("Enter");
+      await expect(page.getByRole("menuitem").first()).toBeFocused();
+
+      // 無効の項目に矢印で止まるか（止まらないなら、空白は有効な項目を選んで閉じる）を部品に依らず確かめる
+      const disabledItem = page.locator("[role='menuitem'][aria-disabled='true']");
+      await disabledItem.focus();
+      await page.keyboard.press(" ");
+      await expect(page.getByRole("menu")).toBeVisible();
+    });
   });
 });
