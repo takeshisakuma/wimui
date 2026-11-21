@@ -24,6 +24,7 @@ import {
   DrawerHeader,
   DrawerTitle,
   Group,
+  HamburgerMenu,
   Header,
   Menubar,
   PageHeader,
@@ -248,6 +249,9 @@ const CaptionReviewScreen = ({
   const [palette, setPalette] = useState(paletteOpen);
   const [drawer, setDrawer] = useState(drawerOpen);
   const [discard, setDiscard] = useState(discardOpen);
+  // 狭い幅（md 未満）では横の帯が画面の外へ退くので、ヘッダーに開く引き金を置く。
+  // 以前は無く、狭い幅ではリールの一覧に届く手段が無かった（Sidebar の responsive の文書どおり）
+  const [reels, setReels] = useState(false);
 
   return (
     <AppShell
@@ -256,7 +260,10 @@ const CaptionReviewScreen = ({
         // `AppShell` 側に padding が無いので、内容が画面の端に貼り付く
         <Header fluid bordered>
           <Header.Section align="start">
-            <CueMenubar />
+            <Group gap="sm" align="center" wrap="nowrap">
+              <HamburgerMenu size="sm" visibleBelow="md" open={reels} onOpenChange={setReels} />
+              <CueMenubar />
+            </Group>
           </Header.Section>
           {/* 390px ではエピソード名を並べると `Menubar` が 2 行に折れ、64px の
               ヘッダから 6px はみ出す（実測）。エピソード名は「いま何を見ているか」
@@ -287,7 +294,7 @@ const CaptionReviewScreen = ({
           構造サブコンポーネントがあると props の `sidebar` は黙って捨てられる。
           サイドバーを使う構成は Composition API で組む */}
       <AppShell.Body>
-        <Sidebar width={200} bordered>
+        <Sidebar width={200} bordered mobileOpen={reels} onOverlayClick={() => setReels(false)}>
           <Sidebar.Content>
             {/* 本文の内側余白（2xl）に合わせる。`Sidebar.Content` 自身は
                 左右 0 なので、ここで入れないとリールが画面の端に貼り付く */}
