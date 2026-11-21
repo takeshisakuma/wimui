@@ -478,6 +478,23 @@
     "anchor_choice_navbar_when": "When you want to move between the main areas of the site.",
     "anchor_choice_breadcrumbs_when": "When you want to show where the current page sits in the hierarchy and let the user climb back up.",
     "breadcrumb_collapse": "Collapsing the middle levels",
-    "breadcrumb_collapse_desc": "With overflow=\"collapse\", a path that does not fit on one line keeps the first level and the current page and folds the levels in between into a \"…\" button. The button lists them as links; Escape, pressing outside or moving focus away closes the list. The row recomputes when its width changes, so the levels come back when there is room."
+    "breadcrumb_collapse_desc": "With overflow=\"collapse\", a path that does not fit on one line keeps the first level and the current page and folds the levels in between into a \"…\" button. The button lists them as links; Escape, pressing outside or moving focus away closes the list. The row recomputes when its width changes, so the levels come back when there is room.",
+    "skiplink_design_intent": "Every page repeats its header and navigation before the content. A keyboard user has to Tab through all of it on every page to reach what they came for. The skip link is the first stop in the Tab order: it appears on focus and, when pressed, moves focus straight to the main region (WCAG 2.4.1 Bypass Blocks, level A). It is invisible to mouse users, so it costs nothing on the screen.",
+    "skiplink_choice_matrix_desc": "Use the one AppShell already gives you; place SkipLink yourself only when the page is not built with AppShell.",
+    "skiplink_choice_skiplink_when": "A page laid out without AppShell. Put it first in the page and give the main content the matching id.",
+    "skiplink_choice_appshell_when": "Pages built with AppShell. It renders a skip link by default and points it at its own main region; nothing to add.",
+    "skiplink_choice_anchor_when": "Moving between sections inside a long page (a table of contents), not skipping the repeated header.",
+    "skiplink_a11y_1": "It is a real link, so screen readers announce it as one and it can be activated with Enter.",
+    "skiplink_a11y_2": "Pressing it moves keyboard focus to the target, not just the scroll position. A target that cannot take focus gets tabindex=\"-1\" so the next Tab continues from the content.",
+    "skiplink_a11y_3": "It is hidden by clipping rather than display: none, so it stays in the Tab order. In forced colors it keeps its border and focus outline.",
+    "skiplink_scenario_app": "An admin console where the header carries a search field, notifications and a user menu, and a sidebar lists twenty sections. One Tab and Enter reaches the table.",
+    "skiplink_scenario_site": "A documentation or marketing site with a long navigation bar. Readers who use the keyboard jump straight to the article.",
+    "skiplink_best_practice_1": "Make it the first focusable element on the page, before the logo and the navigation.",
+    "skiplink_best_practice_2": "Point it at the main content region (main), not at the first heading inside it, so focus lands where the content starts.",
+    "skiplink_best_practice_3": "Keep the label as the destination (\"Skip to main content\"). Do not add a second skip link unless there are several large blocks to bypass.",
+    "skiplink_basic_desc": "The link is hidden until it receives focus. Click inside the frame and press Tab once to reveal it.",
+    "skiplink_focused_title": "Focused",
+    "skiplink_focused_desc": "How the link looks while focused: pinned to the top-left corner above any fixed header.",
+    "skiplink_keyboard_desc": "Tab from the top of the page focuses the link and reveals it. Enter moves focus to the main content; the next Tab continues from there. Tab again without pressing Enter and the link hides."
   }
 }

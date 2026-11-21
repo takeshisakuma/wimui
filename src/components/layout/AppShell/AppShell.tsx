@@ -2,6 +2,11 @@ import React from "react";
 import classNames from "classnames";
 import styles from "./appshell.module.scss";
 import { warnDiscardedSidebarProp } from "./warn-discarded-sidebar";
+import { SkipLink } from "../../navigation/SkipLink/SkipLink";
+import { useMergedRef } from "../../../hooks/useMergedRef";
+
+// 本文へ飛ぶリンクの飛び先（T418）。Props API の内蔵 `<main>` と `AppShell.Main` が同じ id を付ける。
+const AppShellMainIdContext = React.createContext<string | undefined>(undefined);
 
 // ─────────────────────────────────────────────
 // AppShell Root
@@ -25,6 +30,11 @@ export interface AppShellProps extends Omit<
   centered?: boolean;
   /** Maximum width for centered content */
   maxWidth?: number | string;
+  /**
+   * Render a "Skip to main content" link as the first focusable element. It stays hidden until it receives focus and moves focus to the main region (WCAG 2.4.1). Set to `false` only when the page already renders its own skip link.
+   * @default true
+   */
+  skipLink?: boolean;
 }
 
 /**
@@ -98,11 +108,25 @@ export const AppShellRoot = React.forwardRef<HTMLDivElement, AppShellProps>(
       padding = true,
       centered,
       maxWidth,
+      skipLink = true,
       ...props
     },
     ref,
   ) => {
     const composed = hasStructuralChild(children);
+    const mainId = `${React.useId()}main`;
+    const rootRef = React.useRef<HTMLDivElement>(null);
+    const setRootRef = useMergedRef(rootRef, ref);
+
+    // 利用者が `AppShell.Main` に自分の id を付けると、上の id は付かない。そのときは
+    // この AppShell の中の `<main>` へ飛ぶ。
+    const handleSkipLinkClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+      if (document.getElementById(mainId)) return;
+      const main = rootRef.current?.querySelector("main");
+      if (!main) return;
+      event.preventDefault();
+      main.focus();
+    };
 
     // T98: composed かつ `sidebar` がある = 確実に捨てられる。描画では救えない。
     if (composed && sidebar) {
@@ -117,48 +141,53 @@ export const AppShellRoot = React.forwardRef<HTMLDivElement, AppShellProps>(
       : undefined;
 
     return (
-      <div
-        ref={ref}
-        className={classNames("wim-app-shell", 
-          styles.root,
-          // `withSidebar` は SCSS に存在せず、付いても何も起きなかった（T58）。
-          // サイドバーの幅は渡した `Sidebar` 自身が持つ。
-          !!navbar && styles.withNavbar,
-          className,
-        )}
-        {...props}
-        // style は、props を広げたあとに置く。先に置くと、利用者が渡した style が、幅の変数を消す。
-        style={{ ...style, ...props.style }}
-      >
-        {header && <div className={styles.header}>{header}</div>}
+      <AppShellMainIdContext.Provider value={mainId}>
+        <div
+          ref={setRootRef}
+          className={classNames("wim-app-shell",
+            styles.root,
+            // `withSidebar` は SCSS に存在せず、付いても何も起きなかった（T58）。
+            // サイドバーの幅は渡した `Sidebar` 自身が持つ。
+            !!navbar && styles.withNavbar,
+            className,
+          )}
+          {...props}
+          // style は、props を広げたあとに置く。先に置くと、利用者が渡した style が、幅の変数を消す。
+          style={{ ...style, ...props.style }}
+        >
+          {/* ヘッダーと横の帯より前に置く。キーボードの人が、毎ページそれを Tab で通り抜けずに本文へ着けるように（T418） */}
+          {skipLink && <SkipLink href={`#${mainId}`} onClick={handleSkipLinkClick} />}
+          {header && <div className={styles.header}>{header}</div>}
 
-        {composed ? (
-          // Composition API: 利用者が構造を組んでいるので、そのまま出す。
-          children
-        ) : (
-          <div className={styles.body}>
-            {sidebar && <div className={styles.sidebar}>{sidebar}</div>}
+          {composed ? (
+            // Composition API: 利用者が構造を組んでいるので、そのまま出す。
+            children
+          ) : (
+            <div className={styles.body}>
+              {sidebar && <div className={styles.sidebar}>{sidebar}</div>}
 
-            <main
-              className={classNames(
-                styles.main,
-                padding && styles.padded,
-                centered && styles.centered,
-              )}
-              tabIndex={0}
-            >
-              {centered ? (
-                <div className={styles.content}>{children}</div>
-              ) : (
-                children
-              )}
-            </main>
-          </div>
-        )}
+              <main
+                id={mainId}
+                className={classNames(
+                  styles.main,
+                  padding && styles.padded,
+                  centered && styles.centered,
+                )}
+                tabIndex={0}
+              >
+                {centered ? (
+                  <div className={styles.content}>{children}</div>
+                ) : (
+                  children
+                )}
+              </main>
+            </div>
+          )}
 
-        {navbar && <div className={styles.navbar}>{navbar}</div>}
-        {footer && <div className={styles.footer}>{footer}</div>}
-      </div>
+          {navbar && <div className={styles.navbar}>{navbar}</div>}
+          {footer && <div className={styles.footer}>{footer}</div>}
+        </div>
+      </AppShellMainIdContext.Provider>
     );
   },
 );
@@ -185,8 +214,11 @@ export interface AppShellMainProps extends Omit<
  */
 export const AppShellMain = React.forwardRef<HTMLElement, AppShellMainProps>(
   ({ className, children, padding = true, centered, ...props }, ref) => {
+    const mainId = React.useContext(AppShellMainIdContext);
     return (
       <main
+        // 本文へ飛ぶリンクの飛び先。利用者の id があれば、下の props が上書きする
+        id={mainId}
         ref={ref}
         className={classNames(
           styles.main,

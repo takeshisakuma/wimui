@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import {
   AppShell,
@@ -9,6 +9,72 @@ import {
 } from "./AppShell";
 import { resetAppShellWarnings } from "./warn-discarded-sidebar";
 import styles from "./appshell.module.scss";
+
+// 本文へ飛ぶリンク（T418）。以前は無く、キーボードの人は毎ページ、ヘッダーと横の帯を Tab で通り抜けていた
+describe("AppShell skip link", () => {
+  const skipLink = () => screen.getByRole("link", { name: "Skip to main content" });
+
+  it("renders the skip link before the header", () => {
+    const { container } = render(
+      <AppShell header={<a href="/home">Home</a>}>Main Content</AppShell>,
+    );
+    const links = container.querySelectorAll("a");
+    expect(links[0]).toBe(skipLink());
+  });
+
+  it("points at the built-in main and moves focus there", () => {
+    render(<AppShell header={<div>Header</div>}>Main Content</AppShell>);
+    const main = screen.getByRole("main");
+    expect(skipLink().getAttribute("href")).toBe(`#${main.id}`);
+    fireEvent.click(skipLink());
+    expect(main).toHaveFocus();
+  });
+
+  it("points at AppShell.Main in the Composition API", () => {
+    render(
+      <AppShell>
+        <AppShellHeader>Header</AppShellHeader>
+        <AppShell.Body>
+          <AppShell.Main>Main Content</AppShell.Main>
+        </AppShell.Body>
+      </AppShell>,
+    );
+    const main = screen.getByRole("main");
+    expect(skipLink().getAttribute("href")).toBe(`#${main.id}`);
+    fireEvent.click(skipLink());
+    expect(main).toHaveFocus();
+  });
+
+  it("still reaches AppShell.Main when it has its own id", () => {
+    render(
+      <AppShell>
+        <AppShell.Body>
+          <AppShell.Main id="content">Main Content</AppShell.Main>
+        </AppShell.Body>
+      </AppShell>,
+    );
+    const main = screen.getByRole("main");
+    expect(main).toHaveAttribute("id", "content");
+    fireEvent.click(skipLink());
+    expect(main).toHaveFocus();
+  });
+
+  it("gives each AppShell its own target", () => {
+    render(
+      <>
+        <AppShell>One</AppShell>
+        <AppShell>Two</AppShell>
+      </>,
+    );
+    const [a, b] = screen.getAllByRole("main");
+    expect(a.id).not.toBe(b.id);
+  });
+
+  it("can be turned off", () => {
+    render(<AppShell skipLink={false}>Main Content</AppShell>);
+    expect(screen.queryByRole("link", { name: "Skip to main content" })).not.toBeInTheDocument();
+  });
+});
 
 describe("AppShell", () => {
   it("renders children correctly", () => {

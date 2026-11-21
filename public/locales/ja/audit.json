@@ -681,5 +681,6 @@
   "ai_system_notice_default": "モデルを速いものに切り替えました。",
   "ai_system_notice_warning": "回答が長さの上限で途切れました。",
   "ai_system_notice_danger": "回答が届きませんでした。",
-  "label_confirm": "Confirm"
+  "label_confirm": "Confirm",
+  "label_skiplink": "本文へ飛ぶリンク（Tab で現れ、Enter でパンくずへフォーカスが移る）"
 }

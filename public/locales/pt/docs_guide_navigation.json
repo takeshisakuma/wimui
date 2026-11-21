@@ -139,6 +139,10 @@
     "long_content_care": "Atenção a Conteúdos Longos",
     "points_title": "Design Points",
     "priority_mgmt": "Priority Management",
-    "visibility_maint": "Maintain Visibility"
+    "visibility_maint": "Maintain Visibility",
+    "skip_link": "Pular o cabeçalho repetido",
+    "skiplink_desc": "A primeira parada do Tab em toda página; ao ser acionado, move o foco para o conteúdo principal. O AppShell o renderiza por padrão.",
+    "bypass_blocks": "Pular blocos repetidos",
+    "skiplink_usage_note": "Sem ele, quem usa o teclado passa pelo cabeçalho e pela navegação com Tab em toda página. Mantenha o que o AppShell renderiza; coloque o SkipLink manualmente só em páginas sem AppShell."
   }
 }

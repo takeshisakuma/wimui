@@ -140,6 +140,13 @@
     "breadcrumb_shop_women": "Feminino",
     "breadcrumb_shop_shoes": "Calçados",
     "breadcrumb_shop_running": "Corrida",
-    "breadcrumb_shop_trail": "Tênis de trail running"
+    "breadcrumb_shop_trail": "Tênis de trail running",
+    "skiplink_nav_label": "Principal",
+    "skiplink_home": "Início",
+    "skiplink_products": "Produtos",
+    "skiplink_pricing": "Preços",
+    "skiplink_support": "Suporte",
+    "skiplink_main_title": "Notas de versão",
+    "skiplink_main_body": "No topo da página, pressione Tab uma vez para mostrar o link de salto e depois Enter para mover o foco para cá sem passar pela navegação."
   }
 }

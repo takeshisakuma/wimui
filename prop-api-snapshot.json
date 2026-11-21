@@ -332,6 +332,10 @@
       "required": false,
       "type": "React.ReactNode"
     },
+    "AppShell.skipLink": {
+      "required": false,
+      "type": "boolean"
+    },
     "AreaChart.animated": {
       "required": false,
       "type": "boolean"
@@ -9930,6 +9934,14 @@
     "Skeleton.width": {
       "required": false,
       "type": "string | number"
+    },
+    "SkipLink.asChild": {
+      "required": false,
+      "type": "boolean"
+    },
+    "SkipLink.href": {
+      "required": false,
+      "type": "string"
     },
     "Slider.asChild": {
       "required": false,

@@ -193,6 +193,7 @@ export type ComponentsKey =
   | "doc.segmentedcontrol_choice_self_when"
   | "doc.selectionBar_desc"
   | "doc.selection_guide_link"
+  | "doc.skipLink_desc"
   | "doc.smartSearchInput_desc"
   | "doc.sourceCitation_desc"
   | "doc.splitButton_desc"

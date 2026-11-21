@@ -220,7 +220,8 @@
     "confirm_desc": "Abre uma caixa de diálogo de confirmação pelo código com await confirm() e devolve true ou false.",
     "aiLabel_desc": "Marca um valor ou um bloco como produzido por IA. Ao pressionar a marca, abre uma explicação do que a IA fez.",
     "pageHeader_desc": "Topo de uma página: trilha, título (sempre h1), status, descrição, ações e abas em ordem e espaçamento fixos.",
-    "persona_desc": "Mostra uma pessoa como uma unidade: avatar, nome e até duas linhas de descrição, com o texto no tamanho do avatar. O nome é lido uma vez."
+    "persona_desc": "Mostra uma pessoa como uma unidade: avatar, nome e até duas linhas de descrição, com o texto no tamanho do avatar. O nome é lido uma vez.",
+    "skipLink_desc": "Um link no topo da página que pula o cabeçalho e a navegação até o conteúdo principal. Fica oculto até receber o foco do teclado. O AppShell renderiza um por padrão."
   },
   "effects": {
     "common_vars": "Variáveis Comuns"

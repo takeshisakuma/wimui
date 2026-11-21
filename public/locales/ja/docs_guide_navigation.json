@@ -139,6 +139,10 @@
     "long_content_care": "長いコンテンツへの配慮",
     "points_title": "ポイント",
     "priority_mgmt": "優先順位の管理",
-    "visibility_maint": "視認性の維持"
+    "visibility_maint": "視認性の維持",
+    "skip_link": "繰り返すヘッダーを飛ばす",
+    "skiplink_desc": "どのページでも Tab の最初の停止点。押すと本文へフォーカスが移る。AppShell は既定で描く。",
+    "bypass_blocks": "繰り返す塊を飛ばす",
+    "skiplink_usage_note": "無いと、キーボードの人は毎ページ、ヘッダーとナビゲーションを Tab で通り抜ける。AppShell が描くものはそのまま残し、AppShell を使わないページだけ SkipLink を自分で置く。"
   }
 }

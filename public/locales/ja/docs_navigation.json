@@ -478,6 +478,23 @@
     "anchor_choice_navbar_when": "サイトの主要な区画の間を移動したいとき",
     "anchor_choice_breadcrumbs_when": "現在のページが階層のどこにいるかを示し、上へ戻れるようにしたいとき",
     "breadcrumb_collapse": "間の階層を畳む",
-    "breadcrumb_collapse_desc": "overflow=\"collapse\" にすると、1 行に入らないパスは、先頭の階層と現在のページを残し、間の階層を「…」のボタンにまとめます。ボタンを押すと、畳んだ階層がリンクとして並びます。Escape・外側を押す・フォーカスが外へ出ると閉じます。幅が変わるたびに数え直すので、広がれば階層は戻ります。"
+    "breadcrumb_collapse_desc": "overflow=\"collapse\" にすると、1 行に入らないパスは、先頭の階層と現在のページを残し、間の階層を「…」のボタンにまとめます。ボタンを押すと、畳んだ階層がリンクとして並びます。Escape・外側を押す・フォーカスが外へ出ると閉じます。幅が変わるたびに数え直すので、広がれば階層は戻ります。",
+    "skiplink_design_intent": "どのページも、本文の前にヘッダーとナビゲーションを繰り返す。キーボードの人は、目的の本文に着くまで、毎ページそれを Tab で通り抜けることになる。本文へ飛ぶリンクは Tab の最初の停止点で、フォーカスすると現れ、押すと本文の領域へ直接フォーカスを移す（WCAG 2.4.1 Bypass Blocks・レベル A）。マウスの人には見えないので、画面を圧迫しない。",
+    "skiplink_choice_matrix_desc": "AppShell が描くものをそのまま使う。AppShell を使わないページだけ、SkipLink を自分で置く。",
+    "skiplink_choice_skiplink_when": "AppShell を使わずに組んだページ。ページの先頭に置き、本文に同じ id を付ける。",
+    "skiplink_choice_appshell_when": "AppShell で組んだページ。既定で描き、自分の本文の領域へ飛ばす。足すものは無い。",
+    "skiplink_choice_anchor_when": "長いページの中で節から節へ移る（目次）。繰り返すヘッダーを飛ばす用途ではない。",
+    "skiplink_a11y_1": "本物のリンクなので、読み上げはリンクとして伝え、Enter で押せる。",
+    "skiplink_a11y_2": "押すと、スクロールの位置だけでなく、キーボードのフォーカスも飛び先へ移る。フォーカスできない飛び先には tabindex=\"-1\" を付け、次の Tab が本文から続くようにする。",
+    "skiplink_a11y_3": "display: none ではなく切り抜きで隠すので、Tab の停止点に残る。強制カラーでも枠とフォーカスの輪は残る。",
+    "skiplink_scenario_app": "ヘッダーに検索欄・通知・利用者のメニュー、横の帯に 20 の節が並ぶ管理画面。Tab と Enter の 1 回ずつで表に着く。",
+    "skiplink_scenario_site": "長いナビゲーションの帯を持つ文書や宣伝のサイト。キーボードで読む人は、記事へ直接飛べる。",
+    "skiplink_best_practice_1": "ページで最初にフォーカスできる要素にする（ロゴとナビゲーションより前）。",
+    "skiplink_best_practice_2": "飛び先は本文の領域（main）にする。その中の最初の見出しではなく、本文が始まる場所にフォーカスを置く。",
+    "skiplink_best_practice_3": "ラベルは行き先を言う（「本文へスキップ」）。飛ばしたい大きな塊が複数ある場合を除き、2 つ目は置かない。",
+    "skiplink_basic_desc": "フォーカスするまで見えない。枠の中をクリックしてから Tab を 1 回押すと現れる。",
+    "skiplink_focused_title": "フォーカスした姿",
+    "skiplink_focused_desc": "フォーカスしているあいだの見え方。固定ヘッダーより上に、左上の角に出る。",
+    "skiplink_keyboard_desc": "ページの先頭で Tab を押すとリンクにフォーカスが入り、現れる。Enter で本文へフォーカスが移り、次の Tab はそこから続く。Enter を押さずにもう一度 Tab を押すと、リンクは隠れる。"
   }
 }

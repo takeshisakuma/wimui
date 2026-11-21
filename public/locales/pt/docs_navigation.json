@@ -478,6 +478,23 @@
     "anchor_choice_navbar_when": "Quando você quer se mover entre as áreas principais do site.",
     "anchor_choice_breadcrumbs_when": "Quando você quer mostrar onde a página atual está na hierarquia e permitir subir de volta.",
     "breadcrumb_collapse": "Agrupando os níveis intermediários",
-    "breadcrumb_collapse_desc": "Com overflow=\"collapse\", um caminho que não cabe em uma linha mantém o primeiro nível e a página atual e agrupa os níveis intermediários em um botão \"…\". O botão os lista como links; Escape, clicar fora ou mover o foco para fora fecha a lista. A linha recalcula quando sua largura muda, então os níveis voltam quando há espaço."
+    "breadcrumb_collapse_desc": "Com overflow=\"collapse\", um caminho que não cabe em uma linha mantém o primeiro nível e a página atual e agrupa os níveis intermediários em um botão \"…\". O botão os lista como links; Escape, clicar fora ou mover o foco para fora fecha a lista. A linha recalcula quando sua largura muda, então os níveis voltam quando há espaço.",
+    "skiplink_design_intent": "Toda página repete o cabeçalho e a navegação antes do conteúdo. Quem usa o teclado precisa passar por tudo isso com Tab em cada página até chegar ao que procura. O link de salto é a primeira parada do Tab: aparece ao receber o foco e, ao ser acionado, leva o foco direto para a região principal (WCAG 2.4.1 Bypass Blocks, nível A). Fica invisível para quem usa o mouse, então não ocupa espaço na tela.",
+    "skiplink_choice_matrix_desc": "Use o que o AppShell já oferece; coloque o SkipLink manualmente só quando a página não for montada com AppShell.",
+    "skiplink_choice_skiplink_when": "Uma página montada sem AppShell. Coloque-o no início da página e dê o mesmo id ao conteúdo principal.",
+    "skiplink_choice_appshell_when": "Páginas montadas com AppShell. Ele renderiza um link de salto por padrão, apontando para a própria região principal; não é preciso adicionar nada.",
+    "skiplink_choice_anchor_when": "Navegar entre seções dentro de uma página longa (um sumário), e não pular o cabeçalho repetido.",
+    "skiplink_a11y_1": "É um link de verdade: leitores de tela o anunciam como link e ele pode ser acionado com Enter.",
+    "skiplink_a11y_2": "Ao ser acionado, move o foco do teclado para o destino, não só a posição de rolagem. Um destino que não recebe foco ganha tabindex=\"-1\" para que o próximo Tab continue a partir do conteúdo.",
+    "skiplink_a11y_3": "É ocultado por recorte, e não com display: none, então continua na ordem do Tab. Em cores forçadas, mantém a borda e o contorno de foco.",
+    "skiplink_scenario_app": "Um painel administrativo cujo cabeçalho tem busca, notificações e menu do usuário, e cuja barra lateral lista vinte seções. Um Tab e um Enter chegam à tabela.",
+    "skiplink_scenario_site": "Um site de documentação ou de marketing com uma barra de navegação longa. Quem lê pelo teclado pula direto para o artigo.",
+    "skiplink_best_practice_1": "Faça dele o primeiro elemento focável da página, antes do logotipo e da navegação.",
+    "skiplink_best_practice_2": "Aponte para a região do conteúdo principal (main), e não para o primeiro título dentro dela, para que o foco caia onde o conteúdo começa.",
+    "skiplink_best_practice_3": "Mantenha o rótulo como o destino (\"Pular para o conteúdo principal\"). Não adicione um segundo link de salto, a menos que haja vários blocos grandes a pular.",
+    "skiplink_basic_desc": "O link fica oculto até receber o foco. Clique dentro do quadro e pressione Tab uma vez para mostrá-lo.",
+    "skiplink_focused_title": "Com foco",
+    "skiplink_focused_desc": "Como o link aparece enquanto está com foco: fixo no canto superior esquerdo, acima de qualquer cabeçalho fixo.",
+    "skiplink_keyboard_desc": "Tab no topo da página foca o link e o mostra. Enter move o foco para o conteúdo principal; o próximo Tab continua a partir dali. Pressionar Tab de novo sem Enter oculta o link."
   }
 }

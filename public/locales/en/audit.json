@@ -681,5 +681,6 @@
   "ai_system_notice_default": "The model was switched to a faster one.",
   "ai_system_notice_warning": "The answer was cut off at the length limit.",
   "ai_system_notice_danger": "The answer never arrived.",
-  "label_confirm": "Confirm"
+  "label_confirm": "Confirm",
+  "label_skiplink": "Skip link (press Tab to reveal; Enter moves focus to the breadcrumbs)"
 }

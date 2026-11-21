@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { ALL_NAMESPACES } from "../i18nConstants";
 import {
   Breadcrumb,
+  SkipLink,
   Stepper,
   Menubar,
   Pagination,
@@ -104,14 +105,20 @@ export const Overview: StoryObj = {
             </Menubar>
           </ComponentGroup>
 
+          <ComponentGroup label={t("audit:label_skiplink")}>
+            <SkipLink href="#audit-nav-breadcrumbs" />
+          </ComponentGroup>
+
           <ComponentGroup label={t("audit:label_breadcrumbs")}>
-            <Breadcrumb
-              items={[
-                { label: "Home", href: "/" },
-                { label: "Category", href: "/category" },
-                { label: t("audit:nav_current_page") },
-              ]}
-            />
+            <div id="audit-nav-breadcrumbs">
+              <Breadcrumb
+                items={[
+                  { label: "Home", href: "/" },
+                  { label: "Category", href: "/category" },
+                  { label: t("audit:nav_current_page") },
+                ]}
+              />
+            </div>
           </ComponentGroup>
         </ComparisonGrid>
       </AuditPage>
