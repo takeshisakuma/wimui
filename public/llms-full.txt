@@ -751,7 +751,7 @@ this too.
     - `bordered: boolean` — Border at the top
     - `fluid: boolean` — Expand content to full width (disable the centered max-width container)
     - `background: "surface" | "surface-variant" | "inverse"` = "surface" — Background color
-- **Grid** — Flexbox or CSS Grid system
+- **Grid** — Flexbox or CSS Grid system (aka Layout Grid)
     - `asChild: boolean` = false — If true, the grid will be rendered as its child, merging its props onto that child.
 The container-query wrapper div is preserved to maintain responsive column behaviour.
     - `cols: T | { base?: T; sm?: T; md?: T; lg?: T; xl?: T; }` — Number of columns (or a responsive object per breakpoint)
@@ -763,7 +763,7 @@ The container-query wrapper div is preserved to maintain responsive column behav
     - `justify: "start" | "center" | "end" | "between" | "around" | "stretch"` — Justification of items along the inline (horizontal) axis
     - `flow: "row" | "column" | "dense" | "row dense" | "column dense"` — Grid auto-flow direction
     - `inline: boolean` = false — Whether to render as an inline grid
-- **Group** — Flexible grouping (aka Wrap, Inline Stack)
+- **Group** — Flexible grouping (aka Wrap, Inline Stack, Space, Inline)
     - `asChild: boolean` — If true, the group will be rendered as its child, merging its props onto that child.
     - `align: "start" | "center" | "end" | "stretch" | "baseline"` = "center" — Vertical alignment
     - `justify: "start" | "center" | "end" | "between" | "around" | "evenly"` = "start" — Horizontal alignment
@@ -772,7 +772,7 @@ number of pixels. Prefer the token so the gap follows the theme.
 @default "2xl"
     - `wrap: "nowrap" | "wrap" | "wrap-reverse"` = "wrap" — Whether to wrap children
     - `grow: boolean` = false — Whether items should grow to fill available space
-- **Header** — Upper navigation (aka Top Bar)
+- **Header** — Upper navigation (aka Top Bar, App Bar)
     - `fixed: boolean` — Fixed position at the top
     - `sticky: boolean` — Sticky position at the top
     - `bordered: boolean` — Border at the bottom
@@ -851,7 +851,7 @@ move to their own line under it when the header is too narrow.
     - `children: React.ReactNode` — Content to display
     - `scrollAxis: "x" | "y" | "both"` = "y" — Axis along which scrolling is allowed
     - `maxHeight: string` — Maximum height before scrolling (a CSS value, so units other than px are supported)
-- **Sidebar** — A collapsible navigation or informational panel on the side of the screen (aka Source List, Inspector, Nav Drawer, Side Nav)
+- **Sidebar** — A collapsible navigation or informational panel on the side of the screen (aka Source List, Inspector, Nav Drawer, Side Nav, Side Navigation)
     - `fixed: boolean` — Fixed position
     - `collapsed: boolean` — Collapsed state
     - `width: number | string` = 260 — Width when expanded
@@ -890,7 +890,7 @@ number of pixels. Prefer the token so the gap follows the theme.
 @default "2xl"
     - `verticalSpacing: number | string` — Vertical spacing between rows (defaults to `spacing`)
     - `minChildWidth: number | string` — Minimum width of each child; columns wrap automatically to fit
-- **Splitter** — Split and resize panels (aka Resizable, Resizable Panels, Split Pane, Resizer)
+- **Splitter** — Split and resize panels (aka Resizable, Resizable Panels, Split Pane, Resizer, Resize Box)
     - `orientation: "horizontal" | "vertical"` = "horizontal" — The orientation of the splitter.
     - `children: React.ReactNode` (required) — The components to render within the splitter. Usually a combination of `Splitter.Panel` and `Splitter.Handle`.
 - **Stack** — Vertical/Horizontal alignment (aka Block Stack)
@@ -1290,7 +1290,7 @@ it undefined to let the field track its own selection.
     - `aria-label: string` — Accessible name for the choose-file button when no visible `label` is provided.
     - `aria-labelledby: string` — ID of the element that labels the choose-file button when no visible `label` is provided.
     - `aria-describedby: string` — ID of the element that describes the choose-file button. Announced together with the error message.
-- **FloatButton** — Floating action buttons
+- **FloatButton** — Floating action buttons (aka FAB)
     - `asChild: boolean` = false — If true, the button will be rendered as its child, merging its props onto that child.
     - `iconName: "CircleIcon" | "SquareIcon" | "LoadingIcon" | "ExternalLinkIcon" | "ArrowUpIcon" | string` = "CircleIcon" — Icon name from the library
     - `variant: "outline" | "glass"` — 見た目の強さ。既定（未指定）は intent の塗り。
@@ -1327,7 +1327,7 @@ text to take a name from, and the icon name is not used as one.
     - `fullWidth: boolean` = false — Whether the button should take up the full width of its container
     - `styles: { root?: string; loader?: string; icon?: string; }` — Custom styles for internal parts
     - `className: string` — Additional class names
-- **ImageCropper** — Front-end image cropping and rotation tool.
+- **ImageCropper** — Front-end image cropping and rotation tool. (aka Cropper)
     - `src: string` — URL or data URL of the image to crop
     - `aspectRatio: number` = 1 — Aspect ratio (width / height); 1 produces a square
     - `circular: boolean` = false — Whether to display a circular crop area (for profile images)
@@ -1419,7 +1419,7 @@ make room rather than running underneath it.
     - `children: React.ReactNode` (required) — Inputs, buttons, and add-ons to combine into one unit
     - `fullWidth: boolean` = false — Whether to take full width of parent
     - `className: string` — Additional class names
-- **InputMask** — Formatted inputs
+- **InputMask** — Formatted inputs (aka Masked Input)
     - `mask: string` (required) — Mask pattern ('9': digit, 'a': letter, '*': alphanumeric; other characters are shown as-is)
     - `maskChar: string` = "_" — Placeholder character for unfilled mask positions
     - `intent: "default" | "danger"` = "default" — Semantic intent of the field (e.g. error state)
@@ -1465,7 +1465,7 @@ so the unit does not have to be repeated in the label.
     - `trigger: string` = "@" — Character that triggers the suggestion list
     - `onSelect: (option: MentionOption) => void` — Callback when a suggestion is selected
     - `asChild: boolean` = false — Whether to render as a child element.
-- **MultiSelect** — Multiple selection (aka Tag Picker, Select Panel)
+- **MultiSelect** — Multiple selection (aka Tag Picker, Select Panel, Select Multiple)
     - `options: MultiSelectOption[]` = [] — List of options
     - `value: string[]` — Selected values (controlled)
     - `onChange: (value: string[]) => void` — Callback when the selection changes
@@ -1491,7 +1491,7 @@ so the unit does not have to be repeated in the label.
     - `allowDecimal: boolean` = false — Whether to allow decimals (effective only when mode="number"). When false, both "." and "," are blocked — a browser in a locale that writes decimals with a comma takes "," as the decimal separator.
     - `allowNegative: boolean` = false — Whether to allow negative numbers (effective only when mode="number")
     - `asChild: boolean` = false — Whether to render as a child element.
-- **OtpInput** — One-time password fields (aka Pin Input, Input OTP, PIN Code Input, One Time Password Field, OTP Field)
+- **OtpInput** — One-time password fields (aka Pin Input, Input OTP, PIN Code Input, One Time Password Field, OTP Field, Pin Code, Verification Code)
     - `length: number` = 6 — Number of digits
     - `value: string` = "" — Current value (controlled)
     - `onChange: (value: string) => void` — Callback when the value changes
@@ -1597,7 +1597,7 @@ of a radio group. Use with `description` when the options need explaining.
     - `error: string` — Error message
     - `required: boolean` — Whether to show the required indicator
     - `disabled: boolean` — Whether the whole group is disabled
-- **RangeSlider** — Range selection
+- **RangeSlider** — Range selection (aka Range Selector)
     - `value: [number, number]` — Current value [min, max] (controlled)
     - `defaultValue: [number, number]` = [20, 80] — Default value [min, max] (uncontrolled)
     - `min: number` = 0 — Minimum value
@@ -1617,7 +1617,7 @@ of a radio group. Use with `description` when the options need explaining.
     - `aria-label: string` — Accessible label when no visible label is provided
     - `aria-labelledby: string` — ID of the element that labels the slider
     - `asChild: boolean` = false — Whether to render as a child element.
-- **Rating** — Star rating (aka Star Rating, Rating Indicator, Rating Display, Rating Group)
+- **Rating** — Star rating (aka Star Rating, Rating Indicator, Rating Display, Rating Group, Rate)
     - `value: number` — Current value (controlled)
     - `defaultValue: number` = 0 — Default value (uncontrolled)
     - `count: number` = 5 — Total number of stars
@@ -1768,7 +1768,7 @@ so the unit does not have to be repeated in the label.
     - `canvasAriaLabel: string` — Aria label for the canvas
     - `aria-label: string` — Accessible name for the canvas when no visible `label` is provided. Takes precedence over `canvasAriaLabel`.
     - `aria-labelledby: string` — ID of the element that labels the canvas when no visible `label` is provided.
-- **Slider** — An input to capture a numeric value from a specified range by dragging a knob
+- **Slider** — An input to capture a numeric value from a specified range by dragging a knob (aka Range, Range Input)
     - `value: number` — Current value (controlled)
     - `defaultValue: number` = 0 — Default value (uncontrolled)
     - `min: number` = 0 — Minimum value
@@ -1831,7 +1831,7 @@ but the toggle only shows a chevron, so it needs one of its own.
     - `error: string` — Error message
     - `required: boolean` — Whether to show the required indicator
     - `disabled: boolean` — Whether the whole group is disabled
-- **TagInput** — Input field for creating free-form tags. (aka Token Field, Chips Input, Tags Input, Text Input With Tokens)
+- **TagInput** — Input field for creating free-form tags. (aka Token Field, Chips Input, Tags Input, Text Input With Tokens, Input Tag)
     - `value: string[]` — List of tags (controlled)
     - `defaultValue: string[]` = [] — Initial list of tags (uncontrolled)
     - `onChange: (tags: string[]) => void` — Callback when the tags change
@@ -1870,7 +1870,7 @@ but the toggle only shows a chevron, so it needs one of its own.
     - `labels: { /** Label for the light mode */ light?: string; /** Label for the dark mode */ dark?: string; /** Label for the system (auto) mode */ system?: string; /** Accessible label / group label for the control */ toggle?: string; }` — Labels for internationalization
     - `className: string` — Additional class names
     - `asChild: boolean` = false — Whether to render as a child element.
-- **TimePicker** — Time selection (aka Time Field)
+- **TimePicker** — Time selection (aka Time Field, Time Input)
     - `intent: "default" | "danger"` = "default" — Semantic intent of the field (e.g. error state)
     - `variant: "outline" | "ghost"` = "outline" — Visual style variant of the field
     - `fullWidth: boolean` = false — Whether to take full width of parent
@@ -1966,7 +1966,7 @@ so the unit does not have to be repeated in the label.
 
 ### feedback — `import { … } from "wimui/feedback"`
 
-- **Alert** — Important messages (aka Message Bar, Callout, Flash, Inline Alert, Inline Message)
+- **Alert** — Important messages (aka Message Bar, Callout, Flash, Inline Alert, Inline Message, Section Message)
   - ⚠️ Not the same as elsewhere: In Fluent UI v8, a "Callout" is a popup anchored to an element — that is `Popover` here. WIM's `Alert` matches Blueprint's Callout: an inline message in the page flow.
     - `title: React.ReactNode` — Title of the alert
     - `titleTag: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "div" | "p" | "strong" | "span"` = "div" — HTML tag used for the alert title.
@@ -2070,7 +2070,7 @@ origin while the card it was meant to cover was 1248x75.
     - `className: string` — Additional class name
     - `aria-label: string` — Accessible name for the notification.
     - `aria-labelledby: string` — ID of the element that labels the notification. Takes precedence over `aria-label`.
-- **Progress** — Progress bar (aka Progress Bar)
+- **Progress** — Progress bar (aka Progress Bar, Progress Linear)
   - ⚠️ Not the same as elsewhere: Material's "Progress Indicator" covers indeterminate spinners as well. WIM's `Progress` is determinate and linear only — for the indeterminate case use `Spinner`.
     - `value: number` = 0 — Current value of the progress bar.
 @default 0
@@ -2090,7 +2090,7 @@ type therefore requires one of `label` / `aria-label` / `aria-labelledby`.
 @default false
     - `indeterminate: boolean` = false — If true, shows an indeterminate animation instead of a value.
 @default false
-- **ProgressRing** — ProgressRing description. (aka Progress Circle, Animated Circular Progress Bar)
+- **ProgressRing** — ProgressRing description. (aka Progress Circle, Animated Circular Progress Bar, Radial Progress, Progress Circular)
     - `value: number` = 0 — Current value of the progress ring.
 @default 0
     - `max: number` = 100 — Maximum value of the progress ring.
@@ -2134,7 +2134,7 @@ follows the theme and never needs a hand-mixed colour.
 塗っているものは `Progress.intent` と構造まで同一だったので、prop 名だけが
 ずれていた（T114）。
     - `target: React.RefObject<HTMLElement | null>` — Element whose scroll position is tracked. Defaults to `window`.
-- **Skeleton** — Placeholder for content loading states. (aka Shimmer)
+- **Skeleton** — Placeholder for content loading states. (aka Shimmer, Skeleton Loader)
     - `variant: "text" | "rect" | "circle"` = "text" — Shape of the skeleton.
 - `text`: shaped like a line of text.
 - `rect`: rectangle.
@@ -2163,7 +2163,7 @@ follows the theme and never needs a hand-mixed colour.
     - `onAction: () => void` — Called when the action button is clicked
     - `onClose: () => void` — Called when the snackbar is closed
     - `className: string` — Additional CSS class name
-- **Spinner** — A rotating icon indicating background activity or data fetching (aka Activity Indicator, Inline Loading, Loading, Progress Spinner)
+- **Spinner** — A rotating icon indicating background activity or data fetching (aka Activity Indicator, Inline Loading, Loading, Progress Spinner, Spin)
     - `size: "sm" | "md" | "lg" | "xl"` = "md" — Size of the spinner.
 @default "md"
     - `color: "currentColor" | WimColor` = "primary" — Color of the spinner. Accepts a design token color name or "currentColor".
@@ -2171,7 +2171,7 @@ follows the theme and never needs a hand-mixed colour.
     - `label: string` — Text label displayed next to the spinner.
     - `labelPosition: "right" | "bottom"` = "right" — Position of the label relative to the spinner.
 @default "right"
-- **Toast** — Non-intrusive floating messages that provide feedback on system operations (aka Message, Sonner, Toaster)
+- **Toast** — Non-intrusive floating messages that provide feedback on system operations (aka Message, Sonner, Toaster, Flag)
     - `id: string` — Identifier of the toast, passed to onClose. Used by ToastProvider to manage a stack.
     - `title: string` — Title of the toast.
     - `description: string` — Description text displayed below the title.
@@ -2185,7 +2185,8 @@ follows the theme and never needs a hand-mixed colour.
     - `className: string` — Additional CSS class name.
     - `aria-label: string` — Accessible name for the toast.
     - `aria-labelledby: string` — ID of the element that labels the toast. Takes precedence over `aria-label`.
-- **Tour** — Sequential guided walkthroughs to onboard users or highlight features (aka Teaching Popover, Coach Mark)
+- **Tour** — Sequential guided walkthroughs to onboard users or highlight features (aka Teaching Popover, Coach Mark, User Guide, Spotlight)
+  - ⚠️ Not the same as elsewhere: In Atlassian's design system, "Spotlight" is the onboarding tour that highlights one element at a time — that is `Tour` here. Aceternity UI's Spotlight is a decorative lighting effect, which WIM does not provide.
     - `steps: TourStep[]` (required) — Steps of the tour. Each step targets an element via a CSS selector.
     - `open: boolean` (required) — Whether the tour is shown.
     - `onClose: () => void` (required) — Called when the tour is dismissed before completion.
@@ -2324,7 +2325,7 @@ near the right edge pushes the page into a horizontal scroll. Anchor a
     - `aria-label: string` — Accessible name for the trigger button.
 Lands on the inner `FloatButton`, not on the wrapper `div`.
 Defaults to a translated "Open menu" / "Close menu" (en / ja / pt), following the open state.
-- **Stepper** — Visual sequence steps (aka Progress Indicator, Steps)
+- **Stepper** — Visual sequence steps (aka Progress Indicator, Steps, Wizard, Progress Tracker)
   - ⚠️ Not the same as elsewhere: In Apple HIG and macOS, a "Stepper" is the control that increments a number — that is `NumberInput` here. WIM's `Stepper` shows progress through a sequence of steps, which is what Material calls a Stepper.
     - `steps: Step[]` = [] — Array of step configurations
     - `current: number` = 0 — Index of the current active step (0-indexed)
@@ -2364,7 +2365,7 @@ scans stay green while the bar hangs outside its parent.
 
 ### data-display — `import { … } from "wimui/data-display"`
 
-- **Accordion** — Collapsible panels (aka Disclosure, Disclosure Group, Expander)
+- **Accordion** — Collapsible panels (aka Disclosure, Disclosure Group, Expander, Collapse, Expansion Panel)
     - `type: "single" | "multiple"` = "single" — Whether one or multiple items can be open at a time
     - `defaultValue: string | string[]` — Initially open item value(s) (uncontrolled)
     - `value: string | string[]` — Open item value(s) (controlled)
@@ -2392,7 +2393,7 @@ scans stay green while the bar hangs outside its parent.
 lists the hidden people by name.
 @default "count"
     - `className: string` — Additional class names
-- **Badge** — Indicators or counts (aka Icon Indicator, State Label)
+- **Badge** — Indicators or counts (aka Icon Indicator, State Label, Lozenge)
     - `asChild: boolean` — If true, the badge will be rendered as its child, merging its props onto that child.
     - `children: React.ReactNode` — Content to display
     - `content: React.ReactNode` — Content to display (alternative to children)
@@ -2540,7 +2541,7 @@ target is already in the past). Not called when baseDate is set.
     - `completedContent: React.ReactNode` — Content shown instead of the zeroed digits once the countdown ends.
     - `fallback: React.ReactNode` — Content shown when the target cannot be parsed.
     - `asChild: boolean` = false — If true, the component will be rendered as its child, merging its props onto that child.
-- **DataGrid** — Advanced data table and manipulation (aka Data Table, Index Table, Table View)
+- **DataGrid** — Advanced data table and manipulation (aka Data Table, Index Table, Table View, Dynamic Table)
     - `columns: DataGridColumn<T>[]` (required) — Column definitions
     - `data: T[]` (required) — Row data
     - `rowKey: string | ((record: T) => string)` = "id" — Row key: a field name or a function that derives the key from a record
@@ -2569,14 +2570,14 @@ drops secondary text below the AA contrast floor.
     - `ariaLabel: string` — Accessibility label for the grid
     - `aria-label: string` — Accessible name for the grid. Takes precedence over `ariaLabel`.
     - `aria-labelledby: string` — ID of the element that labels the grid. Takes precedence over `aria-label`.
-- **DescriptionList** — Key-value pairs (aka Data List, Labeled Value)
+- **DescriptionList** — Key-value pairs (aka Data List, Labeled Value, Descriptions, Name Value List)
     - `children: React.ReactNode` (required) — DescriptionListItem elements
     - `className: string` — Additional class names
     - `layout: "horizontal" | "vertical" | "compact"` = "horizontal" — Layout of terms and descriptions
     - `size: "sm" | "md" | "lg"` = "md" — Size of the text
     - `border: boolean` = false — Whether to show borders (alias of bordered)
     - `bordered: boolean` = false — Whether to show borders
-- **EmptyState** — Missing data placeholder (aka Blank Slate, Zero State, Non-Ideal State, Empty Search Result, Illustrated Message)
+- **EmptyState** — Missing data placeholder (aka Blank Slate, Zero State, Non-Ideal State, Empty Search Result, Illustrated Message, Empty)
     - `title: React.ReactNode` (required) — Title to display.
     - `description: React.ReactNode` — Description text to display.
     - `icon: React.ReactNode` — Icon to display.
@@ -2640,7 +2641,7 @@ Without it, pointer devices show the move button in the card's corner on hover o
     - `children: string` — Markdown string to render (when passed as children).
     - `gfm: boolean` = true — Whether to enable GitHub Flavored Markdown (default: true).
     - `className: string` — Additional class names.
-- **Marquee** — Scrolling text animation (aka Ticker)
+- **Marquee** — Scrolling text animation (aka Ticker, Infinite Moving Cards)
     - `duration: number` = 20 — Animation speed (in seconds). Defaults to `20`.
     - `reverse: boolean` = false — Whether to run the animation in reverse.
     - `pauseOnHover: boolean` = true — Whether to pause the animation on hover. Keyboard focus inside the marquee
@@ -2807,7 +2808,7 @@ focus moves to the first focusable element after the bar (with `DataGrid`, the g
     - `asChild: boolean` = false — If true, the component will be rendered as its child.
     - `onSortEnd: (oldIndex: number, newIndex: number) => void` — Callback called when reordering is completed.
     - `disabled: boolean` = false — Whether the entire list is disabled.
-- **Stats** — A component to highlight key performance indicators and metrics (aka Statistic, Stat, Big Number)
+- **Stats** — A component to highlight key performance indicators and metrics (aka Statistic, Stat, Big Number, Metric Text)
     - `variant: React.ComponentProps<typeof Card>["variant"]` = "outline" — Visual style variant of the card
     - `asChild: boolean` = false — If true, the card will be rendered as its child, merging its props onto that child.
     - `interactive: boolean` = false — Whether the card is clickable: shows hover and press feedback and a pointer cursor
@@ -2907,7 +2908,7 @@ anything is measured; long text is truncated and read in full by assistive techn
     - `aria-label: string` — Accessible name for the tree. Takes precedence over `labels.treeAriaLabel`.
     - `aria-labelledby: string` — ID of the element that labels the tree. Takes precedence over `aria-label`.
     - `styles: { root?: string; item?: string; search?: string; searchInput?: string; labelContainer?: string; iconWrapper?: string; expandBtn?: string; checkbox?: string; icon?: string; }` — Custom styles for internal parts
-- **VirtualList** — Efficiently renders large lists by virtualizing off-screen items (aka Virtual Scroller, Virtualizer)
+- **VirtualList** — Efficiently renders large lists by virtualizing off-screen items (aka Virtual Scroller, Virtualizer, Virtual Scroll)
     - `items: T[]` (required) — Array of items to display
     - `itemHeight: number` (required) — Height of each row (px)
     - `height: number | string` (required) — Total height of the list (px)
@@ -2949,7 +2950,7 @@ interrupts the user and needs a response before they can continue, such as
 confirming a destructive action. An alert dialog does not close when the
 overlay is clicked unless closeOnOverlayClick is set; Escape still closes it.
 @default "dialog"
-- **Drawer** — Slide-out detail panels (aka Navigation Drawer, Overlay Drawer, Side Panel)
+- **Drawer** — Slide-out detail panels (aka Navigation Drawer, Overlay Drawer, Side Panel, Side Sheet)
     - `children: React.ReactNode` (required) — Drawer parts (DrawerTrigger, DrawerContent, etc.).
     - `open: boolean` — Controlled open state. Use together with onOpenChange.
     - `onOpenChange: (open: boolean) => void` — Called with the next state when the drawer is opened or closed.
@@ -3006,7 +3007,7 @@ is marked.
     - `children: ReactNode` (required) — The target element which the Popconfirm will be attached to
     - `icon: ReactNode` — Customize the icon
     - `disabled: boolean` = false — Whether to show the popconfirm
-- **Popover** — Contextual overlay (aka Info Label, Info Button, Toggletip, Overlay Panel, Contextual Help)
+- **Popover** — Contextual overlay (aka Info Label, Info Button, Toggletip, Overlay Panel, Contextual Help, Drop Button, Inline Dialog, Popup)
     - `children: ReactNode` (required) — Popover parts (PopoverTrigger, PopoverContent, etc.).
     - `className: string` — Additional CSS class name for the container.
     - `defaultOpen: boolean` = false — If true, the popover component will manage its own open state.
@@ -3017,7 +3018,7 @@ is marked.
 - **Portal** — Out-of-hierarchy render
     - `children: React.ReactNode` (required) — The content to be rendered in the portal
     - `container: HTMLElement | null` — The container where the portal will be rendered. Defaults to document.body
-- **Tooltip** — Information on hover (aka Help Tag)
+- **Tooltip** — Information on hover (aka Help Tag, Tip)
     - `children: ReactNode` (required) — Tooltip parts (TooltipTrigger and TooltipContent).
     - `className: string` — Additional CSS class name for the container.
     - `delay: number` = 200 — Delay before showing the tooltip in ms.
@@ -3108,7 +3109,7 @@ Defaults to the localized `form.optional` string.
 @default t("spoiler.show_more")
     - `hideLabel: React.ReactNode` — Label of the toggle while expanded.
 @default t("spoiler.show_less")
-- **Text** — Has appropriate line-height and spacing to ensure readability of long text. (aka Truncated Text, Truncate)
+- **Text** — Has appropriate line-height and spacing to ensure readability of long text. (aka Truncated Text, Truncate, Paragraph)
     - `asChild: boolean` = false — If true, the text will be rendered as its child, merging its props onto that child.
     - `size: "xs" | "sm" | "md" | "lg" | "xl"` = "md" — Font size of the text.
 @default "md"
@@ -3148,7 +3149,7 @@ Ignored when `truncate` is set (one line wins; they cannot both apply).
 
 ### media — `import { … } from "wimui/media"`
 
-- **Audio** — Audio playback
+- **Audio** — Audio playback (aka Audio Player)
     - `src: string | string[] | AudioTrack | AudioTrack[]` — Source: a URL, list of URLs, or track object(s)
     - `autoPlay: boolean` = false — Whether to start playing automatically
     - `loop: boolean` = false — Whether to loop playback
@@ -3220,7 +3221,7 @@ Ignored when `truncate` is set (one line wins; they cannot both apply).
     - `demoDelay: number` — Demo only: milliseconds to intentionally delay load completion
     - `priority: boolean` = false — Whether to raise loading priority (e.g. an LCP candidate; sets fetchpriority="high")
     - `fallback: React.ReactNode` — Custom element shown when loading fails
-- **ImageCompare** — ImageCompare overlays two images and reveals them with a draggable divider — a before/after slider for comparing edits, restorations, or AI-generated results against their source.
+- **ImageCompare** — ImageCompare overlays two images and reveals them with a draggable divider — a before/after slider for comparing edits, restorations, or AI-generated results against their source. (aka Compare Slider)
     - `before: string` (required) — Source URL of the "before" image (revealed on the leading side)
     - `after: string` (required) — Source URL of the "after" image (revealed on the trailing side)
     - `beforeAlt: string` = "" — Alternative text for the before image
@@ -3242,7 +3243,7 @@ Ignored when `truncate` is set (one line wins; they cannot both apply).
     - `onOpenChange: (open: boolean) => void` — Callback when the open state changes
     - `defaultOpen: boolean` = false — Initial open state for uncontrolled usage
     - `defaultIndex: number` = 0 — Index of the item shown first
-- **Video** — A component for embedding and controlling local or remote video content
+- **Video** — A component for embedding and controlling local or remote video content (aka Video Player)
     - `src: string` — Source URL of the video
     - `width: string | number` — Width of the video. A number is px; a string is used as is. Never wider than its container. Defaults to 100%.
     - `height: string | number` — Height of the video
@@ -3487,7 +3488,7 @@ enough on its own.
     - `max: number` — Upper bound of the y-axis domain (defaults to the data maximum)
     - `ariaLabel: string` — Accessible label describing the trend; when omitted the sparkline is hidden from assistive tech
     - `className: string` — Additional class names
-- **Treemap** — Hierarchical data area-based display
+- **Treemap** — Hierarchical data area-based display (aka Distribution)
     - `data: ChartDataPoint[]` (required) — Data to display in the treemap.
     - `dataKey: string` (required) — The key in the data objects that represents the size of the rectangle.
     - `aspectRatio: number` = 4 / 3 — The aspect ratio of the rectangles.
@@ -3531,7 +3532,7 @@ to a heading or in the corner of a card.
     - `defaultOpen: boolean` — Opens the explanation on the first render (uncontrolled).
     - `open: boolean` — Controls whether the explanation is open.
     - `onOpenChange: (open: boolean) => void` — Called when the explanation opens or closes.
-- **AIResponseFeedback** — Thumbs-up/down feedback controls and regenerate button for AI responses.
+- **AIResponseFeedback** — Thumbs-up/down feedback controls and regenerate button for AI responses. (aka Thumbs Rating)
     - `feedback: ("positive" | "negative") | null` — Currently selected feedback value (controlled)
     - `defaultFeedback: ("positive" | "negative") | null` = null — Default feedback value (uncontrolled)
     - `onFeedback: (value: ("positive" | "negative") | null) => void` — Called when user clicks a feedback button. Passes null when deselected.
@@ -3546,8 +3547,8 @@ to a heading or in the corner of a card.
     - `children: React.ReactNode` (required) — Main content
     - `showFullscreenToggle: boolean` = false — Whether to show a full-screen toggle (default: false)
     - `className: string` — Additional CSS class
-- **ChatUI** — A comprehensive set of components for building chat interfaces with support for messages, avatars, timestamps, and interactive input.
-- **CodeBlock** — Syntax-highlighted code block with copy button, line numbers, and collapsible overflow. (aka Code Snippet)
+- **ChatUI** — A comprehensive set of components for building chat interfaces with support for messages, avatars, timestamps, and interactive input. (aka Chat, AI Chat Dialogue)
+- **CodeBlock** — Syntax-highlighted code block with copy button, line numbers, and collapsible overflow. (aka Code Snippet, Code Highlight)
     - `code: string` (required) — The code string to display
     - `language: string` — Programming language label shown in the header (e.g. "tsx", "bash")
     - `filename: string` — Optional filename shown in the header instead of the language label
@@ -3577,7 +3578,7 @@ When set, an expand/collapse toggle is shown.
     - `showGrid: boolean` — Whether to show the background grid
     - `showMiniMap: boolean` — Whether to show the minimap
     - `showControls: boolean` — Whether to show controls
-- **MarkdownRenderer** — MarkdownRenderer converts a markdown string into WIM UI components. It uses react-markdown under the hood and applies WIM's typography system.
+- **MarkdownRenderer** — MarkdownRenderer converts a markdown string into WIM UI components. It uses react-markdown under the hood and applies WIM's typography system. (aka Markdown Render)
     - `content: string` (required) — The markdown string to render
     - `baseLevel: (typeof TITLE_SIZE_STEPS)[number]` = "2xl" — Visual size of markdown `h1`. `h2`–`h4` step one Title size down from this,
 clamped at `xs`. Does not change the HTML heading tag — that stays as
@@ -3597,7 +3598,7 @@ written in the markdown. Default `"2xl"` keeps the historical mapping
     - `showContext: boolean` = true — Whether to show the context-length metadata in the dropdown
     - `labels: { /** Placeholder shown when nothing is selected */ placeholder?: string; /** Prefix for the context-length meta (default "Context") */ contextLabel?: string; /** Prefix for the input price meta (default "In") */ inputLabel?: string; /** Prefix for the output price meta (default "Out") */ outputLabel?: string; /** Suffix appended to prices (default "/1M") */ perTokensLabel?: string; /** Accessible label for the trigger button */ triggerAriaLabel?: string; }` — Labels for internationalization
     - `className: string` — Additional class names
-- **PromptInput** — Interactive input optimized for AI prompt engineering with multi-line support and action triggers.
+- **PromptInput** — Interactive input optimized for AI prompt engineering with multi-line support and action triggers. (aka AI Chat Input)
     - `value: string` — Current text value (controlled)
     - `defaultValue: string` = "" — Default value (uncontrolled)
     - `onChange: (value: string) => void` — Callback when value changes
@@ -3792,17 +3793,18 @@ Exported hooks. Prefer them over hand-rolled equivalents (`matchMedia` listeners
 
 These exist in other systems' vocabularies and are **decisions, not gaps**. Do not hand-roll them into a wimui screen; the alternative given is the supported way to express the same intent.
 
-- **Parallax Scrolling** (aka Parallax, Scroll Parallax, Parallax Hero) — Backgrounds moving at a different speed from the foreground. The motion does not correspond to any change of state, which is what this system animates. If the goal is to show scroll position, show the position. Use `ScrollProgress` instead.
-- **Text Scramble** (aka Scramble Text, Decrypt Text, Glitch Text, Hyper Text) — Randomising characters before settling on the real string. The reader parses the same sentence twice and gets nothing for the lost legibility. The one case where text legitimately arrives character by character is model output, which StreamingText already covers. Use `StreamingText` instead.
+- **Parallax Scrolling** (aka Parallax, Scroll Parallax, Parallax Hero, Parallax Hero Images, Parallax Scroll, Hero Parallax, Sticky Scroll Reveal, Macbook Scroll, Container Scroll Animation) — Backgrounds moving at a different speed from the foreground. The motion does not correspond to any change of state, which is what this system animates. If the goal is to show scroll position, show the position. Use `ScrollProgress` instead.
+- **Text Scramble** (aka Scramble Text, Decrypt Text, Glitch Text, Hyper Text, Encrypted Text) — Randomising characters before settling on the real string. The reader parses the same sentence twice and gets nothing for the lost legibility. The one case where text legitimately arrives character by character is model output, which StreamingText already covers. Use `StreamingText` instead.
 - **Spring Animation** (aka Spring Physics, Springs, Physics-based Animation) — A physics engine (mass / stiffness / damping props solved in a rAF loop). The bounce curve itself already exists as the `--wim-easing-spring` token, which is what press and swipe-return use. Adding the engine would put physics parameters into the public contract and move motion from CSS to JS. Use `--wim-easing-spring` instead.
-- **Choropleth Map** (aka Choropleth, Filled Map, Region Map, Geo Map) — A map shading regions by value. Shipping boundary data would put its size and a political stance on disputed borders into a UI library, and large regions dominate regardless of their values. Regions are compared more accurately in a sorted bar chart. Use `BarChart` instead.
-- **Animated Text Effects** (aka Animated Gradient Text, Animated Shiny Text, Aurora Text, Morphing Text, Sparkles Text, Spinning Text, Text Reveal, Typing Animation, Word Rotate, Line Shadow Text, Comic Text, Kinetic Text, Video Text, Text 3D Flip, Text Animate, Dia Text Reveal) — Text that shimmers, rotates, morphs or types itself out. It cannot be read while it moves, and keeps moving after it has been read. Emphasis is a matter of weight, colour and size; the one case where text legitimately arrives piece by piece is model output, which StreamingText covers. Use `Text` instead.
-- **Decorative Background Pattern** (aka Dot Pattern, Grid Pattern, Animated Grid Pattern, Interactive Grid Pattern, Flickering Grid, Hexagon Pattern, Striped Pattern, Retro Grid, Noise Texture, Dither Field, Light Rays, Meteors, Particles, Warp Background, Glyph Matrix, Backlight, Floating 3D Particles, Ripple) — Patterns and particles laid behind content that carry no meaning of their own. They make the background under text uneven, which costs contrast, and moving ones compete with real motion in the foreground. Separate surfaces with the surface tokens and borders instead. Use `Box` instead.
-- **Animated Button Effects** (aka Shimmer Button, Shiny Button, Rainbow Button, Pulsating Button, Ripple Button, Interactive Hover Button, Animated Subscribe Button, Confetti, Cool Mode) — Buttons that shimmer, pulse, ripple or burst into confetti. They only attract attention before the click, and once several buttons do it the primary action is lost. Rank actions with Button variants, and report the result through the state change and an announcement. Use `Button` instead.
-- **Glow and Spotlight Card** (aka Magic Card, Neon Gradient Card, Shine Border, Glare Hover, Lens, Progressive Blur, Blur Fade, Pixel Image) — Cards with glowing borders, a spotlight that follows the pointer, or content that fades in from a blur. Nothing happens for touch or keyboard users, and for pointer users it does not help tell the cards apart. Use Card variants and the heading inside the card. Use `Card` instead.
-- **Device Mockup** (aka iPhone Mockup, Android Mockup, Safari Mockup, Browser Frame, Device Frame) — Phone and browser frames around a screenshot. It is marketing artwork rather than an interface component, and the frames go out of date with every device generation. Show the screenshot with Image, with the frame baked into the image if one is needed. Use `Image` instead.
-- **Decorative Motion Graphics** (aka Globe, Icon Cloud, Orbiting Circles, Animated Beam, Dock, Scroll Based Velocity, Animated List, Dotted Map, Smooth Cursor, Pointer Effect, Hero Video Dialog) — Spinning globes, floating icon clouds, beams between logos, a magnifying dock, a custom cursor: motion that carries no information. It pulls attention away from the content and is a burden for people who reduce motion. Show relationships with NodeGraph, items with List, and a video with Video inside a Dialog. Use `List` instead.
+- **Choropleth Map** (aka Choropleth, Filled Map, Region Map, Geo Map, World Map) — A map shading regions by value. Shipping boundary data would put its size and a political stance on disputed borders into a UI library, and large regions dominate regardless of their values. Regions are compared more accurately in a sorted bar chart. Use `BarChart` instead.
+- **Animated Text Effects** (aka Animated Gradient Text, Animated Shiny Text, Aurora Text, Morphing Text, Sparkles Text, Spinning Text, Text Reveal, Typing Animation, Word Rotate, Line Shadow Text, Comic Text, Kinetic Text, Video Text, Text 3D Flip, Text Animate, Dia Text Reveal, Canvas Text, Layout Text Flip, Colourful Text, Squiggly Text, Text Generate Effect, Typewriter Effect, Flip Words, Text Hover Effect, Container Text Flip, Hero Highlight, Text Reveal Card, Text Flipping Board, Text Rotate, Pointer Highlight, Container Cover) — Text that shimmers, rotates, morphs or types itself out. It cannot be read while it moves, and keeps moving after it has been read. Emphasis is a matter of weight, colour and size; the one case where text legitimately arrives piece by piece is model output, which StreamingText covers. Use `Text` instead.
+- **Decorative Background Pattern** (aka Dot Pattern, Grid Pattern, Animated Grid Pattern, Interactive Grid Pattern, Flickering Grid, Hexagon Pattern, Striped Pattern, Retro Grid, Noise Texture, Dither Field, Light Rays, Meteors, Particles, Warp Background, Glyph Matrix, Backlight, Floating 3D Particles, Ripple, Dotted Glow Background, Background Ripple Effect, Sparkles, Background Gradient, Gradient Animation, Wavy Background, Background Boxes, Background Beams, Background Beams With Collision, Background Lines, Aurora Background, Glowing Stars, Shooting Stars, Vortex, Background Cubes Grid, Cloud Shader, Grid and Dot Backgrounds, Noise Background, Dither Shader, Webcam Pixel Grid, Matrix Trail, Lamp Effect, Scales) — Patterns and particles laid behind content that carry no meaning of their own. They make the background under text uneven, which costs contrast, and moving ones compete with real motion in the foreground. Separate surfaces with the surface tokens and borders instead. Use `Box` instead.
+- **Animated Button Effects** (aka Shimmer Button, Shiny Button, Rainbow Button, Pulsating Button, Ripple Button, Interactive Hover Button, Animated Subscribe Button, Confetti, Cool Mode, Magnetic Button, Stateful Button, Pixel Prompt Button, Paper Plane Send) — Buttons that shimmer, pulse, ripple or burst into confetti. They only attract attention before the click, and once several buttons do it the primary action is lost. Rank actions with Button variants, and report the result through the state change and an announcement. Use `Button` instead.
+- **Glow and Spotlight Card** (aka Magic Card, Neon Gradient Card, Shine Border, Glare Hover, Lens, Progressive Blur, Blur Fade, Pixel Image, 3D Card Effect, Evervault Card, Card Hover Effect, Wobble Card, Card Spotlight, Focus Cards, Comet Card, Glare Card, Direction Aware Hover, Glowing Effect, Hover Border Gradient, Moving Border, Liquid Glass, Chromatic Image, Canvas Reveal Effect, SVG Mask Effect, Hover 3D, Aura) — Cards with glowing borders, a spotlight that follows the pointer, or content that fades in from a blur. Nothing happens for touch or keyboard users, and for pointer users it does not help tell the cards apart. Use Card variants and the heading inside the card. Use `Card` instead.
+- **Device Mockup** (aka iPhone Mockup, Android Mockup, Safari Mockup, Browser Frame, Device Frame, Mockup) — Phone and browser frames around a screenshot. It is marketing artwork rather than an interface component, and the frames go out of date with every device generation. Show the screenshot with Image, with the frame baked into the image if one is needed. Use `Image` instead.
+- **Decorative Motion Graphics** (aka Globe, Icon Cloud, Orbiting Circles, Animated Beam, Dock, Scroll Based Velocity, Animated List, Dotted Map, Smooth Cursor, Pointer Effect, Hero Video Dialog, GitHub Globe, 3D Globe, Paper Plane Globe, Floating Dock, Following Pointer, 3D Pin, 3D Marquee, Gravity Trail, Image Particles, Image Wave, Disintegrating Gallery, ASCII Art, Pixelated Canvas, SVG Path Morphing, Google Gemini Effect, Tracing Beam, Images Badge, Direction Aware Selection, Card Stack, Draggable Card, Infinite Card Grid, Grid Zoom Image, Hover Image Links, Hover Gallery, Image Generation Loader, Notch, Fluid Notch) — Spinning globes, floating icon clouds, beams between logos, a magnifying dock, a custom cursor: motion that carries no information. It pulls attention away from the content and is a burden for people who reduce motion. Show relationships with NodeGraph, items with List, and a video with Video inside a Dialog. Use `List` instead.
 - **Social Post Embed** (aka Tweet Card, Client Tweet Card, Tweet Embed) — Embedding a post from a social network in that network's own look. Its appearance and the way it is fetched change on the provider's schedule, which a design system cannot keep up with. Quote it in a Blockquote or Card with a link to the source. Use `Card` instead.
+- **Animated Input Effects** (aka Placeholders And Vanish Input, Gooey Input, Gooey Waitlist) — Input fields whose placeholder cycles through phrases, whose text dissolves on submit, or whose outline stretches like goo. A moving placeholder changes before it can be read and is no substitute for a label. Report the result of a submission through the field's state and an announcement. Use `Input` instead.
 
 ---
 **One component, matching your installed version:** the package ships `dist/llms/<Component>.md` — every prop with its type and default, its sub-components, and the design tokens it reads (e.g. `node_modules/wimui/dist/llms/Select.md`, also exported as `wimui/llms/Select.md`). The hosted copy of this file tracks main and can be ahead of the release you installed.

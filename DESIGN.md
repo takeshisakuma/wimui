@@ -219,6 +219,7 @@ Major Second (1.125) に近い比率に基づく、意図的にコンパクト�
 | Device Mockup | スクリーンショットを携帯やブラウザの枠に入れる飾り。宣伝の素材で UI の部品ではなく、枠は機種と年で古びる | `Image` |
 | Decorative Motion Graphics | 回る地球・浮かぶアイコン・拡大するドック・追いかけるカーソルなど、情報を運ばない動き。動きを減らす設定の人には負担になる | `NodeGraph` / `List` / `Dialog` と `Video` |
 | Social Post Embed | 外部の投稿を相手の見た目のまま埋め込む。見た目と取得の仕組みが相手の都合で変わり、デザインシステムの側で保てない | `Blockquote` / `Card` と出典のリンク |
+| Animated Input Effects | 入力欄の placeholder を入れ替えて流す・送信で文字を崩して消す・枠を粘体のように伸ばす。動いている placeholder は読み終える前に変わり、ラベルの代わりにもならない | `Input` |
 
 単体では非対応でも、**組み合わせで再現しようとするのも同じく対象外**。SSOT は `src/data/not-planned.json` で、`llms.txt` の "Not in scope" 節と `check:aliases` がここから導かれる（別名が既存コンポーネントと衝突しないこと・理由と代替が空でないことを検証する）。
 
