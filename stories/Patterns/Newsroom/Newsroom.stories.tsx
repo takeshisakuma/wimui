@@ -16,6 +16,7 @@ import {
   DrawerHeader,
   DrawerTitle,
   Group,
+  HamburgerMenu,
   Header,
   Icon,
   Kanban,
@@ -228,6 +229,9 @@ const Board = () => {
 export const Default: Story = {
   render: () => {
     const { t } = useTranslation(ALL_NAMESPACES);
+    // 狭い幅（md 未満）では横の帯が画面の外へ退くので、ヘッダーに開く引き金を置く。
+    // 以前は無く、狭い幅ではセクションの絞り込みに届く手段が無かった（Sidebar の responsive の文書どおり）
+    const [sectionsOpen, setSectionsOpen] = useState(false);
     return (
       <AppShell>
         <AppShell.Header>
@@ -236,9 +240,17 @@ export const Default: Story = {
               ── ここは見出しが長いので**たまたま**そう見えていただけ。 */}
           <Header>
             <Header.Section>
-              <Title tag="h1" size="md">
-                {t(ns("title"))}
-              </Title>
+              <Group gap="sm" align="center" wrap="nowrap">
+                <HamburgerMenu
+                  size="sm"
+                  visibleBelow="md"
+                  open={sectionsOpen}
+                  onOpenChange={setSectionsOpen}
+                />
+                <Title tag="h1" size="md">
+                  {t(ns("title"))}
+                </Title>
+              </Group>
             </Header.Section>
             <Header.Section align="end">
               <Group gap="sm" align="center">
@@ -254,7 +266,7 @@ export const Default: Story = {
         </AppShell.Header>
         <AppShell.Body>
           <AppShell.Sidebar>
-            <Sidebar>
+            <Sidebar mobileOpen={sectionsOpen} onOverlayClick={() => setSectionsOpen(false)}>
               {/* 中身は Sidebar.Content に入れる（既存のストーリーと同じ）。
                   直に置くと縦の余白が無く、上端の境界に貼り付く。
                   横の余白は TreeView の項目側が持つ（SidebarItem と同じ作法で、

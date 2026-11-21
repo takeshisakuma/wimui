@@ -16,17 +16,12 @@
        無いときの tabIndex=0）が何も出なくなるので外した。項目のフォーカスは下の
        `.item:focus-visible > .labelContainer` が --wim-shadow-focus で出している。 */
 
-    // T267-③: 既定の面は不透明なサーフェスと枠（以前は glass-bg ＋ぼかしのすりガラス）。
-    background: var(--wim-color-surface);
-    border: var(--wim-border-width-thin) solid var(--wim-color-border);
-    border-radius: var(--wim-radius-container);
+    // 面も枠も持たない（2026-11-21）。木は、横の帯（Sidebar）・Card・ポップオーバーなど、
+    // 輪郭を持つ入れ物の中に置かれることがほとんどで、自分の枠を持つと入れ物の枠と二重になる。
+    // T267-③（2026-09-26）で面と枠を既定にしたあと、Patterns/Newsroom の横の帯では、木の左の枠が
+    // 帯の左端に貼り付き、右の枠が帯の境界線と隣り合って 2 本並んでいた（TreeSelect は自分の側で
+    // 枠を打ち消していた）。単独のパネルにしたいときは、利用者が Card で包む。
 
-    // 影は使わない。ページ内に置くパネルで、輪郭は面と枠が作る（T50）。
-    // 実測 2026-08-01: 面↔ページ light 0.0542 / dark 0.0559、枠↔ページ
-    // 0.0366 / 0.0836。影の寄与は 0.0122 / 0.0084 で基準 0.015 未満だった。
-    // ※ この実測はすりガラス（glass-bg）時代の面で取ったもの。T267-③ で surface / border へ
-    //   替えたあとは測り直していない。
-  
     &.dataDriven > .item {
       animation: enter var(--wim-duration-fast) var(--wim-easing-standard) both;
     }
