@@ -1,0 +1,29 @@
+"use client";
+import{n as e}from"./rolldown-runtime-sJBDdmOt.js";import{t}from"./jsx-runtime-MKhVqBIO.js";import{R as n,h as r,m as i,n as a,u as o,z as s}from"./blocks-ufbSe6gx.js";import{n as c,t as l}from"./T-BLvu6UJ_.js";import{n as u,t as d}from"./Docgen-8C7GLxoF.js";import{i as f,n as p,r as m,t as h}from"./SkipLink.stories-B0DR_uaJ.js";function g(e){let t={h2:`h2`,h3:`h3`,...s(),...e.components};return(0,v.jsxs)(v.Fragment,{children:[(0,v.jsx)(o,{of:m}),`
+`,(0,v.jsx)(i,{}),`
+`,(0,v.jsx)(`p`,{children:(0,v.jsx)(l,{k:`doc.skipLink_desc`})}),`
+`,(0,v.jsx)(t.h2,{id:``,children:(0,v.jsx)(l,{k:`doc.design_intent_title`})}),`
+`,(0,v.jsx)(`p`,{children:(0,v.jsx)(l,{k:`doc.skiplink_design_intent`})}),`
+`,(0,v.jsx)(t.h2,{id:`-1`,children:(0,v.jsx)(l,{k:`doc.choice_matrix_title`})}),`
+`,(0,v.jsx)(`p`,{children:(0,v.jsx)(l,{k:`doc.skiplink_choice_matrix_desc`})}),`
+`,(0,v.jsxs)(`table`,{children:[(0,v.jsx)(`thead`,{children:(0,v.jsxs)(`tr`,{children:[(0,v.jsx)(`th`,{children:(0,v.jsx)(l,{k:`doc.component`})}),(0,v.jsx)(`th`,{children:(0,v.jsx)(l,{k:`doc.usage_scenario`})})]})}),(0,v.jsxs)(`tbody`,{children:[(0,v.jsxs)(`tr`,{children:[(0,v.jsx)(`td`,{children:(0,v.jsx)(`b`,{children:`SkipLink`})}),(0,v.jsx)(`td`,{children:(0,v.jsx)(l,{k:`doc.skiplink_choice_skiplink_when`})})]}),(0,v.jsxs)(`tr`,{children:[(0,v.jsx)(`td`,{children:(0,v.jsx)(`b`,{children:`AppShell`})}),(0,v.jsx)(`td`,{children:(0,v.jsx)(l,{k:`doc.skiplink_choice_appshell_when`})})]}),(0,v.jsxs)(`tr`,{children:[(0,v.jsx)(`td`,{children:(0,v.jsx)(`b`,{children:`Anchor`})}),(0,v.jsx)(`td`,{children:(0,v.jsx)(l,{k:`doc.skiplink_choice_anchor_when`})})]})]})]}),`
+`,(0,v.jsx)(d,{componentName:`SkipLink`,section:`anatomy`}),`
+`,(0,v.jsx)(t.h2,{id:`-2`,children:(0,v.jsx)(l,{k:`doc.a11y_spec_title`})}),`
+`,(0,v.jsxs)(`ul`,{children:[(0,v.jsx)(`li`,{children:(0,v.jsx)(l,{k:`doc.skiplink_a11y_1`})}),(0,v.jsx)(`li`,{children:(0,v.jsx)(l,{k:`doc.skiplink_a11y_2`})}),(0,v.jsx)(`li`,{children:(0,v.jsx)(l,{k:`doc.skiplink_a11y_3`})})]}),`
+`,(0,v.jsx)(t.h2,{id:`-3`,children:(0,v.jsx)(l,{k:`doc.real_world_scenarios_title`})}),`
+`,(0,v.jsxs)(`table`,{children:[(0,v.jsx)(`thead`,{children:(0,v.jsxs)(`tr`,{children:[(0,v.jsx)(`th`,{children:(0,v.jsx)(l,{k:`doc.usage_scenario`})}),(0,v.jsx)(`th`,{children:(0,v.jsx)(l,{k:`doc.table_header_description`})})]})}),(0,v.jsxs)(`tbody`,{children:[(0,v.jsxs)(`tr`,{children:[(0,v.jsx)(`td`,{children:(0,v.jsx)(`strong`,{children:(0,v.jsx)(l,{k:`doc.scenario_dashboard_title`})})}),(0,v.jsx)(`td`,{children:(0,v.jsx)(l,{k:`doc.skiplink_scenario_app`})})]}),(0,v.jsxs)(`tr`,{children:[(0,v.jsx)(`td`,{children:(0,v.jsx)(`strong`,{children:(0,v.jsx)(l,{k:`doc.scenario_article_title`})})}),(0,v.jsx)(`td`,{children:(0,v.jsx)(l,{k:`doc.skiplink_scenario_site`})})]})]})]}),`
+`,(0,v.jsx)(t.h2,{id:`-4`,children:(0,v.jsx)(l,{k:`doc.best_practices_title`})}),`
+`,(0,v.jsxs)(`ul`,{children:[(0,v.jsx)(`li`,{children:(0,v.jsx)(l,{k:`doc.skiplink_best_practice_1`})}),(0,v.jsx)(`li`,{children:(0,v.jsx)(l,{k:`doc.skiplink_best_practice_2`})}),(0,v.jsx)(`li`,{children:(0,v.jsx)(l,{k:`doc.skiplink_best_practice_3`})})]}),`
+`,(0,v.jsx)(d,{componentName:`SkipLink`,section:`props`}),`
+`,(0,v.jsx)(t.h2,{id:`-5`,children:(0,v.jsx)(l,{k:`doc.variations`})}),`
+`,(0,v.jsx)(t.h3,{id:`-6`,children:(0,v.jsx)(l,{k:`doc.basic`})}),`
+`,(0,v.jsx)(`p`,{children:(0,v.jsx)(l,{k:`doc.skiplink_basic_desc`})}),`
+`,(0,v.jsx)(a,{of:h}),`
+`,(0,v.jsx)(t.h3,{id:`-7`,children:(0,v.jsx)(l,{k:`doc.skiplink_focused_title`})}),`
+`,(0,v.jsx)(`p`,{children:(0,v.jsx)(l,{k:`doc.skiplink_focused_desc`})}),`
+`,(0,v.jsx)(a,{of:p}),`
+`,(0,v.jsx)(d,{componentName:`SkipLink`,section:`tokens`}),`
+`,(0,v.jsx)(t.h2,{id:`-8`,children:(0,v.jsx)(l,{k:`doc.keyboard_nav_title`})}),`
+`,(0,v.jsx)(`p`,{children:(0,v.jsx)(l,{k:`doc.skiplink_keyboard_desc`})}),`
+`,(0,v.jsx)(d,{componentName:`SkipLink`,section:`i18n`}),`
+`,(0,v.jsx)(d,{componentName:`SkipLink`,section:`test`})]})}function _(e={}){let{wrapper:t}={...s(),...e.components};return t?(0,v.jsx)(t,{...e,children:(0,v.jsx)(g,{...e})}):g(e)}var v;function y(){return(y=e((()=>{v=t(),n(),r(),f(),c(),u()})))()}y();export{_ as default};

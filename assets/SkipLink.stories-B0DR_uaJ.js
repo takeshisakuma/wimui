@@ -1,0 +1,11 @@
+"use client";
+import{n as e,r as t}from"./rolldown-runtime-sJBDdmOt.js";import{n,t as r}from"./useTranslation-CpMdOj2B.js";import{n as i,t as a}from"./i18nConstants-YD8z3mm4.js";import{t as o}from"./jsx-runtime-MKhVqBIO.js";import{n as s,t as c}from"./SkipLink-CJcYosVJ.js";import{n as l,t as u}from"./Group-tKRHS_M5.js";import{n as d,t as f}from"./Title-DbsxqXW4.js";import{n as p,t as m}from"./Text-D9yqbrao.js";import{n as h,t as g}from"./Link-BYInM92n.js";var _=t({Default:()=>x,Focused:()=>S,__namedExportsOrder:()=>C,default:()=>y}),v,y,b,x,S,C;function w(){return(w=e((()=>{r(),s(),l(),h(),d(),p(),i(),v=o(),y={title:`Components/Navigation Utilities/SkipLink`,component:c,parameters:{layout:`fullscreen`},argTypes:{href:{control:`text`},asChild:{control:`boolean`}}},b=e=>{let{t}=n(a);return(0,v.jsxs)(`div`,{children:[(0,v.jsx)(c,{...e,href:`#skiplink-main`}),(0,v.jsx)(`header`,{style:{padding:`var(--wim-spacing-md) var(--wim-spacing-xl)`,borderBottom:`var(--wim-border-width-thin) solid var(--wim-color-border)`},children:(0,v.jsx)(`nav`,{"aria-label":t(`story.skiplink_nav_label`),children:(0,v.jsxs)(u,{gap:`lg`,children:[(0,v.jsx)(g,{href:`#home`,children:t(`story.skiplink_home`)}),(0,v.jsx)(g,{href:`#products`,children:t(`story.skiplink_products`)}),(0,v.jsx)(g,{href:`#pricing`,children:t(`story.skiplink_pricing`)}),(0,v.jsx)(g,{href:`#support`,children:t(`story.skiplink_support`)})]})})}),(0,v.jsxs)(`main`,{id:`skiplink-main`,style:{padding:`var(--wim-spacing-xl)`},children:[(0,v.jsx)(f,{tag:`h2`,children:t(`story.skiplink_main_title`)}),(0,v.jsx)(m,{children:t(`story.skiplink_main_body`)})]})]})},x={render:e=>(0,v.jsx)(b,{...e})},S={render:e=>(0,v.jsx)(b,{...e}),play:async({canvasElement:e})=>{e.querySelector(`.wim-skip-link`)?.focus()}},C=[`Default`,`Focused`],x.parameters={...x.parameters,docs:{...x.parameters?.docs,source:{originalSource:`{
+  render: args => <Page {...args} />
+}`,...x.parameters?.docs?.source}}},S.parameters={...S.parameters,docs:{...S.parameters?.docs,source:{originalSource:`{
+  render: args => <Page {...args} />,
+  play: async ({
+    canvasElement
+  }) => {
+    canvasElement.querySelector<HTMLAnchorElement>(".wim-skip-link")?.focus();
+  }
+}`,...S.parameters?.docs?.source}}}})))()}export{w as i,S as n,_ as r,x as t};

@@ -1,0 +1,36 @@
+{
+  "calendar": {
+    "aria_date": "{{day}}/{{month}}/{{year}}",
+    "title": "{{month}}/{{year}}",
+    "choose_month": "Escolher mês",
+    "choose_year": "Escolher ano",
+    "months": "Meses de {{year}}",
+    "years": "Anos de {{start}} a {{end}}",
+    "prev_year": "Ano anterior",
+    "next_year": "Próximo ano",
+    "prev_years": "{{n}} anos anteriores",
+    "next_years": "Próximos {{n}} anos"
+  },
+  "countdown": {
+    "remaining": "{{time}} restantes"
+  },
+  "table": {
+    "header_component": "Componente",
+    "header_overview": "Visão Geral"
+  },
+  "avatar_group": {
+    "show_everyone": "Mostrar todos"
+  },
+  "selection_bar": {
+    "label": "Ações em lote",
+    "selected": "Selecionados: {{count}}",
+    "cleared": "Seleção removida",
+    "clear": "Limpar seleção"
+  },
+  "infinite_scroll": {
+    "loading": "Carregando mais…"
+  },
+  "kanban": {
+    "moved": "Movido para {{column}}"
+  }
+}

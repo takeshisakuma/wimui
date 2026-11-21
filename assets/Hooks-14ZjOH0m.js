@@ -1,0 +1,50 @@
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["./docgen-a11y-CztKLxlh.js","./rolldown-runtime-sJBDdmOt.js","./docgen-hooks-DlcXi_sT.js"])))=>i.map(i=>d[i]);
+"use client";
+import{a as e,n as t}from"./rolldown-runtime-sJBDdmOt.js";import{n,t as r}from"./preload-helper-2GovK0wV.js";import{t as i}from"./react-BGJ90fIb.js";import{t as a}from"./jsx-runtime-MKhVqBIO.js";import{R as o,h as s,u as c,z as l}from"./blocks-ufbSe6gx.js";import{n as u,t as d}from"./T-BLvu6UJ_.js";import{n as f,t as p}from"./_rolldown_dynamic_import_helper-BRWXY_GR.js";import{n as m,t as h}from"./Command-DmP0lreE.js";var g,_,v;function y(){return(y=t((()=>{f(),g=e(i(),1),u(),m(),_=a(),n(),v=({name:e})=>{let[t,n]=g.useState(void 0);return g.useEffect(()=>{let t=!1;return p(Object.assign({"../src/data/docgen-a11y.json":()=>r(()=>import(`./docgen-a11y-CztKLxlh.js`),__vite__mapDeps([0,1]),import.meta.url),"../src/data/docgen-hooks.json":()=>r(()=>import(`./docgen-hooks-DlcXi_sT.js`),__vite__mapDeps([2,1]),import.meta.url)}),`../src/data/docgen-hooks.json`,4).then(r=>{t||n(r.default[e]??null)}).catch(()=>{t||n(null)}),()=>{t=!0}},[e]),t===void 0?(0,_.jsx)(`div`,{className:`docgen-loading`,children:(0,_.jsx)(d,{k:`doc.docgen_loading`})}):t===null?(0,_.jsxs)(`div`,{className:`docgen-error`,children:[`No hook data for `,e]}):(0,_.jsxs)(_.Fragment,{children:[(0,_.jsx)(h,{children:`import { ${e} } from "${t.importPath}";`}),(0,_.jsx)(`h4`,{children:(0,_.jsx)(d,{k:`guide.hooks_signature`})}),(0,_.jsx)(h,{children:`${e}${t.signature}`}),t.example&&(0,_.jsxs)(_.Fragment,{children:[(0,_.jsx)(`h4`,{children:(0,_.jsx)(d,{k:`guide.hooks_example`})}),(0,_.jsx)(h,{children:t.example})]})]})},v.__docgenInfo={description:"公開している hook 1 つ分の、import・シグネチャ・例（T380）。\n\n中身は `src/data/docgen-hooks.json`（`scripts/docgen-plugin.js` の `generateHooksDocgen` が、\nStorybook の起動時に JSDoc から作る）から読む。MDX に手で写すと JSDoc とずれるため。\nJSON は gitignore した生成物なので、型チェックで解決させないよう動的 import にする（Docgen.tsx と同じ）。",methods:[],displayName:`HookDoc`,props:{name:{required:!0,tsType:{name:`string`},description:``}}}})))()}function b(e){return(0,S.jsxs)(S.Fragment,{children:[`
+`,(0,S.jsx)(c,{title:`Guides/Hooks`}),`
+`,(0,S.jsx)(`h1`,{children:(0,S.jsx)(d,{k:`guide.hooks_title`})}),`
+`,(0,S.jsx)(`p`,{children:(0,S.jsx)(d,{k:`guide.hooks_desc`})}),`
+`,(0,S.jsx)(`h2`,{children:(0,S.jsx)(d,{k:`guide.hooks_group_responsive`})}),`
+`,(0,S.jsx)(`p`,{children:(0,S.jsx)(d,{k:`guide.hooks_group_responsive_desc`})}),`
+`,(0,S.jsx)(`h3`,{children:(0,S.jsx)(`code`,{children:`useMediaQuery`})}),`
+`,(0,S.jsx)(`p`,{children:(0,S.jsx)(d,{k:`guide.hooks_use_media_query`})}),`
+`,(0,S.jsx)(v,{name:`useMediaQuery`}),`
+`,(0,S.jsx)(`h3`,{children:(0,S.jsx)(`code`,{children:`useBreakpoint`})}),`
+`,(0,S.jsx)(`p`,{children:(0,S.jsx)(d,{k:`guide.hooks_use_breakpoint`})}),`
+`,(0,S.jsx)(v,{name:`useBreakpoint`}),`
+`,(0,S.jsx)(`h3`,{children:(0,S.jsx)(`code`,{children:`useBreakpointUp`})}),`
+`,(0,S.jsx)(`p`,{children:(0,S.jsx)(d,{k:`guide.hooks_use_breakpoint_up`})}),`
+`,(0,S.jsx)(v,{name:`useBreakpointUp`}),`
+`,(0,S.jsx)(`h3`,{children:(0,S.jsx)(`code`,{children:`useBreakpointDown`})}),`
+`,(0,S.jsx)(`p`,{children:(0,S.jsx)(d,{k:`guide.hooks_use_breakpoint_down`})}),`
+`,(0,S.jsx)(v,{name:`useBreakpointDown`}),`
+`,(0,S.jsx)(`h2`,{children:(0,S.jsx)(d,{k:`guide.hooks_group_feedback`})}),`
+`,(0,S.jsx)(`p`,{children:(0,S.jsx)(d,{k:`guide.hooks_group_feedback_desc`})}),`
+`,(0,S.jsx)(`h3`,{children:(0,S.jsx)(`code`,{children:`useToast`})}),`
+`,(0,S.jsx)(`p`,{children:(0,S.jsx)(d,{k:`guide.hooks_use_toast`})}),`
+`,(0,S.jsx)(v,{name:`useToast`}),`
+`,(0,S.jsx)(`h3`,{children:(0,S.jsx)(`code`,{children:`useSnackbar`})}),`
+`,(0,S.jsx)(`p`,{children:(0,S.jsx)(d,{k:`guide.hooks_use_snackbar`})}),`
+`,(0,S.jsx)(v,{name:`useSnackbar`}),`
+`,(0,S.jsx)(`h3`,{children:(0,S.jsx)(`code`,{children:`useNotification`})}),`
+`,(0,S.jsx)(`p`,{children:(0,S.jsx)(d,{k:`guide.hooks_use_notification`})}),`
+`,(0,S.jsx)(v,{name:`useNotification`}),`
+`,(0,S.jsx)(`h3`,{children:(0,S.jsx)(`code`,{children:`useConfirm`})}),`
+`,(0,S.jsx)(`p`,{children:(0,S.jsx)(d,{k:`guide.hooks_use_confirm`})}),`
+`,(0,S.jsx)(v,{name:`useConfirm`}),`
+`,(0,S.jsx)(`h2`,{children:(0,S.jsx)(d,{k:`guide.hooks_group_a11y`})}),`
+`,(0,S.jsx)(`h3`,{children:(0,S.jsx)(`code`,{children:`useAnnounce`})}),`
+`,(0,S.jsx)(`p`,{children:(0,S.jsx)(d,{k:`guide.hooks_use_announce`})}),`
+`,(0,S.jsx)(v,{name:`useAnnounce`}),`
+`,(0,S.jsx)(`h2`,{children:(0,S.jsx)(d,{k:`guide.hooks_group_data`})}),`
+`,(0,S.jsx)(`h3`,{children:(0,S.jsx)(`code`,{children:`useTableSort`})}),`
+`,(0,S.jsx)(`p`,{children:(0,S.jsx)(d,{k:`guide.hooks_use_table_sort`})}),`
+`,(0,S.jsx)(v,{name:`useTableSort`}),`
+`,(0,S.jsx)(`h2`,{children:(0,S.jsx)(d,{k:`guide.hooks_group_input`})}),`
+`,(0,S.jsx)(`h3`,{children:(0,S.jsx)(`code`,{children:`useAutoResize`})}),`
+`,(0,S.jsx)(`p`,{children:(0,S.jsx)(d,{k:`guide.hooks_use_auto_resize`})}),`
+`,(0,S.jsx)(v,{name:`useAutoResize`}),`
+`,(0,S.jsx)(`h2`,{children:(0,S.jsx)(d,{k:`guide.hooks_group_settings`})}),`
+`,(0,S.jsx)(`h3`,{children:(0,S.jsx)(`code`,{children:`useWim`})}),`
+`,(0,S.jsx)(`p`,{children:(0,S.jsx)(d,{k:`guide.hooks_use_wim`})}),`
+`,(0,S.jsx)(v,{name:`useWim`})]})}function x(e={}){let{wrapper:t}={...l(),...e.components};return t?(0,S.jsx)(t,{...e,children:(0,S.jsx)(b,{...e})}):b(e)}var S;function C(){return(C=t((()=>{S=a(),o(),s(),u(),y()})))()}C();export{x as default};
