@@ -1,5 +1,24 @@
 # wimui
 
+## 0.80.0
+
+### Minor Changes
+
+- 010b969: 本文へ飛ぶリンク `SkipLink` を足した（`wimui/navigation`）。フォーカスしたときだけ見え、押すと `href` の飛び先へキーボードのフォーカスを移す（WCAG 2.4.1 Bypass Blocks）。`AppShell` は既定でこれを先頭に描き、自分の `<main>`（Props API の内蔵の `<main>` と `AppShell.Main`）へ飛ばす。キーボードの人は、ページを開いて Tab を 1 回、Enter を 1 回で、ヘッダーと横の帯を通らずに本文へ着ける。
+
+  `AppShell` を使う画面では、最初の Tab の停止点がこのリンクになる。外すときは `skipLink={false}`（その画面が自分でスキップリンクを描いている場合だけ）。`AppShell.Main` に `id` が無ければ、自動の `id` が付く。
+
+- 309b534: `TreeView` の既定から、自分の面（背景）・枠・角丸を外した。木は横の帯（`Sidebar`）・`Card`・ポップオーバーなど、輪郭を持つ入れ物の中に置かれることがほとんどで、自分の枠を持つと入れ物の枠と二重になっていた（横の帯の中では、木の左の枠が帯の左端に貼り付き、右の枠が帯の境界線と並んでいた）。**既定の見た目が変わる**: 単独のパネルとして見せたいときは、`Card` で包む。`TreeSelect` の開いた面の見た目は変わらない（面は以前から `TreeSelect` の側が持っている）。
+
+### Patch Changes
+
+- 7674729: `llms.txt` / `llms-full.txt` に「Not a component — compose it from existing ones」の節を足した。他所のライブラリにはあるが、WIM では既存の部品で組めるもの 28 件（Radio Card・Collapsible・Navigation Progress・Index Filters・Contextual Save Bar など）を、他所の名前で探したときに見つかるようにし、どの部品で組むかを書いた。AI エージェントが「無いから自作する」と判断して、既存の部品を使わない実装を書くのを防ぐため。
+- 0a6bcb2: `ContextMenu` を開いて文字を打つと、文字の先頭が一致する項目へ移るようになった（`Menu`・`Dropdown`・`Menubar` と同じ。無効の項目は飛ばす。同じ文字を続けて打つと、その文字で始まる項目を順に巡る）。あわせて、項目を Enter / Space で選んだときにメニューが閉じ、引き金へフォーカスが戻るようになった（以前はクリックなら閉じるのに、キーで選ぶと開いたままだった）。項目の上で押した Enter / Space が引き金の「開く」にも届き、メニューが開き直して先頭の項目へ戻っていた欠陥も直した。
+- fa38681: ページ送りの `DataGrid` で、全体の行数と各行の位置が読み上げに伝わるようにした。以前は `aria-rowcount` がそのページの行数 + 見出しで、行に `aria-rowindex` が無く、2 ページ目の 1 行目も「11 行のうち 2 行目」と読まれていた。いまは `aria-rowcount` が `pagination.total` + 見出し、各行の `aria-rowindex` が全体での位置（見出しが 1）。`infiniteScroll` で続きがあるあいだは、全体が分からないので `aria-rowcount` は `-1`（ARIA の「不明」）。
+- aecdfa5: `Select`・`MultiSelect`・`Cascader`・`TreeSelect`・`Rating`・`SegmentedControl`・`TagInput`・`OtpInput` に `name` を足し、素の `<form>` の送信（`FormData`・React 19 のフォームの action・サーバーアクション）に値が入るようにした。以前はこの 8 部品だけ、`name` を渡しても値が送られなかった。値は隠した `<input type="hidden">` で送り、複数の値（`MultiSelect`・`TagInput`・`Cascader` の経路・`multiple` の `TreeSelect`）は同じ `name` で並べる（`FormData.getAll` で読む）。制御していない部品は、フォームの `reset` で既定の値に戻る。`Slider` / `RangeSlider` も、フォームの `reset` で値と取っ手の位置が戻るようにした（以前は動かしたままだった）。`required` はブラウザの検証には乗らず、エラーは今までどおり各部品の `error` で出す。
+- 9de2db1: daisyUI・Semi Design・Arco Design・Grommet・Vuetify・Park UI・Atlassian・Aceternity UI の部品の名前で探したときに、WIM の該当部品へ届くよう、46 部品に 57 の別名を足した（例: Collapse → `Accordion`、Verification Code → `OtpInput`、Lozenge → `Badge`、Section Message → `Alert`、Side Sheet → `Drawer`）。`Tour` に Spotlight を足し、Aceternity の照明の演出とは別物だという注記を書いた。採らない演出の一覧に Aceternity UI と daisyUI の 96 の呼び名を足し、入力欄の演出（`Animated Input Effects`）を新しく載せた。どれも `llms.txt` / `llms-full.txt` に載る。
+- 0289d9a: React Aria・React Spectrum 2・Base UI・Radix・Headless UI・HeroUI・Primer・Polaris・PrimeReact の部品の名前で探したときに、WIM の該当部品へ届くよう、67 部品に 94 の別名を足した（例: Alert Dialog → `Confirm`、Preview Card → `HoverCard`、Underline Nav → `TabNavigation`、Index Table → `DataGrid`、Illustrated Message → `EmptyState`）。`Toolbar` には、Spectrum 2 の ActionBar が `SelectionBar` にあたるという注記を足した。どちらも `llms.txt` / `llms-full.txt` に載る。
+
 ## 0.79.0
 
 ### Minor Changes
