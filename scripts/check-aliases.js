@@ -31,6 +31,7 @@ import { globSync } from 'glob';
 
 const SRC = 'src/data/components.json';
 const NOT_PLANNED_SRC = 'src/data/not-planned.json';
+const COMPOSABLE_SRC = 'src/data/composable.json';
 
 /** 比較用の正規化。表記ゆれ（大小・連続空白）だけを吸収する。 */
 const norm = (s) => s.trim().toLowerCase().replace(/\s+/g, ' ');
@@ -179,9 +180,77 @@ if (!Array.isArray(notPlanned)) {
   }
 }
 
+// --- 組める語彙（2026-11-21） ------------------------------------------------
+//
+// 3 つ目の答え「部品にはしない。既存の部品で組む」。別名（これを使え）・採らない（作るな）と
+// 同じ語が 2 つの答えを持たないこと、組み方に挙げた部品が実在することを見る。
+// 挙げた部品が改名・削除されると、llms.txt が存在しない部品で組めと案内し続ける。
+const composable = JSON.parse(fs.readFileSync(COMPOSABLE_SRC, 'utf8')).composable;
+const notPlannedKeys = new Map();
+for (const entry of Array.isArray(notPlanned) ? notPlanned : []) {
+  for (const word of [entry.name, ...(entry.aka ?? [])]) {
+    if (typeof word === 'string') notPlannedKeys.set(norm(word), entry.name);
+  }
+}
+let composableWords = 0;
+
+if (!Array.isArray(composable)) {
+  failures.push(`${COMPOSABLE_SRC}: composable は配列である必要があります`);
+} else {
+  const composableSeen = new Map();
+  for (const entry of composable) {
+    for (const field of ['name', 'ja', 'en']) {
+      if (typeof entry[field] !== 'string' || entry[field].trim() === '') {
+        failures.push(`composable "${entry.name ?? '(no name)'}": ${field} が空です`);
+      }
+    }
+    if (!Array.isArray(entry.use) || entry.use.length === 0) {
+      failures.push(`composable "${entry.name ?? '(no name)'}": use（組むのに使う部品）が空です`);
+    } else {
+      for (const comp of entry.use) {
+        if (typeof comp !== 'string' || !componentNames.has(norm(comp))) {
+          failures.push(
+            `composable "${entry.name}": use の \`${comp}\` が実在しません（components.json の name を書いてください）`,
+          );
+        }
+      }
+    }
+    const words = [entry.name, ...(entry.aka ?? [])].filter(
+      (w) => typeof w === 'string' && w.trim() !== '',
+    );
+    for (const word of words) {
+      composableWords += 1;
+      const key = norm(word);
+      if (componentNames.has(key)) {
+        failures.push(
+          `composable "${word}" は既存のコンポーネント \`${componentNames.get(key)}\` と一致します`
+            + `（部品が在るなら、組み方ではなくその部品を案内してください）`,
+        );
+      }
+      if (seen.has(key)) {
+        failures.push(
+          `composable "${word}" は \`${seen.get(key).join(' / ')}\` の別名と一致します`
+            + `（同じ語に「これを使え」と「組め」の 2 つの答えが出ます）`,
+        );
+      }
+      if (notPlannedKeys.has(key)) {
+        failures.push(
+          `composable "${word}" は採らないもの「${notPlannedKeys.get(key)}」の語と一致します`
+            + `（同じ語に「作るな」と「組め」の 2 つの答えが出ます）`,
+        );
+      }
+      if (composableSeen.has(key)) {
+        failures.push(`composable "${word}" が「${composableSeen.get(key)}」と重複しています`);
+      }
+      composableSeen.set(key, entry.name);
+    }
+  }
+}
+
 console.log('--- check:aliases (外部語彙との対応表) ---');
 console.log(`\n${componentNames.size} コンポーネント中 ${withAliases} 件に別名 ${aliasCount} 語`);
 console.log(`採らない語彙: ${Array.isArray(notPlanned) ? notPlanned.length : 0} 件 / ${notPlannedWords} 語`);
+console.log(`組める語彙: ${Array.isArray(composable) ? composable.length : 0} 件 / ${composableWords} 語`);
 
 if (failures.length > 0) {
   console.log(`\n[FAIL] 以下の別名が使えません:`);

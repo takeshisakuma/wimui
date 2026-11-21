@@ -52,6 +52,7 @@ export const UNSHIPPED_DATA = {
 export const SHIPPED_DATA = {
   "src/data/components.json": "llms.txt の部品の一覧と説明",
   "src/data/not-planned.json": "llms.txt の「作らないもの」",
+  "src/data/composable.json": "llms.txt の「既存の部品で組むもの」",
 };
 
 /** 出荷物になる変更か。 */
