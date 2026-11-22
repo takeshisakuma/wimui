@@ -14,6 +14,7 @@ import { Slot, Slottable } from "@radix-ui/react-slot";
 import { BaseListItem, type BaseListItemProps } from "../../_internal/BaseListItem";
 import { Transition } from "../../layout/Transition/Transition";
 import { useInlineFloating } from "../../_internal/useInlineFloating";
+import { InlinePortal } from "../../_internal/InlinePortal";
 import { findTypeaheadIndex, isTypeaheadKey, useTypeahead } from "../../_internal/typeahead";
 import localStyles from "./menubar.module.scss";
 
@@ -23,6 +24,8 @@ type MenubarContextValue = {
   registerTrigger: (id: string, el: HTMLElement | null) => void;
   getTriggerIds: () => string[];
   focusTrigger: (id: string) => void;
+  /** 各メニューの面を置く body の影の箱（T432）。外側の押下の判定で内側に数える。 */
+  registerPortal: (el: HTMLElement | null, prev: HTMLElement | null) => void;
 };
 
 const MenubarContext = createContext<MenubarContextValue | null>(null);
@@ -38,6 +41,8 @@ type MenubarMenuContextValue = {
   open: () => void;
   close: () => void;
   toggle: () => void;
+  /** このメニューの箱（Menubar.Menu の要素）。面の位置の基準（面は body の影の箱にあるので、親からは辿れない）。 */
+  menuEl: HTMLDivElement | null;
 };
 
 const MenubarMenuContext = createContext<MenubarMenuContextValue | null>(null);
@@ -77,6 +82,11 @@ const MenubarRoot = React.forwardRef<HTMLDivElement, MenubarProps>(
     const [openMenuId, setOpenMenuId] = useState<string | null>(null);
     const triggersRef = useRef<Map<string, HTMLElement>>(new Map());
     const rootRef = useRef<HTMLDivElement | null>(null);
+    const portalsRef = useRef<Set<HTMLElement>>(new Set());
+    const registerPortal = useCallback((el: HTMLElement | null, prev: HTMLElement | null) => {
+      if (prev) portalsRef.current.delete(prev);
+      if (el) portalsRef.current.add(el);
+    }, []);
 
     const setRefs = useCallback(
       (node: HTMLDivElement | null) => {
@@ -101,7 +111,10 @@ const MenubarRoot = React.forwardRef<HTMLDivElement, MenubarProps>(
     useEffect(() => {
       if (!openMenuId) return;
       const handlePointerDown = (event: MouseEvent) => {
-        if (rootRef.current && !rootRef.current.contains(event.target as Node)) {
+        const target = event.target as Node;
+        // 面は body の影の箱にある（T432）。どのメニューの影の箱も内側に数える
+        const inPortal = Array.from(portalsRef.current).some((el) => el.contains(target));
+        if (rootRef.current && !rootRef.current.contains(target) && !inPortal) {
           setOpenMenuId(null);
         }
       };
@@ -165,8 +178,9 @@ const MenubarRoot = React.forwardRef<HTMLDivElement, MenubarProps>(
         registerTrigger,
         getTriggerIds,
         focusTrigger,
+        registerPortal,
       }),
-      [openMenuId, registerTrigger, getTriggerIds, focusTrigger],
+      [openMenuId, registerTrigger, getTriggerIds, focusTrigger, registerPortal],
     );
 
     const Root = asChild ? Slot : "div";
@@ -211,6 +225,15 @@ const MenubarMenu = React.forwardRef<HTMLDivElement, MenubarMenuProps>(
     const triggerId = triggerIdOverride ?? `wim-menubar-trigger-${value}-${reactId}`;
     const contentId = contentIdOverride ?? `wim-menubar-content-${value}-${reactId}`;
     const isOpen = openMenuId === value;
+    const [menuEl, setMenuEl] = useState<HTMLDivElement | null>(null);
+    const setMenuRef = useCallback(
+      (node: HTMLDivElement | null) => {
+        setMenuEl(node);
+        if (typeof ref === "function") ref(node);
+        else if (ref) ref.current = node;
+      },
+      [ref],
+    );
 
     const open = () => {
       if (!disabled) setOpenMenuId(value);
@@ -237,16 +260,17 @@ const MenubarMenu = React.forwardRef<HTMLDivElement, MenubarMenuProps>(
         open,
         close,
         toggle,
+        menuEl,
       }),
       // open/close/toggle close over latest isOpen/disabled
       // eslint-disable-next-line react-hooks/exhaustive-deps
-      [value, triggerId, contentId, isOpen, disabled],
+      [value, triggerId, contentId, isOpen, disabled, menuEl],
     );
 
     return (
       <MenubarMenuContext.Provider value={menuValue}>
         <div
-          ref={ref}
+          ref={setMenuRef}
           role="none"
           data-disabled={disabled || undefined}
           className={classNames(localStyles.menu, className)}
@@ -335,7 +359,8 @@ export type MenubarContentProps = React.ComponentPropsWithoutRef<"div"> & {
 
 const MenubarContent = React.forwardRef<HTMLDivElement, MenubarContentProps>(
   ({ align = "start", className, children, id: idProp, "aria-labelledby": ariaLabelledBy, ...props }, ref) => {
-    const { contentId, triggerId, isOpen, close, setContentIdOverride } = useMenubarMenu();
+    const { contentId, triggerId, isOpen, close, setContentIdOverride, menuEl } = useMenubarMenu();
+    const { registerPortal } = useMenubar();
 
     useEffect(() => {
       setContentIdOverride(idProp);
@@ -351,18 +376,29 @@ const MenubarContent = React.forwardRef<HTMLDivElement, MenubarContentProps>(
     }
 
     // 下に余地が無ければ上へ開き、画面の端からはみ出す分は内側へ寄せる（T342）。位置の基準は、
-    // この面を包む Menubar.Menu（面の親。面は、その下に CSS で置かれている）。
-    const { setReference, setFloating, floatingProps } = useInlineFloating({ open: isOpen });
+    // この面を包む Menubar.Menu。面は body の影の箱にあるので（T432）、面の親ではなく context から受ける。
+    const { setReference, setFloating, setAnchor, floatingProps } = useInlineFloating({ open: isOpen });
+    useEffect(() => {
+      setReference(menuEl);
+    }, [menuEl, setReference]);
+    const anchorElRef = useRef<HTMLElement | null>(null);
+    const setAnchorRef = useCallback(
+      (node: HTMLDivElement | null) => {
+        registerPortal(node, anchorElRef.current);
+        anchorElRef.current = node;
+        setAnchor(node);
+      },
+      [registerPortal, setAnchor],
+    );
 
     const setRefs = useCallback(
       (node: HTMLDivElement | null) => {
         contentRef.current = node;
         setFloating(node);
-        setReference(node?.parentElement ?? null);
         if (typeof ref === "function") ref(node);
         else if (ref) ref.current = node;
       },
-      [ref, setFloating, setReference],
+      [ref, setFloating],
     );
 
     useEffect(() => {
@@ -429,6 +465,8 @@ const MenubarContent = React.forwardRef<HTMLDivElement, MenubarContentProps>(
     };
 
     return (
+      // 面は body へ出す（T432）。開閉のアニメーションは面自身の Transition が持つので、影の箱は置いたままにする
+      <InlinePortal open={isOpen} persistent anchorRef={setAnchorRef}>
       <Transition
         {...props}
         ref={setRefs}
@@ -449,6 +487,7 @@ const MenubarContent = React.forwardRef<HTMLDivElement, MenubarContentProps>(
       >
         {children}
       </Transition>
+      </InlinePortal>
     );
   },
 );

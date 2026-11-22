@@ -31,7 +31,7 @@ const cases: Case[] = [
   { name: "ModelSelector", id: "components-ai-modelselector--default", surface: '[class*="_dropdownWrapper_"]', opener: DEFAULT_OPENER },
   { name: "PhoneInput", id: "components-basic-inputs-phoneinput--default", surface: '[class*="_dropdown_"]', opener: "#storybook-root [role=combobox]" },
   // 入力ではないが、面を引き金の隣に CSS で置くのは同じ（T342 の対象外だったもの）
-  { name: "Menubar", id: "components-navigation-elements-menubar--default", surface: '#storybook-root [role="menu"]', opener: '#storybook-root [role="menuitem"]' },
+  { name: "Menubar", id: "components-navigation-elements-menubar--default", surface: '[role="menu"]', opener: '#storybook-root [role="menuitem"]' },
   // T361: 畳んだ階層の一覧。引き金は見えている行の「…」（幅を測る写しの中のボタンは押せない）
   { name: "Breadcrumb", id: "components-navigation-elements-breadcrumb--collapsed", surface: "#storybook-root .wim-overflow-list > ol [aria-expanded] + ul", opener: "#storybook-root .wim-overflow-list > ol button" },
   { name: "AvatarGroup", id: "components-data-indicators-avatargroup--collapsed", surface: "#storybook-root .wim-avatar-group [aria-expanded] + ul", opener: "#storybook-root .wim-avatar-group > :first-child button" },
