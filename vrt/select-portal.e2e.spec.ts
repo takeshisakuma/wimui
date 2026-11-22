@@ -126,6 +126,28 @@ test.describe("Lists are drawn outside an overflow: hidden box (1280px)", () => 
   }
 });
 
+test.describe("Cascader scrolls the keyboard-focused item into view (1280px)", () => {
+  test.use({ viewport: { width: 1280, height: 720 } });
+
+  // 項目を見える位置へスクロールする処理が、項目を部品の箱の中から探していて、一覧を body へ出したあと
+  // 見つからずスクロールしなくなっていた。ストーリーの一覧は短いので、高さを絞って確かめる
+  test("ArrowDown past the visible items scrolls the column", async ({ page }) => {
+    await page.goto(url("components-advanced-inputs-cascader--default"));
+    await waitForStoryReady(page);
+    await page.addStyleTag({ content: '[class*="_menu_"] { max-height: 48px !important; overflow-y: auto !important; scroll-behavior: auto !important; }' });
+    const trigger = page.getByRole("combobox").first();
+    await trigger.focus();
+    await page.keyboard.press("ArrowDown");
+    await expect(trigger).toHaveAttribute("aria-expanded", "true");
+    for (let i = 0; i < 4; i++) await page.keyboard.press("ArrowDown");
+
+    // 対照: 一覧の最初の列はスクロールできる（中身が絞った高さより長い）
+    const column = page.locator('[class*="_menu_"]').first();
+    expect(await column.evaluate((el) => el.scrollHeight > el.clientHeight)).toBe(true);
+    await expect.poll(() => column.evaluate((el) => el.scrollTop)).toBeGreaterThan(0);
+  });
+});
+
 test.describe("Select keeps the Tab order when its list is in the body", () => {
   test.use({ viewport: { width: 1280, height: 720 } });
 

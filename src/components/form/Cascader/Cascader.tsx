@@ -144,7 +144,8 @@ export const Cascader = ({
     if (isOpen && focusedLevel >= 0) {
       const activeIdx = focusedIndexes[focusedLevel];
       const itemId = `${id}-menu-${focusedLevel}-option-${activeIdx}`;
-      const el = containerRef.current?.querySelector(`#${itemId}`);
+      // 一覧は body の影の箱にある（T432）。部品の箱の中を探すと見つからず、スクロールしなかった
+      const el = portalRef.current?.querySelector(`#${itemId}`);
       if (el) {
         el.scrollIntoView({ block: "nearest", behavior: "smooth" });
       }
