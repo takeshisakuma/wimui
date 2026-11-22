@@ -62,7 +62,10 @@ export interface InlineFloatingOptions {
  * 何 px ずらすか」だけで、部品はそれを `data-side` と CSS 変数で受ける。
  *
  * こうする理由は 3 つ:
- * - 面をポータルへ出さない（ユーザー判断）。Tab の順と、面の中のフォーカスの扱いを変えない
+ * - 面の位置を引き金に結びつけたまま、DOM の位置は部品が選ぶ。以前は全部品で「ポータルへ出さない」
+ *   （ユーザー判断。Tab の順と、面の中のフォーカスの扱いを変えないため）だったが、外側の `overflow` の箱
+ *   （スクロールする Dialog の本文・カード）で面が切れた（T432）。2026-11-22 のユーザー判断で、body へ
+ *   出す部品は `setAnchor` で影の箱を渡す ── 影の箱を引き金に重ね、面はその中にいまの CSS のまま描く
  * - 既定の向きの見た目を 1px も動かさない。位置を inline style で上書きすると、いまの CSS の間隔
  *   （トークン・密度に追従する）と揃わなくなる
  * - floating-ui を読まない。入力系がこれを読むと、フォーム画面の束が 22 kB の予算に対して 29.9 kB に
@@ -75,12 +78,22 @@ export const useInlineFloating = ({ open }: InlineFloatingOptions) => {
   // 要素は state で持つ。ref の関数は、要素が付いた・外れたときに effect を張り直すため。
   const [reference, setReference] = useState<HTMLElement | null>(null);
   const [floating, setFloating] = useState<HTMLElement | null>(null);
+  // 面を body へ出す部品（T432）は、引き金と同じ位置と大きさの「影の箱」を body に置き、面はその中に
+  // いまの CSS のまま描く。影の箱を渡さない部品の動きは変わらない。
+  const [anchor, setAnchor] = useState<HTMLElement | null>(null);
   const [position, setPosition] = useState<{ side: InlineFloatingSide; shiftX: number }>({ side: "bottom", shiftX: 0 });
 
   const update = useCallback(() => {
     if (!reference || !floating) return;
     const root = floating.ownerDocument.documentElement;
     const referenceRect = reference.getBoundingClientRect();
+    // 影の箱を、面を測る前に引き金へ重ねる（state を経由すると 1 フレーム遅れ、面を古い位置で測る）
+    if (anchor) {
+      anchor.style.setProperty("top", `${referenceRect.top}px`);
+      anchor.style.setProperty("left", `${referenceRect.left}px`);
+      anchor.style.setProperty("width", `${referenceRect.width}px`);
+      anchor.style.setProperty("height", `${referenceRect.height}px`);
+    }
     const floatingRect = floating.getBoundingClientRect();
     const side = computeInlineSide({
       referenceTop: referenceRect.top,
@@ -93,7 +106,7 @@ export const useInlineFloating = ({ open }: InlineFloatingOptions) => {
     const applied = parseFloat(floating.style.getPropertyValue(SHIFT_VAR)) || 0;
     const shiftX = Math.round(computeInlineShift(floatingRect.left - applied, floatingRect.right - applied, root.clientWidth));
     setPosition((prev) => (prev.side === side && prev.shiftX === shiftX ? prev : { side, shiftX }));
-  }, [reference, floating]);
+  }, [reference, floating, anchor]);
 
   useIsomorphicLayoutEffect(() => {
     if (!open || !reference || !floating) return;
@@ -126,6 +139,8 @@ export const useInlineFloating = ({ open }: InlineFloatingOptions) => {
     setReference,
     /** 面に渡す ref。 */
     setFloating,
+    /** body へ出す影の箱に渡す ref（面を body へ出す部品だけ）。 */
+    setAnchor,
     /** 面に付ける属性と CSS 変数。 */
     floatingProps: {
       "data-side": side,

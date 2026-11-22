@@ -7,6 +7,7 @@ import { Transition } from "../../layout/Transition/Transition";
 import { BaseListItem } from "../../_internal/BaseListItem";
 import { mergeRefs } from "../../_internal/mergeRefs";
 import { useInlineFloating } from "../../_internal/useInlineFloating";
+import { Portal } from "../../overlay/Portal/Portal";
 import { FieldTemplate } from "../FieldTemplate";
 import { HiddenFormValue } from "../../_internal/HiddenFormValue";
 import { InputBase } from "../InputBase";
@@ -146,6 +147,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
       isKeyboardNavigating,
       setIsKeyboardNavigating,
       containerRef,
+      portalRef,
       triggerRef,
       searchInputRef,
       listItemsRef,
@@ -171,7 +173,8 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
 
     // 下に余地が無ければ上へ開き、画面の端からはみ出す分は内側へ寄せる（T342）。面は引き金の隣に
     // 描いたままで、向きと横のずれだけを受け取る。
-    const { setReference: setFloatingReference, setFloating, floatingProps } = useInlineFloating({ open: isOpen && !disabled });
+    const { setReference: setFloatingReference, setFloating, setAnchor, floatingProps } = useInlineFloating({ open: isOpen && !disabled });
+    const anchorRef = useMemo(() => mergeRefs(portalRef, setAnchor), [portalRef, setAnchor]);
 
     // Combine refs for the container。**毎回作り直さない** ── ref の関数が変わるたびに React は
     // null → 要素の順で呼び直すので、位置の計算の側が「基準が消えた・戻った」と受け取り続ける。
@@ -395,11 +398,22 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
             </div>
           </InputBase>
 
+          {/* 一覧は body へ出す（T432）。以前は引き金の隣に描いていて、外側の `overflow` の箱
+              （スクロールする Dialog の本文・カード）で切れた。body には引き金と同じ位置と大きさの
+              影の箱（Transition。開閉のアニメーションと、閉じたら DOM から消すのもこれが持つ）を置き、
+              一覧はその中に、いまの CSS（間隔のトークン・上下の向き・横のずれ）のまま描く。
+              フォーカスは引き金に残る（aria-activedescendant）。検索欄だけが body 側に入る */}
+          <Portal>
           <Transition
             show={isOpen && !disabled}
             preset="fade"
+            className={localStyles.anchor}
+            ref={anchorRef}
+          >
+          <div
             className={classNames(localStyles.dropdown, stylesProp?.dropdown)}
             data-part="dropdown"
+            data-keyboard-nav={isKeyboardNavigating}
             ref={setFloating}
             {...floatingProps}
           >
@@ -444,7 +458,9 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
                 renderOptions()
               )}
             </ul>
+          </div>
           </Transition>
+          </Portal>
           {/* 利用者の要素（asChild の子）を Slottable に入れる。Slot はこれを根にして、上の中身をその中に描く。
               以前は逆（中身を Slottable に入れていた）で、asChild を付けると描画で例外になるか、部品の
               クラスが利用者の要素に付かなかった（T337）。 */}
