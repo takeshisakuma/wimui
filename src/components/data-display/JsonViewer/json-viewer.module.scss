@@ -85,6 +85,18 @@
     vertical-align: middle;
     opacity: 0;
     transition: opacity var(--wim-duration-fast);
+
+    /* T434: 以前はホバーでしか見えなかった。キーボードで乗ったボタンが箱ごと不透明度 0 のままで、
+       フォーカスの輪も見えず（WCAG 2.4.7）、タッチ端末では見えないまま押せた（削除を含む）。
+       フォーカスは、行（.node）ではなくこの箱で拾う ── 行で拾うと、入れ子の親の行のボタンまで出る。
+       隠すのは opacity のまま（display: none にすると Tab の順から外れる。Kanban の移動ボタンと同じ） */
+    &:focus-within {
+      opacity: 1;
+    }
+
+    @media (hover: none) and (pointer: coarse) {
+      opacity: 1;
+    }
   }
 
   .nodeAction {
