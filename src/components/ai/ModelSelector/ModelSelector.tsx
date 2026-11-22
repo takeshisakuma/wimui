@@ -7,6 +7,7 @@ import { Transition } from "../../layout/Transition/Transition";
 import { ComponentSizeBasic } from "../../../types/tokens";
 import { ChevronDownIcon, CheckIcon } from "@/icon";
 import { useInlineFloating } from "../../_internal/useInlineFloating";
+import { observeMove } from "../../_internal/observeMove";
 import { InlinePortal } from "../../_internal/InlinePortal";
 import { useMergedRef } from "../../../hooks/useMergedRef";
 import { getRovingIndex, isRovingKey } from "../../_internal/rovingIndex";
@@ -285,7 +286,7 @@ export const ModelSelector = React.forwardRef<HTMLDivElement, ModelSelectorProps
 
     // 下に余地が無ければ上へ開き、画面の端からはみ出す分は内側へ寄せる（T342）。面は引き金の隣に
     // 描いたままで、向きと横のずれだけを受け取る。
-    const { setReference: setFloatingReference, setFloating, setAnchor, floatingProps } = useInlineFloating({ open: open });
+    const { setReference: setFloatingReference, setFloating, setAnchor, floatingProps } = useInlineFloating({ open: open, watchMove: observeMove });
     const setAnchorRef = useMergedRef(portalRef, setAnchor);
     const setRootRef = useMergedRef(mergedRef, setFloatingReference);
 

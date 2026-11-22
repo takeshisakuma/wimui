@@ -5,6 +5,7 @@ import { Chip } from "../../data-display/Chip/Chip";
 import { BaseListItem } from "../../_internal/BaseListItem";
 import { InputBase } from "../InputBase";
 import { useInlineFloating } from "../../_internal/useInlineFloating";
+import { observeMove } from "../../_internal/observeMove";
 import { InlinePortal } from "../../_internal/InlinePortal";
 import { useMergedRef } from "../../../hooks/useMergedRef";
 import { getRovingIndex, isRovingKey } from "../../_internal/rovingIndex";
@@ -275,7 +276,7 @@ export const MultiSelect = ({
 
   // 下に余地が無ければ上へ開き、画面の端からはみ出す分は内側へ寄せる（T342）。面は引き金の隣に
   // 描いたままで、向きと横のずれだけを受け取る。
-  const { setReference: setFloatingReference, setFloating, setAnchor, floatingProps } = useInlineFloating({ open: isOpen && !disabled });
+  const { setReference: setFloatingReference, setFloating, setAnchor, floatingProps } = useInlineFloating({ open: isOpen && !disabled, watchMove: observeMove });
   const setAnchorRef = useMergedRef(portalRef, setAnchor);
   const setRootRef = useMergedRef(containerRef, setFloatingReference);
   const setListRef = useMergedRef(listRef, setFloating);

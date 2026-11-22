@@ -3,6 +3,7 @@ import classNames from "classnames";
 import { FieldTemplate } from "../FieldTemplate/FieldTemplate";
 import { Icon } from "../../media/Icon/Icon";
 import { useInlineFloating } from "../../_internal/useInlineFloating";
+import { observeMove } from "../../_internal/observeMove";
 import { InlinePortal } from "../../_internal/InlinePortal";
 import { useMergedRef } from "../../../hooks/useMergedRef";
 import styles from "./phone-input.module.scss";
@@ -270,7 +271,7 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
 
     // 下に余地が無ければ上へ開き、画面の端からはみ出す分は内側へ寄せる（T342）。面は引き金の隣に
     // 描いたままで、向きと横のずれだけを受け取る。
-    const { setReference: setFloatingReference, setFloating, setAnchor, setAnchorTarget, floatingProps } = useInlineFloating({ open: isOpen });
+    const { setReference: setFloatingReference, setFloating, setAnchor, setAnchorTarget, floatingProps } = useInlineFloating({ open: isOpen, watchMove: observeMove });
     const setAnchorRef = useMergedRef(portalRef, setAnchor);
     const setRootRef = useMergedRef(containerRef, setFloatingReference);
 

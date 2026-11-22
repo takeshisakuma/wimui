@@ -14,6 +14,7 @@ import { Slot, Slottable } from "@radix-ui/react-slot";
 import { BaseListItem, type BaseListItemProps } from "../../_internal/BaseListItem";
 import { Transition } from "../../layout/Transition/Transition";
 import { useInlineFloating } from "../../_internal/useInlineFloating";
+import { observeMove } from "../../_internal/observeMove";
 import { InlinePortal } from "../../_internal/InlinePortal";
 import { findTypeaheadIndex, isTypeaheadKey, useTypeahead } from "../../_internal/typeahead";
 import localStyles from "./menubar.module.scss";
@@ -377,7 +378,7 @@ const MenubarContent = React.forwardRef<HTMLDivElement, MenubarContentProps>(
 
     // 下に余地が無ければ上へ開き、画面の端からはみ出す分は内側へ寄せる（T342）。位置の基準は、
     // この面を包む Menubar.Menu。面は body の影の箱にあるので（T432）、面の親ではなく context から受ける。
-    const { setReference, setFloating, setAnchor, floatingProps } = useInlineFloating({ open: isOpen });
+    const { setReference, setFloating, setAnchor, floatingProps } = useInlineFloating({ open: isOpen, watchMove: observeMove });
     useEffect(() => {
       setReference(menuEl);
     }, [menuEl, setReference]);
