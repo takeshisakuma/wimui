@@ -10,6 +10,12 @@ export interface InlinePortalProps {
   anchorRef: React.Ref<HTMLDivElement>;
   /** 開閉のアニメーション。渡すと閉じるアニメーションが終わってから DOM から消す。 */
   transition?: "fade";
+  /**
+   * 影の箱を、開閉に関係なく置いたままにする。面が自分で開閉のアニメーションを持つ部品が使う
+   * （ModelSelector の scale は、拡大の中心が面の上端。影の箱に付けると中心が引き金の箱になり、
+   * 開く途中の見た目が変わる）。閉じている間、body には中身の無い透明な箱が残る（押下は受けない）。
+   */
+  persistent?: boolean;
   /** 面（引き金の隣に描いていたときの要素を、そのまま渡す）。 */
   children: React.ReactNode;
 }
@@ -25,9 +31,13 @@ export interface InlinePortalProps {
  * 向き・横のずれ）のまま描く。影の箱の位置合わせは `useInlineFloating` の `setAnchor` が受け持つ。
  * 使う部品は、外側の押下の判定で影の箱も内側に数えること。
  */
-export const InlinePortal = ({ open, anchorRef, transition, children }: InlinePortalProps) => (
+export const InlinePortal = ({ open, anchorRef, transition, persistent, children }: InlinePortalProps) => (
   <Portal>
-    {transition ? (
+    {persistent ? (
+      <div className={styles.anchor} ref={anchorRef}>
+        {children}
+      </div>
+    ) : transition ? (
       <Transition show={open} preset={transition} className={styles.anchor} ref={anchorRef}>
         {children}
       </Transition>

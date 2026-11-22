@@ -192,7 +192,7 @@
         "react/jsx-runtime"
       ],
       "gzip": true,
-      "limit": "223 kB"
+      "limit": "224 kB"
     },
     {
       "name": "wimui/form 全部 (gzip)",
@@ -273,7 +273,7 @@
         "react/jsx-runtime"
       ],
       "gzip": true,
-      "limit": "58 kB"
+      "limit": "58.5 kB"
     },
     {
       "name": "UMD Bundle (gzip)",

@@ -7,6 +7,7 @@ import { Transition } from "../../layout/Transition/Transition";
 import { ComponentSizeBasic } from "../../../types/tokens";
 import { ChevronDownIcon, CheckIcon } from "@/icon";
 import { useInlineFloating } from "../../_internal/useInlineFloating";
+import { InlinePortal } from "../../_internal/InlinePortal";
 import { useMergedRef } from "../../../hooks/useMergedRef";
 import { getRovingIndex, isRovingKey } from "../../_internal/rovingIndex";
 import { findTypeaheadIndex, isTypeaheadKey, useTypeahead } from "../../_internal/typeahead";
@@ -141,6 +142,7 @@ export const ModelSelector = React.forwardRef<HTMLDivElement, ModelSelectorProps
     const [open, setOpen] = useState(false);
     const [activeIndex, setActiveIndex] = useState(-1);
     const containerRef = useRef<HTMLDivElement>(null);
+    const portalRef = useRef<HTMLDivElement>(null);
     const listRef = useRef<HTMLUListElement>(null);
     const generatedId = useId();
     const listboxId = `${generatedId}-listbox`;
@@ -158,7 +160,9 @@ export const ModelSelector = React.forwardRef<HTMLDivElement, ModelSelectorProps
     useEffect(() => {
       if (!open) return;
       const handlePointer = (e: MouseEvent) => {
-        if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
+        const target = e.target as Node;
+        // 一覧は body の影の箱にある（T432）。ここも内側に数える
+        if (containerRef.current && !containerRef.current.contains(target) && !portalRef.current?.contains(target)) {
           setOpen(false);
         }
       };
@@ -281,7 +285,8 @@ export const ModelSelector = React.forwardRef<HTMLDivElement, ModelSelectorProps
 
     // 下に余地が無ければ上へ開き、画面の端からはみ出す分は内側へ寄せる（T342）。面は引き金の隣に
     // 描いたままで、向きと横のずれだけを受け取る。
-    const { setReference: setFloatingReference, setFloating, floatingProps } = useInlineFloating({ open: open });
+    const { setReference: setFloatingReference, setFloating, setAnchor, floatingProps } = useInlineFloating({ open: open });
+    const setAnchorRef = useMergedRef(portalRef, setAnchor);
     const setRootRef = useMergedRef(mergedRef, setFloatingReference);
 
     return (
@@ -347,6 +352,9 @@ export const ModelSelector = React.forwardRef<HTMLDivElement, ModelSelectorProps
           />
         </button>
 
+        {/* 一覧は body へ出す（T432）。開閉のアニメーション（scale・拡大の中心は一覧の上端）は一覧自身が
+            持つので、影の箱は置いたままにする */}
+        <InlinePortal open={open} persistent anchorRef={setAnchorRef}>
         <Transition show={open} preset="scale" unmount className={styles.dropdownWrapper} ref={setFloating} {...floatingProps}>
           <ul
             ref={listRef}
@@ -408,6 +416,7 @@ export const ModelSelector = React.forwardRef<HTMLDivElement, ModelSelectorProps
             })}
           </ul>
         </Transition>
+        </InlinePortal>
       </div>
     );
   },

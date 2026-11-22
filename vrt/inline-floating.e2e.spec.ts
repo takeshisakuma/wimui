@@ -28,7 +28,7 @@ const cases: Case[] = [
   { name: "Cascader", id: "components-advanced-inputs-cascader--default", surface: '#storybook-root [class*="_dropdown_"]', opener: DEFAULT_OPENER },
   { name: "TreeSelect", id: "components-advanced-inputs-treeselect--default", surface: '#storybook-root [class*="_dropdown_"]', opener: DEFAULT_OPENER },
   { name: "DatePicker", id: "components-pickers-sliders-datepicker--default", surface: '#storybook-root [class*="_dropdown_"]', opener: DEFAULT_OPENER },
-  { name: "ModelSelector", id: "components-ai-modelselector--default", surface: '#storybook-root [class*="_dropdownWrapper_"]', opener: DEFAULT_OPENER },
+  { name: "ModelSelector", id: "components-ai-modelselector--default", surface: '[class*="_dropdownWrapper_"]', opener: DEFAULT_OPENER },
   { name: "PhoneInput", id: "components-basic-inputs-phoneinput--default", surface: '[class*="_dropdown_"]', opener: "#storybook-root [role=combobox]" },
   // 入力ではないが、面を引き金の隣に CSS で置くのは同じ（T342 の対象外だったもの）
   { name: "Menubar", id: "components-navigation-elements-menubar--default", surface: '#storybook-root [role="menu"]', opener: '#storybook-root [role="menuitem"]' },

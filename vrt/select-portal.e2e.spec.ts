@@ -17,6 +17,20 @@ const optionsCovered = (page: Page) =>
     for (const el of list.querySelectorAll<HTMLElement>('[role="option"]')) {
       const r = el.getBoundingClientRect();
       if (r.height < 2 || r.bottom <= 0 || r.top >= window.innerHeight) continue;
+      // 一覧の中のスクロールで隠れている項目は数えない（ModelSelector の一覧は高さに上限があってスクロールする）。
+      // 一覧から上へ、影の箱に着くまでのスクロール・切り取りの箱の内側に、中心があるかを見る
+      const cx = r.left + r.width / 2;
+      const cy = r.top + r.height / 2;
+      let hidden = false;
+      for (let p = el.parentElement; p && p !== document.body; p = p.parentElement) {
+        const s = getComputedStyle(p);
+        if (/(auto|scroll|hidden)/.test(s.overflowY + s.overflowX)) {
+          const b = p.getBoundingClientRect();
+          if (cx < b.left || cx >= b.right || cy < b.top || cy >= b.bottom) hidden = true;
+        }
+        if (p === list) break;
+      }
+      if (hidden) continue;
       checked += 1;
       const hit = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2);
       if (!hit || !(el === hit || el.contains(hit))) covered.push((el.textContent ?? "").trim().slice(0, 20));
@@ -79,6 +93,34 @@ test.describe("MultiSelect list is drawn outside clipping boxes (1280px)", () =>
     expect(result.checked).toBeGreaterThan(2);
     expect(result.covered, "options clipped or covered").toEqual([]);
   });
+});
+
+// 切れる画面がストーリーに無い部品は、全量測定（#1274）と同じく、ストーリーを overflow: hidden の箱で
+// 包んで確かめる（箱の高さは中身のまま。一覧は箱の外へはみ出す位置に開く）
+const CLIPPED_IN_BOX = [{ name: "ModelSelector", id: "components-ai-modelselector--default" }];
+
+test.describe("Lists are drawn outside an overflow: hidden box (1280px)", () => {
+  test.use({ viewport: { width: 1280, height: 720 } });
+
+  for (const { name, id } of CLIPPED_IN_BOX) {
+    test(`${name}: every option can be clicked when the story sits in a clipping box`, async ({ page }) => {
+      await page.goto(url(id));
+      await waitForStoryReady(page);
+      await page.evaluate(() => {
+        const root = document.getElementById("storybook-root")!;
+        const box = document.createElement("div");
+        box.style.cssText = "position:relative;overflow:hidden;padding:16px";
+        root.parentElement!.insertBefore(box, root);
+        box.appendChild(root);
+      });
+      await page.locator("#storybook-root [aria-haspopup], #storybook-root [role=combobox]").first().click();
+
+      const result = await optionsCovered(page);
+      // 対照: 選択肢を数えた
+      expect(result.checked).toBeGreaterThan(0);
+      expect(result.covered, "options clipped or covered").toEqual([]);
+    });
+  }
 });
 
 test.describe("Select keeps the Tab order when its list is in the body", () => {
