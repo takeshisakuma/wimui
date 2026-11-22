@@ -3,12 +3,11 @@ import { waitForStoryReady } from "./story-ready";
 
 const url = (id: string) => `/iframe.html?id=${id}&viewMode=story&globals=locale:en`;
 
-// 狭い幅でハンバーガーから開いたメニューを、指で閉じられるか。
-// #1269 で Sidebar のドロワーの暗幕がヘッダーも覆うようになり、閉じる手段は暗幕を押すことだけになった。
-// 256px の画面では 260px のドロワーが画面を覆い、押す場所が無くなっていた（引き金は暗幕の下）。
-// 閉じ方は部品で違うので、どちらかで閉じられれば通す:
-// - 引き金が押せるなら引き金（Navbar.Menu: バーが面より上に残り、トグルが閉じるボタンになる）
-// - 押せないなら画面の右端（Sidebar: 暗幕の帯）
+// 狭い幅でハンバーガーから開いたメニューを、ハンバーガー（開くと閉じるボタンになる）で閉じられるか。
+// Navbar.Menu はバーが面より上に残る。AppShell の Sidebar のドロワーは、暗幕ともども本文の枠
+// （ヘッダーの下）から出るので、ヘッダーは覆われない。#1269 から #1272 までは暗幕がヘッダーも覆い、
+// Sidebar だけ閉じ方が「暗幕を押す」になっていた（256px では押す場所も無かった）。
+// Sidebar のドロワーでは、暗幕の帯が残ること（#1272）も確かめる
 const STORIES = [
   "components-application-shell-navbar--default",
   "components-application-shell-navbar--with-mobile-menu",
@@ -48,17 +47,16 @@ for (const width of WIDTHS) {
           return !!hit && (hit === el || el.contains(hit));
         });
 
-        if (toggleOnTop) {
-          await toggle.click();
-        } else {
-          // 右端の点が面の外か（暗幕の帯が残っているか）。面が画面を覆っていれば、押す場所が無い
-          const edge = { x: width - 8, y: 844 / 2 };
+        expect(toggleOnTop, "the toggle (now a close button) is covered by the overlay").toBe(true);
+
+        if (id.includes("navbar") === false) {
+          // Sidebar のドロワー: 右端の点が面の外か（暗幕の帯が残っているか）
           const box = await panel.boundingBox();
           expect(box, "panel box").not.toBeNull();
-          expect(box!.x + box!.width, "the menu covers the whole width, leaving nothing to tap").toBeLessThan(edge.x);
-          await page.mouse.click(edge.x, edge.y);
+          expect(box!.x + box!.width, "the drawer covers the whole width, leaving no overlay strip").toBeLessThan(width - 8);
         }
 
+        await toggle.click();
         await expect(page.locator('[role="dialog"], .wim-sidebar[class*="mobile-open"]')).toHaveCount(0);
       });
     }
