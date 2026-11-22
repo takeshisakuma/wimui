@@ -21,7 +21,8 @@ export type InlineDisclosureProps = {
  * Composition Contract:
  * - Managed by: 部品の内側（OverflowList の renderOverflow の中）
  * - Scroll lock: No
- * - 一覧はポータルへ出さず、引き金の隣に描く（位置は useInlineFloating。floating-ui を読まない）
+ * - 一覧はポータルへ出さず、引き金の隣に描く（位置は useInlineFloating。floating-ui を読まない）。
+ *   外側に中身を切る箱があるときは、その箱の余白で開く向きを決める（clipAware。T432）
  * - Escape・外側の押下・フォーカスが外へ出たときに閉じる。Escape ではボタンへフォーカスを戻す
  */
 export const InlineDisclosure = ({ trigger, label, triggerClassName, children }: InlineDisclosureProps) => {
@@ -29,7 +30,9 @@ export const InlineDisclosure = ({ trigger, label, triggerClassName, children }:
   const panelId = useId();
   const wrapperRef = useRef<HTMLSpanElement | null>(null);
   const buttonRef = useRef<HTMLButtonElement | null>(null);
-  const { setReference, setFloating, floatingProps } = useInlineFloating({ open });
+  // 一覧は body へ出さない（ボタンのすぐ後ろに続く中身で、Tab の順・閉じる判定・読み上げの順を DOM の順が
+  // 支えている。T432 の B 案）。代わりに、外側の切る箱の余白で向きを決め、余白のある側へ開く
+  const { setReference, setFloating, floatingProps } = useInlineFloating({ open, clipAware: true });
 
   useEffect(() => {
     if (!open) return;
