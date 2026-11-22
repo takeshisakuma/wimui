@@ -80,6 +80,10 @@
     }
 
     .sidebar {
+      /* この幅では Sidebar（`responsive`）が画面に固定したドロワーになる（同じ `down(md)`）。
+         枠に z-index があると重なりの文脈ができ、中のドロワー（`--wim-z-drawer`）と暗幕が
+         枠の 90 に閉じ込められて、ヘッダーの枠（100）の下に入る。上端の項目が押せなかった */
+      z-index: auto;
       width: 100%;
       height: auto;
     }
