@@ -73,6 +73,11 @@
         left: calc(-1 * var(--wim-sidebar-width));
         z-index: var(--wim-z-drawer);
 
+        /* 閉じる手段は暗幕を押すことだけなので、画面がサイドバーより狭くても暗幕の帯を残す。
+           上限が無いと 256px の画面で 260px のドロワーが画面を覆い、押す場所が無くなった
+           （暗幕はヘッダーも覆う。#1269）。帯の幅はヘッダーの高さと同じ */
+        max-width: calc(100vw - var(--wim-height-xl));
+
         &.mobile-open {
           left: 0;
         }
