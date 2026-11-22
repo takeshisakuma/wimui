@@ -3,8 +3,8 @@ import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import { Calendar } from "../../data-display/Calendar/Calendar";
 import { InputBase } from "../InputBase";
-import { Transition } from "../../layout/Transition/Transition";
 import { useInlineFloating } from "../../_internal/useInlineFloating";
+import { InlinePortal } from "../../_internal/InlinePortal";
 import { useMergedRef } from "../../../hooks/useMergedRef";
 import { FocusTrap } from "../../overlay/FocusTrap/FocusTrap";
 import { FieldTemplate } from "../FieldTemplate";
@@ -103,6 +103,7 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
       defaultValue || null,
     );
     const containerRef = useRef<HTMLDivElement>(null);
+    const portalRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
 
 
@@ -123,9 +124,12 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
     // Close calendar when clicking outside
     useEffect(() => {
       const handleClickOutside = (event: MouseEvent) => {
+        const target = event.target as Node;
         if (
           containerRef.current &&
-          !containerRef.current.contains(event.target as Node)
+          !containerRef.current.contains(target) &&
+          // 暦は body の影の箱にある（T432）。ここも内側に数える
+          !portalRef.current?.contains(target)
         ) {
           setIsOpen(false);
         }
@@ -201,13 +205,13 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
     useEffect(() => {
       if (isOpen) {
         const timer = setTimeout(() => {
-          const focusedDay = containerRef.current?.querySelector<HTMLButtonElement>(
+          const focusedDay = portalRef.current?.querySelector<HTMLButtonElement>(
             '[data-calendar-day][tabindex="0"]:not(:disabled), [data-calendar-day][data-selected]:not(:disabled), [data-calendar-day]:focus',
           );
           if (focusedDay) {
             focusedDay.focus();
           } else {
-            containerRef.current?.querySelector<HTMLButtonElement>(
+            portalRef.current?.querySelector<HTMLButtonElement>(
               '[data-calendar-day]:not([data-other-month]):not(:disabled)',
             )?.focus();
           }
@@ -220,7 +224,8 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
 
     // 下に余地が無ければ上へ開き、画面の端からはみ出す分は内側へ寄せる（T342）。面は引き金の隣に
     // 描いたままで、向きと横のずれだけを受け取る。
-    const { setReference: setFloatingReference, setFloating, floatingProps } = useInlineFloating({ open: isOpen && !disabled });
+    const { setReference: setFloatingReference, setFloating, setAnchor, floatingProps } = useInlineFloating({ open: isOpen && !disabled });
+    const setAnchorRef = useMergedRef(portalRef, setAnchor);
     const setRootRef = useMergedRef(containerRef, ref, setFloatingReference);
 
     return (
@@ -285,9 +290,10 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
               onKeyDown={composeEventHandlers(props.onKeyDown, handleInputKeyDown)}
             />
           </InputBase>
-          <Transition
-            show={isOpen && !disabled}
-            preset="fade"
+          {/* 暦は body へ出す（T432）。外側の overflow の箱（スクロールする Dialog の本文など）で切れないように。
+              フォーカスは FocusTrap で暦の中に閉じ込めるので、DOM の位置が変わっても Tab の順は壊れない */}
+          <InlinePortal open={isOpen && !disabled} transition="fade" anchorRef={setAnchorRef}>
+          <div
             id={dropdownId}
             className={styles.dropdown}
             ref={setFloating}
@@ -313,7 +319,8 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
                 />
               </div>
             </FocusTrap>
-          </Transition>
+          </div>
+          </InlinePortal>
           {/* 利用者の要素（asChild の子）を Slottable に入れる。Slot はこれを根にして、上の中身をその中に描く。
               以前は逆（中身を Slottable に入れていた）で、asChild を付けると描画で例外になるか、部品の
               クラスが利用者の要素に付かなかった（T337）。 */}
