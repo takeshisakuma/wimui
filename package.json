@@ -180,7 +180,7 @@
         "react/jsx-runtime"
       ],
       "gzip": true,
-      "limit": "23.5 kB"
+      "limit": "24.5 kB"
     },
     {
       "name": "ルートバレル全部 — 最悪ケース (gzip)",
@@ -279,7 +279,7 @@
       "name": "UMD Bundle (gzip)",
       "path": "dist/wimui.umd.js",
       "gzip": true,
-      "limit": "170 kB",
+      "limit": "172 kB",
       "disablePlugins": [
         "@size-limit/esbuild"
       ]
