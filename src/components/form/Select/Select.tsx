@@ -6,6 +6,7 @@ import { Slot, Slottable } from "@radix-ui/react-slot";
 import { BaseListItem } from "../../_internal/BaseListItem";
 import { mergeRefs } from "../../_internal/mergeRefs";
 import { useInlineFloating } from "../../_internal/useInlineFloating";
+import { observeMove } from "../../_internal/observeMove";
 import { InlinePortal } from "../../_internal/InlinePortal";
 import { FieldTemplate } from "../FieldTemplate";
 import { HiddenFormValue } from "../../_internal/HiddenFormValue";
@@ -172,7 +173,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(
 
     // 下に余地が無ければ上へ開き、画面の端からはみ出す分は内側へ寄せる（T342）。面は引き金の隣に
     // 描いたままで、向きと横のずれだけを受け取る。
-    const { setReference: setFloatingReference, setFloating, setAnchor, floatingProps } = useInlineFloating({ open: isOpen && !disabled });
+    const { setReference: setFloatingReference, setFloating, setAnchor, floatingProps } = useInlineFloating({ open: isOpen && !disabled, watchMove: observeMove });
     const anchorRef = useMemo(() => mergeRefs(portalRef, setAnchor), [portalRef, setAnchor]);
 
     // Combine refs for the container。**毎回作り直さない** ── ref の関数が変わるたびに React は

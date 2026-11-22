@@ -58,6 +58,12 @@ export interface InlineFloatingOptions {
    * のは避けられないので、せめて余白のある側へ開く（T432 の B 案。DOM の順を変えないため）。
    */
   clipAware?: boolean;
+  /**
+   * 引き金が動いたら知らせる見張り（`_internal/observeMove` を渡す）。面を body の影の箱に描く部品だけが渡す
+   * ── 影の箱は引き金の位置を読んで fixed で置くので、スクロールしなくても引き金が動いたら測り直す必要がある。
+   * ここで import しないのは、影の箱を使わない部品（InlineDisclosure など）の束に入れないため。
+   */
+  watchMove?: (element: Element, onMove: () => void) => () => void;
 }
 
 /** 引き金の外側にある、中身を切る箱を全部重ねた範囲（画面の内側に限る）。 */
@@ -100,7 +106,7 @@ const clippingBounds = (reference: HTMLElement) => {
  * 見るのは画面（ビューポート）だけ。スクロールしない入れ物（`overflow: hidden`）による切り取りは
  * 見ない ── 面をポータルへ出さない以上、向きを変えても切り取りは解けないので。
  */
-export const useInlineFloating = ({ open, clipAware = false }: InlineFloatingOptions) => {
+export const useInlineFloating = ({ open, clipAware = false, watchMove }: InlineFloatingOptions) => {
   // 要素は state で持つ。ref の関数は、要素が付いた・外れたときに effect を張り直すため。
   const [reference, setReference] = useState<HTMLElement | null>(null);
   const [floating, setFloating] = useState<HTMLElement | null>(null);
@@ -159,13 +165,19 @@ export const useInlineFloating = ({ open, clipAware = false }: InlineFloatingOpt
     // 開くアニメーションが面を縮めて描く部品（HoverCard の scale(0.95)）は、1 回目の計測が小さく出る。
     // 変形は ResizeObserver に届かないので、終わったところで測り直す。
     floating.addEventListener("animationend", update);
+    // 影の箱（body に出す部品）は、引き金の位置を読んで fixed で置くので、引き金が動いたら測り直す。
+    // スクロールしなくても位置は変わる ── 上にある中身の高さが変わったとき（T344 と同じ形）。以前は
+    // scroll / resize / 大きさの変化しか聞いておらず、開いたまま上の中身が伸びると、面が元の位置に
+    // 残って引き金に重なった。引き金の隣に描く部品は、CSS が位置を追うので要らない
+    const stopMove = anchor && watchMove ? watchMove(anchorTarget ?? reference, update) : () => {};
     return () => {
+      stopMove();
       floating.removeEventListener("animationend", update);
       view.removeEventListener("resize", update);
       view.removeEventListener("scroll", update, true);
       observer?.disconnect();
     };
-  }, [open, reference, floating, anchorTarget, update]);
+  }, [open, reference, floating, anchor, anchorTarget, update, watchMove]);
 
   // 閉じているあいだは、既定の向きに戻しておく（次に開いた 1 フレーム目を、前回の向きで描かない）。
   const side = open ? position.side : "bottom";

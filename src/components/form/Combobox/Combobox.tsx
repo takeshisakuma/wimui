@@ -4,6 +4,7 @@ import { BaseListItem } from "../../_internal/BaseListItem";
 import { InputBase } from "../InputBase";
 import { FieldTemplate } from "../FieldTemplate";
 import { useInlineFloating } from "../../_internal/useInlineFloating";
+import { observeMove } from "../../_internal/observeMove";
 import { InlinePortal } from "../../_internal/InlinePortal";
 import { useMergedRef } from "../../../hooks/useMergedRef";
 import { useAnnounceAppearance } from "../../_internal/useAnnounce";
@@ -160,7 +161,7 @@ export const Combobox = ({
 
     // 下に余地が無ければ上へ開き、画面の端からはみ出す分は内側へ寄せる（T342）。面は引き金の隣に
     // 描いたままで、向きと横のずれだけを受け取る。
-    const { setReference: setFloatingReference, setFloating, setAnchor, floatingProps } = useInlineFloating({ open: isOpen });
+    const { setReference: setFloatingReference, setFloating, setAnchor, floatingProps } = useInlineFloating({ open: isOpen, watchMove: observeMove });
     const setAnchorRef = useMergedRef(portalRef, setAnchor);
     const setRootRef = useMergedRef(containerRef, setFloatingReference);
     // 該当なしは、ポップオーバーごと差し込む表示。文字は根に先に置いた領域で告げる（T353）
