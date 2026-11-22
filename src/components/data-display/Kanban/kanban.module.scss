@@ -200,7 +200,8 @@
 
   // 位置は floating-ui が `position: fixed` で決める（盤のスクロール領域で切れないように）
   .cardMoveMenu {
-    z-index: 10;
+    /* T430: 以前は 10 で、同じ画面の固定表示（表の見出しなど）の下に潜った。Popover と同じ層 */
+    z-index: var(--wim-z-overlay);
     min-width: 10rem;
     overflow: hidden;
     background-color: var(--wim-color-surface);
