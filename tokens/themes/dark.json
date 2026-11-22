@@ -47,8 +47,7 @@
         "value": "{pccs.gy3-5}"
       },
       "primary-soft": {
-        "$comment": "以前は primary（#055d87）と別の青 rgba(0,122,255,0.2) だった。アクセントを sf20 に揃えたので、塗りと同じ色相の 20% にする。",
-        "value": "oklch(from var(--wim-color-primary) l c h / 0.2)"
+        "value": "rgba(0, 122, 255, 0.2)"
       },
       "surface-variant-alpha": {
         "value": "rgba(255, 255, 255, 0.05)"
@@ -96,11 +95,11 @@
         "value": "{pccs.p18}"
       },
       "text-accent": {
-        "$comment": "p20（#b2b6d9）は surface-variant 上の 13% subtle で 4.02。#c3c6e1 は 4.74。フォーカス表示もこの色で、surface 上は 3:1 を超える。",
-        "value": "#c3c6e1"
+        "$comment": "lt16 (#67b1ca) は primary-soft 上 4.46:1 で AA をわずかに割るため 1 段明るいカスタム値",
+        "value": "#97cbe0"
       },
       "focus-outline": {
-        "$comment": "T270: light と同じ primary を dark の surface に置くとフォーカス表示がほぼ見えない。primary と同じ系統で明るい text-accent を使う。フォーカス表示に求める 3:1 を超える。",
+        "$comment": "T270: light と同じ primary (#055d87) は dark の surface (#393939) 上で 1.61:1 しかなく、フォーカス表示がほぼ見えなかった。primary と同じ系統で明るい text-accent を使う（surface 6.56 / surface-variant 4.66 / surface-app 8.60。フォーカス表示に求める 3:1 を超える）",
         "value": "var(--wim-color-text-accent)"
       },
       "danger": {
@@ -125,8 +124,7 @@
         "value": "{pccs.v17}"
       },
       "primary": {
-        "$comment": "light と同じ sf20。白文字 6.51:1。テーマで色相を分けない（プリセットのアクセントと同じ契約）。",
-        "value": "{pccs.sf20}"
+        "value": "{pccs.v16}"
       },
       "primary-rgb": {
         "value": "{wim.color.primary}"
@@ -187,8 +185,7 @@
         "value": "oklch(from var(--wim-color-surface-void) l c h / 0.30)"
       },
       "primary-subtle": {
-        "$comment": "sf20 は旧 v16 より明るいので、0.145 のままだと surface-app 上の知覚距離が 0.0419 になり、一番薄い success-subtle（0.0158）との比が 2.65 倍で 2.5 を超える。0.13 で surface 0.0226 / surface-app 0.0377。",
-        "value": "oklch(from var(--wim-color-primary) l c h / 0.13)"
+        "value": "oklch(from var(--wim-color-primary) l c h / 0.145)"
       },
       "danger-subtle": {
         "value": "oklch(from var(--wim-color-danger) l c h / 0.055)"

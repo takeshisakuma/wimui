@@ -426,6 +426,13 @@ const checks = [
   },
   {
     category: "lib",
+    // 既定の primary とプリセットのアクセントが同じ色になると、プリセットの片方の軸が黙って消える
+    // （2026-11-21・#1266。既定を Soft と同じ sf20 にした）。色の読みやすさのガードはどの色相でも通る。
+    name: "Preset accents stay distinct from the default primary and from each other",
+    command: "node scripts/check-preset-accents.js",
+  },
+  {
+    category: "lib",
     // 既定が opacity: 0 で、forwards のアニメーションの終わりで見えるようにすると、アニメーションが止められた
     // ときに消えたままになる（2026-10-04・T297。Tooltip / HoverCard の吹き出しが VRT に写っていなかった）。
     // 実証は `npm run prove:opacity-forwards`。
