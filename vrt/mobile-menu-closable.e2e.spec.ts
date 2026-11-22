@@ -35,7 +35,8 @@ for (const width of WIDTHS) {
             const a = await panel.boundingBox();
             await page.waitForTimeout(100);
             const b = await panel.boundingBox();
-            return !!a && !!b && a.x === b.x && a.y === b.y;
+            // 開き切った面は画面の中にある（上から出るものは y = 0、横から出るものは x = 0）
+            return !!a && !!b && a.y === b.y && a.x === b.x && a.x >= 0 && a.y >= 0;
           })
           .toBe(true);
 
