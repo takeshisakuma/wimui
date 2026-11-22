@@ -269,7 +269,12 @@
       thead th {
         position: sticky;
         top: -1px; /* Exception: Browser Rendering Fixes — sticky ヘッダのサブピクセル隙間埋め */
-        z-index: var(--wim-z-overlay);
+
+        /* 固定表示の層に置く: 本文の固定列（`--wim-z-sticky`）より 1 段上、角のセルはさらに上。
+           T429: 以前は `--wim-z-overlay`（1000）と `+ 20` で、Dropdown・Popover と同じ層に載っていた。
+           その場に描く Select の一覧（同じ 1000）や Kanban の移動先の一覧が、DOM で後ろにある
+           見出しの下に潜り、角のセル（1020）は Dialog の面（1001）より上だった */
+        z-index: calc(var(--wim-z-sticky) + 10);
         background-color: var(--wim-color-surface);
 
         --wim-table-row-bg: var(--wim-color-surface);
@@ -280,7 +285,7 @@
                     0 -2px 0 0 var(--wim-table-row-bg);
 
         &.stickyLeft {
-          z-index: calc(var(--wim-z-overlay) + 20);
+          z-index: calc(var(--wim-z-sticky) + 20);
           box-shadow: inset var(--wim-border-width-thin) 0 0 0 var(--wim-color-border),
                       inset calc(var(--wim-border-width-thin) * -1) 0 0 0 var(--wim-color-border),
                       inset 0 calc(var(--wim-border-width-thick) * -1) 0 0 var(--wim-color-border),
@@ -292,7 +297,7 @@
         }
 
         &.stickyRight {
-          z-index: calc(var(--wim-z-overlay) + 20);
+          z-index: calc(var(--wim-z-sticky) + 20);
           box-shadow: inset var(--wim-border-width-thin) 0 0 0 var(--wim-color-border),
                       inset calc(var(--wim-border-width-thin) * -1) 0 0 0 var(--wim-color-border),
                       inset 0 calc(var(--wim-border-width-thick) * -1) 0 0 var(--wim-color-border),
