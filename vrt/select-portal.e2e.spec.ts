@@ -126,6 +126,32 @@ test.describe("Lists are drawn outside an overflow: hidden box (1280px)", () => 
   }
 });
 
+test.describe("Cascader scrolls the keyboard-focused item into view (1280px)", () => {
+  test.use({ viewport: { width: 1280, height: 720 } });
+
+  // 項目を見える位置へスクロールする処理が、項目を部品の箱の中から探していて、一覧を body へ出したあと
+  // 見つからずスクロールしなくなっていた。ストーリーの一覧は短いので、高さを絞って確かめる
+  test("ArrowDown past the visible items scrolls the column", async ({ page }) => {
+    await page.goto(url("components-advanced-inputs-cascader--default"));
+    await waitForStoryReady(page);
+    await page.addStyleTag({ content: '[class*="_menu_"] { max-height: 48px !important; overflow-y: auto !important; scroll-behavior: auto !important; }' });
+    const trigger = page.getByRole("combobox").first();
+    await trigger.focus();
+    await page.keyboard.press("ArrowDown");
+    await expect(trigger).toHaveAttribute("aria-expanded", "true");
+    // 最初の列は 2 項目で、矢印キーは端で先頭へ戻る（開いた時点で 1 つ目）。1 回で 2 つ目（絞った高さの外）へ
+    // 進める。以前は合計 5 回押していて先頭で止まり、スクロールの要らない項目を測っていた
+    await page.keyboard.press("ArrowDown");
+    // 対照: 2 つ目が選ばれている
+    await expect(trigger).toHaveAttribute("aria-activedescendant", /-menu-0-option-1$/);
+
+    // 対照: 一覧の最初の列はスクロールできる（中身が絞った高さより長い）
+    const column = page.locator('[class*="_menu_"]').first();
+    expect(await column.evaluate((el) => el.scrollHeight > el.clientHeight)).toBe(true);
+    await expect.poll(() => column.evaluate((el) => el.scrollTop)).toBeGreaterThan(0);
+  });
+});
+
 test.describe("Select keeps the Tab order when its list is in the body", () => {
   test.use({ viewport: { width: 1280, height: 720 } });
 
