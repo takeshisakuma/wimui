@@ -52,7 +52,33 @@ export const computeInlineShift = (left: number, right: number, viewportWidth: n
 export interface InlineFloatingOptions {
   /** 面が開いているか。閉じているあいだは測らない。 */
   open: boolean;
+  /**
+   * 向きと横のずれを、画面ではなく「画面と、外側にある中身を切る箱（overflow が visible でない祖先）の
+   * 重なった範囲」で測る。面を body へ出さない部品（InlineDisclosure）が使う ── 出さない以上、箱で切れる
+   * のは避けられないので、せめて余白のある側へ開く（T432 の B 案。DOM の順を変えないため）。
+   */
+  clipAware?: boolean;
 }
+
+/** 引き金の外側にある、中身を切る箱を全部重ねた範囲（画面の内側に限る）。 */
+const clippingBounds = (reference: HTMLElement) => {
+  const root = reference.ownerDocument.documentElement;
+  let top = 0;
+  let left = 0;
+  let bottom = root.clientHeight;
+  let right = root.clientWidth;
+  const view = reference.ownerDocument.defaultView;
+  for (let el = reference.parentElement; el && el !== root && el !== reference.ownerDocument.body; el = el.parentElement) {
+    const style = view?.getComputedStyle(el);
+    if (!style || `${style.overflowX}${style.overflowY}` === "visiblevisible") continue;
+    const r = el.getBoundingClientRect();
+    top = Math.max(top, r.top);
+    left = Math.max(left, r.left);
+    bottom = Math.min(bottom, r.bottom);
+    right = Math.min(right, r.right);
+  }
+  return { top, left, bottom, right };
+};
 
 /**
  * 引き金の隣に描く面（Select のリストなど）の、向きと横のずれを決める（T342）。
@@ -74,7 +100,7 @@ export interface InlineFloatingOptions {
  * 見るのは画面（ビューポート）だけ。スクロールしない入れ物（`overflow: hidden`）による切り取りは
  * 見ない ── 面をポータルへ出さない以上、向きを変えても切り取りは解けないので。
  */
-export const useInlineFloating = ({ open }: InlineFloatingOptions) => {
+export const useInlineFloating = ({ open, clipAware = false }: InlineFloatingOptions) => {
   // 要素は state で持つ。ref の関数は、要素が付いた・外れたときに effect を張り直すため。
   const [reference, setReference] = useState<HTMLElement | null>(null);
   const [floating, setFloating] = useState<HTMLElement | null>(null);
@@ -99,18 +125,24 @@ export const useInlineFloating = ({ open }: InlineFloatingOptions) => {
       anchor.style.setProperty("height", `${target.height}px`);
     }
     const floatingRect = floating.getBoundingClientRect();
+    // 測る範囲。既定は画面。clipAware なら、外側の切る箱との重なり（座標は範囲の上端・左端から測り直す）
+    const bounds = clipAware
+      ? clippingBounds(reference)
+      : { top: 0, left: 0, bottom: root.clientHeight, right: root.clientWidth };
     const side = computeInlineSide({
-      referenceTop: referenceRect.top,
-      referenceBottom: referenceRect.bottom,
+      referenceTop: referenceRect.top - bounds.top,
+      referenceBottom: referenceRect.bottom - bounds.top,
       floatingHeight: floatingRect.height,
-      viewportHeight: root.clientHeight,
+      viewportHeight: bounds.bottom - bounds.top,
     });
     // いま付いているずれを引いて、「ずらす前の位置」から測る（引かないと、寄せた結果を見て
     // 「もう寄せなくてよい」と戻り、行ったり来たりする）。
     const applied = parseFloat(floating.style.getPropertyValue(SHIFT_VAR)) || 0;
-    const shiftX = Math.round(computeInlineShift(floatingRect.left - applied, floatingRect.right - applied, root.clientWidth));
+    const shiftX = Math.round(
+      computeInlineShift(floatingRect.left - applied - bounds.left, floatingRect.right - applied - bounds.left, bounds.right - bounds.left),
+    );
     setPosition((prev) => (prev.side === side && prev.shiftX === shiftX ? prev : { side, shiftX }));
-  }, [reference, floating, anchor, anchorTarget]);
+  }, [reference, floating, anchor, anchorTarget, clipAware]);
 
   useIsomorphicLayoutEffect(() => {
     if (!open || !reference || !floating) return;
