@@ -76,16 +76,17 @@
   // Responsive behavior
   @include breakpoints.down(md) {
     .body {
+      /* この幅では Sidebar（`responsive`）がドロワーになる（同じ `down(md)`）。ドロワーと暗幕を、
+         画面ではなく本文の枠（ヘッダーのすぐ下から始まる `position: relative` の箱）を基準に置く。
+         ヘッダーは暗幕に覆われず、ハンバーガーがその場で閉じるボタンになる（Navbar と同じ）。
+         `.sidebar` の枠ではなくここに置くのは、`AppShell.Body` に Sidebar を直接置く組み方でも
+         効かせるため（#1276 では枠に置き、CaptionReview で効いていなかった） */
+      --wim-sidebar-drawer-position: absolute;
+
       flex-direction: column;
     }
 
     .sidebar {
-      /* この幅では Sidebar（`responsive`）がドロワーになる（同じ `down(md)`）。
-         ドロワーと暗幕を、画面ではなく本文の枠（`.body`。ヘッダーのすぐ下から始まる）を基準に
-         置く。ヘッダーは暗幕に覆われず、ハンバーガーがその場で閉じるボタンになる（Navbar と同じ）。
-         以前（#1269）は画面基準のまま暗幕がヘッダーも覆い、閉じ方が暗幕を押すことだけだった */
-      --wim-sidebar-drawer-position: absolute;
-
       /* 枠に z-index があると重なりの文脈ができ、中のドロワー（`--wim-z-drawer`）と暗幕が
          枠の 90 に閉じ込められて、本文の上に出られない */
       z-index: auto;

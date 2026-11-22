@@ -123,6 +123,26 @@ const [mobileOpen, setMobileOpen] = useState(false);
 </>
 ```
 
+### <T k="doc.sidebar_drawer_container" />
+
+<p><T k="doc.sidebar_drawer_container_desc" /></p>
+
+```tsx
+<>
+  <Header>{/* … HamburgerMenu … */}</Header>
+
+  <Box
+    position="relative"
+    style={{ "--wim-sidebar-drawer-position": "absolute" } as React.CSSProperties}
+  >
+    <Sidebar mobileOpen={mobileOpen} onOverlayClick={() => setMobileOpen(false)}>
+      <Sidebar.Content>{/* Sidebar items */}</Sidebar.Content>
+    </Sidebar>
+    {/* page content */}
+  </Box>
+</>
+```
+
 <Docgen componentName="Sidebar" section="props" />
 
 <Docgen componentName="Sidebar" section="tokens" />

@@ -9004,6 +9004,8 @@
       "scrollprogress_usage_2": "Scroll monitoring within a specific container",
       "sidebar_mobile_drawer": "Mobile Drawer",
       "sidebar_mobile_drawer_desc": "With responsive (default: true), the Sidebar becomes an off-canvas drawer below the md breakpoint. Control it with mobileOpen and close it with onOverlayClick. Use HamburgerMenu with visibleBelow as the toggle inside your Header.",
+      "sidebar_drawer_container": "Drawer below your own header",
+      "sidebar_drawer_container_desc": "Inside AppShell the drawer and its overlay start below the header, so the header stays uncovered and the hamburger turns into the close button. Outside AppShell they are placed against the whole screen and cover your header. To get the AppShell behaviour in your own layout, give the box that sits below the header position: relative and set the CSS variable --wim-sidebar-drawer-position to absolute on it; the drawer and the overlay are then placed inside that box.",
       "simplegrid_a11y_desc": "This is a structural container: it renders a plain element, adds no role, no accessible name and no keyboard handling, and therefore contributes nothing to the accessibility tree. That is intentional — layout should not be announced. Two things still matter: the DOM order is the reading order, so arrange children in the order they should be heard rather than relying on visual positioning, and any meaning implied by the arrangement has to exist in the content itself.",
       "simplegrid_anatomy_content": "The collection of identical grid items being distributed across the responsive tracks.",
       "simplegrid_anatomy_content_label": "Grid Items",
