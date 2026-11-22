@@ -26,8 +26,8 @@ const cases: Case[] = [
   { name: "MultiSelect", id: "components-selection-controls-multiselect--default", surface: 'ul[role="listbox"]', opener: DEFAULT_OPENER },
   { name: "Combobox", id: "components-selection-controls-combobox--default", surface: '[class*="_dropdown_"]', opener: DEFAULT_OPENER },
   { name: "Cascader", id: "components-advanced-inputs-cascader--default", surface: '[class*="_dropdown_"]', opener: DEFAULT_OPENER },
-  { name: "TreeSelect", id: "components-advanced-inputs-treeselect--default", surface: '#storybook-root [class*="_dropdown_"]', opener: DEFAULT_OPENER },
-  { name: "DatePicker", id: "components-pickers-sliders-datepicker--default", surface: '#storybook-root [class*="_dropdown_"]', opener: DEFAULT_OPENER },
+  { name: "TreeSelect", id: "components-advanced-inputs-treeselect--default", surface: '[class*="_dropdown_"]', opener: DEFAULT_OPENER },
+  { name: "DatePicker", id: "components-pickers-sliders-datepicker--default", surface: '[class*="_dropdown_"]', opener: DEFAULT_OPENER },
   { name: "ModelSelector", id: "components-ai-modelselector--default", surface: '[class*="_dropdownWrapper_"]', opener: DEFAULT_OPENER },
   { name: "PhoneInput", id: "components-basic-inputs-phoneinput--default", surface: '[class*="_dropdown_"]', opener: "#storybook-root [role=combobox]" },
   // 入力ではないが、面を引き金の隣に CSS で置くのは同じ（T342 の対象外だったもの）

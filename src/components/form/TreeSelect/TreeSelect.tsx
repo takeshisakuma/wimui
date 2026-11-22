@@ -1,11 +1,11 @@
 import React, { useState, useRef, useEffect, useId, useMemo, forwardRef } from "react";
 import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
-import { Transition } from "../../layout/Transition/Transition";
 import { TreeView, TreeViewNode } from "../../data-display/TreeView/TreeView";
 import { InputBase } from "../InputBase";
 import { FocusTrap } from "../../overlay/FocusTrap/FocusTrap";
 import { useInlineFloating } from "../../_internal/useInlineFloating";
+import { InlinePortal } from "../../_internal/InlinePortal";
 import styles from "./tree-select.module.scss";
 import { FieldTemplate } from "../FieldTemplate";
 import { HiddenFormValue } from "../../_internal/HiddenFormValue";
@@ -131,6 +131,7 @@ export const TreeSelect = forwardRef<HTMLDivElement, TreeSelectProps>(({
     multiple ? [] : "",
   );
   const containerRef = useRef<HTMLDivElement>(null);
+  const portalRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLDivElement>(null);
 
   const isControlled = value !== undefined;
@@ -138,9 +139,12 @@ export const TreeSelect = forwardRef<HTMLDivElement, TreeSelectProps>(({
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Node;
       if (
         containerRef.current &&
-        !containerRef.current.contains(event.target as Node)
+        !containerRef.current.contains(target) &&
+        // 一覧は body の影の箱にある（T432）。ここも内側に数える
+        !portalRef.current?.contains(target)
       ) {
         setIsOpen(false);
       }
@@ -153,11 +157,11 @@ export const TreeSelect = forwardRef<HTMLDivElement, TreeSelectProps>(({
     if (isOpen) {
       // Move focus to the search input if searchable, otherwise to the tree
       const timer = setTimeout(() => {
-        const searchInput = containerRef.current?.querySelector('[data-testid="tree-view-search-input"]') as HTMLElement;
+        const searchInput = portalRef.current?.querySelector('[data-testid="tree-view-search-input"]') as HTMLElement;
         if (searchInput) {
           searchInput.focus();
         } else {
-          const tree = containerRef.current?.querySelector('[data-testid="tree-view-root"]') as HTMLElement;
+          const tree = portalRef.current?.querySelector('[data-testid="tree-view-root"]') as HTMLElement;
           tree?.focus();
         }
       }, 100);
@@ -274,7 +278,8 @@ export const TreeSelect = forwardRef<HTMLDivElement, TreeSelectProps>(({
   const RootComponent = asChild ? Slot : "div";
   // 下に余地が無ければ上へ開き、画面の端からはみ出す分は内側へ寄せる（T342）。面は引き金の隣に
   // 描いたままで、向きと横のずれだけを受け取る。
-  const { setReference: setFloatingReference, setFloating, floatingProps } = useInlineFloating({ open: isOpen && !disabled });
+  const { setReference: setFloatingReference, setFloating, setAnchor, floatingProps } = useInlineFloating({ open: isOpen && !disabled });
+  const setAnchorRef = useMergedRef(portalRef, setAnchor);
   const setContainerRef = useMergedRef(containerRef, ref, setFloatingReference);
 
   return (
@@ -338,9 +343,10 @@ export const TreeSelect = forwardRef<HTMLDivElement, TreeSelectProps>(({
           </div>
         </InputBase>
 
-        <Transition
-          show={isOpen && !disabled}
-          preset="fade"
+        {/* 一覧は body へ出す（T432）。外側の overflow の箱で切れないように。フォーカスは FocusTrap で
+            一覧の中に閉じ込めるので、DOM の位置が変わっても Tab の順は壊れない */}
+        <InlinePortal open={isOpen && !disabled} transition="fade" anchorRef={setAnchorRef}>
+        <div
           className={styles.dropdown}
           ref={setFloating}
           {...floatingProps}
@@ -386,7 +392,8 @@ export const TreeSelect = forwardRef<HTMLDivElement, TreeSelectProps>(({
               </div>
             </FocusTrap>
           </div>
-        </Transition>
+        </div>
+        </InlinePortal>
       </RootComponent>
       <HiddenFormValue name={name} value={currentValue} disabled={disabled} onReset={() => { if (!isControlled) setInternalValue(multiple ? [] : ""); }} />
     </FieldTemplate>
