@@ -129,18 +129,6 @@
     }
   }
 
-  /* body に置く影の箱（T432）。位置と大きさは useInlineFloating が引き金に合わせて入れる。
-     一覧（.dropdown）はこの中に、引き金の隣に描いていたときと同じ CSS で置く */
-  .anchor {
-    position: fixed;
-    z-index: var(--wim-z-overlay);
-    pointer-events: none;
-
-    > .dropdown {
-      pointer-events: auto;
-    }
-  }
-
   .dropdown {
     position: absolute;
     top: calc(100% + var(--wim-spacing-xs));

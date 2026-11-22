@@ -2,8 +2,8 @@ import React, { useState, useRef, useEffect, useId, forwardRef } from "react";
 import classNames from "classnames";
 import { FieldTemplate } from "../FieldTemplate/FieldTemplate";
 import { Icon } from "../../media/Icon/Icon";
-import { Transition } from "../../layout/Transition/Transition";
 import { useInlineFloating } from "../../_internal/useInlineFloating";
+import { InlinePortal } from "../../_internal/InlinePortal";
 import { useMergedRef } from "../../../hooks/useMergedRef";
 import styles from "./phone-input.module.scss";
 import { ChevronDownIcon } from "@/icon";
@@ -113,15 +113,19 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
     const [activeIndex, setActiveIndex] = useState(-1);
     const containerRef = useRef<HTMLDivElement>(null);
     const listRef = useRef<HTMLUListElement>(null);
+    const portalRef = useRef<HTMLDivElement>(null);
     // 頭文字の検索（typeahead）。続けて打った文字をためて、間が空いたら捨てる。
     const typeahead = useRef<{ text: string; timer: ReturnType<typeof setTimeout> | null }>({ text: "", timer: null });
 
     // Handle click outside
     useEffect(() => {
       const handleClickOutside = (event: MouseEvent) => {
+        const target = event.target as Node;
         if (
           containerRef.current &&
-          !containerRef.current.contains(event.target as Node)
+          !containerRef.current.contains(target) &&
+          // 国の一覧は body の影の箱にある（T432）。ここも内側に数える
+          !portalRef.current?.contains(target)
         ) {
           setIsOpen(false);
         }
@@ -266,7 +270,8 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
 
     // 下に余地が無ければ上へ開き、画面の端からはみ出す分は内側へ寄せる（T342）。面は引き金の隣に
     // 描いたままで、向きと横のずれだけを受け取る。
-    const { setReference: setFloatingReference, setFloating, floatingProps } = useInlineFloating({ open: isOpen });
+    const { setReference: setFloatingReference, setFloating, setAnchor, setAnchorTarget, floatingProps } = useInlineFloating({ open: isOpen });
+    const setAnchorRef = useMergedRef(portalRef, setAnchor);
     const setRootRef = useMergedRef(containerRef, setFloatingReference);
 
     return (
@@ -291,7 +296,8 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
           data-testid="phone-input-root"
           {...props}
         >
-          <div className={styles.countryWrapper}>
+          {/* 国の一覧の位置の基準（top: calc(100% + 間隔) の 100%）は、この箱。影の箱もここに重ねる（T432） */}
+          <div className={styles.countryWrapper} ref={setAnchorTarget}>
             <button
               type="button"
               // 名前は aria-label、値は中の文字（国番号）。
@@ -328,7 +334,9 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
               />
             </button>
 
-            <Transition show={isOpen} preset="fade" className={styles.dropdown} ref={setFloating} {...floatingProps}>
+            {/* 国の一覧は body へ出す（T432）。外側の overflow の箱で切れないように */}
+            <InlinePortal open={isOpen} transition="fade" anchorRef={setAnchorRef}>
+            <div className={styles.dropdown} ref={setFloating} {...floatingProps}>
               {/* リストにも名前を付ける（引き金と同じ）。名前の無い listbox は axe の aria-input-field-name（serious）。
                   フォーカスは引き金に残すので、項目は Tab の停止点にしない（押してもフォーカスを奪わないよう、
                   mousedown の既定の動作を止める）。 */}
@@ -368,7 +376,8 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
                   </li>
                 ))}
               </ul>
-            </Transition>
+            </div>
+            </InlinePortal>
           </div>
 
           <div className={styles.divider} aria-hidden="true" />

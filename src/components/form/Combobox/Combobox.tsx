@@ -4,6 +4,7 @@ import { BaseListItem } from "../../_internal/BaseListItem";
 import { InputBase } from "../InputBase";
 import { FieldTemplate } from "../FieldTemplate";
 import { useInlineFloating } from "../../_internal/useInlineFloating";
+import { InlinePortal } from "../../_internal/InlinePortal";
 import { useMergedRef } from "../../../hooks/useMergedRef";
 import { useAnnounceAppearance } from "../../_internal/useAnnounce";
 import styles from "./combobox.module.scss";
@@ -77,6 +78,7 @@ export const Combobox = ({
   const [activeIndex, setActiveIndex] = useState(-1);
   const [isKeyboardNavigating, setIsKeyboardNavigating] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const portalRef = useRef<HTMLDivElement>(null);
   const generatedId = useId();
   const id = customId || `wim-combobox-${generatedId}`;
   const listboxId = `${id}-list`;
@@ -93,9 +95,12 @@ export const Combobox = ({
   // 外部クリックで閉じる
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Node;
       if (
         containerRef.current &&
-        !containerRef.current.contains(event.target as Node)
+        !containerRef.current.contains(target) &&
+        // 一覧は body の影の箱にある（T432）。ここも内側に数える
+        !portalRef.current?.contains(target)
       ) {
         setIsOpen(false);
       }
@@ -155,7 +160,8 @@ export const Combobox = ({
 
     // 下に余地が無ければ上へ開き、画面の端からはみ出す分は内側へ寄せる（T342）。面は引き金の隣に
     // 描いたままで、向きと横のずれだけを受け取る。
-    const { setReference: setFloatingReference, setFloating, floatingProps } = useInlineFloating({ open: isOpen });
+    const { setReference: setFloatingReference, setFloating, setAnchor, floatingProps } = useInlineFloating({ open: isOpen });
+    const setAnchorRef = useMergedRef(portalRef, setAnchor);
     const setRootRef = useMergedRef(containerRef, setFloatingReference);
     // 該当なしは、ポップオーバーごと差し込む表示。文字は根に先に置いた領域で告げる（T353）
     const showNoResults = isOpen && filteredOptions.length === 0;
@@ -225,8 +231,10 @@ export const Combobox = ({
               {...props}
             />
           </InputBase>
+        {/* 一覧と「見つからない」は body へ出す（T432）。外側の overflow の箱で切れないように */}
+        <InlinePortal open={isOpen} anchorRef={setAnchorRef}>
         {isOpen && filteredOptions.length > 0 && (
-          <div className={styles.dropdown} ref={setFloating} {...floatingProps}>
+          <div className={styles.dropdown} data-keyboard-nav={isKeyboardNavigating} ref={setFloating} {...floatingProps}>
             <ul
               id={listboxId}
               className={styles.list}
@@ -264,6 +272,7 @@ export const Combobox = ({
             </div>
           </div>
         )}
+        </InlinePortal>
       </div>
     </FieldTemplate>
   );

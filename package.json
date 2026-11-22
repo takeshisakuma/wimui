@@ -204,7 +204,7 @@
         "react/jsx-runtime"
       ],
       "gzip": true,
-      "limit": "98 kB"
+      "limit": "99.5 kB"
     },
     {
       "name": "wimui/form/rich-text-editor (gzip, Tiptap は peer)",

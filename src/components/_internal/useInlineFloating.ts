@@ -81,6 +81,9 @@ export const useInlineFloating = ({ open }: InlineFloatingOptions) => {
   // 面を body へ出す部品（T432）は、引き金と同じ位置と大きさの「影の箱」を body に置き、面はその中に
   // いまの CSS のまま描く。影の箱を渡さない部品の動きは変わらない。
   const [anchor, setAnchor] = useState<HTMLElement | null>(null);
+  // 影の箱を重ねる先。既定は引き金（reference）。面の CSS の基準（top: 100% の 100%）が、引き金とは別の
+  // 要素だった部品（PhoneInput は国のボタンの箱）は、その要素を渡す。渡さないと位置がずれる
+  const [anchorTarget, setAnchorTarget] = useState<HTMLElement | null>(null);
   const [position, setPosition] = useState<{ side: InlineFloatingSide; shiftX: number }>({ side: "bottom", shiftX: 0 });
 
   const update = useCallback(() => {
@@ -89,10 +92,11 @@ export const useInlineFloating = ({ open }: InlineFloatingOptions) => {
     const referenceRect = reference.getBoundingClientRect();
     // 影の箱を、面を測る前に引き金へ重ねる（state を経由すると 1 フレーム遅れ、面を古い位置で測る）
     if (anchor) {
-      anchor.style.setProperty("top", `${referenceRect.top}px`);
-      anchor.style.setProperty("left", `${referenceRect.left}px`);
-      anchor.style.setProperty("width", `${referenceRect.width}px`);
-      anchor.style.setProperty("height", `${referenceRect.height}px`);
+      const target = anchorTarget ? anchorTarget.getBoundingClientRect() : referenceRect;
+      anchor.style.setProperty("top", `${target.top}px`);
+      anchor.style.setProperty("left", `${target.left}px`);
+      anchor.style.setProperty("width", `${target.width}px`);
+      anchor.style.setProperty("height", `${target.height}px`);
     }
     const floatingRect = floating.getBoundingClientRect();
     const side = computeInlineSide({
@@ -106,7 +110,7 @@ export const useInlineFloating = ({ open }: InlineFloatingOptions) => {
     const applied = parseFloat(floating.style.getPropertyValue(SHIFT_VAR)) || 0;
     const shiftX = Math.round(computeInlineShift(floatingRect.left - applied, floatingRect.right - applied, root.clientWidth));
     setPosition((prev) => (prev.side === side && prev.shiftX === shiftX ? prev : { side, shiftX }));
-  }, [reference, floating, anchor]);
+  }, [reference, floating, anchor, anchorTarget]);
 
   useIsomorphicLayoutEffect(() => {
     if (!open || !reference || !floating) return;
@@ -119,6 +123,7 @@ export const useInlineFloating = ({ open }: InlineFloatingOptions) => {
     const observer = typeof ResizeObserver !== "undefined" ? new ResizeObserver(update) : null;
     observer?.observe(floating);
     observer?.observe(reference);
+    if (anchorTarget) observer?.observe(anchorTarget);
     // 開くアニメーションが面を縮めて描く部品（HoverCard の scale(0.95)）は、1 回目の計測が小さく出る。
     // 変形は ResizeObserver に届かないので、終わったところで測り直す。
     floating.addEventListener("animationend", update);
@@ -128,7 +133,7 @@ export const useInlineFloating = ({ open }: InlineFloatingOptions) => {
       view.removeEventListener("scroll", update, true);
       observer?.disconnect();
     };
-  }, [open, reference, floating, update]);
+  }, [open, reference, floating, anchorTarget, update]);
 
   // 閉じているあいだは、既定の向きに戻しておく（次に開いた 1 フレーム目を、前回の向きで描かない）。
   const side = open ? position.side : "bottom";
@@ -141,6 +146,8 @@ export const useInlineFloating = ({ open }: InlineFloatingOptions) => {
     setFloating,
     /** body へ出す影の箱に渡す ref（面を body へ出す部品だけ）。 */
     setAnchor,
+    /** 影の箱を重ねる先（既定は引き金）。面の CSS の基準が引き金と別の要素だった部品だけが渡す。 */
+    setAnchorTarget,
     /** 面に付ける属性と CSS 変数。 */
     floatingProps: {
       "data-side": side,
