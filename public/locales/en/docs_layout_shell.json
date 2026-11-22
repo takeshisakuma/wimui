@@ -121,6 +121,8 @@
     "header_scenario_2": "Contextual Toolbars: Creating sticky action bars for specific tasks that follow the user during scrolling.",
     "header_sticky": "Fixed/Sticky Header",
     "header_sticky_desc": "Using sticky or fixed properties allows the header to follow as you scroll.",
+    "header_narrow": "Narrow screens",
+    "header_narrow_desc": "When the sections do not fit on one line, the last section moves to the next row and stays aligned to the right, instead of squeezing the text inside each section onto several lines. On screens wide enough for everything, the header stays a single row. What to hide or fold on a phone is still a decision for the screen: keep the row short and move secondary text out of the header when it is not needed there.",
     "header_title": "Header section for layout top and primary navigation",
     "header_variants": "Variants",
     "pageheader_intro": "PageHeader is the head of a page: breadcrumb, title, status, description, actions and tabs, in a fixed order and spacing. The title is always the page's h1 at one size.",

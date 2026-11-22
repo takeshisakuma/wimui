@@ -121,6 +121,8 @@
     "header_scenario_2": "Barras de Ferramentas Contextuais: Criando barras de ação fixas para tarefas específicas que acompanham o usuário durante a rolagem.",
     "header_sticky": "Cabeçalho Fixo/Aderente",
     "header_sticky_desc": "Usar as propriedades sticky ou fixed permite que o cabeçalho acompanhe conforme você rola a página.",
+    "header_narrow": "Telas estreitas",
+    "header_narrow_desc": "Quando as seções não cabem em uma linha, a última seção passa para a linha seguinte e continua alinhada à direita, em vez de espremer o texto de cada seção em várias linhas. Em telas largas o bastante para tudo, o cabeçalho continua em uma única linha. O que esconder ou recolher no celular continua sendo uma decisão da tela: mantenha a linha curta e tire do cabeçalho o texto secundário que não precisa estar ali.",
     "header_title": "Seção de cabeçalho para o topo do layout e navegação principal",
     "header_variants": "Variantes",
     "pageheader_intro": "PageHeader é o topo de uma página: trilha, título, status, descrição, ações e abas, em ordem e espaçamento fixos. O título é sempre o h1 da página, em um único tamanho.",
