@@ -1,5 +1,21 @@
 # wimui
 
+## 0.85.0
+
+### Minor Changes
+
+- 3610b3e: `DatePicker`（`DateRangePicker` を含む）の暦と、`TreeSelect` の一覧も、body に描くようにした（`Select` などと同じ）。外側に `overflow` で中身を切る箱があっても切れない。見た目の位置は変わらない。どちらの面も開くとフォーカスを面の中に閉じ込める（`role="dialog"`）ので、Tab の順は変わらず、Escape で面だけを閉じて引き金へ戻る（`Dialog` の中に置いても同じ）。
+
+  **DOM の上の位置が変わる**: 面（`role="dialog"`）は、部品の要素の中ではなく body の末尾にある。利用者のテストで、部品の要素の中から日付や木の項目を探している箇所は、`screen` から探す形にする必要がある。
+
+- ef45374: `Menubar` のメニューも、body に描くようにした（`Select` などと同じ）。外側に `overflow` で中身を切る箱があっても、メニューが切れない。見た目の位置（`align="end"` の右寄せを含む）と、キーボードの操作（矢印キーでの隣のメニューへの移動・Tab で閉じて次へ進む・Escape で引き金へ戻る）は変わらない。
+
+  **DOM の上の位置が変わる**: メニュー（`role="menu"`）は、部品の要素の中ではなく body の末尾にある。利用者のテストで、部品の要素の中から項目を探している箇所は、`screen` から探す形にする必要がある。
+
+### Patch Changes
+
+- 2eac436: body に描く一覧・暦・メニュー（`Select`・`MultiSelect`・`Combobox`・`PhoneInput`・`ModelSelector`・`Cascader`・`DatePicker`・`TreeSelect`・`Menubar`）が、開いたまま引き金の上の中身の高さが変わったとき（スクロールせずに引き金が動いたとき）にも、引き金についていくようにした。これまでは元の位置に残り、引き金に重なった。
+
 ## 0.84.0
 
 ### Minor Changes
