@@ -2,7 +2,9 @@
 
 @layer component {
   .overlay {
-    position: fixed;
+    /* 既定は画面基準。AppShell は狭い幅で `absolute` を渡し、本文の枠（ヘッダーの下）を基準にする。
+       ヘッダーを暗幕で覆わず、ハンバーガーがその場で閉じるボタンになるように（Navbar と同じ挙動） */
+    position: var(--wim-sidebar-drawer-position, fixed);
     inset: 0;
     z-index: var(--wim-z-mask);
     background-color: var(--wim-color-overlay-sidebar);
@@ -67,15 +69,15 @@
 
     &.responsive {
       @include breakpoints.down(md) {
-        position: fixed;
+        position: var(--wim-sidebar-drawer-position, fixed); /* 上の .overlay と同じ */
         top: 0;
         bottom: 0;
         left: calc(-1 * var(--wim-sidebar-width));
         z-index: var(--wim-z-drawer);
 
-        /* 閉じる手段は暗幕を押すことだけなので、画面がサイドバーより狭くても暗幕の帯を残す。
-           上限が無いと 256px の画面で 260px のドロワーが画面を覆い、押す場所が無くなった
-           （暗幕はヘッダーも覆う。#1269）。帯の幅はヘッダーの高さと同じ */
+        /* 画面がサイドバーより狭くても、暗幕の帯を残す。上限が無いと 256px の画面で 260px の
+           ドロワーが画面を覆い、AppShell の外で使う（暗幕が画面全体を覆う）とき押す場所が無くなる
+           （#1272）。帯の幅はヘッダーの高さと同じ */
         max-width: calc(100vw - var(--wim-height-xl));
 
         &.mobile-open {
