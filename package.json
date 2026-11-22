@@ -453,6 +453,7 @@
     "check:component-slop": "node scripts/check-component-slop.js",
     "check:focus-indicator": "node scripts/check-focus-indicator.js",
     "check:radius-tokens": "node scripts/check-radius-tokens.js",
+    "check:preset-accents": "node scripts/check-preset-accents.js",
     "check:opacity-forwards": "node scripts/check-opacity-forwards.js",
     "judge:slop": "node scripts/judge-slop.mjs",
     "prove:slop": "node scripts/prove-slop-guard.mjs",
@@ -460,6 +461,7 @@
     "prove:focus-indicator": "node scripts/prove-focus-indicator.mjs",
     "prove:breakpoints": "node scripts/prove-breakpoints.mjs",
     "prove:radius-tokens": "node scripts/prove-radius-tokens.mjs",
+    "prove:preset-accents": "node scripts/prove-preset-accents.mjs",
     "prove:opacity-forwards": "node scripts/prove-opacity-forwards.mjs",
     "prove:vrt-update-scope": "node scripts/prove-vrt-update-scope.mjs",
     "prove:prop-api": "node scripts/prove-prop-api.mjs",
@@ -802,7 +804,8 @@
       "node scripts/check-breakpoints.js"
     ],
     "tokens/**/*.json": [
-      "node scripts/check-contrast.js"
+      "node scripts/check-contrast.js",
+      "node scripts/check-preset-accents.js"
     ],
     "src/styles/_token-common.scss": [
       "node scripts/check-contrast.js"

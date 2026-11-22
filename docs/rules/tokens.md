@@ -93,6 +93,8 @@ R_outer ≈ R_inner + S
 - **`npm run check:radius-tokens` が、値トークンを直に使った角丸を落とします**（`audit:lib` / lint-staged。SCSS の `border-radius`、mixin の `$radius:`、TSX の `borderRadius`）。prop のキーが値スケールそのものの場合（上の例外）は、同じ行か直上のコメントに `radius-value-ok: <理由>` を書きます。**`sm` 固定の内側は検査できない**ので、役割トークンの面の中に `sm` を置いたら、プリセットを当てて computed style で確かめてください。
 - **ピル形（`--wim-radius-full`）の部品は Badge と Chip**。Tag は角のある札で `component`。
 
+**既定のアクセント（`primary`）は、ユーザーが決める。** 色の読みやすさのガード（`check:contrast` など）はどの色相でも通るので、ブランドの色を変える理由にも止める理由にもならない。変えるならユーザーに確かめる（2026-11-21 の #1266 で別の AI が紫にし、0.80.1 で公開されたあと青に戻した）。**プリセットのアクセント（Soft / Bold）は、既定とも互いとも違う色にする** ── 同じ色だとプリセットが角丸だけになる。`npm run check:preset-accents` が、OKLab 距離 0.05 未満の組を落とす（`audit:lib` / lint-staged の `tokens/**/*.json`。実証は `npm run prove:preset-accents`）。
+
 ## シャドウ（Shadow）の設計指針
 
 浮遊・モーダル面には役割ベースのエイリアストークンを使用してください。静的な浮き上がり（カード、パネル等）や軽いインタラクションのシャドウには値ベース（`--wim-shadow-xs/sm/md/lg`）を直接使用してかまいません。
