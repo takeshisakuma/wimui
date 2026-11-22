@@ -270,7 +270,7 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
 
     // 下に余地が無ければ上へ開き、画面の端からはみ出す分は内側へ寄せる（T342）。面は引き金の隣に
     // 描いたままで、向きと横のずれだけを受け取る。
-    const { setReference: setFloatingReference, setFloating, setAnchor, floatingProps } = useInlineFloating({ open: isOpen });
+    const { setReference: setFloatingReference, setFloating, setAnchor, setAnchorTarget, floatingProps } = useInlineFloating({ open: isOpen });
     const setAnchorRef = useMergedRef(portalRef, setAnchor);
     const setRootRef = useMergedRef(containerRef, setFloatingReference);
 
@@ -296,7 +296,8 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
           data-testid="phone-input-root"
           {...props}
         >
-          <div className={styles.countryWrapper}>
+          {/* 国の一覧の位置の基準（top: calc(100% + 間隔) の 100%）は、この箱。影の箱もここに重ねる（T432） */}
+          <div className={styles.countryWrapper} ref={setAnchorTarget}>
             <button
               type="button"
               // 名前は aria-label、値は中の文字（国番号）。
