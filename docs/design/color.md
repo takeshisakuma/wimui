@@ -15,12 +15,12 @@ WIM UI のカラー基盤は PCCS（Practical Color Co-ordinate System） に基
 
 | トーン | 略称 | 特徴 | 用途例 |
 |--------|------|------|--------|
-| Vivid | `v` | 最高彩度、鮮やか | ライトの danger / warning / info 塗りなど |
+| Vivid | `v` | 最高彩度、鮮やか | ライトの primary / danger / warning / info 塗り、ダークの primary など |
 | Bright | `b` | 明るく鮮やか | ダークモード Accent、Avatar |
 | Strong | `s` | やや暗く力強い | success 塗り（白文字 AA 用）。テキスト用の一段暗いトーンにも使う |
 | Deep | `dp` | 深く落ち着いた色 | 強調背景 |
 | Light | `lt` | 明るく柔らか | ホバー状態、淡いアクセント |
-| Soft | `sf` | くすんだ柔らかさ | 既定の primary 塗り（`sf20`） |
+| Soft | `sf` | くすんだ柔らかさ | 控えめな装飾 |
 | Dull | `d` | 渋い落ち着き | 重厚な UI |
 | Dark | `dk` | 暗いトーン | ダークモード背景 |
 | Pale | `p` | パステル調 | チャットバブル、薄い背景 |
@@ -36,13 +36,13 @@ WIM UI のカラー基盤は PCCS（Practical Color Co-ordinate System） に基
 
 | 意味 | トークン | ライトモード | ダークモード |
 |------|----------|-------------|-------------|
-| Primary | `--wim-color-primary` | `sf20` (#5c5791) | `sf20` (#5c5791) |
+| Primary | `--wim-color-primary` | `v16` (#055d87) | `v16` (#055d87) |
 | Danger | `--wim-color-danger` | `v1` (#d40045) | `lt2` (#fb7482) |
 | Success | `--wim-color-success` | `s12` (#28853f) | `s12` (#28853f) |
 | Warning | `--wim-color-warning` | `v6` (#ff7f00) | `v7` (#ffcc00) |
 | Info | `--wim-color-info` | `v18` (#0f218b) | `v17` (#093f86) |
 
-ライトの intent 塗りは原則 Vivid。primary は Soft（`sf20`）、success は白文字の AA のため一段暗いトーン、という例外がある。ダークは背景との差のため Light / Vivid へ切り替える（danger は `lt2`、warning は `v7`）。primary は両テーマとも同じ `sf20`。
+ライトの intent 塗りは原則 Vivid。success だけ Strong（`s12`）で、solid 上の白文字 AA を確保する。ダークは背景との差のため Light / Vivid へ切り替える（danger は `lt2`、warning は `v7`）。
 
 **インテント色は塗り専用。** テキストに使うと WCAG AA を満たさない組合せが多い
 （例: warning `#ff7f00` は白背景でも約 2.5:1）。テキストには次の `text-*` トークンを使う。
@@ -50,7 +50,7 @@ outline/subtle バリアントの文字色も intents SSOT の `text` ロール�
 
 | 用途 | トークン | ライト | ダーク |
 |------|----------|--------|--------|
-| アクセントテキスト（primary 系） | `--wim-color-text-accent` | `dk20` (#312c4c) | #c3c6e1 |
+| アクセントテキスト（primary 系） | `--wim-color-text-accent` | `dp16` (#04436e) | #97cbe0 |
 | 成功テキスト | `--wim-color-text-success` | `dk12` (#355935) | #b7e3b6 |
 | 警告テキスト | `--wim-color-text-warning` | `dk6` (#6b4919) | #ffda7a |
 | 情報テキスト | `--wim-color-text-info` | = info | `p18` (#b3cee3) |

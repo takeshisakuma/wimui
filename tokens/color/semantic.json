@@ -13,8 +13,7 @@
         "value": "{pccs.v6}"
       },
       "primary": {
-        "$comment": "Soft の紫 sf20（#5c5791）。旧 v16（#055d87）はボタンとフォーカスにしか出ず、無彩色の地の中で青だけが浮いていた。白文字は 6.51:1。角丸は変えない（プリセット soft の角は使わない）。dark も同じ値（themes/dark.json）。",
-        "value": "{pccs.sf20}"
+        "value": "{pccs.v16}"
       },
       "line": {
         "$comment": "T104: 枠・区切り線・トラック・ドットに使う灰色。**旧名は `secondary`** で、2026-04-08 に MUI 由来の紫（#9c27b0）から PCCS へ一括変換された際、`text-secondary` / `border-secondary` といった『階層としてのセカンダリ』の兄弟に引きずられて灰色になった経緯を持つ（理由の記録は残っていない）。以後 `secondary` intent が廃止され（T101 ②）、この名前は語彙の中に参照先を失ったので実態に合わせて改名した。**`neutral-fill` と統合してはいけない**: dark では分岐しており（line は #b6b6b6 のまま / neutral-fill は #575757）、surface-variant 上の知覚距離は 0.3487 対 0.0292。1px の枠やスピナーの線を 0.0292 で描くとダークでほぼ消える。line = 両テーマで見えることを優先した線・マーク用、neutral-fill = サーフェスに静かに座る面用。**`border` とも揃えない**（2026-11-21）。パネルの枠を静かにしたあとも line は gy7-5 のまま。入力欄は 1px の線だけが合図なので、border（light #d0d0d0）に寄せると消える。light での border との OKLab 距離は 0.081。",
@@ -86,8 +85,8 @@
         "value": "{wim.color.info}"
       },
       "text-accent": {
-        "$comment": "T45: 塗り色をそのまま文字にすると subtle の上で AA を割る。primary を sf20（#5c5791）にしたあと、sf20 自身は 13% の subtle をページ（#dcdcdc）に敷いた面で 4.03。同じ色相の dk20（#312c4c）は 8.15。",
-        "value": "{pccs.dk20}"
+        "$comment": "T45: danger/success/warning は塗り色より 1 段暗い専用のテキスト色を持つのに、accent だけ primary をそのまま指していた。primary (v16) は subtle 塗り (15%) をページ上に敷いた面で 4.38 と AA を割る（Badge/Tag/Chip の primary+subtle）。他 intent と同じ規則で dp16 へ＝6.29",
+        "value": "{pccs.dp16}"
       },
       "border": {
         "$comment": "パネルの枠。階層はページの段（surface-app）が担うので、枠は段より静かにする。#d0d0d0 は白カードとの OKLab 距離 0.142（旧 gy7-5 #b6b6b6 は 0.224）、ページ #dcdcdc との距離は 0.037（旧は 0.146）。PCCS の隣の段は gy8-5（ページより薄い）と gy7-5（枠が段より強い）しか無く、間が無いのでカスタム値。入力の枠は line（#b6b6b6）のまま。dark は themes/dark.json。",
@@ -240,8 +239,7 @@
         "value": "{pccs.gy7-5}"
       },
       "primary-fill": {
-        "$comment": "light は primary と同じ sf20。dark は面寄り（themes/dark.json の gy3-5）のまま。",
-        "value": "{pccs.sf20}"
+        "value": "{pccs.v16}"
       },
       "chart-primary": {
         "$comment": "T138: dataviz の validator（明度帯・彩度下限・CVD・正常色覚の下限・対比）を通る組に選び直した。値は PCCS の既存ステップ。順番も語彙なので入れ替えないこと。",
