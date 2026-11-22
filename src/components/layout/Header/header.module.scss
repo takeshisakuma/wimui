@@ -7,8 +7,8 @@
     /* T128: 以前は `height` 固定で、収まらない中身は折り返しも切り詰めもせず
        **上下にはみ出していた**（実測: 768px で 19px、390px で 55px。1280px では 0）。
        クロームは高さで語る要素なので既定の見え方は変えず、**収まらないときだけ伸びる**
-       ように下限へ変える。狭い幅で中身を畳むのは利用者側の設計判断（DESIGN.md
-       必須ルール 12「クロームは黙らせる」）。 */
+       ように下限へ変える。何を畳む・隠すかは利用者側の設計判断（DESIGN.md
+       必須ルール 12「クロームは黙らせる」）。並びの段は部品が持つ（下の `.container`）。 */
     min-height: var(--wim-header-height, 64px);
     padding: 0;
     transition:
@@ -58,6 +58,12 @@
 
   .container {
     display: flex;
+
+    /* 左右の組が 1 行に入りきらないときだけ、後ろの組を次の段へ落とす。以前は折り返さず、
+       390px の Newsroom で見出しも右の文も 2 行に詰まっていた（ユーザーの報告・2026-11-22）。
+       折り返す判定は各組の折り返さない幅の合計なので、入りきる幅では 1 段のまま変わらない */
+    flex-wrap: wrap;
+    gap: var(--wim-spacing-sm) var(--wim-spacing-md);
     align-items: center;
     justify-content: space-between;
     width: 100%;
@@ -66,12 +72,20 @@
     /* `height: 100%` は親が min-height だけのとき解決せず、中身がヘッダー上端に
        貼り付く。下限を同じトークンにして、64px のクローム内で縦中央に置く。 */
     min-height: var(--wim-header-height, 64px);
-    padding: 0 var(--wim-spacing-xl);
+
+    /* 上下の余白は 2 段になったときに端へ貼り付かないため。1 段では 64px の内側に収まる */
+    padding: var(--wim-spacing-sm) var(--wim-spacing-xl);
     margin: 0 auto;
 
     /* full-bleed: サイドバー付きレイアウト等で main と幅を揃えるため max-width を外す */
     &.fluid {
       max-width: none;
+    }
+
+    /* 次の段へ落ちた右の組を、右に寄せる（1 段のときは space-between と同じ位置）。
+       中央の組があるときは付けない ── auto の余白が空きを全部取り、中央の組が左へ寄る */
+    &:not(:has(> .center)) > .end {
+      margin-inline-start: auto;
     }
   }
 
