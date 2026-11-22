@@ -13,6 +13,10 @@ const STORIES = [
   "components-application-shell-navbar--with-mobile-menu",
   "components-application-shell-appshell--with-sidebar",
   "patterns-newsroom--default",
+  // Sidebar を AppShell.Body に直接置く組み方（AppShell.Sidebar の枠を通さない）
+  "patterns-captions--caption-review",
+  // AppShell の外。見出しの下の箱に --wim-sidebar-drawer-position を置く（DeployAssistant のレシピ）
+  "patterns-playground--default",
 ];
 const WIDTHS = [256, 390];
 
