@@ -66,10 +66,14 @@
 
     &:hover {
       background-color: var(--wim-color-surface-hover);
+    }
 
-      .editIconWrapper {
-        opacity: 1;
-      }
+    /* 編集できる場所だと分かる手がかり。ホバーだけでなく、キーボードで乗ったときにも見せる
+       （T435: 以前はホバーだけで、フォーカスは中の .editIconWrapper:focus-within で拾おうとして
+       いたが、フォーカスが乗るのはこの .preview で、アイコンの箱には乗らないので一度も効かなかった） */
+    &:hover .editIconWrapper,
+    &:focus-visible .editIconWrapper {
+      opacity: 1;
     }
 
     &:active {
@@ -102,7 +106,9 @@
     opacity: 0;
     transition: opacity var(--wim-transition-base);
 
-    &:focus-within {
+    /* タッチ端末（hover: none）では、文字をタップした瞬間に編集へ移るので、ホバーで見せる手がかりは
+       一度も出ない。常に見せる（Kanban の移動ボタン・JsonViewer の行の操作と同じ） */
+    @media (hover: none) and (pointer: coarse) {
       opacity: 1;
     }
   }
