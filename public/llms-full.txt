@@ -95,6 +95,7 @@ Single components are judged by state/a11y/token compliance. **Composed screens*
 25. Never assign a different colour per tag, per person or per KPI. Colour carries good/bad (success / warning / danger) and nothing else; everything else stays neutral. A rainbow of categories makes every value look like an exception, which means none of them do.
 26. Never draw a stand-in for content you did not build: a Skeleton used as a fake screenshot, a grey box or gradient panel captioned "Chart placeholder". Either put the real component in (a Sparkline, a table) or leave the region out. A labelled empty box teaches readers that the library cannot fill it.
 27. Glass / neumorphic "futuristic tech" surfaces may exist as an opt-in variant, but never as a default or as the first example in the docs. Shown first, it becomes what the library looks like, and that look is the most generic one available.
+28. Put the hamburger on the side the menu comes from: top-left for a drawer that slides in from the left (AppShell with Sidebar), the end of the bar for a full menu that drops from the top (Navbar.Menu). Keep it uncovered while the menu is open, because it turns into the close button; do not dim the header with the overlay so that tapping the overlay is the only way out. Use one pattern per app, so the trigger does not jump sides between screens.
 
 ## Recipes — copy-paste starting points
 
