@@ -169,7 +169,8 @@
   .menuItem {
     // Handling focus state for keyboard navigation
     // This is applied on top of BaseListItem via :global
-    .root[data-keyboard-nav="true"] &.active {
+    // 一覧は body の影の箱にあるので、部品の根（.root）からは辿れない。一覧の側の属性で見る（T432）
+    .dropdown[data-keyboard-nav="true"] &.active {
       z-index: 1;
       box-shadow: var(--wim-shadow-focus);
     }

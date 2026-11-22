@@ -97,7 +97,10 @@ test.describe("MultiSelect list is drawn outside clipping boxes (1280px)", () =>
 
 // 切れる画面がストーリーに無い部品は、全量測定（#1274）と同じく、ストーリーを overflow: hidden の箱で
 // 包んで確かめる（箱の高さは中身のまま。一覧は箱の外へはみ出す位置に開く）
-const CLIPPED_IN_BOX = [{ name: "ModelSelector", id: "components-ai-modelselector--default" }];
+const CLIPPED_IN_BOX = [
+  { name: "ModelSelector", id: "components-ai-modelselector--default" },
+  { name: "Cascader", id: "components-advanced-inputs-cascader--default" },
+];
 
 test.describe("Lists are drawn outside an overflow: hidden box (1280px)", () => {
   test.use({ viewport: { width: 1280, height: 720 } });
