@@ -5,6 +5,7 @@ import { Chip } from "../../data-display/Chip/Chip";
 import { BaseListItem } from "../../_internal/BaseListItem";
 import { InputBase } from "../InputBase";
 import { useInlineFloating } from "../../_internal/useInlineFloating";
+import { InlinePortal } from "../../_internal/InlinePortal";
 import { useMergedRef } from "../../../hooks/useMergedRef";
 import { getRovingIndex, isRovingKey } from "../../_internal/rovingIndex";
 import { findTypeaheadIndex, isTypeaheadKey, useTypeahead } from "../../_internal/typeahead";
@@ -91,6 +92,7 @@ export const MultiSelect = ({
   const [isKeyboardNavigating, setIsKeyboardNavigating] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const listRef = useRef<HTMLUListElement>(null);
+  const portalRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLDivElement>(null);
   const generatedId = useId();
   const id = customId || `wim-multiselect-${generatedId}`;
@@ -104,9 +106,12 @@ export const MultiSelect = ({
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Node;
       if (
         containerRef.current &&
-        !containerRef.current.contains(event.target as Node)
+        !containerRef.current.contains(target) &&
+        // 一覧は body の影の箱にある（T432）。ここも内側に数える
+        !portalRef.current?.contains(target)
       ) {
         setIsOpen(false);
       }
@@ -270,7 +275,8 @@ export const MultiSelect = ({
 
   // 下に余地が無ければ上へ開き、画面の端からはみ出す分は内側へ寄せる（T342）。面は引き金の隣に
   // 描いたままで、向きと横のずれだけを受け取る。
-  const { setReference: setFloatingReference, setFloating, floatingProps } = useInlineFloating({ open: isOpen && !disabled });
+  const { setReference: setFloatingReference, setFloating, setAnchor, floatingProps } = useInlineFloating({ open: isOpen && !disabled });
+  const setAnchorRef = useMergedRef(portalRef, setAnchor);
   const setRootRef = useMergedRef(containerRef, setFloatingReference);
   const setListRef = useMergedRef(listRef, setFloating);
 
@@ -363,13 +369,15 @@ export const MultiSelect = ({
           </div>
         </InputBase>
 
-        {isOpen && !disabled && (
+        {/* 一覧は body へ出す（T432）。外側の overflow の箱（スクロールする Dialog の本文など）で切れないように */}
+        <InlinePortal open={isOpen && !disabled} anchorRef={setAnchorRef}>
           <ul
             id={listId}
             ref={setListRef}
             className={styles.list}
             {...floatingProps}
             role="listbox"
+            data-keyboard-nav={isKeyboardNavigating}
             aria-multiselectable="true"
             aria-labelledby={labelId || ariaLabelledBy || undefined}
           >
@@ -401,7 +409,7 @@ export const MultiSelect = ({
               );
             })}
           </ul>
-        )}
+        </InlinePortal>
       </div>
       <HiddenFormValue name={name} value={currentValues} disabled={disabled} onReset={() => { if (!isControlled) setInternalValue(defaultValue); }} />
     </FieldTemplate>

@@ -91,6 +91,10 @@
 
   .list {
     position: absolute;
+
+    /* 引き金のすぐ下。以前は top を書かず、部品の中の流れの位置（引き金の直後）に置かれていた。
+       body の影の箱（T432）の中では流れの位置が箱の上端になり、一覧が引き金に重なって押せなくなる */
+    top: 100%;
     z-index: var(--wim-z-overlay);
     width: 100%;
     max-height: var(--wim-width-md);
@@ -108,13 +112,15 @@
 
     /* 下に余地が無いときは、上へ開く（T342）。間隔は、下へ開くときと同じトークン。 */
     &[data-side="top"] {
+      top: auto;
       bottom: 100%;
       margin: 0 0 var(--wim-spacing-xs);
     }
   }
 
   .option {
-    .root[data-keyboard-nav="true"] &.active {
+    /* 一覧は body の影の箱にあるので、部品の根（.root）からは辿れない。一覧の側の属性で見る（T432） */
+    .list[data-keyboard-nav="true"] &.active {
       z-index: 1;
       box-shadow: var(--wim-shadow-focus);
     }

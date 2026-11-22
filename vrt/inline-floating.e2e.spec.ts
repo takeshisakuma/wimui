@@ -22,13 +22,14 @@ const DEFAULT_OPENER = "#storybook-root [role=combobox], #storybook-root [aria-h
 const cases: Case[] = [
   // Select の一覧は body の影の箱に描く（T432）。#storybook-root の中には無い
   { name: "Select", id: "components-selection-controls-select--default", surface: '[data-part="dropdown"]', opener: DEFAULT_OPENER },
-  { name: "MultiSelect", id: "components-selection-controls-multiselect--default", surface: '#storybook-root ul[role="listbox"]', opener: DEFAULT_OPENER },
-  { name: "Combobox", id: "components-selection-controls-combobox--default", surface: '#storybook-root [class*="_dropdown_"]', opener: DEFAULT_OPENER },
+  // MultiSelect・Combobox・PhoneInput も一覧を body の影の箱に描く（T432）
+  { name: "MultiSelect", id: "components-selection-controls-multiselect--default", surface: 'ul[role="listbox"]', opener: DEFAULT_OPENER },
+  { name: "Combobox", id: "components-selection-controls-combobox--default", surface: '[class*="_dropdown_"]', opener: DEFAULT_OPENER },
   { name: "Cascader", id: "components-advanced-inputs-cascader--default", surface: '#storybook-root [class*="_dropdown_"]', opener: DEFAULT_OPENER },
   { name: "TreeSelect", id: "components-advanced-inputs-treeselect--default", surface: '#storybook-root [class*="_dropdown_"]', opener: DEFAULT_OPENER },
   { name: "DatePicker", id: "components-pickers-sliders-datepicker--default", surface: '#storybook-root [class*="_dropdown_"]', opener: DEFAULT_OPENER },
   { name: "ModelSelector", id: "components-ai-modelselector--default", surface: '#storybook-root [class*="_dropdownWrapper_"]', opener: DEFAULT_OPENER },
-  { name: "PhoneInput", id: "components-basic-inputs-phoneinput--default", surface: '#storybook-root [class*="_dropdown_"]', opener: "#storybook-root [role=combobox]" },
+  { name: "PhoneInput", id: "components-basic-inputs-phoneinput--default", surface: '[class*="_dropdown_"]', opener: "#storybook-root [role=combobox]" },
   // 入力ではないが、面を引き金の隣に CSS で置くのは同じ（T342 の対象外だったもの）
   { name: "Menubar", id: "components-navigation-elements-menubar--default", surface: '#storybook-root [role="menu"]', opener: '#storybook-root [role="menuitem"]' },
   // T361: 畳んだ階層の一覧。引き金は見えている行の「…」（幅を測る写しの中のボタンは押せない）

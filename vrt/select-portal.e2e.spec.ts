@@ -59,6 +59,28 @@ test.describe("Select list is drawn outside clipping boxes (1280px)", () => {
   });
 });
 
+test.describe("MultiSelect list is drawn outside clipping boxes (1280px)", () => {
+  test.use({ viewport: { width: 1280, height: 720 } });
+
+  // 全量測定（#1274）で見つけた形: Dialog の本文（overflow: auto）の下端で一覧が切れ、4 項目のうち 2 つしか見えなかった
+  test("Dialog: every guest option can be clicked", async ({ page }) => {
+    await page.goto(url("components-overlays-dialog--with-popups-inside"));
+    await waitForStoryReady(page);
+    await page.locator("button:visible").first().click();
+    const dialog = page.locator('[role="dialog"]').last();
+    await expect(dialog).toBeVisible();
+
+    const trigger = dialog.getByRole("combobox", { name: "Guests" });
+    await trigger.click();
+    await expect(trigger).toHaveAttribute("aria-expanded", "true");
+
+    const result = await optionsCovered(page);
+    // 対照: 選択肢を数えた
+    expect(result.checked).toBeGreaterThan(2);
+    expect(result.covered, "options clipped or covered").toEqual([]);
+  });
+});
+
 test.describe("Select keeps the Tab order when its list is in the body", () => {
   test.use({ viewport: { width: 1280, height: 720 } });
 
