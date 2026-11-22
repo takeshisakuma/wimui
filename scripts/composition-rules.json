@@ -192,6 +192,13 @@
       "en": "Glass / neumorphic \"futuristic tech\" surfaces may exist as an opt-in variant, but never as a default or as the first example in the docs. Shown first, it becomes what the library looks like, and that look is the most generic one available.",
       "judge": "量産型グラスモーフィズム／近未来テック調が、既定またはカタログの主たる見本になっていないか",
       "designAnchor": "量産グラスを既定や第一の見本にしない"
+    },
+    {
+      "id": "menu_trigger_side",
+      "ja": "メニューを開く引き金は、面が出てくる側に置き、開いている間も覆わない",
+      "en": "Put the hamburger on the side the menu comes from: top-left for a drawer that slides in from the left (AppShell with Sidebar), the end of the bar for a full menu that drops from the top (Navbar.Menu). Keep it uncovered while the menu is open, because it turns into the close button; do not dim the header with the overlay so that tapping the overlay is the only way out. Use one pattern per app, so the trigger does not jump sides between screens.",
+      "judge": "狭い幅のハンバーガーが、開く面の出てくる側にあり、開いている間も覆われずに閉じるボタンとして押せるか。同じアプリの画面どうしで左右が揃っているか",
+      "designAnchor": "メニューを開く引き金は、面が出てくる側に置き、開いている間も覆わない"
     }
   ]
 }
