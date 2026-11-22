@@ -20,7 +20,8 @@ type Case = { name: string; id: string; surface: string; opener: string };
 const DEFAULT_OPENER = "#storybook-root [role=combobox], #storybook-root [aria-haspopup], #storybook-root input, #storybook-root button";
 
 const cases: Case[] = [
-  { name: "Select", id: "components-selection-controls-select--default", surface: '#storybook-root [class*="_dropdown_"]', opener: DEFAULT_OPENER },
+  // Select の一覧は body の影の箱に描く（T432）。#storybook-root の中には無い
+  { name: "Select", id: "components-selection-controls-select--default", surface: '[data-part="dropdown"]', opener: DEFAULT_OPENER },
   { name: "MultiSelect", id: "components-selection-controls-multiselect--default", surface: '#storybook-root ul[role="listbox"]', opener: DEFAULT_OPENER },
   { name: "Combobox", id: "components-selection-controls-combobox--default", surface: '#storybook-root [class*="_dropdown_"]', opener: DEFAULT_OPENER },
   { name: "Cascader", id: "components-advanced-inputs-cascader--default", surface: '#storybook-root [class*="_dropdown_"]', opener: DEFAULT_OPENER },

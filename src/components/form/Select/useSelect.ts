@@ -32,6 +32,8 @@ export function useSelect({
   const [isKeyboardNavigating, setIsKeyboardNavigating] = useState(false);
 
   const containerRef = useRef<HTMLDivElement>(null);
+  // 一覧は body の影の箱に描く（T432）。外側の押下の判定では、ここも内側に数える。
+  const portalRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLDivElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const listItemsRef = useRef<(HTMLElement | null)[]>([]);
@@ -66,9 +68,11 @@ export function useSelect({
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Node;
       if (
         containerRef.current &&
-        !containerRef.current.contains(event.target as Node)
+        !containerRef.current.contains(target) &&
+        !portalRef.current?.contains(target)
       ) {
         setIsOpen(false);
         setSearchValue("");
@@ -198,6 +202,13 @@ export function useSelect({
       // Tab はリストを閉じて、そのまま次へ進む（既定の動作は止めない）。以前は分岐が無く、フォーカスが
       // 外へ出てもリストが開いたまま残った（MultiSelect / Combobox / Cascader は閉じる）。
       case "Tab":
+        // 検索欄は body の影の箱にあるので、そのまま進むと Tab の行き先がページの末尾になる。
+        // 既定の動作の直前にフォーカスを引き金へ戻し、そこから次へ進ませる（T432）
+        if (searchInputRef.current && document.activeElement === searchInputRef.current) {
+          triggerRef.current?.focus();
+          // Shift+Tab は引き金で止める（以前は検索欄が DOM で引き金のすぐ後ろにあり、ここへ戻っていた）
+          if (e.shiftKey) e.preventDefault();
+        }
         if (isOpen) {
           setIsOpen(false);
           setSearchValue("");
@@ -223,6 +234,7 @@ export function useSelect({
     isKeyboardNavigating,
     setIsKeyboardNavigating,
     containerRef,
+    portalRef,
     triggerRef,
     searchInputRef,
     listItemsRef,

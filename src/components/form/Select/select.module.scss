@@ -129,6 +129,18 @@
     }
   }
 
+  /* body に置く影の箱（T432）。位置と大きさは useInlineFloating が引き金に合わせて入れる。
+     一覧（.dropdown）はこの中に、引き金の隣に描いていたときと同じ CSS で置く */
+  .anchor {
+    position: fixed;
+    z-index: var(--wim-z-overlay);
+    pointer-events: none;
+
+    > .dropdown {
+      pointer-events: auto;
+    }
+  }
+
   .dropdown {
     position: absolute;
     top: calc(100% + var(--wim-spacing-xs));
@@ -214,7 +226,8 @@
     }
   }
 
-  .root[data-keyboard-nav="true"] .option {
+  /* 一覧は body の影の箱にあるので、部品の根（.root）からは辿れない。一覧の側の属性で見る（T432） */
+  .dropdown[data-keyboard-nav="true"] .option {
     z-index: 1;
     box-shadow: var(--wim-shadow-focus);
   }
