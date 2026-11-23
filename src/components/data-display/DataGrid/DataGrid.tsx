@@ -382,7 +382,7 @@ export function DataGrid<T extends Record<string, unknown>>({
                   stickyZIndex={1150}
                   data-row={-1}
                   data-col={-1}
-                  aria-label={t(isRadio ? "data_grid.radio_column" : "a11y.select_all_rows")}
+                  aria-label={isRadio ? t("data_grid.radio_column") : t("a11y.select_all_rows")}
                   tabIndex={focusedCell.row === -1 && focusedCell.col === -1 ? 0 : -1}
                 >
                   {/* ラジオには全選択が無いので、見出しの文字だけを読ませる（空の見出しにしない） */}
