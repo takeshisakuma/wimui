@@ -612,6 +612,28 @@
         "T423"
       ],
       "note": "PageUp / PageDown の移動先のセル、Shift+Space のオン／オフ、Ctrl+A で選択された行"
+    },
+    {
+      "component": "Toast",
+      "date": "2026-11-23",
+      "reader": "narrator",
+      "browser": "chrome",
+      "result": "ok",
+      "sources": [
+        "T426"
+      ],
+      "note": "F8 で閉じるボタンへ移る・Escape で元の場所へ戻る・閉じたあと元の場所へ戻る"
+    },
+    {
+      "component": "DataGrid",
+      "date": "2026-11-23",
+      "reader": "narrator",
+      "browser": "chrome",
+      "result": "ok",
+      "sources": [
+        "T422"
+      ],
+      "note": "rowHeader の列の名前が、同じ行のほかのセルで読まれ、次の行では変わる"
     }
   ]
 }
