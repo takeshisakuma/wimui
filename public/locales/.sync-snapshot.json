@@ -17081,7 +17081,8 @@
   },
   "layout": {
     "a11y": {
-      "toolbar_more": "Show hidden tools ({{count}})"
+      "toolbar_more": "Show hidden tools ({{count}})",
+      "sidebar_drawer": "Navigation"
     }
   },
   "docs_guide_hooks": {

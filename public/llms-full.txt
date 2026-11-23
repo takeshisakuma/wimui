@@ -889,11 +889,12 @@ Set `responsive={false}` to keep the sidebar in flow at every width.
     - `onMobileClose: () => void` — Called when the open mobile drawer asks to close, from Escape or its close
 button. Passing it turns on the drawer's keyboard behavior below `md`: a
 close button, focus moved into the drawer and kept there, and focus
-returned to the trigger on close. Overlay clicks still call `onOverlayClick`.
+returned to the trigger on close. While open, the drawer is a dialog and the
+rest of the page is `inert`. Overlay clicks still call `onOverlayClick`.
     - `showMobileCloseButton: boolean` = true — Whether the open mobile drawer shows its own close button. Set to `false`
 when the trigger stays visible and already acts as the close control, as a
 `HamburgerMenu` in an `AppShell` header does. Tab then cycles between that
-trigger and the drawer's contents.
+trigger and the drawer's contents, and the trigger stays outside the `inert` page.
 @default true
 - **SimpleGrid** — Responsive fixed grid (aka Inline Grid)
     - `cols: T | { base?: T; sm?: T; md?: T; lg?: T; xl?: T; }` = 1 — Number of columns (or a responsive object per breakpoint)

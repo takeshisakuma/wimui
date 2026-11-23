@@ -3,6 +3,7 @@
 import type { WimNamespace } from "../instance";
 
 export type LayoutKey =
+  | "a11y.sidebar_drawer"
   | "a11y.toolbar_more";
 
 export const layoutNs: WimNamespace<"layout", LayoutKey> = {
@@ -10,17 +11,20 @@ export const layoutNs: WimNamespace<"layout", LayoutKey> = {
   resources: {
     "en": {
       "a11y": {
-        "toolbar_more": "Show hidden tools ({{count}})"
+        "toolbar_more": "Show hidden tools ({{count}})",
+        "sidebar_drawer": "Navigation"
       }
     },
     "ja": {
       "a11y": {
-        "toolbar_more": "省略したツールを表示（{{count}} 件）"
+        "toolbar_more": "省略したツールを表示（{{count}} 件）",
+        "sidebar_drawer": "ナビゲーション"
       }
     },
     "pt": {
       "a11y": {
-        "toolbar_more": "Mostrar ferramentas ocultas ({{count}})"
+        "toolbar_more": "Mostrar ferramentas ocultas ({{count}})",
+        "sidebar_drawer": "Navegação"
       }
     }
   },

@@ -34,6 +34,16 @@ test.describe("Sidebar drawer with its own close button (390px)", () => {
     await expect(trigger(page)).toBeFocused();
   });
 
+  test("hides the page from assistive tech as a modal dialog, and restores it on close", async ({ page }) => {
+    const dialog = page.getByRole("dialog");
+    await expect(dialog).toHaveAttribute("aria-modal", "true");
+    await expect(page.locator("main")).toHaveAttribute("inert", "");
+    await page.keyboard.press("Escape");
+    await expect(page.getByRole("dialog")).toHaveCount(0);
+    await expect(page.locator("[inert]")).toHaveCount(0);
+    await expect(trigger(page)).toBeFocused();
+  });
+
   test("the close button closes and returns focus to the trigger", async ({ page }) => {
     await page.keyboard.press("Enter");
     await expect(closeInDrawer(page)).toHaveCount(0);
@@ -87,6 +97,17 @@ test.describe("Sidebar drawer closed from the AppShell header (390px)", () => {
     await page.keyboard.press("Escape");
     await expect(drawer(page)).not.toHaveClass(/mobile-open/);
     expect(await isFocused(handle)).toBe(true);
+  });
+
+  test("keeps the header trigger reachable while the rest of the page is inert", async ({ page }) => {
+    const handle = await open(page);
+    await expect(page.getByRole("dialog")).toBeVisible();
+    await expect(page.getByRole("dialog")).not.toHaveAttribute("aria-modal", "true");
+    await expect(page.locator("main")).toHaveAttribute("inert", "");
+    expect(await handle.evaluate((el) => !!el.closest("[inert]"))).toBe(false);
+    await handle.click();
+    await expect(drawer(page)).not.toHaveClass(/mobile-open/);
+    await expect(page.locator("[inert]")).toHaveCount(0);
   });
 
   test("the trigger closes the drawer", async ({ page }) => {

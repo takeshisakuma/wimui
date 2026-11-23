@@ -4,8 +4,10 @@ import { useBreakpointDown } from "@/hooks/useBreakpoint";
 import { useMergedRef } from "@/hooks/useMergedRef";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { commonNs } from "@/i18n/generated/common";
+import { layoutNs } from "@/i18n/generated/layout";
 import { composeEventHandlers } from "../../_internal/composeEventHandlers";
 import { useEscapeLayer } from "../../_internal/escapeStack";
+import { inertOutside } from "../../_internal/inertOutside";
 import { IconButton } from "../../form/IconButton/IconButton";
 import { FocusTrap } from "../../overlay/FocusTrap/FocusTrap";
 import styles from "./sidebar.module.scss";
@@ -55,20 +57,26 @@ export interface SidebarProps extends React.ComponentPropsWithoutRef<"aside"> {
    * Called when the open mobile drawer asks to close, from Escape or its close
    * button. Passing it turns on the drawer's keyboard behavior below `md`: a
    * close button, focus moved into the drawer and kept there, and focus
-   * returned to the trigger on close. Overlay clicks still call `onOverlayClick`.
+   * returned to the trigger on close. While open, the drawer is a dialog and the
+   * rest of the page is `inert`. Overlay clicks still call `onOverlayClick`.
    */
   onMobileClose?: () => void;
   /**
    * Whether the open mobile drawer shows its own close button. Set to `false`
    * when the trigger stays visible and already acts as the close control, as a
    * `HamburgerMenu` in an `AppShell` header does. Tab then cycles between that
-   * trigger and the drawer's contents.
+   * trigger and the drawer's contents, and the trigger stays outside the `inert` page.
    * @default true
    */
   showMobileCloseButton?: boolean;
 }
 
 const DRAWER_STOPS = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+
+const focusedElement = () => {
+  const el = document.activeElement;
+  return el instanceof HTMLElement && el !== document.body ? el : null;
+};
 
 const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
   (
@@ -90,12 +98,23 @@ const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
   ) => {
     const asideRef = React.useRef<HTMLElement>(null);
     const mergedRef = useMergedRef(ref, asideRef);
-    const { t } = useWimTranslation(commonNs);
+    const overlayRef = React.useRef<HTMLDivElement>(null);
+    const { t } = useWimTranslation([commonNs, layoutNs]);
     const isBelowMd = useBreakpointDown("md");
     // 閉じる口を渡されていないときは閉じ込めない（Tab でも Escape でも出られなくなる）
     const drawerActive = responsive && !!mobileOpen && isBelowMd && !!onMobileClose;
     useEscapeLayer(drawerActive, () => onMobileClose?.());
     const closesFromTrigger = drawerActive && !showMobileCloseButton;
+
+    // 開いている間、背面を支援技術と操作から外す。layout effect にするのは、閉じるときに FocusTrap が
+    // 引き金へフォーカスを戻す（passive effect）より先に、引き金の inert を解くため
+    React.useLayoutEffect(() => {
+      if (!drawerActive) return;
+      const trigger = focusedElement();
+      // 押してもフォーカスが乗らないブラウザでは引き金が分からない。閉じる口を塞がないよう何もしない
+      if (closesFromTrigger && !trigger) return;
+      return inertOutside([asideRef.current, overlayRef.current, closesFromTrigger ? trigger : null]);
+    }, [drawerActive, closesFromTrigger]);
 
     // 自前の × を出さないときは、引き金が閉じる口なので、FocusTrap で閉じ込めると Tab で届かなくなる。
     // 引き金とドロワーの中だけを巡る
@@ -103,8 +122,7 @@ const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
       const aside = asideRef.current;
       if (!closesFromTrigger || !aside) return;
 
-      const focused = document.activeElement;
-      const trigger = focused instanceof HTMLElement && focused !== document.body ? focused : null;
+      const trigger = focusedElement();
       const inner = () =>
         Array.from(aside.querySelectorAll<HTMLElement>(DRAWER_STOPS)).filter(
           (el) =>
@@ -145,6 +163,7 @@ const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
       <>
         {responsive && mobileOpen && (
           <div
+            ref={overlayRef}
             className={styles.overlay}
             onClick={onOverlayClick}
             aria-hidden="true"
@@ -162,6 +181,10 @@ const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
             className,
           )}
           data-collapsed={collapsed}
+          role={drawerActive ? "dialog" : undefined}
+          // 引き金が外に残る形では付けない（付けると、ヘッダーの × まで読み上げから隠れる）
+          aria-modal={(drawerActive && showMobileCloseButton) || undefined}
+          aria-label={drawerActive ? t("a11y.sidebar_drawer") : undefined}
           {...props}
           // style は、props を広げたあとに置く。先に置くと、利用者が渡した style が、幅の変数を消す。
           style={{ ...style, ...props.style }}
