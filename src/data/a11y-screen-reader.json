@@ -590,6 +590,17 @@
         "T432"
       ],
       "note": "Dialog の中で、開いた状態・項目の移動・Escape で引き金へ戻る"
+    },
+    {
+      "component": "Sidebar",
+      "date": "2026-11-23",
+      "reader": "narrator",
+      "browser": "chrome",
+      "result": "ok",
+      "sources": [
+        "T433"
+      ],
+      "note": "AppShell のドロワーで、最初の項目へのフォーカス・項目の名前と現在のページ・Tab で閉じるボタンへ戻る・Escape で引き金へ戻る"
     }
   ]
 }
