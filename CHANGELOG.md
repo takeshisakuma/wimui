@@ -1,5 +1,12 @@
 # wimui
 
+## 0.88.0
+
+### Minor Changes
+
+- 0021283: DataGrid: PageUp / PageDown で 1 画面分移動できるようにした。行の選択が有効なときは、Shift+Space で今の行の選択を切り替え、Ctrl+A（Cmd+A）で今のページの全行を選ぶ。セルの中の文字の入力欄では、これらのキーは入力欄のものとして扱う。
+- 77a2e62: DataGrid: 列の定義に `rowHeader` を追加した。付けた列のセルは `role="rowheader"` になり、行を移動するときに読み上げがその行の名前を添えられる。付けない場合の動きは変わらない。
+
 ## 0.87.0
 
 ### Minor Changes
