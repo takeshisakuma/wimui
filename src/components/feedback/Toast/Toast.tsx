@@ -7,6 +7,8 @@ import React, {
   useRef,
 } from "react";
 import classNames from "classnames";
+import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { commonNs } from "@/i18n/generated/common";
 import { Transition } from "../../layout/Transition/Transition";
 import { useAnnounce, useAnnounceValue } from "../../_internal/useAnnounce";
 import { FeedbackIcon } from "../../_internal/FeedbackIcon";
@@ -230,6 +232,40 @@ export const ToastProvider = ({
   // 同じ文のトーストを続けて出しても、useAnnounce がいったん空にしてから入れるので読まれる
   const { announce, clear, region } = useAnnounce();
   const announcedId = useRef<string | null>(null);
+  const { t } = useWimTranslation(commonNs);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const returnFocus = useRef<HTMLElement | null>(null);
+  const refocusAfterRemove = useRef(false);
+  const hasToasts = toasts.length > 0;
+
+  const focusNewestToast = () => {
+    const buttons = containerRef.current?.querySelectorAll("button");
+    const newest = buttons?.[buttons.length - 1];
+    newest?.focus();
+    return !!newest;
+  };
+
+  // 通知はアプリの末尾に描かれるので、ページの途中からは Tab で遠い（T426）。F8 で移り、Escape で戻る
+  useEffect(() => {
+    if (!hasToasts) return;
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== "F8" || event.ctrlKey || event.altKey || event.metaKey || event.shiftKey) return;
+      const active = document.activeElement;
+      if (!containerRef.current?.contains(active)) {
+        returnFocus.current = active instanceof HTMLElement ? active : null;
+      }
+      if (focusNewestToast()) event.preventDefault();
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [hasToasts]);
+
+  // フォーカスのあるトーストを閉じても、文書へ落とさない。次のトーストか、元の場所へ
+  useEffect(() => {
+    if (!refocusAfterRemove.current) return;
+    refocusAfterRemove.current = false;
+    if (!focusNewestToast() && returnFocus.current?.isConnected) returnFocus.current.focus();
+  }, [toasts]);
 
   const show = useCallback(
     (toast: Omit<ToastItem, "id">) => {
@@ -243,7 +279,8 @@ export const ToastProvider = ({
 
   const remove = useCallback(
     (id: string) => {
-      setToasts((prev) => prev.filter((t) => t.id !== id));
+      refocusAfterRemove.current = !!containerRef.current?.contains(document.activeElement);
+      setToasts((prev) => prev.filter((toast) => toast.id !== id));
       if (announcedId.current === id) {
         announcedId.current = null;
         clear();
@@ -256,10 +293,21 @@ export const ToastProvider = ({
     <ToastContext.Provider value={{ show, remove }}>
       {children}
       <div
+        ref={containerRef}
         className={classNames(
           styles.container,
           styles[position],
         )}
+        // 通知が無いあいだは、空のランドマークを読ませない
+        role={hasToasts ? "region" : undefined}
+        aria-label={hasToasts ? t("notifications") : undefined}
+        aria-keyshortcuts={hasToasts ? "F8" : undefined}
+        onKeyDown={(event) => {
+          if (event.key !== "Escape" || !returnFocus.current?.isConnected) return;
+          // 止めないと、下に開いている Dialog まで同じ Escape で閉じる
+          event.preventDefault();
+          returnFocus.current.focus();
+        }}
       >
         {/* 最初から置いておく、画面に見えない読み上げの領域。トーストが出るたびに、文字が書き換わる。 */}
         {region}

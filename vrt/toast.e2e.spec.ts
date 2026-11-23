@@ -42,4 +42,22 @@ test.describe("Toast: the auto-close timer pauses while the toast is in use", ()
     await page.mouse.move(0, 0);
     await expect(page.locator(".wim-toast")).toHaveCount(0, { timeout: PAST_DURATION });
   });
+
+  test("F8 moves to the toast, Escape returns, and closing it returns focus (T426)", async ({ page }) => {
+    const trigger = page.locator("#storybook-root button").first();
+    await trigger.focus();
+    const close = page.locator(".wim-toast").getByRole("button");
+
+    await page.keyboard.press("F8");
+    await expect(close).toBeFocused();
+    await page.keyboard.press("Escape");
+    await expect(trigger).toBeFocused();
+    await expect(page.locator(".wim-toast")).toBeVisible();
+
+    await page.keyboard.press("F8");
+    await expect(close).toBeFocused();
+    await page.keyboard.press("Enter");
+    await expect(page.locator(".wim-toast")).toHaveCount(0);
+    await expect(trigger).toBeFocused();
+  });
 });
