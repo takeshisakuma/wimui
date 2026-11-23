@@ -66,6 +66,15 @@ describe("Sidebar", () => {
       expect(onMobileClose).toHaveBeenCalledTimes(2);
     });
 
+    it("hides its close button and keeps Escape with showMobileCloseButton={false}", () => {
+      stubViewport(true);
+      const onMobileClose = vi.fn();
+      render(<Sidebar mobileOpen onMobileClose={onMobileClose} showMobileCloseButton={false} />);
+      expect(screen.queryByRole("button")).toBeNull();
+      fireEvent.keyDown(document, { key: "Escape" });
+      expect(onMobileClose).toHaveBeenCalledTimes(1);
+    });
+
     it("does not trap focus without onMobileClose", () => {
       stubViewport(true);
       render(<Sidebar mobileOpen><button>Item</button></Sidebar>);

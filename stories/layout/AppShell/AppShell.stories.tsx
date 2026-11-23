@@ -283,6 +283,7 @@ export const WithSidebar: Story = {
             mobileOpen={mobileOpen}
             onOverlayClick={() => setMobileOpen(false)}
             onMobileClose={() => setMobileOpen(false)}
+            showMobileCloseButton={false}
           >
             <Sidebar.Header>
               <div style={{ padding: "16px", fontWeight: "bold" }}>

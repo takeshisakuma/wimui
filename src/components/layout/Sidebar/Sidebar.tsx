@@ -1,6 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { useBreakpointDown } from "@/hooks/useBreakpoint";
+import { useMergedRef } from "@/hooks/useMergedRef";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { commonNs } from "@/i18n/generated/common";
 import { useEscapeLayer } from "../../_internal/escapeStack";
@@ -56,7 +57,17 @@ export interface SidebarProps extends React.ComponentPropsWithoutRef<"aside"> {
    * returned to the trigger on close. Overlay clicks still call `onOverlayClick`.
    */
   onMobileClose?: () => void;
+  /**
+   * Whether the open mobile drawer shows its own close button. Set to `false`
+   * when the trigger stays visible and already acts as the close control, as a
+   * `HamburgerMenu` in an `AppShell` header does. Tab then cycles between that
+   * trigger and the drawer's contents.
+   * @default true
+   */
+  showMobileCloseButton?: boolean;
 }
+
+const DRAWER_STOPS = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
 
 const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
   (
@@ -71,15 +82,59 @@ const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
       mobileOpen,
       onOverlayClick,
       onMobileClose,
+      showMobileCloseButton = true,
       ...props
     },
     ref,
   ) => {
+    const asideRef = React.useRef<HTMLElement>(null);
+    const mergedRef = useMergedRef(ref, asideRef);
     const { t } = useWimTranslation(commonNs);
     const isBelowMd = useBreakpointDown("md");
     // 閉じる口を渡されていないときは閉じ込めない（Tab でも Escape でも出られなくなる）
     const drawerActive = responsive && !!mobileOpen && isBelowMd && !!onMobileClose;
     useEscapeLayer(drawerActive, () => onMobileClose?.());
+    const closesFromTrigger = drawerActive && !showMobileCloseButton;
+
+    // 自前の × を出さないときは、引き金が閉じる口なので、FocusTrap で閉じ込めると Tab で届かなくなる。
+    // 引き金とドロワーの中だけを巡る
+    React.useEffect(() => {
+      const aside = asideRef.current;
+      if (!closesFromTrigger || !aside) return;
+
+      const focused = document.activeElement;
+      const trigger = focused instanceof HTMLElement && focused !== document.body ? focused : null;
+      const inner = () =>
+        Array.from(aside.querySelectorAll<HTMLElement>(DRAWER_STOPS)).filter(
+          (el) =>
+            el.tabIndex >= 0 &&
+            !(el as HTMLButtonElement).disabled &&
+            el.getClientRects().length > 0,
+        );
+      inner()[0]?.focus();
+
+      const handleKeyDown = (event: KeyboardEvent) => {
+        if (event.key !== "Tab") return;
+        const stops = [...(trigger?.isConnected ? [trigger] : []), ...inner()];
+        if (stops.length === 0) return;
+        const active = document.activeElement;
+        const index = stops.indexOf(active as HTMLElement);
+        if (index < 0) {
+          // 中で開いた面（body に描かれる）のフォーカスには触らない
+          if (active !== document.body) return;
+          event.preventDefault();
+          stops[0].focus();
+          return;
+        }
+        event.preventDefault();
+        stops[(index + (event.shiftKey ? -1 : 1) + stops.length) % stops.length].focus();
+      };
+      document.addEventListener("keydown", handleKeyDown);
+      return () => {
+        document.removeEventListener("keydown", handleKeyDown);
+        if (aside.contains(document.activeElement)) trigger?.focus();
+      };
+    }, [closesFromTrigger]);
 
     const style = {
       "--wim-sidebar-width": typeof width === "number" ? `${width}px` : width,
@@ -95,7 +150,7 @@ const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
           />
         )}
         <aside
-          ref={ref}
+          ref={mergedRef}
           className={classNames("wim-sidebar", 
             styles.root,
             fixed && styles.fixed,
@@ -113,8 +168,8 @@ const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
 
           <div className={styles.container}>
             {/* 閉じ込めの包みは常に描く（開閉で付け外すと、中身が作り直される） */}
-            <FocusTrap active={drawerActive}>
-              {drawerActive && (
+            <FocusTrap active={drawerActive && showMobileCloseButton}>
+              {drawerActive && showMobileCloseButton && (
                 <div className={styles.drawerClose}>
                   <IconButton
                     iconName="CloseIcon"
