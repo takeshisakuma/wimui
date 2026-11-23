@@ -83,6 +83,32 @@ test.describe("Kanban: moving a card from the keyboard", () => {
     await expect(firstMove).toHaveAttribute("aria-expanded", "false");
   });
 
+  test("the menu is above the next card from the moment it opens", async ({ page }) => {
+    // T437: 移動ボタンの包みが不透明度のトランジション中だと、一覧がその重なりの文脈に閉じ込められ、
+    // 約 150ms だけ後ろのカードの下に描かれた。待つと見えなくなるので、同じタスクの中で開いて測る
+    const firstMove = column(page, "To Do").getByRole("button", { name: "Move card" }).first();
+    const result = await firstMove.evaluate(async (button) => {
+      const wrapper = button.parentElement as HTMLElement;
+      (button as HTMLElement).focus();
+      (button as HTMLElement).click();
+      let menu: Element | null = null;
+      for (let i = 0; i < 5 && !menu?.getBoundingClientRect().top; i += 1) {
+        await new Promise(requestAnimationFrame);
+        menu = wrapper.querySelector("[data-part='move-menu']");
+      }
+      const options = Array.from(wrapper.querySelectorAll("[data-part='move-option']"));
+      return {
+        count: options.length,
+        wrapperOpacity: getComputedStyle(wrapper).opacity,
+        covered: options.filter((el) => {
+          const r = el.getBoundingClientRect();
+          return !el.contains(document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2));
+        }).length,
+      };
+    });
+    expect(result).toEqual({ count: 3, wrapperOpacity: "1", covered: 0 });
+  });
+
   test("the focus ring of every move option stays inside the menu", async ({ page }) => {
     // 一覧は `overflow: hidden`。外側に描いた輪は切れて、左右が出ず、端の項目は上下の片方も出なかった
     // （実機で見つかった。閉じた姿しか測らない掃引には写らない）。輪の箱が、一覧の内側に収まること
