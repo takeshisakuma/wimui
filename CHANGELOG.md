@@ -1,5 +1,16 @@
 # wimui
 
+## 0.86.0
+
+### Minor Changes
+
+- c9a9cfc: Sidebar: `onMobileClose` を追加した。渡すと、`md` 以下で開いたドロワーに閉じるボタンと Escape が加わり、開いている間はフォーカスがドロワーの中に留まり、閉じると引き金へ戻る。渡さない場合の動きは変わらない。引き金が見えたまま閉じる役も持つ構成（AppShell のヘッダーのハンバーガーなど）では、`showMobileCloseButton={false}` でドロワーの閉じるボタンを消せる。
+- fa68628: Sidebar.Item: キーボードで操作できるようにした。`role="button"` と Tab の停止点を持ち、Enter と Space で押せる。`active` は `aria-current="page"` になり、`disabled` では `onClick` が呼ばれなくなる。折りたたんだ状態でも項目の名前は読まれる。項目の中にリンクやボタンを置いている場合は、入れ子の操作要素にならないよう `role` と `tabIndex` を渡して上書きする。
+
+### Patch Changes
+
+- 5d8c946: Kanban: カードの移動先の一覧が、開いた直後の約 150ms だけ後ろのカードの下に描かれていたのを直した。
+
 ## 0.85.0
 
 ### Minor Changes
