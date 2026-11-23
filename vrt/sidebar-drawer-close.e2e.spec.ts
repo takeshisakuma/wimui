@@ -110,6 +110,23 @@ test.describe("Sidebar drawer closed from the AppShell header (390px)", () => {
     await expect(page.locator("[inert]")).toHaveCount(0);
   });
 
+  test("the closed drawer is out of the Tab order and the accessibility tree", async ({ page }) => {
+    // 画面外に寄せただけだと、見えない項目に Tab が止まり、読み上げも本文より先にそれを読む
+    await page.goto(APP_SHELL);
+    await waitForStoryReady(page);
+    await expect(drawer(page).getByRole("button")).toHaveCount(0);
+
+    const handle = await open(page);
+    await expect(drawer(page).getByRole("button").first()).toBeFocused();
+    await page.keyboard.press("Escape");
+    await expect(drawer(page)).not.toHaveClass(/mobile-open/);
+    expect(await isFocused(handle)).toBe(true);
+    await expect(drawer(page).getByRole("button")).toHaveCount(0);
+
+    await page.keyboard.press("Tab");
+    expect(await drawer(page).evaluate((el) => el.contains(document.activeElement))).toBe(false);
+  });
+
   test("the trigger closes the drawer", async ({ page }) => {
     const handle = await open(page);
     await handle.focus();
