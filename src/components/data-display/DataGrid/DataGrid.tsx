@@ -321,7 +321,8 @@ export function DataGrid<T extends Record<string, unknown>>({
   useEffect(() => {
     if (!announceSelection.current) return;
     announceSelection.current = false;
-    announceSort(t("dataGrid.rows_selected", { selected: selectedCount }));
+    // 押した直後に書くと、ナレーターはキーの読み上げと重なって読まない（Shift+Space で無音だった）
+    announceSort(t("dataGrid.rows_selected", { selected: selectedCount }), { delay: 500 });
   }, [selectedCount, announceSort, t]);
   // 空の表示は、行が 0 になったときに差し込む。文字は先に在る領域で告げる（T353）
   const showEmpty = data.length === 0 && Boolean(emptyMessage);
