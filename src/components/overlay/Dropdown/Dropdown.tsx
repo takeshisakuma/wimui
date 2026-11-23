@@ -381,6 +381,10 @@ DropdownMenu.displayName = "Dropdown.Menu";
 
 export interface DropdownItemProps extends BaseListItemProps {
   children: ReactNode;
+  /**
+   * Called when the item is chosen with a click, Enter or Space. The menu closes afterwards,
+   * so open a confirmation from state outside the menu (for example a `Dialog`).
+   */
   onClick?: () => void;
 }
 
@@ -390,14 +394,16 @@ export const DropdownItem = forwardRef<HTMLDivElement, DropdownItemProps>(
     const [index] = useState(() => registerItem());
     const isFocused = focusedIndex === index;
 
-    const handleClick = (e: React.SyntheticEvent) => {
+    const handleClick = (e: React.SyntheticEvent<HTMLDivElement>) => {
       if (disabled) return;
-      
+
       // Prevent event bubbling to trigger
       e.stopPropagation();
 
       if (onClick) {
-        onClick();
+        // 引き金の部品（Popover など）が差し込む onClick は event を読むので、渡さないと例外で落ちる。
+        // 公開の型は引数なしのまま（型に足すと、props.onClick() と呼ぶ包み側がコンパイルできなくなる）
+        (onClick as (event: React.SyntheticEvent<HTMLDivElement>) => void)(e);
       }
       close();
     };

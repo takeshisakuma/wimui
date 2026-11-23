@@ -122,6 +122,29 @@ describe("Dropdown", () => {
     });
   });
 
+  it.each([
+    ["click", (item: HTMLElement) => fireEvent.click(item)],
+    ["Enter", (item: HTMLElement) => fireEvent.keyDown(item, { key: "Enter" })],
+  ])("passes the event to onClick and closes on %s", async (_name, choose) => {
+    const onClick = vi.fn();
+    render(
+      <Dropdown>
+        <DropdownTrigger>Toggle</DropdownTrigger>
+        <DropdownMenu>
+          <DropdownItem onClick={onClick}>Archive</DropdownItem>
+        </DropdownMenu>
+      </Dropdown>,
+    );
+
+    fireEvent.click(screen.getByText("Toggle"));
+    choose(screen.getByText("Archive"));
+
+    expect(onClick.mock.calls[0][0]).toHaveProperty("nativeEvent");
+    await waitFor(() => {
+      expect(screen.queryByText("Archive")).not.toBeInTheDocument();
+    });
+  });
+
   it("selects item with Enter or Space on item and trigger", async () => {
     const onClick = vi.fn();
     render(
