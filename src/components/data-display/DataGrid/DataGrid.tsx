@@ -1,9 +1,12 @@
 import React, { useMemo, useCallback, useState, useLayoutEffect } from "react";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { commonNs } from "@/i18n/generated/common";
+import { dataDisplayNs } from "@/i18n/generated/data-display";
 import classNames from "classnames";
 import { Table } from "../Table/Table";
 import { Checkbox } from "../../form/Checkbox/Checkbox";
+import { Radio } from "../../form/Radio/Radio";
+import { VisuallyHidden } from "../../layout/VisuallyHidden/VisuallyHidden";
 import { Pagination } from "../../navigation/Pagination/Pagination";
 import { useAnnounce, useAnnounceAppearance } from "../../_internal/useAnnounce";
 import { useFixedColumns, type FixedColumnInfo } from "./useFixedColumns";
@@ -147,9 +150,10 @@ export function DataGrid<T extends Record<string, unknown>>({
   "aria-label": ariaLabelAttr,
   "aria-labelledby": ariaLabelledBy,
 }: DataGridProps<T>) {
-  const { t } = useWimTranslation(commonNs);
+  const { t } = useWimTranslation([commonNs, dataDisplayNs]);
   // "refresh" は読める・触れるまま更新中であることだけを伝える。従来の boolean は
   // blocking と同義（既定の挙動を変えない）。
+  const radioName = React.useId();
   const isBusy = loading !== false && loading !== undefined;
   const isBlocking = loading === true || loading === "blocking";
   // Normalize selection to a consistent object form
@@ -166,6 +170,9 @@ export function DataGrid<T extends Record<string, unknown>>({
     }
     return selectionProp;
   }, [selectionProp, propsSelectedRowKeys, onSelectionChange]);
+
+  const isRadio = selection?.type === "radio";
+  const SelectControl: React.ElementType = isRadio ? Radio : Checkbox;
 
   // 1. Column Processing (Fixed columns)
   // 選択の列は中身（チェックボックスと、密度で変わる余白）の幅なので、左に固定した列の
@@ -254,7 +261,9 @@ export function DataGrid<T extends Record<string, unknown>>({
     if (!selection) return;
     const checked = e.target.checked;
     const key = getRowKey(record);
-    const newKeys = checked
+    const newKeys = isRadio
+      ? [key]
+      : checked
       ? [...selection.selectedRowKeys, key]
       : selection.selectedRowKeys.filter((k) => k !== key);
     const newRecords = data.filter((r) => newKeys.includes(getRowKey(r)));
@@ -373,10 +382,13 @@ export function DataGrid<T extends Record<string, unknown>>({
                   stickyZIndex={1150}
                   data-row={-1}
                   data-col={-1}
-                  aria-label={t("a11y.select_all_rows")}
+                  aria-label={isRadio ? t("data_grid.radio_column") : t("a11y.select_all_rows")}
                   tabIndex={focusedCell.row === -1 && focusedCell.col === -1 ? 0 : -1}
                 >
-                  {(selection.type ?? "checkbox") === "checkbox" && (
+                  {/* ラジオには全選択が無いので、見出しの文字だけを読ませる（空の見出しにしない） */}
+                  {isRadio ? (
+                    <VisuallyHidden>{t("data_grid.radio_column")}</VisuallyHidden>
+                  ) : (
                     <Checkbox
                       checked={isAllSelected}
                       indeterminate={isSomeSelected}
@@ -449,9 +461,10 @@ export function DataGrid<T extends Record<string, unknown>>({
                       data-col={-1}
                       tabIndex={focusedCell.row === rowIndex && focusedCell.col === -1 ? 0 : -1}
                     >
-                      <Checkbox
-                        checked={isSelected}
-                        onChange={(e) => handleSelectRow(record, e)}
+                      <SelectControl
+                        name={isRadio ? radioName : undefined}
+                        checked={!!isSelected}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleSelectRow(record, e)}
                         // 行ごとに違う名前にする。以前は、どの行も同じ「行を選択」で、読み上げでは
                         // どの行のチェックなのかが分からなかった。
                         aria-label={t("a11y.select_row_numbered", { row: rowIndex + 1 })}

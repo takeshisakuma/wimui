@@ -279,7 +279,7 @@
       "name": "UMD Bundle (gzip)",
       "path": "dist/wimui.umd.js",
       "gzip": true,
-      "limit": "172 kB",
+      "limit": "173 kB",
       "disablePlugins": [
         "@size-limit/esbuild"
       ]

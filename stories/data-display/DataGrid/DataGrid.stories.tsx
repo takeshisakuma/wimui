@@ -167,6 +167,31 @@ export const WithSelection: Story = {
   },
 };
 
+/** 1 行だけを選ぶ表。全選択は出ず、矢印キーは選択を変えずにセルを移動する。 */
+export const WithRadioSelection: Story = {
+  render: () => {
+    const { t, tColumns, tSampleData } = useDataGridTranslations();
+    const [selectedRowKeys, setSelectedRowKeys] = React.useState<string[]>([]);
+    return (
+      <div>
+        <p style={{ marginBottom: "16px" }}>
+          {t('story.datagrid_selected')}{selectedRowKeys.join(", ")}
+        </p>
+        <DataGrid
+          columns={tColumns}
+          data={tSampleData}
+          selection={{
+            type: "radio",
+            selectedRowKeys,
+            onChange: (keys) => setSelectedRowKeys(keys),
+          }}
+          bordered
+        />
+      </div>
+    );
+  },
+};
+
 export const WithSorting: Story = {
   render: () => {
     const { tColumns } = useDataGridTranslations();
