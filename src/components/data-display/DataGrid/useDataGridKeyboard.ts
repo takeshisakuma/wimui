@@ -1,10 +1,26 @@
 import React, { useState, useRef, useLayoutEffect } from "react";
 import type { DataGridColumn } from "./DataGrid";
 
+/** 1 回の PageUp / PageDown で動く行数。見えている行から、見出しに隠れる 1 行を引く */
+const rowsPerPage = (cell: HTMLElement | null) => {
+  const row = cell?.closest("tr");
+  const rowHeight = row?.getBoundingClientRect().height ?? 0;
+  if (!row || rowHeight === 0) return 10;
+  let viewport = window.innerHeight;
+  for (let el = row.parentElement; el; el = el.parentElement) {
+    if (/auto|scroll/.test(getComputedStyle(el).overflowY) && el.scrollHeight > el.clientHeight) {
+      viewport = el.clientHeight;
+      break;
+    }
+  }
+  return Math.max(1, Math.floor(viewport / rowHeight) - 1);
+};
+
 export function useDataGridKeyboard<T>(
   columns: DataGridColumn<T>[],
   rows: T[],
   selection: boolean,
+  onKeyboardSelect?: () => void,
 ) {
   const [focusedCell, setFocusedCell] = useState<{ row: number; col: number }>(
     { row: -1, col: selection ? -1 : 0 },
@@ -36,6 +52,27 @@ export function useDataGridKeyboard<T>(
     const maxCol = columns.length - 1;
     const minRow = -1;
     const maxRow = rows.length - 1;
+    // セルの中の入力欄では、全選択・空白・ページ送りはその欄のもの
+    const editing = (e.target as HTMLElement).matches(
+      'input:not([type="checkbox"]):not([type="radio"]),textarea,select,[contenteditable="true"]',
+    );
+
+    if (selection && !editing) {
+      const all = (e.ctrlKey || e.metaKey) && !e.shiftKey && !e.altKey && e.key.toLowerCase() === "a";
+      if (all || (e.key === " " && e.shiftKey && row >= 0)) {
+        const box = containerRef.current?.querySelector<HTMLInputElement>(
+          `[data-row="${all ? -1 : row}"][data-col="-1"] input`,
+        );
+        if (box) {
+          e.preventDefault();
+          if (!all || !box.checked) {
+            onKeyboardSelect?.();
+            box.click();
+          }
+          return;
+        }
+      }
+    }
 
     switch (e.key) {
       case "ArrowRight":
@@ -65,6 +102,16 @@ export function useDataGridKeyboard<T>(
         } else {
           nextCol = maxCol;
         }
+        break;
+      case "PageDown":
+        if (editing) return;
+        e.preventDefault();
+        nextRow = Math.min(row + rowsPerPage(cell), maxRow);
+        break;
+      case "PageUp":
+        if (editing) return;
+        e.preventDefault();
+        if (row > 0) nextRow = Math.max(row - rowsPerPage(cell), 0);
         break;
       case "Enter":
       case " ": {

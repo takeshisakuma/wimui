@@ -330,7 +330,6 @@ T389 の振る舞いの回。MUI X の a11y の文書（`mui/mui-x` の `docs/da
 | # | 項目 | 優先 | 内容 | 検証方法 |
 |---|---|---|---|---|
 | T422 | **DataGrid に、行の見出し（`role="rowheader"`）を指定する口が無い** | 未着手（P3） | 起票 2026-11-20（MUI X の `rowHeader: true` から）。どの表のストーリーでも `rowheader` は 0。表の中を矢印で移ると、読み上げは列の見出ししか伝えられず、「どの行の値か」（人の名前・ロットの番号）が分からない。MUI X は、列の定義に `rowHeader: true` を付けたセルを `rowheader` にし、仮想化で外れても DOM に残す。`Table` にも同じ問いがある（`Table.Cell` を `th scope="row"` にする口） | `rowHeader` を付けた列のセルが `role="rowheader"`（単体テスト）・axe・実機の読み上げで行の名前が添えられる |
-| T423 | **DataGrid の範囲選択と全選択のキー、ページ単位の移動が無い** | 未着手（P3） | 起票 2026-11-20（MUI X の Selection / Navigation の表から）。WIM のキーは矢印・Home / End・Ctrl+Home / End・Enter / Space だけ。無いもの: Shift+クリックと Shift+矢印の範囲選択・Shift+Space の行の選択・Ctrl+A の全選択・PageUp / PageDown。行が多い表で、まとめて選ぶ手段が「全選択のチェックボックス」しか無い。**要るかはユーザー判断**（SelectionBar と組む画面で困るか） | 足すなら: キーごとに選ばれた行（単体テスト）・SelectionBar の件数の告知と食い違わない |
 
 ### Chakra UI の Zag（状態機械）との突き合わせ（2026-11-20 起票・T389）
 

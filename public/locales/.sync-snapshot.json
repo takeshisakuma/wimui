@@ -5712,7 +5712,7 @@
       "counterTextarea_long_desc": "A wrapper for the Textarea component that adds a real-time character counter. Useful for fields with specific length requirements.",
       "counterTextarea_scenario_bio": "User Bio: Restricting user descriptions to a specific character count (e.g., 160 characters).",
       "counterTextarea_scenario_comment": "Comments: Providing feedback on the length of a feedback or support request.",
-      "datagrid_keyboard_desc": "Tab moves focus between interactive elements. Arrow keys navigate cells. Enter activates cell actions. Escape cancels editing.",
+      "datagrid_keyboard_desc": "Tab moves focus between interactive elements. Arrow keys navigate cells, and PageUp / PageDown move by a page. Enter activates cell actions. With selection, Shift+Space toggles the current row and Ctrl+A (Cmd+A) selects all rows on the current page. Inside a text field, these keys belong to the field.",
       "dialog_best_practice_1": "Use a Dialog only for critical interactions that require the user's full attention. For non-critical information, prefer Popover or Toast.",
       "dialog_best_practice_2": "Always provide a clearly labeled close action (an X button or a 'Cancel' button) so users can dismiss the Dialog without completing the action.",
       "fielderror_basic_usage_desc": "Standard implementation used to display validation error messages below input fields.",

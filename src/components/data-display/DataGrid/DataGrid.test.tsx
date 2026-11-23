@@ -709,4 +709,94 @@ describe("DataGrid", () => {
       expect(screen.getByTestId("btn-3")).not.toHaveAttribute("tabindex");
     });
   });
+
+  describe("page and selection keys (T423)", () => {
+    const keyColumns = [
+      { key: "name", title: "Name" },
+      { key: "note", title: "Note", render: () => <input aria-label="note" /> },
+    ];
+    const keyRows = Array.from({ length: 25 }, (_, i) => ({ id: String(i), name: "Row " + i }));
+
+    const Selectable = ({ onChange }: { onChange: (keys: string[]) => void }) => {
+      const [keys, setKeys] = React.useState<string[]>([]);
+      return (
+        <DataGrid
+          columns={keyColumns}
+          data={keyRows}
+          rowKey="id"
+          selection
+          selectedRowKeys={keys}
+          onSelectionChange={(next) => {
+            setKeys(next);
+            onChange(next);
+          }}
+        />
+      );
+    };
+    const cell = (row: number, col: number) =>
+      document.querySelector<HTMLElement>('[data-row="' + row + '"][data-col="' + col + '"]')!;
+
+    it("PageDown and PageUp move by a page and stop at the ends", () => {
+      render(<DataGrid columns={keyColumns} data={keyRows} rowKey="id" />);
+      cell(0, 0).focus();
+      fireEvent.keyDown(cell(0, 0), { key: "PageDown" });
+      expect(cell(10, 0)).toHaveFocus();
+      fireEvent.keyDown(cell(10, 0), { key: "PageDown" });
+      fireEvent.keyDown(cell(20, 0), { key: "PageDown" });
+      expect(cell(24, 0)).toHaveFocus();
+      fireEvent.keyDown(cell(24, 0), { key: "PageUp" });
+      expect(cell(14, 0)).toHaveFocus();
+      fireEvent.keyDown(cell(14, 0), { key: "PageUp" });
+      fireEvent.keyDown(cell(4, 0), { key: "PageUp" });
+      expect(cell(0, 0)).toHaveFocus();
+    });
+
+    it("Shift+Space toggles the current row and does not scroll the page", () => {
+      const onChange = vi.fn();
+      render(<Selectable onChange={onChange} />);
+      cell(2, 0).focus();
+      expect(fireEvent.keyDown(cell(2, 0), { key: " ", shiftKey: true })).toBe(false);
+      expect(onChange).toHaveBeenLastCalledWith(["2"]);
+      fireEvent.keyDown(cell(2, 0), { key: " ", shiftKey: true });
+      expect(onChange).toHaveBeenLastCalledWith([]);
+    });
+
+    it("Ctrl+A and Cmd+A select every row, and pressing again keeps them selected", () => {
+      const onChange = vi.fn();
+      render(<Selectable onChange={onChange} />);
+      cell(1, 0).focus();
+      expect(fireEvent.keyDown(cell(1, 0), { key: "a", ctrlKey: true })).toBe(false);
+      expect(onChange).toHaveBeenLastCalledWith(keyRows.map((r) => r.id));
+      expect(onChange).toHaveBeenCalledTimes(1);
+      fireEvent.keyDown(cell(1, 0), { key: "a", metaKey: true });
+      expect(onChange).toHaveBeenCalledTimes(1);
+    });
+
+    it("announces the selected count after a keyboard selection", async () => {
+      render(<Selectable onChange={vi.fn()} />);
+      cell(1, 0).focus();
+      fireEvent.keyDown(cell(1, 0), { key: " ", shiftKey: true });
+      await waitFor(() => {
+        expect(screen.getAllByRole("status").some((el) => /1/.test(el.textContent ?? ""))).toBe(true);
+      });
+    });
+
+    it("leaves the keys to a text field inside a cell", () => {
+      const onChange = vi.fn();
+      render(<Selectable onChange={onChange} />);
+      const input = screen.getAllByLabelText("note")[0];
+      input.focus();
+      expect(fireEvent.keyDown(input, { key: "a", ctrlKey: true })).toBe(true);
+      expect(fireEvent.keyDown(input, { key: " ", shiftKey: true })).toBe(true);
+      expect(fireEvent.keyDown(input, { key: "PageDown" })).toBe(true);
+      expect(onChange).not.toHaveBeenCalled();
+      expect(input).toHaveFocus();
+    });
+
+    it("does not take Ctrl+A without selection", () => {
+      render(<DataGrid columns={keyColumns} data={keyRows} rowKey="id" />);
+      cell(0, 0).focus();
+      expect(fireEvent.keyDown(cell(0, 0), { key: "a", ctrlKey: true })).toBe(true);
+    });
+  });
 });
