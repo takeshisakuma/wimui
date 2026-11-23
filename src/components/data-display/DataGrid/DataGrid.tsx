@@ -39,6 +39,11 @@ export type DataGridColumn<T> = {
   maxWidth?: string | number;
   sortable?: boolean;
   fixed?: "left" | "right";
+  /**
+   * Expose this column's cells as row headers (`role="rowheader"`), so a screen reader can name
+   * the row while moving across it. Use it on the column that identifies the row, such as a name.
+   */
+  rowHeader?: boolean;
   render?: (value: unknown, record: T, index: number) => React.ReactNode;
 };
 
@@ -459,7 +464,7 @@ export function DataGrid<T extends Record<string, unknown>>({
                     const value = record[fieldKey];
                     return (
                       <Table.Cell
-                        role="gridcell"
+                        role={col.rowHeader ? "rowheader" : "gridcell"}
                         key={col.key}
                         label={typeof col.title === "string" ? col.title : undefined}
                         {...stickyProps}

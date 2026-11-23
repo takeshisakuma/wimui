@@ -36,4 +36,13 @@ test.describe("DataGrid: page and selection keys", () => {
     await expect(cell).toBeFocused();
     expect(await page.evaluate(() => getSelection()?.toString() ?? "")).toBe("");
   });
+
+  test("a rowHeader column exposes each row's name as a rowheader (T422)", async ({ page }) => {
+    await page.goto(story("components-data-structures-datagrid--with-selection"));
+    await page.waitForLoadState("networkidle");
+    const headers = page.getByRole("rowheader");
+    await expect(headers).toHaveCount(5);
+    await expect(headers.first()).toHaveText("Priya Nair");
+    await expect(page.getByRole("row").nth(1).getByRole("rowheader")).toHaveCount(1);
+  });
 });
