@@ -174,7 +174,15 @@ const CueRow = ({
         </>
       }
     >
-      <Table.Row onClick={onOpenDetail}>
+      <Table.Row
+        onClick={(event) => {
+          // 行の中の Popover の押下は、行へ伝わる（body に描かれた面の中の押下も、React では伝わる）。
+          // stopPropagation は使わない ── 外側を押して閉じる処理まで届かなくなる
+          const target = event.target as Element;
+          if (!event.currentTarget.contains(target) || target.closest("button")) return;
+          onOpenDetail();
+        }}
+      >
         {/* `label` はカード表示（`mobileCard`）でヘッダの代わりに出る。
             `Table` は列のメタデータを持たないので、ここで渡さないと
             カードは値だけが並んだ状態になる */}

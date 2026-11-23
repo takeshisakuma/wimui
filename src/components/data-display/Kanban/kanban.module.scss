@@ -125,6 +125,11 @@
       opacity: 1;
     }
 
+    // T437: 不透明度が 1 未満の間は重なりの文脈ができ、開いた一覧が後ろのカードの下に描かれる
+    .card.menuOpen & {
+      transition: none;
+    }
+
     @media (hover: none) and (pointer: coarse) {
       position: relative;
       top: auto;
