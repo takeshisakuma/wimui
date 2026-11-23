@@ -3506,6 +3506,10 @@
           "required": false,
           "type": "(value: unknown, record: T, index: number) => React.ReactNode"
         },
+        "rowHeader": {
+          "required": false,
+          "type": "boolean"
+        },
         "sortable": {
           "required": false,
           "type": "boolean"

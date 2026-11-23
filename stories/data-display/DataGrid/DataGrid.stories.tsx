@@ -153,7 +153,7 @@ export const WithSelection: Story = {
           {t('story.datagrid_selected')}{selectedRowKeys.join(", ")}
         </p>
         <DataGrid
-          columns={tColumns}
+          columns={tColumns.map((col) => (col.key === "name" ? { ...col, rowHeader: true } : col))}
           data={tSampleData}
           selection={{
             type: "checkbox",

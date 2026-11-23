@@ -790,4 +790,51 @@ describe("DataGrid", () => {
       expect(fireEvent.keyDown(cell(0, 0), { key: "a", ctrlKey: true })).toBe(true);
     });
   });
+
+  describe("row headers (T422)", () => {
+    const rows = [
+      { id: "1", name: "Ana", role: "Admin" },
+      { id: "2", name: "Kenji", role: "User" },
+    ];
+
+    it("renders the cells of a rowHeader column as rowheader", () => {
+      render(
+        <DataGrid
+          rowKey="id"
+          data={rows}
+          columns={[
+            { key: "name", title: "Name", rowHeader: true },
+            { key: "role", title: "Role" },
+          ]}
+        />,
+      );
+      expect(screen.getAllByRole("rowheader").map((el) => el.textContent)).toEqual(["Ana", "Kenji"]);
+      expect(screen.getAllByRole("gridcell").map((el) => el.textContent)).toEqual(["Admin", "User"]);
+    });
+
+    it("keeps every cell a gridcell without rowHeader", () => {
+      render(<DataGrid rowKey="id" data={rows} columns={[{ key: "name", title: "Name" }]} />);
+      expect(screen.queryByRole("rowheader")).toBeNull();
+      expect(screen.getAllByRole("gridcell")).toHaveLength(2);
+    });
+
+    it("keeps arrow-key navigation through a rowheader cell", () => {
+      render(
+        <DataGrid
+          rowKey="id"
+          data={rows}
+          columns={[
+            { key: "name", title: "Name", rowHeader: true },
+            { key: "role", title: "Role" },
+          ]}
+        />,
+      );
+      const header = screen.getByRole("rowheader", { name: "Ana" });
+      header.focus();
+      fireEvent.keyDown(header, { key: "ArrowRight" });
+      expect(screen.getByRole("gridcell", { name: "Admin" })).toHaveFocus();
+      fireEvent.keyDown(screen.getByRole("gridcell", { name: "Admin" }), { key: "ArrowLeft" });
+      expect(header).toHaveFocus();
+    });
+  });
 });
