@@ -214,4 +214,60 @@ describe("Toast: the auto-close timer pauses while the toast is in use", () => {
     expect(titles.some((text) => text?.includes("First"))).toBe(false);
     expect(titles.some((text) => text?.includes("Second"))).toBe(true);
   });
+
+  describe("ToastProvider keyboard (T426)", () => {
+    const Page = () => {
+      const { show } = useToast();
+      return <button onClick={() => show({ title: "Saved", duration: 0 })}>Save</button>;
+    };
+    const setup = () => {
+      render(<ToastProvider><Page /></ToastProvider>);
+      const trigger = screen.getByRole("button", { name: "Save" });
+      trigger.focus();
+      fireEvent.click(trigger);
+      return trigger;
+    };
+
+    it("has no landmark until a toast is shown", () => {
+      render(<ToastProvider><Page /></ToastProvider>);
+      expect(screen.queryByRole("region")).toBeNull();
+      fireEvent.click(screen.getByRole("button", { name: "Save" }));
+      expect(screen.getByRole("region")).toHaveAttribute("aria-keyshortcuts", "F8");
+      expect(screen.getByRole("region")).toHaveAccessibleName();
+    });
+
+    it("F8 moves to the toast and Escape returns without closing it", () => {
+      const trigger = setup();
+      fireEvent.keyDown(document, { key: "F8" });
+      const close = screen.getByLabelText("Close");
+      expect(close).toHaveFocus();
+
+      // 下の層（開いた Dialog など）が同じ Escape で閉じないよう、止めたことを示す
+      expect(fireEvent.keyDown(close, { key: "Escape" })).toBe(false);
+      expect(trigger).toHaveFocus();
+      expect(screen.getByLabelText("Close")).toBeInTheDocument();
+    });
+
+    it("returns focus to where it was when the focused toast is closed", () => {
+      const trigger = setup();
+      fireEvent.keyDown(document, { key: "F8" });
+      const close = screen.getByLabelText("Close");
+      expect(close).toHaveFocus();
+      fireEvent.click(close);
+      expect(screen.queryByLabelText("Close")).toBeNull();
+      expect(trigger).toHaveFocus();
+    });
+
+    it("ignores F8 with a modifier and when no toast is shown", () => {
+      render(<ToastProvider><Page /></ToastProvider>);
+      const trigger = screen.getByRole("button", { name: "Save" });
+      trigger.focus();
+      expect(fireEvent.keyDown(document, { key: "F8" })).toBe(true);
+      expect(trigger).toHaveFocus();
+
+      fireEvent.click(trigger);
+      expect(fireEvent.keyDown(document, { key: "F8", ctrlKey: true })).toBe(true);
+      expect(trigger).toHaveFocus();
+    });
+  });
 });

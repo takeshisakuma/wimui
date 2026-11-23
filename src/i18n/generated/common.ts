@@ -744,6 +744,7 @@ export const commonNs: WimNamespace<"common", CommonKey> = {
       },
       "fri": "Fri",
       "mon": "Mon",
+      "notifications": "Notifications",
       "pagination": {
         "go": "Go",
         "go_to": "Go to",
@@ -968,6 +969,7 @@ export const commonNs: WimNamespace<"common", CommonKey> = {
         "label": "ノードグラフ"
       },
       "mon": "月",
+      "notifications": "通知",
       "pagination": {
         "go": "移動",
         "go_to": "移動",
@@ -1172,6 +1174,7 @@ export const commonNs: WimNamespace<"common", CommonKey> = {
         "label": "Grafo de nós"
       },
       "mon": "Seg",
+      "notifications": "Notificações",
       "pagination": {
         "go": "Ir",
         "go_to": "Ir para",

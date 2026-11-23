@@ -429,7 +429,7 @@
     "toast_design_intent": "Os Toasts são usados para comunicar sucesso, erros ou outros estados breves de processos em segundo plano (como salvar ou enviar) sem bloquear o fluxo atual do usuário. Eles fornecem 'feedback efêmero' que desaparece automaticamente após um certo tempo.",
     "toast_interactive_example": "Exemplo Interativo",
     "toast_interactive_example_desc": "No exemplo abaixo, você pode interagir com um toast para ver como ele funciona.",
-    "toast_keyboard_desc": "Tab move o foco para o botão de ação quando presente. Escape fecha o toast.",
+    "toast_keyboard_desc": "Com ToastProvider, F8 move o foco para o toast mais recente, e Tab percorre seus botões. Escape devolve o foco ao lugar anterior sem fechar o toast. Ao fechar um toast com foco, o foco vai para o próximo toast ou volta ao lugar anterior.",
     "toast_long_desc": "O componente toast é usado para transmitir notificações curtas ou feedback ao usuário. Ele geralmente aparece no canto da tela e desaparece automaticamente após um certo período de tempo.",
     "toast_props": "Propriedades",
     "toast_provider_prop_children_desc": "Elementos filhos a serem renderizados dentro do provedor",
