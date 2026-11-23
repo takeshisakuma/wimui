@@ -123,6 +123,29 @@ export const WithMobileMenu: Story = {
   },
 };
 
+/** 左から出す面。引き金も左端へ寄る（composition.md の必須ルール 16）。狭い幅で確かめる。 */
+export const MenuFromLeft: Story = {
+  render: () => {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <Navbar bordered>
+        <Navbar.Brand>
+          <span>{t("story.navbar_mobile_app")}</span>
+        </Navbar.Brand>
+        <Navbar.Content justify="end" hiddenOnMobile>
+          <Navbar.Link href="#">{t("story.navbar_overview")}</Navbar.Link>
+          <Navbar.Link href="#">{t("story.navbar_activity")}</Navbar.Link>
+        </Navbar.Content>
+        <Navbar.Toggle />
+        <Navbar.Menu position="left">
+          <Navbar.MenuItem>{t("story.navbar_overview")}</Navbar.MenuItem>
+          <Navbar.MenuItem>{t("story.navbar_activity")}</Navbar.MenuItem>
+        </Navbar.Menu>
+      </Navbar>
+    );
+  },
+};
+
 export const CenteredLinks: Story = {
   render: (args) => {
     const { t } = useTranslation(ALL_NAMESPACES);
