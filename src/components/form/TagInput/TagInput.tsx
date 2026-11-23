@@ -182,11 +182,6 @@ export const TagInput = React.forwardRef<HTMLDivElement, TagInputProps>(
               [styles.disabled]: disabled,
             })}
             onClick={handleContainerClick}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" || e.key === " ") {
-                handleContainerClick();
-              }
-            }}
             role="presentation"
           >
             <div className={styles.tagList}>
@@ -201,7 +196,15 @@ export const TagInput = React.forwardRef<HTMLDivElement, TagInputProps>(
                   intent="neutral"
                   size="sm"
                   disabled={disabled}
-                  onDelete={allowDelete && !disabled ? () => removeTag(tag) : undefined}
+                  // 押したボタンは消えるので、入力欄へ移さないとフォーカスが文書へ落ちる
+                  onDelete={
+                    allowDelete && !disabled
+                      ? () => {
+                          removeTag(tag);
+                          inputRef.current?.focus();
+                        }
+                      : undefined
+                  }
                   className={styles.tag}
                 >
                   {tag}
