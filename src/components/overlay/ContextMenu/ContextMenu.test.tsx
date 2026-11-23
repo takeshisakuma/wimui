@@ -250,6 +250,21 @@ describe("ContextMenu", () => {
     });
   });
 
+  it.each(["Enter", " "])("leaves %j to a control inside the region", (key) => {
+    render(
+      <ContextMenu menu={<ContextMenuItem>Item 1</ContextMenuItem>}>
+        <button type="button">Inner</button>
+        <input aria-label="Inner field" />
+      </ContextMenu>,
+    );
+
+    for (const control of [screen.getByRole("button", { name: "Inner" }), screen.getByRole("textbox")]) {
+      // fireEvent は preventDefault されると false を返す
+      expect(fireEvent.keyDown(control, { key })).toBe(true);
+      expect(screen.queryByText("Item 1")).not.toBeInTheDocument();
+    }
+  });
+
   it("does not open with keyboard when disabled", () => {
     render(
       <ContextMenu menu={menu} disabled>

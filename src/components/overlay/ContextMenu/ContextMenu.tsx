@@ -152,9 +152,10 @@ const ContextMenuInner = ({
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (disabled) return;
-    // メニューは Portal の中でも、React のイベントはこの引き金まで伝わる。項目の上の Enter / 空白を
-    // 「開く」と受けると、開き直して先頭の項目へ戻ってしまう（T425 の先回りの空白で見つけた）
-    if (!containerRef.current?.contains(e.target as Node)) return;
+    // 領域そのものにフォーカスがあるときだけ開く。メニューは Portal の中でも、React のイベントは
+    // この引き金まで伝わるので、項目の上の Enter / 空白で開き直して先頭へ戻ってしまう（T425）。
+    // 領域の中のボタンや入力欄のキーも、ここで止めると、その要素が押せず文字も打てない（7-4）
+    if (e.target !== e.currentTarget) return;
 
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
