@@ -11,6 +11,7 @@ import {
   Container,
   CopyButton,
   DataGrid,
+  Dialog,
   Dropdown,
   DropdownItem,
   DropdownMenu,
@@ -200,6 +201,7 @@ function IntakeQueue({
     direction: "desc",
   });
   const [rejected, setRejected] = useState(0);
+  const [cancelling, setCancelling] = useState(false);
 
   const numberFormat = useMemo(
     () => new Intl.NumberFormat(i18n.language),
@@ -338,16 +340,9 @@ function IntakeQueue({
           <DropdownMenu align="right">
             <DropdownItem>{t("intake.menu_detail")}</DropdownItem>
             <DropdownItem>{t("intake.menu_assign")}</DropdownItem>
-            <Popconfirm
-              title={t("intake.cancel_confirm_title")}
-              description={t("intake.cancel_confirm_desc")}
-              okText={t("intake.cancel_confirm_ok")}
-              cancelText={t("intake.confirm_cancel")}
-              okType="danger"
-              onConfirm={() => undefined}
-            >
-              <DropdownItem>{t("intake.menu_cancel")}</DropdownItem>
-            </Popconfirm>
+            <DropdownItem onClick={() => setCancelling(true)}>
+              {t("intake.menu_cancel")}
+            </DropdownItem>
           </DropdownMenu>
         </Dropdown>
       ),
@@ -512,6 +507,23 @@ function IntakeQueue({
           </Stack>
         </Stack>
       </Container>
+
+      <Dialog open={cancelling} onOpenChange={setCancelling} role="alertdialog">
+        <Dialog.Content>
+          <Dialog.Header>
+            <Dialog.Title>{t("intake.cancel_confirm_title")}</Dialog.Title>
+            <Dialog.Description>{t("intake.cancel_confirm_desc")}</Dialog.Description>
+          </Dialog.Header>
+          <Dialog.Footer>
+            <Button variant="outline" onClick={() => setCancelling(false)}>
+              {t("intake.confirm_cancel")}
+            </Button>
+            <Button intent="danger" onClick={() => setCancelling(false)}>
+              {t("intake.cancel_confirm_ok")}
+            </Button>
+          </Dialog.Footer>
+        </Dialog.Content>
+      </Dialog>
 
       <Snackbar
         open={rejected > 0}
