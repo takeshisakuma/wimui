@@ -94,6 +94,20 @@ describe("TagInput", () => {
     expect(onChange).toHaveBeenCalledWith(["b"]);
   });
 
+  it.each(["Enter", " "])("keeps focus on the delete button on %j so the key can press it", (key) => {
+    const onChange = vi.fn();
+    render(<TagInput defaultValue={["a", "b"]} onChange={onChange} />);
+    const button = screen.getAllByLabelText("Close")[0];
+    button.focus();
+    fireEvent.keyDown(button, { key });
+    expect(document.activeElement).toBe(button);
+
+    // ブラウザはこのキーをボタンの click に変える。ボタンは消えるので、フォーカスは入力欄へ移す
+    fireEvent.click(button);
+    expect(onChange).toHaveBeenCalledWith(["b"]);
+    expect(document.activeElement).toBe(getInput());
+  });
+
   it("hides delete buttons and disables Backspace removal when allowDelete is false", () => {
     const onChange = vi.fn();
     render(<TagInput defaultValue={["a"]} allowDelete={false} onChange={onChange} />);
