@@ -634,6 +634,28 @@
         "T422"
       ],
       "note": "rowHeader の列の名前が、同じ行のほかのセルで読まれ、次の行では変わる"
+    },
+    {
+      "component": "Sidebar",
+      "date": "2026-11-23",
+      "reader": "narrator",
+      "browser": "chrome",
+      "result": "ok",
+      "sources": [
+        "T433"
+      ],
+      "note": "開いたドロワーが名前付きのダイアログと読まれ、読み進めても背面へ出ない。閉じるとハンバーガーへ戻り、項目を通らずメインのランドマークへ進む（本文の段落までは聞いていない）"
+    },
+    {
+      "component": "DataGrid",
+      "date": "2026-11-23",
+      "reader": "narrator",
+      "browser": "chrome",
+      "result": "ok",
+      "sources": [
+        "T423"
+      ],
+      "note": "type=radio（T423 の作業中に見つけて #1310 で修正）で選択状態と表の中の位置が読まれる。行の名前（N 行目を選択）が読まれるかは未確認"
     }
   ]
 }

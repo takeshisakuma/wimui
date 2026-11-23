@@ -116,6 +116,71 @@ describe("Sidebar", () => {
       expect(onMobileClose).toHaveBeenCalledTimes(1);
     });
 
+    it("is a named modal dialog and makes the rest of the page inert until it closes", () => {
+      stubViewport(true);
+      const Page = ({ open }: { open: boolean }) => (
+        <>
+          <main data-testid="page"><button>Behind</button></main>
+          <div role="status" data-testid="live" />
+          <Sidebar mobileOpen={open} onMobileClose={() => undefined} />
+        </>
+      );
+      const { rerender } = render(<Page open />);
+      const dialog = screen.getByRole("dialog");
+      expect(dialog).toHaveAccessibleName();
+      expect(dialog).toHaveAttribute("aria-modal", "true");
+      expect(screen.getByTestId("page")).toHaveAttribute("inert");
+      expect(screen.getByTestId("live")).not.toHaveAttribute("inert");
+
+      rerender(<Page open={false} />);
+      expect(screen.queryByRole("dialog")).toBeNull();
+      expect(screen.getByTestId("page")).not.toHaveAttribute("inert");
+    });
+
+    it("keeps the trigger and the overlay usable when the trigger is the close control", () => {
+      stubViewport(true);
+      const onOverlayClick = vi.fn();
+      const Page = ({ open }: { open: boolean }) => (
+        <>
+          <header data-testid="header">
+            <button>Open</button>
+            <button>Bell</button>
+          </header>
+          <Sidebar
+            mobileOpen={open}
+            onMobileClose={() => undefined}
+            onOverlayClick={onOverlayClick}
+            showMobileCloseButton={false}
+          />
+        </>
+      );
+      const { rerender, container } = render(<Page open={false} />);
+      const trigger = screen.getByRole("button", { name: "Open" });
+      trigger.focus();
+      rerender(<Page open />);
+
+      expect(trigger.closest("[inert]")).toBeNull();
+      expect(screen.getByText("Bell")).toHaveAttribute("inert");
+      expect(screen.getByRole("dialog")).not.toHaveAttribute("aria-modal");
+      const overlay = container.querySelector('[aria-hidden="true"]') as HTMLElement;
+      expect(overlay).not.toHaveAttribute("inert");
+      fireEvent.click(overlay);
+      expect(onOverlayClick).toHaveBeenCalledTimes(1);
+    });
+
+    it("does not clear an inert attribute it did not set", () => {
+      stubViewport(true);
+      const Page = ({ open }: { open: boolean }) => (
+        <>
+          <div data-testid="already" {...{ inert: true }} />
+          <Sidebar mobileOpen={open} onMobileClose={() => undefined} />
+        </>
+      );
+      const { rerender } = render(<Page open />);
+      rerender(<Page open={false} />);
+      expect(screen.getByTestId("already")).toHaveAttribute("inert");
+    });
+
     it("does not trap focus without onMobileClose", () => {
       stubViewport(true);
       render(<Sidebar mobileOpen><button>Item</button></Sidebar>);
