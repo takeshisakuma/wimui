@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useLayoutEffect, useState } from "react";
 import classNames from "classnames";
 import { HamburgerMenu } from "../../navigation/HamburgerMenu/HamburgerMenu";
 import { Drawer, DrawerContent } from "../../overlay/Drawer/Drawer";
@@ -8,6 +8,7 @@ import { composeEventHandlers } from "../../_internal/composeEventHandlers";
 type NavbarContextType = {
   isMenuOpen: boolean;
   setIsMenuOpen: (isOpen: boolean) => void;
+  setMenuPosition: (position: NavbarMenuProps["position"]) => void;
 };
 
 const NavbarContext = createContext<NavbarContextType | undefined>(undefined);
@@ -53,6 +54,7 @@ const NavbarRoot = React.forwardRef<HTMLElement, NavbarProps>(
   ) => {
     const [internalIsMenuOpen, setInternalIsMenuOpen] =
       useState(defaultMenuOpen);
+    const [menuPosition, setMenuPosition] = useState<NavbarMenuProps["position"]>();
 
     const isMenuOpen = controlledIsMenuOpen ?? internalIsMenuOpen;
     const setIsMenuOpen = (isOpen: boolean) => {
@@ -61,7 +63,7 @@ const NavbarRoot = React.forwardRef<HTMLElement, NavbarProps>(
     };
 
     return (
-      <NavbarContext.Provider value={{ isMenuOpen, setIsMenuOpen }}>
+      <NavbarContext.Provider value={{ isMenuOpen, setIsMenuOpen, setMenuPosition }}>
         <nav
           ref={ref}
           className={classNames("wim-navbar", 
@@ -75,7 +77,13 @@ const NavbarRoot = React.forwardRef<HTMLElement, NavbarProps>(
           )}
           {...props}
         >
-          <div className={classNames(styles.container, fluid && styles.fluid)}>
+          <div
+            className={classNames(
+              styles.container,
+              fluid && styles.fluid,
+              menuPosition === "left" && styles.menuFromLeft,
+            )}
+          >
             {children}
           </div>
         </nav>
@@ -210,6 +218,7 @@ export const NavbarToggle = React.forwardRef<
 NavbarToggle.displayName = "Navbar.Toggle";
 
 export interface NavbarMenuProps extends React.ComponentPropsWithoutRef<"div"> {
+  /** Edge the menu slides in from. With `left`, `Navbar.Toggle` moves to the left end of the bar. */
   position?: "right" | "left" | "top" | "bottom";
 }
 
@@ -219,7 +228,13 @@ export const NavbarMenu = React.forwardRef<HTMLDivElement, NavbarMenuProps>(
     if (!context) {
       throw new Error("NavbarMenu must be used within a Navbar");
     }
-    const { isMenuOpen, setIsMenuOpen } = context;
+    const { isMenuOpen, setIsMenuOpen, setMenuPosition } = context;
+
+    // 引き金は面の出る側に置く（composition.md の必須ルール 16）。描画の前に揃え、右から動いて見せない
+    useLayoutEffect(() => {
+      setMenuPosition(position);
+      return () => setMenuPosition(undefined);
+    }, [position, setMenuPosition]);
 
     return (
       <Drawer open={isMenuOpen} onOpenChange={setIsMenuOpen} side={position}>

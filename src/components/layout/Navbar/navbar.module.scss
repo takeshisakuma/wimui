@@ -150,6 +150,20 @@
     }
   }
 
+  /* DOM の順は変えない（`Navbar.Toggle` の置き場は利用者が決める）。`space-between` のままだと、
+     左へ寄せた引き金と Brand の間が開く */
+  .menuFromLeft {
+    @include breakpoints.down(md) {
+      justify-content: flex-start;
+
+      .toggle {
+        order: -1;
+        margin-right: var(--wim-spacing-md);
+        margin-left: 0;
+      }
+    }
+  }
+
   .menu {
     display: none;
 
