@@ -32,5 +32,8 @@
   },
   "kanban": {
     "moved": "{{column}} へ移動しました"
+  },
+  "data_grid": {
+    "radio_column": "行を選択"
   }
 }

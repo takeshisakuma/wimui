@@ -837,4 +837,73 @@ describe("DataGrid", () => {
       expect(header).toHaveFocus();
     });
   });
+
+  describe('selection.type = "radio"', () => {
+    const radioRows = [
+      { id: "1", name: "Ana" },
+      { id: "2", name: "Kenji" },
+      { id: "3", name: "Yui" },
+    ];
+    const RadioGrid = ({ onChange, initial = [] }: { onChange: (keys: string[]) => void; initial?: string[] }) => {
+      const [keys, setKeys] = React.useState<string[]>(initial);
+      return (
+        <DataGrid
+          columns={[{ key: "name", title: "Name" }]}
+          data={radioRows}
+          rowKey="id"
+          selection={{
+            type: "radio",
+            selectedRowKeys: keys,
+            onChange: (next) => {
+              setKeys(next);
+              onChange(next);
+            },
+          }}
+        />
+      );
+    };
+
+    it("renders radios in one group, without a select-all control", () => {
+      render(<RadioGrid onChange={vi.fn()} />);
+      const radios = screen.getAllByRole("radio");
+      expect(radios).toHaveLength(3);
+      expect(new Set(radios.map((el) => el.getAttribute("name"))).size).toBe(1);
+      expect(radios[0].getAttribute("name")).toBeTruthy();
+      expect(screen.queryByRole("checkbox")).toBeNull();
+      expect(screen.queryByRole("columnheader", { name: "Select all rows" })).toBeNull();
+      // キーのまま出ていないこと（内蔵の翻訳に入っていないと `a11y.select_row` と読まれる）
+      expect(screen.getByRole("columnheader", { name: "Select row" })).toHaveTextContent("Select row");
+    });
+
+    it("keeps only the newest row selected", () => {
+      const onChange = vi.fn();
+      render(<RadioGrid onChange={onChange} />);
+      const radios = screen.getAllByRole("radio");
+      fireEvent.click(radios[0]);
+      expect(onChange).toHaveBeenLastCalledWith(["1"]);
+      fireEvent.click(radios[2]);
+      expect(onChange).toHaveBeenLastCalledWith(["3"]);
+      expect(radios[0]).not.toBeChecked();
+      expect(radios[2]).toBeChecked();
+    });
+
+    it("Shift+Space selects the current row, and Ctrl+A selects nothing", () => {
+      const onChange = vi.fn();
+      render(<RadioGrid onChange={onChange} initial={["1"]} />);
+      const cell = document.querySelector<HTMLElement>('[data-row="1"][data-col="0"]')!;
+      cell.focus();
+      fireEvent.keyDown(cell, { key: " ", shiftKey: true });
+      expect(onChange).toHaveBeenLastCalledWith(["2"]);
+      onChange.mockClear();
+      fireEvent.keyDown(cell, { key: "a", ctrlKey: true });
+      expect(onChange).not.toHaveBeenCalled();
+    });
+
+    it("does not let an arrow key change the radio natively, even at the edge of the grid", () => {
+      render(<RadioGrid onChange={vi.fn()} initial={["3"]} />);
+      const last = screen.getAllByRole("radio")[2];
+      last.focus();
+      expect(fireEvent.keyDown(last, { key: "ArrowDown" })).toBe(false);
+    });
+  });
 });

@@ -45,4 +45,28 @@ test.describe("DataGrid: page and selection keys", () => {
     await expect(headers.first()).toHaveText("Priya Nair");
     await expect(page.getByRole("row").nth(1).getByRole("rowheader")).toHaveCount(1);
   });
+
+  test('type="radio": one row at a time, and arrow keys move cells without changing it', async ({ page }) => {
+    await page.goto(story("components-data-structures-datagrid--with-radio-selection"));
+    await page.waitForLoadState("networkidle");
+    const radios = page.getByRole("radio");
+    await expect(radios).toHaveCount(5);
+
+    await radios.nth(4).click();
+    await radios.nth(1).click();
+    await expect(radios.nth(1)).toBeChecked();
+    await expect(page.locator("input[type=radio]:checked")).toHaveCount(1);
+
+    // ネイティブのラジオは矢印で選択が動くが、表の中では矢印はセルの移動
+    await radios.nth(1).focus();
+    await page.keyboard.press("ArrowDown");
+    await expect(page.locator('[data-row="2"][data-col="-1"]')).toBeFocused();
+    await expect(radios.nth(1)).toBeChecked();
+
+    await radios.nth(4).click();
+    await radios.nth(4).focus();
+    await page.keyboard.press("ArrowDown");
+    await expect(radios.nth(4)).toBeChecked();
+    await expect(page.locator("input[type=radio]:checked")).toHaveCount(1);
+  });
 });

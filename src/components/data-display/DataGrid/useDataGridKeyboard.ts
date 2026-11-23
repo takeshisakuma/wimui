@@ -56,6 +56,9 @@ export function useDataGridKeyboard<T>(
       'input:not([type="checkbox"]):not([type="radio"]),textarea,select,[contenteditable="true"]',
     );
 
+    // 同じ name のラジオは、矢印で選択そのものが動く。表の中の矢印はセルの移動だけにする（端でも）
+    if (e.key.startsWith("Arrow") && (e.target as HTMLInputElement).type === "radio") e.preventDefault();
+
     if (selection && !editing) {
       const all = (e.ctrlKey || e.metaKey) && !e.shiftKey && !e.altKey && e.key.toLowerCase() === "a";
       if (all || (e.key === " " && e.shiftKey && row >= 0)) {

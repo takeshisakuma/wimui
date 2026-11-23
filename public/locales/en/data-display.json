@@ -32,5 +32,8 @@
   },
   "kanban": {
     "moved": "Moved to {{column}}"
+  },
+  "data_grid": {
+    "radio_column": "Select row"
   }
 }
