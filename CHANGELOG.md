@@ -1,5 +1,14 @@
 # wimui
 
+## 0.90.1
+
+### Patch Changes
+
+- 00ee840: ContextMenu: 領域の中のボタンや入力欄で Enter / Space を押すと、その要素が動かず（空白も打てず）メニューが開いていたのを直した。キーでメニューを開くのは、領域そのものにフォーカスがあるときだけになる。
+- 996dee6: Dropdown: `Dropdown.Item` を `Popconfirm` や `Popover` の引き金にすると、押したときに例外で落ちていたのを直した。項目を選ぶとメニューは閉じるので、確認を出すときはメニューの外の `Dialog` を状態で開く。
+- 7b8171d: Input / NumberInput / PasswordInput / SearchInput / TimePicker / ColorPicker / Combobox / Mentions: 囲んでいるフォームの `reset` で、入力した値が既定の値へ戻らなかったのを直した。`value` で制御しているときの値は、これまでどおり利用者が持つ。
+- d20a09b: TagInput: タグの削除ボタンが Enter / Space で押せなかったのを直した。キーを押した瞬間にフォーカスが入力欄へ移り、ボタンに届いていなかった。あわせて、削除したあとにフォーカスが文書へ落ちていたのを直し、キーでもマウスでも入力欄へ移るようにした。
+
 ## 0.90.0
 
 ### Minor Changes
