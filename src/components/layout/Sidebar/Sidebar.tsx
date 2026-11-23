@@ -4,6 +4,7 @@ import { useBreakpointDown } from "@/hooks/useBreakpoint";
 import { useMergedRef } from "@/hooks/useMergedRef";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { commonNs } from "@/i18n/generated/common";
+import { composeEventHandlers } from "../../_internal/composeEventHandlers";
 import { useEscapeLayer } from "../../_internal/escapeStack";
 import { IconButton } from "../../form/IconButton/IconButton";
 import { FocusTrap } from "../../overlay/FocusTrap/FocusTrap";
@@ -242,7 +243,7 @@ export interface SidebarItemProps extends React.ComponentPropsWithoutRef<"div"> 
   icon?: React.ReactNode;
 }
 export const SidebarItem = React.forwardRef<HTMLDivElement, SidebarItemProps>(
-  ({ className, children, active, disabled, icon, ...props }, ref) => (
+  ({ className, children, active, disabled, icon, onClick, ...props }, ref) => (
     <div
       ref={ref}
       className={classNames(
@@ -251,7 +252,19 @@ export const SidebarItem = React.forwardRef<HTMLDivElement, SidebarItemProps>(
         disabled && styles.disabled,
         className,
       )}
+      role="button"
+      tabIndex={disabled ? -1 : 0}
+      aria-disabled={disabled || undefined}
+      aria-current={active ? "page" : undefined}
       {...props}
+      onClick={disabled ? undefined : onClick}
+      onKeyDown={composeEventHandlers(props.onKeyDown, (event) => {
+        // 項目の中の要素のキーは、その要素のもの
+        if (disabled || event.target !== event.currentTarget) return;
+        if (event.key !== "Enter" && event.key !== " ") return;
+        event.preventDefault();
+        event.currentTarget.click();
+      })}
     >
       {icon && <span className={styles.itemIcon}>{icon}</span>}
       <span className={styles.itemText}>{children}</span>

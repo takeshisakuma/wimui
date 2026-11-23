@@ -1,4 +1,6 @@
 @use "../../../tokens/breakpoints" as breakpoints;
+@use "../../../styles/focus-mixins" as focus;
+@use "../../../styles/pressed-mixins" as pressed;
 
 @layer component {
   .overlay {
@@ -37,8 +39,20 @@
     &.collapsed {
       width: var(--wim-height-xl);
 
+      /* `display: none` にしない ── アイコンだけの項目のボタンの名前が消える */
       .itemText {
-        display: none;
+        position: absolute;
+        flex: none;
+        width: 1px; /* Exception: Structural Logic — WAI-ARIA 視覚隠蔽のクリップ寸法 */
+        height: 1px; /* Exception: Structural Logic — WAI-ARIA 視覚隠蔽のクリップ寸法 */
+        padding: 0;
+        margin: -1px; /* Exception: Structural Logic — WAI-ARIA 視覚隠蔽の負マージン */
+        overflow: hidden;
+        white-space: nowrap;
+        border: 0;
+        /* stylelint-disable-next-line property-no-deprecated */
+        clip: rect(0, 0, 0, 0);
+        clip-path: inset(50%);
       }
 
       // Collapsed rail: hide opt-in labels and center the remaining icons.
@@ -118,6 +132,7 @@
   }
 
   .item {
+    position: relative;
     display: flex;
     align-items: center;
     padding: var(--wim-spacing-sm) var(--wim-spacing-md);
@@ -127,6 +142,15 @@
 
     &:hover {
       background-color: var(--wim-color-surface-hover);
+    }
+
+    &:active:not(.disabled) {
+      @include pressed.tinted;
+    }
+
+    /* `.content` の overflow で外側の輪が切れるので、内側に描く */
+    &:focus-visible {
+      @include focus.inset-outline;
     }
 
     &.active {

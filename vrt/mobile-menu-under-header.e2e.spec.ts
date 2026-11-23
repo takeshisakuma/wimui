@@ -32,7 +32,7 @@ test.describe("Mobile menu opened from the header (390px)", () => {
       const panel = page.locator('[role="dialog"], .wim-sidebar[class*="mobile-open"]').first();
       await expect(panel).toBeVisible();
 
-      // Navbar.MenuItem と Sidebar.Item は素の div なので、役割ではなくクラスで拾う。
+      // Navbar.MenuItem と Sidebar.Item は div なので、タグではなくクラスで拾う。
       // Sidebar.Header の見出しも入れる ── 上端の行がいちばん覆われやすい。
       // 判定は elementFromPoint（その点を押したら何に当たるか）。Playwright の trial click は
       // 「位置が落ち着かない」でも落ちるので、覆われているかの判定には使わない

@@ -68,6 +68,20 @@ test.describe("Sidebar drawer closed from the AppShell header (390px)", () => {
     }
   });
 
+  test("focus moves to the first item, and items are reachable by Tab", async ({ page }) => {
+    const handle = await open(page);
+    const items = drawer(page).locator('[role="button"]');
+    await expect(items.first()).toBeFocused();
+    const count = await items.count();
+    expect(count).toBeGreaterThanOrEqual(4);
+    for (let i = 1; i < count; i += 1) {
+      await page.keyboard.press("Tab");
+      await expect(items.nth(i)).toBeFocused();
+    }
+    await page.keyboard.press("Tab");
+    expect(await isFocused(handle)).toBe(true);
+  });
+
   test("Escape closes and returns focus to the trigger", async ({ page }) => {
     const handle = await open(page);
     await page.keyboard.press("Escape");
