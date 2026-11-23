@@ -45,6 +45,47 @@ describe("Sidebar", () => {
     expect(screen.getByText("Item Label")).toBeInTheDocument();
   });
 
+  describe("Sidebar.Item keyboard", () => {
+    it("is a named Tab stop that activates with Enter and Space", () => {
+      const onClick = vi.fn();
+      render(<Sidebar.Item onClick={onClick}>Settings</Sidebar.Item>);
+      const item = screen.getByRole("button", { name: "Settings" });
+      expect(item).toHaveAttribute("tabindex", "0");
+
+      fireEvent.keyDown(item, { key: "Enter" });
+      expect(onClick).toHaveBeenCalledTimes(1);
+      // Space はページをスクロールさせない
+      expect(fireEvent.keyDown(item, { key: " " })).toBe(false);
+      expect(onClick).toHaveBeenCalledTimes(2);
+      fireEvent.keyDown(item, { key: "a" });
+      expect(onClick).toHaveBeenCalledTimes(2);
+    });
+
+    it("does not activate when disabled and leaves the Tab order", () => {
+      const onClick = vi.fn();
+      render(<Sidebar.Item disabled onClick={onClick}>Billing</Sidebar.Item>);
+      const item = screen.getByRole("button", { name: "Billing" });
+      expect(item).toHaveAttribute("aria-disabled", "true");
+      expect(item).toHaveAttribute("tabindex", "-1");
+
+      fireEvent.click(item);
+      fireEvent.keyDown(item, { key: "Enter" });
+      expect(onClick).not.toHaveBeenCalled();
+    });
+
+    it("marks the active item as the current page", () => {
+      render(<Sidebar.Item active>Home</Sidebar.Item>);
+      expect(screen.getByRole("button", { name: "Home" })).toHaveAttribute("aria-current", "page");
+    });
+
+    it("leaves keys pressed on an element inside the item alone", () => {
+      const onClick = vi.fn();
+      render(<Sidebar.Item onClick={onClick}><input aria-label="inner" /></Sidebar.Item>);
+      fireEvent.keyDown(screen.getByRole("textbox"), { key: "Enter" });
+      expect(onClick).not.toHaveBeenCalled();
+    });
+  });
+
   describe("mobile drawer (T433)", () => {
     const original = window.matchMedia;
     afterEach(() => {
