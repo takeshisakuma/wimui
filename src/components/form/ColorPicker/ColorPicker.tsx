@@ -7,6 +7,7 @@ import styles from "./color-picker.module.scss";
 import { Input, InputProps } from "../../form/Input/Input";
 import { FieldIntent, FieldVariant } from "../../../types/tokens";
 import { useMergedRef } from "../../../hooks/useMergedRef";
+import { useFormReset } from "../../_internal/HiddenFormValue";
 import { getRovingIndex } from "../../_internal/rovingIndex";
 
 export type ColorPickerSwatch = string | {
@@ -66,6 +67,11 @@ export const ColorPicker = forwardRef<HTMLInputElement, ColorPickerProps>(({
   const swatchRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const [uncontrolledValue, setUncontrolledValue] = useState(String(defaultValue ?? "#000000"));
   const current = normalizeHex(String(value ?? uncontrolledValue));
+
+  // 見本の選択中の印も、入力欄と一緒に戻す
+  useFormReset(inputRef, () => {
+    if (value === undefined) setUncontrolledValue(String(defaultValue ?? "#000000"));
+  });
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (value === undefined) setUncontrolledValue(event.target.value);

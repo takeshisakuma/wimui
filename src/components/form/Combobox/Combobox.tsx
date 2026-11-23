@@ -7,6 +7,7 @@ import { useInlineFloating } from "../../_internal/useInlineFloating";
 import { observeMove } from "../../_internal/observeMove";
 import { InlinePortal } from "../../_internal/InlinePortal";
 import { useMergedRef } from "../../../hooks/useMergedRef";
+import { useFormReset } from "../../_internal/HiddenFormValue";
 import { useAnnounceAppearance } from "../../_internal/useAnnounce";
 import styles from "./combobox.module.scss";
 
@@ -85,6 +86,9 @@ export const Combobox = ({
   const listboxId = `${id}-list`;
   const labelId = label ? `${id}-label` : undefined;
   const errorId = error ? `${id}-error` : undefined;
+
+  // 値を `value` で渡しているので、フォームの reset だけでは入力した値が残る
+  useFormReset(containerRef, () => setInputValue(defaultValue));
 
   const filteredOptions = useMemo(() => {
     const searchStr = (inputValue || "").toLowerCase();
