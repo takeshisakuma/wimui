@@ -601,6 +601,17 @@
         "T433"
       ],
       "note": "AppShell のドロワーで、最初の項目へのフォーカス・項目の名前と現在のページ・Tab で閉じるボタンへ戻る・Escape で引き金へ戻る"
+    },
+    {
+      "component": "DataGrid",
+      "date": "2026-11-23",
+      "reader": "narrator",
+      "browser": "chrome",
+      "result": "ok",
+      "sources": [
+        "T423"
+      ],
+      "note": "PageUp / PageDown の移動先のセル、Shift+Space のオン／オフ、Ctrl+A で選択された行"
     }
   ]
 }

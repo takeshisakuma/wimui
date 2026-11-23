@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useCallback, useState, useLayoutEffect } from "react";
+import React, { useMemo, useCallback, useState, useLayoutEffect } from "react";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { commonNs } from "@/i18n/generated/common";
 import classNames from "classnames";
@@ -257,14 +257,10 @@ export function DataGrid<T extends Record<string, unknown>>({
   };
 
   // 3. Keyboard Navigation
-  const announceSelection = React.useRef(false);
   const { focusedCell, setFocusedCell, handleKeyDown, containerRef } = useDataGridKeyboard(
     columns,
     data,
     !!selection,
-    () => {
-      announceSelection.current = true;
-    },
   );
 
   // 3b. Tab の止まり先は表の中で 1 つ（T420）。APG の grid と同じく、Tab で入るのは「いまのセル」だけで、
@@ -316,14 +312,6 @@ export function DataGrid<T extends Record<string, unknown>>({
   // `aria-sort` と行の並びだけなので、告げないと何も読まれない（ナレーター + Chrome の実機で、
   // 昇順・降順が読まれなかった）。先に在る領域の文字を書き換える（Pagination と同じ形）。
   const { announce: announceSort, region: sortAnnouncementRegion } = useAnnounce();
-  // キーで選ぶとフォーカスはセルに残り、チェックの変化が読まれないので、選んだ件数を告げる（T423）
-  const selectedCount = selection?.selectedRowKeys.length ?? 0;
-  useEffect(() => {
-    if (!announceSelection.current) return;
-    announceSelection.current = false;
-    // 押した直後に書くと、ナレーターはキーの読み上げと重なって読まない（Shift+Space で無音だった）
-    announceSort(t("dataGrid.rows_selected", { selected: selectedCount }), { delay: 500 });
-  }, [selectedCount, announceSort, t]);
   // 空の表示は、行が 0 になったときに差し込む。文字は先に在る領域で告げる（T353）
   const showEmpty = data.length === 0 && Boolean(emptyMessage);
   const { ref: emptyRef, region: emptyRegion } = useAnnounceAppearance(showEmpty);

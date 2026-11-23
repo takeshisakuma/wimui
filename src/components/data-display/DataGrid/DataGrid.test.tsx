@@ -772,15 +772,6 @@ describe("DataGrid", () => {
       expect(onChange).toHaveBeenCalledTimes(1);
     });
 
-    it("announces the selected count after a keyboard selection", async () => {
-      render(<Selectable onChange={vi.fn()} />);
-      cell(1, 0).focus();
-      fireEvent.keyDown(cell(1, 0), { key: " ", shiftKey: true });
-      await waitFor(() => {
-        expect(screen.getAllByRole("status").some((el) => /1/.test(el.textContent ?? ""))).toBe(true);
-      });
-    });
-
     it("leaves the keys to a text field inside a cell", () => {
       const onChange = vi.fn();
       render(<Selectable onChange={onChange} />);

@@ -20,7 +20,6 @@ export function useDataGridKeyboard<T>(
   columns: DataGridColumn<T>[],
   rows: T[],
   selection: boolean,
-  onKeyboardSelect?: () => void,
 ) {
   const [focusedCell, setFocusedCell] = useState<{ row: number; col: number }>(
     { row: -1, col: selection ? -1 : 0 },
@@ -65,10 +64,7 @@ export function useDataGridKeyboard<T>(
         );
         if (box) {
           e.preventDefault();
-          if (!all || !box.checked) {
-            onKeyboardSelect?.();
-            box.click();
-          }
+          if (!all || !box.checked) box.click();
           return;
         }
       }
