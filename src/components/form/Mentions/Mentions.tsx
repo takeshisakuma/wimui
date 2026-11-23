@@ -3,6 +3,7 @@ import { Slot, Slottable } from "@radix-ui/react-slot";
 import { Textarea } from "../../form/Textarea/Textarea";
 import { BaseListItem } from "../../_internal/BaseListItem";
 import { mergeRefs } from "../../_internal/mergeRefs";
+import { useFormReset } from "../../_internal/HiddenFormValue";
 import styles from "./mentions.module.scss";
 
 type MentionOption = {
@@ -76,6 +77,11 @@ export const Mentions = forwardRef<HTMLDivElement, MentionsProps>(
 
     // Combine refs
     const combinedRef = mergeRefs(containerRef, ref);
+
+    // 値を `value` で渡しているので、フォームの reset だけでは入力した値が残る
+    useFormReset(containerRef, () => {
+      if (!isControlled) setInternalValue(defaultValue || "");
+    });
 
     const filteredOptions = options.filter((opt) =>
       opt.display.toLowerCase().includes(query.toLowerCase()),

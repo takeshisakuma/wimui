@@ -4,6 +4,7 @@ import { commonNs } from "@/i18n/generated/common";
 import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import { useMergedRef } from "../../../hooks/useMergedRef";
+import { useFormReset } from "../../_internal/HiddenFormValue";
 import { Icon } from "../../media/Icon/Icon";
 import { InputBase, InputBaseIcon } from "../InputBase";
 import { FieldTemplate } from "../FieldTemplate";
@@ -133,6 +134,11 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     const isControlled = value !== undefined;
     const currentValue = isControlled ? value : internalValue;
 
+    // 値を `value` で渡しているので、フォームの reset だけでは入力した値が残る
+    useFormReset(inputRef, () => {
+      if (!isControlled) setInternalValue(defaultValue ?? "");
+    });
+
     const isDisabled = disabled;
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -146,25 +152,10 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       const input = inputRef.current;
       if (!input) return;
 
-      // `getOwnPropertyDescriptor(...).set` は汎用的な PropertyDescriptor として扱われるため、
-      // ネイティブセッターとして呼び出せるよう具体的な関数型へキャストする。
-      const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
-        window.HTMLInputElement.prototype,
-        "value",
-      )?.set as ((value: string) => void) | undefined;
-
-      if (nativeInputValueSetter) {
-        nativeInputValueSetter.call(input, "");
-        input.dispatchEvent(new Event("input", { bubbles: true }));
-      } else {
-        if (!isControlled) setInternalValue("");
-        if (onChange) {
-          input.value = "";
-          onChange({ target: input, currentTarget: input } as React.ChangeEvent<HTMLInputElement>);
-        }
-      }
-
-      if (!isControlled) setInternalValue("");
+      // prototype の setter で書くと、React の値の追跡に気づかれず、次の input イベントが
+      // onChange になる（内部の値もそこで空になる）
+      Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, "value")?.set?.call(input, "");
+      input.dispatchEvent(new Event("input", { bubbles: true }));
     };
 
     const togglePasswordVisibility = () => {

@@ -4,6 +4,7 @@ import { composeEventHandlers } from "../../_internal/composeEventHandlers";
 import inputStyles from "../../form/Input/input.module.scss";
 import styles from "./time-picker.module.scss";
 import { useMergedRef } from "../../../hooks/useMergedRef";
+import { useFormReset } from "../../_internal/HiddenFormValue";
 
 import { Input, InputProps } from "../../form/Input/Input";
 import { FieldIntent, FieldVariant } from "../../../types/tokens";
@@ -40,6 +41,11 @@ export const TimePicker = forwardRef<HTMLInputElement, TimePickerProps>(({
 
   const inputRef = useRef<HTMLInputElement>(null);
   const mergedRef = useMergedRef(ref, inputRef);
+
+  // 消すボタンの出し分けに使う値も、入力欄と一緒に戻す
+  useFormReset(inputRef, () => {
+    if (!isControlled) setInternalValue(defaultValue ?? "");
+  });
 
   // Xボタンが表示されない場合（allowClear無効 or 値なし）はClockIconを表示
   const showClearButton = allowClear && !!currentValue && !disabled;
