@@ -232,7 +232,7 @@
     "sidebar_custom_width_desc": "Ajuste a largura expandida usando a propriedade `width`.",
     "sidebar_desc": "Navegação vertical complementar na borda da tela",
     "sidebar_design_intent": "A Sidebar fornece uma camada secundária de navegação vertical, tipicamente à esquerda. É usada para hierarquias profundas de sites que precisam permanecer acessíveis ao lado do conteúdo principal.",
-    "sidebar_keyboard_desc": "Tab move o foco pelos itens de navegação. Enter ativa o item focado. O toggle de colapso também é acessível pelo teclado.",
+    "sidebar_keyboard_desc": "Tab move o foco pelos itens de navegação. Enter ativa o item focado. O toggle de colapso também é acessível pelo teclado. Com onMobileClose, Escape fecha o drawer móvel aberto.",
     "sidebar_long_desc": "Uma barra lateral é um painel de navegação ou informação colocado ao lado de uma página.",
     "sidebar_pc_only": "Apenas Desktop: Este componente foi projetado principalmente para uso em desktop (mouse e teclado). Para dispositivos de tela pequena, como smartphones, considere alternativas como uma `TabBar` ou menu de gaveta (drawer).",
     "sidebar_scenario_1": "Dashboards SaaS: Fornecendo navegação vertical persistente para 'Relatórios', 'Usuários' e 'Configuração'.",

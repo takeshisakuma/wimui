@@ -142,6 +142,7 @@ export const Default: Story = {
           {...args}
           mobileOpen={mobileOpen}
           onOverlayClick={() => setMobileOpen(false)}
+          onMobileClose={() => setMobileOpen(false)}
         >
           <SidebarContent />
         </Sidebar>

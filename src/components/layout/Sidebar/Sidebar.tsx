@@ -1,5 +1,11 @@
 import React from "react";
 import classNames from "classnames";
+import { useBreakpointDown } from "@/hooks/useBreakpoint";
+import { useWimTranslation } from "@/i18n/useWimTranslation";
+import { commonNs } from "@/i18n/generated/common";
+import { useEscapeLayer } from "../../_internal/escapeStack";
+import { IconButton } from "../../form/IconButton/IconButton";
+import { FocusTrap } from "../../overlay/FocusTrap/FocusTrap";
 import styles from "./sidebar.module.scss";
 
 export interface SidebarProps extends React.ComponentPropsWithoutRef<"aside"> {
@@ -43,6 +49,13 @@ export interface SidebarProps extends React.ComponentPropsWithoutRef<"aside"> {
   mobileOpen?: boolean;
   /** Callback when overlay is clicked */
   onOverlayClick?: () => void;
+  /**
+   * Called when the open mobile drawer asks to close, from Escape or its close
+   * button. Passing it turns on the drawer's keyboard behavior below `md`: a
+   * close button, focus moved into the drawer and kept there, and focus
+   * returned to the trigger on close. Overlay clicks still call `onOverlayClick`.
+   */
+  onMobileClose?: () => void;
 }
 
 const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
@@ -57,10 +70,17 @@ const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
       responsive = true,
       mobileOpen,
       onOverlayClick,
+      onMobileClose,
       ...props
     },
     ref,
   ) => {
+    const { t } = useWimTranslation(commonNs);
+    const isBelowMd = useBreakpointDown("md");
+    // 閉じる口を渡されていないときは閉じ込めない（Tab でも Escape でも出られなくなる）
+    const drawerActive = responsive && !!mobileOpen && isBelowMd && !!onMobileClose;
+    useEscapeLayer(drawerActive, () => onMobileClose?.());
+
     const style = {
       "--wim-sidebar-width": typeof width === "number" ? `${width}px` : width,
     } as React.CSSProperties;
@@ -91,7 +111,23 @@ const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
           style={{ ...style, ...props.style }}
         >
 
-          <div className={styles.container}>{children}</div>
+          <div className={styles.container}>
+            {/* 閉じ込めの包みは常に描く（開閉で付け外すと、中身が作り直される） */}
+            <FocusTrap active={drawerActive}>
+              {drawerActive && (
+                <div className={styles.drawerClose}>
+                  <IconButton
+                    iconName="CloseIcon"
+                    variant="ghost"
+                    size="sm"
+                    aria-label={t("a11y.close_menu")}
+                    onClick={onMobileClose}
+                  />
+                </div>
+              )}
+              {children}
+            </FocusTrap>
+          </div>
         </aside>
       </>
     );

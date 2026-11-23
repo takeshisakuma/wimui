@@ -535,6 +535,61 @@
         "T379"
       ],
       "note": "カードを列へ移した告知"
+    },
+    {
+      "component": "DatePicker",
+      "date": "2026-11-23",
+      "reader": "narrator",
+      "browser": "chrome",
+      "result": "ok",
+      "sources": [
+        "T432"
+      ],
+      "note": "Dialog の中で、開いた状態・項目の移動・Escape で引き金へ戻る"
+    },
+    {
+      "component": "Select",
+      "date": "2026-11-23",
+      "reader": "narrator",
+      "browser": "chrome",
+      "result": "ok",
+      "sources": [
+        "T432"
+      ],
+      "note": "Dialog の中で、開いた状態・項目の移動・Escape で引き金へ戻る"
+    },
+    {
+      "component": "Combobox",
+      "date": "2026-11-23",
+      "reader": "narrator",
+      "browser": "chrome",
+      "result": "ok",
+      "sources": [
+        "T432"
+      ],
+      "note": "Dialog の中で、開いた状態・項目の移動・Escape で引き金へ戻る"
+    },
+    {
+      "component": "MultiSelect",
+      "date": "2026-11-23",
+      "reader": "narrator",
+      "browser": "chrome",
+      "result": "ok",
+      "sources": [
+        "T432"
+      ],
+      "note": "Dialog の中で、開いた状態・項目の移動・Escape で引き金へ戻る"
+    },
+    {
+      "component": "Dropdown",
+      "date": "2026-11-23",
+      "reader": "narrator",
+      "browser": "chrome",
+      "result": "ok",
+      "sources": [
+        "T432"
+      ],
+      "note": "Dialog の中で、開いた状態・項目の移動・Escape で引き金へ戻る"
     }
   ]
 }

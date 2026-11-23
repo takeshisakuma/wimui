@@ -94,6 +94,13 @@
     height: 100%;
   }
 
+  .drawerClose {
+    display: flex;
+    flex-shrink: 0;
+    justify-content: flex-end;
+    padding: var(--wim-spacing-sm);
+  }
+
   .header {
     padding: var(--wim-spacing-md);
     border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border-secondary);
