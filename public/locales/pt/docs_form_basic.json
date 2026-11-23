@@ -58,7 +58,7 @@
     "counterTextarea_long_desc": "Um wrapper para o componente Textarea que adiciona um contador de caracteres em tempo real. Útil para campos com requisitos específicos de comprimento.",
     "counterTextarea_scenario_bio": "Biografia do Usuário: Restringir as descrições de usuários a uma contagem específica de caracteres (ex.: 160 caracteres).",
     "counterTextarea_scenario_comment": "Comentários: Fornecimento de feedback sobre o comprimento de um pedido de suporte ou comentário.",
-    "datagrid_keyboard_desc": "O Tab move o foco entre elementos interativos. As teclas de seta navegam pelas células. Enter ativa as ações da célula. Escape cancela a edição.",
+    "datagrid_keyboard_desc": "Tab move o foco entre os elementos interativos. As setas navegam pelas células, e PageUp / PageDown movem uma página. Enter aciona as ações da célula. Com seleção, Shift+Espaço alterna a linha atual e Ctrl+A (Cmd+A) seleciona todas as linhas da página atual. Dentro de um campo de texto, essas teclas pertencem ao campo.",
     "dialog_best_practice_1": "Utilize um Diálogo apenas para interações críticas que exijam a atenção total do usuário. Para informações não críticas, prefira Popover ou Toast.",
     "dialog_best_practice_2": "Forneça sempre uma ação de fecho claramente rotulada (um botão X ou um botão 'Cancelar') para que os usuários possam dispensar o Diálogo sem concluir a ação.",
     "fieldError_desc": "Mensagens de validação",

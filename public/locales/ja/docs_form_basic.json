@@ -58,7 +58,7 @@
     "counterTextarea_long_desc": "Textarea コンポーネントのラッパーで、リアルタイムの文字数カウンターを追加します。文字数制限があるフィールドに便利です。",
     "counterTextarea_scenario_bio": "ユーザー自己紹介: 自己紹介文を特定の文字数（例：160文字）以内に制限します。",
     "counterTextarea_scenario_comment": "コメント: フィードバックやサポートリクエストの長さを制限し、フィードバックを提供します。",
-    "datagrid_keyboard_desc": "Tabでインタラクティブ要素間をフォーカス移動します。矢印キーでセルを移動します。Enterでセルのアクションを実行します。Escapeで編集をキャンセルします。",
+    "datagrid_keyboard_desc": "Tab で操作できる要素の間を移動します。矢印キーでセルを移動し、PageUp / PageDown で 1 画面分移動します。Enter でセルの操作を実行します。行の選択が有効なときは、Shift+Space で今の行の選択を切り替え、Ctrl+A（Cmd+A）で今のページの全行を選びます。文字の入力欄の中では、これらのキーは入力欄のものです。",
     "dialog_best_practice_1": "Dialogはユーザーの完全な注意が必要な重要なインタラクションにのみ使用してください。重要でない情報にはPopoverやToastを使用してください。",
     "dialog_best_practice_2": "ユーザーがアクションを完了せずにDialogを閉じられるよう、明確にラベル付けされた閉じるアクション（Xボタンまたは'キャンセル'ボタン）を必ず提供してください。",
     "fieldError_desc": "バリデーションメッセージ",
