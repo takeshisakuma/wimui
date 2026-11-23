@@ -1,5 +1,15 @@
 # wimui
 
+## 0.90.0
+
+### Minor Changes
+
+- f6e544e: Sidebar: `onMobileClose` を渡したドロワーが開いている間、ドロワーを名前付きの `dialog` にし、背面を `inert` にして読み上げと操作から外す。`showMobileCloseButton={false}` の構成では、閉じる口になる引き金だけは操作できるまま残す。ヘッダーのほかのボタンは、ドロワーが開いている間は押せなくなる。`onMobileClose` を渡さない場合の動きは変わらない。
+
+### Patch Changes
+
+- f6e544e: Sidebar: `md` 以下で閉じているドロワーの項目が、画面外のまま Tab の停止点になり、読み上げにも出ていたのを直した（0.86.0 から）。閉じている間は `visibility: hidden` にする。
+
 ## 0.89.0
 
 ### Minor Changes
