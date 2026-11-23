@@ -117,6 +117,7 @@ const [mobileOpen, setMobileOpen] = useState(false);
   <Sidebar
     mobileOpen={mobileOpen}
     onOverlayClick={() => setMobileOpen(false)}
+    onMobileClose={() => setMobileOpen(false)}
   >
     <Sidebar.Content>{/* Sidebar items */}</Sidebar.Content>
   </Sidebar>
@@ -135,7 +136,11 @@ const [mobileOpen, setMobileOpen] = useState(false);
     position="relative"
     style={{ "--wim-sidebar-drawer-position": "absolute" } as React.CSSProperties}
   >
-    <Sidebar mobileOpen={mobileOpen} onOverlayClick={() => setMobileOpen(false)}>
+    <Sidebar
+      mobileOpen={mobileOpen}
+      onOverlayClick={() => setMobileOpen(false)}
+      onMobileClose={() => setMobileOpen(false)}
+    >
       <Sidebar.Content>{/* Sidebar items */}</Sidebar.Content>
     </Sidebar>
     {/* page content */}

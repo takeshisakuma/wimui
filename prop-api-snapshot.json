@@ -9820,11 +9820,19 @@
       "required": false,
       "type": "boolean"
     },
+    "Sidebar.onMobileClose": {
+      "required": false,
+      "type": "() => void"
+    },
     "Sidebar.onOverlayClick": {
       "required": false,
       "type": "() => void"
     },
     "Sidebar.responsive": {
+      "required": false,
+      "type": "boolean"
+    },
+    "Sidebar.showMobileCloseButton": {
       "required": false,
       "type": "boolean"
     },

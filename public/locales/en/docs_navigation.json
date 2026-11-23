@@ -232,7 +232,7 @@
     "sidebar_custom_width_desc": "Adjust the expanded width using the `width` property.",
     "sidebar_desc": "A collapsible navigation or informational panel on the side of the screen",
     "sidebar_design_intent": "Sidebar provides a secondary vertical navigation layer, typically on the left. It is used for deep site hierarchies or application-level tools that need to stay accessible beside main content.",
-    "sidebar_keyboard_desc": "Tab moves focus through navigation items. Enter activates the focused item. Collapse toggle is also keyboard accessible.",
+    "sidebar_keyboard_desc": "Tab moves focus through navigation items. Enter activates the focused item. Collapse toggle is also keyboard accessible. With onMobileClose, Escape closes the open mobile drawer.",
     "sidebar_long_desc": "A sidebar is a navigation or information panel placed on the side of a page.",
     "sidebar_pc_only": "Desktop Only: This component is primarily designed for desktop (mouse and keyboard) use. For small-screen devices like smartphones, consider alternatives such as a `TabBar` or drawer menu.",
     "sidebar_scenario_1": "SaaS Dashboards: Providing persistent vertical navigation for 'Reports', 'Users', and 'Configuration'.",

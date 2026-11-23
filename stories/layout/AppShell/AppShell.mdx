@@ -262,6 +262,8 @@ function AppLayout() {
         <Sidebar
           mobileOpen={mobileOpen}
           onOverlayClick={() => setMobileOpen(false)}
+          onMobileClose={() => setMobileOpen(false)}
+          showMobileCloseButton={false}
         >
           <Sidebar.Content>{/* Sidebar items */}</Sidebar.Content>
         </Sidebar>

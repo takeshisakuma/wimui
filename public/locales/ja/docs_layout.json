@@ -450,7 +450,7 @@
     "scrollprogress_usage_1": "スクロール量に応じた進捗表示",
     "scrollprogress_usage_2": "特定のコンテナ内でのスクロール監視",
     "sidebar_mobile_drawer": "モバイルドロワー",
-    "sidebar_mobile_drawer_desc": "responsive（デフォルト true）により、Sidebar は md ブレークポイント以下でオフキャンバスのドロワーになります。mobileOpen で開閉を制御し、onOverlayClick で閉じます。トグルには Header 内に visibleBelow を指定した HamburgerMenu を配置してください。",
+    "sidebar_mobile_drawer_desc": "responsive（デフォルト true）により、Sidebar は md ブレークポイント以下でオフキャンバスのドロワーになります。mobileOpen で開閉を制御し、onOverlayClick で閉じます。onMobileClose を渡すと、閉じるボタンと Escape が加わり、開いている間はフォーカスがドロワーの中に留まり、閉じると引き金へ戻ります。引き金が見えたままで閉じる役も持つ場合は showMobileCloseButton を false にします。Tab は引き金とドロワーの中を巡ります。トグルには Header 内に visibleBelow を指定した HamburgerMenu を配置してください。",
     "sidebar_drawer_container": "自前のヘッダーの下からドロワーを出す",
     "sidebar_drawer_container_desc": "AppShell の中では、ドロワーと暗幕はヘッダーの下から出るので、ヘッダーは覆われず、ハンバーガーがその場で閉じるボタンになります。AppShell の外では画面全体を基準に置かれ、ヘッダーも覆います。自前のレイアウトで AppShell と同じ挙動にするには、ヘッダーの下にある箱に position: relative を付け、その箱に CSS 変数 --wim-sidebar-drawer-position を absolute で置きます。ドロワーと暗幕は、その箱の中に置かれます。",
     "simpleGrid_desc": "レスポンシブな固定グリッド",
