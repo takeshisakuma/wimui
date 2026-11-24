@@ -685,4 +685,38 @@ describe("TreeView", () => {
       expect(onCheckedChange).toHaveBeenCalled();
     });
   });
+
+  // label に置いたボタンの Enter / 空白を、項目が preventDefault して選んでいた。ボタンは押せず、
+  // 項目のほうが選ばれた（2026-11-24 の 7-4 で見つけた）。中の要素のキーは、その要素に任せる
+  describe("keys pressed on an element inside the label", () => {
+    it.each(["Enter", " "])("leaves %j to a button in a TreeView.Item label", (key) => {
+      const onSelectedChange = vi.fn();
+      render(
+        <TreeView onSelectedChange={onSelectedChange}>
+          <TreeViewItem value="a" label={<span>Report <button type="button">Share</button></span>} />
+        </TreeView>,
+      );
+      const notPrevented = fireEvent.keyDown(screen.getByRole("button", { name: "Share" }), { key });
+      expect(notPrevented).toBe(true);
+      expect(onSelectedChange).not.toHaveBeenCalled();
+      // 項目そのものの Enter は、今までどおり選ぶ
+      fireEvent.keyDown(screen.getByRole("treeitem"), { key });
+      expect(onSelectedChange).toHaveBeenCalledWith(["a"]);
+    });
+
+    it.each(["Enter", " "])("leaves %j to a button in a nodes label", (key) => {
+      const onSelectedChange = vi.fn();
+      render(
+        <TreeView
+          nodes={[{ value: "a", label: <span>Report <button type="button">Share</button></span> }]}
+          onSelectedChange={onSelectedChange}
+        />,
+      );
+      const notPrevented = fireEvent.keyDown(screen.getByRole("button", { name: "Share" }), { key });
+      expect(notPrevented).toBe(true);
+      expect(onSelectedChange).not.toHaveBeenCalled();
+      fireEvent.keyDown(screen.getByRole("treeitem"), { key });
+      expect(onSelectedChange).toHaveBeenCalledWith(["a"]);
+    });
+  });
 });

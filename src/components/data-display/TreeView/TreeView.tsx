@@ -491,6 +491,9 @@ const TreeView = ({
       switch (e.key) {
         case "Enter":
         case " ":
+          // 項目の中のボタンや入力欄（label に置いたもの）の Enter / 空白は、その要素に任せる。ここで
+          // preventDefault すると、その要素が押せず、項目のほうが選ばれていた（2026-11-24 の 7-4 で見つけた）
+          if (e.target !== e.currentTarget) break;
           e.preventDefault();
           select(node.value);
           if (checkable) toggleCheck(node.value);
@@ -881,6 +884,9 @@ export const TreeViewItem = ({
     switch (e.key) {
       case "Enter":
       case " ":
+        // 項目の中のボタンや入力欄（label に置いたもの）の Enter / 空白は、その要素に任せる。ここで
+        // preventDefault すると、その要素が押せず、項目のほうが選ばれていた（2026-11-24 の 7-4 で見つけた）
+        if (e.target !== e.currentTarget) break;
         e.preventDefault();
         select(value);
         if (checkable) toggleCheck(value);
