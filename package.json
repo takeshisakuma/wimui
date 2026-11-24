@@ -168,7 +168,7 @@
         "react/jsx-runtime"
       ],
       "gzip": true,
-      "limit": "18.7 kB"
+      "limit": "18.8 kB"
     },
     {
       "name": "フォーム画面: 入力7種 (gzip)",

@@ -1,4 +1,5 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, act } from "@testing-library/react";
+import { useForm, type UseFormReturn } from "react-hook-form";
 import { describe, it, expect, vi } from "vitest";
 import { Input } from "./Input";
 import { createRef as reactCreateRef } from "react";
@@ -113,5 +114,36 @@ describe("Input", () => {
     const input = screen.getByRole("textbox");
     const wrapper = input.parentElement!;
     expect(wrapper).toHaveClass(baseStyles.hasCustomWidth);
+  });
+
+  // T438: register を直接渡すと、既定値も reset(values) も画面に出なかった。制御していないときも内部の値を
+  // value で渡していて、register が DOM に書いた値を次の描画で上書きしていた。ref も付け直されなかった
+  describe("with react-hook-form register", () => {
+    let form: UseFormReturn<{ city: string }>;
+    const Form = () => {
+      form = useForm<{ city: string }>({ defaultValues: { city: "Osaka" } });
+      return <form><Input aria-label="city" allowClear {...form.register("city")} /></form>;
+    };
+
+    it("shows the default value and the values given to reset", async () => {
+      render(<Form />);
+      const field = screen.getByLabelText("city") as HTMLInputElement;
+      expect(field.value).toBe("Osaka");
+
+      fireEvent.change(field, { target: { value: "Kita" } });
+      expect(form.getValues("city")).toBe("Kita");
+
+      await act(async () => {
+        form.reset({ city: "Kobe" });
+      });
+      expect((screen.getByLabelText("city") as HTMLInputElement).value).toBe("Kobe");
+      expect(form.getValues("city")).toBe("Kobe");
+    });
+  });
+
+  it("empties the field when value goes back to undefined, as before", () => {
+    const { rerender } = render(<Input aria-label="f" value="Tokyo" onChange={() => {}} />);
+    rerender(<Input aria-label="f" value={undefined} onChange={() => {}} />);
+    expect(screen.getByLabelText("f")).toHaveValue("");
   });
 });
