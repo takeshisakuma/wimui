@@ -19,7 +19,12 @@ type SplitterContextType = {
     index: number,
     e: React.MouseEvent | React.TouchEvent,
   ) => void;
+  /** 取っ手 index の前の面を、合計の割合（%）で delta だけ広げる。端まで寄せるときは edge */
+  onResizeBy: (index: number, delta: number | "min" | "max") => void;
 };
+
+/** キー 1 回で動かす量（%）。APG の Window Splitter に合わせ、矢印で少しずつ・Home / End で端まで */
+const KEYBOARD_STEP = 5;
 
 const SplitterContext = createContext<SplitterContextType | null>(null);
 
@@ -72,6 +77,39 @@ const Splitter = ({
 
   const [resizingIndex, setResizingIndex] = useState<number | null>(null);
 
+  // 取っ手 index の両側の面を、前の面が newSizeI（%）になるよう分け直す。両側の minSize / maxSize を守る。
+  // ドラッグとキー操作の両方がここを通る（キー操作は 2026-11-24 の 7-4 で、矢印を止めるだけで幅が
+  // 変わらないと分かって足した）
+  const resizePair = useCallback(
+    (prev: number[], index: number, requested: number) => {
+      const next = [...prev];
+      const combinedSize = prev[index] + prev[index + 1];
+      const panelI = panels[index] as React.ReactElement<SplitterPanelProps>;
+      const panelIPlus1 = panels[index + 1] as React.ReactElement<SplitterPanelProps>;
+
+      const minI = panelI.props.minSize ?? 0;
+      const maxI = panelI.props.maxSize ?? 100;
+      const minIPlus1 = panelIPlus1.props.minSize ?? 0;
+      const maxIPlus1 = panelIPlus1.props.maxSize ?? 100;
+
+      let newSizeI = Math.max(minI, Math.min(requested, maxI, combinedSize));
+
+      let newSizeIPlus1 = combinedSize - newSizeI;
+      if (newSizeIPlus1 < minIPlus1) {
+        newSizeIPlus1 = minIPlus1;
+        newSizeI = combinedSize - newSizeIPlus1;
+      } else if (newSizeIPlus1 > maxIPlus1) {
+        newSizeIPlus1 = maxIPlus1;
+        newSizeI = combinedSize - newSizeIPlus1;
+      }
+
+      next[index] = newSizeI;
+      next[index + 1] = newSizeIPlus1;
+      return next;
+    },
+    [panels],
+  );
+
 
   const handleResizeStart = useCallback(
     (index: number, e: React.MouseEvent | React.TouchEvent) => {
@@ -100,45 +138,26 @@ const Splitter = ({
       const currentPercentage = (currentPos / totalSize) * 100;
 
       setPanelSizes((prev) => {
-        const next = [...prev];
         let startOfI = 0;
         for (let j = 0; j < resizingIndex; j++) {
           startOfI += prev[j];
         }
-
-        const combinedSize = prev[resizingIndex] + prev[resizingIndex + 1];
-        let newSizeI = currentPercentage - startOfI;
-
-        // Constraints
-        const panelI = panels[
-          resizingIndex
-        ] as React.ReactElement<SplitterPanelProps>;
-        const panelIPlus1 = panels[
-          resizingIndex + 1
-        ] as React.ReactElement<SplitterPanelProps>;
-
-        const minI = panelI.props.minSize ?? 0;
-        const maxI = panelI.props.maxSize ?? 100;
-        const minIPlus1 = panelIPlus1.props.minSize ?? 0;
-        const maxIPlus1 = panelIPlus1.props.maxSize ?? 100;
-
-        newSizeI = Math.max(minI, Math.min(newSizeI, maxI));
-
-        let newSizeIPlus1 = combinedSize - newSizeI;
-        if (newSizeIPlus1 < minIPlus1) {
-          newSizeIPlus1 = minIPlus1;
-          newSizeI = combinedSize - newSizeIPlus1;
-        } else if (newSizeIPlus1 > maxIPlus1) {
-          newSizeIPlus1 = maxIPlus1;
-          newSizeI = combinedSize - newSizeIPlus1;
-        }
-
-        next[resizingIndex] = newSizeI;
-        next[resizingIndex + 1] = newSizeIPlus1;
-        return next;
+        return resizePair(prev, resizingIndex, currentPercentage - startOfI);
       });
     },
-    [resizingIndex, orientation, panels],
+    [resizingIndex, orientation, resizePair],
+  );
+
+  const handleResizeBy = useCallback(
+    (index: number, delta: number | "min" | "max") => {
+      setPanelSizes((prev) => {
+        if (prev[index] === undefined || prev[index + 1] === undefined) return prev;
+        const target =
+          delta === "min" ? 0 : delta === "max" ? 100 : prev[index] + delta;
+        return resizePair(prev, index, target);
+      });
+    },
+    [resizePair],
   );
 
   const handleEnd = useCallback(() => {
@@ -195,7 +214,7 @@ const Splitter = ({
 
   return (
     <SplitterContext.Provider
-      value={{ orientation, onResizeStart: handleResizeStart }}
+      value={{ orientation, onResizeStart: handleResizeStart, onResizeBy: handleResizeBy }}
     >
       <div
         ref={containerRef}
@@ -271,7 +290,7 @@ const SplitterHandle = ({
 }: SplitterHandleProps) => {
   const { t } = useWimTranslation(commonNs);
   const resolvedAriaLabel = ariaLabel ?? t("a11y.resize_panel");
-  const { onResizeStart, orientation } = useSplitter();
+  const { onResizeStart, onResizeBy, orientation } = useSplitter();
 
   // role="separator" with tabIndex + aria-value* is a focusable widget per ARIA 1.2,
   // but jsx-a11y does not recognise this pattern and incorrectly flags it.
@@ -292,9 +311,19 @@ const SplitterHandle = ({
       onMouseDown={composeEventHandlers(props.onMouseDown, (e) => index !== undefined && onResizeStart(index, e))}
       onTouchStart={composeEventHandlers(props.onTouchStart, (e) => index !== undefined && onResizeStart(index, e))}
       onKeyDown={composeEventHandlers(props.onKeyDown, (e) => {
-        if (e.key === "ArrowLeft" || e.key === "ArrowUp" || e.key === "ArrowRight" || e.key === "ArrowDown") {
-          e.preventDefault();
-        }
+        if (index === undefined) return;
+        // 横並びは ← →、縦並びは ↑ ↓ で前の面を狭める・広げる。Home / End で端まで寄せる
+        const [decrease, increase] =
+          orientation === "horizontal" ? ["ArrowLeft", "ArrowRight"] : ["ArrowUp", "ArrowDown"];
+        const delta =
+          e.key === decrease ? -KEYBOARD_STEP
+          : e.key === increase ? KEYBOARD_STEP
+          : e.key === "Home" ? "min"
+          : e.key === "End" ? "max"
+          : null;
+        if (delta === null) return;
+        e.preventDefault();
+        onResizeBy(index, delta);
       })}
     />
   );

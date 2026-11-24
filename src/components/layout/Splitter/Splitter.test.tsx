@@ -132,4 +132,53 @@ describe("Splitter", () => {
     expect(panels[0]).toHaveStyle({ flex: "0 0 60%" }); // Clamped to maxSize
   });
 
+  // 以前は矢印キーを preventDefault するだけで、幅は変わらなかった（2026-11-24 の 7-4 で見つけた）。
+  // キーボードの利用者には、面の幅を変える手段が無かった
+  it("resizes with the arrow keys and Home / End, keeping minSize and maxSize", () => {
+    render(
+      <Splitter>
+        <Splitter.Panel minSize={20} maxSize={70}>Panel 1</Splitter.Panel>
+        <Splitter.Handle />
+        <Splitter.Panel>Panel 2</Splitter.Panel>
+      </Splitter>,
+    );
+    const handle = screen.getByRole("separator");
+    const panels = screen.getAllByTestId("splitter-panel");
+    expect(handle).toHaveAttribute("aria-valuenow", "50");
+
+    fireEvent.keyDown(handle, { key: "ArrowRight" });
+    expect(handle).toHaveAttribute("aria-valuenow", "55");
+    expect(panels[0]).toHaveStyle({ flex: "0 0 55%" });
+    expect(panels[1]).toHaveStyle({ flex: "0 0 45%" });
+
+    fireEvent.keyDown(handle, { key: "ArrowLeft" });
+    fireEvent.keyDown(handle, { key: "ArrowLeft" });
+    expect(handle).toHaveAttribute("aria-valuenow", "45");
+
+    fireEvent.keyDown(handle, { key: "End" });
+    expect(handle).toHaveAttribute("aria-valuenow", "70");
+    fireEvent.keyDown(handle, { key: "Home" });
+    expect(handle).toHaveAttribute("aria-valuenow", "20");
+  });
+
+  it("uses the up and down arrows when vertical, and leaves the other arrows alone", () => {
+    render(
+      <Splitter orientation="vertical">
+        <Splitter.Panel>Panel 1</Splitter.Panel>
+        <Splitter.Handle />
+        <Splitter.Panel>Panel 2</Splitter.Panel>
+      </Splitter>,
+    );
+    const handle = screen.getByRole("separator");
+
+    const right = fireEvent.keyDown(handle, { key: "ArrowRight" });
+    expect(right).toBe(true); // preventDefault されていない（ページのスクロールなどに渡る）
+    expect(handle).toHaveAttribute("aria-valuenow", "50");
+
+    fireEvent.keyDown(handle, { key: "ArrowDown" });
+    expect(handle).toHaveAttribute("aria-valuenow", "55");
+    fireEvent.keyDown(handle, { key: "ArrowUp" });
+    expect(handle).toHaveAttribute("aria-valuenow", "50");
+  });
+
 });
