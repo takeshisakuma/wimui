@@ -66,3 +66,46 @@ jobs:
           name: e2e-report
           path: playwright-report/
           retention-days: 7
+
+  # T443（2026-11-24）: 開く部品の引き金を、全ストーリーでキーボードで開け閉めできるか。
+  # 全ストーリーを開くので数分かかる（全ストーリーを開く narrow-overflow は約 6 分）。上の E2E に入れると
+  # 必須のチェックの待ち時間が倍になるので、並行する別のジョブにした。**必須のチェックには入れていない**
+  # （ユーザー判断）── 赤でもマージは止まらないが、PR の画面には赤く出る。しばらく流してフレークが
+  # 無いと分かったら、必須にするかを改めて決める（リポジトリ設定の変更なので、ユーザーが決める）。
+  # paths で絞らない理由は上の E2E と同じ（部品・ストーリー・文言のどれが変わっても結果が変わる）。
+  open-keys:
+    name: Open triggers (keyboard)
+    runs-on: ubuntu-26.04 # 上の E2E と同じ OS に固定
+    timeout-minutes: 40
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Install Playwright browsers
+        timeout-minutes: 15
+        run: bash scripts/ci-install-playwright.sh
+
+      - name: Build Storybook
+        run: npm run build-storybook
+
+      # 上の E2E と同じく、やり直して通ったテストも赤にする（たまに開かないこと自体が欠陥の出方）
+      - name: Run open-trigger keyboard spec
+        run: npx playwright test vrt/open-keys.spec.ts --fail-on-flaky-tests
+
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: open-keys-report
+          path: playwright-report/
+          retention-days: 7
