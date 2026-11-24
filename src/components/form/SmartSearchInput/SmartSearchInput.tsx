@@ -9,6 +9,7 @@ import { FieldIntent, FieldVariant, FieldWidth } from "../../../types/tokens";
 import { FieldCharacterCount } from "../../_internal/FieldCharacterCount/FieldCharacterCount";
 import styles from "./smart-search-input.module.scss";
 import { composeEventHandlers } from "../../_internal/composeEventHandlers";
+import { useFormReset } from "../../_internal/HiddenFormValue";
 
 export interface SmartSearchInputProps extends Omit<React.ComponentPropsWithoutRef<"textarea">, "onChange" | "onSubmit"> {
   /** Semantic intent of the field (e.g. error state) */
@@ -82,6 +83,11 @@ export const SmartSearchInput = forwardRef<HTMLTextAreaElement, SmartSearchInput
 
     const textareaRef = useAutoResize(currentValue, maxRows);
     React.useImperativeHandle(ref, () => textareaRef.current as HTMLTextAreaElement);
+
+    // 値を `value` で渡しているので、フォームの reset だけでは入力した値が残る（Input の #1318 と同じ。T443 の検査で見つけた）
+    useFormReset(textareaRef, () => {
+      if (!isControlled) setInternalValue(defaultValue as string);
+    });
 
     const generatedId = useId();
     const id = customId || `smart-search-${generatedId}`;

@@ -16,6 +16,7 @@ import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { componentsNs } from "@/i18n/generated/components";
 import { composeEventHandlers } from "../../_internal/composeEventHandlers";
 import { useEscapeLayer } from "../../_internal/escapeStack";
+import { useFormReset } from "../../_internal/HiddenFormValue";
 
 export type DatePickerLabels = {
   placeholder?: string;
@@ -117,6 +118,11 @@ export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(
 
     const isControlled = value !== undefined;
     const currentValue = isControlled ? value : internalValue;
+
+    // 表示する日付を `value` で渡しているので、フォームの reset だけでは選んだ日が残る（Input の #1318 と同じ。T443 の検査で見つけた）
+    useFormReset(inputRef, () => {
+      if (!isControlled) setInternalValue(defaultValue || null);
+    });
 
     const actualPlaceholder = placeholder ?? labels?.placeholder;
     const isDisabled = disabled;

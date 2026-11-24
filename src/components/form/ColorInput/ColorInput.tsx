@@ -1,8 +1,10 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import classNames from "classnames";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { componentsNs } from "@/i18n/generated/components";
 import { Input } from "../../form/Input/Input";
+import { useFormReset } from "../../_internal/HiddenFormValue";
+import { mergeRefs } from "../../_internal/mergeRefs";
 import styles from "./color-input.module.scss";
 
 /** `#rgb` / `#rrggbb`（大文字小文字は問わない）。 */
@@ -38,6 +40,7 @@ export const ColorInput = ({
   defaultValue,
   onChange,
   style,
+  ref,
   ...props
 }: React.ComponentProps<typeof Input>) => {
   const { t } = useWimTranslation(componentsNs);
@@ -59,6 +62,15 @@ export const ColorInput = ({
     setLastColor(currentColor);
     setText(currentColor);
   }
+
+  const fieldRef = useRef<HTMLInputElement>(null);
+  // 値を `value` で渡しているので、フォームの reset だけでは入力した値が残る（Input の #1318 と同じ。T443 の検査で見つけた）。
+  // 打ちかけの文字（hex として読めない分）も、確定した色へ戻す
+  useFormReset(fieldRef, () => {
+    const initial = isControlled ? currentColor : ((defaultValue as string) ?? "#000000");
+    if (!isControlled) setInternalValue(initial);
+    setText(initial);
+  });
 
   const commit = useCallback(
     (next: string, e: React.ChangeEvent<HTMLInputElement>) => {
@@ -113,6 +125,7 @@ export const ColorInput = ({
         />
       }
       {...props}
+      ref={mergeRefs(fieldRef, ref)}
     />
   );
 };
