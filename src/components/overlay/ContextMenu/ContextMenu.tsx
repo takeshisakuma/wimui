@@ -271,24 +271,27 @@ export const ContextMenuItem = ({
   const { ref, index } = useListItem();
   const context = useContext(ContextMenuContext);
 
-  const handleClick = () => {
+  const handleClick = (e: React.SyntheticEvent) => {
     if (disabled) return;
 
     if (onClick) {
-      onClick();
+      // 引き金の部品（Popover など）が差し込む onClick は event を読むので、渡さないと例外で落ちる
+      // （Dropdown.Item と同じ）。公開の型は引数なしのまま（型に足すと、props.onClick() と呼ぶ包み側が
+      // コンパイルできなくなる）
+      (onClick as (event: React.SyntheticEvent) => void)(e);
     }
   };
 
   const itemProps = context ? context.getItemProps({
     index,
-    onClick: () => handleClick(),
+    onClick: (e: React.MouseEvent) => handleClick(e),
     onKeyDown: (e: React.KeyboardEvent) => {
       // 文字をためている間の空白は先回りの文字（"select all"）。選ばずにメニューへ渡す
       if (e.key === " " && context.typing()) return;
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
         if (disabled) return;
-        handleClick();
+        handleClick(e);
         // クリックで選ぶと閉じるのに、キーで選ぶと開いたままだった。APG の menu は、選んだら閉じて
         // 引き金へフォーカスを戻す（戻すのは FloatingFocusManager）
         context.close();

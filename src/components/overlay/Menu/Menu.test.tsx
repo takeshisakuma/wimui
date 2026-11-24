@@ -34,6 +34,23 @@ describe("Menu", () => {
     expect(handleClick).toHaveBeenCalled();
   });
 
+  // 引き金の部品（Popover など）が差し込む onClick は event を読む。イベントなしで呼ぶと、
+  // 項目を Popover の引き金にしたとき nativeEvent の例外で落ちていた（2026-11-24 の 7-4 で見つけた）
+  it.each([
+    ["click", (item: HTMLElement) => fireEvent.click(item)],
+    ["Enter", (item: HTMLElement) => fireEvent.keyDown(item, { key: "Enter" })],
+  ])("passes the event to onClick on %s", (_name, choose) => {
+    const handleClick = vi.fn();
+    render(
+      <Menu>
+        <MenuItem onClick={handleClick}>Archive</MenuItem>
+      </Menu>,
+    );
+
+    choose(screen.getByText("Archive"));
+    expect(handleClick.mock.calls[0][0]).toHaveProperty("nativeEvent");
+  });
+
   it("toggles submenu when clicked", async () => {
     render(
       <Menu>
