@@ -58,8 +58,8 @@ export interface OtpInputProps extends Omit<React.ComponentPropsWithoutRef<"div"
 }
 
 /** value を 1 文字ずつの配列（長さ length）に割り付ける。 */
-const toDigits = (value: string, length: number): string[] => {
-  const chars = value.split("").slice(0, length);
+const toDigits = (value: string | undefined, length: number): string[] => {
+  const chars = (value ?? "").split("").slice(0, length);
   return Array(length)
     .fill("")
     .map((_, i) => chars[i] ?? "");
@@ -72,7 +72,9 @@ export const OtpInput = forwardRef<HTMLDivElement, OtpInputProps>(
   (
     {
       length = 6,
-      value = "",
+      // 既定値を置かない。`""` を置くと value が undefined にならず、制御していないときの
+      // フォームの reset（下の HiddenFormValue の onReset）が空へ戻さなかった（T443 の検査で見つけた）
+      value,
       onChange,
       disabled = false,
       error,

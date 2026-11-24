@@ -1,6 +1,8 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useRef } from "react";
 
 import { Input } from "../../form/Input/Input";
+import { useFormReset } from "../../_internal/HiddenFormValue";
+import { mergeRefs } from "../../_internal/mergeRefs";
 import classNames from "classnames";
 import styles from "./input-mask.module.scss";
 
@@ -24,11 +26,18 @@ export const InputMask = ({
   value,
   defaultValue,
   onChange,
+  ref,
   ...props
 }: InputMaskProps) => {
   const [internalValue, setInternalValue] = useState(defaultValue || "");
   const isControlled = value !== undefined;
   const currentValue = isControlled ? (value as string) : internalValue;
+  const fieldRef = useRef<HTMLInputElement>(null);
+
+  // 値を `value` で渡しているので、フォームの reset だけでは入力した値が残る（Input の #1318 と同じ。T443 の検査で見つけた）
+  useFormReset(fieldRef, () => {
+    if (!isControlled) setInternalValue(defaultValue || "");
+  });
 
   const applyMask = useCallback(
     (val: string) => {
@@ -89,6 +98,7 @@ export const InputMask = ({
   return (
     <Input
       {...props}
+      ref={mergeRefs(fieldRef, ref)}
       className={classNames("wim-input-mask", styles.root, props.className)}
       value={currentValue}
       onChange={handleInputChange}

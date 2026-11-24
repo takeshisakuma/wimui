@@ -1508,7 +1508,7 @@ so the unit does not have to be repeated in the label.
     - `asChild: boolean` = false — Whether to render as a child element.
 - **OtpInput** — One-time password fields (aka Pin Input, Input OTP, PIN Code Input, One Time Password Field, OTP Field, Pin Code, Verification Code)
     - `length: number` = 6 — Number of digits
-    - `value: string` = "" — Current value (controlled)
+    - `value: string` — Current value (controlled)
     - `onChange: (value: string) => void` — Callback when the value changes
     - `disabled: boolean` = false — Whether the input is disabled
     - `error: string` — Error message
