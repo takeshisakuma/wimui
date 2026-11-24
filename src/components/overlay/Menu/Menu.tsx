@@ -230,7 +230,10 @@ export const MenuItem = ({
   const handleClick = (e: React.SyntheticEvent) => {
     e.stopPropagation();
     if (disabled) return;
-    if (onClick) onClick();
+    // 引き金の部品（Popover など）が差し込む onClick は event を読むので、渡さないと例外で落ちる
+    // （Dropdown.Item と同じ）。公開の型は引数なしのまま（型に足すと、props.onClick() と呼ぶ包み側が
+    // コンパイルできなくなる）
+    if (onClick) (onClick as (event: React.SyntheticEvent) => void)(e);
   };
 
   const itemProps = {
