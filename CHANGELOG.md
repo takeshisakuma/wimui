@@ -1,5 +1,15 @@
 # wimui
 
+## 0.90.2
+
+### Patch Changes
+
+- 9a3a87c: InputMask / SmartSearchInput / ColorInput / OtpInput / DatePicker: 囲んでいるフォームの `reset` で、入力した値や選んだ日が残っていたのを直した。制御していないときは既定の値へ戻る（`Input` と同じ）。`OtpInput` は `value` を渡さないとき、空へ戻る。
+- c8255d1: Menu / ContextMenu: `Menu.Item` と `ContextMenu.Item` を `Popover` や `Popconfirm` の引き金にすると、押したときに例外で落ちていたのを直した。`onClick` にイベントを渡す（`Dropdown.Item` と同じ）。
+- b5bed2c: Splitter: 取っ手にフォーカスして矢印キーを押しても、面の幅が変わらなかったのを直した。横並びは ← →、縦並びは ↑ ↓ で 5% ずつ動き、Home / End で前の面を最小・最大へ寄せる（文書に書いてあった操作）。`minSize` / `maxSize` はドラッグと同じく守る。
+- b184185: Tooltip: `Tooltip.Trigger` の `asChild` に、自分の `ref` を持つ子を渡すと、ツールチップが画面の左上に出ていたのを直した。子の `ref` はそのまま届く。
+- 33af75c: TreeView: 項目の `label` に置いたボタンや入力欄で Enter / 空白を押すと、その要素が動かず、項目のほうが選ばれていたのを直した。中の要素のキーは、その要素に任せる。項目そのものの Enter / 空白は、今までどおり選ぶ。
+
 ## 0.90.1
 
 ### Patch Changes
