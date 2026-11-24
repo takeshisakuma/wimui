@@ -3,7 +3,7 @@ import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { commonNs } from "@/i18n/generated/common";
 import classNames from "classnames";
 import { Slot, Slottable } from "@radix-ui/react-slot";
-import { useMergedRef } from "../../../hooks/useMergedRef";
+import { mergeRefs } from "../../_internal/mergeRefs";
 import { useFormReset } from "../../_internal/HiddenFormValue";
 import { Icon } from "../../media/Icon/Icon";
 import { InputBase, InputBaseIcon } from "../InputBase";
@@ -124,27 +124,37 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     const resolvedHidePasswordAriaLabel = hidePasswordAriaLabel ?? t("a11y.hide_password");
     const resolvedRightIconAriaLabel = rightIconAriaLabel ?? t("a11y.right_icon_action");
 
-    const [internalValue, setInternalValue] = useState(
-      defaultValue ?? "",
-    );
+    // 制御していないときは、値を DOM に持たせる（`value` を渡さず `defaultValue` で渡す）。以前は内部の値を
+    // `value` で渡していたので、react-hook-form の `register` が DOM に書いた既定値や `reset(values)` の値を、
+    // 次の描画で上書きしていた（T438）。素のフォームの reset も、ブラウザーが既定の値へ戻す。
+    // 持つのは「値が入っているか」だけ（消すボタンの出し分け）で、変わりうるときに DOM から読み直す。
+    const [filled, setFilled] = useState(!!defaultValue);
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
     const inputRef = useRef<HTMLInputElement>(null);
-    const mergedRef = useMergedRef(ref, inputRef);
+    const syncFilled = () => setFilled(!!inputRef.current?.value);
+    // 要素を受け取った直後にも読む（register の ref は、受け取ったその場で既定値を書く）。
+    // 描画ごとに作り直す mergeRefs にする。useMergedRef は関数が変わらないので、React が ref を呼び直さず、
+    // react-hook-form が reset のあとに要素を受け取り直せなかった（T438）
+    const mergedRef = mergeRefs(ref, inputRef, (node: HTMLInputElement | null) => {
+      if (node) setFilled(!!node.value);
+    });
 
-    const isControlled = value !== undefined;
-    const currentValue = isControlled ? value : internalValue;
+    // 一度でも `value` を受け取ったら、そのあと `undefined` が来ても空の文字として制御を続ける。`value={undefined}` で
+    // 欄を空にする使い方で、DOM に前の文字が残り、React が制御から非制御への切り替えを警告しないように（以前と同じ姿）
+    const [wasControlled, setWasControlled] = useState(value !== undefined);
+    if (value !== undefined && !wasControlled) setWasControlled(true);
+    const isControlled = value !== undefined || wasControlled;
 
-    // 値を `value` で渡しているので、フォームの reset だけでは入力した値が残る
+    // reset のあとは、ブラウザーと react-hook-form（reset(values) は素の reset のあとに値を書く）が
+    // 書き終えてから読む
     useFormReset(inputRef, () => {
-      if (!isControlled) setInternalValue(defaultValue ?? "");
+      if (!isControlled) queueMicrotask(syncFilled);
     });
 
     const isDisabled = disabled;
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      if (!isControlled) {
-        setInternalValue(e.target.value);
-      }
+      if (!isControlled) setFilled(!!e.target.value);
       onChange?.(e);
     };
 
@@ -229,7 +239,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           suffix={suffix}
           suffixId={suffixId}
           allowClear={allowClear}
-          hasValue={!!currentValue}
+          hasValue={isControlled ? !!value : filled}
           onClear={handleClear}
           styles={stylesProp}
         >
@@ -244,7 +254,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
               inputClassName,
             )}
             disabled={isDisabled}
-            value={currentValue}
+            value={isControlled ? (value ?? "") : undefined}
+            defaultValue={isControlled ? undefined : defaultValue}
             onChange={handleInputChange}
             type={inputType}
             aria-invalid={currentIntent === "danger"}
