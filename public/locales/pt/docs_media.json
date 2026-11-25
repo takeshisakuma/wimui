@@ -312,7 +312,7 @@
     "video_feat_2_title": "Reprodução Automática e Loop",
     "video_feat_3_desc": "Altere a aparência com as propriedades `radius`, `shadow` e `border`.",
     "video_feat_3_title": "Estilo",
-    "video_keyboard_desc": "Tab move o foco pelos controles do vídeo. Espaço alterna reprodução e pausa. As teclas de seta ajustam a posição de busca ou o volume. M silencia ou reativa o som. F alterna a tela cheia.",
+    "video_keyboard_desc": "Tab move o foco pelos controles do vídeo. Espaço alterna reprodução e pausa, ou pressiona o botão de controle em foco. As teclas de seta ajustam a posição de busca ou o volume. M silencia ou reativa o som. F alterna a tela cheia. Os botões de configurações e de playlist abrem um menu e movem o foco para dentro dele: ↑ ↓, Home / End e letras digitadas movem entre os itens, Enter ou Espaço escolhe, → abre uma lista de configurações e ← volta, Escape fecha a lista (e depois o menu) e Tab fecha o menu. O foco volta ao botão que o abriu.",
     "video_long_desc": "O componente `Video` serve para incorporar arquivos de vídeo facilmente. Suporta reprodução automática, loop, alternância da exibição de controles, cantos arredondados, sombras e muito mais.",
     "video_mobile_desc": "Ao usar controles personalizados, o controle deslizante de volume é ocultado em ambientes móveis com largura de tela de 576px ou menos. O botão de alternância mudo/ativar som permanece visível.",
     "video_mobile_reason_1_desc": "Expandir o controle deslizante de volume em uma barra de controle estreita inevitavelmente se sobreporia a outros elementos como a barra de busca e os ícones de configurações.",
