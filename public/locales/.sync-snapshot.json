@@ -704,6 +704,7 @@
       "crop_target": "Image being cropped",
       "data_grid": "Data Grid",
       "delete": "Delete",
+      "delete_named": "Delete {{name}}",
       "edit": "Edit",
       "exit_fullscreen": "Exit Fullscreen",
       "fullscreen": "Fullscreen",

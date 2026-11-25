@@ -17,6 +17,7 @@
     "crop_target": "切り抜き対象の画像",
     "data_grid": "データグリッド",
     "delete": "削除",
+    "delete_named": "{{name}} を削除",
     "edit": "編集",
     "exit_fullscreen": "全画面を終了",
     "fullscreen": "全画面",
