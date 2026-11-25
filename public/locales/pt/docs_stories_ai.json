@@ -84,6 +84,8 @@
     "usagemeter_label": "Contexto",
     "usagemeter_unit": "tokens",
     "voice_label_playback": "Reprodução de áudio da IA",
+    "voice_aria_recording": "Nível de entrada do microfone em tempo real",
+    "voice_aria_playback": "Forma de onda da resposta falada da IA",
     "voice_label_recording": "Gravando entrada de voz",
     "voice_sentiment_caution": "Cuidado",
     "voice_sentiment_informative": "Informativo",

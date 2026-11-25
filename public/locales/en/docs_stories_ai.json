@@ -84,6 +84,8 @@
     "usagemeter_label": "Context",
     "usagemeter_unit": "tokens",
     "voice_label_playback": "AI audio playback",
+    "voice_aria_recording": "Live input level of the microphone",
+    "voice_aria_playback": "Waveform of the spoken AI reply",
     "voice_label_recording": "Recording voice input",
     "voice_sentiment_caution": "Caution",
     "voice_sentiment_informative": "Informative",

@@ -815,6 +815,7 @@
     "kpi_yield_note": "生豆に対する焙煎後",
     "kpi_late": "店着が遅れた回数",
     "kpi_late_note": "7:30 を過ぎた受け渡し",
+    "kpi_spark": "{{metric}}の最近の推移",
     "chart_trend": "週ごとの焙煎量",
     "chart_trend_desc": "自社店舗と卸の内訳（kg）。",
     "chart_pickups": "店舗別の受け渡し",

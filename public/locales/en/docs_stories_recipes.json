@@ -815,6 +815,7 @@
     "kpi_yield_note": "Green in, roasted out",
     "kpi_late": "Late to the shops",
     "kpi_late_note": "Handovers after 07:30",
+    "kpi_spark": "{{metric}}: recent trend",
     "chart_trend": "Roasted per week",
     "chart_trend_desc": "Our own cafés against wholesale, kilograms.",
     "chart_pickups": "Pickups by shop",

@@ -84,6 +84,8 @@
     "usagemeter_label": "コンテキスト",
     "usagemeter_unit": "トークン",
     "voice_label_playback": "AI音声再生",
+    "voice_aria_recording": "マイクの入力の大きさ（いまの音）",
+    "voice_aria_playback": "AI が読み上げている返答の波形",
     "voice_label_recording": "音声入力を録音中",
     "voice_sentiment_caution": "注意",
     "voice_sentiment_informative": "情報",
