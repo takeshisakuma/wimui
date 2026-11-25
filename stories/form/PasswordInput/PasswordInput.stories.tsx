@@ -25,9 +25,12 @@ type Story = StoryObj<typeof PasswordInput>;
 export const Default: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
+    // 表示の切り替えボタンを持つので、Label で囲むとボタンの名前まで入力欄の名前に入る（「Password Show password」）。
+    // 見出しの文字だけを aria-labelledby で指す（T442）
+    const labelId = React.useId();
     return (
-      <Label label={t("story.passwordinput_label")}>
-        <PasswordInput {...args} />
+      <Label label={<span id={labelId}>{t("story.passwordinput_label")}</span>}>
+        <PasswordInput {...args} aria-labelledby={labelId} />
       </Label>
     );
   },
