@@ -90,14 +90,21 @@ describe("TagInput", () => {
   it("removes a tag via its delete button", () => {
     const onChange = vi.fn();
     render(<TagInput defaultValue={["a", "b"]} onChange={onChange} />);
-    fireEvent.click(screen.getAllByLabelText("Close")[0]);
+    fireEvent.click(screen.getByRole("button", { name: "Delete a" }));
     expect(onChange).toHaveBeenCalledWith(["b"]);
+  });
+
+  it("names each delete button after its tag (T441)", () => {
+    render(<TagInput defaultValue={["design", "research"]} />);
+    // 以前はどのタグでも「Close」で、読み上げでは区別できなかった
+    expect(screen.getByRole("button", { name: "Delete design" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Delete research" })).toBeInTheDocument();
   });
 
   it.each(["Enter", " "])("keeps focus on the delete button on %j so the key can press it", (key) => {
     const onChange = vi.fn();
     render(<TagInput defaultValue={["a", "b"]} onChange={onChange} />);
-    const button = screen.getAllByLabelText("Close")[0];
+    const button = screen.getByRole("button", { name: "Delete a" });
     button.focus();
     fireEvent.keyDown(button, { key });
     expect(document.activeElement).toBe(button);
@@ -111,7 +118,7 @@ describe("TagInput", () => {
   it("hides delete buttons and disables Backspace removal when allowDelete is false", () => {
     const onChange = vi.fn();
     render(<TagInput defaultValue={["a"]} allowDelete={false} onChange={onChange} />);
-    expect(screen.queryByLabelText("Close")).not.toBeInTheDocument();
+    expect(screen.queryAllByRole("button", { name: /^Delete/ })).toHaveLength(0);
     fireEvent.keyDown(getInput(), { key: "Backspace" });
     expect(onChange).not.toHaveBeenCalled();
     expect(screen.getByText("a")).toBeInTheDocument();
@@ -120,7 +127,7 @@ describe("TagInput", () => {
   it("disables interaction when disabled", () => {
     render(<TagInput defaultValue={["a"]} disabled />);
     expect(getInput()).toBeDisabled();
-    expect(screen.queryByLabelText("Close")).not.toBeInTheDocument();
+    expect(screen.queryAllByRole("button", { name: /^Delete/ })).toHaveLength(0);
   });
 
   it("works as a controlled component", () => {

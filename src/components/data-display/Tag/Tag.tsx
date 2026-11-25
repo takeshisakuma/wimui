@@ -88,7 +88,9 @@ export const Tag = React.forwardRef<HTMLSpanElement, TagProps>(
                 e.stopPropagation();
                 onDelete(e);
               }}
-              aria-label={t("a11y.close")}
+              // 何を消すかを名前に入れる。以前はどのタグでも「Close」で、TagInput のように並べると
+              // 読み上げでは区別できなかった（T441）。文字でない中身のときは「Delete」だけ
+              aria-label={label && typeof label != "object" ? t("a11y.delete_named", { name: label }) : t("a11y.delete")}
             >
               <Icon component={CloseIcon} size="sm" />
             </button>

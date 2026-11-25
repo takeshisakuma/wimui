@@ -248,7 +248,7 @@
         "react/jsx-runtime"
       ],
       "gzip": true,
-      "limit": "98 kB"
+      "limit": "99 kB"
     },
     {
       "name": "wimui/charts 全部 (gzip)",

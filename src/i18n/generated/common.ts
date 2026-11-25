@@ -20,6 +20,7 @@ export type CommonKey =
   | "a11y.crop_target"
   | "a11y.data_grid"
   | "a11y.delete"
+  | "a11y.delete_named"
   | "a11y.edit"
   | "a11y.exit_fullscreen"
   | "a11y.fullscreen"
@@ -670,6 +671,7 @@ export const commonNs: WimNamespace<"common", CommonKey> = {
         "crop_target": "Image being cropped",
         "data_grid": "Data Grid",
         "delete": "Delete",
+        "delete_named": "Delete {{name}}",
         "exit_fullscreen": "Exit Fullscreen",
         "fullscreen": "Fullscreen",
         "go_to_next_page": "Go to next page",
@@ -875,6 +877,7 @@ export const commonNs: WimNamespace<"common", CommonKey> = {
         "crop_target": "切り抜き対象の画像",
         "data_grid": "データグリッド",
         "delete": "削除",
+        "delete_named": "{{name}} を削除",
         "exit_fullscreen": "全画面を終了",
         "fullscreen": "全画面",
         "go_to_next_page": "次のページへ",
@@ -1080,6 +1083,7 @@ export const commonNs: WimNamespace<"common", CommonKey> = {
         "crop_target": "Imagem sendo recortada",
         "data_grid": "Grade de Dados",
         "delete": "Excluir",
+        "delete_named": "Excluir {{name}}",
         "exit_fullscreen": "Sair da tela cheia",
         "fullscreen": "Tela cheia",
         "go_to_next_page": "Ir para a próxima página",

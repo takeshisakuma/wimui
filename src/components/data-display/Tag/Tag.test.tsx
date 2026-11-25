@@ -61,4 +61,11 @@ describe("Tag", () => {
     expect(container.firstChild).toHaveClass("neutral");
     expect(container.firstChild).not.toHaveClass("primary");
   });
+
+  it("names the delete button after a text label, and falls back to Delete otherwise (T441)", () => {
+    const { rerender } = render(<Tag onDelete={() => {}}>Design</Tag>);
+    expect(screen.getByRole("button", { name: "Delete Design" })).toBeInTheDocument();
+    rerender(<Tag onDelete={() => {}}><strong>Design</strong></Tag>);
+    expect(screen.getByRole("button", { name: "Delete" })).toBeInTheDocument();
+  });
 });

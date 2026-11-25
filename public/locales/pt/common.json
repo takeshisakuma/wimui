@@ -17,6 +17,7 @@
     "crop_target": "Imagem sendo recortada",
     "data_grid": "Grade de Dados",
     "delete": "Excluir",
+    "delete_named": "Excluir {{name}}",
     "edit": "Editar",
     "exit_fullscreen": "Sair da tela cheia",
     "fullscreen": "Tela cheia",
