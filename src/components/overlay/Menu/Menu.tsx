@@ -125,6 +125,24 @@ const MenuInner = ({
       return;
     }
 
+    // Escape（と縦の並びの ←）は、開いているサブメニューを閉じて見出しへ戻る（T441）。見出しにいれば
+    // その見出しを、中の項目にいれば囲んでいるサブメニューを閉じる。以前は見出しの ← だけが効き、
+    // Escape では閉じなかった。何も開いていなければ、外側（Drawer など）の Escape に任せる
+    if (e.key === "Escape" || (e.key === "ArrowLeft" && mode !== "horizontal")) {
+      const current = items[index];
+      const title =
+        current.getAttribute("aria-expanded") === "true"
+          ? current
+          : document.getElementById(current.closest("ul[aria-labelledby]")?.getAttribute("aria-labelledby") ?? "");
+      if (title?.getAttribute("aria-expanded") === "true") {
+        e.preventDefault();
+        e.stopPropagation();
+        title.click();
+        title.focus();
+      }
+      return;
+    }
+
     if (mode === "vertical" || mode === "inline") {
       if (e.key === "ArrowDown") {
         e.preventDefault();
@@ -135,12 +153,6 @@ const MenuInner = ({
       } else if (e.key === "ArrowRight") {
         const currentItem = items[index];
         if (currentItem.getAttribute("aria-haspopup") === "true" && currentItem.getAttribute("aria-expanded") === "false") {
-          e.preventDefault();
-          currentItem.click();
-        }
-      } else if (e.key === "ArrowLeft") {
-        const currentItem = items[index];
-        if (currentItem.getAttribute("aria-haspopup") === "true" && currentItem.getAttribute("aria-expanded") === "true") {
           e.preventDefault();
           currentItem.click();
         }

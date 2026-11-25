@@ -125,6 +125,53 @@ describe("Menu", () => {
     // Just verifying it doesn't crash here.
   });
 
+  describe("closing a sub menu from the keyboard (T441)", () => {
+    const setup = () => {
+      const onOuterKeyDown = vi.fn();
+      render(
+        // eslint-disable-next-line jsx-a11y/no-static-element-interactions -- 外へ Escape が届くかを見るための入れ物
+        <div onKeyDown={(e) => onOuterKeyDown(e.key)}>
+          <Menu mode="inline">
+            <MenuItem>One</MenuItem>
+            <SubMenu itemKey="sub" title="Services">
+              <MenuItem>Inner</MenuItem>
+            </SubMenu>
+          </Menu>
+        </div>,
+      );
+      const title = screen.getByRole("menuitem", { name: "Services" });
+      title.focus();
+      fireEvent.keyDown(title, { key: "ArrowRight" });
+      expect(title).toHaveAttribute("aria-expanded", "true");
+      return { title, onOuterKeyDown };
+    };
+
+    it("Escape on the open sub menu's title closes it and keeps focus there", () => {
+      const { title, onOuterKeyDown } = setup();
+      fireEvent.keyDown(title, { key: "Escape" });
+      expect(title).toHaveAttribute("aria-expanded", "false");
+      expect(title).toHaveFocus();
+      expect(onOuterKeyDown).not.toHaveBeenCalledWith("Escape");
+    });
+
+    it.each(["Escape", "ArrowLeft"])("%s on an item inside closes the sub menu and returns to its title", (key) => {
+      const { title } = setup();
+      const inner = screen.getByRole("menuitem", { name: "Inner" });
+      inner.focus();
+      fireEvent.keyDown(inner, { key });
+      expect(title).toHaveAttribute("aria-expanded", "false");
+      expect(title).toHaveFocus();
+    });
+
+    it("lets Escape through when no sub menu is open", () => {
+      const { title, onOuterKeyDown } = setup();
+      fireEvent.keyDown(title, { key: "Escape" });
+      onOuterKeyDown.mockClear();
+      fireEvent.keyDown(title, { key: "Escape" });
+      expect(onOuterKeyDown).toHaveBeenCalledWith("Escape");
+    });
+  });
+
   it("handles keyboard navigation in horizontal mode", () => {
     const { container } = render(
       <Menu mode="horizontal">
