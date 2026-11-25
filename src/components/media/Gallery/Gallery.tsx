@@ -15,6 +15,7 @@ import { BREAKPOINTS } from "@/hooks/useBreakpoint";
 import { Icon } from "../Icon/Icon";
 import { Checkbox } from "../../form/Checkbox/Checkbox";
 import { Button } from "../../form/Button/Button";
+import { Toolbar } from "../../layout/Toolbar/Toolbar";
 import styles from "./gallery.module.scss";
 
 export interface GalleryItem {
@@ -282,11 +283,9 @@ export const Gallery = React.forwardRef<HTMLDivElement, GalleryProps>(
           {...props}
         >
           {selectable && hasSelection && (
-            <div
-              className={styles.toolbar}
-              role="toolbar"
-              aria-label={t("gallery.toolbar_label")}
-            >
+            // Toolbar を土台にする（T445）: Tab の停止点は 1 つで、中のボタン（renderActions で増える）は矢印で移る。
+            // 以前は role="toolbar" を名乗るだけで、ボタンがどれも Tab の停止点だった
+            <Toolbar className={styles.toolbar} aria-label={t("gallery.toolbar_label")}>
               <span className={styles.toolbarCount}>
                 {t("gallery.selected_count", { count: selectedArray.length })}
               </span>
@@ -301,7 +300,7 @@ export const Gallery = React.forwardRef<HTMLDivElement, GalleryProps>(
                   icon={<Icon component={CloseIcon} size="sm" />}
                 />
               </div>
-            </div>
+            </Toolbar>
           )}
           <div
             className={classNames(styles.grid, styles[`gap-${gap}`], styles[`aspect-${aspect}`])}

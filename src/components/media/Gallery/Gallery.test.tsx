@@ -180,6 +180,31 @@ describe("Gallery", () => {
     expect(screen.getByText("Delete")).toBeInTheDocument();
   });
 
+  it("makes the selection toolbar a single Tab stop and moves between its buttons with the arrow keys (T445)", () => {
+    render(
+      <Gallery
+        items={sampleItems}
+        selectable
+        selected={["1"]}
+        onSelectionChange={vi.fn()}
+        renderActions={() => <button type="button">Delete</button>}
+      />,
+    );
+    const toolbar = screen.getByRole("toolbar");
+    const buttons = Array.from(toolbar.querySelectorAll("button"));
+    expect(buttons).toHaveLength(2);
+    // Tab で止まるのは 1 つだけ
+    expect(buttons.filter((b) => b.getAttribute("tabindex") !== "-1")).toHaveLength(1);
+    const [del, clear] = buttons;
+    del.focus();
+    fireEvent.keyDown(del, { key: "ArrowRight" });
+    expect(clear).toHaveFocus();
+    fireEvent.keyDown(clear, { key: "Home" });
+    expect(del).toHaveFocus();
+    fireEvent.keyDown(del, { key: "ArrowLeft" });
+    expect(clear).toHaveFocus();
+  });
+
   it("supports controlled selected prop", () => {
     render(
       <Gallery

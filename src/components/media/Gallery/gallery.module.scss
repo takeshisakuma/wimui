@@ -18,8 +18,12 @@
 
   // --- Toolbar ---
 
-  .toolbar {
+  // Toolbar の根（同じ層・同じ詳細度の .root / .size-md）より強くする。詳細度が同じだと、どちらが勝つかが
+  // CSS のチャンクの順番で決まる（T445）
+  .root > .toolbar {
     display: flex;
+    flex-wrap: nowrap;
+    gap: 0;
     align-items: center;
     justify-content: space-between;
     padding: var(--wim-spacing-sm) var(--wim-spacing-md);
