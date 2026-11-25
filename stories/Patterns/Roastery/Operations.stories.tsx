@@ -84,7 +84,8 @@ export const Default: Story = {
         </Text>
         {/* 既定の `width` は 100px なので、タイルの左 3 分の 1 しか使わない。
             文字列を渡すと器は伸びる（VRT の撮影経路だけは 100px に落ちる＝T141）。 */}
-        <Sparkline data={series} width="100%" height={28} ariaLabel={label} />
+        {/* 名前はタイルの見出しの繰り返しにしない（同じ名前が並ぶと 2 回読まれる。T447） */}
+        <Sparkline data={series} width="100%" height={28} ariaLabel={t(ns("kpi_spark"), { metric: label })} />
         <Text size="xs" color="text-tertiary">
           {note}
         </Text>

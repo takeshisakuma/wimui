@@ -88,7 +88,8 @@ export const Default: Story = {
               type="area"
               width="100%"
               height={44}
-              ariaLabel={t("story.bento_analytics_metric")}
+              // 上の文字（指標の名前）を繰り返さず、線が何を描いているかを言う。同じ名前が並ぶと 2 回読まれる（T447）
+              ariaLabel={t("story.bento_analytics_chart")}
             />
           </div>
         ),

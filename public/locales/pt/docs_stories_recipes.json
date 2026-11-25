@@ -815,6 +815,7 @@
     "kpi_yield_note": "Verde que entra, torrado que sai",
     "kpi_late": "Atrasos para as lojas",
     "kpi_late_note": "Entregas depois das 7h30",
+    "kpi_spark": "{{metric}}: tendência recente",
     "chart_trend": "Torra por semana",
     "chart_trend_desc": "Nossas cafeterias contra o atacado, em quilos.",
     "chart_pickups": "Retiradas por loja",

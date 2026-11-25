@@ -158,7 +158,7 @@ export const Playback: Story = {
           data={RECORDED}
           progress={0.35}
           height={32}
-          aria-label={t("story.voice_label_playback")}
+          aria-label={t("story.voice_aria_playback")}
         />
         <VoiceVisualizer
           mode="waveform"
@@ -166,7 +166,7 @@ export const Playback: Story = {
           data={RECORDED_WAVE}
           progress={0.62}
           height={48}
-          aria-label={t("story.voice_label_playback")}
+          aria-label={t("story.voice_aria_playback")}
         />
       </div>
     );
@@ -199,13 +199,13 @@ export const WithAriaLabel: Story = {
           <p style={{ marginBottom: "var(--wim-spacing-sm)", fontSize: "var(--wim-font-size-xs)", color: "var(--wim-color-text-secondary)" }}>
             {t("story.voice_label_recording")}
           </p>
-          <VoiceVisualizer mode="bars" isActive aria-label={t("story.voice_label_recording")} />
+          <VoiceVisualizer mode="bars" isActive aria-label={t("story.voice_aria_recording")} />
         </div>
         <div>
           <p style={{ marginBottom: "var(--wim-spacing-sm)", fontSize: "var(--wim-font-size-xs)", color: "var(--wim-color-text-secondary)" }}>
             {t("story.voice_label_playback")}
           </p>
-          <VoiceVisualizer mode="waveform" isActive aria-label={t("story.voice_label_playback")} />
+          <VoiceVisualizer mode="waveform" isActive aria-label={t("story.voice_aria_playback")} />
         </div>
       </div>
     );
