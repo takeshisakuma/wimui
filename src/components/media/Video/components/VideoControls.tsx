@@ -105,6 +105,14 @@ export function VideoControls({
     exitFullscreen = t("a11y.exit_fullscreen"),
   } = labels;
 
+  // 開いたメニューは引き金の Escape でも閉じる（中にいるときは、メニュー自身が閉じる。T444）
+  const closeOnEscape = (e: React.KeyboardEvent) => {
+    if (e.key === "Escape" && activeMenu) {
+      e.stopPropagation();
+      setActiveMenu(null);
+    }
+  };
+
   return (
     <div className={classNames(styles.controlsBottom)}>
       {playlist && playlist.length > 0 && advancedControls && (
@@ -115,6 +123,9 @@ export function VideoControls({
             e.stopPropagation();
             setActiveMenu(activeMenu === "playlist" ? null : "playlist");
           }}
+          onKeyDown={closeOnEscape}
+          aria-haspopup="menu"
+          aria-expanded={activeMenu === "playlist"}
           aria-label={playlistLabel}
         >
           <Icon component={DocumentIcon} size="sm" />
@@ -241,6 +252,9 @@ export function VideoControls({
             e.stopPropagation();
             setActiveMenu(activeMenu === "main" ? null : "main");
           }}
+          onKeyDown={closeOnEscape}
+          aria-haspopup="menu"
+          aria-expanded={activeMenu !== null && activeMenu !== "playlist"}
           aria-label={settings}
         >
           <Icon component={SettingsIcon} size="sm" />

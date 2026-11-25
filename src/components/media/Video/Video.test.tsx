@@ -100,6 +100,35 @@ describe("Video", () => {
     expect(screen.getByText(/quality|画質/i)).toBeInTheDocument();
   });
 
+  it("settings trigger reports the open menu and closes it with Escape (T444)", () => {
+    render(<Video src={src} advancedControls />);
+    const trigger = screen.getByRole("button", { name: /settings/i });
+    expect(trigger).toHaveAttribute("aria-haspopup", "menu");
+    expect(trigger).toHaveAttribute("aria-expanded", "false");
+    fireEvent.click(trigger);
+    expect(trigger).toHaveAttribute("aria-expanded", "true");
+    // 開くとフォーカスは項目へ移る。引き金へ戻してから Escape を押す（マウスで開いて、引き金に残っている形）
+    trigger.focus();
+    fireEvent.keyDown(trigger, { key: "Escape" });
+    expect(screen.queryByRole("menu")).toBeNull();
+    expect(trigger).toHaveAttribute("aria-expanded", "false");
+  });
+
+  it("does not run the player shortcuts for keys pressed inside the menu (T444)", () => {
+    render(<Video src={src} advancedControls />);
+    fireEvent.click(screen.getByRole("button", { name: /settings/i }));
+    const item = screen.getAllByRole("menuitem")[0];
+    const play = window.HTMLMediaElement.prototype.play as ReturnType<typeof vi.fn>;
+    play.mockClear();
+    const video = screen.getByTestId("video-element") as HTMLVideoElement;
+    act(() => {
+      fireEvent.keyDown(item, { key: " " });
+      fireEvent.keyDown(item, { key: "m" });
+    });
+    expect(play).not.toHaveBeenCalled();
+    expect(video.muted).toBe(false);
+  });
+
   it("handles double skip on double click (simulation)", () => {
     render(<Video src={src} customControls />);
     const video = screen.getByTestId("video-element");

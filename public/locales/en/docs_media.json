@@ -312,7 +312,7 @@
     "video_feat_2_title": "Autoplay and Loop",
     "video_feat_3_desc": "Change appearance with `radius`, `shadow`, and `border` properties.",
     "video_feat_3_title": "Styling",
-    "video_keyboard_desc": "Tab moves focus through the video controls. Space toggles play and pause. Arrow keys adjust seek position or volume. M mutes or unmutes. F toggles fullscreen.",
+    "video_keyboard_desc": "Tab moves focus through the video controls. Space toggles play and pause, or presses the focused control button. Arrow keys adjust seek position or volume. M mutes or unmutes. F toggles fullscreen. The settings and playlist buttons open a menu and move focus into it: ↑ ↓, Home / End and typed letters move between items, Enter or Space chooses, → opens a settings list and ← goes back, Escape closes a list (then the menu), and Tab closes the menu. Focus returns to the button that opened it.",
     "video_long_desc": "The `Video` component is for easily embedding video files. It supports autoplay, loop, toggle controls display, rounded corners, shadows, and more.",
     "video_mobile_desc": "When using custom controls, the volume slider is hidden in mobile environments with a screen width of 576px or less. The mute/unmute toggle button remains visible.",
     "video_mobile_reason_1_desc": "Expanding the volume slider within a narrow control bar would inevitably overlap with other elements like the seek bar and settings icons.",

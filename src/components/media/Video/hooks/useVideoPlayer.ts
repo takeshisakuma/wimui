@@ -314,7 +314,12 @@ export function useVideoPlayer({
         ["INPUT", "TEXTAREA", "SELECT"].includes(
           (e.target as HTMLElement).tagName,
         ) ||
-        !(customControls || advancedControls)
+        !(customControls || advancedControls) ||
+        // 設定・再生リストのメニューの中のキー（矢印・空白・文字）は、メニューの操作（T444）
+        (e.target as HTMLElement).closest?.('[role="menu"]') ||
+        // 操作ボタンの上の空白は、そのボタンを押す（素のボタンと同じ）。以前は再生の切り替えが押下を止め、
+        // 設定や再生リストの引き金が空白で開かなかった
+        (e.key === " " && (e.target as HTMLElement).closest?.("button"))
       )
         return;
 
