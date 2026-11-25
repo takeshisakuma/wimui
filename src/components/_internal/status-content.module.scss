@@ -115,6 +115,9 @@
 
   .actions {
     display: flex;
+
+    /* 操作のボタンが横に入りきらなければ折り返す（pt の EmptyState の 2 つのボタンで 390px の画面を 14px 越えた。T439） */
+    flex-wrap: wrap;
     gap: var(--wim-spacing-sm);
     margin-top: var(--wim-spacing-lg);
   }

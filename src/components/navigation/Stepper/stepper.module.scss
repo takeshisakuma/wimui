@@ -221,6 +221,9 @@
           }
 
           .content {
+            /* 狭い幅で縦に組み替えたときも、縦並びと同じく文を折り返す（T439） */
+            flex-shrink: 1;
+            min-width: 0;
             padding-top: calc(var(--wim-spacing-xs) + (var(--wim-spacing-3xl) - 1lh) / 2);
             margin-left: var(--wim-spacing-sm);
             text-align: left;
@@ -276,6 +279,10 @@
       }
 
       .content {
+        /* 縦並びでは、段の文を残りの幅で折り返す。下の既定（flex-shrink: 0）は横並びのラベルを守るためのもので、
+           縦並びに残ると長い文が縮まずに右へはみ出した（pt の Form の Welcome で 78px。T439） */
+        flex-shrink: 1;
+        min-width: 0;
         padding-top: calc(var(--wim-spacing-xs) + (var(--wim-spacing-3xl) - 1lh) / 2);
         margin-left: var(--wim-spacing-sm);
       }

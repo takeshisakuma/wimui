@@ -44,6 +44,9 @@ const baselinePath = path.resolve(__dirname, "narrow-overflow-baseline.json");
 const baseline: Record<string, number> = JSON.parse(fs.readFileSync(baselinePath, "utf-8")).known ?? {};
 
 const filter = process.env.FILTER || "";
+// 言語を変えて測る（例: LOCALE=pt）。pt は en より長く、en では収まる行が 390px で溢れる（T439）。
+// 既定は Storybook の既定の言語のまま（CI の今の測り方）
+const locale = process.env.LOCALE || "";
 
 test.use({ viewport: { width: NARROW_WIDTH, height: NARROW_HEIGHT } });
 
@@ -52,7 +55,7 @@ test.describe(`Narrow viewport horizontal overflow (${NARROW_WIDTH}px)`, () => {
     if (filter && !story.title.toLowerCase().includes(filter.toLowerCase())) continue;
 
     test(`${story.title} › ${story.name}`, async ({ page }) => {
-      await page.goto(`/iframe.html?id=${story.id}&viewMode=story`);
+      await page.goto(`/iframe.html?id=${story.id}&viewMode=story${locale ? `&globals=locale:${locale}` : ""}`);
       await waitForStoryReady(page);
 
       const { declared, actual, culprits } = await page.evaluate(measureNarrowOverflowInPage);
