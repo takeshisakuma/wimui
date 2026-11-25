@@ -77,6 +77,19 @@
       }
 
       &.active {
+        /* 現在のページは塗りがフォーカスの色（どちらも primary）と同じで、中のボタンに重ねた輪が見えない
+           （フォーカスの前後で変わる画素が、選んでいない項目の 1 割ほどだった。T441）。輪は塗られた項目の
+           外へ離して描き、間に地の色を挟む */
+        &:has(.button:focus-visible) {
+          outline: var(--wim-focus-outline-width) solid var(--wim-color-focus-outline);
+          outline-offset: var(--wim-focus-outline-offset);
+
+          /* 輪は Canvas の上に出るので、塗りの上の文字の色（HighlightText）ではなく Highlight で描く */
+          @media (forced-colors: active) {
+            outline-color: Highlight;
+          }
+        }
+
         color: var(--wim-color-text-on-primary);
         cursor: default;
         background-color: var(--wim-color-primary);
@@ -98,11 +111,9 @@
             background-color: Highlight;
           }
 
+          /* 輪は下の項目（塗られた li）の外に描くので、ボタン自身には描かない */
           &:focus-visible {
-            @media (forced-colors: active) {
-              outline-color: HighlightText;
-              box-shadow: none;
-            }
+            box-shadow: none;
           }
         }
       }
