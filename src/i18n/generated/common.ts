@@ -509,6 +509,7 @@ export type CommonKey =
   | "profile"
   | "pullToRefresh.loading"
   | "pullToRefresh.pull"
+  | "pullToRefresh.refresh"
   | "pullToRefresh.release"
   | "quality"
   | "rangeSlider.end"
@@ -766,7 +767,8 @@ export const commonNs: WimNamespace<"common", CommonKey> = {
       "pullToRefresh": {
         "pull": "Pull to refresh",
         "release": "Release to refresh",
-        "loading": "Refreshing..."
+        "loading": "Refreshing...",
+        "refresh": "Refresh"
       },
       "jsonViewer": {
         "title": "JSON Viewer",
@@ -985,7 +987,8 @@ export const commonNs: WimNamespace<"common", CommonKey> = {
       "pullToRefresh": {
         "loading": "更新中...",
         "pull": "引っ張って更新",
-        "release": "離して更新"
+        "release": "離して更新",
+        "refresh": "更新"
       },
       "quality": "画質",
       "reaction": {
@@ -1191,7 +1194,8 @@ export const commonNs: WimNamespace<"common", CommonKey> = {
       "pullToRefresh": {
         "loading": "Atualizando...",
         "pull": "Puxe para atualizar",
-        "release": "Solte para atualizar"
+        "release": "Solte para atualizar",
+        "refresh": "Atualizar"
       },
       "quality": "Qualidade",
       "reaction": {

@@ -7,6 +7,49 @@
     user-select: none;
   }
 
+  /* 引っ張る操作の代わりの更新のボタン（T441）。フォーカスが無いあいだは中身の上端に重ねて透明で
+     押せない（キーボードで来たときだけ見える）。1px に畳む形（SkipLink）にすると、当たり判定の検査が
+     24×24 未満の操作対象として数える。display: none や visibility: hidden は Tab の停止点からも消える */
+  .refreshButton {
+    position: relative;
+
+    /* 中身（.content の z-index: 2）より上。この部品の中だけの重なり順 */
+    z-index: 3;
+    display: flex;
+    gap: var(--wim-spacing-sm);
+    align-items: center;
+    justify-content: center;
+    min-height: var(--wim-tap-target-min);
+    padding: var(--wim-spacing-sm) var(--wim-spacing-md);
+    font: inherit;
+    font-size: var(--wim-font-size-sm);
+    color: var(--wim-color-text-accent);
+    pointer-events: none;
+    cursor: pointer;
+    background: var(--wim-color-surface);
+    border: none;
+    border-bottom: var(--wim-border-width-thin) solid var(--wim-color-border-secondary);
+    opacity: 0;
+
+    /* フォーカスが無いあいだは場所を取らない（上端に重ねて透明にしておく）。来たら中身の上に 1 行の帯として
+       場所を取り、中身を下へ押す */
+    &:not(:focus) {
+      position: absolute;
+      inset-block-start: 0;
+      inset-inline: 0;
+    }
+
+    &:focus {
+      width: 100%;
+      pointer-events: auto;
+      opacity: 1;
+    }
+
+    &[aria-disabled="true"] {
+      cursor: progress;
+    }
+  }
+
   .indicator {
     display: flex;
     align-items: center;

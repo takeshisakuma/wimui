@@ -256,7 +256,7 @@
     "op_navigate": "Navegar pelos itens",
     "props_none": "Este componente não possui props próprias. Ele herda os atributos HTML padrão.",
     "props_title": "Props",
-    "pull_to_refresh_a11y_desc": "Deve oferecer suporte a leitores de tela com regiões dinâmicas (live regions) para o status da atualização.",
+    "pull_to_refresh_a11y_desc": "Não é possível puxar pelo teclado, por isso um botão Atualizar aparece no topo quando recebe o foco com Tab. Enter ou Espaço inicia a atualização, e o foco permanece no botão enquanto ela acontece. Quem usa ponteiro e não consegue arrastar ainda precisa de um controle de atualização visível no seu app (WCAG 2.5.1 Gestos de ponteiro). Anuncie o status da atualização com uma live region.",
     "pull_to_refresh_best_practice_1": "Garanta que o limite de acionamento seja fácil de alcançar, mas difícil de acionar acidentalmente.",
     "pull_to_refresh_best_practice_2": "Use apenas no topo de um contêiner rolável.",
     "pull_to_refresh_choice_matrix_desc": "Use para conteúdo em estilo feed ou listas que precisam de atualizações frequentes no celular.",
@@ -517,7 +517,8 @@
   "pullToRefresh": {
     "loading": "Atualizando...",
     "pull": "Puxe para atualizar",
-    "release": "Solte para atualizar"
+    "release": "Solte para atualizar",
+    "refresh": "Atualizar"
   },
   "quality": "Qualidade",
   "reaction": {
