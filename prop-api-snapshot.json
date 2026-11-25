@@ -7013,6 +7013,33 @@
     "MenuItemGroup.title": {
       "type": "string"
     },
+    "MenuPanel.children": {
+      "type": "React.ReactNode"
+    },
+    "MenuPanel.initialFocusRef": {
+      "type": "React.RefObject<string | null>"
+    },
+    "MenuPanel.onBack": {
+      "type": "() => void"
+    },
+    "MenuPanel.onClose": {
+      "type": "() => void"
+    },
+    "MenuPanel.style": {
+      "type": "React.CSSProperties"
+    },
+    "MenuPanel.styles": {
+      "type": "Record<string, string>"
+    },
+    "MenuPanel.title": {
+      "type": "string"
+    },
+    "MenuPanel.titleEnd": {
+      "type": "React.ReactNode"
+    },
+    "MenuPanel.titleStart": {
+      "type": "React.ReactNode"
+    },
     "Menubar.Content.align": {
       "required": false,
       "values": [
