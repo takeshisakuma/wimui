@@ -1,5 +1,25 @@
 # wimui
 
+## 0.91.0
+
+### Minor Changes
+
+- b836fff: Combobox・ToggleGroup: `name` を受けるようにした。素の `<form>` の送信（React 19 のフォームの action・サーバーアクションを含む）に値が入る。
+
+  - Combobox: 入力欄の文字を送る。これまでも残りの props として入力欄へ渡っていたが、型に無かった
+  - ToggleGroup: 選んだ値を送る（`selectionMode="multiple"` では選んだ値ごとに 1 つ。`FormData.getAll` で読む）。これまでは `name` を受けず、フォームへ値を送らなかった。囲んでいるフォームの `reset` で、制御していないときは `defaultValue` へ戻る。`disabled` のときは送らない
+
+### Patch Changes
+
+- f982d14: Gallery: 選択のツールバーを `Toolbar` の上に作り直した。Tab の停止点は 1 つになり、中のボタン（`renderActions` で足したボタンと、選択の解除）は ← → と Home / End で移る。以前は `role="toolbar"` を名乗るだけで、ボタンがどれも Tab の停止点で、矢印キーは効かなかった。見た目は変わらない。
+- b67d660: Input: react-hook-form の `register` をそのまま渡すと、既定値（`defaultValues`）も `reset(values)` の値も画面に出なかったのを直した。制御していないときは、値を入力欄そのものに持たせる。`value` を渡して制御している使い方は変わらず、`value` を `undefined` に戻したときも、以前と同じく空の欄になる。
+- 5cb3e72: Video: 設定と再生リストのメニューを、キーボードと読み上げで操作できるようにした（`advancedControls`）。
+
+  - 項目が `menuitem`（画質・速度・表示の選択肢と再生リストの曲は、選ばれているかを持つ `menuitemradio`）を名乗る。戻る・閉じるボタンに名前を付けた
+  - 開くと中の項目へフォーカスが移る。↑ ↓・Home / End・文字で項目を移り、→ で設定の一覧を開き、← で戻る。Escape は一覧から設定へ戻り、設定と再生リストでは閉じる。Tab でも閉じる。閉じるとフォーカスは開いたボタンへ戻る
+  - 引き金のボタンが `aria-haspopup="menu"` と `aria-expanded` を持ち、開いているときは引き金の Escape でも閉じる
+  - 操作ボタンにフォーカスがあるときの Space は、そのボタンを押す。以前は再生の切り替えが押下を止め、設定と再生リストのボタンが Space で開かなかった。メニューの中のキーは、再生のショートカット（Space・M・F・矢印など）に取られない
+
 ## 0.90.2
 
 ### Patch Changes
