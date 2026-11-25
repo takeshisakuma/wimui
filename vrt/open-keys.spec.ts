@@ -35,7 +35,6 @@ const filter = process.env.FILTER || "";
 
 /** 既知の外れ。キーは `ストーリー ID|引き金の名前`、値は外してよい項目と、起票した番号 */
 const KNOWN: Record<string, { skip: "escape"; why: string }> = {
-  "components-overlays-menu--with-sub-menu|Services": { skip: "escape", why: "T441: インラインの Menu のサブメニューは Escape で閉じない（← は効く）" },
 };
 
 const MAX_TRIGGERS = 3;
