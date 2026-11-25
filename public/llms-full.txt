@@ -1134,6 +1134,7 @@ so the unit does not have to be repeated in the label.
     - `showSearchIcon: boolean` = true — Whether to show the search icon
     - `allowClear: boolean` = true — Whether to show a clear button when value is present
     - `defaultValue: string` = "" — Initial input value (uncontrolled)
+    - `name: string` — Field name used when a surrounding `<form>` is submitted. The text in the input is sent.
     - `className: string` — Additional class names
     - `disabled: boolean` = false — Whether the field is disabled
     - `fullWidth: boolean` = false — Whether to take full width of parent
@@ -1936,6 +1937,8 @@ so the unit does not have to be repeated in the label.
     - `required: boolean` — Whether to show the required indicator
     - `layout: "vertical" | "horizontal"` = "vertical" — Layout direction of label and field
     - `id: string` — Unique ID for the component
+    - `name: string` — Field name used when a surrounding `<form>` is submitted. The selected value is sent
+(one entry per selected option when `selectionMode="multiple"`).
     - `asChild: boolean` = false — If true, merge group props onto the child element.
     - `children: React.ReactNode` — Optional children used when asChild is true
     - `aria-label: string` — Accessible label when no visible label is provided

@@ -546,4 +546,34 @@ describe("ToggleGroup", () => {
     expect(element).toHaveAttribute("role", "radiogroup");
     expect(element).toHaveClass(styles.root);
   });
+
+  describe("form submission", () => {
+    const entries = (form: HTMLFormElement) => new FormData(form).getAll("view");
+
+    it("sends nothing without a name", async () => {
+      const { container } = render(<form><ToggleGroup options={options} defaultValue="opt1" /></form>);
+      expect(entries(container.querySelector("form")!)).toEqual([]);
+    });
+
+    it("sends each selected value in multiple mode and returns to the default on reset", async () => {
+      const { container } = render(
+        <form><ToggleGroup name="view" selectionMode="multiple" options={options} defaultValue={["opt1"]} /></form>,
+      );
+      const form = container.querySelector("form")!;
+      expect(entries(form)).toEqual(["opt1"]);
+
+      fireEvent.click(screen.getByRole("button", { name: "Option 3" }));
+      expect(entries(form)).toEqual(["opt1", "opt3"]);
+
+      await act(async () => {
+        form.reset();
+      });
+      expect(entries(form)).toEqual(["opt1"]);
+    });
+
+    it("does not send the value while disabled", () => {
+      const { container } = render(<form><ToggleGroup name="view" disabled options={options} defaultValue="opt1" /></form>);
+      expect(entries(container.querySelector("form")!)).toEqual([]);
+    });
+  });
 });
