@@ -2765,6 +2765,10 @@
         "vertical"
       ]
     },
+    "Combobox.name": {
+      "required": false,
+      "type": "string"
+    },
     "Combobox.onChange": {
       "required": false,
       "type": "(option: ComboboxOption) => void"
@@ -12051,6 +12055,10 @@
         "horizontal",
         "vertical"
       ]
+    },
+    "ToggleGroup.name": {
+      "required": false,
+      "type": "string"
     },
     "ToggleGroup.onChange": {
       "required": false,

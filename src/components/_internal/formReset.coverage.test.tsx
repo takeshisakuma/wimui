@@ -40,6 +40,7 @@ import { Rating } from "../form/Rating/Rating";
 import { TagInput } from "../form/TagInput/TagInput";
 import { OtpInput } from "../form/OtpInput/OtpInput";
 import { DatePicker } from "../form/DatePicker/DatePicker";
+import { ToggleGroup } from "../form/ToggleGroup/ToggleGroup";
 
 vi.mock("react-i18next", async () => ({
   I18nContext: (await import("react")).createContext(null),
@@ -100,8 +101,7 @@ const CASES: Record<string, Case> = {
   ColorInput: { el: () => <ColorInput name="f" aria-label="field" defaultValue="#112233" />, change: (f) => typeInto(f, "#445566") },
   ColorPicker: { el: () => <ColorPicker name="f" aria-label="field" defaultValue="#112233" />, change: (f) => typeInto(f, "#445566") },
   TimePicker: { el: () => <TimePicker name="f" aria-label="field" defaultValue="10:00" />, change: (f) => typeInto(f, "11:30") },
-  // 型に name は無いが、残りの props は入力欄へ渡り、値はフォームへ送られる（2026-11-24 に確認）
-  Combobox: { el: () => <Combobox {...({ name: "f" } as object)} aria-label="field" defaultValue="north" options={[]} />, change: (f) => typeInto(f, "south") },
+  Combobox: { el: () => <Combobox name="f" aria-label="field" defaultValue="north" options={[]} />, change: (f) => typeInto(f, "south") },
   Mentions: { el: () => <Mentions name="f" aria-label="field" defaultValue="north" options={[]} />, change: (f) => typeInto(f, "south") },
   Select: { el: () => <Select name="f" aria-label="field" options={two} defaultValue="a" />, change: (f) => pick(f, "Beta") },
   MultiSelect: { el: () => <MultiSelect name="f" aria-label="field" options={two} defaultValue={["a"]} />, change: (f) => pick(f, "Beta") },
@@ -125,6 +125,7 @@ const CASES: Record<string, Case> = {
       fireEvent.click(day.querySelector("button") ?? day);
     },
   },
+  ToggleGroup: { el: () => <ToggleGroup name="f" label="field" options={two} defaultValue="a" />, change: (f) => fireEvent.click(within(f).getByRole("radio", { name: "Beta" })) },
   OtpInput: { el: () => <OtpInput name="f" length={4} />, change: (f) => fireEvent.change(f.querySelectorAll("input:not([type=hidden])")[0], { target: { value: "7" } }) },
 };
 

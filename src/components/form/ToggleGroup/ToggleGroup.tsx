@@ -7,6 +7,7 @@ import { useMergedRef } from "../../../hooks/useMergedRef";
 import { FieldTemplate } from "../FieldTemplate/FieldTemplate";
 import { ComponentSizeBasic } from "../../../types/tokens";
 import { getRovingIndex, isRovingKey } from "../../_internal/rovingIndex";
+import { HiddenFormValue } from "../../_internal/HiddenFormValue";
 import styles from "./toggle-group.module.scss";
 
 export type Option = {
@@ -46,6 +47,11 @@ type ToggleGroupProps = {
   /** Unique ID for the component */
   id?: string;
   /**
+   * Field name used when a surrounding `<form>` is submitted. The selected value is sent
+   * (one entry per selected option when `selectionMode="multiple"`).
+   */
+  name?: string;
+  /**
    * If true, merge group props onto the child element.
    */
   asChild?: boolean;
@@ -80,6 +86,7 @@ export const ToggleGroup = forwardRef<HTMLDivElement, ToggleGroupProps>(({
   required,
   layout = "vertical",
   id: customId,
+  name,
   asChild = false,
   children,
 }, ref) => {
@@ -259,6 +266,15 @@ export const ToggleGroup = forwardRef<HTMLDivElement, ToggleGroupProps>(({
       )})}
       <Slottable>{children}</Slottable>
       </Component>
+      {/* SegmentedControl と同じく、素の <form> の送信に値を渡す。以前は name を受けず、フォームへ値を送らなかった（2026-11-25 ユーザー判断） */}
+      <HiddenFormValue
+        name={name}
+        value={currentValue}
+        disabled={disabled}
+        onReset={() => {
+          if (!isControlled) setInternalValue(defaultValue ?? (selectionMode === "multiple" ? [] : ""));
+        }}
+      />
     </FieldTemplate>
   );
 });

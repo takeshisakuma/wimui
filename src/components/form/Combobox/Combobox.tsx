@@ -41,6 +41,8 @@ export type ComboboxProps = {
   allowClear?: boolean;
   /** Initial input value (uncontrolled) */
   defaultValue?: string;
+  /** Field name used when a surrounding `<form>` is submitted. The text in the input is sent. */
+  name?: string;
   /** Additional class names */
   className?: string;
   /** Whether the field is disabled */
