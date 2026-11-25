@@ -149,4 +149,34 @@ describe("PullToRefresh", () => {
       vi.useRealTimers();
     }
   });
+
+  describe("keyboard path (T441)", () => {
+    it("offers a Refresh button reachable by Tab that runs onRefresh", async () => {
+      const { onRefresh } = renderPtr();
+      const button = screen.getByRole("button", { name: "Refresh" });
+      // 引っ張れない人の入口。中身より前で Tab が止まる
+      expect(button).not.toHaveAttribute("tabindex", "-1");
+      button.focus();
+      fireEvent.click(button);
+      expect(onRefresh).toHaveBeenCalledTimes(1);
+      expect(screen.getByText("Refreshing...")).toBeInTheDocument();
+      await waitFor(() => expect(screen.getByText("Pull to refresh")).toBeInTheDocument());
+    });
+
+    it("keeps focus on the button while refreshing and ignores a second press", async () => {
+      let resolve: () => void = () => {};
+      const onRefresh = vi.fn(() => new Promise<void>((r) => (resolve = r)));
+      renderPtr({ onRefresh });
+      const button = screen.getByRole("button", { name: "Refresh" });
+      button.focus();
+      fireEvent.click(button);
+      expect(button).toHaveAttribute("aria-disabled", "true");
+      // disabled にしないので、押した直後もフォーカスはボタンに残る
+      expect(button).toHaveFocus();
+      fireEvent.click(button);
+      expect(onRefresh).toHaveBeenCalledTimes(1);
+      resolve();
+      await waitFor(() => expect(button).not.toHaveAttribute("aria-disabled"));
+    });
+  });
 });

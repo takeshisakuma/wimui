@@ -5,7 +5,7 @@ import localStyles from "./pull-to-refresh.module.scss";
 import { Icon } from "../../media/Icon/Icon";
 import { useWimTranslation } from "@/i18n/useWimTranslation";
 import { commonNs } from "@/i18n/generated/common";
-import { LoadingIcon, ChevronDownIcon } from "@/icon";
+import { LoadingIcon, ChevronDownIcon, RefreshIcon } from "@/icon";
 import { composeEventHandlers } from "../../_internal/composeEventHandlers";
 
 export interface PullToRefreshProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -93,6 +93,25 @@ export const PullToRefresh = React.forwardRef<HTMLDivElement, PullToRefreshProps
       }
     }, [maxDistance, threshold, refreshing]);
 
+    // 引っ張って離したときと、更新のボタンを押したときの両方から呼ぶ
+    const runRefresh = useCallback(async () => {
+      setInternalRefreshing(true);
+      setState("refreshing");
+      setPullDistance(threshold);
+      try {
+        await onRefresh();
+      } finally {
+        clearTimeout(settleTimer.current);
+        settleTimer.current = setTimeout(() => {
+          setInternalRefreshing(false);
+          if (controlledRefreshing === undefined) {
+            setState("idle");
+            setPullDistance(0);
+          }
+        }, 50);
+      }
+    }, [threshold, onRefresh, controlledRefreshing]);
+
     const handleEnd = useCallback(async () => {
       if (!isPulling.current) return;
       
@@ -102,26 +121,12 @@ export const PullToRefresh = React.forwardRef<HTMLDivElement, PullToRefreshProps
       setIsDragging(false);
 
       if (canRefresh && !refreshing) {
-        setInternalRefreshing(true);
-        setState("refreshing");
-        setPullDistance(threshold);
-        try {
-          await onRefresh();
-        } finally {
-          clearTimeout(settleTimer.current);
-          settleTimer.current = setTimeout(() => {
-            setInternalRefreshing(false);
-            if (controlledRefreshing === undefined) {
-              setState("idle");
-              setPullDistance(0);
-            }
-          }, 50);
-        }
+        await runRefresh();
       } else if (!refreshing) {
         setPullDistance(0);
         setState("idle");
       }
-    }, [pullDistance, threshold, refreshing, onRefresh, controlledRefreshing]);
+    }, [pullDistance, threshold, refreshing, runRefresh]);
 
     const handleStart = (e: React.TouchEvent | React.MouseEvent) => {
       const container = (e.currentTarget as HTMLElement);
@@ -188,6 +193,20 @@ export const PullToRefresh = React.forwardRef<HTMLDivElement, PullToRefreshProps
             </span>
           </div>
         </div>
+        {/* 引っ張る操作の代わり（T441）。キーボードでは引っ張れないので、Tab で来たときだけ見える更新の
+            ボタンを、引っ張りの表示（普段は高さ 0）と中身のあいだに置く（SkipLink と同じ畳み方）。更新中は押下を止めるが disabled にはしない ──
+            disabled にすると、押した直後にフォーカスが body へ落ちる */}
+        <button
+          type="button"
+          className={localStyles.refreshButton}
+          aria-disabled={refreshing || undefined}
+          onClick={() => {
+            if (!refreshing) runRefresh();
+          }}
+        >
+          <Icon component={state === "refreshing" ? LoadingIcon : RefreshIcon} spin={state === "refreshing"} size="sm" />
+          {t("pullToRefresh.refresh")}
+        </button>
         <ContentComponent ref={ref} className={localStyles.content}>
           {children}
         </ContentComponent>

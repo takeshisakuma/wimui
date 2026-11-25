@@ -354,7 +354,7 @@
     "pull_to_refresh_content_guideline_1": "Show clear feedback during the pull and refresh states.",
     "pull_to_refresh_content_guideline_2": "Keep the refresh animation brief and meaningful.",
     "pull_to_refresh_motion_desc": "Elastic pulling effect followed by a spinner animation during data fetching.",
-    "pull_to_refresh_a11y_desc": "Should support screen readers with live regions for refresh status.",
+    "pull_to_refresh_a11y_desc": "Pulling is not possible from a keyboard, so a Refresh button appears at the top when it receives focus with Tab. Enter or Space starts the refresh, and focus stays on the button while it runs. Pointer users who cannot drag still need a visible refresh control in your app (WCAG 2.5.1 Pointer Gestures). Announce the refresh status with a live region.",
     "pull_to_refresh_scenario_1": "Updating a social media feed or news stream.",
     "pull_to_refresh_scenario_2": "Refreshing a dashboard or status monitor on mobile.",
     "pull_to_refresh_best_practice_1": "Ensure the trigger threshold is easy to reach but hard to trigger accidentally.",
@@ -629,7 +629,8 @@
   "pullToRefresh": {
     "pull": "Pull to refresh",
     "release": "Release to refresh",
-    "loading": "Refreshing..."
+    "loading": "Refreshing...",
+    "refresh": "Refresh"
   },
   "jsonViewer": {
     "title": "JSON Viewer",
