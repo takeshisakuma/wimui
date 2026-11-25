@@ -13,11 +13,16 @@
   
   .content {
     z-index: var(--wim-z-overlay);
+
+    /* 短い文は 1 行のまま（max-content）、長い文は HoverCard と同じ上限で折り返す（T439）。
+       以前は nowrap だけで上限が無く、216 文字で 1280px の画面の右端を 2,103px まで越えた */
+    width: max-content;
+    max-width: var(--wim-overlay-max-width-sm);
     padding: var(--wim-spacing-sm) var(--wim-spacing-lg);
     font-size: var(--wim-font-size-sm);
     line-height: var(--wim-line-height-tight);
     color: var(--text-tooltip, var(--wim-comp-tooltip-fg));
-    white-space: nowrap;
+    overflow-wrap: anywhere;
     pointer-events: none;
     background-color: var(--bg-tooltip, var(--wim-comp-tooltip-bg));
     border-radius: var(--wim-radius-overlay);

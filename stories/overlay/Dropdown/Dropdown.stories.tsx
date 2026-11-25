@@ -69,7 +69,8 @@ export const AlignmentRight: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
     return (
-      <div style={{ paddingLeft: "200px" }}>
+      // 左の余白は、右端そろえの面が左へ伸びる場所。狭い画面では、引き金の分（12rem）を残して縮める（T439）
+      <div style={{ paddingLeft: "min(200px, max(0px, 100% - 12rem))" }}>
         {/* 見せ場は右端そろえなので、開いた状態で置く。閉じたままだと VRT も
             ドキュメントの読み手も、この配置を一度も見ないことになる（T264）。 */}
         <Dropdown {...args} defaultOpen>
