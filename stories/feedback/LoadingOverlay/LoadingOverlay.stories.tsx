@@ -292,7 +292,9 @@ export const Interactive: Story = {
     const { t } = useTranslation(ALL_NAMESPACES);
     const [loading, setLoading] = React.useState(false);
 
+    // 押したボタンを disabled にすると、フォーカスが body へ落ちる（T442）。押下は aria-disabled と処理の先頭で止める
     const handleClick = () => {
+      if (loading) return;
       setLoading(true);
       setTimeout(() => setLoading(false), 2000);
     };
@@ -307,7 +309,7 @@ export const Interactive: Story = {
           padding: "20px",
         }}
       >
-        <Button onClick={handleClick} disabled={loading}>{t("story.loading_overlay_load_data")}</Button>
+        <Button onClick={handleClick} aria-disabled={loading || undefined}>{t("story.loading_overlay_load_data")}</Button>
 
 
         <div style={{ marginTop: "20px" }}>

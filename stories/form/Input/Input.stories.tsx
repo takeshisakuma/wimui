@@ -115,10 +115,14 @@ export const SelectLike: Story = {
 export const Clearable: Story = {
   render: function Render(args) {
     const { t } = useTranslation(ALL_NAMESPACES);
+    // 消すボタンを持つ入力欄を Label で囲むと、ボタンの名前まで入力欄の名前に入る（「Keyword Clear」）。
+    // 見出しの文字だけを aria-labelledby で指す（T442）
+    const labelId = React.useId();
     return (
-      <Label label={t("story.input_label_keyword")}>
+      <Label label={<span id={labelId}>{t("story.input_label_keyword")}</span>}>
         <Input
           {...args}
+          aria-labelledby={labelId}
           allowClear
           placeholder={t("story.input_placeholder_keyword")}
           defaultValue={t("story.input_value_keyword")}
