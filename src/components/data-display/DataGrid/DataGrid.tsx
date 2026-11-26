@@ -451,6 +451,15 @@ export function DataGrid<T extends Record<string, unknown>>({
             </Table.Row>
           </Table.Header>
           <Table.Body>
+            {/* データの無い最初の読み込みは、行の高さぶんの空の行で場所を取る（T446）。見出しの 42px だけで
+                読み込み、届いた途端に 239px へ伸びて、下の要素が動いていた。読み上げには出さない */}
+            {isBlocking && data.length === 0
+              ? Array.from({ length: pagination ? pagination.pageSize : 5 }, (_, i) => (
+                  <Table.Row key={`placeholder-${i}`} aria-hidden="true" data-placeholder-row="">
+                    <Table.Cell colSpan={colCount}>{"\u00a0"}</Table.Cell>
+                  </Table.Row>
+                ))
+              : null}
             {data.map((record, rowIndex) => {
               const key = getRowKey(record);
               const isSelected = selection?.selectedRowKeys.includes(key);

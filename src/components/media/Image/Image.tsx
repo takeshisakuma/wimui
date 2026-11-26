@@ -67,7 +67,11 @@ export type ImageProps = React.ComponentPropsWithoutRef<"img"> & {
   alt: string;
   /** Width of the image */
   width?: string | number;
-  /** Height of the image */
+  /**
+   * Height of the image. With a `width` that is also a number or a px value, the two set the
+   * aspect ratio instead: the image takes that shape before it loads and scales down with its
+   * container. Alone, it is a fixed height.
+   */
   height?: string | number;
   /** Corner radius size */
   radius?: MediaRadius;
@@ -192,6 +196,23 @@ const buildFilterString = (options?: ImageFilterOptions): string | undefined => 
   if (opacity) filters.push(`opacity(${opacity})`);
 
   return filters.length > 0 ? filters.join(" ") : "none";
+};
+
+
+/** `300` / `"300px"` を数に。ほかの単位（%・rem）は比にできないので null */
+const toPx = (value: string | number | undefined): number | null => {
+  if (typeof value === "number") return value > 0 ? value : null;
+  if (typeof value === "string" && /^\d+(\.\d+)?(px)?$/.test(value.trim())) {
+    const n = parseFloat(value);
+    return n > 0 ? n : null;
+  }
+  return null;
+};
+
+const toAspectRatio = (width: string | number | undefined, height: string | number | undefined): string | undefined => {
+  const w = toPx(width);
+  const h = toPx(height);
+  return w && h ? `${w} / ${h}` : undefined;
 };
 
 export const Image = ({
@@ -348,9 +369,13 @@ export const Image = ({
     `;
   }, [duotone]);
 
+  // width と height が両方とも長さ（数か px）なら、その縦横の比で場所を取る（T446）。読み込み前は img が無く、
+  // 高さ 0 から読み込み後に伸びて下の要素が動いた。高さは固定せず、幅が狭ければ比のまま縮む
+  const aspectRatio = toAspectRatio(width, height);
+
   const imageStyles: React.CSSProperties = {
     width: "100%",
-    height: height || "auto",
+    height: aspectRatio ? "100%" : height || "auto",
     objectFit: fit,
     ...style,
   };
@@ -396,7 +421,7 @@ export const Image = ({
         )}
         // 遅延読み込みで img 未描画でも高さを確保し、レイアウトシフトや
         // 高さがコンテンツ依存の親（Carousel 等）の崩壊を防ぐ
-        style={height !== undefined ? { height } : undefined}
+        style={aspectRatio ? { aspectRatio } : height !== undefined ? { height } : undefined}
         data-testid="image-inner"
       >
         {isIntersecting && !hasError && (

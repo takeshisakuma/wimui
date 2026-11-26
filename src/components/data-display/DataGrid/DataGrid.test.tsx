@@ -131,6 +131,26 @@ describe("DataGrid", () => {
     expect(regions.some((r) => r.textContent === "No users found")).toBe(true);
   });
 
+  // T446: データの無い最初の読み込みで、見出しだけになり、届いた途端に伸びていた
+  it("holds a page of empty rows during a first load with no data", () => {
+    const { container, rerender } = render(<DataGrid columns={mockColumns} data={[]} loading />);
+    expect(container.querySelectorAll("[data-placeholder-row]")).toHaveLength(5);
+    rerender(
+      <DataGrid
+        columns={mockColumns}
+        data={[]}
+        loading
+        pagination={{ current: 1, pageSize: 8, total: 20, onChange: () => {} }}
+      />,
+    );
+    expect(container.querySelectorAll("[data-placeholder-row]")).toHaveLength(8);
+    container.querySelectorAll("[data-placeholder-row]").forEach((row) => {
+      expect(row).toHaveAttribute("aria-hidden", "true");
+    });
+    rerender(<DataGrid columns={mockColumns} data={mockRows} />);
+    expect(container.querySelectorAll("[data-placeholder-row]")).toHaveLength(0);
+  });
+
   it("renders loading state", () => {
     const { container } = render(<DataGrid columns={mockColumns} data={mockRows} loading />);
 

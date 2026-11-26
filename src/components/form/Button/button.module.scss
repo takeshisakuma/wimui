@@ -60,6 +60,12 @@
     line-height: 1;
   }
 
+  .loaderOverlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
   .label {
     display: block;
     min-width: 0;
@@ -292,8 +298,9 @@
   .loading {
     pointer-events: none;
 
+    // 中身は見えなくするだけで、場所は残す（幅を変えない。T446）。opacity なら読み上げの名前は残る
     .content {
-      opacity: var(--wim-opacity-disabled, 0.5);
+      opacity: 0;
     }
 
     .loader {
