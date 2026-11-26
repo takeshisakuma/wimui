@@ -1,5 +1,19 @@
 # wimui
 
+## 0.92.0
+
+### Minor Changes
+
+- cab6efe: 公開 API の穴を 3 つ埋めました（T440）。
+
+  - **破壊的変更: `MarkdownRenderer` の `withAnchors` を削除しました。** 型と説明にはありましたが、どこからも読まれておらず、渡しても何も変わりませんでした。渡しているコードは、その prop を消してください（見た目も動きも変わりません）。
+  - `useToast().show()` と `useNotification().show()` が、出した通知の id を返すようになりました。`remove(id)` に渡すと、その通知を自分で閉じられます。
+  - `DataGrid` は、行が 0 件のときに既定の文（「データがありません」/ "No data"）を出すようになりました。これまでは `emptyMessage` を渡さないと何も出ず、見出しだけの表になっていました。何も出したくないときは `emptyMessage={null}` を渡してください。読み込み中（`loading` が `true` / `"blocking"`）は、行がまだ来ていないだけなので、空の文を出しません（`emptyMessage` を渡した場合も同じ）。
+
+### Patch Changes
+
+- 7f2e498: `Popover` の面の上限の幅を 448px（`--wim-overlay-max-width-md`）にしました。これまでは画面の幅いっぱいまで伸び、長い文では 1 行が 100 字を超えていました。狭い画面では、これまでどおり画面の幅が上限です。448px より広い面が要るときは、`PopoverContent` に `style={{ maxWidth: ... }}` を渡してください。
+
 ## 0.91.2
 
 ### Patch Changes
