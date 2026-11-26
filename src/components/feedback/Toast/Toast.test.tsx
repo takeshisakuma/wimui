@@ -1,3 +1,4 @@
+import React from "react";
 import { render, screen, fireEvent, act } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { Toast, ToastProvider, useToast } from "./Toast";
@@ -269,5 +270,37 @@ describe("Toast: the auto-close timer pauses while the toast is in use", () => {
       expect(fireEvent.keyDown(document, { key: "F8", ctrlKey: true })).toBe(true);
       expect(trigger).toHaveFocus();
     });
+  });
+});
+
+describe("ToastProvider: show() returns the id (T440)", () => {
+  beforeEach(() => {
+    vi.useFakeTimers();
+  });
+
+  it("closes the toast it showed when the returned id is passed to remove()", () => {
+    const Trigger = () => {
+      const { show, remove } = useToast();
+      const [id, setId] = React.useState<string>();
+      return (
+        <>
+          <button onClick={() => setId(show({ title: "Uploading", duration: 60000 }))}>show</button>
+          <button onClick={() => id && remove(id)}>remove</button>
+        </>
+      );
+    };
+    render(
+      <ToastProvider>
+        <Trigger />
+      </ToastProvider>,
+    );
+
+    fireEvent.click(screen.getByText("show"));
+    expect(document.querySelector(".wim-toast")).toHaveTextContent("Uploading");
+    fireEvent.click(screen.getByText("remove"));
+    act(() => {
+      vi.advanceTimersByTime(1000);
+    });
+    expect(document.querySelector(".wim-toast")).toBeNull();
   });
 });

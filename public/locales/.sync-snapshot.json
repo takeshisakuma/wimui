@@ -2164,7 +2164,8 @@
       "moved": "Moved to {{column}}"
     },
     "data_grid": {
-      "radio_column": "Select row"
+      "radio_column": "Select row",
+      "empty": "No data"
     }
   },
   "docs_actions": {
@@ -14506,7 +14507,6 @@
       "markdownRenderer_prop_baseLevel": "Visual size of markdown `h1`. `h2`–`h4` step one Title size down from this, clamped at `xs`. Does not change the HTML heading tag. Default `2xl`.",
       "markdownRenderer_prop_className": "Additional CSS class for the root element",
       "markdownRenderer_prop_content": "The markdown string to render",
-      "markdownRenderer_prop_withAnchors": "Whether to render titles with anchor links (default: false)",
       "modelSelector_prop_className": "Additional class names",
       "modelSelector_prop_defaultValue": "Initially selected model id (uncontrolled)",
       "modelSelector_prop_disabled": "Whether the selector is disabled",

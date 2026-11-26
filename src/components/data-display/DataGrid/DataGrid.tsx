@@ -84,7 +84,11 @@ export type DataGridProps<T> = {
   height?: string | number;
   /** Maximum height of the grid (enables vertical scrolling) */
   maxHeight?: string | number;
-  /** Message or element to display when data is empty */
+  /**
+   * Message or element to display when there are no rows. Defaults to a localized
+   * "No data" text; pass `null` to show nothing. Not shown during a blocking `loading`
+   * (the rows are not there yet, so "no data" would be untrue).
+   */
   emptyMessage?: React.ReactNode;
   /** Enable the card layout below a container width (`true`/`"sm"` = 576px, `"md"` = 768px) */
   mobileCard?: boolean | "sm" | "md";
@@ -327,7 +331,10 @@ export function DataGrid<T extends Record<string, unknown>>({
   // 昇順・降順が読まれなかった）。先に在る領域の文字を書き換える（Pagination と同じ形）。
   const { announce: announceSort, region: sortAnnouncementRegion } = useAnnounce();
   // 空の表示は、行が 0 になったときに差し込む。文字は先に在る領域で告げる（T353）
-  const showEmpty = data.length === 0 && Boolean(emptyMessage);
+  // 既定の文が無いと、行が 0 件の表は見出しだけになり、空なのか読み込み前なのか分からない（T440）。
+  // 読み込み中（blocking）は行がまだ来ていないだけなので、空とは言わない。
+  const emptyContent = emptyMessage === undefined ? t("data_grid.empty") : emptyMessage;
+  const showEmpty = data.length === 0 && !isBlocking && Boolean(emptyContent);
   const { ref: emptyRef, region: emptyRegion } = useAnnounceAppearance(showEmpty);
 
   return (
@@ -517,7 +524,7 @@ export function DataGrid<T extends Record<string, unknown>>({
         </Table>
         {showEmpty && (
           <div ref={emptyRef} className={styles.empty}>
-            {emptyMessage}
+            {emptyContent}
           </div>
         )}
         {infiniteScroll?.hasMore && (

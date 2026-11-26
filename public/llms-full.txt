@@ -2585,7 +2585,9 @@ drops secondary text below the AA contrast floor.
     - `stickyHeader: boolean` = true — Whether the header sticks to the top while scrolling
     - `height: string | number` — Height of the grid (enables vertical scrolling)
     - `maxHeight: string | number` — Maximum height of the grid (enables vertical scrolling)
-    - `emptyMessage: React.ReactNode` — Message or element to display when data is empty
+    - `emptyMessage: React.ReactNode` — Message or element to display when there are no rows. Defaults to a localized
+"No data" text; pass `null` to show nothing. Not shown during a blocking `loading`
+(the rows are not there yet, so "no data" would be untrue).
     - `mobileCard: boolean | "sm" | "md"` = false — Enable the card layout below a container width (`true`/`"sm"` = 576px, `"md"` = 768px)
     - `selection: boolean | SelectionConfig<T>` — Row selection: a boolean shorthand or a full configuration object
     - `selectedRowKeys: string[]` — Selected row keys (used with boolean `selection`)
@@ -3613,7 +3615,6 @@ clamped at `xs`. Does not change the HTML heading tag — that stays as
 written in the markdown. Default `"2xl"` keeps the historical mapping
 (`h1` 2xl / `h2` xl / `h3` lg / `h4` md).
     - `className: string` — Additional CSS class for the root element
-    - `withAnchors: boolean` — Whether to render titles with anchor links (default: false)
 - **ModelSelector** — ModelSelector is a dropdown for switching between AI models, surfacing the metadata that matters when choosing one — context window size and per-token pricing.
     - `models: ModelOption[]` (required) — List of selectable models
     - `value: string` — Selected model id (controlled)

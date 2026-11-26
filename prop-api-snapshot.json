@@ -6871,10 +6871,6 @@
       "required": true,
       "type": "string"
     },
-    "MarkdownRenderer.withAnchors": {
-      "required": false,
-      "type": "boolean"
-    },
     "Marquee.duration": {
       "required": false,
       "type": "number"

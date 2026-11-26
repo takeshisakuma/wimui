@@ -34,6 +34,7 @@
     "moved": "Movido para {{column}}"
   },
   "data_grid": {
-    "radio_column": "Selecionar linha"
+    "radio_column": "Selecionar linha",
+    "empty": "Nenhum dado"
   }
 }
