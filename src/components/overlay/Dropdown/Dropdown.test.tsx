@@ -217,6 +217,27 @@ describe("Dropdown", () => {
     });
   });
 
+  // T449: 引き金の Enter / Space がクリックを起こさず、ほかのボタンと違って外側の onClick に届かなかった
+  it.each(["Enter", " "])("opens with %j as a click, which reaches an onClick around it like any button", (key) => {
+    const onOuterClick = vi.fn();
+    render(
+      /* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */
+      <div onClick={onOuterClick}>
+        <Dropdown>
+          <DropdownTrigger>Toggle</DropdownTrigger>
+          <DropdownMenu>
+            <DropdownItem>Item 1</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>
+      </div>,
+    );
+
+    fireEvent.keyDown(screen.getByText("Toggle"), { key });
+
+    expect(screen.getByText("Item 1")).toBeInTheDocument();
+    expect(onOuterClick).toHaveBeenCalledTimes(1);
+  });
+
   it("opens with ArrowDown on the trigger and focuses the first item", async () => {
     render(
       <Dropdown>
