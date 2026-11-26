@@ -23,7 +23,9 @@
     flex-direction: column;
     width: max-content;
     min-width: var(--wim-menu-min-width);
-    max-width: calc(100vw - var(--wim-spacing-2xl));
+
+    // 長い文は 448px で折り返す（1 行が 100 字を超えると読めない。T448）。狭い画面では画面幅が上限。
+    max-width: min(var(--wim-overlay-max-width-md), calc(100vw - var(--wim-spacing-2xl)));
     padding: var(--wim-spacing-md);
     margin: 0;
     color: var(--wim-color-text-primary);

@@ -578,6 +578,16 @@
         "aria-valid-attr-value"
       ]
     },
+    "components-overlays-popover--long-content-open": {
+      "light": [
+        "aria-hidden-focus",
+        "aria-valid-attr-value"
+      ],
+      "dark": [
+        "aria-hidden-focus",
+        "aria-valid-attr-value"
+      ]
+    },
     "components-overlays-popover--variants": {
       "light": [
         "aria-hidden-focus",
