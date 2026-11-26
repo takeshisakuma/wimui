@@ -96,6 +96,7 @@ Single components are judged by state/a11y/token compliance. **Composed screens*
 26. Never draw a stand-in for content you did not build: a Skeleton used as a fake screenshot, a grey box or gradient panel captioned "Chart placeholder". Either put the real component in (a Sparkline, a table) or leave the region out. A labelled empty box teaches readers that the library cannot fill it.
 27. Glass / neumorphic "futuristic tech" surfaces may exist as an opt-in variant, but never as a default or as the first example in the docs. Shown first, it becomes what the library looks like, and that look is the most generic one available.
 28. Put the hamburger on the side the menu comes from: top-left for a drawer that slides in from the left (AppShell with Sidebar), the end of the bar for a full menu that drops from the top (Navbar.Menu). Keep it uncovered while the menu is open, because it turns into the close button; do not dim the header with the overlay so that tapping the overlay is the only way out. Use one pattern per app, so the trigger does not jump sides between screens.
+29. When a Card, Table.Row or List.Item has its own onClick, a button, checkbox or Popover / Dropdown trigger placed inside it also fires that outer onClick (by click and by Enter / Space; this is normal DOM bubbling and the components do not stop it). Call e.stopPropagation() in the inner button's onClick (for a Popover / Dropdown trigger, in the onClick of the asChild element), so pressing it does not also open the row.
 
 ## Recipes — copy-paste starting points
 

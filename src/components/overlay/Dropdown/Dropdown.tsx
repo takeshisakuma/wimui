@@ -314,7 +314,9 @@ export const DropdownTrigger = forwardRef<HTMLDivElement, DropdownTriggerProps>(
         onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) => {
           if (e.key === "Enter" || e.key === " ") {
             e.preventDefault();
-            toggle();
+            // toggle() を直に呼ぶとクリックが起きず、ほかのボタンと違って押せる面の onClick に
+            // 届かなかった（T449）。クリックを起こし、開閉は onClick={toggle} に任せる。
+            e.currentTarget.click();
           } else if (e.key === "ArrowDown" && !isOpen) {
             // ↓ でも開く（最初の項目へフォーカス）。Menubar・選択系・DatePicker は ↓ で開くのに、
             // ここだけ Enter / Space しか見ていなかった（T303）。
