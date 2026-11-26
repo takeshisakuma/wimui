@@ -27,8 +27,8 @@ import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const index = JSON.parse(fs.readFileSync(path.resolve(__dirname, "../storybook-static/index.json"), "utf-8"));
-const stories: { id: string; title: string; name: string }[] = Object.values(
-  index.entries as Record<string, { id: string; title: string; name: string; type: string }>,
+const stories: { id: string; title: string; name: string; tags?: string[] }[] = Object.values(
+  index.entries as Record<string, { id: string; title: string; name: string; type: string; tags?: string[] }>,
 ).filter((e) => e.type === "story");
 
 const filter = process.env.FILTER || "";
@@ -62,9 +62,45 @@ const markTriggers = (page: Page) =>
     { mark: MARK, max: MAX_TRIGGERS },
   );
 
-const open = async (page: Page, id: string) => {
+/**
+ * play を持つストーリーは、play が終わるまで待つ（2026-11-26）。play は描画のあとで動き、ボタンを押して
+ * フォーカスを動かす。待たずに引き金へフォーカスを置くと、play のクリックがあとからフォーカスを奪い、
+ * 押したキーが別の要素に届く。QueryBuilder の Default（play が「Add rule」「Add group」を押す）で、
+ * CI では Space が「Add group」に届いてグループが増え、CPU を 6 倍遅くした手元では 40 回中 21 回、
+ * Escape のあとのフォーカスが引き金に戻らなかった。待ち方は play-functions.e2e.spec.ts と同じ
+ * （storyRenderPhaseChanged の finished）。
+ */
+const watchPlay = (page: Page) =>
+  page.addInitScript(() => {
+    const w = window as unknown as {
+      __openKeysPlay: string[];
+      __STORYBOOK_ADDONS_CHANNEL__?: { on: (ev: string, cb: (p: { newPhase: string }) => void) => void };
+    };
+    w.__openKeysPlay = [];
+    const hook = () => {
+      const ch = w.__STORYBOOK_ADDONS_CHANNEL__;
+      if (!ch) {
+        setTimeout(hook, 10);
+        return;
+      }
+      ch.on("storyRenderPhaseChanged", (p) => w.__openKeysPlay.push(p.newPhase));
+    };
+    hook();
+  });
+
+const open = async (page: Page, id: string, hasPlay: boolean) => {
   await page.goto(`/iframe.html?id=${id}&viewMode=story&globals=locale:en`);
   await page.waitForSelector("#storybook-root > *", { state: "attached" });
+  if (hasPlay) {
+    await page.waitForFunction(
+      () => {
+        const phases = (window as unknown as { __openKeysPlay: string[] }).__openKeysPlay;
+        return phases.includes("finished") || phases.includes("errored");
+      },
+      undefined,
+      { timeout: 30_000 },
+    );
+  }
   return markTriggers(page);
 };
 
@@ -78,12 +114,14 @@ test.describe("Open triggers work from the keyboard", () => {
     if (filter && !story.id.includes(filter)) continue;
 
     test(`${story.title} › ${story.name}`, async ({ page }) => {
-      const count = await open(page, story.id);
+      const hasPlay = (story.tags ?? []).includes("play-fn");
+      if (hasPlay) await watchPlay(page);
+      const count = await open(page, story.id, hasPlay);
       test.skip(count === 0, "no closed trigger");
 
       for (let i = 0; i < count; i++) {
         for (const key of ["Enter", "Space"] as const) {
-          await open(page, story.id);
+          await open(page, story.id, hasPlay);
           const trigger = page.locator(`[${MARK}="${i}"]`);
           // 番号を振った要素が開き直しで消えた（ストーリーの作り直し）ときは、その回は測らない
           if ((await trigger.count()) === 0) continue;
