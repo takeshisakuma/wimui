@@ -286,3 +286,23 @@ export const InfoTip: Story = {
 export const InfoTipOpen: Story = {
   render: () => <InfoTipExample defaultOpen />,
 };
+
+/**
+ * 長い文を入れた開いた姿（T448）。面は `--wim-overlay-max-width-md`（448px）で折り返す。
+ * 上限が無いと 1280px の画面で面が 1,264px まで伸び、1 行が 100 字を超える。docs ページには載せない。
+ */
+export const LongContentOpen: Story = {
+  render: function Render() {
+    const { t } = useTranslation(ALL_NAMESPACES);
+    return (
+      <Popover defaultOpen placement="bottom-start">
+        <PopoverTrigger asChild>
+          <Button variant="outline">{t("story.popover_open")}</Button>
+        </PopoverTrigger>
+        <PopoverContent>
+          <Text size="sm">{t("story.popover_long_body")}</Text>
+        </PopoverContent>
+      </Popover>
+    );
+  },
+};

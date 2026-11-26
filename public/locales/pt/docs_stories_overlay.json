@@ -181,6 +181,7 @@
     "popover_set_dim": "Defina as dimensões da camada.",
     "popover_top_place": "Posicionamento Superior",
     "popover_width": "Largura",
+    "popover_long_body": "O frete é calculado no checkout a partir do endereço de entrega e do peso total dos itens no carrinho. Pedidos feitos até as 14h em dia útil saem do depósito no mesmo dia, e você recebe o código de rastreio por e-mail assim que a transportadora retirar o pacote.",
     "portal_active": "Ativo",
     "portal_alarm": "Alarme",
     "portal_btn_hide": "Fechar Mensagem",
