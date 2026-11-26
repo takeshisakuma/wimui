@@ -1,0 +1,2 @@
+"use client";
+import{n as e}from"./rolldown-runtime-sJBDdmOt.js";var t;function n(){return(n=e((()=>{t={name:`navigation`,resources:{en:{a11y:{breadcrumb_more:`Show hidden levels ({{count}})`,skip_to_main_content:`Skip to main content`}},ja:{a11y:{breadcrumb_more:`省略した階層を表示（{{count}} 件）`,skip_to_main_content:`本文へスキップ`}},pt:{a11y:{breadcrumb_more:`Mostrar níveis ocultos ({{count}})`,skip_to_main_content:`Pular para o conteúdo principal`}}}}})))()}export{t as n,n as t};

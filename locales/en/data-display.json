@@ -1,0 +1,40 @@
+{
+  "calendar": {
+    "aria_date": "{{year}}-{{month}}-{{day}}",
+    "title": "{{year}} / {{month}}",
+    "choose_month": "Choose month",
+    "choose_year": "Choose year",
+    "months": "Months of {{year}}",
+    "years": "Years {{start}} to {{end}}",
+    "prev_year": "Previous year",
+    "next_year": "Next year",
+    "prev_years": "Previous {{n}} years",
+    "next_years": "Next {{n}} years"
+  },
+  "countdown": {
+    "remaining": "{{time}} remaining"
+  },
+  "table": {
+    "header_component": "Component",
+    "header_overview": "Overview"
+  },
+  "avatar_group": {
+    "show_everyone": "Show everyone"
+  },
+  "selection_bar": {
+    "label": "Bulk actions",
+    "selected": "{{count}} selected",
+    "cleared": "Selection cleared",
+    "clear": "Clear selection"
+  },
+  "infinite_scroll": {
+    "loading": "Loading more…"
+  },
+  "kanban": {
+    "moved": "Moved to {{column}}"
+  },
+  "data_grid": {
+    "radio_column": "Select row",
+    "empty": "No data"
+  }
+}

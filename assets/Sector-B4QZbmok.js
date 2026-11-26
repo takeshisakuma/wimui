@@ -1,0 +1,19 @@
+"use client";
+import{a as e,n as t}from"./rolldown-runtime-sJBDdmOt.js";import{t as n}from"./react-BGJ90fIb.js";import{Ms as r,Ns as i,Ts as a,Xo as o,Zo as s,ao as c,bo as l,is as u,ls as d,mi as f,pi as p,po as m,ss as h,ui as g,ws as _}from"./helpers-kNPwioEP.js";function v(){return v=Object.assign?Object.assign.bind():function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var r in n)({}).hasOwnProperty.call(n,r)&&(e[r]=n[r])}return e},v.apply(null,arguments)}function y(e,t){return t||=e.slice(0),Object.freeze(Object.defineProperties(e,{raw:{value:Object.freeze(t)}}))}var b,x,S,C,w,T,E,D,O,k,A,j,M,N,P;function F(){return(F=t((()=>{b=e(n()),i(),l(),p(),s(),_(),h(),O=(e,t)=>u(t-e)*Math.min(Math.abs(t-e),359.999),k=e=>{var t=e.cx,n=e.cy,r=e.radius,i=e.angle,a=e.sign,o=e.isExternal,s=e.cornerRadius,c=e.cornerIsExternal,l=s*(o?1:-1)+r,u=Math.asin(s/l)/g,d=c?i:i+a*u,p=f(t,n,l,d),m=f(t,n,r,d),h=c?i-a*u:i;return{center:p,circleTangency:m,lineTangency:f(t,n,l*Math.cos(u*g),h),theta:u}},A=e=>{var t=e.cx,n=e.cy,r=e.innerRadius,i=e.outerRadius,a=e.startAngle,o=e.endAngle,s=O(a,o),c=a+s,l=f(t,n,i,a),u=f(t,n,i,c),p=d(x||=y([`M `,`,`,`
+    A `,`,`,`,0,
+    `,`,`,`,
+    `,`,`,`
+  `]),l.x,l.y,i,i,+(Math.abs(s)>180),+(a>c),u.x,u.y);if(r>0){var m=f(t,n,r,a),h=f(t,n,r,c);p+=d(S||=y([`L `,`,`,`
+            A `,`,`,`,0,
+            `,`,`,`,
+            `,`,`,` Z`]),h.x,h.y,r,r,+(Math.abs(s)>180),+(a<=c),m.x,m.y)}else p+=d(C||=y([`L `,`,`,` Z`]),t,n);return p},j=e=>{var t=e.cx,n=e.cy,r=e.innerRadius,i=e.outerRadius,a=e.cornerRadius,o=e.forceCornerRadius,s=e.cornerIsExternal,c=e.startAngle,l=e.endAngle,f=u(l-c),p=Math.abs(c-l),m=!o&&!s&&p<180,h=Math.sin(p/2*g),_=m?Math.min(a,i*h/(1+h)):a,v=m?Math.min(a,r*h/(1-h)):a,b=k({cx:t,cy:n,radius:i,angle:c,sign:f,cornerRadius:_,cornerIsExternal:s}),x=b.circleTangency,S=b.lineTangency,C=b.theta,O=k({cx:t,cy:n,radius:i,angle:l,sign:-f,cornerRadius:_,cornerIsExternal:s}),A=O.circleTangency,j=O.lineTangency,M=O.theta,N=s?Math.abs(c-l):Math.abs(c-l)-C-M;if(N<0&&o)return d(w||=y([`M `,`,`,`
+      a`,`,`,`,0,0,1,`,`,0
+      a`,`,`,`,0,0,1,`,`,0
+    `]),S.x,S.y,a,a,a*2,a,a,-a*2);var P=d(T||=y([`M `,`,`,`
+    A`,`,`,`,0,0,`,`,`,`,`,`
+    A`,`,`,`,0,`,`,`,`,`,`,`,`
+    A`,`,`,`,0,0,`,`,`,`,`,`
+  `]),S.x,S.y,_,_,+(f<0),x.x,x.y,i,i,+(N>180),+(f<0),A.x,A.y,_,_,+(f<0),j.x,j.y);if(r>0){var F=k({cx:t,cy:n,radius:r,angle:c,sign:f,isExternal:!0,cornerRadius:v,cornerIsExternal:s}),I=F.circleTangency,L=F.lineTangency,R=F.theta,z=k({cx:t,cy:n,radius:r,angle:l,sign:-f,isExternal:!0,cornerRadius:v,cornerIsExternal:s}),B=z.circleTangency,V=z.lineTangency,H=z.theta,U=s?Math.abs(c-l):Math.abs(c-l)-R-H;if(U<0&&a===0)return`${P}L${t},${n}Z`;P+=d(E||=y([`L`,`,`,`
+      A`,`,`,`,0,0,`,`,`,`,`,`
+      A`,`,`,`,0,`,`,`,`,`,`,`,`
+      A`,`,`,`,0,0,`,`,`,`,`,`Z`]),V.x,V.y,v,v,+(f<0),B.x,B.y,r,r,+(U>180),+(f>0),I.x,I.y,v,v,+(f<0),L.x,L.y)}else P+=d(D||=y([`L`,`,`,`Z`]),t,n);return P},M={cx:0,cy:0,innerRadius:0,outerRadius:0,startAngle:0,endAngle:0,cornerRadius:0,forceCornerRadius:!1,cornerIsExternal:!1},N=e=>{var t=c(e,M),n=t.cx,i=t.cy,s=t.innerRadius,l=t.outerRadius,u=t.cornerRadius,d=t.forceCornerRadius,f=t.cornerIsExternal,p=t.startAngle,m=t.endAngle,h=t.className;if(l<s||p===m)return null;var g=r(`recharts-sector`,h),_=l-s,y=o(u,_,0,!0),x=y>0&&Math.abs(p-m)<360?j({cx:n,cy:i,innerRadius:s,outerRadius:l,cornerRadius:Math.min(y,_/2),forceCornerRadius:d,cornerIsExternal:f,startAngle:p,endAngle:m}):A({cx:n,cy:i,innerRadius:s,outerRadius:l,startAngle:p,endAngle:m});return b.createElement(`path`,v({},a(t),{className:g,d:x}))},P=e=>{var t=e.fill;return typeof t==`object`&&t?b.createElement(m,{fill:t},t=>b.createElement(N,v({},e,{fill:t}))):b.createElement(N,v({},e,{fill:t}))}})))()}export{F as n,P as t};

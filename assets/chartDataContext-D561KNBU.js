@@ -1,0 +1,2 @@
+"use client";
+import{n as e}from"./rolldown-runtime-sJBDdmOt.js";import{t}from"./react-BGJ90fIb.js";import{$r as n,Ga as r,Ka as i,ca as a,ei as o,sa as s,ti as c}from"./helpers-kNPwioEP.js";var l,u,d;function f(){return(f=e((()=>{l=t(),n(),r(),s(),u=e=>{var t=e.chartData,n=i(),r=a();return(0,l.useEffect)(()=>r?()=>{}:(n(o(t)),()=>{n(o(void 0))}),[t,n,r]),null},d=e=>{var t=e.computedData,n=i();return(0,l.useEffect)(()=>(n(c(t)),()=>{n(o(void 0))}),[t,n]),null}})))()}export{d as n,f as r,u as t};

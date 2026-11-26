@@ -1,0 +1,2 @@
+"use client";
+import{n as e}from"./rolldown-runtime-sJBDdmOt.js";import{t}from"./react-BGJ90fIb.js";function n(e,t,n){let i=(0,r.useRef)(n);(0,r.useEffect)(()=>{i.current=n}),(0,r.useEffect)(()=>{if(!e||typeof ResizeObserver>`u`||!(t instanceof Element))return;let n=new ResizeObserver(()=>{(!t.isConnected||t.getClientRects().length===0)&&i.current()});return n.observe(t),()=>n.disconnect()},[e,t])}var r;function i(){return(i=e((()=>{r=t()})))()}export{n,i as t};

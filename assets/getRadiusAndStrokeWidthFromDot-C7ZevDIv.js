@@ -1,0 +1,2 @@
+"use client";
+import{n as e}from"./rolldown-runtime-sJBDdmOt.js";import{Ds as t,js as n}from"./helpers-kNPwioEP.js";function r(e){var t=n(e),r=3,i=2;if(t!=null){var a=t.r,o=t.strokeWidth,s=Number(a),c=Number(o);return(Number.isNaN(s)||s<0)&&(s=r),(Number.isNaN(c)||c<0)&&(c=i),{r:s,strokeWidth:c}}return{r,strokeWidth:i}}function i(){return(i=e((()=>{t()})))()}export{i as n,r as t};

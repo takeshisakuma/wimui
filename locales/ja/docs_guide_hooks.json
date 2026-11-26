@@ -1,0 +1,28 @@
+{
+  "guide": {
+    "hooks_title": "Hooks",
+    "hooks_desc": "パッケージから import できる hooks です。同じことを自分で書く（matchMedia の購読・textarea の高さの計算・並べ替えの状態）より、こちらを使ってください。各 hook の import の行・シグネチャ・例は、ソース（JSDoc）から生成しているので、入れた版と一致します。",
+    "hooks_group_responsive": "レスポンシブ",
+    "hooks_group_responsive_desc": "画面の幅を JavaScript で読みます。レイアウトは CSS（ブレークポイントのトークンとコンテナクエリ）を先に使ってください。描く構造そのものを変えるときだけ、これらを使います。",
+    "hooks_group_feedback": "フィードバック",
+    "hooks_group_feedback_desc": "イベントの処理の中からメッセージを出します。どれも、アプリの根の近くに対応するプロバイダーを 1 つ置く必要があり、その外で呼ぶと例外を投げます。",
+    "hooks_group_data": "データ",
+    "hooks_group_input": "入力",
+    "hooks_group_settings": "設定",
+    "hooks_signature": "シグネチャ",
+    "hooks_example": "例",
+    "hooks_use_media_query": "CSS のメディアクエリが今当てはまるかを追います。クライアントで最初に描くまでは、渡した既定値（省略すると false）を返すので、サーバーとクライアントで同じマークアップになります。",
+    "hooks_use_breakpoint": "画面の幅が今届いている、いちばん大きいブレークポイントの名前（xs・sm・md・lg・xl）。部品が描かれるまでは、いちばん小さいものを返します。",
+    "hooks_use_breakpoint_up": "画面の幅が、指定したブレークポイント以上か。SCSS の up() mixin の JavaScript 版です。",
+    "hooks_use_breakpoint_down": "画面の幅が、指定したブレークポイント未満か。SCSS の down() mixin、HamburgerMenu の visibleBelow の JavaScript 版です。",
+    "hooks_use_toast": "自然に消える短いメッセージを出します。利用者がいま行った操作の、1 回限りの確認向けです。続いている状態（上限・障害）には、画面の中に Alert を置いてください。ToastProvider が要ります。",
+    "hooks_use_snackbar": "画面の端に、メッセージの帯を 1 本出します。新しいメッセージを出すと、今のものと入れ替わります。「元に戻す」のように操作を 1 つ添えるメッセージ向けです。SnackbarProvider が要ります。",
+    "hooks_use_notification": "画面の隅に通知のカードを出します。通知は積み重なり、ほかの場所で起きた出来事（書き出しの完了・新しいコメント）向けです。NotificationProvider が要ります。",
+    "hooks_use_table_sort": "Table の行を、クライアントで並べ替えます。同じ列を押すと、昇順・降順・並べ替えなしの順に切り替わります。サーバーで並べ替えるときは、状態を自分で持ち、onSortChange を使ってください。",
+    "hooks_use_auto_resize": "textarea を、中身に合わせて指定した行数まで伸ばし、それを超えたらスクロールにします。Textarea と PromptInput はすでにこうなっています。自分で描く textarea にだけ使ってください。",
+    "hooks_use_wim": "いちばん近い WimProvider から、テーマ・密度・ロケール・プリセットを読みます（無ければ文書の状態から読みます）。",
+    "hooks_group_a11y": "アクセシビリティ",
+    "hooks_use_announce": "操作の結果をスクリーンリーダーに告げます（「保存しました」「3 件」など）。返ってくる region を 1 回描き、最初の描画から置いたままにして、announce を呼びます。WIM UI が実機のスクリーンリーダーで確かめた形です。status の要素を文ごと後から差し込む形は、読まれないことが多くあります。Toast・Kanban・Transfer などの部品は、自分の結果をすでに告げています。",
+    "hooks_use_confirm": "操作の前に確認を尋ね、答えを待ちます。await confirm() は true か false で終わります。取り消せない操作の前に使います。ConfirmProvider が要ります。"
+  }
+}

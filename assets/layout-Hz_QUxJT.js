@@ -1,0 +1,2 @@
+"use client";
+import{n as e}from"./rolldown-runtime-sJBDdmOt.js";var t;function n(){return(n=e((()=>{t={name:`layout`,resources:{en:{a11y:{toolbar_more:`Show hidden tools ({{count}})`,sidebar_drawer:`Navigation`}},ja:{a11y:{toolbar_more:`省略したツールを表示（{{count}} 件）`,sidebar_drawer:`ナビゲーション`}},pt:{a11y:{toolbar_more:`Mostrar ferramentas ocultas ({{count}})`,sidebar_drawer:`Navegação`}}}}})))()}export{t as n,n as t};

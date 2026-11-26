@@ -1,0 +1,3 @@
+import { WimNamespace } from '../instance';
+export type DataDisplayKey = "avatar_group.show_everyone" | "calendar.aria_date" | "calendar.choose_month" | "calendar.choose_year" | "calendar.months" | "calendar.next_year" | "calendar.next_years" | "calendar.prev_year" | "calendar.prev_years" | "calendar.title" | "calendar.years" | "countdown.remaining" | "data_grid.empty" | "data_grid.radio_column" | "infinite_scroll.loading" | "kanban.moved" | "selection_bar.clear" | "selection_bar.cleared" | "selection_bar.label" | "selection_bar.selected" | "table.header_component" | "table.header_overview";
+export declare const dataDisplayNs: WimNamespace<"data-display", DataDisplayKey>;
