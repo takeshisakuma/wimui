@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import React from "react";
 import { ALL_NAMESPACES } from "../../i18nConstants";
@@ -25,6 +25,31 @@ const meta: Meta<typeof Popover> = {
     open: { control: "boolean" },
   },
 };
+
+/**
+ * フォントが届いてから開く（T448）。開いた直後に位置を決めると、あとでフォントが届いて
+ * 引き金が 1px 未満だけ動いたときに、面の位置が付いてこないことがあり、VRT で面が回ごとに
+ * 1px 横にずれた（InfoTipOpen の light で 684px / 685px）。`document.fonts.ready` は
+ * 未要求のフォントには反応しないので、VRT の待ち（vrt/story-ready.ts）と同じく load() で読ませる。
+ * 開いた姿を撮るストーリーだけが使う。
+ */
+function useFontsLoaded() {
+  const [loaded, setLoaded] = useState(false);
+  useEffect(() => {
+    let alive = true;
+    Promise.all(
+      ["400 16px \"Noto Sans\"", "500 16px \"Noto Sans\"", "700 16px \"Noto Sans\""].map((f) =>
+        document.fonts.load(f).catch(() => undefined),
+      ),
+    ).then(() => {
+      if (alive) setLoaded(true);
+    });
+    return () => {
+      alive = false;
+    };
+  }, []);
+  return loaded;
+}
 
 export default meta;
 type Story = StoryObj<typeof Popover>;
@@ -284,7 +309,10 @@ export const InfoTip: Story = {
  * 開いた姿（VRT と a11y に、開いた面を写すため）。docs ページには載せない（`defaultOpen` はページを開いた瞬間に開く）。
  */
 export const InfoTipOpen: Story = {
-  render: () => <InfoTipExample defaultOpen />,
+  render: function Render() {
+    const fontsLoaded = useFontsLoaded();
+    return <InfoTipExample key={String(fontsLoaded)} defaultOpen={fontsLoaded} />;
+  },
 };
 
 /**
@@ -294,8 +322,9 @@ export const InfoTipOpen: Story = {
 export const LongContentOpen: Story = {
   render: function Render() {
     const { t } = useTranslation(ALL_NAMESPACES);
+    const fontsLoaded = useFontsLoaded();
     return (
-      <Popover defaultOpen placement="bottom-start">
+      <Popover key={String(fontsLoaded)} defaultOpen={fontsLoaded} placement="bottom-start">
         <PopoverTrigger asChild>
           <Button variant="outline">{t("story.popover_open")}</Button>
         </PopoverTrigger>
