@@ -210,7 +210,8 @@ type ToastItem = {
 };
 
 type ToastContextType = {
-  show: (toast: Omit<ToastItem, "id">) => void;
+  /** Shows a toast and returns its id, which `remove(id)` takes to close it early. */
+  show: (toast: Omit<ToastItem, "id">) => string;
   remove: (id: string) => void;
 };
 
@@ -273,6 +274,7 @@ export const ToastProvider = ({
       setToasts((prev) => [...prev, { ...toast, id }]);
       announcedId.current = id;
       announce(toastAnnouncement(toast.title, toast.description));
+      return id;
     },
     [announce],
   );
@@ -328,7 +330,7 @@ export const ToastProvider = ({
  *
  * Throws when called outside `ToastProvider`.
  *
- * @returns `show(toast)` — `{ title?, description?, intent?, duration? }` — and `remove(id)`.
+ * @returns `show(toast)` — `{ title?, description?, intent?, duration? }`, returning the toast id — and `remove(id)`.
  *
  * @example
  * const { show } = useToast();

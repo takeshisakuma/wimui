@@ -1,3 +1,4 @@
+import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { readFileSync } from "node:fs";
@@ -142,5 +143,30 @@ describe("NotificationProvider and useNotification", () => {
       "useNotification must be used within a NotificationProvider",
     );
     consoleSpy.mockRestore();
+  });
+});
+
+describe("NotificationProvider: show() returns the id (T440)", () => {
+  it("closes the notification it showed when the returned id is passed to remove()", () => {
+    const Trigger = () => {
+      const { show, remove } = useNotification();
+      const [id, setId] = React.useState<string>();
+      return (
+        <>
+          <button onClick={() => setId(show({ title: "Syncing" }))}>show</button>
+          <button onClick={() => id && remove(id)}>remove</button>
+        </>
+      );
+    };
+    render(
+      <NotificationProvider>
+        <Trigger />
+      </NotificationProvider>,
+    );
+
+    fireEvent.click(screen.getByText("show"));
+    expect(screen.getByText("Syncing")).toBeInTheDocument();
+    fireEvent.click(screen.getByText("remove"));
+    expect(screen.queryByText("Syncing")).not.toBeInTheDocument();
   });
 });

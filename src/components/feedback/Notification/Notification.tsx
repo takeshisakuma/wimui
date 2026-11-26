@@ -136,7 +136,8 @@ type NotificationItem = Omit<NotificationProps, "onClose"> & {
 };
 
 type NotificationContextType = {
-  show: (notification: Omit<NotificationItem, "id">) => void;
+  /** Shows a notification and returns its id, which `remove(id)` takes to close it. */
+  show: (notification: Omit<NotificationItem, "id">) => string;
   remove: (id: string) => void;
 };
 
@@ -156,6 +157,7 @@ export const NotificationProvider = ({
   const show = useCallback((notification: Omit<NotificationItem, "id">) => {
     const id = Math.random().toString(36).substr(2, 9);
     setNotifications((prev) => [...prev, { ...notification, id }]);
+    return id;
   }, []);
 
   const remove = useCallback((id: string) => {
@@ -190,7 +192,7 @@ export const NotificationProvider = ({
  *
  * Throws when called outside `NotificationProvider`.
  *
- * @returns `show(notification)` — the `Notification` props without `onClose` — and `remove(id)`.
+ * @returns `show(notification)` — the `Notification` props without `onClose`, returning the notification id — and `remove(id)`.
  *
  * @example
  * const { show } = useNotification();

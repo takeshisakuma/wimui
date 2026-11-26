@@ -54,7 +54,6 @@
     "markdownRenderer_prop_baseLevel": "markdown の `h1` の見た目サイズ。`h2`〜`h4` はここから Title の段を 1 つずつ下げ、`xs` で止める。HTML の見出しタグは変えない。既定は `2xl`。",
     "markdownRenderer_prop_className": "ルート要素用の追加の CSS クラス",
     "markdownRenderer_prop_content": "レンダリングする markdown 文字列",
-    "markdownRenderer_prop_withAnchors": "タイトルをアンカーリンク付きでレンダリングするかどうか（デフォルト: false）",
     "modelSelector_prop_className": "追加のクラス名",
     "modelSelector_prop_defaultValue": "初期状態で選択されるモデルの ID（非制御時）",
     "modelSelector_prop_disabled": "セレクターを無効化するかどうか",

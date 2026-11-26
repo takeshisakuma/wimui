@@ -15,6 +15,7 @@ export type DataDisplayKey =
   | "calendar.title"
   | "calendar.years"
   | "countdown.remaining"
+  | "data_grid.empty"
   | "data_grid.radio_column"
   | "infinite_scroll.loading"
   | "kanban.moved"
@@ -58,7 +59,8 @@ export const dataDisplayNs: WimNamespace<"data-display", DataDisplayKey> = {
         "moved": "Moved to {{column}}"
       },
       "data_grid": {
-        "radio_column": "Select row"
+        "radio_column": "Select row",
+        "empty": "No data"
       }
     },
     "ja": {
@@ -91,7 +93,8 @@ export const dataDisplayNs: WimNamespace<"data-display", DataDisplayKey> = {
         "moved": "{{column}} へ移動しました"
       },
       "data_grid": {
-        "radio_column": "行を選択"
+        "radio_column": "行を選択",
+        "empty": "データがありません"
       }
     },
     "pt": {
@@ -124,7 +127,8 @@ export const dataDisplayNs: WimNamespace<"data-display", DataDisplayKey> = {
         "moved": "Movido para {{column}}"
       },
       "data_grid": {
-        "radio_column": "Selecionar linha"
+        "radio_column": "Selecionar linha",
+        "empty": "Nenhum dado"
       }
     }
   },

@@ -36,8 +36,6 @@ export interface MarkdownRendererProps {
   baseLevel?: (typeof TITLE_SIZE_STEPS)[number];
   /** Additional CSS class for the root element */
   className?: string;
-  /** Whether to render titles with anchor links (default: false) */
-  withAnchors?: boolean;
 }
 
 /**

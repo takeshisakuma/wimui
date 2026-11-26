@@ -103,6 +103,22 @@ describe("DataGrid", () => {
     expect(screen.getByText("No data found")).toBeInTheDocument();
   });
 
+  // T440: 既定が無いと、行が 0 件の表は見出しだけになり、空なのか分からなかった。
+  it("shows a default empty message when emptyMessage is not given", () => {
+    render(<DataGrid columns={mockColumns} data={[]} />);
+    expect(screen.getByText("No data")).toBeInTheDocument();
+  });
+
+  it("shows nothing when emptyMessage is null", () => {
+    render(<DataGrid columns={mockColumns} data={[]} emptyMessage={null} />);
+    expect(screen.queryByText("No data")).not.toBeInTheDocument();
+  });
+
+  it("does not claim there is no data during a blocking load", () => {
+    render(<DataGrid columns={mockColumns} data={[]} loading />);
+    expect(screen.queryByText("No data")).not.toBeInTheDocument();
+  });
+
   // T353: 空の表示を role="status" ごと差し込んでも読まれなかった（ナレーター + Chrome）。
   // 行が 0 になったら、先に在る領域へ文字を書く。ReactNode を渡しても文字で告げる
   it("announces the empty message when the rows run out, from a region that was already there", () => {
