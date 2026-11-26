@@ -168,7 +168,7 @@
         "react/jsx-runtime"
       ],
       "gzip": true,
-      "limit": "18.8 kB"
+      "limit": "18.9 kB"
     },
     {
       "name": "フォーム画面: 入力7種 (gzip)",
@@ -180,7 +180,7 @@
         "react/jsx-runtime"
       ],
       "gzip": true,
-      "limit": "24.5 kB"
+      "limit": "24.6 kB"
     },
     {
       "name": "ルートバレル全部 — 最悪ケース (gzip)",

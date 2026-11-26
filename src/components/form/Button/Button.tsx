@@ -151,14 +151,18 @@ export const Button = React.forwardRef<
           ? "flex-end"
           : justify === "between" ? "space-between" : justify;
 
+    // 読み込み中は、中身（文字とアイコン）を見えなくして場所を残し、スピナーを真ん中に重ねる（T446）。
+    // 横に足すと幅が 133.5 → 154.3px に伸び、隣の要素が動いた。asChild は中身を包む要素が無いので、
+    // これまでどおりアイコンの位置に出す。
+    const overlayLoader = loading && !asChild;
+    const loader = loading ? (
+      <span className={classNames(localStyles.loader, overlayLoader && localStyles.loaderOverlay, stylesProp?.loader)}>
+        <Icon component={LoadingIcon} spin size={size} />
+      </span>
+    ) : null;
+
     const renderIcon = () => {
-      if (loading) {
-        return (
-          <span className={classNames(localStyles.loader, stylesProp?.loader)}>
-            <Icon component={LoadingIcon} spin size={size} />
-          </span>
-        );
-      }
+      if (loading && !overlayLoader) return loader;
       if (!icon) return null;
       if (typeof icon === "string") {
         return (
@@ -230,6 +234,7 @@ export const Button = React.forwardRef<
             {iconContent && iconPosition === "right" && iconContent}
           </span>
         )}
+        {overlayLoader ? loader : null}
         {asChild ? loadingText : null}
         {asChild && iconContent && iconPosition === "right" ? iconContent : null}
       </Root>

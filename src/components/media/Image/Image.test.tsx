@@ -24,12 +24,25 @@ describe("Image", () => {
     expect(inner).toHaveClass(styles.border);
   });
 
-  it("applies width and height props", () => {
+  // T446: width と height が両方そろえば、読み込み前から縦横の比で場所を取る（高さ 0 から伸びない）
+  it("reserves the width / height ratio before the image loads", () => {
     render(<Image src="test.jpg" alt="Test" width={500} height="300px" />);
     const figure = screen.getByTestId("image-root");
     expect(figure).toHaveStyle({ maxWidth: "500px" });
-    const img = screen.getByRole("img");
-    expect(img).toHaveStyle({ height: "300px" });
+    expect(screen.getByTestId("image-inner").style.aspectRatio).toBe("500 / 300");
+    expect(screen.getByRole("img")).toHaveStyle({ height: "100%" });
+  });
+
+  it("keeps a fixed height when only height is given", () => {
+    render(<Image src="test.jpg" alt="Test" height={240} />);
+    const inner = screen.getByTestId("image-inner");
+    expect(inner.style.aspectRatio).toBe("");
+    expect(inner).toHaveStyle({ height: "240px" });
+  });
+
+  it("does not make a ratio from a width it cannot measure", () => {
+    render(<Image src="test.jpg" alt="Test" width="50%" height={240} />);
+    expect(screen.getByTestId("image-inner").style.aspectRatio).toBe("");
   });
 
   it("applies fit prop", () => {

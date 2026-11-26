@@ -3228,7 +3228,9 @@ Ignored when `truncate` is set (one line wins; they cannot both apply).
     - `src: string` (required) — Source URL of the image
     - `alt: string` (required) — Alternative text for the image
     - `width: string | number` — Width of the image
-    - `height: string | number` — Height of the image
+    - `height: string | number` — Height of the image. With a `width` that is also a number or a px value, the two set the
+aspect ratio instead: the image takes that shape before it loads and scales down with its
+container. Alone, it is a fixed height.
     - `radius: "none" | "sm" | "md" | "lg" | "full"` = "none" — Corner radius size
     - `shadow: boolean` = false — Whether to show a shadow
     - `border: boolean` = false — Whether to show a border

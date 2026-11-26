@@ -87,6 +87,15 @@ describe("Button", () => {
     expect(button).toBeDisabled();
   });
 
+  // T446: スピナーを文字の横に足すと幅が伸びた。中身は場所を残して隠し、スピナーは中身の外に重ねる
+  it("overlays the spinner instead of adding it beside the label", () => {
+    const { container } = render(<Button loading>Save changes</Button>);
+    const loader = container.querySelector("." + styles.loaderOverlay);
+    expect(loader).not.toBeNull();
+    expect(container.querySelector("." + styles.content)?.contains(loader)).toBe(false);
+    expect(container.querySelector("." + styles.content)).toHaveTextContent("Save changes");
+  });
+
   it("names an icon-only loading button Loading", () => {
     const { container } = render(<Button loading icon={<span />} />);
     expect(container.querySelector("button")).toHaveAttribute("aria-label", "Loading");
